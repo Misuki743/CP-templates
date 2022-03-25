@@ -17,8 +17,9 @@ we have
 - math
 - linear sieve
 
-## flow series
+## graph
 
+- 2-sat
 - dinic
 - minimum cost maximum flow
 
