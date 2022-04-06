@@ -16,6 +16,8 @@ we have
 
 - math
 - linear sieve
+- FFT
+- NTT
 
 ## graph
 
