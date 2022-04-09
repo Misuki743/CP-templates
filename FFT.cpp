@@ -73,7 +73,7 @@ vector<int> multiply(vector<int> a, vector<int> b) {
 
   vector<int> res(mxSz);
   for(int i = 0; i < mxSz; i++)
-    res[i] = c[i].real() + 0.5;
+    res[i] = round(c[i].real());
 
   return res;
 }

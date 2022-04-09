@@ -54,10 +54,10 @@ vector<long long> multiplyMOD(vector<long long> a1, vector<long long> b1) {
 
   vector<long long> res(mxSz);
   for(int i = 0; i < mxSz; i++) {
-    long long c1d1Val = (long long)(c1d1[i].real() + 0.5);
-    long long c1d2Val = (long long)(c1d2[i].real() + 0.5);
-    long long c2d1Val = (long long)(c2d1[i].real() + 0.5);
-    long long c2d2Val = (long long)(c2d2[i].real() + 0.5);
+    long long c1d1Val = (long long)round(c1d1[i].real());
+    long long c1d2Val = (long long)round(c1d2[i].real());
+    long long c2d1Val = (long long)round(c2d1[i].real());
+    long long c2d2Val = (long long)round(c2d2[i].real());
     c1d1Val %= MOD;
     c1d2Val %= MOD;
     c2d1Val %= MOD;

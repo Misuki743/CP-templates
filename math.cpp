@@ -5,10 +5,10 @@
 
 const long long MOD = 1e9 + 7;
 
-long long POW(long long base, long long index) {
+int POW(long long base, long long index) {
   if (index == 0)
     return 1ll;
-  int res = (base == 0ll ? 0ll : 1ll);
+  long long res = (base == 0ll ? 0ll : 1ll);
   while(index) {
     if (index & 1)
       res = (res * base) % MOD;

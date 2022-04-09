@@ -19,6 +19,7 @@ we have
 - FFT
 - FFTmod
 - NTT
+- Berlekamp-Massey
 
 ## graph
 
