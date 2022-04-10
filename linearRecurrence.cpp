@@ -12,6 +12,8 @@ int solve(vector<int> c, vector<int> s, int k) {
 
   if (k < s.size())
     return s[k];
+  if (c.size() == 1)
+    return 0;
   
   vector<int> poly(c.size(), 1);
   for(int i = 0; i + 1 < poly.size(); i++)
@@ -50,6 +52,6 @@ int solve(vector<int> c, vector<int> s, int k) {
   for(int i = 0; i < res.size(); i++)
     ans = (ans + res[i] * s[i]) % MOD;
 
-  return ans;
+  return (ans + MOD) % MOD;
 }
 //////////////////////////////////////////////////
