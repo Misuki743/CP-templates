@@ -20,6 +20,7 @@ we have
 - FFTmod
 - NTT
 - Berlekamp-Massey
+- linearRecurrence
 
 ## graph
 
