@@ -7,7 +7,7 @@
 
 const int MOD = 998244353;
 
-int solve(vector<int> c, vector<int> s, int k) {
+int linearRecurrence(vector<int> c, vector<int> s, int k) {
   assert(s.size() + 1 >= c.size());
 
   if (k < s.size())
