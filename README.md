@@ -10,6 +10,8 @@ we have
 - disjoint set
 - sparse table
 - pbds set
+- segmentTree
+- segmentTreeLazy
 - li-chao segment tree
 
 ## math
