@@ -3,14 +3,16 @@
 //author: __Shioko(Misuki)
 //last update: 2022/04/16
 //verify: library checker - Point Add Range Sum, Static RMQ
-template<class T, T UNIT>
+template<class T>
 struct segmentTree {
   static const int MAXSZ = 500000;
+  T UNIT;
   T arr[2 * MAXSZ];
   int sz;
 
-  segmentTree(int _sz) {
+  segmentTree(int _sz, T _UNIT) {
     sz = _sz;
+    UNIT = _UNIT;
     fill(arr, arr + 2 * sz, UNIT);
   }
 
