@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////
 //template name: dinic
 //author: __Shioko(Misuki)
-//last update: 2022/04/16
+//last update: 2022/05/02
 //verify: ABC239 pG - Builder Takahashi
 
 template<class T, T MAX>
@@ -45,16 +45,7 @@ struct Dinic {
 
     for(int &i = iter[V]; i < G[V].size(); i++) {
       Edge &E = G[V][i];
-      /*
-      if (level[E.to] == level[V] + 1 and E.cap > 0) {
-        int tmp;
-        if ((tmp = DFS(E.to, min(flow, E.cap))) > 0) {
-          E.cap -= tmp, G[E.to][E.rev].cap += tmp;
-          return tmp;
-        }    
-      } 
-      */
-      if (T tmp; level[E.to] + 1 == level[V] and G[E.to][E.rev].cap > 0) {
+      if (T tmp; level[E.to] == level[V] - 1 and G[E.to][E.rev].cap > 0) {
         if ((tmp = DFS(E.to, min(flow, G[E.to][E.rev].cap))) > 0) {
           E.cap += tmp, G[E.to][E.rev].cap -= tmp;
           return tmp;
