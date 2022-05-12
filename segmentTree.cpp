@@ -6,18 +6,16 @@
 template<class T>
 struct segmentTree {
   static const int MAXSZ = 500000;
+  function<T(const T&, const T&)> combine;
   T UNIT;
   T arr[2 * MAXSZ];
   int sz;
 
-  segmentTree(int _sz, T _UNIT) {
+  segmentTree(int _sz, T _UNIT, function<T(const T&, const T&)> _combine) {
     sz = _sz;
     UNIT = _UNIT;
+    combine = _combine;
     fill(arr, arr + 2 * sz, UNIT);
-  }
-
-  T combine(const T &l, const T &r) {
-    //fill out here
   }
 
   void set(int idx, T val) {

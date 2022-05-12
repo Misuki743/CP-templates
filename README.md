@@ -12,7 +12,9 @@ we have
 - pbds set
 - segmentTree
 - segmentTreeLazy
+- segmentTree 2D
 - li-chao segment tree
+- fenwickTree 2D
 
 ## math
 
@@ -39,6 +41,11 @@ we have
 ## geometry
 
 - geometry double
+- geometry Basic
+- geometry Line
+- geometry Circle
+- geometry Angle
+- geometry Polygon
 
 ## other
 
