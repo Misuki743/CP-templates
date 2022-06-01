@@ -26,6 +26,7 @@ we have
 - NTT
 - Berlekamp-Massey
 - linearRecurrence
+- fastZetaTransform
 
 ## graph
 
