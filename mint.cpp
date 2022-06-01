@@ -7,44 +7,41 @@ struct mint {
   static const long long MOD = 1e9 + 7;
   long long _val;
 
-  mint() : _val(0) {}
-  mint(long long init) {
-    init %= MOD;
-    if (init < 0)
-      init += MOD;
-    _val = init;
+  mint(long long init = 0) {
+    _val = init % MOD;
+    (*this).norm();
   }
 
   mint POW(long long index) {
-    long long base = _val;
     if (index == 0)
       return mint(1ll);
-    long long res = (base == 0ll ? 0ll : 1ll);
+    mint base = *this;
+    mint res = (base == 0ll ? 0ll : 1ll);
     while(index) {
       if (index & 1)
-        res = (res * base) % MOD;
-      base = (base * base) % MOD;
-      index >>= 1;
+        res *= base;
+      base *= base, index >>= 1;
     }
-
-    return mint(res);
+    return res;
   }
 
-  mint inv() {
-    return (*this).POW(MOD - 2);
+  mint inv() { return (*this).POW(MOD - 2); }
+
+  mint& norm() {
+    if (_val >= MOD)
+      _val -= MOD;
+    if (_val < 0)
+      _val += MOD;
+    return *this;
   }
 
   mint& operator+=(mint b) {
     _val += b._val;
-    if (_val >= MOD)
-      _val -= MOD;
-    return *this;
+    return (*this).norm();
   }
   mint& operator-=(mint b) {
     _val -= b._val;
-    if (_val < 0)
-      _val += MOD;
-    return *this;
+    return (*this).norm();
   }
   mint& operator*=(mint b) {
     _val = (_val * b._val) % MOD;
@@ -57,20 +54,16 @@ struct mint {
 
   mint& operator++() {
     _val += 1;
-    if (_val == MOD)
-      _val -= MOD;
-    return *this;
+    return (*this).norm();
+  }
+  mint& operator--() {
+    _val -= 1;
+    return (*this).norm();
   }
   mint operator++(signed) {
     mint tmp = *this;
     ++(*this);
     return tmp;
-  }
-  mint& operator--() {
-    _val -= 1;
-    if (_val == -1)
-      _val += MOD;
-    return *this;
   }
   mint operator--(signed) {
     mint tmp = *this;
@@ -78,46 +71,23 @@ struct mint {
     return tmp;
   }
 
-  mint operator-() {
-    long long res = -_val;
-    if (res < 0)
-      res += MOD;
-    return mint(res);
-  }
+  mint operator-() { return mint(-_val); }
+  bool operator==(mint b) { return _val == b._val; }
+  bool operator!=(mint b) { return _val != b._val; }
   
-  mint operator+(mint b) {
-    long long res = _val + b._val;
-    if (res >= MOD)
-      res -= MOD;
-    return mint(res);
-  }
-  mint operator-(mint b) {
-    long long res = _val - b._val;
-    if (res < 0)
-      res += MOD;
-    return mint(res);
-  }
-  mint operator*(mint b) {
-    return mint(_val * b._val);
-  }
-  mint operator/(mint b) {
-    return mint(_val * b.inv()._val);
-  }
+  friend mint operator+(mint a, mint b) { return a += b; }
+  friend mint operator-(mint a, mint b) { return a -= b; }
+  friend mint operator*(mint a, mint b) { return a *= b; }
+  friend mint operator/(mint a, mint b) { return a /= b; }
 
-  bool operator==(mint b) {
-    return _val == b._val;
+  friend ostream& operator<<(ostream& os, const mint& b) {
+    return os << b._val;
   }
-  bool operator!=(mint b) {
-    return _val != b._val;
+  friend istream& operator>>(istream& is, mint& b) {
+    long long val;
+    is >> val;
+    b = mint(val);
+    return is;
   }
 };
-
-ostream& operator<<(ostream& os, const mint& b) {
-  os << b._val;
-  return os;
-}
-istream& operator>>(istream& is, mint& b) {
-  is >> b._val;
-  return is;
-}
 //////////////////////////////////////////////////
