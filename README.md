@@ -19,6 +19,7 @@ we have
 ## math
 
 - math
+- mint
 - linear sieve
 - FFT
 - FFTmod
