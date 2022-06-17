@@ -15,6 +15,7 @@ we have
 - segmentTree 2D
 - li-chao segment tree
 - fenwickTree 2D
+- treap
 
 ## math
 
