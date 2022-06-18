@@ -34,6 +34,7 @@ we have
 - 2-sat
 - dinic
 - minimum cost maximum flow
+- matroid intersection
 
 ## string
 
@@ -53,3 +54,4 @@ we have
 ## other
 
 - random
+- default
