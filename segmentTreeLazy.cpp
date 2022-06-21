@@ -1,8 +1,8 @@
 //////////////////////////////////////////////////
 //template name: segmentTreeLazy
 //author: __Shioko(Misuki)
-//last update: 2022/06/11
-//warning: have not been verify yet!!!
+//last update: 2022/06/22
+//verify: abc256 pEx - I Like Query Problem
 
 template<class T1, class T2>
 struct segmentTree {
@@ -39,6 +39,14 @@ struct segmentTree {
     ;
   }
 
+  bool breakCondition(const T1 &a, const T2 &b) {
+    ;
+  }
+
+  bool tagCondition(const T1 &a, const T2 &b) {
+    ;
+  }
+
   void apply(int idx, T2 &val) {
     arr[idx] = combineNT(arr[idx], val);
     if (idx < sz)
@@ -64,6 +72,25 @@ struct segmentTree {
     }
   }
 
+  void visit(int idx, T2 val) {
+    if (breakCondition(arr[idx], val))
+      return;
+    if (tagCondition(arr[idx], val)) {
+      apply(idx, val);
+      return;
+    }
+    if (idx < sz) {
+      if (!(tag[idx] == TAGUNIT)) {
+        apply(idx<<1, tag[idx]);
+        apply(idx<<1|1, tag[idx]);
+        tag[idx] = TAGUNIT;
+      }
+      visit(idx<<1, val);
+      visit(idx<<1|1, val);
+      arr[idx] = combineNT(combineNode(arr[idx<<1], arr[idx<<1|1]), tag[idx]); 
+    }
+  }
+
   void modify(int l, int r, T2 val) {
     int l0 = l + sz, r0 = r + sz - 1;
     push(l0);
@@ -71,6 +98,18 @@ struct segmentTree {
     for(l += sz, r += sz; l < r; l >>= 1, r >>= 1) {
       if (l & 1) apply(l++, val);
       if (r & 1) apply(--r, val);
+    }
+    pull(l0);
+    pull(r0);
+  }
+
+  void beatModify(int l, int r, T2 val) {
+    int l0 = l + sz, r0 = r + sz - 1;
+    push(l0);
+    push(r0);
+    for(l += sz, r += sz; l < r; l >>= 1, r >>= 1) {
+      if (l & 1) visit(l++, val);
+      if (r & 1) visit(--r, val);
     }
     pull(l0);
     pull(r0);
