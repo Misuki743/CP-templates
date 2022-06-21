@@ -35,6 +35,7 @@ we have
 - dinic
 - minimum cost maximum flow
 - matroid intersection
+- hungarian
 
 ## string
 
