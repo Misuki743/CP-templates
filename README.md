@@ -16,6 +16,8 @@ we have
 - li-chao segment tree
 - fenwickTree 2D
 - treap
+- persistent treap
+- link-cut tree
 
 ## math
 
@@ -28,6 +30,7 @@ we have
 - Berlekamp-Massey
 - linearRecurrence
 - fastZetaTransform
+- determinantInt
 
 ## graph
 
