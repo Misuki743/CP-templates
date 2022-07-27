@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////
 //template name: treap
 //author: __Shioko(Misuki)
-//last update: 2022/06/17
+//last update: 2022/07/19
 
 #define clock chrono::steady_clock::now().time_since_epoch().count()
 mt19937 rng(clock);
@@ -18,6 +18,7 @@ int size(node *now) {
 }
 void update(node *now) {
   if (!now) return;
+  now -> sz = size(now -> l) + size(now -> r) + 1;
 }
 
 void push(node *now) {

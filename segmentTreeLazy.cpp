@@ -1,12 +1,12 @@
 //////////////////////////////////////////////////
 //template name: segmentTreeLazy
 //author: __Shioko(Misuki)
-//last update: 2022/06/22
+//last update: 2022/07/20
 //verify: abc256 pEx - I Like Query Problem
 
 template<class T1, class T2>
 struct segmentTree {
-  static const int MAXSZ = 500000;
+  static const int MAXSZ = 200000;
   T1 NODEUNIT;
   T2 TAGUNIT;
   T1 arr[2 * MAXSZ];
@@ -32,19 +32,21 @@ struct segmentTree {
 
   //b(a(T1))
   T2 combineTag(const T2 &a, const T2 &b) {
-    ;
+    if (b == TAGUNIT)
+      return a;
   }
 
   T1 combineNT(const T1 &a, const T2 &b) {
-    ;
+    if (b == TAGUNIT)
+      return a;
   }
 
   bool breakCondition(const T1 &a, const T2 &b) {
-    ;
+    return false;
   }
 
   bool tagCondition(const T1 &a, const T2 &b) {
-    ;
+    return false;
   }
 
   void apply(int idx, T2 &val) {
@@ -54,6 +56,8 @@ struct segmentTree {
   }
 
   void push(int idx) {
+    if (idx >= 2 * sz)
+      return;
     for(int i = h - 1; i > 0; i--) {
       int pos = idx >> i;
       if (!(tag[pos] == TAGUNIT)) {
@@ -65,6 +69,8 @@ struct segmentTree {
   }
 
   void pull(int idx) {
+    if (idx >= 2 * sz)
+      return;
     idx >>= 1;
     while(idx) {
       arr[idx] = combineNT(combineNode(arr[idx<<1], arr[idx<<1|1]), tag[idx]);

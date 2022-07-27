@@ -45,6 +45,7 @@ we have
 - KMP
 - Z algorithm
 - Manacher
+- suffix array
 
 ## geometry
 
