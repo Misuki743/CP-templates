@@ -3,8 +3,9 @@
 //author: __Shioko(Misuki)
 //last update: 2022/02/04
 
-int z[2000001];
+int z[2000000];
 void build(string &s) {
+  fill(z, z + s.size(), 0);
   z[0] = s.size();
   for(int i = 1, l = 0, r = -1; i < s.size(); i++) {
     if (i <= r)

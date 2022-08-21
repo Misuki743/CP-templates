@@ -10,11 +10,11 @@ we have
 - disjoint set
 - sparse table
 - pbds set
-- segmentTree
-- segmentTreeLazy
-- segmentTree 2D
+- segment tree
+- segment tree lazy
+- segment tree 2D
 - li-chao segment tree
-- fenwickTree 2D
+- fenwick tree 2D
 - treap
 - persistent treap
 - link-cut tree
@@ -28,9 +28,12 @@ we have
 - FFTmod
 - NTT
 - Berlekamp-Massey
-- linearRecurrence
-- fastZetaTransform
+- linear recurrence
+- fast zeta transform
 - determinantInt
+- inv of formal power series
+- matrix
+- stirling number of first kind
 
 ## graph
 
