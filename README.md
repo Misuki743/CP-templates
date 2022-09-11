@@ -24,9 +24,11 @@ we have
 - math
 - mint
 - linear sieve
+- floor sum
 - FFT
 - FFTmod
 - NTT
+- fast subset transform
 - Berlekamp-Massey
 - linear recurrence
 - fast zeta transform
@@ -49,6 +51,7 @@ we have
 - Z algorithm
 - Manacher
 - suffix array
+- Aho-Corasick
 
 ## geometry
 
