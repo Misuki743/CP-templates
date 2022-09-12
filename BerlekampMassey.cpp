@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////
 //template name: Berlekamp-Massey
 //author: __Shioko(Misuki)
-//last update: 2022/04/09
+//last update: 2022/09/12
 //include: math
 //verify: library checker - Find Linear Recurrence
 
@@ -42,6 +42,9 @@ vector<int> BerlekampMassey(vector<int> s) {
       f = fp;
     }
   }
+
+  for(int &X : c)
+    X = (X + MOD) % MOD;
 
   return c;
 }
