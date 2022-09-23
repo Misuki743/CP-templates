@@ -44,6 +44,8 @@ we have
 - minimum cost maximum flow
 - matroid intersection
 - hungarian
+- BCC
+- 2CC
 
 ## string
 
