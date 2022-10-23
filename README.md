@@ -46,6 +46,7 @@ we have
 - hungarian
 - BCC
 - 2CC
+- hopcroft-karp
 
 ## string
 

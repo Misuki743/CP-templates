@@ -56,7 +56,7 @@ struct segmentTree {
   }
 
   void push(int idx) {
-    if (idx >= 2 * sz)
+    if (idx >= 2 * sz or idx < sz)
       return;
     for(int i = h - 1; i > 0; i--) {
       int pos = idx >> i;
@@ -69,7 +69,7 @@ struct segmentTree {
   }
 
   void pull(int idx) {
-    if (idx >= 2 * sz)
+    if (idx >= 2 * sz or idx < sz)
       return;
     idx >>= 1;
     while(idx) {
