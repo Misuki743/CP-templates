@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////
 //template name: linearSieve
 //author: __Shioko(Misuki)
-//last update: 2022/02/05
+//last update: 2022/12/13
 
 const int C = 1000001;
 vector<int> prime;
@@ -27,6 +27,18 @@ vector<pii> factorize(int val) {
     res.emplace_back(p, 0);
     while(val % p == 0)
       res.back().second += 1, val /= p;
+  }
+  return res;
+}
+
+vector<int> factors(int val) {
+  vector<int> res(1, 1);
+  for(auto [p, idx] : factorize(val)) {
+    vector<int> tmp;
+    for(int i = 0, base = 1; i <= idx; i++, base *= p)
+      for(int X : res)
+        tmp.emplace_back(X * base);
+    res.swap(tmp);
   }
   return res;
 }

@@ -21,7 +21,6 @@ struct AhoCorasick {
   AhoCorasick(int sz) {
     v.reserve(sz);
     v.emplace_back(-1, ' ');
-    //v[0].link = 0;
   }
 
   void insert(string s) {
