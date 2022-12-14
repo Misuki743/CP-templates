@@ -15,7 +15,7 @@ struct segmentTree {
   static const int MAXSZ = 4500000; //use about 2N + QlgN nodes
   function<T(const T&, const T&)> combine;
   T UNIT;
-  node arr[MAXSZ];
+  vector<node> arr;
   vector<T> init;
   int ptr = 0;
 
@@ -23,6 +23,7 @@ struct segmentTree {
     UNIT = _UNIT;
     combine = _combine;
     init = _init;
+    arr.resize(MAXSZ, UNIT);
   }
 
   int build(int l, int r) {

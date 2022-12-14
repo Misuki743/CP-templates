@@ -12,6 +12,7 @@ we have
 - pbds set
 - segment tree
 - segment tree lazy
+- segment tree persistent
 - segment tree 2D
 - li-chao segment tree
 - fenwick tree 2D
