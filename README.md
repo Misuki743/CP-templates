@@ -12,8 +12,8 @@ we have
 - pbds set
 - segment tree
 - segment tree lazy
-- segment tree persistent
 - segment tree 2D
+- segment tree persist
 - li-chao segment tree
 - fenwick tree 2D
 - treap
@@ -47,6 +47,7 @@ we have
 - hungarian
 - BCC
 - 2CC
+- SCC
 - hopcroft-karp
 
 ## string

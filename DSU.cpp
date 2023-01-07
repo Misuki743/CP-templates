@@ -1,20 +1,16 @@
 //////////////////////////////////////////////////
-//template name: disjointSet
+//template name: DSU
 //author: __Shioko(Misuki)
-//last update: 2022/01/13
+//last update: 2023/01/07
+//verify: Library Checker - Unionfind
 
-struct disjointSet{
-  vector<int> bos;
+struct DSU {
   vector<int> dep;
+  vector<int> bos;
   int size;
 
-  disjointSet(int _size) {
-    size = _size;
-    bos.resize(size, 0);
-    dep.resize(size, 0);
-    for(int i = 0; i < size; i++) {
-      bos[i] = i;
-    }
+  DSU(int _size) : size(_size), dep(_size, 0), bos(_size) {
+    iota(bos.begin(), bos.end(), 0);
   }
 
   int query(int V) {
