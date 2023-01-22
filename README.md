@@ -24,6 +24,7 @@ we have
 
 - math
 - mint
+- combination
 - linear sieve
 - floor sum
 - FFT
