@@ -38,6 +38,7 @@ we have
 - inv of formal power series
 - matrix
 - stirling number of first kind
+- FPS
 
 ## graph
 
