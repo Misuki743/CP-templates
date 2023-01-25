@@ -39,6 +39,7 @@ we have
 - matrix
 - stirling number of first kind
 - FPS
+- Bostan-Mori
 
 ## graph
 
