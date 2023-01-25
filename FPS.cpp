@@ -2,7 +2,8 @@
 //template name: FPS
 //author: __Shioko(Misuki)
 //last update: 2023/01/24
-//include: mint(with NTT-able MOD)
+//include: mint with NTT-able MOD if using NTT(convolution/log/exp/pow).
+//              with prime if modular inversion is needed.
 //verify: Library Checker - Inv of Formal Power Series
 //        Library Checker - Exp of Formal Power Series
 //        Library Checker - Log of Formal Power Series

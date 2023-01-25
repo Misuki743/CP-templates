@@ -4,7 +4,7 @@
 //last update: 2022/06/01
 //note: inversion only works when MOD is a prime
 struct mint {
-  static const long long MOD = 1e9 + 7;
+  static const long long MOD = 998244353;
   long long _val;
 
   mint(long long init = 0) {
