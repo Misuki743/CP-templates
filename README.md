@@ -30,10 +30,12 @@ we have
 - FFT
 - FFTmod
 - NTT
+- FWHT
+- fast zeta transform
 - fast subset transform
+- subset convolution
 - Berlekamp-Massey
 - linear recurrence
-- fast zeta transform
 - determinantInt
 - inv of formal power series
 - matrix
@@ -69,6 +71,7 @@ we have
 - geometry Circle
 - geometry Angle
 - geometry Polygon
+- dynamic convex hull
 
 ## other
 

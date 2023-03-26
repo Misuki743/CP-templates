@@ -1,19 +1,19 @@
 //////////////////////////////////////////////////
 //template name: fastZetaTransform
 //author: __Shioko(Misuki)
-//last update: 2022/05/29
+//last update: 2023/03/26
 //note: to change to poset, flip the condition inside if statement. 
-//      to change to fast mobius transform, use minus instead of plus.
 //four possible usage:
 //fastZetaTransform on subset (SOS)
 //fastZetaTransform on poset
 //fastMobiusTransform on subset
 //fastMobiusTransform on poset (IEP)
 
-void fastZetaTransform(vector<int> &vec) {
-  for(int i = 0; (1 << i) < vec.size(); i++)
-    for(int j = 0; j < vec.size(); j++)
+template<class T>
+void fastZetaTransform(vector<T> &vec, bool inverse = false) {
+  for(int i = 0; (1 << i) < (int)vec.size(); i++)
+    for(int j = 0; j < (int)vec.size(); j++)
       if (j >> i & 1)
-        vec[j] += vec[j ^ (1 << i)];
+        vec[j] += (inverse ? -vec[j ^ (1 << i)] : vec[j ^ (1 << i)]);
 }
 //////////////////////////////////////////////////
