@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////
 //template name: FPS
 //author: __Shioko(Misuki)
-//last update: 2023/01/24
+//last update: 2023/03/28
 //include: mint with NTT-able MOD if using NTT(convolution/log/exp/pow),
 //           or change NTT with high precision FFT
 //verify: Library Checker - Inv of Formal Power Series
@@ -59,13 +59,13 @@ struct FPS : vector<mint> {
         (*this)[i] *= INV;
     }
   }
-  FPS& operator+=(FPS &b) {
+  FPS& operator+=(FPS b) {
     if (this -> size() < b.size()) this -> resize(b.size(), 0);
     for(int i = 0; i < b.size(); i++)
       (*this)[i] += b[i];
     return *this;
   }
-  FPS& operator-=(FPS &b) {
+  FPS& operator-=(FPS b) {
     if (this -> size() < b.size()) this -> resize(b.size(), 0);
     for(int i = 0; i < b.size(); i++)
       (*this)[i] -= b[i];
@@ -194,6 +194,13 @@ struct FPS : vector<mint> {
     return (*this);
   }
 
+  FPS& operator/=(mint b) {
+    b = mint(1) / b;
+    for(int i = 0; i < this -> size(); i++)
+      (*this)[i] *= b;
+    return (*this);
+  }
+
   FPS integral() {
     vector<mint> Inv(this -> size() + 1);
     Inv[1] = 1;
@@ -214,6 +221,13 @@ struct FPS : vector<mint> {
       Q[i - 1] = (*this)[i] * i;
 
     return Q;
+  }
+
+  mint eval(mint x) {
+    mint base = 1, res = 0;
+    for(int i = 0; i < this -> size(); i++, base *= x)
+      res += (*this)[i] * base;
+    return res;
   }
 
   FPS inv(int k) { // 1 / FPS (mod x^k)
@@ -282,6 +296,7 @@ struct FPS : vector<mint> {
   friend FPS operator-(FPS a, FPS b) { return a -= b; }
   friend FPS operator*(FPS a, FPS b) { return a *= b; }
   friend FPS operator*(FPS a, mint b) { return a *= b; }
+  friend FPS operator/(FPS a, mint b) { return a /= b; }
 };
 
 bool FPS::init_NTT = false;
