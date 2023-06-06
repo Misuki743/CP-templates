@@ -9,6 +9,10 @@
 //        Library Checker - Log of Formal Power Series
 //        Library Checker - Pow of Formal Power Series
 //        Library Checker - Convolution
+//
+//some theorem about FPS:
+//
+//Lagrange inversion theorem: [x^n]G(x) = 1/n [x^{-1}] F(x)^{-1} for F(x) being the composition inversion of G(x)
 
 bool init_NTT = false;
 

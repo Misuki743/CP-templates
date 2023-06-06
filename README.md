@@ -14,6 +14,7 @@ we have
 - segment tree lazy
 - segment tree 2D
 - segment tree persist
+- segment tree lazy dynamic
 - li-chao segment tree
 - fenwick tree 2D
 - treap
@@ -24,9 +25,10 @@ we have
 
 - math
 - mint
+- MontgomeryModInt
 - combination
 - linear sieve
-- floor sum
+- floor/ceil sum
 - FFT
 - FFTmod
 - NTT

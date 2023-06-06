@@ -1,0 +1,20 @@
+//////////////////////////////////////////////////
+//template name: troubleShoot
+//author: __Shioko(Misuki)
+//last update: 2023/04/10
+
+/*
+when getting WA:
+  
+  Is the implementation correct?
+
+  Am I misread the problem?
+
+  Is the algorithm correct? Did I use some claim without proving it?
+
+  May overflow happen?
+
+  Write some stress-test.
+*/
+
+//////////////////////////////////////////////////
