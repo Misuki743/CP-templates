@@ -1,10 +1,10 @@
-//////////////////////////////////////////////////
-//template name: MontgomeryModInt
-//author: __Misuki
-//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
-//last update: 2023/06/05
-//note: inversion only works when mod is a prime
-//      mod should be less than 2^30
+/**
+ * template name: MontgomeryModInt
+ * author: Misuki
+ * reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
+ * last update: 2023/06/05
+ * note: mod should be a prime less than 2^30.
+ */
 
 template<uint32_t mod>
 struct MontgomeryModInt {
@@ -37,7 +37,7 @@ struct MontgomeryModInt {
   MontgomeryModInt(const int64_t &b) 
     : a(transform(b % mod + mod)) {}
 
-  mint pow(u64 k) {
+  mint pow(u64 k) const {
     mint res(1), base(*this);
     while(k) {
       if (k & 1) 
@@ -97,4 +97,3 @@ struct MontgomeryModInt {
     return is;
   }
 };
-//////////////////////////////////////////////////

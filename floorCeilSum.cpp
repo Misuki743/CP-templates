@@ -1,10 +1,11 @@
-//////////////////////////////////////////////////
-//template name: floorCeilSum
-//author: __Shioko(Misuki)
-//last update: 2023/06/06
-//note: g = floor(x / val) is the greatest value s.t. floor(x / g) = val for floor sum, 
-//      g = ceil(x / val) is the least value s.t. ceil(x / g) = val for ceil sum. 
-//verify: brute force x <= 1e4
+/**
+ * template name: floorCeilSum
+ * author: Misuki
+ * last update: 2023/06/06
+ * note: g = floor(x / val) is the greatest value s.t. floor(x / g) = val for floor sum, 
+ *       g = ceil(x / val) is the least value s.t. ceil(x / g) = val for ceil sum. 
+ * verify: brute forced x <= 1e4
+ */
 
 vector<array<int, 3>> calc_floor(int x) {
   vector<int> v, rng;
@@ -41,4 +42,3 @@ vector<array<int, 3>> calc_ceil(int x) {
 
   return res;
 }
-//////////////////////////////////////////////////

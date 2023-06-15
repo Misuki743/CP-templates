@@ -1,13 +1,14 @@
-//////////////////////////////////////////////////
-//template name: fastZetaTransform
-//author: __Shioko(Misuki)
-//last update: 2023/03/26
-//note: to change to poset, flip the condition inside if statement. 
-//four possible usage:
-//fastZetaTransform on subset (SOS)
-//fastZetaTransform on poset
-//fastMobiusTransform on subset
-//fastMobiusTransform on poset (IEP)
+/**
+ * template name: fastZetaTransform
+ * author: Misuki
+ * last update: 2023/03/26
+ * note: to change to poset, flip the condition inside if statement. 
+ * four possible usage:
+ * fastZetaTransform on subset (SOS)
+ * fastZetaTransform on poset
+ * fastMobiusTransform on subset
+ * fastMobiusTransform on poset (IEP)
+ */
 
 template<class T>
 void fastZetaTransform(vector<T> &vec, bool inverse = false) {
@@ -16,4 +17,3 @@ void fastZetaTransform(vector<T> &vec, bool inverse = false) {
       if (j >> i & 1)
         vec[j] += (inverse ? -vec[j ^ (1 << i)] : vec[j ^ (1 << i)]);
 }
-//////////////////////////////////////////////////

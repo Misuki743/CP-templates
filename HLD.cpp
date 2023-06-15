@@ -1,7 +1,8 @@
-//////////////////////////////////////////////////
-//template name: HLD
-//author: __Shioko(Misuki)
-//last update: 2022/10/25
+/**
+ * template name: HLD
+ * author: Misuki
+ * last update: 2022/10/25
+ */
 
 const int MAXN = 200000;
 vector<int> G[MAXN];
@@ -48,7 +49,6 @@ struct HLD {
     for(int X : G[V]) 
       if (X != mxChild[V] and X != fa[V])
         cut(X, X);
-    //tout[V] = t - 1; 
   }
 
   vector<pii> query(int u, int v, bool edge = false) {
@@ -76,4 +76,3 @@ struct HLD {
     return dep[u] > dep[v] ? v : u;
   }
 };
-//////////////////////////////////////////////////

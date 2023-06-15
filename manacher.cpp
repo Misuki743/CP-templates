@@ -1,7 +1,8 @@
-//////////////////////////////////////////////////
-//template name: manacher
-//author: __Shioko(Misuki)
-//last update: 2022/02/04
+/**
+ * template name: manacher
+ * author: Misuki
+ * last update: 2022/02/04
+ */
 
 int p[2000001];
 void build(string &s) {
@@ -12,4 +13,3 @@ void build(string &s) {
       l = i, r = i + p[i], p[i] += 1;
   }
 }
-//////////////////////////////////////////////////

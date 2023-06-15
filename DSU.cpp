@@ -1,8 +1,9 @@
-//////////////////////////////////////////////////
-//template name: DSU
-//author: __Shioko(Misuki)
-//last update: 2023/01/07
-//verify: Library Checker - Unionfind
+/**
+ * template name: DSU
+ * author: Misuki
+ * last update: 2023/01/07
+ * verify: Library Checker - Unionfind
+ */
 
 struct DSU {
   vector<int> dep;
@@ -42,4 +43,3 @@ struct DSU {
     return true;
   }
 };
-////////////////////////////////////////////////// 

@@ -9,6 +9,7 @@
  * Time: O(N \log N)
  * Status: stress-tested
  */
+
 template<class T>
 void FST(vector<T>& a, bool inv) {
 	for (int n = sz(a), step = 1; step < n; step *= 2) {

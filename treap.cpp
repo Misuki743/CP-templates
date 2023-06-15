@@ -1,8 +1,9 @@
-//////////////////////////////////////////////////
-//template name: treap
-//author: __Shioko(Misuki)
-//last update: 2022/07/19
-//split(now, x, l, r): split treap into first x element and last (now.sz - x) element.
+/**
+ * template name: treap
+ * author: Misuki
+ * last update: 2022/07/19
+ * split(now, x, l, r): split treap into first x element and last (now.sz - x) element.
+ */
 
 #define clock chrono::steady_clock::now().time_since_epoch().count()
 mt19937 rng(clock);
@@ -56,4 +57,3 @@ node* merge(node *l, node *r) {
     return r;
   }
 }
-//////////////////////////////////////////////////

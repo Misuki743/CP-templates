@@ -1,8 +1,9 @@
-//////////////////////////////////////////////////
-//template name: segmentTreeLazy
-//author: __Shioko(Misuki)
-//last update: 2022/07/20
-//verify: abc256 pEx - I Like Query Problem
+/**
+ * template name: segmentTreeLazy
+ * author: Misuki
+ * last update: 2022/07/20
+ * verify: abc256 pEx - I Like Query Problem
+ */
 
 template<class T1, class T2>
 struct segmentTree {
@@ -132,4 +133,3 @@ struct segmentTree {
     return combineNode(L, R);
   }
 };
-//////////////////////////////////////////////////

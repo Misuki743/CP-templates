@@ -1,7 +1,8 @@
-//////////////////////////////////////////////////
-//template name: lichaoSegmentTree
-//author: __Shioko(Misuki)
-//last update: 2022/01/30
+/**
+ * template name: lichaoSegmentTree
+ * author: Misuki
+ * last update: 2022/01/30
+ */
 
 struct line {
   int m, b;
@@ -54,4 +55,3 @@ struct segmentTree {
     }
   }
 };
-//////////////////////////////////////////////////

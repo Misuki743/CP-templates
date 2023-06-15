@@ -1,7 +1,8 @@
-//////////////////////////////////////////////////
-//template name: math
-//author: __Shioko(Misuki)
-//last update: 2022/03/21
+/**
+ * template name: math
+ * author: Misuki
+ * last update: 2022/03/21
+ */
 
 const long long MOD = 1e9 + 7;
 
@@ -22,4 +23,3 @@ int POW(long long base, long long index) {
 int inv(int val) {
   return POW(val, MOD - 2);
 }
-//////////////////////////////////////////////////

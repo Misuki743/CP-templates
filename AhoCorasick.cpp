@@ -1,7 +1,8 @@
-//////////////////////////////////////////////////
-//template name: AhoCorasick
-//author: __Shioko(Misuki)
-//last update: 2022/09/11
+/**
+ * template name: AhoCorasick
+ * author: Misuki
+ * last update: 2022/09/11
+ */
 
 struct AhoCorasick {
   struct node {
@@ -83,4 +84,3 @@ struct AhoCorasick {
     return res;
   }
 };
-//////////////////////////////////////////////////

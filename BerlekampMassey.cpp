@@ -1,9 +1,10 @@
-//////////////////////////////////////////////////
-//template name: Berlekamp-Massey
-//author: __Shioko(Misuki)
-//last update: 2022/09/12
-//include: math
-//verify: library checker - Find Linear Recurrence
+/**
+ * template name: Berlekamp-Massey
+ * author: Misuki
+ * last update: 2022/09/12
+ * include: math
+ * verify: library checker - Find Linear Recurrence
+ */
 
 vector<int> BerlekampMassey(vector<int> s) {
   vector<int> c(1, 0), oldc(1, 0);
@@ -48,4 +49,3 @@ vector<int> BerlekampMassey(vector<int> s) {
 
   return c;
 }
-//////////////////////////////////////////////////

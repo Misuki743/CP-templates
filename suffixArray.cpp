@@ -1,9 +1,10 @@
-//////////////////////////////////////////////////
-//template name: suffixArray
-//source: AtCoderLibrary(ACL)
-//last update: 2022/07/13
-//usage: suffix_array(vector<> s)
-//       lcp_array(vector<> s, vector<int> sa)
+/**
+ * template name: suffixArray
+ * source: AtCoderLibrary(ACL)
+ * last update: 2022/07/13
+ * usage: suffix_array(vector<> s)
+ *        lcp_array(vector<> s, vector<int> sa)
+ */
 
 std::vector<int> sa_naive(const std::vector<int>& s) {
     int n = int(s.size());
@@ -233,4 +234,3 @@ std::vector<int> lcp_array(const std::string& s, const std::vector<int>& sa) {
     }
     return lcp_array(s2, sa);
 }
-//////////////////////////////////////////////////

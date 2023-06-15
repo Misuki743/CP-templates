@@ -1,8 +1,9 @@
-//////////////////////////////////////////////////
-//template name: FFTmod
-//author: __Shioko(Misuki)
-//last update: 2022/04/07
-//include template: FFT
+/**
+ * template name: FFTmod
+ * author: Misuki
+ * last update: 2022/04/07
+ * include template: FFT
+ */
 
 const long long MOD = 1e9 + 7;
 const long long SQRT = sqrt(MOD);
@@ -68,4 +69,3 @@ vector<long long> multiplyMOD(vector<long long> a1, vector<long long> b1) {
 
   return res;
 }
-//////////////////////////////////////////////////

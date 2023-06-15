@@ -1,8 +1,9 @@
-//////////////////////////////////////////////////
-//template name: subsetConvolution
-//author: __Shioko(Misuki)
-//last update: 2023/03/26
-//verify: Library Checker - Subset Convolution
+/**
+ * template name: subsetConvolution
+ * author: Misuki
+ * last update: 2023/03/26
+ * verify: Library Checker - Subset Convolution
+ */
 
 template<class T>
 vector<T> subsetConvolution(vector<T> &f, vector<T> &g) {
@@ -44,4 +45,3 @@ vector<T> subsetConvolution(vector<T> &f, vector<T> &g) {
 
   return res;
 }
-//////////////////////////////////////////////////

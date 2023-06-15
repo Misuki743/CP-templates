@@ -14,7 +14,6 @@ we have
 - segment tree lazy
 - segment tree 2D
 - segment tree persist
-- segment tree lazy dynamic
 - li-chao segment tree
 - fenwick tree 2D
 - treap

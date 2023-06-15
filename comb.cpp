@@ -1,8 +1,10 @@
-//////////////////////////////////////////////////
-//template name: comb
-//author: __Shioko(Misuki)
-//last update: 2023/01/22
-//note: remember to call init() before using it.
+/**
+ * template name: comb
+ * author: Misuki
+ * last update: 2023/01/22
+ * note: remember to call init() before using it.
+ */
+
 const int MAX = 2000001;
 mint fac[MAX], facInv[MAX];
 void init() {
@@ -20,4 +22,3 @@ mint C(int a, int b) {
   else
     return fac[a] * facInv[b] * facInv[a - b];
 }
-//////////////////////////////////////////////////

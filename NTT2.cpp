@@ -1,10 +1,11 @@
-//////////////////////////////////////////////////
-//template name: NTT
-//author: Misuki
-//last update: 2022/06/05
-//remark: MOD = 2^K * C + 1, R is a primitive root modulo MOD
-//remark: a.size() <= 2^K must be satisfied
-//some common modulo: 998244353 = 2^23 * 119 + 1, R = 3
+/**
+ * template name: NTT
+ * author: Misuki
+ * last update: 2022/06/05
+ * remark: MOD = 2^K * C + 1, R is a primitive root modulo MOD
+ * remark: a.size() <= 2^K must be satisfied
+ * some common modulo: 998244353 = 2^23 * 119 + 1, R = 3
+ */
 
 template<int32_t k, int32_t c, int32_t r, typename mint>
 struct NTT {
@@ -71,4 +72,3 @@ struct NTT {
     return a;
   }
 };
-//////////////////////////////////////////////////

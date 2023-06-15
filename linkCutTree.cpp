@@ -1,7 +1,8 @@
-//////////////////////////////////////////////////
-//template name: linkCutTree
-//source: https://codeforces.com/blog/entry/75885
-//last update: 2022/07/10
+/**
+ * template name: linkCutTree
+ * source: https://codeforces.com/blog/entry/75885
+ * last update: 2022/07/10
+ */
 
 struct SplayTree {
   struct Node {
@@ -108,4 +109,3 @@ struct LinkCut : SplayTree {
     access(u); T[u].self = v; pull(u);
   }
 };
-//////////////////////////////////////////////////

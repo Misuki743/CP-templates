@@ -1,11 +1,13 @@
-//////////////////////////////////////////////////
-//template name: NTT
-//author: __Shioko(Misuki)
-//last update: 2022/04/07
-//remark: remember to call init() before doing NTT()!!!
-//remark: MOD = 2^K * C + 1, R is a primitive root modulo MOD
-//remark: a.size() <= 2^K must be satisfied
-//some common modulo: 998244353 = 2^23 * 119 + 1, R = 3
+/**
+ * template name: NTT
+ * author: Misuki
+ * last update: 2022/04/07
+ * remark: remember to call init() before doing NTT()!!!
+ * remark: MOD = 2^K * C + 1, R is a primitive root modulo MOD
+ * remark: a.size() <= 2^K must be satisfied
+ * some common modulo: 998244353 = 2^23 * 119 + 1, R = 3
+ * status: to be deleted, but after another NTT template is well-tested.
+ */
 
 const long long K = 23, C = 119, R = 3;
 const long long MOD = (1ll << K) * C + 1;
@@ -93,4 +95,3 @@ vector<int> multiply(vector<long long> a, vector<long long> b) {
 
   return c;
 }
-//////////////////////////////////////////////////

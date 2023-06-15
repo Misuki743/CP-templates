@@ -1,12 +1,12 @@
-//////////////////////////////////////////////////
-//template name: segmentTreeLazyDynamic
-//author: __Shioko(Misuki)
-//last update: 2022/05/27
+/**
+ * template name: segmentTreeLazyDynamic
+ * reference: https://codeforces.com/blog/entry/62393
+ * author: Misuki
+ * last update: 2022/05/27
+ */
 
-//reference: https://codeforces.com/blog/entry/62393
 struct custom_hash {
     static uint64_t splitmix64(uint64_t x) {
-        // http://xorshift.di.unimi.it/splitmix64.c
         x += 0x9e3779b97f4a7c15;
         x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
         x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
@@ -123,4 +123,3 @@ struct segmentTree {
     return combineNode(L, R);
   }
 };
-//////////////////////////////////////////////////

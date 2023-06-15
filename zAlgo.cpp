@@ -1,7 +1,8 @@
-//////////////////////////////////////////////////
-//template name: zAlgo
-//author: __Shioko(Misuki)
-//last update: 2022/02/04
+/**
+ * template name: zAlgo
+ * author: Misuki
+ * last update: 2022/02/04
+ */
 
 int z[2000000];
 void build(string &s) {
@@ -14,4 +15,3 @@ void build(string &s) {
       l = i, r = i + z[i], z[i] += 1;
   }
 }
-//////////////////////////////////////////////////

@@ -1,3 +1,7 @@
+/**
+ * template name: dynamicTreap
+ */
+
 const int TN = 5000000;
 struct Treap {
   static Treap mem[TN], *pmem;

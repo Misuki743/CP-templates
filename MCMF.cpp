@@ -1,7 +1,9 @@
-//////////////////////////////////////////////////
-//template name: MCMF
-//author: __Shioko(Misuki)
-//last update: 2021/11/11
+/**
+ * template name: MCMF
+ * author: Misuki
+ * last update: 2021/11/11
+ */
+
 struct MCMF {
   struct Edge {
     int to, rev;
@@ -93,4 +95,3 @@ struct MCMF {
     return make_pair(Flow, Cost);
   }
 };
-//////////////////////////////////////////////////

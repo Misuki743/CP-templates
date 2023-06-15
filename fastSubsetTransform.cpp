@@ -1,8 +1,9 @@
-//////////////////////////////////////////////////
-//template name: fastSubsetTransform
-//author: __Shioko(Misuki)
-//last update: 2023/03/26
-//include template: FPS
+/**
+ * template name: fastSubsetTransform
+ * author: Misuki
+ * last update: 2023/03/26
+ * include template: FPS
+ */
 
 vector<FPS> FST(FPS f) {
   int n = __lg(f.size());
@@ -44,4 +45,3 @@ FPS subsetPow(FPS f, long long idx) {
   return f;
 }
 */
-//////////////////////////////////////////////////

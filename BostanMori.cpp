@@ -1,10 +1,11 @@
-//////////////////////////////////////////////////
-//template name: Bostan-Mori
-//author: __Shioko(Misuki)
-//last update: 2023/01/25
-//include: mint(with NTT-able MOD), FPS
-//usage: compute k-th term of linear recurrence in terms of F(x) = P(x)/Q(x) in O(dlgdlgk)
-//verify: Library Checker - Kth term of Linearly Recurrent Sequence
+/**
+ * template name: Bostan-Mori
+ * author: Misuki
+ * last update: 2023/01/25
+ * include: mint(with NTT-able MOD), FPS
+ * usage: compute k-th term of P(x)/Q(x) in O(dlgdlgk)
+ * verify: Library Checker - Kth term of Linearly Recurrent Sequence
+ */
 
 mint BostanMori(FPS P, FPS Q, long long k) {
   assert(!P.empty() and !Q.empty() and Q[0] != 0);
@@ -44,4 +45,3 @@ mint BostanMori(FPS P, FPS Q, long long k) {
 
   return P[0] / Q[0];
 }
-//////////////////////////////////////////////////

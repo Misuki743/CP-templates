@@ -1,8 +1,9 @@
-//////////////////////////////////////////////////
-//template name: dinic
-//author: __Shioko(Misuki)
-//last update: 2022/05/02
-//verify: ABC239 pG - Builder Takahashi
+/**
+ * template name: dinic
+ * author: Misuki
+ * last update: 2022/05/02
+ * verify: ABC239 pG - Builder Takahashi
+ */
 
 template<class T, T MAX>
 struct Dinic {
@@ -76,4 +77,3 @@ struct Dinic {
     return level[idx] != INT_MAX;
   }
 };
-//////////////////////////////////////////////////

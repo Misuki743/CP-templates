@@ -1,18 +1,20 @@
-//////////////////////////////////////////////////
-//template name: FPS
-//author: __Shioko(Misuki)
-//last update: 2023/03/28
-//include: mint with NTT-able MOD if using NTT(convolution/log/exp/pow),
-//           or change NTT with high precision FFT
-//verify: Library Checker - Inv of Formal Power Series
-//        Library Checker - Exp of Formal Power Series
-//        Library Checker - Log of Formal Power Series
-//        Library Checker - Pow of Formal Power Series
-//        Library Checker - Convolution
-//
-//some theorem about FPS:
-//
-//Lagrange inversion theorem: [x^n]G(x) = 1/n [x^{-1}] F(x)^{-1} for F(x) being the composition inversion of G(x)
+/**
+ * template name: FPS
+ * author: Misuki
+ * last update: 2023/03/28
+ * include: mint with NTT-able MOD if using NTT(convolution/log/exp/pow),
+ *            or change NTT with high precision FFT
+ * verify: Library Checker - Inv of Formal Power Series
+ *         Library Checker - Exp of Formal Power Series
+ *         Library Checker - Log of Formal Power Series
+ *         Library Checker - Pow of Formal Power Series
+ *         Library Checker - Convolution
+ * 
+ * some theorem about FPS:
+ * 
+ * Lagrange inversion theorem: [x^n]G(x) = 1/n [x^{n-1}] (x/F(x))^n for F(x) being the composition inversion of G(x)
+ *                             ([x^0]F(x) = [x^0]G(x) = 0, [x^1]F(x) != 0, [x^1]G(x) != 0)
+ */
 
 bool init_NTT = false;
 
@@ -306,4 +308,3 @@ struct FPS : vector<mint> {
 bool FPS::init_NTT = false;
 mint FPS::w[K + 1];
 mint FPS::w_inv[K + 1];
-//////////////////////////////////////////////////

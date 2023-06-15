@@ -1,3 +1,7 @@
+/**
+ * template name: geometry circle
+ */
+
 #define arg(p, q) atan2(p.cross(q), p.dot(q))
 
 typedef Point<double> P;

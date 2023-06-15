@@ -1,8 +1,9 @@
-//////////////////////////////////////////////////
-//template name: matrix
-//author: __Shioko(Misuki)
-//last update: 2022/08/21
-//include: mint
+/**
+ * template name: matrix
+ * author: Misuki
+ * last update: 2022/08/21
+ * include: mint
+ */
 
 using matrix = vector<vector<mint>>;
 
@@ -27,4 +28,3 @@ matrix pow(matrix a, int index) {
   }
   return res;
 }
-//////////////////////////////////////////////////

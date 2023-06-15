@@ -1,8 +1,9 @@
-//////////////////////////////////////////////////
-//template name: InvOfFormalPowerSeries
-//author: __Shioko(Misuki)
-//last update: 2022/08/11
-//include: (FFT + FFTmod + math) / NTT
+/**
+ * template name: InvOfFormalPowerSeries
+ * author: Misuki
+ * last update: 2022/08/11
+ * include: (FFT + FFTmod + math) / NTT
+ */
 
 vector<long long> FPSinv(vector<long long> G, int k, function<vector<long long>(vector<long long>, vector<long long>)> mul) {
   for(long long &X : G)
@@ -26,4 +27,3 @@ vector<long long> FPSinv(vector<long long> G, int k, function<vector<long long>(
   R.resize(k);
   return R;
 }
-//////////////////////////////////////////////////

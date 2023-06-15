@@ -1,8 +1,9 @@
-//////////////////////////////////////////////////
-//template name: stirling number of first kind
-//author: __Shioko(Misuki)
-//last update: 2022/08/21
-//include: FFT + math / NTT
+/**
+ * template name: stirling number of first kind
+ * author: Misuki
+ * last update: 2022/08/21
+ * include: FFT + math / NTT
+ */
 
 vector<long long> stirling1st(int n, function<vector<long long>(vector<long long>, vector<long long>)> conv) {
   if (n == 0)
@@ -27,4 +28,3 @@ vector<long long> stirling1st(int n, function<vector<long long>(vector<long long
 
   return poly[0];
 }
-//////////////////////////////////////////////////

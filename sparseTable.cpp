@@ -1,8 +1,9 @@
-//////////////////////////////////////////////////
-//template name: sparseTable
-//author: __Shioko(Misuki)
-//last update: 2022/07/28
-//verify: LibraryChecker - Static RMQ
+/**
+ * template name: sparseTable
+ * author: Misuki
+ * last update: 2022/07/28
+ * verify: LibraryChecker - Static RMQ
+ */
 
 template<class T>
 struct sparseTable{
@@ -32,4 +33,3 @@ struct sparseTable{
     return comb(table[range][l], table[range][r - (1 << range)]);
   }
 };
-//////////////////////////////////////////////////

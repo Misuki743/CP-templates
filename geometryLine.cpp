@@ -1,3 +1,7 @@
+/**
+ * template name: geometryLine
+ */
+
 typedef Point<double> P;
 double segDist(P& s, P& e, P& p) {
 	if (s==e) return (p-s).dist();

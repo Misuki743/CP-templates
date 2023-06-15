@@ -1,7 +1,8 @@
-//////////////////////////////////////////////////
-//template name: FFT
-//author: __Shioko(Misuki)
-//last update: 2022/04/07
+/**
+ * template name: FFT
+ * author: Misuki
+ * last update: 2022/04/07
+ */
 
 const double PI = acos(-1);
 vector<complex<double> > w(2, 1), w_inv(2, 1);
@@ -77,4 +78,3 @@ vector<int> multiply(vector<int> a, vector<int> b) {
 
   return res;
 }
-//////////////////////////////////////////////////

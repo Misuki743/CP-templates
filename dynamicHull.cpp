@@ -1,7 +1,8 @@
-//////////////////////////////////////////////////
-//template name: dynamicHull
-//source: https://codeforces.com/blog/entry/112458
-//last update: 2023/03/18
+/**
+ * template name: dynamicHull
+ * source: https://codeforces.com/blog/entry/112458
+ * last update: 2023/03/18
+ */
 
 struct pt {
 	int x, y;
@@ -67,4 +68,3 @@ struct dyn_hull { // 1 -> inside ; 2 -> border
 		return ans <= 2 ? ans/2 : ans-2;
 	}
 };
-//////////////////////////////////////////////////

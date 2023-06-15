@@ -1,7 +1,8 @@
-//////////////////////////////////////////////////
-//template name: linearSieve
-//author: __Shioko(Misuki)
-//last update: 2022/12/13
+/**
+ * template name: linearSieve
+ * author: Misuki
+ * last update: 2022/12/13
+ */
 
 const int C = 1000001;
 vector<int> prime;
@@ -42,4 +43,3 @@ vector<int> factors(int val) {
   }
   return res;
 }
-//////////////////////////////////////////////////

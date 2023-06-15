@@ -1,8 +1,10 @@
-//////////////////////////////////////////////////
-//template name: segmentTree
-//author: __Shioko(Misuki)
-//last update: 2022/04/16
-//verify: library checker - Point Add Range Sum, Static RMQ
+/**
+ * template name: segmentTree
+ * author: Misuki
+ * last update: 2022/04/16
+ * verify: library checker - Point Add Range Sum, Static RMQ
+ */
+
 template<class T>
 struct segmentTree {
   static const int MAXSZ = 500000;
@@ -41,4 +43,3 @@ struct segmentTree {
     return combine(L, R);
   }
 };
-//////////////////////////////////////////////////

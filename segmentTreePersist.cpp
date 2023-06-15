@@ -1,8 +1,10 @@
-//////////////////////////////////////////////////
-//template name: segmentTreePersist
-//author: __Shioko(Misuki)
-//last update: 2022/12/13
-//verify: library checker - Range Kth Smallest
+/**
+ * template name: segmentTreePersist
+ * author: Misuki
+ * last update: 2022/12/13
+ * verify: library checker - Range Kth Smallest
+ */
+
 template<class T>
 struct segmentTree {
   struct node {
@@ -68,4 +70,3 @@ struct segmentTree {
     return combine(query(arr[now].lc, l, mid, ql, qr), query(arr[now].rc, mid, r, ql, qr));
   }
 };
-//////////////////////////////////////////////////

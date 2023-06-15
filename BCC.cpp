@@ -1,4 +1,7 @@
-//source: https://judge.yosupo.jp/submission/96487
+/**
+ * template name: BCC
+ * reference: https://judge.yosupo.jp/submission/96487
+ */
 
 /*
 無向グラフに対して使う

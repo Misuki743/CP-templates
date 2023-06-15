@@ -1,8 +1,9 @@
-//////////////////////////////////////////////////
-//template name: SCC
-//author: __Shioko(Misuki)
-//last update: 2023/01/07
-//verify: Library Checker - Strongly Connected Components
+/**
+ * template name: SCC
+ * author: Misuki
+ * last update: 2023/01/07
+ * verify: Library Checker - Strongly Connected Components
+ */
 
 struct SCC {
   int sz;
@@ -61,4 +62,3 @@ struct SCC {
           G[group_id[i]].emplace_back(group_id[X]);
   }
 };
-//////////////////////////////////////////////////
