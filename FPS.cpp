@@ -1,7 +1,7 @@
 /**
  * template name: FPS
  * author: Misuki
- * last update: 2023/03/28
+ * last update: 2023/06/16
  * include: mint with NTT-able MOD if using NTT(convolution/log/exp/pow),
  *            or change NTT with high precision FFT
  * verify: Library Checker - Inv of Formal Power Series
@@ -28,7 +28,7 @@ struct FPS : vector<mint> {
 
   void NTT(bool inverse) {
     if (!init_NTT) {
-      w[K] = mint(R).POW(C);
+      w[K] = mint(R).pow(C);
       for(int i = K - 1; i >= 0; i--)
         w[i] = w[i + 1] * w[i + 1];
       for(int i = 0; i <= K; i++)
@@ -36,9 +36,9 @@ struct FPS : vector<mint> {
 
       init_NTT = true;
     }
-    int n = this -> size();
+    const int n = this -> size();
     FPS tmp = *this;
-    for(int i = 0; i < this -> size(); i++) {
+    for(int i = 0; i < n; i++) {
       int idx = 0;
       int lgn = __lg(n);
       for(int j = lgn - 1; j >= 0; j--)
@@ -67,19 +67,19 @@ struct FPS : vector<mint> {
   }
   FPS& operator+=(FPS b) {
     if (this -> size() < b.size()) this -> resize(b.size(), 0);
-    for(int i = 0; i < b.size(); i++)
+    for(int i = 0; i < (int)b.size(); i++)
       (*this)[i] += b[i];
     return *this;
   }
   FPS& operator-=(FPS b) {
     if (this -> size() < b.size()) this -> resize(b.size(), 0);
-    for(int i = 0; i < b.size(); i++)
+    for(int i = 0; i < (int)b.size(); i++)
       (*this)[i] -= b[i];
     return *this;
   }
   FPS& operator*=(FPS b) {
-    int mxSz = (int)this -> size() + (int)b.size() - 1;
-    int n = (mxSz == 1) ? 2 : (1 << (__lg(mxSz - 1) + 1));
+    const int mxSz = (int)this -> size() + (int)b.size() - 1;
+    const int n = (mxSz == 1) ? 2 : (1 << (__lg(mxSz - 1) + 1));
 
     this -> resize(n, 0);
     b.resize(n, 0);
@@ -95,15 +95,15 @@ struct FPS : vector<mint> {
   //use this if the problem author just hate 998244353
   /*
   FPS& operator*=(FPS b) {
-    const long long SQRT = sqrt(mint::MOD);
+    const long long SQRT = sqrt(mint::get_mod());
     auto sqrtDivide = [&](FPS &a, FPS &b) {
       FPS tmp = a;
       a.clear();
       b.clear();
       a.resize(tmp.size());
       b.resize(tmp.size());
-      for(int i = 0; i < tmp.size(); i++)
-        a[i] = tmp[i]._val % SQRT, b[i] = tmp[i]._val / SQRT;
+      for(int i = 0; i < (int)tmp.size(); i++)
+        a[i] = tmp[i].get() % SQRT, b[i] = tmp[i].get() / SQRT;
     };
 
     int mxSz = (int)this -> size() + (int)b.size() - 1;
@@ -116,17 +116,17 @@ struct FPS : vector<mint> {
     vector<complex<double>> c1(n), c2(n), d1(n), d2(n);
     for(int i = 0; i < n; i++)
       c1[i] = c2[i] = d1[i] = d2[i] = 0;
-    for(int i = 0; i < this -> size(); i++)
-      c1[i] = (*this)[i]._val, c2[i] = a2[i]._val;
-    for(int i = 0; i < b.size(); i++)
-      d1[i] = b[i]._val, d2[i] = b2[i]._val;
+    for(int i = 0; i < (int)this -> size(); i++)
+      c1[i] = (*this)[i].get(), c2[i] = a2[i].get();
+    for(int i = 0; i < (int)b.size(); i++)
+      d1[i] = b[i].get(), d2[i] = b2[i].get();
 
     auto FFT = [&](vector<complex<double>> &a, bool inverse) -> void {
       const double PI = acos(-1);
       vector<complex<double> > w(2, 1), w_inv(2, 1);
       int n = a.size();
 
-      if (w.size() < n) {
+      if ((int)w.size() < n) {
         int lgSz = __lg(w.size()), lgN = __lg(n);
         w.resize(n);
         w_inv.resize(n);
@@ -141,7 +141,7 @@ struct FPS : vector<mint> {
       }
 
       vector<complex<double>> tmp = a;
-      for(int i = 0; i < a.size(); i++) {
+      for(int i = 0; i < (int)a.size(); i++) {
         int idx = 0, lgn = __lg(n);
         for(int j = lgn - 1; j >= 0; j--)
           idx = (idx << 1) | ((i >> (lgn - j - 1)) & 1);
@@ -195,14 +195,14 @@ struct FPS : vector<mint> {
   }
   */
   FPS& operator*=(mint b) {
-    for(int i = 0; i < this -> size(); i++)
+    for(int i = 0; i < (int)this -> size(); i++)
       (*this)[i] *= b;
     return (*this);
   }
 
   FPS& operator/=(mint b) {
     b = mint(1) / b;
-    for(int i = 0; i < this -> size(); i++)
+    for(int i = 0; i < (int)this -> size(); i++)
       (*this)[i] *= b;
     return (*this);
   }
@@ -210,10 +210,10 @@ struct FPS : vector<mint> {
   FPS integral() {
     vector<mint> Inv(this -> size() + 1);
     Inv[1] = 1;
-    for(int i = 2; i < Inv.size(); i++)
-      Inv[i] = (mint::MOD - mint::MOD / i) * Inv[mint::MOD % i];
+    for(int i = 2; i < (int)Inv.size(); i++)
+      Inv[i] = (mint::get_mod() - mint::get_mod() / i) * Inv[mint::get_mod() % i];
     FPS Q(this -> size() + 1, 0);
-    for(int i = 0; i < this -> size(); i++)
+    for(int i = 0; i < (int)this -> size(); i++)
       Q[i + 1] = (*this)[i] * Inv[i + 1];
     
     return Q;
@@ -223,7 +223,7 @@ struct FPS : vector<mint> {
     assert(!this -> empty());
 
     FPS Q((int)(this -> size()) - 1);
-    for(int i = 1; i < this -> size(); i++)
+    for(int i = 1; i < (int)this -> size(); i++)
       Q[i - 1] = (*this)[i] * i;
 
     return Q;
@@ -231,7 +231,7 @@ struct FPS : vector<mint> {
 
   mint eval(mint x) {
     mint base = 1, res = 0;
-    for(int i = 0; i < this -> size(); i++, base *= x)
+    for(int i = 0; i < (int)this -> size(); i++, base *= x)
       res += (*this)[i] * base;
     return res;
   }
@@ -281,15 +281,15 @@ struct FPS : vector<mint> {
       res[0] = 1;
       return res;
     }
-    for(int i = 0; i < this -> size() and i * idx < k; i++) {
+    for(int i = 0; i < (int)this -> size() and i * idx < k; i++) {
       if ((*this)[i] != 0) {
         mint Inv = 1 / (*this)[i];
         FPS Q((int)this -> size() - i);
-        for(int j = i; j < this -> size(); j++)
+        for(int j = i; j < (int)this -> size(); j++)
           Q[j - i] = (*this)[j] * Inv;
         Q = (Q.log(k) * idx).exp(k);
         FPS Q2(k, 0);
-        mint Pow = (*this)[i].POW(idx);
+        mint Pow = (*this)[i].pow(idx);
         for(int j = 0; j + i * idx < k; j++)
           Q2[j + i * idx] = Q[j] * Pow;
         return Q2;

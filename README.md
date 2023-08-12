@@ -7,8 +7,11 @@ we have
 ## data structure
 
 - heavy-light decomposition
+- centroid decomposition
 - disjoint set
+- bipartite checking disjoint set
 - sparse table
+- sparse table 2D
 - pbds set
 - segment tree
 - segment tree lazy
@@ -19,6 +22,7 @@ we have
 - treap
 - persistent treap
 - link-cut tree
+- hash table
 
 ## math
 
@@ -43,6 +47,7 @@ we have
 - stirling number of first kind
 - FPS
 - Bostan-Mori
+- exgcd
 
 ## graph
 
@@ -78,3 +83,4 @@ we have
 
 - random
 - default
+- t

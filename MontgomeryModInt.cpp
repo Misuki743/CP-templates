@@ -2,7 +2,7 @@
  * template name: MontgomeryModInt
  * author: Misuki
  * reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
- * last update: 2023/06/05
+ * last update: 2023/06/16
  * note: mod should be a prime less than 2^30.
  */
 
@@ -97,3 +97,5 @@ struct MontgomeryModInt {
     return is;
   }
 };
+
+using mint = MontgomeryModInt<998244353>;

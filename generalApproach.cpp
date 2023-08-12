@@ -4,7 +4,7 @@
  * last update: 2023/04/22
  * note: these may be useful when I have completely no idea on a problem D:
  *
- * draw a graph
+ * draw a graph, observe the process
  *
  * try to model the problem in the most general way
  *
@@ -14,7 +14,7 @@
  *
  * observe a lower/upper bound, and try to achieve that bound
  *
- * observe optimal structure
+ * observe optimal structure (consider brute force small case to see the structure may be a good choice)
  *
  * invent subtask
  *
@@ -26,4 +26,25 @@
  *
  * brute force small cases
  *
+ * Problem Specific technique:
+ * 
+ * expectation: linearity of expectation to decompose problem into easier ones
+ *
+ * game theory: start from the end state, bruteforce patterns, and observe the transition
+ *
+ * counting: try to find one to one bijection to get an object that is easier to count
+ *
+ *           sum of x * f(x) = sum of f(> x) over x (I like this trick!!!)
+ *
+ * sorting(?): adjacent swap(i, i + 1) -> inversion
+ *
+ *             permutation swap(i, j) -> # of cycle
+ *
+ *             take then insert -> LIS
+ *
+ * interactive: # of query may be a hint
+ *
+ *              try to fix some element may be useful
+ *
+ * "consider all pair" problems: divide and conquer, iterate R and maintain for all L
  */

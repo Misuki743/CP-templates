@@ -1,7 +1,7 @@
 /**
  * template name: sparseTable
  * author: Misuki
- * last update: 2022/07/28
+ * last update: 2023/06/21
  * verify: LibraryChecker - Static RMQ
  */
 
@@ -17,7 +17,7 @@ struct sparseTable{
     table.resize(__lg(size) + 1, std::vector<T>(size));
     
     table[0] = base;
-    for(int i = 1; i < table.size(); i++) {
+    for(int i = 1; i < (int)table.size(); i++) {
       for(int j = 0; j < size; j++) {
         if (j + (1 << (i - 1)) < size)
           table[i][j] = comb(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);
