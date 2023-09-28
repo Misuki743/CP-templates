@@ -6,6 +6,9 @@
 //#pragma GCC optimize("O2", "tree-vectorize", "unroll-loops")
 //#pragma GCC target("avx2", "bmi", "bmi2")
 
+namespace R = std::ranges;
+namespace V = std::views;
+
 using namespace std;
 
 using ll = long long;

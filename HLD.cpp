@@ -2,6 +2,8 @@
  * template name: HLD
  * author: Misuki
  * last update: 2022/10/25
+ * note: when doing (vertex modify, path query) or (path modify, vertex query)
+ *       and the operation is invertible (e.g. add), use euler tour trick + BIT is better!
  */
 
 const int MAXN = 200000;

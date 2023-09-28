@@ -26,6 +26,8 @@
  *
  * brute force small cases
  *
+ * think of trivial solution than try to optimize(especially for dp, atleast see the transition and try to optimize)
+ *
  * Problem Specific technique:
  * 
  * expectation: linearity of expectation to decompose problem into easier ones
@@ -34,7 +36,11 @@
  *
  * counting: try to find one to one bijection to get an object that is easier to count
  *
- *           sum of x * f(x) = sum of f(> x) over x (I like this trick!!!)
+ *           sum of x * f(x) = sum of f(> x) over x (cool trick!)
+ *
+ *           double counting principle
+ *
+ *           group the objects by some characteristic and count for each group
  *
  * sorting(?): adjacent swap(i, i + 1) -> inversion
  *

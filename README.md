@@ -48,6 +48,7 @@ we have
 - FPS
 - Bostan-Mori
 - exgcd
+- polyope
 
 ## graph
 
@@ -64,6 +65,7 @@ we have
 ## string
 
 - KMP
+- KMP automaton
 - Z algorithm
 - Manacher
 - suffix array
@@ -78,6 +80,7 @@ we have
 - geometry Angle
 - geometry Polygon
 - dynamic convex hull
+- minkowski
 
 ## other
 

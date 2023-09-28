@@ -2,7 +2,7 @@
  * template name: pbdsSet
  * author: __Shioko(Misuki)
  * last update: 2022/01/13
- * header: bits/extc++.h
+ * header: bits/extc++.h (ext/pb_ds/assoc_container.hpp and ext/pb_ds/tree_policy.hpp for cf)
  * usage: order_of_key(x) : number of items strictly smaller than x
  *        find_by_order(k): K-th element in a set (0-based)
  */
