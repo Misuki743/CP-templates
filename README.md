@@ -6,84 +6,86 @@ we have
 
 ## data structure
 
-- heavy-light decomposition
+- bipartite checking disjoint set
 - centroid decomposition
 - disjoint set
-- bipartite checking disjoint set
+- fenwick tree 2D
+- hash table
+- heavy-light decomposition
+- li-chao segment tree
+- link-cut tree
+- pbds set
+- persistent treap
+- rbst
+- segment tree
+- segment tree 2D
+- segment tree lazy
+- segment tree persist
 - sparse table
 - sparse table 2D
-- pbds set
-- segment tree
-- segment tree lazy
-- segment tree 2D
-- segment tree persist
-- li-chao segment tree
-- fenwick tree 2D
 - treap
-- persistent treap
-- link-cut tree
-- hash table
 
 ## math
 
-- math
-- mint
-- MontgomeryModInt
-- combination
-- linear sieve
-- floor/ceil sum
+- Berlekamp-Massey
+- Bostan-Mori
 - FFT
 - FFTmod
-- NTT
-- FWHT
-- fast zeta transform
-- fast subset transform
-- subset convolution
-- Berlekamp-Massey
-- linear recurrence
-- determinantInt
-- inv of formal power series
-- matrix
-- stirling number of first kind
 - FPS
-- Bostan-Mori
+- FWHT
+- MontgomeryModInt
+- NTT
+- combination
+- determinantInt
 - exgcd
+- fast subset transform
+- fast zeta transform
+- floor/ceil sum
+- inv of formal power series
+- linear recurrence
+- linear sieve
+- math
+- matrix
+- mint
 - polyope
+- stirling number of first kind
+- subset convolution
 
 ## graph
 
 - 2-sat
-- dinic
-- minimum cost maximum flow
-- matroid intersection
-- hungarian
-- BCC
 - 2CC
+- BCC
 - SCC
+- dinic
 - hopcroft-karp
+- hungarian
+- matroid intersection
+- minimum cost maximum flow
 
 ## string
 
+- Aho-Corasick
 - KMP
 - KMP automaton
-- Z algorithm
 - Manacher
+- Z algorithm
 - suffix array
-- Aho-Corasick
 
 ## geometry
 
-- geometry double
-- geometry Basic
-- geometry Line
-- geometry Circle
-- geometry Angle
-- geometry Polygon
 - dynamic convex hull
+- geometry Angle
+- geometry Basic
+- geometry Circle
+- geometry Line
+- geometry Polygon
+- geometry double
 - minkowski
 
 ## other
 
+- default(default code for kactl)
 - random
-- default
-- t
+- t(default code for gcc)
+- tt(default code for clang)
