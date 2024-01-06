@@ -4,6 +4,8 @@
  * last update: 2023/04/22
  * note: these may be useful when I have completely no idea on a problem D:
  *
+ * think recursively
+ *
  * draw a graph, observe the process
  *
  * try to model the problem in the most general way
@@ -17,8 +19,6 @@
  * observe optimal structure (consider brute force small case to see the structure may be a good choice)
  *
  * invent subtask
- *
- * extreme principle
  *
  * think what is important in the problem model
  *
@@ -39,6 +39,8 @@
  *           sum of x * f(x) = sum of f(> x) over x (cool trick!)
  *
  *           double counting principle
+ *
+ *           try to enumerate some parameters, and solve for each fix parameters
  *
  *           group the objects by some characteristic and count for each group
  *

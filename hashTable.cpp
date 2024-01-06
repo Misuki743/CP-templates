@@ -1,7 +1,8 @@
 /**
  * template name: hashTable
  * reference: https://codeforces.com/blog/entry/62393
- * last update: 2022/08/09
+ * last update: 2022/12/03
+ * header: bit/extc++.h (or ext/pb_ds/assoc_container.hpp for CF)
  */
 
 struct custom_hash {

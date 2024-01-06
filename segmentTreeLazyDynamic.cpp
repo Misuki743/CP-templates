@@ -2,7 +2,7 @@
  * template name: segmentTreeLazyDynamic
  * reference: https://codeforces.com/blog/entry/62393
  * author: Misuki
- * last update: 2022/05/27
+ * last update: 2022/11/30
  */
 
 struct custom_hash {
@@ -38,7 +38,7 @@ struct segmentTree {
 
   segmentTree(int _sz, T1 _NODEUNIT, T2 _TAGUNIT) {
     NODEUNIT = _NODEUNIT, TAGUNIT = _TAGUNIT;
-    sz = _sz, h = __lg(sz) + 1;
+    sz = _sz, h = bit_width((unsigned)sz);
   }
 
   T1 combineNode(const T1 &l, const T1 &r) {

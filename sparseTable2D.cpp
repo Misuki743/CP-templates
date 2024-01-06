@@ -1,7 +1,7 @@
 /**
  * template name: sparseTable2D
  * author: Misuki
- * last update: 2023/06/21
+ * last update: 2023/11/30
  * verify: CF 1301-E
  */
 template<class T>
@@ -16,7 +16,7 @@ struct sparseTable2D {
     vector<vector<vector<T>>> tmp(size);
     for(int i = 0; i < size; i++)
       tmp[i] = base[i].table;
-    table.resize(__lg(size) + 1, tmp);
+    table.resize(bit_width((unsigned)size), tmp);
     for(int i = 1; i < (int)table.size(); i++) {
       for(int j = 0; j < size; j++) {
         for(int k = 0; k < (int)table[i][j].size(); k++) {
@@ -33,7 +33,7 @@ struct sparseTable2D {
 
   //query range in [r1, r2) x [c1, c2)
   T query(int r1, int c1, int r2, int c2) {
-    int rRange = __lg(r2 - r1), cRange = __lg(c2 - c1);
+    int rRange = bit_width((unsigned)(r2 - r1)) - 1, cRange = bit_width((unsigned)(c2 - c1)) - 1;
     return comb(comb(table[rRange][r1][cRange][c1], table[rRange][r1][cRange][c2 - (1 << cRange)]),
                 comb(table[rRange][r2 - (1 << rRange)][cRange][c1], table[rRange][r2 - (1 << rRange)][cRange][c2 - (1 << cRange)]));
   }

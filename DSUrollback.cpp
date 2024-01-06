@@ -1,11 +1,12 @@
 /**
- * template name: DSU
+ * template name: DSU rollback
  * author: Misuki
- * last update: 2024/01/01
- * verify: Library Checker - Unionfind
+ * last update: 2024/01/05
+ * verify: Library Checker - Persistent Unionfind
  */
 
 struct DSU {
+  vector<array<int, 4>> his;
   vector<int> bos, sz;
   int size;
 
@@ -17,7 +18,7 @@ struct DSU {
     if (bos[v] == v)
       return v;
     else
-      return bos[v] = query(bos[v]);
+      return query(bos[v]);
   }
 
   bool merge(int v1, int v2) {
@@ -28,8 +29,19 @@ struct DSU {
 
     if (sz[b1] > sz[b2])
       swap(b1, b2);
+
+    his.push_back({b1, bos[b1], b2, sz[b2]});
     bos[b1] = b2, sz[b2] += sz[b1];
 
     return true;
+  }
+
+  int time() { return ssize(his); }
+
+  void rollback(int t) {
+    while(ssize(his) > t) {
+      auto arr = his.back(); his.pop_back();
+      bos[arr[0]] = arr[1], sz[arr[2]] = arr[3];
+    }
   }
 };

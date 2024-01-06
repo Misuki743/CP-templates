@@ -1,57 +1,73 @@
 /**
  * template name: lichaoSegmentTree
  * author: Misuki
- * last update: 2022/01/30
+ * last update: 2024/01/01
+ * note: size should be power of 2
+ *       finding min line in default
+ * verify: Library Checker - Line Add Get Min
+ *         Library Checker - Segment Add Get Min
  */
 
-struct line {
-  int m, b;
-  line(int _m, int _b) : m(_m), b(_b) {}
-  line() {}
+template<class M, M unit>
+struct lichaoSegmentTree {
+  vector<array<M, 2>> data;
+  vector<M> xMid;
+  unsigned size;
 
-  int val(int x) {
-    return m * x + b;
+  lichaoSegmentTree(unsigned _size, vector<M> x = vector<M>()) : data(2 * _size, {0, unit}), xMid(2 * _size), size(_size) {
+    assert(popcount(size) == 1);
+    if (x.empty()) {
+      iota(xMid.begin() + size, xMid.end(), 0);
+    } else {
+      copy(x.begin(), x.end(), xMid.begin() + size);
+      fill(xMid.begin() + size + ssize(x), xMid.end(), x.back());
+    }
+    vector<int> r(2 * size);
+    iota(r.begin() + size, r.end(), size);
+    for(int i = size - 1; i > 0; i--)
+      r[i] = r[i << 1 | 1];
+    for(int i = size - 1; i > 0; i--)
+      xMid[i] = (xMid[r[i << 1]] + xMid[r[i << 1] + 1]) / 2;
   }
-};
 
-struct segmentTree {
-  static const int SIZE = 1 << (__lg(1000000 - 1) + 2);
-  line seg[SIZE];
+  M eval(M a, M b, M x) { return a * x + b; }
 
-  segmentTree() {
-    for(int i = 0; i < SIZE; i++)
-      seg[i] = line(0, LLONG_MAX / 8);
-  }
+  void insert(int v, M a, M b) {
+    if (a > data[v][0]) {
+      swap(a, data[v][0]);
+      swap(b, data[v][1]);
+    }
 
-  void insert(int l, int r, int idx, line L) {
-    if (L.m > seg[idx].m)
-      swap(L, seg[idx]);
-
-    if (l == r) {
-      if (L.val(l) < seg[idx].val(l))
-        swap(L, seg[idx]);
+    if (v >= size) {
+      if (eval(a, b, xMid[v]) < eval(data[v][0], data[v][1], xMid[v])) {
+        swap(a, data[v][0]);
+        swap(b, data[v][1]);
+      }
       return;
     }
 
-    int mid = (l + r) / 2;
-    if (L.val(mid) > seg[idx].val(mid)) {
-      insert(mid + 1, r, idx << 1 | 1, L);
+    if (eval(a, b, xMid[v]) > eval(data[v][0], data[v][1], xMid[v])) {
+      insert(v << 1 | 1, a, b);
     } else {
-      swap(L, seg[idx]);
-      insert(l, mid, idx << 1, L);
+      swap(a, data[v][0]);
+      swap(b, data[v][1]);
+      insert(v << 1, a, b);
     }
   }
 
-  int query(int l, int r, int idx, int x) {
-    int mid = (l + r) / 2;
+  M query(int v) {
+    v += size;
+    M ans = unit;
+    int x = xMid[v];
+    while(v >= 1)
+      ans = min(ans, eval(data[v][0], data[v][1], x)), v >>= 1;
+    return ans;
+  }
 
-    if (l == r and l == x)
-      return seg[idx].val(x);
-
-    if (x <= mid) {
-      return min(query(l, mid, idx << 1, x), seg[idx].val(x));
-    } else {
-      return min(query(mid + 1, r, idx << 1 | 1, x), seg[idx].val(x));
+  void insertRange(int l, int r, M a, M b) {
+    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {
+      if (l & 1) insert(l++, a, b);
+      if (r & 1) insert(--r, a, b);
     }
   }
 };

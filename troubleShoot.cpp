@@ -13,7 +13,7 @@
  *
  * Is the algorithm correct? Did I use some claim without proving it?
  *
- * May overflow happen?
+ * May overflow/out-of-bound happen?
  *
  * Write some stress-test.
  */

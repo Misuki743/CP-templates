@@ -1,5 +1,5 @@
 /**
- * template name: segmentTree
+ * template name: segmentTree2D
  * author: Misuki
  * last update: 2022/05/08
  */

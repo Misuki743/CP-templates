@@ -1,97 +1,92 @@
 /**
  * template name: NTT
  * author: Misuki
- * last update: 2022/04/07
- * remark: remember to call init() before doing NTT()!!!
+ * last update: 2023/12/04
  * remark: MOD = 2^K * C + 1, R is a primitive root modulo MOD
  * remark: a.size() <= 2^K must be satisfied
- * some common modulo: 998244353 = 2^23 * 119 + 1, R = 3
- * status: to be deleted, but after another NTT template is well-tested.
+ * some common modulo: 998244353  = 2^23 * 119 + 1, R = 3
+ *                     469762049  = 2^26 * 7   + 1, R = 3
+ *                     1224736769 = 2^24 * 73  + 1, R = 3
+ * verify: Library Checker - Convolution
  */
 
-const long long K = 23, C = 119, R = 3;
-const long long MOD = (1ll << K) * C + 1;
-long long w[K + 1], w_inv[K + 1];
+template<int32_t k, int32_t c, int32_t r>
+struct NTT {
 
-long long POW(long long base, long long index) {
-  if (index == 0)
-    return 1ll;
-  int res = (base == 0ll ? 0ll : 1ll);
-  while(index) {
-    if (index & 1)
-      res = (res * base) % MOD;
-    base = (base * base) % MOD;
-    index >>= 1;
-  }
+  using u32 = uint32_t;
+  static const ll mod = (1ll << k) * c + 1;
 
-  return res;
-}
-
-long long inv(long long val) {
-  return POW(val, MOD - 2);
-}
-
-void init() {
-  w[K] = POW(R, C);
-  for(int i = K - 1; i >= 0; i--)
-    w[i] = (w[i + 1] * w[i + 1]) % MOD;
-  for(int i = 0; i <= K; i++)
-    w_inv[i] = inv(w[i]);
-}
-
-void NTT(vector<long long> &a, bool inverse) {
-  int n = a.size();
-
-  vector<long long> tmp = a;
-  for(int i = 0; i < a.size(); i++) {
-    int idx = 0;
-    int lgn = __lg(n);
-    for(int j = lgn - 1; j >= 0; j--) {
-      idx = (idx << 1) | ((i >> (lgn - j - 1)) & 1);
+  static ll binpow(ll a, ll b) {
+    if (b == 0)
+      return 1;
+    if (a == 0)
+      return 0;
+    ll d = 1;
+    while(b) {
+      if (b & 1) d = d * a % mod;
+      b >>= 1, a = a * a % mod;
     }
-    a[idx] = tmp[i];
+    return d;
   }
 
-  for(int l = 2; l <= n; l <<= 1) {
-    const long long w_l = (inverse ? w_inv[__lg(l)] : w[__lg(l)]);
+  static ll inv(ll a) { return binpow(a, mod - 2); }
+  static constexpr ll get_mod() { return mod; }
 
-    for(int i = 0; i < n; i += l) {
-      long long w = 1;
-      for(int j = 0; j < (l >> 1); j += 1) {
-        long long t = (a[i + j + l / 2] * w) % MOD;  
-        a[i + j + l / 2] = (a[i + j] - t + MOD) % MOD;
-        a[i + j] = (a[i + j] + t) % MOD;
-        w = (w * w_l) % MOD;
+  static void ntt(vector<ll> &a, bool inverse) {
+    static array<ll, k + 1> w = {}, w_inv = {};
+    if (w[k] == 0) {
+      w[k] = binpow(r, c);
+      for(int i = k - 1; i >= 0; i--)
+        w[i] = w[i + 1] * w[i + 1] % mod;
+      for(int i = 0; i <= k; i++)
+        w_inv[i] = inv(w[i]);
+    }
+    int n = ssize(a);
+    vector<ll> tmp = a;
+    for(int i = 0; i < ssize(a); i++) {
+      int idx = 0, lgn = bit_width((u32)n) - 1;
+      for(int j = lgn - 1; j >= 0; j--)
+        idx = (idx << 1) | ((i >> (lgn - j - 1)) & 1);
+      a[idx] = tmp[i];
+    }
+
+    for(int l = 2; l <= n; l <<= 1) {
+      const ll w_l = (inverse ? w_inv[bit_width((u32)l) - 1] : w[bit_width((u32)l) - 1]);
+
+      for(int i = 0; i < n; i += l) {
+        ll w = 1;
+        for(int j = 0; j < (l >> 1); j++) {
+          ll t = a[i + j + l / 2] * w % mod;
+          a[i + j + l / 2] = (a[i + j] - t + mod) % mod;
+          a[i + j] = (a[i + j] + t) % mod;
+          w = w * w_l % mod;
+        }
       }
     }
+
+    if (inverse) {
+      ll Inv = inv(n);
+      for(int i = 0; i < ssize(a); i++)
+        a[i] = a[i] * Inv % mod;
+    }
   }
 
-  if (inverse) {
-    const long long INV = inv(n);
+  vector<ll> conv(vector<ll> a, vector<ll> b) {
+    int sz = ssize(a) + ssize(b) - 1;
+    int n = bit_ceil((u32)sz);
+
+    a.resize(n, 0);
+    ntt(a, false);
+    b.resize(n, 0);
+    ntt(b, false);
+
     for(int i = 0; i < n; i++)
-      a[i] = (a[i] * INV) % MOD;
+      a[i] = a[i] * b[i] % mod;
+
+    ntt(a, true);
+
+    a.resize(sz);
+
+    return a;
   }
-}
-
-vector<int> multiply(vector<long long> a, vector<long long> b) {
-  int mxSz = (int)a.size() + (int)b.size() - 1;
-  int n = (mxSz == 1) ? 2 : (1 << (__lg(mxSz - 1) + 1));
-
-  vector<long long> c(n, 0), d(n, 0);
-  for(int i = 0; i < a.size(); i++)
-    c[i] = a[i];
-  for(int i = 0; i < b.size(); i++)
-    d[i] = b[i];
-
-  NTT(c, false);
-  NTT(d, false);
-
-  for(int i = 0; i < n; i++)
-    c[i] = (c[i] * d[i]) % MOD;
-
-  NTT(c, true);
-  
-  c.resize(mxSz);
-
-  return c;
-}
+};

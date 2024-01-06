@@ -1,7 +1,7 @@
 /**
  * template name: FPS
  * author: Misuki
- * last update: 2023/06/16
+ * last update: 2023/11/30
  * include: mint with NTT-able MOD if using NTT(convolution/log/exp/pow),
  *            or change NTT with high precision FFT
  * verify: Library Checker - Inv of Formal Power Series
@@ -40,14 +40,14 @@ struct FPS : vector<mint> {
     FPS tmp = *this;
     for(int i = 0; i < n; i++) {
       int idx = 0;
-      int lgn = __lg(n);
+      int lgn = bit_width((unsigned)n) - 1;
       for(int j = lgn - 1; j >= 0; j--)
         idx = (idx << 1) | ((i >> (lgn - j - 1)) & 1);
       (*this)[idx] = tmp[i];
     }
 
     for(int l = 2; l <= n; l <<= 1) {
-      mint w_l = (inverse ? w_inv[__lg(l)] : w[__lg(l)]);
+      mint w_l = (inverse ? w_inv[bit_width((unsigned)l) - 1] : w[bit_width((unsigned)l) - 1]);
       for(int i = 0; i < n; i += l) {
         mint w = 1;
         for(int j = 0; j < (l >> 1); j += 1) {
@@ -79,7 +79,7 @@ struct FPS : vector<mint> {
   }
   FPS& operator*=(FPS b) {
     const int mxSz = (int)this -> size() + (int)b.size() - 1;
-    const int n = (mxSz == 1) ? 2 : (1 << (__lg(mxSz - 1) + 1));
+    const int n = (mxSz == 1) ? 2 : (1 << bit_width((unsigned)(mxSz - 1)));
 
     this -> resize(n, 0);
     b.resize(n, 0);
@@ -107,7 +107,7 @@ struct FPS : vector<mint> {
     };
 
     int mxSz = (int)this -> size() + (int)b.size() - 1;
-    int n = (mxSz == 1) ? 2 : (1 << (__lg(mxSz - 1) + 1));
+    int n = (mxSz == 1) ? 2 : (1 << bit_width((unsigned)(mxSz - 1)));
 
     FPS a2, b2;
     sqrtDivide((*this), a2);
@@ -127,7 +127,7 @@ struct FPS : vector<mint> {
       int n = a.size();
 
       if ((int)w.size() < n) {
-        int lgSz = __lg(w.size()), lgN = __lg(n);
+        int lgSz = bit_width((unsigned)w.size()) - 1, lgN = bit_width((unsigned)n) - 1;
         w.resize(n);
         w_inv.resize(n);
         for(int i = lgSz; i < lgN; i++) {
@@ -142,7 +142,7 @@ struct FPS : vector<mint> {
 
       vector<complex<double>> tmp = a;
       for(int i = 0; i < (int)a.size(); i++) {
-        int idx = 0, lgn = __lg(n);
+        int idx = 0, lgn = bit_width((unsigned)n) - 1;
         for(int j = lgn - 1; j >= 0; j--)
           idx = (idx << 1) | ((i >> (lgn - j - 1)) & 1);
         a[idx] = tmp[i];

@@ -2,7 +2,7 @@
  * template name: MontgomeryModInt
  * author: Misuki
  * reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
- * last update: 2023/06/16
+ * last update: 2023/11/30
  * note: mod should be a prime less than 2^30.
  */
 
@@ -18,6 +18,10 @@ struct MontgomeryModInt {
     for(i32 i = 0; i < 31; i++)
       res *= base, base *= base;
     return -res;
+  }
+
+  static constexpr u32 get_mod() {
+    return mod;
   }
 
   static constexpr u32 n2 = -u64(mod) % mod; //2^64 % mod
@@ -75,10 +79,10 @@ struct MontgomeryModInt {
   }
 
   mint operator-() { return mint() - mint(*this); }
-  bool operator==(mint b) {
+  bool operator==(mint b) const {
     return (a >= mod ? a - mod : a) == (b.a >= mod ? b.a - mod : b.a);
   }
-  bool operator!=(mint b) {
+  bool operator!=(mint b) const {
     return (a >= mod ? a - mod : a) != (b.a >= mod ? b.a - mod : b.a);
   }
 

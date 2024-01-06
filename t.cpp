@@ -36,11 +36,9 @@ ostream& operator<<(ostream& os, const vector<T> &vec) {
   return os;
 }
 
-
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
-  
 
   return 0;
 }

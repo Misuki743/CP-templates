@@ -1,44 +1,37 @@
 /**
  * template name: segmentTree
  * author: Misuki
- * last update: 2022/04/16
+ * last update: 2024/01/01
  * verify: library checker - Point Add Range Sum, Static RMQ
  */
 
-template<class T>
+template<class M, M(*unit)(), M(*combine)(const M&, const M&)>
 struct segmentTree {
-  static const int MAXSZ = 500000;
-  function<T(const T&, const T&)> combine;
-  T UNIT;
-  T arr[2 * MAXSZ];
-  int sz;
+  vector<M> data;
+  int size;
 
-  segmentTree(int _sz, T _UNIT, function<T(const T&, const T&)> _combine) {
-    sz = _sz;
-    UNIT = _UNIT;
-    combine = _combine;
-    fill(arr, arr + 2 * sz, UNIT);
+  segmentTree(int _size) : data(2 * _size, unit()), size(_size) {}
+
+  segmentTree(vector<M> init) : data(2 * ssize(init), unit()), size(ssize(init)) {
+    copy(init.begin(), init.end(), data.begin() + size);
+    for(int i = size - 1; i > 0; i--)
+      data[i] = combine(data[i << 1], data[i << 1 | 1]);
   }
 
-  void set(int idx, T val) {
-    idx += sz;
-    arr[idx] = val;
-    idx >>= 1;
-    while(idx) {
-      arr[idx] = combine(arr[idx<<1], arr[idx<<1|1]); 
-      idx >>= 1;
-    }
+
+  void set(int i, M x) {
+    i += size, data[i] = x, i >>= 1;
+    while(i)
+      data[i] = combine(data[i << 1], data[i << 1 | 1]), i >>= 1;
   }
 
-  T get(int idx) {
-    return arr[idx + sz];
-  }
+  M get(int i) { return data[i + size]; }
 
-  T query(int l, int r) {
-    T L = UNIT, R = UNIT;
-    for(l += sz, r += sz; l < r; l >>= 1, r >>= 1) {
-      if (l & 1) L = combine(L, arr[l++]);
-      if (r & 1) R = combine(arr[--r], R);
+  M query(int l, int r) {
+    M L = unit(), R = unit();
+    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {
+      if (l & 1) L = combine(L, data[l++]);
+      if (r & 1) R = combine(data[--r], R);
     }
     return combine(L, R);
   }
