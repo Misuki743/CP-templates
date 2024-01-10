@@ -1,15 +1,18 @@
 /**
  * template name: fastSubsetTransform
  * author: Misuki
- * last update: 2023/03/26
+ * last update: 2024/01/10
  * include template: FPS
+ * verify: Library Checker - Subset Convolution
  */
 
+template<class FPS>
 vector<FPS> FST(FPS f) {
-  int n = __lg(f.size());
+  assert(popcount(f.size()) == 1);
+  int n = bit_width(f.size()) - 1;
   vector<FPS> fHat(1 << n, FPS(n + 1));
-  for(int i = 0; i < (1 << n); i++)
-    fHat[i][__builtin_popcount(i)] = f[i];
+  for(unsigned i = 0; i < (1 << n); i++)
+    fHat[i][popcount(i)] = f[i];
 
   for(int k = 0; k < n; k++)
     for(int i = 0; i < (1 << n); i++)
@@ -20,8 +23,9 @@ vector<FPS> FST(FPS f) {
   return fHat;
 }
 
+template<class FPS>
 FPS FSTinv(vector<FPS> fHat) {
-  int n = __lg(fHat.size());
+  int n = bit_width(fHat.size()) - 1;
   for(int k = 0; k < n; k++)
     for(int i = 0; i < (1 << n); i++)
       if (!(i >> k & 1))
@@ -29,10 +33,21 @@ FPS FSTinv(vector<FPS> fHat) {
           fHat[i|1<<k][j] -= fHat[i][j];
 
   FPS f(1 << n);
-  for(int i = 0; i < (1 << n); i++)
-    f[i] = fHat[i][__builtin_popcount(i)];
+  for(unsigned i = 0; i < (1 << n); i++)
+    f[i] = fHat[i][popcount(i)];
 
   return f;
+}
+
+template<class FPS>
+FPS conv(FPS f, FPS g) {
+  assert(ssize(f) == ssize(g));
+  auto fHat = FST(f), gHat = FST(g);
+  for(int i = 0; i < ssize(fHat); i++) {
+    fHat[i] *= gHat[i];
+    fHat[i].resize(ssize(gHat[i]));
+  }
+  return FSTinv(fHat);
 }
 
 /* OMG this is so slowwwwwwwwwwwwwwwww

@@ -54,7 +54,7 @@ struct NTT {
     }
   }
 
-  vector<Mint> conv(vector<Mint> a, vector<Mint> b) {
+  static vector<Mint> conv(vector<Mint> a, vector<Mint> b) {
     int sz = ssize(a) + ssize(b) - 1;
     int n = bit_ceil((u32)sz);
 
