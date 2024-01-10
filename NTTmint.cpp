@@ -1,7 +1,8 @@
 /**
- * template name: NTT
+ * template name: NTTmint
  * reference: https://judge.yosupo.jp/submission/69896
- * last update: 2023/12/04
+ * last update: 2024/01/07
+ * include: mint
  * remark: MOD = 2^K * C + 1, R is a primitive root modulo MOD
  * remark: a.size() <= 2^K must be satisfied
  * some common modulo: 998244353  = 2^23 * 119 + 1, R = 3
@@ -10,7 +11,7 @@
  * verify: Library Checker - Convolution
  */
 
-template<int32_t k, int32_t c, int32_t r, class Mint>
+template<int32_t k = 23, int32_t c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>
 struct NTT {
 
   using u32 = uint32_t;
