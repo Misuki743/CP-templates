@@ -1,64 +1,62 @@
 /**
  * template name: SCC
  * author: Misuki
- * last update: 2023/01/07
+ * last update: 2024/01/11
  * verify: Library Checker - Strongly Connected Components
  */
 
 struct SCC {
-  int sz;
-  vector<int> group_id;
-  vector<vector<int>> group;
-  vector<vector<int>> G;
+  vector<int> groupId;
+  vector<vector<int>> group, G;
+  int size;
 
-  SCC(vector<vector<int>> &g) : group_id(g.size()), sz(0) {
+  SCC(vector<vector<int>> &g) : groupId(ssize(g)), size(0) {
     vector<vector<int>> gr(g.size());
-    for(int i = 0; i < g.size(); i++)
-      for(int X : g[i])
-        gr[X].emplace_back(i);
+    for(int u = 0; u < ssize(g); u++)
+      for(int v : g[u])
+        gr[v].emplace_back(u);
 
     int t = 0;
-    vector<bool> vis(g.size(), false);
-    vector<int> tout(g.size());
-    auto dfs = [&](int V, auto self) -> void {
-      vis[V] = true;
-      for(int X : gr[V])
-        if (!vis[X])
-          self(X, self);
-      tout[t++] = V;
+    vector<bool> vis(ssize(g), false);
+    vector<int> tout(ssize(g));
+    auto dfs = [&](int v, auto self) -> void {
+      vis[v] = true;
+      for(int x : gr[v])
+        if (!vis[x])
+          self(x, self);
+      tout[t++] = v;
     };
 
-    for(int i = 0; i < g.size(); i++)
-      if (!vis[i])
-        dfs(i, dfs);
+    for(int v = 0; v < ssize(g); v++)
+      if (!vis[v])
+        dfs(v, dfs);
 
-    auto dfs2 = [&](int V, auto self) -> void {
-      vis[V] = true;
-      for(int X : g[V])
-        if (!vis[X])
-          self(X, self);
-      group_id[V] = sz;
+    auto dfs2 = [&](int v, auto self) -> void {
+      vis[v] = true;
+      for(int x : g[v])
+        if (!vis[x])
+          self(x, self);
+      groupId[v] = size;
     };
-    for(int i = 0; i < g.size(); i++)
-      vis[i] = false;
-    for(int i = (int)g.size() - 1; i >= 0; i--) {
-      if (!vis[tout[i]]) {
-        dfs2(tout[i], dfs2);
-        sz += 1;
+    fill(vis.begin(), vis.end(), false);
+    for(int v = ssize(g) - 1; v >= 0; v--) {
+      if (!vis[tout[v]]) {
+        dfs2(tout[v], dfs2);
+        size += 1;
       }
     }
 
-    for(int i = 0; i < g.size(); i++)
-      group_id[i] = sz - 1 - group_id[i];
+    for(int &x : groupId)
+      x = size - x - 1;
 
-    group.resize(sz);
-    for(int i = 0; i < g.size(); i++)
-      group[group_id[i]].emplace_back(i);
+    group.resize(size);
+    for(int v = 0; v < ssize(g); v++)
+      group[groupId[v]].emplace_back(v);
 
-    G.resize(sz);
-    for(int i = 0; i < g.size(); i++)
-      for(int X : g[i])
-        if (group_id[i] != group_id[X])
-          G[group_id[i]].emplace_back(group_id[X]);
+    G.resize(size);
+    for(int v = 0; v < ssize(g); v++)
+      for(int x : g[v])
+        if (groupId[v] != groupId[x])
+          G[groupId[v]].emplace_back(groupId[x]);
   }
 };

@@ -13,6 +13,7 @@ This template is for competitive programming contest usage.
 - matrix
 - virtual tree
 - wavelet matrix
+- relax convolution
 
 # MAYBE, IF I HAVE NOTHING TO DO
 

@@ -13,8 +13,10 @@
  *         Library Checker - Polynomial Interpolation
  */
 
-template<class Mint, vector<Mint>(*conv)(vector<Mint>,vector<Mint>)>
+template<class Mint>
 struct FPS : vector<Mint> {
+
+  static function<vector<Mint>(vector<Mint>, vector<Mint>)> conv;
 
   FPS(vector<Mint> v) { *this = v; }
 
@@ -205,4 +207,6 @@ struct FPS : vector<Mint> {
 };
 
 NTT ntt;
-using fps = FPS<mint, ntt.conv>;
+using fps = FPS<mint>;
+template<>
+function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;
