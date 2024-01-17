@@ -5,9 +5,9 @@
  * reference: kactl (for det() and inv())
  * last update: 2024/01/17
  * verify: Library Checker - Matrix Product
- * verify: Library Checker - Determinant of Matrix
- * verify: Library Checker - Inverse Matrix
- * verify: Library Checker - Pow of Matrix
+ *         Library Checker - Determinant of Matrix
+ *         Library Checker - Inverse Matrix
+ *         Library Checker - Pow of Matrix
  */
 
 template<class Mint>
