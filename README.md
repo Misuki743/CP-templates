@@ -10,10 +10,10 @@ This template is for competitive programming contest usage.
 - add lower bound parameter to MCMF::addEdge
 - coordinate compression
 - various shortest path algorithm
-- matrix
 - virtual tree
 - wavelet matrix
 - relax convolution
+- add jumping array for Aho-Corasick and palindromic tree
 
 # MAYBE, IF I HAVE NOTHING TO DO
 
