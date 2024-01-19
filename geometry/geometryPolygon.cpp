@@ -1,5 +1,6 @@
 /**
  * template name: geometryPolygon
+ * source: kactl
  */
 
 bool inPolygon(vector<P> &p, P a, bool strict = true) {
