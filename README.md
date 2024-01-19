@@ -14,6 +14,7 @@ This template is for competitive programming contest usage.
 - wavelet matrix
 - relax convolution
 - add jumping array for Aho-Corasick and palindromic tree
+- kirchoff's tree theorem/BEST theorem
 
 # MAYBE, IF I HAVE NOTHING TO DO
 
