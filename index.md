@@ -57,7 +57,7 @@ data:
     - icon: ':warning:'
       path: MCMF.cpp
       title: MCMF.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: MontgomeryModInt.cpp
       title: MontgomeryModInt.cpp
     - icon: ':warning:'
@@ -186,7 +186,7 @@ data:
     - icon: ':warning:'
       path: random.cpp
       title: random.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: segmentTree.cpp
       title: segmentTree.cpp
     - icon: ':warning:'
@@ -210,7 +210,7 @@ data:
     - icon: ':warning:'
       path: suffixArray.cpp
       title: suffixArray.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: t.cpp
       title: t.cpp
     - icon: ':warning:'
@@ -237,7 +237,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: example.test.cpp
       title: example.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: point_set_range_composite.test.cpp
       title: point_set_range_composite.test.cpp
 layout: toppage

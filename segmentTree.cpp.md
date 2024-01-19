@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: point_set_range_composite.test.cpp
     title: point_set_range_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segmentTree.cpp\"\n/**\n * template name: segmentTree\n\
@@ -43,7 +43,7 @@ data:
   path: segmentTree.cpp
   requiredBy: []
   timestamp: '2024-01-06 18:21:41+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - point_set_range_composite.test.cpp
 documentation_of: segmentTree.cpp
