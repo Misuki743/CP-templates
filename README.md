@@ -4,7 +4,6 @@ This template is for competitive programming contest usage.
 
 # TODO
 
-- use this (https://github.com/online-judge-tools/verification-helper)
 - doubling(support mataining commutative monoid)
 - rolling hash
 - add lower bound parameter to MCMF::addEdge
@@ -18,7 +17,6 @@ This template is for competitive programming contest usage.
 
 # MAYBE, IF I HAVE NOTHING TO DO
 
-- BostanMori: implement the one that keeps polynomials in DFT form during process
 - rewrite treap/persistent treap to support mataining monoid
 - rewrite HLD to make it works on non-commutative monoid
 - lichaoSegmentTree

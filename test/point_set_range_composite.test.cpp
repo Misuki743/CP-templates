@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#include "t.cpp"
-#include "MontgomeryModInt.cpp"
-#include "segmentTree.cpp"
+#include "../default/t.cpp"
+#include "../modint/MontgomeryModInt.cpp"
+#include "../segtree/segmentTree.cpp"
 
 using line = array<mint, 2>;
 line unit() { return line{1, 0}; }
