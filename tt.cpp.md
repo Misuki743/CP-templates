@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: Point_Set_Range_Composite.test.cpp
-    title: Point_Set_Range_Composite.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tt.cpp\"\n#pragma GCC optimize(\"O2\")\n#include <algorithm>\n\
@@ -66,9 +63,8 @@ data:
   path: tt.cpp
   requiredBy: []
   timestamp: '2024-01-06 18:21:41+08:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - Point_Set_Range_Composite.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: tt.cpp
 layout: document
 redirect_from:

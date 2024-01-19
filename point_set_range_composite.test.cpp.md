@@ -8,8 +8,8 @@ data:
     path: segmentTree.cpp
     title: segmentTree.cpp
   - icon: ':x:'
-    path: tt.cpp
-    title: tt.cpp
+    path: t.cpp
+    title: t.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -20,34 +20,31 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
     links:
     - https://judge.yosupo.jp/problem/point_set_range_composite
-  bundledCode: "#line 1 \"Point_Set_Range_Composite.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/point_set_range_composite\"\n#line 1 \"tt.cpp\"\
-    \n#pragma GCC optimize(\"O2\")\n#include <algorithm>\n#include <array>\n#include\
-    \ <bit>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n\
-    #include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n\
-    #include <cmath>\n#include <compare>\n#include <complex>\n#include <concepts>\n\
-    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
-    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
-    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
-    #include <numbers>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
-    #include <random>\n#include <ranges>\n#include <set>\n#include <span>\n#include\
-    \ <sstream>\n#include <stack>\n#include <streambuf>\n#include <string>\n#include\
-    \ <tuple>\n#include <type_traits>\n#include <variant>\n\n#define int ll\n#define\
-    \ INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__)\
-    \ - 1)) - 1)\n#define INT128_MIN (-INT128_MAX - 1)\n\n#ifdef DEBUG\n#define dbg(x)\
-    \ cout << (#x) << \" = \" << x << '\\n'\n#else\n#define dbg(x)\n#endif\n\nnamespace\
-    \ R = std::ranges;\nnamespace V = std::views;\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
-    //#define double ldb\n\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
-    \ os, const array<T, N> &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
+  bundledCode: "#line 1 \"point_set_range_composite.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/point_set_range_composite\"\n\n#line 1 \"t.cpp\"\
+    \n#include <algorithm>\n#include <array>\n#include <bit>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <compare>\n#include <complex>\n#include <concepts>\n#include <cstdarg>\n#include\
+    \ <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include\
+    \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
+    \ <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
+    #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
+    #include <map>\n#include <memory>\n#include <new>\n#include <numbers>\n#include\
+    \ <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n#include\
+    \ <ranges>\n#include <set>\n#include <span>\n#include <sstream>\n#include <stack>\n\
+    #include <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n\
+    #include <variant>\n\n#define INT128_MAX (__int128)(((unsigned __int128) 1 <<\
+    \ ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX\
+    \ - 1)\n\nnamespace R = std::ranges;\nnamespace V = std::views;\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ldb =\
+    \ long double;\n\ntemplate<class T, size_t N>\nostream& operator<<(ostream& os,\
+    \ const array<T, N> &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n  return\
+    \ os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
     \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
     \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  \n\n  return 0;\n}\n#line 1 \"MontgomeryModInt.cpp\"\n/**\n\
-    \ * template name: MontgomeryModInt\n * author: Misuki\n * reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
+    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"MontgomeryModInt.cpp\"\n\
+    /**\n * template name: MontgomeryModInt\n * author: Misuki\n * reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
     \ * last update: 2023/11/30\n * note: mod should be a prime less than 2^30.\n\
     \ */\n\ntemplate<uint32_t mod>\nstruct MontgomeryModInt {\n  using mint = MontgomeryModInt;\n\
     \  using i32 = int32_t;\n  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n\
@@ -91,17 +88,17 @@ data:
     \  }\n\n  M get(int i) { return data[i + size]; }\n\n  M query(int l, int r) {\n\
     \    M L = unit(), R = unit();\n    for(l += size, r += size; l < r; l >>= 1,\
     \ r >>= 1) {\n      if (l & 1) L = combine(L, data[l++]);\n      if (r & 1) R\
-    \ = combine(data[--r], R);\n    }\n    return combine(L, R);\n  }\n};\n#line 5\
-    \ \"Point_Set_Range_Composite.test.cpp\"\n\nusing line = array<mint, 2>;\nline\
+    \ = combine(data[--r], R);\n    }\n    return combine(L, R);\n  }\n};\n#line 6\
+    \ \"point_set_range_composite.test.cpp\"\n\nusing line = array<mint, 2>;\nline\
     \ unit() { return line{1, 0}; }\nline ope(const line &l, const line &r) {\n  return\
     \ {l[0] * r[0], l[1] * r[0] + r[1]};\n}\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<line> a(n);\n  for(auto\
     \ &[c, d] : a)\n    cin >> c >> d;\n\n  segmentTree<line, unit, ope> st(a);\n\
     \  while(q--) {\n    int t, x, y, z; cin >> t >> x >> y >> z;\n    if (t == 0)\
     \ {\n      st.set(x, line{y, z});\n    } else {\n      line l = st.query(x, y);\n\
-    \      cout << l[0] * z + l[1] << '\\n';\n    }\n\n  }\n\n  return 0;\n}\n"
+    \      cout << l[0] * z + l[1] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n#include \"tt.cpp\"\n#include \"MontgomeryModInt.cpp\"\n#include \"segmentTree.cpp\"\
+    \n\n#include \"t.cpp\"\n#include \"MontgomeryModInt.cpp\"\n#include \"segmentTree.cpp\"\
     \n\nusing line = array<mint, 2>;\nline unit() { return line{1, 0}; }\nline ope(const\
     \ line &l, const line &r) {\n  return {l[0] * r[0], l[1] * r[0] + r[1]};\n}\n\n\
     signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
@@ -109,21 +106,21 @@ data:
     \ >> d;\n\n  segmentTree<line, unit, ope> st(a);\n  while(q--) {\n    int t, x,\
     \ y, z; cin >> t >> x >> y >> z;\n    if (t == 0) {\n      st.set(x, line{y, z});\n\
     \    } else {\n      line l = st.query(x, y);\n      cout << l[0] * z + l[1] <<\
-    \ '\\n';\n    }\n\n  }\n\n  return 0;\n}\n"
+    \ '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn:
-  - tt.cpp
+  - t.cpp
   - MontgomeryModInt.cpp
   - segmentTree.cpp
   isVerificationFile: true
-  path: Point_Set_Range_Composite.test.cpp
+  path: point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 01:00:17+08:00'
+  timestamp: '2024-01-20 01:14:30+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: Point_Set_Range_Composite.test.cpp
+documentation_of: point_set_range_composite.test.cpp
 layout: document
 redirect_from:
-- /verify/Point_Set_Range_Composite.test.cpp
-- /verify/Point_Set_Range_Composite.test.cpp.html
-title: Point_Set_Range_Composite.test.cpp
+- /verify/point_set_range_composite.test.cpp
+- /verify/point_set_range_composite.test.cpp.html
+title: point_set_range_composite.test.cpp
 ---

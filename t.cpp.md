@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: point_set_range_composite.test.cpp
+    title: point_set_range_composite.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
@@ -20,19 +23,16 @@ data:
     #include <numbers>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
     #include <random>\n#include <ranges>\n#include <set>\n#include <span>\n#include\
     \ <sstream>\n#include <stack>\n#include <streambuf>\n#include <string>\n#include\
-    \ <tuple>\n#include <type_traits>\n#include <variant>\n\n//#define int ll\n#define\
-    \ INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__)\
-    \ - 1)) - 1)\n#define INT128_MIN (-INT128_MAX - 1)\n\n#ifdef DEBUG\n#define dbg(x)\
-    \ cout << (#x) << \" = \" << x << '\\n'\n#else\n#define dbg(x)\n#endif\n\nnamespace\
-    \ R = std::ranges;\nnamespace V = std::views;\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
-    //#define double ldb\n\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
+    \ <tuple>\n#include <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
+    \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
+    \ (-INT128_MAX - 1)\n\nnamespace R = std::ranges;\nnamespace V = std::views;\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
+    using ldb = long double;\n\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
     \ os, const array<T, N> &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n\
     \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
     \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
     \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
+    \ s)\n    os << x << ' ';\n  return os;\n}\n"
   code: "#include <algorithm>\n#include <array>\n#include <bit>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
@@ -45,26 +45,24 @@ data:
     \ <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n#include\
     \ <ranges>\n#include <set>\n#include <span>\n#include <sstream>\n#include <stack>\n\
     #include <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n\
-    #include <variant>\n\n//#define int ll\n#define INT128_MAX (__int128)(((unsigned\
-    \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
-    \ (-INT128_MAX - 1)\n\n#ifdef DEBUG\n#define dbg(x) cout << (#x) << \" = \" <<\
-    \ x << '\\n'\n#else\n#define dbg(x)\n#endif\n\nnamespace R = std::ranges;\nnamespace\
-    \ V = std::views;\n\nusing namespace std;\n\nusing ll = long long;\nusing ull\
-    \ = unsigned long long;\nusing ldb = long double;\n//#define double ldb\n\ntemplate<class\
-    \ T, size_t N>\nostream& operator<<(ostream& os, const array<T, N> &arr) {\n \
-    \ for(const T &X : arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
-    \ T>\nostream& operator<<(ostream& os, const vector<T> &vec) {\n  for(const T\
-    \ &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream&\
-    \ operator<<(ostream& os, const set<T> &s) {\n  for(const T &x : s)\n    os <<\
-    \ x << ' ';\n  return os;\n}\n\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
+    #include <variant>\n\n#define INT128_MAX (__int128)(((unsigned __int128) 1 <<\
+    \ ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX\
+    \ - 1)\n\nnamespace R = std::ranges;\nnamespace V = std::views;\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ldb =\
+    \ long double;\n\ntemplate<class T, size_t N>\nostream& operator<<(ostream& os,\
+    \ const array<T, N> &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n  return\
+    \ os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
+    \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
+    \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
+    \ s)\n    os << x << ' ';\n  return os;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: t.cpp
   requiredBy: []
-  timestamp: '2024-01-20 01:00:17+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-01-20 01:14:30+08:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - point_set_range_composite.test.cpp
 documentation_of: t.cpp
 layout: document
 redirect_from:

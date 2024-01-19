@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: Point_Set_Range_Composite.test.cpp
-    title: Point_Set_Range_Composite.test.cpp
+    path: point_set_range_composite.test.cpp
+    title: point_set_range_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
@@ -45,7 +45,7 @@ data:
   timestamp: '2024-01-06 18:21:41+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Point_Set_Range_Composite.test.cpp
+  - point_set_range_composite.test.cpp
 documentation_of: segmentTree.cpp
 layout: document
 redirect_from:

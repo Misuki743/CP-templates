@@ -210,7 +210,7 @@ data:
     - icon: ':warning:'
       path: suffixArray.cpp
       title: suffixArray.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: t.cpp
       title: t.cpp
     - icon: ':warning:'
@@ -219,7 +219,7 @@ data:
     - icon: ':warning:'
       path: troubleShoot.cpp
       title: troubleShoot.cpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: tt.cpp
       title: tt.cpp
     - icon: ':warning:'
@@ -234,11 +234,11 @@ data:
   verificationCategories:
   - name: .
     pages:
-    - icon: ':x:'
-      path: Point_Set_Range_Composite.test.cpp
-      title: Point_Set_Range_Composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: example.test.cpp
       title: example.test.cpp
+    - icon: ':x:'
+      path: point_set_range_composite.test.cpp
+      title: point_set_range_composite.test.cpp
 layout: toppage
 ---
