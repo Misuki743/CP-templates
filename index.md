@@ -1,244 +1,262 @@
 ---
 data:
   libraryCategories:
-  - name: .
+  - name: combi
     pages:
     - icon: ':warning:'
-      path: 2CC.cpp
-      title: 2CC.cpp
-    - icon: ':warning:'
-      path: 2sat.cpp
-      title: 2sat.cpp
-    - icon: ':warning:'
-      path: AhoCorasick.cpp
-      title: AhoCorasick.cpp
-    - icon: ':warning:'
-      path: BCC.cpp
-      title: BCC.cpp
-    - icon: ':warning:'
-      path: BerlekampMassey.cpp
-      title: BerlekampMassey.cpp
-    - icon: ':warning:'
-      path: BostanMori.cpp
-      title: BostanMori.cpp
-    - icon: ':warning:'
-      path: CD.cpp
-      title: CD.cpp
-    - icon: ':warning:'
-      path: DSU.cpp
-      title: DSU.cpp
-    - icon: ':warning:'
-      path: DSUrollback.cpp
-      title: DSUrollback.cpp
-    - icon: ':warning:'
-      path: FFT.cpp
-      title: FFT.cpp
-    - icon: ':warning:'
-      path: FFTmod.cpp
-      title: FFTmod.cpp
-    - icon: ':warning:'
-      path: FPS.cpp
-      title: FPS.cpp
-    - icon: ':warning:'
-      path: FPSsqrt.cpp
-      title: FPSsqrt.cpp
-    - icon: ':warning:'
-      path: FWHT.cpp
-      title: FWHT.cpp
-    - icon: ':warning:'
-      path: HLD.cpp
-      title: HLD.cpp
-    - icon: ':warning:'
-      path: KMP.cpp
-      title: KMP.cpp
-    - icon: ':warning:'
-      path: KMPA.cpp
-      title: KMPA.cpp
-    - icon: ':warning:'
-      path: MCMF.cpp
-      title: MCMF.cpp
+      path: combi/comb.cpp
+      title: combi/comb.cpp
+  - name: default
+    pages:
     - icon: ':heavy_check_mark:'
-      path: MontgomeryModInt.cpp
-      title: MontgomeryModInt.cpp
+      path: default/t.cpp
+      title: default/t.cpp
     - icon: ':warning:'
-      path: NTT.cpp
-      title: NTT.cpp
+      path: default/tt.cpp
+      title: default/tt.cpp
     - icon: ':warning:'
-      path: NTTanymod.cpp
-      title: NTTanymod.cpp
+      path: default/ttt.cpp
+      title: default/ttt.cpp
+  - name: ds
+    pages:
     - icon: ':warning:'
-      path: NTTmint.cpp
-      title: NTTmint.cpp
+      path: ds/CD.cpp
+      title: ds/CD.cpp
     - icon: ':warning:'
-      path: SCC.cpp
-      title: SCC.cpp
+      path: ds/DSU.cpp
+      title: ds/DSU.cpp
     - icon: ':warning:'
-      path: bipartiteDSU.cpp
-      title: bipartiteDSU.cpp
+      path: ds/DSUrollback.cpp
+      title: ds/DSUrollback.cpp
     - icon: ':warning:'
-      path: comb.cpp
-      title: comb.cpp
+      path: ds/HLD.cpp
+      title: ds/HLD.cpp
     - icon: ':warning:'
-      path: contestNote.cpp
-      title: contestNote.cpp
+      path: ds/bipartiteDSU.cpp
+      title: ds/bipartiteDSU.cpp
     - icon: ':warning:'
-      path: default.cpp
-      title: default.cpp
+      path: ds/dynamicHull.cpp
+      title: ds/dynamicHull.cpp
     - icon: ':warning:'
-      path: determinantInt.cpp
-      title: determinantInt.cpp
+      path: ds/eulerTour.cpp
+      title: ds/eulerTour.cpp
     - icon: ':warning:'
-      path: dinic.cpp
-      title: dinic.cpp
+      path: ds/fenwickTree2D.cpp
+      title: ds/fenwickTree2D.cpp
     - icon: ':warning:'
-      path: dualSegmentTree.cpp
-      title: dualSegmentTree.cpp
+      path: ds/hashTable.cpp
+      title: ds/hashTable.cpp
     - icon: ':warning:'
-      path: dynamicHull.cpp
-      title: dynamicHull.cpp
+      path: ds/pbdsSet.cpp
+      title: ds/pbdsSet.cpp
     - icon: ':warning:'
-      path: eulerTour.cpp
-      title: eulerTour.cpp
+      path: ds/persistentTreap.cpp
+      title: ds/persistentTreap.cpp
     - icon: ':warning:'
-      path: exgcd.cpp
-      title: exgcd.cpp
+      path: ds/sparseTable.cpp
+      title: ds/sparseTable.cpp
     - icon: ':warning:'
-      path: fastSubsetTransform.cpp
-      title: fastSubsetTransform.cpp
+      path: ds/sparseTable2D.cpp
+      title: ds/sparseTable2D.cpp
     - icon: ':warning:'
-      path: fastZetaTransform.cpp
-      title: fastZetaTransform.cpp
+      path: ds/suffixArray.cpp
+      title: ds/suffixArray.cpp
     - icon: ':warning:'
-      path: fenwickTree2D.cpp
-      title: fenwickTree2D.cpp
+      path: ds/treap.cpp
+      title: ds/treap.cpp
+  - name: geometry
+    pages:
     - icon: ':warning:'
-      path: floorCeilSum.cpp
-      title: floorCeilSum.cpp
+      path: geometry/geometryBasic.cpp
+      title: geometry/geometryBasic.cpp
     - icon: ':warning:'
-      path: generalApproach.cpp
-      title: generalApproach.cpp
+      path: geometry/geometryCircle.cpp
+      title: geometry/geometryCircle.cpp
     - icon: ':warning:'
-      path: geometryBasic.cpp
-      title: geometryBasic.cpp
+      path: geometry/geometryLine.cpp
+      title: geometry/geometryLine.cpp
     - icon: ':warning:'
-      path: geometryCircle.cpp
-      title: geometryCircle.cpp
+      path: geometry/geometryPolygon.cpp
+      title: geometry/geometryPolygon.cpp
     - icon: ':warning:'
-      path: geometryLine.cpp
-      title: geometryLine.cpp
+      path: geometry/minkowski.cpp
+      title: geometry/minkowski.cpp
+  - name: graph
+    pages:
     - icon: ':warning:'
-      path: geometryPolygon.cpp
-      title: geometryPolygon.cpp
+      path: graph/2CC.cpp
+      title: graph/2CC.cpp
     - icon: ':warning:'
-      path: hashTable.cpp
-      title: hashTable.cpp
+      path: graph/2sat.cpp
+      title: graph/2sat.cpp
     - icon: ':warning:'
-      path: hopcroftKarp.cpp
-      title: hopcroftKarp.cpp
+      path: graph/BCC.cpp
+      title: graph/BCC.cpp
     - icon: ':warning:'
-      path: hungarian.cpp
-      title: hungarian.cpp
+      path: graph/MCMF.cpp
+      title: graph/MCMF.cpp
     - icon: ':warning:'
-      path: lazySegmentTree.cpp
-      title: lazySegmentTree.cpp
+      path: graph/SCC.cpp
+      title: graph/SCC.cpp
     - icon: ':warning:'
-      path: lichaoSegmentTree.cpp
-      title: lichaoSegmentTree.cpp
+      path: graph/dinic.cpp
+      title: graph/dinic.cpp
     - icon: ':warning:'
-      path: linearSieve.cpp
-      title: linearSieve.cpp
+      path: graph/hopcroftKarp.cpp
+      title: graph/hopcroftKarp.cpp
     - icon: ':warning:'
-      path: manacher.cpp
-      title: manacher.cpp
+      path: graph/hungarian.cpp
+      title: graph/hungarian.cpp
     - icon: ':warning:'
-      path: math.cpp
-      title: math.cpp
+      path: graph/minimumVertexCover.cpp
+      title: graph/minimumVertexCover.cpp
+  - name: linalg
+    pages:
     - icon: ':warning:'
-      path: matrix.cpp
-      title: matrix.cpp
+      path: linalg/determinantInt.cpp
+      title: linalg/determinantInt.cpp
     - icon: ':warning:'
-      path: matrixMint.cpp
-      title: matrixMint.cpp
+      path: linalg/matrix.cpp
+      title: linalg/matrix.cpp
     - icon: ':warning:'
-      path: minimumVertexCover.cpp
-      title: minimumVertexCover.cpp
+      path: linalg/matrixMint.cpp
+      title: linalg/matrixMint.cpp
     - icon: ':warning:'
-      path: minkowski.cpp
-      title: minkowski.cpp
+      path: linalg/xorBasis.cpp
+      title: linalg/xorBasis.cpp
+  - name: misc
+    pages:
     - icon: ':warning:'
-      path: mint.cpp
-      title: mint.cpp
+      path: misc/contestNote.cpp
+      title: misc/contestNote.cpp
     - icon: ':warning:'
-      path: palindromicTree.cpp
-      title: palindromicTree.cpp
+      path: misc/generalApproach.cpp
+      title: misc/generalApproach.cpp
     - icon: ':warning:'
-      path: pbdsSet.cpp
-      title: pbdsSet.cpp
-    - icon: ':warning:'
-      path: persistentSegmentTree.cpp
-      title: persistentSegmentTree.cpp
-    - icon: ':warning:'
-      path: persistentTreap.cpp
-      title: persistentTreap.cpp
-    - icon: ':warning:'
-      path: polyope.cpp
-      title: polyope.cpp
-    - icon: ':warning:'
-      path: random.cpp
-      title: random.cpp
+      path: misc/troubleShoot.cpp
+      title: misc/troubleShoot.cpp
+  - name: modint
+    pages:
     - icon: ':heavy_check_mark:'
-      path: segmentTree.cpp
-      title: segmentTree.cpp
+      path: modint/MontgomeryModInt.cpp
+      title: modint/MontgomeryModInt.cpp
     - icon: ':warning:'
-      path: segmentTree2D.cpp
-      title: segmentTree2D.cpp
+      path: modint/mint.cpp
+      title: modint/mint.cpp
+  - name: numtheory
+    pages:
     - icon: ':warning:'
-      path: segmentTreeLazyDynamic.cpp
-      title: segmentTreeLazyDynamic.cpp
+      path: numtheory/exgcd.cpp
+      title: numtheory/exgcd.cpp
     - icon: ':warning:'
-      path: sparsePolyope.cpp
-      title: sparsePolyope.cpp
+      path: numtheory/floorCeilSum.cpp
+      title: numtheory/floorCeilSum.cpp
     - icon: ':warning:'
-      path: sparseTable.cpp
-      title: sparseTable.cpp
+      path: numtheory/linearSieve.cpp
+      title: numtheory/linearSieve.cpp
     - icon: ':warning:'
-      path: sparseTable2D.cpp
-      title: sparseTable2D.cpp
+      path: numtheory/sqrtMod.cpp
+      title: numtheory/sqrtMod.cpp
+  - name: poly
+    pages:
     - icon: ':warning:'
-      path: sqrtMod.cpp
-      title: sqrtMod.cpp
+      path: poly/BerlekampMassey.cpp
+      title: poly/BerlekampMassey.cpp
     - icon: ':warning:'
-      path: suffixArray.cpp
-      title: suffixArray.cpp
+      path: poly/BostanMori.cpp
+      title: poly/BostanMori.cpp
+    - icon: ':warning:'
+      path: poly/FFT.cpp
+      title: poly/FFT.cpp
+    - icon: ':warning:'
+      path: poly/FFTmod.cpp
+      title: poly/FFTmod.cpp
+    - icon: ':warning:'
+      path: poly/FPS.cpp
+      title: poly/FPS.cpp
+    - icon: ':warning:'
+      path: poly/FPSsqrt.cpp
+      title: poly/FPSsqrt.cpp
+    - icon: ':warning:'
+      path: poly/NTT.cpp
+      title: poly/NTT.cpp
+    - icon: ':warning:'
+      path: poly/NTTanymod.cpp
+      title: poly/NTTanymod.cpp
+    - icon: ':warning:'
+      path: poly/NTTmint.cpp
+      title: poly/NTTmint.cpp
+    - icon: ':warning:'
+      path: poly/polyope.cpp
+      title: poly/polyope.cpp
+    - icon: ':warning:'
+      path: poly/sparsePolyope.cpp
+      title: poly/sparsePolyope.cpp
+  - name: segtree
+    pages:
+    - icon: ':warning:'
+      path: segtree/dualSegmentTree.cpp
+      title: segtree/dualSegmentTree.cpp
     - icon: ':heavy_check_mark:'
-      path: t.cpp
-      title: t.cpp
+      path: segtree/lazySegmentTree.cpp
+      title: segtree/lazySegmentTree.cpp
     - icon: ':warning:'
-      path: treap.cpp
-      title: treap.cpp
+      path: segtree/lichaoSegmentTree.cpp
+      title: segtree/lichaoSegmentTree.cpp
     - icon: ':warning:'
-      path: troubleShoot.cpp
-      title: troubleShoot.cpp
+      path: segtree/persistentSegmentTree.cpp
+      title: segtree/persistentSegmentTree.cpp
+    - icon: ':heavy_check_mark:'
+      path: segtree/segmentTree.cpp
+      title: segtree/segmentTree.cpp
     - icon: ':warning:'
-      path: tt.cpp
-      title: tt.cpp
+      path: segtree/segmentTree2D.cpp
+      title: segtree/segmentTree2D.cpp
     - icon: ':warning:'
-      path: ultraLazySegmentTree.cpp
-      title: ultraLazySegmentTree.cpp
+      path: segtree/segmentTreeLazyDynamic.cpp
+      title: segtree/segmentTreeLazyDynamic.cpp
     - icon: ':warning:'
-      path: xorBasis.cpp
-      title: xorBasis.cpp
+      path: segtree/ultraLazySegmentTree.cpp
+      title: segtree/ultraLazySegmentTree.cpp
+  - name: setfunc
+    pages:
     - icon: ':warning:'
-      path: zFunc.cpp
-      title: zFunc.cpp
+      path: setfunc/FWHT.cpp
+      title: setfunc/FWHT.cpp
+    - icon: ':warning:'
+      path: setfunc/fastSubsetTransform.cpp
+      title: setfunc/fastSubsetTransform.cpp
+    - icon: ':warning:'
+      path: setfunc/fastZetaTransform.cpp
+      title: setfunc/fastZetaTransform.cpp
+  - name: string
+    pages:
+    - icon: ':warning:'
+      path: string/AhoCorasick.cpp
+      title: string/AhoCorasick.cpp
+    - icon: ':warning:'
+      path: string/KMP.cpp
+      title: string/KMP.cpp
+    - icon: ':warning:'
+      path: string/KMPA.cpp
+      title: string/KMPA.cpp
+    - icon: ':warning:'
+      path: string/manacher.cpp
+      title: string/manacher.cpp
+    - icon: ':warning:'
+      path: string/palindromicTree.cpp
+      title: string/palindromicTree.cpp
+    - icon: ':warning:'
+      path: string/zFunc.cpp
+      title: string/zFunc.cpp
   verificationCategories:
-  - name: .
+  - name: test
     pages:
     - icon: ':heavy_check_mark:'
-      path: example.test.cpp
-      title: example.test.cpp
+      path: test/point_set_range_composite.test.cpp
+      title: test/point_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
-      path: point_set_range_composite.test.cpp
-      title: point_set_range_composite.test.cpp
+      path: test/range_affine_range_sum.test.cpp
+      title: test/range_affine_range_sum.test.cpp
 layout: toppage
 ---
