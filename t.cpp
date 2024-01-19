@@ -49,15 +49,8 @@
 #include <type_traits>
 #include <variant>
 
-//#define int ll
 #define INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)
 #define INT128_MIN (-INT128_MAX - 1)
-
-#ifdef DEBUG
-#define dbg(x) cout << (#x) << " = " << x << '\n'
-#else
-#define dbg(x)
-#endif
 
 namespace R = std::ranges;
 namespace V = std::views;
@@ -67,7 +60,6 @@ using namespace std;
 using ll = long long;
 using ull = unsigned long long;
 using ldb = long double;
-//#define double ldb
 
 template<class T, size_t N>
 ostream& operator<<(ostream& os, const array<T, N> &arr) {
@@ -86,13 +78,4 @@ ostream& operator<<(ostream& os, const set<T> &s) {
   for(const T &x : s)
     os << x << ' ';
   return os;
-}
-
-
-signed main() {
-  ios::sync_with_stdio(false), cin.tie(NULL);
-
-  
-
-  return 0;
 }

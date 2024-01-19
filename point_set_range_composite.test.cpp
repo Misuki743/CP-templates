@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
-#include "tt.cpp"
+
+#include "t.cpp"
 #include "MontgomeryModInt.cpp"
 #include "segmentTree.cpp"
 
@@ -26,7 +27,6 @@ signed main() {
       line l = st.query(x, y);
       cout << l[0] * z + l[1] << '\n';
     }
-
   }
 
   return 0;
