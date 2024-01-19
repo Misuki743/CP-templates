@@ -9,8 +9,8 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"geometry/geometryLine.cpp\"\n/**\n * template name: geometryLine\n\
-    \ */\n\ntypedef Point<double> P;\ndouble segDist(P& s, P& e, P& p) {\n\tif (s==e)\
-    \ return (p-s).dist();\n\tauto d = (e-s).dist2(), t = min(d,max(.0,(p-s).dot(e-s)));\n\
+    \ * source: kactl\n */\n\ntypedef Point<double> P;\ndouble segDist(P& s, P& e,\
+    \ P& p) {\n\tif (s==e) return (p-s).dist();\n\tauto d = (e-s).dist2(), t = min(d,max(.0,(p-s).dot(e-s)));\n\
     \treturn ((p-s)*d-(e-s)*t).dist()/d;\n}\n\ntemplate<class P>\ndouble lineDist(const\
     \ P& a, const P& b, const P& p) {\n\treturn (double)(b-a).cross(p-a)/(b-a).dist();\n\
     }\n\nP linearTransformation(const P& p0, const P& p1,\n\t\tconst P& q0, const\
@@ -33,11 +33,11 @@ data:
     \ d)) s.insert(d);\n\treturn {all(s)};\n}\n\ntemplate<class P>\nP lineProj(P a,\
     \ P b, P p, bool refl=false) {\n\tP v = b - a;\n\treturn p - v.perp()*(1+refl)*v.cross(p-a)/v.dist2();\n\
     }\n"
-  code: "/**\n * template name: geometryLine\n */\n\ntypedef Point<double> P;\ndouble\
-    \ segDist(P& s, P& e, P& p) {\n\tif (s==e) return (p-s).dist();\n\tauto d = (e-s).dist2(),\
-    \ t = min(d,max(.0,(p-s).dot(e-s)));\n\treturn ((p-s)*d-(e-s)*t).dist()/d;\n}\n\
-    \ntemplate<class P>\ndouble lineDist(const P& a, const P& b, const P& p) {\n\t\
-    return (double)(b-a).cross(p-a)/(b-a).dist();\n}\n\nP linearTransformation(const\
+  code: "/**\n * template name: geometryLine\n * source: kactl\n */\n\ntypedef Point<double>\
+    \ P;\ndouble segDist(P& s, P& e, P& p) {\n\tif (s==e) return (p-s).dist();\n\t\
+    auto d = (e-s).dist2(), t = min(d,max(.0,(p-s).dot(e-s)));\n\treturn ((p-s)*d-(e-s)*t).dist()/d;\n\
+    }\n\ntemplate<class P>\ndouble lineDist(const P& a, const P& b, const P& p) {\n\
+    \treturn (double)(b-a).cross(p-a)/(b-a).dist();\n}\n\nP linearTransformation(const\
     \ P& p0, const P& p1,\n\t\tconst P& q0, const P& q1, const P& r) {\n\tP dp = p1-p0,\
     \ dq = q1-q0, num(dp.cross(dq), dp.dot(dq));\n\treturn q0 + P((r-p0).cross(num),\
     \ (r-p0).dot(num))/dp.dist2();\n}\n\ntemplate<class P> bool onSegment(P s, P e,\
@@ -61,7 +61,7 @@ data:
   isVerificationFile: false
   path: geometry/geometryLine.cpp
   requiredBy: []
-  timestamp: '2024-01-20 02:52:24+08:00'
+  timestamp: '2024-01-20 03:17:44+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/geometryLine.cpp

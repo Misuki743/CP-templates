@@ -243,7 +243,7 @@ data:
     - icon: ':warning:'
       path: string/manacher.cpp
       title: string/manacher.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: string/palindromicTree.cpp
       title: string/palindromicTree.cpp
     - icon: ':warning:'
@@ -258,5 +258,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/range_affine_range_sum.test.cpp
       title: test/range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yuki_2606.test.cpp
+      title: test/yuki_2606.test.cpp
 layout: toppage
 ---
+template used for online programming contest. some of the code are not written by myself, and these codes would contain reference to the original sources.

@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki_2606.test.cpp
+    title: test/yuki_2606.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -72,6 +75,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/point_set_range_composite.test.cpp
+  - test/yuki_2606.test.cpp
   - test/range_affine_range_sum.test.cpp
 documentation_of: default/t.cpp
 layout: document

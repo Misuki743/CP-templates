@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yuki_2606.test.cpp
+    title: test/yuki_2606.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/palindromicTree.cpp\"\n/**\n * template name: palindromicTree\n\
@@ -46,8 +49,9 @@ data:
   path: string/palindromicTree.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yuki_2606.test.cpp
 documentation_of: string/palindromicTree.cpp
 layout: document
 redirect_from:
