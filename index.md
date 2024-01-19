@@ -57,7 +57,7 @@ data:
     - icon: ':warning:'
       path: MCMF.cpp
       title: MCMF.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: MontgomeryModInt.cpp
       title: MontgomeryModInt.cpp
     - icon: ':warning:'
@@ -186,7 +186,7 @@ data:
     - icon: ':warning:'
       path: random.cpp
       title: random.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: segmentTree.cpp
       title: segmentTree.cpp
     - icon: ':warning:'
@@ -219,7 +219,7 @@ data:
     - icon: ':warning:'
       path: troubleShoot.cpp
       title: troubleShoot.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: tt.cpp
       title: tt.cpp
     - icon: ':warning:'
@@ -234,6 +234,9 @@ data:
   verificationCategories:
   - name: .
     pages:
+    - icon: ':x:'
+      path: Point_Set_Range_Composite.test.cpp
+      title: Point_Set_Range_Composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: example.test.cpp
       title: example.test.cpp
