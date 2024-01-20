@@ -37,9 +37,15 @@ data:
     - icon: ':warning:'
       path: ds/dynamicHull.cpp
       title: ds/dynamicHull.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/eulerTour.cpp
       title: ds/eulerTour.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds/eulerTour2.cpp
+      title: ds/eulerTour2.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds/fastJump.cpp
+      title: ds/fastJump.cpp
     - icon: ':warning:'
       path: ds/fenwickTree2D.cpp
       title: ds/fenwickTree2D.cpp
@@ -194,7 +200,7 @@ data:
       title: poly/sparsePolyope.cpp
   - name: segtree
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: segtree/dualSegmentTree.cpp
       title: segtree/dualSegmentTree.cpp
     - icon: ':heavy_check_mark:'
@@ -249,15 +255,29 @@ data:
     - icon: ':warning:'
       path: string/zFunc.cpp
       title: string/zFunc.cpp
+  - name: test
+    pages:
+    - icon: ':warning:'
+      path: test/jump_on_tree.cpp
+      title: test/jump_on_tree.cpp
   verificationCategories:
   - name: test
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/lowest_common_ancestor.test.cpp
+      title: test/lowest_common_ancestor.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/point_set_range_composite.test.cpp
       title: test/point_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/range_affine_range_sum.test.cpp
       title: test/range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/vertex_add_path_sum.test.cpp
+      title: test/vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/vertex_add_subtree_sum.test.cpp
+      title: test/vertex_add_subtree_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yuki_2606.test.cpp
       title: test/yuki_2606.test.cpp

@@ -1,14 +1,26 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/jump_on_tree.cpp
+    title: test/jump_on_tree.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/lowest_common_ancestor.test.cpp
+    title: test/lowest_common_ancestor.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/point_set_range_composite.test.cpp
     title: test/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/vertex_add_path_sum.test.cpp
+    title: test/vertex_add_path_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/vertex_add_subtree_sum.test.cpp
+    title: test/vertex_add_subtree_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki_2606.test.cpp
     title: test/yuki_2606.test.cpp
@@ -70,12 +82,16 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: default/t.cpp
-  requiredBy: []
+  requiredBy:
+  - test/jump_on_tree.cpp
   timestamp: '2024-01-20 02:52:24+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/point_set_range_composite.test.cpp
+  - test/vertex_add_subtree_sum.test.cpp
   - test/yuki_2606.test.cpp
+  - test/vertex_add_path_sum.test.cpp
+  - test/lowest_common_ancestor.test.cpp
   - test/range_affine_range_sum.test.cpp
 documentation_of: default/t.cpp
 layout: document
