@@ -1,5 +1,8 @@
 {
+"test/lowest_common_ancestor.test.cpp": "2024-01-21 01:13:07 +0800",
 "test/point_set_range_composite.test.cpp": "2024-01-20 02:52:24 +0800",
 "test/range_affine_range_sum.test.cpp": "2024-01-20 02:52:24 +0800",
+"test/vertex_add_path_sum.test.cpp": "2024-01-21 01:13:07 +0800",
+"test/vertex_add_subtree_sum.test.cpp": "2024-01-21 01:13:07 +0800",
 "test/yuki_2606.test.cpp": "2024-01-20 03:17:44 +0800"
 }
