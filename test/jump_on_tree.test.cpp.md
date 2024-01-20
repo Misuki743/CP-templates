@@ -11,11 +11,13 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
     links:
     - https://judge.yosupo.jp/problem/jump_on_tree
-  bundledCode: "#line 1 \"test/jump_on_tree.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\
+  bundledCode: "#line 1 \"test/jump_on_tree.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bit>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n\
     #include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n\
@@ -57,11 +59,12 @@ data:
     \  int m = lca(s, t);\n    if (dep[s] + dep[t] - 2 * dep[m] < k)\n      return\
     \ -1;\n    else if (dep[s] - dep[m] >= k)\n      return jump(s, k);\n    else\n\
     \      return jump(t, dep[s] + dep[t] - 2 * dep[m] - k);\n  }\n};\n#line 5 \"\
-    test/jump_on_tree.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
-    \n  int n, q; cin >> n >> q;\n  vector<vector<int>> g(n);\n  for(int i = 1; i\
-    \ < n; i++) {\n    int u, v; cin >> u >> v;\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n\
-    \  }\n\n  fastJump jp(g);\n\n  while(q--) {\n    int s, t, i; cin >> s >> t >>\
-    \ i;\n    cout << jp.kth(s, t, i) << '\\n';\n  }\n\n  return 0;\n}\n"
+    test/jump_on_tree.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<vector<int>> g(n);\n\
+    \  for(int i = 1; i < n; i++) {\n    int u, v; cin >> u >> v;\n    g[u].emplace_back(v);\n\
+    \    g[v].emplace_back(u);\n  }\n\n  fastJump jp(g);\n\n  while(q--) {\n    int\
+    \ s, t, i; cin >> s >> t >> i;\n    cout << jp.kth(s, t, i) << '\\n';\n  }\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../ds/fastJump.cpp\"\n\nsigned main() {\n \
     \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n\
@@ -72,16 +75,16 @@ data:
   dependsOn:
   - default/t.cpp
   - ds/fastJump.cpp
-  isVerificationFile: false
-  path: test/jump_on_tree.cpp
+  isVerificationFile: true
+  path: test/jump_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 01:13:07+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-01-21 01:33:10+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/jump_on_tree.cpp
+documentation_of: test/jump_on_tree.test.cpp
 layout: document
 redirect_from:
-- /library/test/jump_on_tree.cpp
-- /library/test/jump_on_tree.cpp.html
-title: test/jump_on_tree.cpp
+- /verify/test/jump_on_tree.test.cpp
+- /verify/test/jump_on_tree.test.cpp.html
+title: test/jump_on_tree.test.cpp
 ---

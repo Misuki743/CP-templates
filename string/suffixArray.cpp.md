@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/suffixArray.cpp\"\n/**\n * template name: suffixArray\n\
+  bundledCode: "#line 1 \"string/suffixArray.cpp\"\n/**\n * template name: suffixArray\n\
     \ * source: AtCoderLibrary(ACL)\n * last update: 2022/07/13\n * usage: suffix_array(vector<>\
     \ s)\n *        lcp_array(vector<> s, vector<int> sa)\n */\n\nstd::vector<int>\
     \ sa_naive(const std::vector<int>& s) {\n    int n = int(s.size());\n    std::vector<int>\
@@ -186,15 +186,15 @@ data:
     \ sa);\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/suffixArray.cpp
+  path: string/suffixArray.cpp
   requiredBy: []
-  timestamp: '2024-01-20 02:52:24+08:00'
+  timestamp: '2024-01-21 01:33:10+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: ds/suffixArray.cpp
+documentation_of: string/suffixArray.cpp
 layout: document
 redirect_from:
-- /library/ds/suffixArray.cpp
-- /library/ds/suffixArray.cpp.html
-title: ds/suffixArray.cpp
+- /library/string/suffixArray.cpp
+- /library/string/suffixArray.cpp.html
+title: string/suffixArray.cpp
 ---

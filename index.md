@@ -65,9 +65,6 @@ data:
       path: ds/sparseTable2D.cpp
       title: ds/sparseTable2D.cpp
     - icon: ':warning:'
-      path: ds/suffixArray.cpp
-      title: ds/suffixArray.cpp
-    - icon: ':warning:'
       path: ds/treap.cpp
       title: ds/treap.cpp
   - name: geometry
@@ -253,16 +250,17 @@ data:
       path: string/palindromicTree.cpp
       title: string/palindromicTree.cpp
     - icon: ':warning:'
+      path: string/suffixArray.cpp
+      title: string/suffixArray.cpp
+    - icon: ':warning:'
       path: string/zFunc.cpp
       title: string/zFunc.cpp
-  - name: test
-    pages:
-    - icon: ':warning:'
-      path: test/jump_on_tree.cpp
-      title: test/jump_on_tree.cpp
   verificationCategories:
   - name: test
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/jump_on_tree.test.cpp
+      title: test/jump_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/lowest_common_ancestor.test.cpp
       title: test/lowest_common_ancestor.test.cpp

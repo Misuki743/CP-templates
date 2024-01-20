@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/jump_on_tree.cpp
-    title: test/jump_on_tree.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/jump_on_tree.test.cpp
+    title: test/jump_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/lowest_common_ancestor.test.cpp
     title: test/lowest_common_ancestor.test.cpp
@@ -57,12 +57,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/fastJump.cpp
-  requiredBy:
-  - test/jump_on_tree.cpp
+  requiredBy: []
   timestamp: '2024-01-21 01:13:07+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/vertex_add_subtree_sum.test.cpp
+  - test/jump_on_tree.test.cpp
   - test/vertex_add_path_sum.test.cpp
   - test/lowest_common_ancestor.test.cpp
 documentation_of: ds/fastJump.cpp
