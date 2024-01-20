@@ -1,13 +1,11 @@
-//#include<ds/fastJump.cpp>
 //#include<segtree/segmentTree.cpp>
 
 template<class M, M(*unit)(), M(*combine)(const M&, const M&)>
 struct eulerTour2 {
   vector<int> tin, tout, p;
   segmentTree<M, unit, combine> st;
-  fastJump jp;
 
-  eulerTour2(vector<vector<int>> g, int root = 0) : tin(ssize(g)), tout(ssize(g)), p(ssize(g), -1), st(ssize(g)), jp(g, root) {
+  eulerTour2(vector<vector<int>> g, int root = 0) : tin(ssize(g)), tout(ssize(g)), p(ssize(g), -1), st(ssize(g)) {
     int t = 0;
     auto dfs = [&](int v, auto self) -> void {
       tin[v] = t++;

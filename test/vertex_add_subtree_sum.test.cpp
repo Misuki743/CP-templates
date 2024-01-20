@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
 
 #include "../default/t.cpp"
-#include "../ds/fastJump.cpp"
 #include "../segtree/segmentTree.cpp"
 #include "../ds/eulerTour2.cpp"
 
