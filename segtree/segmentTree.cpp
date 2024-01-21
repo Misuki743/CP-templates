@@ -18,11 +18,10 @@ struct segmentTree {
       data[i] = combine(data[i << 1], data[i << 1 | 1]);
   }
 
-
   void set(int i, M x) {
-    i += size, data[i] = x, i >>= 1;
-    while(i)
-      data[i] = combine(data[i << 1], data[i << 1 | 1]), i >>= 1;
+    data[i += size] = x;
+    while(i >>= 1)
+      data[i] = combine(data[i << 1], data[i << 1 | 1]);
   }
 
   M get(int i) { return data[i + size]; }
