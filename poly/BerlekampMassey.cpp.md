@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/find_linear_recurrence.test.cpp
+    title: test/find_linear_recurrence.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/BerlekampMassey.cpp\"\n/**\n * template name: Berlekamp-Massey\n\
@@ -43,8 +46,9 @@ data:
   path: poly/BerlekampMassey.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/find_linear_recurrence.test.cpp
 documentation_of: poly/BerlekampMassey.cpp
 layout: document
 redirect_from:

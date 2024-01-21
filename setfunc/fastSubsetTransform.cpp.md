@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/subset_convolution.test.cpp
+    title: test/subset_convolution.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"setfunc/fastSubsetTransform.cpp\"\n/**\n * template name:\
@@ -52,8 +55,9 @@ data:
   path: setfunc/fastSubsetTransform.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/subset_convolution.test.cpp
 documentation_of: setfunc/fastSubsetTransform.cpp
 layout: document
 redirect_from:

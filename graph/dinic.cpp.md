@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/matching_on_bipartite_graph.test.cpp
+    title: test/matching_on_bipartite_graph.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/dinic.cpp\"\n/**\n * template name: dinic\n * author:\
@@ -59,8 +62,9 @@ data:
   path: graph/dinic.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/matching_on_bipartite_graph.test.cpp
 documentation_of: graph/dinic.cpp
 layout: document
 redirect_from:

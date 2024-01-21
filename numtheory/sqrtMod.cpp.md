@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/sqrt_of_formal_power_series.test.cpp
+    title: test/sqrt_of_formal_power_series.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/sqrtMod.cpp\"\n/**\n * template name: sqrtMod\n\
@@ -40,8 +43,9 @@ data:
   path: numtheory/sqrtMod.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/sqrt_of_formal_power_series.test.cpp
 documentation_of: numtheory/sqrtMod.cpp
 layout: document
 redirect_from:

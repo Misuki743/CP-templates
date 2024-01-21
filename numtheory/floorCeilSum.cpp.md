@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/enumerate_quotients.test.cpp
+    title: test/enumerate_quotients.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/floorCeilSum.cpp\"\n/**\n * template name: floorCeilSum\n\
@@ -44,8 +47,9 @@ data:
   path: numtheory/floorCeilSum.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/enumerate_quotients.test.cpp
 documentation_of: numtheory/floorCeilSum.cpp
 layout: document
 redirect_from:

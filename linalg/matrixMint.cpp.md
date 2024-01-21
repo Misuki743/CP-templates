@@ -2,10 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/determinant_of_matrix.test.cpp
+    title: test/determinant_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/inverse_matrix.test.cpp
+    title: test/inverse_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/matrix_product.test.cpp
+    title: test/matrix_product.test.cpp
+  - icon: ':x:'
+    path: test/pow_of_matrix.test.cpp
+    title: test/pow_of_matrix.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/matrixMint.cpp\"\n/**\n * template name: matrixMint\n\
@@ -123,8 +135,12 @@ data:
   path: linalg/matrixMint.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/determinant_of_matrix.test.cpp
+  - test/matrix_product.test.cpp
+  - test/inverse_matrix.test.cpp
+  - test/pow_of_matrix.test.cpp
 documentation_of: linalg/matrixMint.cpp
 layout: document
 redirect_from:

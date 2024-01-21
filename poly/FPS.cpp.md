@@ -2,10 +2,40 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/division_of_polynomials.test.cpp
+    title: test/division_of_polynomials.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/exp_of_formal_power_series.test.cpp
+    title: test/exp_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/inv_of_formal_power_series.test.cpp
+    title: test/inv_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/inv_of_formal_power_series_sparse.test.cpp
+    title: test/inv_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/log_of_formal_power_series.test.cpp
+    title: test/log_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/multipoint_evaluation.test.cpp
+    title: test/multipoint_evaluation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/polynomial_interpolation.test.cpp
+    title: test/polynomial_interpolation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/pow_of_formal_power_series.test.cpp
+    title: test/pow_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/sqrt_of_formal_power_series.test.cpp
+    title: test/sqrt_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/subset_convolution.test.cpp
+    title: test/subset_convolution.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/FPS.cpp\"\n/**\n * template name: FPS\n * author: Misuki\n\
@@ -163,8 +193,18 @@ data:
   path: poly/FPS.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/sqrt_of_formal_power_series.test.cpp
+  - test/log_of_formal_power_series.test.cpp
+  - test/pow_of_formal_power_series.test.cpp
+  - test/exp_of_formal_power_series.test.cpp
+  - test/division_of_polynomials.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/multipoint_evaluation.test.cpp
+  - test/polynomial_interpolation.test.cpp
+  - test/inv_of_formal_power_series.test.cpp
+  - test/subset_convolution.test.cpp
 documentation_of: poly/FPS.cpp
 layout: document
 redirect_from:
