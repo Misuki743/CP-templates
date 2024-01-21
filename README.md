@@ -2,6 +2,8 @@
 
 This template is for competitive programming contest usage.
 
+https://misuki743.github.io/CP-templates/
+
 # TODO
 
 - doubling(support mataining commutative monoid)

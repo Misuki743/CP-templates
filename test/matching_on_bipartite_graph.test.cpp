@@ -7,7 +7,7 @@ int main() {
   int l, r, m; cin >> l >> r >> m;
 
   const int s = l + r, t = l + r + 1;
-  Dinic<int, INT_MAX> flow;
+  Dinic<int, INT_MAX> flow(l + r + 2);
   flow.init(l + r + 2, s, t);
   while(m--) {
     int u, v; cin >> u >> v;

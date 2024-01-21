@@ -1,17 +1,5 @@
-/**
- * template name: FPS
- * author: Misuki
- * last update: 2024/01/10
- * include: NTT/mint
- * verify: Library Checker - Inv of Formal Power Series
- *         Library Checker - Exp of Formal Power Series
- *         Library Checker - Log of Formal Power Series
- *         Library Checker - Pow of Formal Power Series
- *         Library Checker - Convolution
- *         Library Checker - Division of Polynomials
- *         Library Checker - Multipoint Evaluation
- *         Library Checker - Polynomial Interpolation
- */
+//#include "poly/MontgomeryModInt.cpp"
+//#include "poly/NTTmint.cpp"
 
 template<class Mint>
 struct FPS : vector<Mint> {
@@ -57,8 +45,9 @@ struct FPS : vector<Mint> {
 
   FPS shrink() {
     FPS F = *this;
-    while(ssize(F) > 1 and F.back() == 0)
-      F.pop_back();
+    int size = ssize(F);
+    while(size and F[size - 1] == 0) size -= 1;
+    F.resize(size);
     return F;
   }
 
@@ -210,3 +199,21 @@ NTT ntt;
 using fps = FPS<mint>;
 template<>
 function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;
+
+signed main() {
+  ios::sync_with_stdio(false), cin.tie(NULL);
+
+  int n, m; cin >> n >> m;
+  fps f(n), g(m);
+  for(mint &x : f)
+    cin >> x;
+  for(mint &x : g)
+    cin >> x;
+
+  auto [q, r] = f.div(g);
+  cout << ssize(q) << ' ' << ssize(r) << '\n';
+  cout << q << '\n';
+  cout << r << '\n';
+
+  return 0;
+}

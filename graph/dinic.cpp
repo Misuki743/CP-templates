@@ -1,19 +1,13 @@
-/**
- * template name: dinic
- * author: Misuki
- * last update: 2022/05/02
- * verify: ABC239 pG - Builder Takahashi
- */
-
 template<class T, T MAX>
 struct Dinic {
-  const static int N = 202;
+  const int N;
   struct Edge {
     int to, rev;
     T cap;
-    Edge(int _to, T _cap, int _rev) : to(_to), cap(_cap), rev(_rev) {}
+    Edge(int _to, T _cap, int _rev) : to(_to), rev(_rev), cap(_cap) {}
   };
-  vector<Edge> G[N];
+  vector<vector<Edge>> G;
+  Dinic(int _N) : N(_N), G(_N), level(_N), iter(_N) {}
   void addEdge(int from, int to, T cap) {
     G[from].emplace_back(Edge(to, cap, G[to].size()));
     G[to].emplace_back(Edge(from, 0, (int)G[from].size() - 1));
@@ -24,9 +18,9 @@ struct Dinic {
     for(int i = 0; i < n; i++)
       G[i].clear();
   }
-  int level[N], iter[N];
+  vector<int> level, iter;
   void BFS() {
-    fill(level, level + n, INT_MAX);
+    fill(level.begin(), level.end(), INT_MAX);
     level[s] = 0;
     queue<int> q;
     q.push(s);
@@ -44,7 +38,7 @@ struct Dinic {
     if (V == s)
       return flow;
 
-    for(int &i = iter[V]; i < G[V].size(); i++) {
+    for(int &i = iter[V]; i < ssize(G[V]); i++) {
       Edge &E = G[V][i];
       if (T tmp; level[E.to] == level[V] - 1 and G[E.to][E.rev].cap > 0) {
         if ((tmp = DFS(E.to, min(flow, G[E.to][E.rev].cap))) > 0) {
@@ -63,7 +57,7 @@ struct Dinic {
       BFS();
       if (level[t] == INT_MAX)
         break;
-      fill(iter, iter + n, 0);
+      fill(iter.begin(), iter.end(), 0);
       T del;
       while((del = DFS(t, MAX)) > 0) {
         res += del;
