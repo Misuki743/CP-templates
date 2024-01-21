@@ -164,7 +164,7 @@ struct FPS : vector<Mint> {
     }
     vector<Mint> res(n);
     for(int i = 0; i < n; i++)
-      res[i] = data[n + i][0];
+      res[i] = data[n + i].empty() ? 0 : data[n + i][0];
     return res;
   }
 
