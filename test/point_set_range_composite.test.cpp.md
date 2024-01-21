@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/segmentTree.cpp
     title: segtree/segmentTree.cpp
   _extendedRequiredBy: []

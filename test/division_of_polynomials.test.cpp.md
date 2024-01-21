@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
   - icon: ':question:'
@@ -109,16 +109,11 @@ data:
     \    int n = bit_ceil((u32)sz);\n\n    a.resize(n, 0);\n    ntt(a, false);\n \
     \   b.resize(n, 0);\n    ntt(b, false);\n\n    for(int i = 0; i < n; i++)\n  \
     \    a[i] *= b[i];\n\n    ntt(a, true);\n\n    a.resize(sz);\n\n    return a;\n\
-    \  }\n};\n#line 1 \"poly/FPS.cpp\"\n/**\n * template name: FPS\n * author: Misuki\n\
-    \ * last update: 2024/01/10\n * include: NTT/mint\n * verify: Library Checker\
-    \ - Inv of Formal Power Series\n *         Library Checker - Exp of Formal Power\
-    \ Series\n *         Library Checker - Log of Formal Power Series\n *        \
-    \ Library Checker - Pow of Formal Power Series\n *         Library Checker - Convolution\n\
-    \ *         Library Checker - Division of Polynomials\n *         Library Checker\
-    \ - Multipoint Evaluation\n *         Library Checker - Polynomial Interpolation\n\
-    \ */\n\ntemplate<class Mint>\nstruct FPS : vector<Mint> {\n\n  static function<vector<Mint>(vector<Mint>,\
-    \ vector<Mint>)> conv;\n\n  FPS(vector<Mint> v) { *this = v; }\n\n  using vector<Mint>::vector;\n\
-    \  FPS& operator+=(FPS b) {\n    if (ssize(*this) < ssize(b)) this -> resize(ssize(b),\
+    \  }\n};\n#line 1 \"poly/FPS.cpp\"\n//#include \"poly/MontgomeryModInt.cpp\"\n\
+    //#include \"poly/NTTmint.cpp\"\n\ntemplate<class Mint>\nstruct FPS : vector<Mint>\
+    \ {\n\n  static function<vector<Mint>(vector<Mint>, vector<Mint>)> conv;\n\n \
+    \ FPS(vector<Mint> v) { *this = v; }\n\n  using vector<Mint>::vector;\n  FPS&\
+    \ operator+=(FPS b) {\n    if (ssize(*this) < ssize(b)) this -> resize(ssize(b),\
     \ 0);\n    for(int i = 0; i < ssize(b); i++)\n      (*this)[i] += b[i];\n    return\
     \ *this;\n  }\n\n  FPS& operator-=(FPS b) {\n    if (ssize(*this) < ssize(b))\
     \ this -> resize(ssize(b), 0);\n    for(int i = 0; i < ssize(b); i++)\n      (*this)[i]\
@@ -128,18 +123,18 @@ data:
     \ b) {\n    for(int i = 0; i < ssize(*this); i++)\n      (*this)[i] *= b;\n  \
     \  return *this;\n  }\n\n  FPS& operator/=(Mint b) {\n    b = Mint(1) / b;\n \
     \   for(int i = 0; i < ssize(*this); i++)\n      (*this)[i] *= b;\n    return\
-    \ *this;\n  }\n\n  FPS shrink() {\n    FPS F = *this;\n    while(ssize(F) > 1\
-    \ and F.back() == 0)\n      F.pop_back();\n    return F;\n  }\n\n  FPS integral()\
-    \ {\n    vector<Mint> Inv(ssize(*this) + 1);\n    Inv[1] = 1;\n    for(int i =\
-    \ 2; i < ssize(Inv); i++)\n      Inv[i] = (Mint::get_mod() - Mint::get_mod() /\
-    \ i) * Inv[Mint::get_mod() % i];\n    FPS Q(ssize(*this) + 1, 0);\n    for(int\
-    \ i = 0; i < ssize(*this); i++)\n      Q[i + 1] = (*this)[i] * Inv[i + 1];\n \
-    \   return Q;\n  }\n\n  FPS derivative() {\n    assert(!this -> empty());\n  \
-    \  FPS Q(ssize(*this) - 1);\n    for(int i = 1; i < ssize(*this); i++)\n     \
-    \ Q[i - 1] = (*this)[i] * i;\n    return Q;\n  }\n\n  Mint eval(Mint x) {\n  \
-    \  Mint base = 1, res = 0;\n    for(int i = 0; i < ssize(*this); i++, base *=\
-    \ x)\n      res += (*this)[i] * base;\n    return res;\n  }\n\n  FPS inv(int k)\
-    \ { // 1 / FPS (mod x^k)\n    assert(!this -> empty() and (*this)[0] != 0);\n\
+    \ *this;\n  }\n\n  FPS shrink() {\n    FPS F = *this;\n    int size = ssize(F);\n\
+    \    while(size and F[size - 1] == 0) size -= 1;\n    F.resize(size);\n    return\
+    \ F;\n  }\n\n  FPS integral() {\n    vector<Mint> Inv(ssize(*this) + 1);\n   \
+    \ Inv[1] = 1;\n    for(int i = 2; i < ssize(Inv); i++)\n      Inv[i] = (Mint::get_mod()\
+    \ - Mint::get_mod() / i) * Inv[Mint::get_mod() % i];\n    FPS Q(ssize(*this) +\
+    \ 1, 0);\n    for(int i = 0; i < ssize(*this); i++)\n      Q[i + 1] = (*this)[i]\
+    \ * Inv[i + 1];\n    return Q;\n  }\n\n  FPS derivative() {\n    assert(!this\
+    \ -> empty());\n    FPS Q(ssize(*this) - 1);\n    for(int i = 1; i < ssize(*this);\
+    \ i++)\n      Q[i - 1] = (*this)[i] * i;\n    return Q;\n  }\n\n  Mint eval(Mint\
+    \ x) {\n    Mint base = 1, res = 0;\n    for(int i = 0; i < ssize(*this); i++,\
+    \ base *= x)\n      res += (*this)[i] * base;\n    return res;\n  }\n\n  FPS inv(int\
+    \ k) { // 1 / FPS (mod x^k)\n    assert(!this -> empty() and (*this)[0] != 0);\n\
     \    FPS Q(1, 1 / (*this)[0]);\n    for(int i = 1; (1 << (i - 1)) < k; i++) {\n\
     \      FPS P = (*this);\n      P.resize(1 << i, 0);\n      Q = Q * (FPS(1, 2)\
     \ - P * Q);\n      Q.resize(1 << i, 0);\n    }\n    Q.resize(k);\n    return Q;\n\
@@ -183,7 +178,11 @@ data:
     \ operator*(FPS a, FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint\
     \ b) { return a *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b;\
     \ }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
-    \ vector<mint>)> fps::conv = ntt.conv;\n#line 7 \"test/division_of_polynomials.test.cpp\"\
+    \ vector<mint>)> fps::conv = ntt.conv;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  fps f(n), g(m);\n  for(mint\
+    \ &x : f)\n    cin >> x;\n  for(mint &x : g)\n    cin >> x;\n\n  auto [q, r] =\
+    \ f.div(g);\n  cout << ssize(q) << ' ' << ssize(r) << '\\n';\n  cout << q << '\\\
+    n';\n  cout << r << '\\n';\n\n  return 0;\n}\n#line 7 \"test/division_of_polynomials.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
     \ m; cin >> n >> m;\n  fps f(n), g(m);\n  for(mint &x : f)\n    cin >> x;\n  for(mint\
     \ &x : g)\n    cin >> x;\n\n  auto [q, r] = f.div(g);\n  cout << ssize(q) << '\
@@ -204,7 +203,7 @@ data:
   isVerificationFile: true
   path: test/division_of_polynomials.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 17:57:21+08:00'
+  timestamp: '2024-01-21 19:52:41+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/division_of_polynomials.test.cpp
