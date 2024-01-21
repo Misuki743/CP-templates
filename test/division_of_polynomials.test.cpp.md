@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: poly/NTTmint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
@@ -178,11 +178,7 @@ data:
     \ operator*(FPS a, FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint\
     \ b) { return a *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b;\
     \ }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
-    \ vector<mint>)> fps::conv = ntt.conv;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  fps f(n), g(m);\n  for(mint\
-    \ &x : f)\n    cin >> x;\n  for(mint &x : g)\n    cin >> x;\n\n  auto [q, r] =\
-    \ f.div(g);\n  cout << ssize(q) << ' ' << ssize(r) << '\\n';\n  cout << q << '\\\
-    n';\n  cout << r << '\\n';\n\n  return 0;\n}\n#line 7 \"test/division_of_polynomials.test.cpp\"\
+    \ vector<mint>)> fps::conv = ntt.conv;\n#line 7 \"test/division_of_polynomials.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
     \ m; cin >> n >> m;\n  fps f(n), g(m);\n  for(mint &x : f)\n    cin >> x;\n  for(mint\
     \ &x : g)\n    cin >> x;\n\n  auto [q, r] = f.div(g);\n  cout << ssize(q) << '\
@@ -203,8 +199,8 @@ data:
   isVerificationFile: true
   path: test/division_of_polynomials.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 19:52:41+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-21 22:24:11+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/division_of_polynomials.test.cpp
 layout: document

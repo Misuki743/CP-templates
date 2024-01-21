@@ -3,39 +3,39 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/division_of_polynomials.test.cpp
     title: test/division_of_polynomials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series.test.cpp
     title: test/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/log_of_formal_power_series.test.cpp
     title: test/log_of_formal_power_series.test.cpp
   - icon: ':x:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/FPS.cpp\"\n//#include \"poly/MontgomeryModInt.cpp\"\
@@ -107,11 +107,7 @@ data:
     \ operator*(FPS a, FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint\
     \ b) { return a *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b;\
     \ }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
-    \ vector<mint>)> fps::conv = ntt.conv;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  fps f(n), g(m);\n  for(mint\
-    \ &x : f)\n    cin >> x;\n  for(mint &x : g)\n    cin >> x;\n\n  auto [q, r] =\
-    \ f.div(g);\n  cout << ssize(q) << ' ' << ssize(r) << '\\n';\n  cout << q << '\\\
-    n';\n  cout << r << '\\n';\n\n  return 0;\n}\n"
+    \ vector<mint>)> fps::conv = ntt.conv;\n"
   code: "//#include \"poly/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\
     \n\ntemplate<class Mint>\nstruct FPS : vector<Mint> {\n\n  static function<vector<Mint>(vector<Mint>,\
     \ vector<Mint>)> conv;\n\n  FPS(vector<Mint> v) { *this = v; }\n\n  using vector<Mint>::vector;\n\
@@ -180,17 +176,13 @@ data:
     \ operator*(FPS a, FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint\
     \ b) { return a *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b;\
     \ }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
-    \ vector<mint>)> fps::conv = ntt.conv;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  fps f(n), g(m);\n  for(mint\
-    \ &x : f)\n    cin >> x;\n  for(mint &x : g)\n    cin >> x;\n\n  auto [q, r] =\
-    \ f.div(g);\n  cout << ssize(q) << ' ' << ssize(r) << '\\n';\n  cout << q << '\\\
-    n';\n  cout << r << '\\n';\n\n  return 0;\n}\n"
+    \ vector<mint>)> fps::conv = ntt.conv;\n"
   dependsOn: []
   isVerificationFile: false
   path: poly/FPS.cpp
   requiredBy: []
-  timestamp: '2024-01-21 19:52:41+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-21 22:24:11+08:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/sqrt_of_formal_power_series.test.cpp
   - test/log_of_formal_power_series.test.cpp

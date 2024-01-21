@@ -7,13 +7,13 @@ data:
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/sqrtMod.cpp
     title: numtheory/sqrtMod.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPSsqrt.cpp
     title: poly/FPSsqrt.cpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: poly/NTTmint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
@@ -184,44 +184,39 @@ data:
     \ operator*(FPS a, FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint\
     \ b) { return a *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b;\
     \ }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
-    \ vector<mint>)> fps::conv = ntt.conv;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  fps f(n), g(m);\n  for(mint\
-    \ &x : f)\n    cin >> x;\n  for(mint &x : g)\n    cin >> x;\n\n  auto [q, r] =\
-    \ f.div(g);\n  cout << ssize(q) << ' ' << ssize(r) << '\\n';\n  cout << q << '\\\
-    n';\n  cout << r << '\\n';\n\n  return 0;\n}\n#line 1 \"numtheory/sqrtMod.cpp\"\
-    \n/**\n * template name: sqrtMod\n * source: KACTL\n * verify: Library Checker\
-    \ - Sqrt Mod\n */\n\nll modpow(ll b, ll e, ll p) {\n  ll ans = 1;\n  for(; e;\
-    \ b = b * b % p, e /= 2)\n    if (e & 1) ans = ans * b % p;\n  return ans;\n}\n\
-    \nll sqrt(ll a, ll p) {\n\ta %= p; if (a < 0) a += p;\n\tif (a == 0) return 0;\n\
-    \t//assert(modpow(a, (p-1)/2, p) == 1); // else no solution\n  if (modpow(a, (p-1)/2,\
-    \ p) != 1) return -1;\n\tif (p % 4 == 3) return modpow(a, (p+1)/4, p);\n\t// a^(n+3)/8\
-    \ or 2^(n+3)/8 * 2^(n-1)/4 works if p % 8 == 5\n\tll s = p - 1, n = 2;\n\tint\
-    \ r = 0, m;\n\twhile (s % 2 == 0)\n\t\t++r, s /= 2;\n\t/// find a non-square mod\
-    \ p\n\twhile (modpow(n, (p - 1) / 2, p) != p - 1) ++n;\n\tll x = modpow(a, (s\
-    \ + 1) / 2, p);\n\tll b = modpow(a, s, p), g = modpow(n, s, p);\n\tfor (;; r =\
-    \ m) {\n\t\tll t = b;\n\t\tfor (m = 0; m < r && t != 1; ++m)\n\t\t\tt = t * t\
-    \ % p;\n\t\tif (m == 0) return x;\n\t\tll gs = modpow(g, 1LL << (r - m - 1), p);\n\
-    \t\tg = gs * gs % p;\n\t\tx = x * gs % p;\n\t\tb = b * g % p;\n\t}\n}\n#line 1\
-    \ \"poly/FPSsqrt.cpp\"\n/**\n * template name: FPSsqrt\n * author: Misuki\n *\
-    \ last update: 2024/01/11\n * include: NTT/mint/sqrtMod\n * verify: Library Checker\
-    \ - Sqrt of Formal Power Series\n */\n\ntemplate<class Mint>\nFPS<Mint> FPSsqrt(FPS<Mint>\
-    \ F, int k) {\n  assert(!F.empty());\n  if (F[0] == 0) {\n    for(int i = 1; i\
-    \ < ssize(F); i++) {\n      if (F[i] != 0) {\n        if (i & 1) return {}; //no\
-    \ solution\n        if (i / 2 >= k) break;\n        auto Q = FPSsqrt(FPS<Mint>(F.begin()\
-    \ + i, F.end()), k - i / 2);\n        if (Q.empty()) return {}; //no solution\n\
-    \        Q.resize(k, 0);\n        R::rotate(Q, Q.begin() + k - i / 2);\n     \
-    \   return Q;\n      }\n    }\n    return FPS<Mint>(k, 0);\n  }\n\n  Mint sqr\
-    \ = sqrt(F[0].get(), Mint::get_mod()), inv2 = 1 / Mint(2);\n  if (sqr == -1) return\
-    \ {}; //no solution\n  FPS<Mint> Q(1, sqr);\n  for(int i = 1; (1 << (i - 1)) <\
-    \ k; i++) {\n    FPS<Mint> P(1 << i, 0);\n    copy(F.begin(), F.begin() + min(1\
-    \ << i, (int)F.size()), P.begin());\n    FPS<Mint> R = P * Q.inv(1 << i);\n  \
-    \  for(int j = 0; Mint &x : Q)\n      R[j++] += x;\n    for(Mint &x : R)\n   \
-    \   x *= inv2;\n    R.resize(1 << i);\n    R.swap(Q);\n  }\n  Q.resize(k);\n \
-    \ return Q;\n}\n#line 9 \"test/sqrt_of_formal_power_series.test.cpp\"\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n\
-    \  fps f(n);\n  for(mint &x : f)\n    cin >> x;\n\n  auto g = FPSsqrt(f, n);\n\
-    \  if (g.empty())\n    cout << -1 << '\\n';\n  else\n    cout << g << '\\n';\n\
-    \n  return 0;\n}\n"
+    \ vector<mint>)> fps::conv = ntt.conv;\n#line 1 \"numtheory/sqrtMod.cpp\"\n/**\n\
+    \ * template name: sqrtMod\n * source: KACTL\n * verify: Library Checker - Sqrt\
+    \ Mod\n */\n\nll modpow(ll b, ll e, ll p) {\n  ll ans = 1;\n  for(; e; b = b *\
+    \ b % p, e /= 2)\n    if (e & 1) ans = ans * b % p;\n  return ans;\n}\n\nll sqrt(ll\
+    \ a, ll p) {\n\ta %= p; if (a < 0) a += p;\n\tif (a == 0) return 0;\n\t//assert(modpow(a,\
+    \ (p-1)/2, p) == 1); // else no solution\n  if (modpow(a, (p-1)/2, p) != 1) return\
+    \ -1;\n\tif (p % 4 == 3) return modpow(a, (p+1)/4, p);\n\t// a^(n+3)/8 or 2^(n+3)/8\
+    \ * 2^(n-1)/4 works if p % 8 == 5\n\tll s = p - 1, n = 2;\n\tint r = 0, m;\n\t\
+    while (s % 2 == 0)\n\t\t++r, s /= 2;\n\t/// find a non-square mod p\n\twhile (modpow(n,\
+    \ (p - 1) / 2, p) != p - 1) ++n;\n\tll x = modpow(a, (s + 1) / 2, p);\n\tll b\
+    \ = modpow(a, s, p), g = modpow(n, s, p);\n\tfor (;; r = m) {\n\t\tll t = b;\n\
+    \t\tfor (m = 0; m < r && t != 1; ++m)\n\t\t\tt = t * t % p;\n\t\tif (m == 0) return\
+    \ x;\n\t\tll gs = modpow(g, 1LL << (r - m - 1), p);\n\t\tg = gs * gs % p;\n\t\t\
+    x = x * gs % p;\n\t\tb = b * g % p;\n\t}\n}\n#line 1 \"poly/FPSsqrt.cpp\"\n/**\n\
+    \ * template name: FPSsqrt\n * author: Misuki\n * last update: 2024/01/11\n *\
+    \ include: NTT/mint/sqrtMod\n * verify: Library Checker - Sqrt of Formal Power\
+    \ Series\n */\n\ntemplate<class Mint>\nFPS<Mint> FPSsqrt(FPS<Mint> F, int k) {\n\
+    \  assert(!F.empty());\n  if (F[0] == 0) {\n    for(int i = 1; i < ssize(F); i++)\
+    \ {\n      if (F[i] != 0) {\n        if (i & 1) return {}; //no solution\n   \
+    \     if (i / 2 >= k) break;\n        auto Q = FPSsqrt(FPS<Mint>(F.begin() + i,\
+    \ F.end()), k - i / 2);\n        if (Q.empty()) return {}; //no solution\n   \
+    \     Q.resize(k, 0);\n        R::rotate(Q, Q.begin() + k - i / 2);\n        return\
+    \ Q;\n      }\n    }\n    return FPS<Mint>(k, 0);\n  }\n\n  Mint sqr = sqrt(F[0].get(),\
+    \ Mint::get_mod()), inv2 = 1 / Mint(2);\n  if (sqr == -1) return {}; //no solution\n\
+    \  FPS<Mint> Q(1, sqr);\n  for(int i = 1; (1 << (i - 1)) < k; i++) {\n    FPS<Mint>\
+    \ P(1 << i, 0);\n    copy(F.begin(), F.begin() + min(1 << i, (int)F.size()), P.begin());\n\
+    \    FPS<Mint> R = P * Q.inv(1 << i);\n    for(int j = 0; Mint &x : Q)\n     \
+    \ R[j++] += x;\n    for(Mint &x : R)\n      x *= inv2;\n    R.resize(1 << i);\n\
+    \    R.swap(Q);\n  }\n  Q.resize(k);\n  return Q;\n}\n#line 9 \"test/sqrt_of_formal_power_series.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
+    \ cin >> n;\n  fps f(n);\n  for(mint &x : f)\n    cin >> x;\n\n  auto g = FPSsqrt(f,\
+    \ n);\n  if (g.empty())\n    cout << -1 << '\\n';\n  else\n    cout << g << '\\\
+    n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_of_formal_power_series\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
     \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"\
@@ -240,8 +235,8 @@ data:
   isVerificationFile: true
   path: test/sqrt_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 19:52:41+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-21 22:24:11+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sqrt_of_formal_power_series.test.cpp
 layout: document
