@@ -199,21 +199,3 @@ NTT ntt;
 using fps = FPS<mint>;
 template<>
 function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;
-
-signed main() {
-  ios::sync_with_stdio(false), cin.tie(NULL);
-
-  int n, m; cin >> n >> m;
-  fps f(n), g(m);
-  for(mint &x : f)
-    cin >> x;
-  for(mint &x : g)
-    cin >> x;
-
-  auto [q, r] = f.div(g);
-  cout << ssize(q) << ' ' << ssize(r) << '\n';
-  cout << q << '\n';
-  cout << r << '\n';
-
-  return 0;
-}
