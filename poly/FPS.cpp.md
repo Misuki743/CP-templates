@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/log_of_formal_power_series.test.cpp
     title: test/log_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -33,9 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/FPS.cpp\"\n//#include \"poly/MontgomeryModInt.cpp\"\
@@ -92,22 +92,22 @@ data:
     \ | 1];\n    data[1] = (this -> div(data[1]))[1];\n    for(int i = 1; i < n; i++)\
     \ {\n      data[i << 1] = data[i].div(data[i << 1])[1];\n      data[i << 1 | 1]\
     \ = data[i].div(data[i << 1 | 1])[1];\n    }\n    vector<Mint> res(n);\n    for(int\
-    \ i = 0; i < n; i++)\n      res[i] = data[n + i][0];\n    return res;\n  }\n\n\
-    \  static vector<Mint> interpolate(vector<Mint> xs, vector<Mint> ys) {\n    assert(ssize(xs)\
-    \ == ssize(ys));\n    int n = ssize(xs);\n    vector<FPS> data(2 * n), res(2 *\
-    \ n);\n    for(int i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n    for(int\
-    \ i = n - 1; i > 0; i--)\n      data[i] = data[i << 1] * data[i << 1 | 1];\n \
-    \   res[1] = data[1].derivative().div(data[1])[1];\n    for(int i = 1; i < n;\
-    \ i++) {\n      res[i << 1] = res[i].div(data[i << 1])[1];\n      res[i << 1 |\
-    \ 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int i = 0; i < n; i++)\n\
-    \      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int i = n - 1; i > 0; i--)\n\
-    \      res[i] = res[i << 1] * data[i << 1 | 1] + res[i << 1 | 1] * data[i << 1];\n\
-    \    return res[1];\n  }\n\n  friend FPS operator+(FPS a, FPS b) { return a +=\
-    \ b; }\n  friend FPS operator-(FPS a, FPS b) { return a -= b; }\n  friend FPS\
-    \ operator*(FPS a, FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint\
-    \ b) { return a *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b;\
-    \ }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
-    \ vector<mint>)> fps::conv = ntt.conv;\n"
+    \ i = 0; i < n; i++)\n      res[i] = data[n + i].empty() ? 0 : data[n + i][0];\n\
+    \    return res;\n  }\n\n  static vector<Mint> interpolate(vector<Mint> xs, vector<Mint>\
+    \ ys) {\n    assert(ssize(xs) == ssize(ys));\n    int n = ssize(xs);\n    vector<FPS>\
+    \ data(2 * n), res(2 * n);\n    for(int i = 0; i < n; i++)\n      data[n + i]\
+    \ = {-xs[i], 1};\n    for(int i = n - 1; i > 0; i--)\n      data[i] = data[i <<\
+    \ 1] * data[i << 1 | 1];\n    res[1] = data[1].derivative().div(data[1])[1];\n\
+    \    for(int i = 1; i < n; i++) {\n      res[i << 1] = res[i].div(data[i << 1])[1];\n\
+    \      res[i << 1 | 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int\
+    \ i = 0; i < n; i++)\n      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int\
+    \ i = n - 1; i > 0; i--)\n      res[i] = res[i << 1] * data[i << 1 | 1] + res[i\
+    \ << 1 | 1] * data[i << 1];\n    return res[1];\n  }\n\n  friend FPS operator+(FPS\
+    \ a, FPS b) { return a += b; }\n  friend FPS operator-(FPS a, FPS b) { return\
+    \ a -= b; }\n  friend FPS operator*(FPS a, FPS b) { return a *= b; }\n  friend\
+    \ FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS operator/(FPS\
+    \ a, Mint b) { return a /= b; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\n\
+    function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\n"
   code: "//#include \"poly/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\
     \n\ntemplate<class Mint>\nstruct FPS : vector<Mint> {\n\n  static function<vector<Mint>(vector<Mint>,\
     \ vector<Mint>)> conv;\n\n  FPS(vector<Mint> v) { *this = v; }\n\n  using vector<Mint>::vector;\n\
@@ -161,28 +161,28 @@ data:
     \ | 1];\n    data[1] = (this -> div(data[1]))[1];\n    for(int i = 1; i < n; i++)\
     \ {\n      data[i << 1] = data[i].div(data[i << 1])[1];\n      data[i << 1 | 1]\
     \ = data[i].div(data[i << 1 | 1])[1];\n    }\n    vector<Mint> res(n);\n    for(int\
-    \ i = 0; i < n; i++)\n      res[i] = data[n + i][0];\n    return res;\n  }\n\n\
-    \  static vector<Mint> interpolate(vector<Mint> xs, vector<Mint> ys) {\n    assert(ssize(xs)\
-    \ == ssize(ys));\n    int n = ssize(xs);\n    vector<FPS> data(2 * n), res(2 *\
-    \ n);\n    for(int i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n    for(int\
-    \ i = n - 1; i > 0; i--)\n      data[i] = data[i << 1] * data[i << 1 | 1];\n \
-    \   res[1] = data[1].derivative().div(data[1])[1];\n    for(int i = 1; i < n;\
-    \ i++) {\n      res[i << 1] = res[i].div(data[i << 1])[1];\n      res[i << 1 |\
-    \ 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int i = 0; i < n; i++)\n\
-    \      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int i = n - 1; i > 0; i--)\n\
-    \      res[i] = res[i << 1] * data[i << 1 | 1] + res[i << 1 | 1] * data[i << 1];\n\
-    \    return res[1];\n  }\n\n  friend FPS operator+(FPS a, FPS b) { return a +=\
-    \ b; }\n  friend FPS operator-(FPS a, FPS b) { return a -= b; }\n  friend FPS\
-    \ operator*(FPS a, FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint\
-    \ b) { return a *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b;\
-    \ }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
-    \ vector<mint>)> fps::conv = ntt.conv;\n"
+    \ i = 0; i < n; i++)\n      res[i] = data[n + i].empty() ? 0 : data[n + i][0];\n\
+    \    return res;\n  }\n\n  static vector<Mint> interpolate(vector<Mint> xs, vector<Mint>\
+    \ ys) {\n    assert(ssize(xs) == ssize(ys));\n    int n = ssize(xs);\n    vector<FPS>\
+    \ data(2 * n), res(2 * n);\n    for(int i = 0; i < n; i++)\n      data[n + i]\
+    \ = {-xs[i], 1};\n    for(int i = n - 1; i > 0; i--)\n      data[i] = data[i <<\
+    \ 1] * data[i << 1 | 1];\n    res[1] = data[1].derivative().div(data[1])[1];\n\
+    \    for(int i = 1; i < n; i++) {\n      res[i << 1] = res[i].div(data[i << 1])[1];\n\
+    \      res[i << 1 | 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int\
+    \ i = 0; i < n; i++)\n      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int\
+    \ i = n - 1; i > 0; i--)\n      res[i] = res[i << 1] * data[i << 1 | 1] + res[i\
+    \ << 1 | 1] * data[i << 1];\n    return res[1];\n  }\n\n  friend FPS operator+(FPS\
+    \ a, FPS b) { return a += b; }\n  friend FPS operator-(FPS a, FPS b) { return\
+    \ a -= b; }\n  friend FPS operator*(FPS a, FPS b) { return a *= b; }\n  friend\
+    \ FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS operator/(FPS\
+    \ a, Mint b) { return a /= b; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\n\
+    function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\n"
   dependsOn: []
   isVerificationFile: false
   path: poly/FPS.cpp
   requiredBy: []
-  timestamp: '2024-01-21 22:24:11+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-01-21 23:06:12+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sqrt_of_formal_power_series.test.cpp
   - test/log_of_formal_power_series.test.cpp

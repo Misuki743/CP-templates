@@ -8,7 +8,7 @@ data:
       title: combi/comb.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -116,9 +116,6 @@ data:
   - name: linalg
     pages:
     - icon: ':warning:'
-      path: linalg/determinantInt.cpp
-      title: linalg/determinantInt.cpp
-    - icon: ':warning:'
       path: linalg/matrix.cpp
       title: linalg/matrix.cpp
     - icon: ':heavy_check_mark:'
@@ -127,20 +124,9 @@ data:
     - icon: ':warning:'
       path: linalg/xorBasis.cpp
       title: linalg/xorBasis.cpp
-  - name: misc
-    pages:
-    - icon: ':warning:'
-      path: misc/contestNote.cpp
-      title: misc/contestNote.cpp
-    - icon: ':warning:'
-      path: misc/generalApproach.cpp
-      title: misc/generalApproach.cpp
-    - icon: ':warning:'
-      path: misc/troubleShoot.cpp
-      title: misc/troubleShoot.cpp
   - name: modint
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':warning:'
@@ -174,7 +160,7 @@ data:
     - icon: ':warning:'
       path: poly/FFTmod.cpp
       title: poly/FFTmod.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/FPS.cpp
       title: poly/FPS.cpp
     - icon: ':heavy_check_mark:'
@@ -186,7 +172,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/NTTanymod.cpp
       title: poly/NTTanymod.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/NTTmint.cpp
       title: poly/NTTmint.cpp
     - icon: ':warning:'
@@ -315,7 +301,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/matrix_product.test.cpp
       title: test/matrix_product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/multipoint_evaluation.test.cpp
       title: test/multipoint_evaluation.test.cpp
     - icon: ':heavy_check_mark:'

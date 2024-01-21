@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
   - icon: ':heavy_check_mark:'
@@ -166,33 +166,33 @@ data:
     \ | 1];\n    data[1] = (this -> div(data[1]))[1];\n    for(int i = 1; i < n; i++)\
     \ {\n      data[i << 1] = data[i].div(data[i << 1])[1];\n      data[i << 1 | 1]\
     \ = data[i].div(data[i << 1 | 1])[1];\n    }\n    vector<Mint> res(n);\n    for(int\
-    \ i = 0; i < n; i++)\n      res[i] = data[n + i][0];\n    return res;\n  }\n\n\
-    \  static vector<Mint> interpolate(vector<Mint> xs, vector<Mint> ys) {\n    assert(ssize(xs)\
-    \ == ssize(ys));\n    int n = ssize(xs);\n    vector<FPS> data(2 * n), res(2 *\
-    \ n);\n    for(int i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n    for(int\
-    \ i = n - 1; i > 0; i--)\n      data[i] = data[i << 1] * data[i << 1 | 1];\n \
-    \   res[1] = data[1].derivative().div(data[1])[1];\n    for(int i = 1; i < n;\
-    \ i++) {\n      res[i << 1] = res[i].div(data[i << 1])[1];\n      res[i << 1 |\
-    \ 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int i = 0; i < n; i++)\n\
-    \      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int i = n - 1; i > 0; i--)\n\
-    \      res[i] = res[i << 1] * data[i << 1 | 1] + res[i << 1 | 1] * data[i << 1];\n\
-    \    return res[1];\n  }\n\n  friend FPS operator+(FPS a, FPS b) { return a +=\
-    \ b; }\n  friend FPS operator-(FPS a, FPS b) { return a -= b; }\n  friend FPS\
-    \ operator*(FPS a, FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint\
-    \ b) { return a *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b;\
-    \ }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
-    \ vector<mint>)> fps::conv = ntt.conv;\n#line 1 \"poly/sparsePolyope.cpp\"\n/**\n\
-    \ * template name: sparsePolyope\n * author: Misuki\n * last update: 2024/01/11\n\
-    \ * include: FPS/NTT/mint\n * verify: Library Checker - Inv of Formal Power Series\
-    \ (Sparse)\n */\n\nnamespace sparsePolyope {\n  template<class Mint>\n  vector<pair<int,\
-    \ Mint>> sparsify(FPS<Mint> f) {\n    vector<pair<int, Mint>> g;\n    for(int\
-    \ i = 0; i < ssize(f); i++)\n      if (f[i] != 0)\n        g.emplace_back(i, f[i]);\n\
-    \    return g;\n  }\n  template<class Mint>\n  FPS<Mint> sparseInv(FPS<Mint> f,\
-    \ int k) {\n    assert(f[0] != 0);\n    FPS<Mint> g(k);\n    Mint inv = 1 / f[0];\n\
-    \    g[0] = 1;\n    auto fs = sparsify(f);\n    for(int i = 0; i < k; i++) {\n\
-    \      for(auto [j, val] : fs | V::drop(1))\n        if (j <= i)\n          g[i]\
-    \ -= g[i - j] * val;\n      g[i] *= inv;\n    }\n    return g;\n  }\n}\n\nusing\
-    \ namespace sparsePolyope;\n#line 8 \"test/inv_of_formal_power_series_sparse.test.cpp\"\
+    \ i = 0; i < n; i++)\n      res[i] = data[n + i].empty() ? 0 : data[n + i][0];\n\
+    \    return res;\n  }\n\n  static vector<Mint> interpolate(vector<Mint> xs, vector<Mint>\
+    \ ys) {\n    assert(ssize(xs) == ssize(ys));\n    int n = ssize(xs);\n    vector<FPS>\
+    \ data(2 * n), res(2 * n);\n    for(int i = 0; i < n; i++)\n      data[n + i]\
+    \ = {-xs[i], 1};\n    for(int i = n - 1; i > 0; i--)\n      data[i] = data[i <<\
+    \ 1] * data[i << 1 | 1];\n    res[1] = data[1].derivative().div(data[1])[1];\n\
+    \    for(int i = 1; i < n; i++) {\n      res[i << 1] = res[i].div(data[i << 1])[1];\n\
+    \      res[i << 1 | 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int\
+    \ i = 0; i < n; i++)\n      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int\
+    \ i = n - 1; i > 0; i--)\n      res[i] = res[i << 1] * data[i << 1 | 1] + res[i\
+    \ << 1 | 1] * data[i << 1];\n    return res[1];\n  }\n\n  friend FPS operator+(FPS\
+    \ a, FPS b) { return a += b; }\n  friend FPS operator-(FPS a, FPS b) { return\
+    \ a -= b; }\n  friend FPS operator*(FPS a, FPS b) { return a *= b; }\n  friend\
+    \ FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS operator/(FPS\
+    \ a, Mint b) { return a /= b; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\n\
+    function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\n#line\
+    \ 1 \"poly/sparsePolyope.cpp\"\n/**\n * template name: sparsePolyope\n * author:\
+    \ Misuki\n * last update: 2024/01/11\n * include: FPS/NTT/mint\n * verify: Library\
+    \ Checker - Inv of Formal Power Series (Sparse)\n */\n\nnamespace sparsePolyope\
+    \ {\n  template<class Mint>\n  vector<pair<int, Mint>> sparsify(FPS<Mint> f) {\n\
+    \    vector<pair<int, Mint>> g;\n    for(int i = 0; i < ssize(f); i++)\n     \
+    \ if (f[i] != 0)\n        g.emplace_back(i, f[i]);\n    return g;\n  }\n  template<class\
+    \ Mint>\n  FPS<Mint> sparseInv(FPS<Mint> f, int k) {\n    assert(f[0] != 0);\n\
+    \    FPS<Mint> g(k);\n    Mint inv = 1 / f[0];\n    g[0] = 1;\n    auto fs = sparsify(f);\n\
+    \    for(int i = 0; i < k; i++) {\n      for(auto [j, val] : fs | V::drop(1))\n\
+    \        if (j <= i)\n          g[i] -= g[i - j] * val;\n      g[i] *= inv;\n\
+    \    }\n    return g;\n  }\n}\n\nusing namespace sparsePolyope;\n#line 8 \"test/inv_of_formal_power_series_sparse.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
     \ k; cin >> n >> k;\n  fps f(n);\n  for(int i = 0; i < k; i++) {\n    int j, val;\
     \ cin >> j >> val;\n    f[j] = val;\n  }\n\n  cout << sparseInv(f, n) << '\\n';\n\
@@ -213,7 +213,7 @@ data:
   isVerificationFile: true
   path: test/inv_of_formal_power_series_sparse.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 22:24:11+08:00'
+  timestamp: '2024-01-21 23:06:12+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/inv_of_formal_power_series_sparse.test.cpp

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
   - icon: ':heavy_check_mark:'
@@ -165,45 +165,45 @@ data:
     \ | 1];\n    data[1] = (this -> div(data[1]))[1];\n    for(int i = 1; i < n; i++)\
     \ {\n      data[i << 1] = data[i].div(data[i << 1])[1];\n      data[i << 1 | 1]\
     \ = data[i].div(data[i << 1 | 1])[1];\n    }\n    vector<Mint> res(n);\n    for(int\
-    \ i = 0; i < n; i++)\n      res[i] = data[n + i][0];\n    return res;\n  }\n\n\
-    \  static vector<Mint> interpolate(vector<Mint> xs, vector<Mint> ys) {\n    assert(ssize(xs)\
-    \ == ssize(ys));\n    int n = ssize(xs);\n    vector<FPS> data(2 * n), res(2 *\
-    \ n);\n    for(int i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n    for(int\
-    \ i = n - 1; i > 0; i--)\n      data[i] = data[i << 1] * data[i << 1 | 1];\n \
-    \   res[1] = data[1].derivative().div(data[1])[1];\n    for(int i = 1; i < n;\
-    \ i++) {\n      res[i << 1] = res[i].div(data[i << 1])[1];\n      res[i << 1 |\
-    \ 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int i = 0; i < n; i++)\n\
-    \      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int i = n - 1; i > 0; i--)\n\
-    \      res[i] = res[i << 1] * data[i << 1 | 1] + res[i << 1 | 1] * data[i << 1];\n\
-    \    return res[1];\n  }\n\n  friend FPS operator+(FPS a, FPS b) { return a +=\
-    \ b; }\n  friend FPS operator-(FPS a, FPS b) { return a -= b; }\n  friend FPS\
-    \ operator*(FPS a, FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint\
-    \ b) { return a *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b;\
-    \ }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
-    \ vector<mint>)> fps::conv = ntt.conv;\n#line 1 \"setfunc/fastSubsetTransform.cpp\"\
-    \n/**\n * template name: fastSubsetTransform\n * author: Misuki\n * last update:\
-    \ 2024/01/10\n * include template: FPS\n * verify: Library Checker - Subset Convolution\n\
-    \ */\n\ntemplate<class FPS>\nvector<FPS> FST(FPS f) {\n  assert(popcount(f.size())\
-    \ == 1);\n  int n = bit_width(f.size()) - 1;\n  vector<FPS> fHat(1 << n, FPS(n\
-    \ + 1));\n  for(unsigned i = 0; i < (1 << n); i++)\n    fHat[i][popcount(i)] =\
-    \ f[i];\n\n  for(int k = 0; k < n; k++)\n    for(int i = 0; i < (1 << n); i++)\n\
-    \      if (!(i >> k & 1))\n        for(int j = 0; j <= n; j++)\n          fHat[i|1<<k][j]\
-    \ += fHat[i][j];\n\n  return fHat;\n}\n\ntemplate<class FPS>\nFPS FSTinv(vector<FPS>\
-    \ fHat) {\n  int n = bit_width(fHat.size()) - 1;\n  for(int k = 0; k < n; k++)\n\
+    \ i = 0; i < n; i++)\n      res[i] = data[n + i].empty() ? 0 : data[n + i][0];\n\
+    \    return res;\n  }\n\n  static vector<Mint> interpolate(vector<Mint> xs, vector<Mint>\
+    \ ys) {\n    assert(ssize(xs) == ssize(ys));\n    int n = ssize(xs);\n    vector<FPS>\
+    \ data(2 * n), res(2 * n);\n    for(int i = 0; i < n; i++)\n      data[n + i]\
+    \ = {-xs[i], 1};\n    for(int i = n - 1; i > 0; i--)\n      data[i] = data[i <<\
+    \ 1] * data[i << 1 | 1];\n    res[1] = data[1].derivative().div(data[1])[1];\n\
+    \    for(int i = 1; i < n; i++) {\n      res[i << 1] = res[i].div(data[i << 1])[1];\n\
+    \      res[i << 1 | 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int\
+    \ i = 0; i < n; i++)\n      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int\
+    \ i = n - 1; i > 0; i--)\n      res[i] = res[i << 1] * data[i << 1 | 1] + res[i\
+    \ << 1 | 1] * data[i << 1];\n    return res[1];\n  }\n\n  friend FPS operator+(FPS\
+    \ a, FPS b) { return a += b; }\n  friend FPS operator-(FPS a, FPS b) { return\
+    \ a -= b; }\n  friend FPS operator*(FPS a, FPS b) { return a *= b; }\n  friend\
+    \ FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS operator/(FPS\
+    \ a, Mint b) { return a /= b; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\n\
+    function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\n#line\
+    \ 1 \"setfunc/fastSubsetTransform.cpp\"\n/**\n * template name: fastSubsetTransform\n\
+    \ * author: Misuki\n * last update: 2024/01/10\n * include template: FPS\n * verify:\
+    \ Library Checker - Subset Convolution\n */\n\ntemplate<class FPS>\nvector<FPS>\
+    \ FST(FPS f) {\n  assert(popcount(f.size()) == 1);\n  int n = bit_width(f.size())\
+    \ - 1;\n  vector<FPS> fHat(1 << n, FPS(n + 1));\n  for(unsigned i = 0; i < (1\
+    \ << n); i++)\n    fHat[i][popcount(i)] = f[i];\n\n  for(int k = 0; k < n; k++)\n\
     \    for(int i = 0; i < (1 << n); i++)\n      if (!(i >> k & 1))\n        for(int\
-    \ j = 0; j <= n; j++)\n          fHat[i|1<<k][j] -= fHat[i][j];\n\n  FPS f(1 <<\
-    \ n);\n  for(unsigned i = 0; i < (1 << n); i++)\n    f[i] = fHat[i][popcount(i)];\n\
-    \n  return f;\n}\n\ntemplate<class FPS>\nFPS conv(FPS f, FPS g) {\n  assert(ssize(f)\
-    \ == ssize(g));\n  auto fHat = FST(f), gHat = FST(g);\n  for(int i = 0; i < ssize(fHat);\
-    \ i++) {\n    fHat[i] *= gHat[i];\n    fHat[i].resize(ssize(gHat[i]));\n  }\n\
-    \  return FSTinv(fHat);\n}\n\n/* OMG this is so slowwwwwwwwwwwwwwwww\nFPS subsetPow(FPS\
-    \ f, long long idx) {\n  int n = __lg(f.size());\n  vector<FPS> fHat = FST(f);\n\
-    \  for(int i = 0; i < fHat.size(); i++)\n    fHat[i] = fHat[i].pow(idx, n + 1);\n\
-    \  f = FSTinv(fHat);\n  return f;\n}\n*/\n#line 8 \"test/subset_convolution.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
-    \ cin >> n;\n  fps a(1 << n), b(1 << n);\n  for(mint &x : a)\n    cin >> x;\n\
-    \  for(mint &x : b)\n    cin >> x;\n\n  cout << conv(a, b) << '\\n';\n\n  return\
-    \ 0;\n}\n"
+    \ j = 0; j <= n; j++)\n          fHat[i|1<<k][j] += fHat[i][j];\n\n  return fHat;\n\
+    }\n\ntemplate<class FPS>\nFPS FSTinv(vector<FPS> fHat) {\n  int n = bit_width(fHat.size())\
+    \ - 1;\n  for(int k = 0; k < n; k++)\n    for(int i = 0; i < (1 << n); i++)\n\
+    \      if (!(i >> k & 1))\n        for(int j = 0; j <= n; j++)\n          fHat[i|1<<k][j]\
+    \ -= fHat[i][j];\n\n  FPS f(1 << n);\n  for(unsigned i = 0; i < (1 << n); i++)\n\
+    \    f[i] = fHat[i][popcount(i)];\n\n  return f;\n}\n\ntemplate<class FPS>\nFPS\
+    \ conv(FPS f, FPS g) {\n  assert(ssize(f) == ssize(g));\n  auto fHat = FST(f),\
+    \ gHat = FST(g);\n  for(int i = 0; i < ssize(fHat); i++) {\n    fHat[i] *= gHat[i];\n\
+    \    fHat[i].resize(ssize(gHat[i]));\n  }\n  return FSTinv(fHat);\n}\n\n/* OMG\
+    \ this is so slowwwwwwwwwwwwwwwww\nFPS subsetPow(FPS f, long long idx) {\n  int\
+    \ n = __lg(f.size());\n  vector<FPS> fHat = FST(f);\n  for(int i = 0; i < fHat.size();\
+    \ i++)\n    fHat[i] = fHat[i].pow(idx, n + 1);\n  f = FSTinv(fHat);\n  return\
+    \ f;\n}\n*/\n#line 8 \"test/subset_convolution.test.cpp\"\n\nsigned main() {\n\
+    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  fps a(1\
+    \ << n), b(1 << n);\n  for(mint &x : a)\n    cin >> x;\n  for(mint &x : b)\n \
+    \   cin >> x;\n\n  cout << conv(a, b) << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\n#include\
     \ \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"../setfunc/fastSubsetTransform.cpp\"\
@@ -220,7 +220,7 @@ data:
   isVerificationFile: true
   path: test/subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 22:24:11+08:00'
+  timestamp: '2024-01-21 23:06:12+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/subset_convolution.test.cpp
