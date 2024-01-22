@@ -28,6 +28,9 @@ data:
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/factorize.test.cpp
+    title: test/factorize.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,6 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/primality_test.test.cpp
+    title: test/primality_test.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
@@ -186,6 +192,7 @@ data:
   - test/convolution_1e9+7.test.cpp
   - test/yuki_2606.test.cpp
   - test/log_of_formal_power_series.test.cpp
+  - test/primality_test.test.cpp
   - test/pow_of_formal_power_series.test.cpp
   - test/range_affine_point_get.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -208,6 +215,7 @@ data:
   - test/static_RMQ.test.cpp
   - test/polynomial_interpolation.test.cpp
   - test/inv_of_formal_power_series.test.cpp
+  - test/factorize.test.cpp
   - test/subset_convolution.test.cpp
 documentation_of: default/t.cpp
 layout: document

@@ -135,8 +135,14 @@ data:
   - name: numtheory
     pages:
     - icon: ':warning:'
+      path: numtheory/MillerRabin.cpp
+      title: numtheory/MillerRabin.cpp
+    - icon: ':warning:'
       path: numtheory/exgcd.cpp
       title: numtheory/exgcd.cpp
+    - icon: ':heavy_check_mark:'
+      path: numtheory/fastFactorize.cpp
+      title: numtheory/fastFactorize.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/floorCeilSum.cpp
       title: numtheory/floorCeilSum.cpp
@@ -269,6 +275,9 @@ data:
       path: test/exp_of_formal_power_series.test.cpp
       title: test/exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/factorize.test.cpp
+      title: test/factorize.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/find_linear_recurrence.test.cpp
       title: test/find_linear_recurrence.test.cpp
     - icon: ':heavy_check_mark:'
@@ -319,6 +328,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/pow_of_matrix.test.cpp
       title: test/pow_of_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/primality_test.test.cpp
+      title: test/primality_test.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/range_affine_point_get.test.cpp
       title: test/range_affine_point_get.test.cpp
