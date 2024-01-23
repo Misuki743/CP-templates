@@ -18,6 +18,7 @@
 
 #define rep(i, a, b) for(int i = a; i < (b); ++i)
 #define sz(x) (int)(x).size()
+using vi = vector<int>;
 
 struct TwoSat {
 	int N;
