@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/factorize"
+#define PROBLEM "https://judge.yosupo.jp/problem/primitive_root"
 
 #include "../default/t.cpp"
 #include "../numtheory/fastFactorize.cpp"
