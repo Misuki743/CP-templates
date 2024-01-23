@@ -26,6 +26,7 @@
 "test/pow_of_formal_power_series.test.cpp": "2024-01-21 23:06:12 +0800",
 "test/pow_of_matrix.test.cpp": "2024-01-21 17:57:21 +0800",
 "test/primality_test.test.cpp": "2024-01-23 02:14:10 +0800",
+"test/primitive_root.test.cpp": "2024-01-23 17:13:22 +0800",
 "test/range_affine_point_get.test.cpp": "2024-01-21 17:57:21 +0800",
 "test/range_affine_range_sum.test.cpp": "2024-01-21 17:57:06 +0800",
 "test/segment_add_get_min.test.cpp": "2024-01-21 17:57:21 +0800",
