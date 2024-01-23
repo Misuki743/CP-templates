@@ -84,6 +84,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/primality_test.test.cpp
     title: test/primality_test.test.cpp
+  - icon: ':x:'
+    path: test/primitive_root.test.cpp
+    title: test/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
@@ -117,9 +120,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2606.test.cpp
     title: test/yuki_2606.test.cpp
-  _isVerificationFailed: false
+  - icon: ':heavy_check_mark:'
+    path: test/yuki_2613.test.cpp
+    title: test/yuki_2613.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -177,7 +183,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/associative_array.test.cpp
   - test/segment_add_get_min.test.cpp
@@ -190,6 +196,7 @@ data:
   - test/matrix_product.test.cpp
   - test/jump_on_tree.test.cpp
   - test/convolution_1e9+7.test.cpp
+  - test/primitive_root.test.cpp
   - test/yuki_2606.test.cpp
   - test/log_of_formal_power_series.test.cpp
   - test/primality_test.test.cpp
@@ -214,6 +221,7 @@ data:
   - test/matching_on_bipartite_graph.test.cpp
   - test/static_RMQ.test.cpp
   - test/polynomial_interpolation.test.cpp
+  - test/yuki_2613.test.cpp
   - test/inv_of_formal_power_series.test.cpp
   - test/factorize.test.cpp
   - test/subset_convolution.test.cpp

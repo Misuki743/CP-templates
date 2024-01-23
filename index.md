@@ -8,7 +8,7 @@ data:
       title: combi/comb.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -135,12 +135,9 @@ data:
   - name: numtheory
     pages:
     - icon: ':warning:'
-      path: numtheory/MillerRabin.cpp
-      title: numtheory/MillerRabin.cpp
-    - icon: ':warning:'
       path: numtheory/exgcd.cpp
       title: numtheory/exgcd.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: numtheory/fastFactorize.cpp
       title: numtheory/fastFactorize.cpp
     - icon: ':heavy_check_mark:'
@@ -149,6 +146,9 @@ data:
     - icon: ':warning:'
       path: numtheory/linearSieve.cpp
       title: numtheory/linearSieve.cpp
+    - icon: ':question:'
+      path: numtheory/primitiveRoot.cpp
+      title: numtheory/primitiveRoot.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/sqrtMod.cpp
       title: numtheory/sqrtMod.cpp
@@ -181,6 +181,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/NTTmint.cpp
       title: poly/NTTmint.cpp
+    - icon: ':heavy_check_mark:'
+      path: poly/mulConvolution.cpp
+      title: poly/mulConvolution.cpp
     - icon: ':warning:'
       path: poly/polyope.cpp
       title: poly/polyope.cpp
@@ -331,6 +334,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/primality_test.test.cpp
       title: test/primality_test.test.cpp
+    - icon: ':x:'
+      path: test/primitive_root.test.cpp
+      title: test/primitive_root.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/range_affine_point_get.test.cpp
       title: test/range_affine_point_get.test.cpp
@@ -364,6 +370,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yuki_2606.test.cpp
       title: test/yuki_2606.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yuki_2613.test.cpp
+      title: test/yuki_2613.test.cpp
 layout: toppage
 ---
 template used for online programming contest. some of the code are not written by myself, and these codes would contain reference to the original sources.

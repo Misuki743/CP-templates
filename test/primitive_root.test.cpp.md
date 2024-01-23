@@ -7,17 +7,20 @@ data:
   - icon: ':question:'
     path: numtheory/fastFactorize.cpp
     title: numtheory/fastFactorize.cpp
+  - icon: ':question:'
+    path: numtheory/primitiveRoot.cpp
+    title: numtheory/primitiveRoot.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorize
     links:
     - https://judge.yosupo.jp/problem/factorize
-  bundledCode: "#line 1 \"test/factorize.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\
+  bundledCode: "#line 1 \"test/primitive_root.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bit>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n\
     #include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n\
@@ -61,28 +64,35 @@ data:
     \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
     if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
     \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 5 \"test/factorize.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int q; cin >> q;\n  while(q--) {\n    ull x; cin >> x;\n\
-    \    auto ans = factor(x);\n    R::sort(ans);\n    cout << ssize(ans) << ' ' <<\
-    \ ans << '\\n';\n  }\n\n  return 0;\n}\n"
+    \treturn l;\n}\n#line 1 \"numtheory/primitiveRoot.cpp\"\n//#include \"fastFactorize.cpp\"\
+    \n\null primitiveRoot(ull p) {\n  auto fac = factor(p - 1);\n  R::sort(fac);\n\
+    \  fac.resize(unique(fac.begin(), fac.end()) - fac.begin());\n  auto test = [p,\
+    \ fac](ull x) {\n    for(ull d : fac)\n      if (modpow(x, (p - 1) / d, p) ==\
+    \ 1)\n        return false;\n    return true;\n  };\n  static mt19937_64 rng(clock);\n\
+    \  uniform_int_distribution<ull> unif(1, p - 1);\n  ull root;\n  while(!test(root\
+    \ = unif(rng)));\n  return root;\n}\n#line 6 \"test/primitive_root.test.cpp\"\n\
+    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin\
+    \ >> q;\n  while(q--) {\n    ull x; cin >> x;\n    cout << primitiveRoot(x) <<\
+    \ '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../numtheory/fastFactorize.cpp\"\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin >> q;\n\
-    \  while(q--) {\n    ull x; cin >> x;\n    auto ans = factor(x);\n    R::sort(ans);\n\
-    \    cout << ssize(ans) << ' ' << ans << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ \"../default/t.cpp\"\n#include \"../numtheory/fastFactorize.cpp\"\n#include\
+    \ \"../numtheory/primitiveRoot.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int q; cin >> q;\n  while(q--) {\n    ull x; cin >> x;\n\
+    \    cout << primitiveRoot(x) << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - numtheory/fastFactorize.cpp
+  - numtheory/primitiveRoot.cpp
   isVerificationFile: true
-  path: test/factorize.test.cpp
+  path: test/primitive_root.test.cpp
   requiredBy: []
-  timestamp: '2024-01-23 02:14:10+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-23 16:55:41+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/factorize.test.cpp
+documentation_of: test/primitive_root.test.cpp
 layout: document
 redirect_from:
-- /verify/test/factorize.test.cpp
-- /verify/test/factorize.test.cpp.html
-title: test/factorize.test.cpp
+- /verify/test/primitive_root.test.cpp
+- /verify/test/primitive_root.test.cpp.html
+title: test/primitive_root.test.cpp
 ---

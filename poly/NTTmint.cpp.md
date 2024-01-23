@@ -42,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki_2613.test.cpp
+    title: test/yuki_2613.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -122,6 +125,7 @@ data:
   - test/inv_of_formal_power_series_sparse.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/polynomial_interpolation.test.cpp
+  - test/yuki_2613.test.cpp
   - test/inv_of_formal_power_series.test.cpp
   - test/subset_convolution.test.cpp
 documentation_of: poly/NTTmint.cpp
