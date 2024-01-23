@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/fastFactorize.cpp
     title: numtheory/fastFactorize.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/primitiveRoot.cpp
     title: numtheory/primitiveRoot.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/factorize
+    PROBLEM: https://judge.yosupo.jp/problem/primitive_root
     links:
-    - https://judge.yosupo.jp/problem/factorize
-  bundledCode: "#line 1 \"test/primitive_root.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\
+    - https://judge.yosupo.jp/problem/primitive_root
+  bundledCode: "#line 1 \"test/primitive_root.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bit>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n\
     #include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n\
@@ -74,7 +74,7 @@ data:
     \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin\
     \ >> q;\n  while(q--) {\n    ull x; cin >> x;\n    cout << primitiveRoot(x) <<\
     \ '\\n';\n  }\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n\n#include\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../numtheory/fastFactorize.cpp\"\n#include\
     \ \"../numtheory/primitiveRoot.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int q; cin >> q;\n  while(q--) {\n    ull x; cin >> x;\n\
@@ -86,8 +86,8 @@ data:
   isVerificationFile: true
   path: test/primitive_root.test.cpp
   requiredBy: []
-  timestamp: '2024-01-23 16:55:41+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-23 17:13:22+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/primitive_root.test.cpp
 layout: document
