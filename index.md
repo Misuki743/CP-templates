@@ -8,7 +8,7 @@ data:
       title: combi/comb.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -89,12 +89,18 @@ data:
     - icon: ':warning:'
       path: graph/2CC.cpp
       title: graph/2CC.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/2sat.cpp
       title: graph/2sat.cpp
     - icon: ':warning:'
       path: graph/BCC.cpp
       title: graph/BCC.cpp
+    - icon: ':heavy_check_mark:'
+      path: graph/Dijkstra.cpp
+      title: graph/Dijkstra.cpp
+    - icon: ':heavy_check_mark:'
+      path: graph/Kruskal.cpp
+      title: graph/Kruskal.cpp
     - icon: ':warning:'
       path: graph/MCMF.cpp
       title: graph/MCMF.cpp
@@ -271,6 +277,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/division_of_polynomials.test.cpp
       title: test/division_of_polynomials.test.cpp
+    - icon: ':x:'
+      path: test/enumerate_palindromes.test.cpp
+      title: test/enumerate_palindromes.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/enumerate_quotients.test.cpp
       title: test/enumerate_quotients.test.cpp
@@ -314,6 +323,9 @@ data:
       path: test/matrix_product.test.cpp
       title: test/matrix_product.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/minimum_spanning_tree.test.cpp
+      title: test/minimum_spanning_tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/multipoint_evaluation.test.cpp
       title: test/multipoint_evaluation.test.cpp
     - icon: ':heavy_check_mark:'
@@ -347,6 +359,9 @@ data:
       path: test/segment_add_get_min.test.cpp
       title: test/segment_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/shortest_path.test.cpp
+      title: test/shortest_path.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/sqrt_of_formal_power_series.test.cpp
       title: test/sqrt_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -358,6 +373,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/subset_convolution.test.cpp
       title: test/subset_convolution.test.cpp
+    - icon: ':x:'
+      path: test/two_sat.test.cpp
+      title: test/two_sat.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unionfind.test.cpp
       title: test/unionfind.test.cpp

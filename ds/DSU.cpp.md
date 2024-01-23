@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/minimum_spanning_tree.test.cpp
+    title: test/minimum_spanning_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/unionfind.test.cpp
     title: test/unionfind.test.cpp
   _isVerificationFailed: false
@@ -36,6 +39,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unionfind.test.cpp
+  - test/minimum_spanning_tree.test.cpp
 documentation_of: ds/DSU.cpp
 layout: document
 redirect_from:

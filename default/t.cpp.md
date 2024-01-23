@@ -64,6 +64,9 @@ data:
     path: test/matrix_product.test.cpp
     title: test/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/minimum_spanning_tree.test.cpp
+    title: test/minimum_spanning_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -97,6 +100,9 @@ data:
     path: test/segment_add_get_min.test.cpp
     title: test/segment_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/shortest_path.test.cpp
+    title: test/shortest_path.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,6 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
+  - icon: ':x:'
+    path: test/two_sat.test.cpp
+    title: test/two_sat.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unionfind.test.cpp
     title: test/unionfind.test.cpp
@@ -123,9 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -183,7 +192,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/associative_array.test.cpp
   - test/segment_add_get_min.test.cpp
@@ -192,6 +201,7 @@ data:
   - test/Z_algorithm.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
   - test/point_set_range_composite.test.cpp
+  - test/two_sat.test.cpp
   - test/vertex_add_subtree_sum.test.cpp
   - test/matrix_product.test.cpp
   - test/jump_on_tree.test.cpp
@@ -206,6 +216,7 @@ data:
   - test/unionfind.test.cpp
   - test/convolution.test.cpp
   - test/find_linear_recurrence.test.cpp
+  - test/shortest_path.test.cpp
   - test/inverse_matrix.test.cpp
   - test/exp_of_formal_power_series.test.cpp
   - test/pow_of_matrix.test.cpp
@@ -214,6 +225,7 @@ data:
   - test/vertex_add_path_sum.test.cpp
   - test/strongly_connected_components.test.cpp
   - test/line_add_get_min.test.cpp
+  - test/minimum_spanning_tree.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/lowest_common_ancestor.test.cpp
