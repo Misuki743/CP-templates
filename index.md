@@ -189,7 +189,7 @@ data:
       title: poly/NTTmint.cpp
     - icon: ':heavy_check_mark:'
       path: poly/mulConvolution.cpp
-      title: poly/mulConvolution.cpp
+      title: mulConvolution
     - icon: ':warning:'
       path: poly/polyope.cpp
       title: poly/polyope.cpp
