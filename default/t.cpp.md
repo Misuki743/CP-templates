@@ -22,6 +22,9 @@ data:
     path: test/division_of_polynomials.test.cpp
     title: test/division_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/enumerate_palindromes.test.cpp
+    title: test/enumerate_palindromes.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/enumerate_quotients.test.cpp
     title: test/enumerate_quotients.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,7 +117,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/two_sat.test.cpp
     title: test/two_sat.test.cpp
   - icon: ':heavy_check_mark:'
@@ -132,9 +135,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -192,7 +195,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/associative_array.test.cpp
   - test/segment_add_get_min.test.cpp
@@ -219,6 +222,7 @@ data:
   - test/shortest_path.test.cpp
   - test/inverse_matrix.test.cpp
   - test/exp_of_formal_power_series.test.cpp
+  - test/enumerate_palindromes.test.cpp
   - test/pow_of_matrix.test.cpp
   - test/division_of_polynomials.test.cpp
   - test/enumerate_quotients.test.cpp

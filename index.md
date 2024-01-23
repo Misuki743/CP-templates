@@ -8,7 +8,7 @@ data:
       title: combi/comb.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -89,7 +89,7 @@ data:
     - icon: ':warning:'
       path: graph/2CC.cpp
       title: graph/2CC.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/2sat.cpp
       title: graph/2sat.cpp
     - icon: ':warning:'
@@ -244,9 +244,9 @@ data:
     - icon: ':warning:'
       path: string/KMPA.cpp
       title: string/KMPA.cpp
-    - icon: ':warning:'
-      path: string/manacher.cpp
-      title: string/manacher.cpp
+    - icon: ':heavy_check_mark:'
+      path: string/Manacher.cpp
+      title: string/Manacher.cpp
     - icon: ':heavy_check_mark:'
       path: string/palindromicTree.cpp
       title: string/palindromicTree.cpp
@@ -277,7 +277,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/division_of_polynomials.test.cpp
       title: test/division_of_polynomials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/enumerate_palindromes.test.cpp
       title: test/enumerate_palindromes.test.cpp
     - icon: ':heavy_check_mark:'
@@ -373,7 +373,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/subset_convolution.test.cpp
       title: test/subset_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/two_sat.test.cpp
       title: test/two_sat.test.cpp
     - icon: ':heavy_check_mark:'

@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/enumerate_palindromes.test.cpp
+    title: test/enumerate_palindromes.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"string/manacher.cpp\"\nvector<int> Manacher(string &s) {\n\
+  bundledCode: "#line 1 \"string/Manacher.cpp\"\nvector<int> Manacher(string &s) {\n\
     \  vector<int> p(ssize(s));\n  for(int i = 0, l = -1, r = -1; i < ssize(s); i++)\
     \ {\n    if (i <= r)\n      p[i] = min(p[2 * l - i], r - i + 1);\n    while(i\
     \ + p[i] < ssize(s) and i - p[i] >= 0 and s[i + p[i]] == s[i - p[i]])\n      l\
@@ -25,15 +28,16 @@ data:
     \ &x : p)\n    x -= 1;\n  return vector<int>(p.begin() + 1, p.end() - 1);\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: string/manacher.cpp
+  path: string/Manacher.cpp
   requiredBy: []
-  timestamp: '2024-01-23 21:38:15+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: string/manacher.cpp
+  timestamp: '2024-01-23 21:50:14+08:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/enumerate_palindromes.test.cpp
+documentation_of: string/Manacher.cpp
 layout: document
 redirect_from:
-- /library/string/manacher.cpp
-- /library/string/manacher.cpp.html
-title: string/manacher.cpp
+- /library/string/Manacher.cpp
+- /library/string/Manacher.cpp.html
+title: string/Manacher.cpp
 ---

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/2sat.cpp
     title: graph/2sat.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_sat
@@ -55,26 +55,26 @@ data:
     \ holds the assigned values to the vars\n * Time: O(N+E), where N is the number\
     \ of boolean variables, and E is the number of clauses.\n * Status: stress-tested\n\
     \ */\n\n#define rep(i, a, b) for(int i = a; i < (b); ++i)\n#define sz(x) (int)(x).size()\n\
-    \nstruct TwoSat {\n\tint N;\n\tvector<vi> gr;\n\tvi values; // 0 = false, 1 =\
-    \ true\n\n\tTwoSat(int n = 0) : N(n), gr(2*n) {}\n\n\tint addVar() { // (optional)\n\
-    \t\tgr.emplace_back();\n\t\tgr.emplace_back();\n\t\treturn N++;\n\t}\n\n\tvoid\
-    \ either(int f, int j) {\n\t\tf = max(2*f, -1-2*f);\n\t\tj = max(2*j, -1-2*j);\n\
-    \t\tgr[f].push_back(j^1);\n\t\tgr[j].push_back(f^1);\n\t}\n\tvoid setValue(int\
-    \ x) { either(x, x); }\n\n\tvoid atMostOne(const vi& li) { // (optional)\n\t\t\
-    if (sz(li) <= 1) return;\n\t\tint cur = ~li[0];\n\t\trep(i,2,sz(li)) {\n\t\t\t\
-    int next = addVar();\n\t\t\teither(cur, ~li[i]);\n\t\t\teither(cur, next);\n\t\
-    \t\teither(~li[i], next);\n\t\t\tcur = ~next;\n\t\t}\n\t\teither(cur, ~li[1]);\n\
-    \t}\n\n\tvi val, comp, z; int time = 0;\n\tint dfs(int i) {\n\t\tint low = val[i]\
-    \ = ++time, x; z.push_back(i);\n\t\tfor(int e : gr[i]) if (!comp[e])\n\t\t\tlow\
-    \ = min(low, val[e] ?: dfs(e));\n\t\tif (low == val[i]) do {\n\t\t\tx = z.back();\
-    \ z.pop_back();\n\t\t\tcomp[x] = low;\n\t\t\tif (values[x>>1] == -1)\n\t\t\t\t\
-    values[x>>1] = x&1;\n\t\t} while (x != i);\n\t\treturn val[i] = low;\n\t}\n\n\t\
-    bool solve() {\n\t\tvalues.assign(N, -1);\n\t\tval.assign(2*N, 0); comp = val;\n\
-    \t\trep(i,0,2*N) if (!comp[i]) dfs(i);\n\t\trep(i,0,N) if (comp[2*i] == comp[2*i+1])\
-    \ return 0;\n\t\treturn 1;\n\t}\n};\n#line 5 \"test/two_sat.test.cpp\"\n\nint\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(0);\n\n  string p, cnf; cin\
-    \ >> p >> cnf;\n  int n, m; cin >> n >> m;\n\n  TwoSat ts(n);\n  while(m--) {\n\
-    \    int a, b, c; cin >> a >> b >> c;\n    a = (a > 0 ? a - 1 : ~(-(a + 1)));\n\
+    using vi = vector<int>;\n\nstruct TwoSat {\n\tint N;\n\tvector<vi> gr;\n\tvi values;\
+    \ // 0 = false, 1 = true\n\n\tTwoSat(int n = 0) : N(n), gr(2*n) {}\n\n\tint addVar()\
+    \ { // (optional)\n\t\tgr.emplace_back();\n\t\tgr.emplace_back();\n\t\treturn\
+    \ N++;\n\t}\n\n\tvoid either(int f, int j) {\n\t\tf = max(2*f, -1-2*f);\n\t\t\
+    j = max(2*j, -1-2*j);\n\t\tgr[f].push_back(j^1);\n\t\tgr[j].push_back(f^1);\n\t\
+    }\n\tvoid setValue(int x) { either(x, x); }\n\n\tvoid atMostOne(const vi& li)\
+    \ { // (optional)\n\t\tif (sz(li) <= 1) return;\n\t\tint cur = ~li[0];\n\t\trep(i,2,sz(li))\
+    \ {\n\t\t\tint next = addVar();\n\t\t\teither(cur, ~li[i]);\n\t\t\teither(cur,\
+    \ next);\n\t\t\teither(~li[i], next);\n\t\t\tcur = ~next;\n\t\t}\n\t\teither(cur,\
+    \ ~li[1]);\n\t}\n\n\tvi val, comp, z; int time = 0;\n\tint dfs(int i) {\n\t\t\
+    int low = val[i] = ++time, x; z.push_back(i);\n\t\tfor(int e : gr[i]) if (!comp[e])\n\
+    \t\t\tlow = min(low, val[e] ?: dfs(e));\n\t\tif (low == val[i]) do {\n\t\t\tx\
+    \ = z.back(); z.pop_back();\n\t\t\tcomp[x] = low;\n\t\t\tif (values[x>>1] == -1)\n\
+    \t\t\t\tvalues[x>>1] = x&1;\n\t\t} while (x != i);\n\t\treturn val[i] = low;\n\
+    \t}\n\n\tbool solve() {\n\t\tvalues.assign(N, -1);\n\t\tval.assign(2*N, 0); comp\
+    \ = val;\n\t\trep(i,0,2*N) if (!comp[i]) dfs(i);\n\t\trep(i,0,N) if (comp[2*i]\
+    \ == comp[2*i+1]) return 0;\n\t\treturn 1;\n\t}\n};\n#line 5 \"test/two_sat.test.cpp\"\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(0);\n\n  string p, cnf;\
+    \ cin >> p >> cnf;\n  int n, m; cin >> n >> m;\n\n  TwoSat ts(n);\n  while(m--)\
+    \ {\n    int a, b, c; cin >> a >> b >> c;\n    a = (a > 0 ? a - 1 : ~(-(a + 1)));\n\
     \    b = (b > 0 ? b - 1 : ~(-(b + 1)));\n    ts.either(a, b);\n  }\n\n  if (ts.solve())\
     \ {\n    cout << \"s SATISFIABLE\\n\";\n    cout << \"v \";\n    for(int i = 0;\
     \ i < n; i++)\n      cout << (ts.values[i] ? i + 1 : -(i + 1)) << ' ';\n    cout\
@@ -95,8 +95,8 @@ data:
   isVerificationFile: true
   path: test/two_sat.test.cpp
   requiredBy: []
-  timestamp: '2024-01-23 21:38:15+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-23 21:50:14+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/two_sat.test.cpp
 layout: document
