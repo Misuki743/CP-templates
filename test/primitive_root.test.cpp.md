@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: numtheory/fastFactorize.cpp
     title: numtheory/fastFactorize.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: numtheory/primitiveRoot.cpp
     title: numtheory/primitiveRoot.cpp
   _extendedRequiredBy: []
@@ -64,7 +64,7 @@ data:
     \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
     if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
     \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 1 \"numtheory/primitiveRoot.cpp\"\n//#include \"fastFactorize.cpp\"\
+    \treturn l;\n}\n#line 1 \"numtheory/primitiveRoot.cpp\"\n//#include \"numtheory/fastFactorize.cpp\"\
     \n\null primitiveRoot(ull p) {\n  auto fac = factor(p - 1);\n  R::sort(fac);\n\
     \  fac.resize(unique(fac.begin(), fac.end()) - fac.begin());\n  auto test = [p,\
     \ fac](ull x) {\n    for(ull d : fac)\n      if (modpow(x, (p - 1) / d, p) ==\
@@ -86,7 +86,7 @@ data:
   isVerificationFile: true
   path: test/primitive_root.test.cpp
   requiredBy: []
-  timestamp: '2024-01-23 17:13:22+08:00'
+  timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/primitive_root.test.cpp

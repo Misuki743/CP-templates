@@ -13,15 +13,11 @@ data:
     links:
     - https://judge.yosupo.jp/submission/15581
     - https://math314.hateblo.jp/entry/2015/05/07/014908
-  bundledCode: "#line 1 \"poly/NTTanymod.cpp\"\n/**\n * template name: NTTanyMod\n\
-    \ * author: Misuki\n * last update: 2023/12/04\n * reference: https://math314.hateblo.jp/entry/2015/05/07/014908\n\
-    \ *            https://judge.yosupo.jp/submission/15581\n * remark: n * mod^2\
-    \ < prod of mods(~= 5e26) should be satisfied\n * some common modulo: 998244353\
-    \  = 2^23 * 119 + 1, R = 3\n *                     469762049  = 2^26 * 7   + 1,\
-    \ R = 3\n *                     167772161  = 2^25 * 5   + 1, R = 3\n * verify:\
-    \ Library Checker - Convolution (Mod 1,000,000,007)\n */\n\ntemplate<class Mint>\n\
-    vector<Mint> convAnyMod(vector<Mint> a, vector<Mint> b) {\n  using Mint0 = MontgomeryModInt<998244353>;\n\
-    \  using Mint1 = MontgomeryModInt<469762049>;\n  using Mint2 = MontgomeryModInt<167772161>;\n\
+  bundledCode: "#line 1 \"poly/NTTanymod.cpp\"\n//reference: https://math314.hateblo.jp/entry/2015/05/07/014908\n\
+    //reference: https://judge.yosupo.jp/submission/15581\n//remark: n * mod^2 < prod\
+    \ of mods(~= 5e26) should be satisfied\n\ntemplate<class Mint>\nvector<Mint> convAnyMod(vector<Mint>\
+    \ a, vector<Mint> b) {\n  using Mint0 = MontgomeryModInt<998244353>;\n  using\
+    \ Mint1 = MontgomeryModInt<469762049>;\n  using Mint2 = MontgomeryModInt<167772161>;\n\
     \  NTT<23, 119, 3, Mint0> ntt0;\n  NTT<26, 7, 3, Mint1> ntt1;\n  NTT<25, 5, 3,\
     \ Mint2> ntt2;\n  vector<Mint0> a0(ssize(a)), b0(ssize(b));\n  vector<Mint1> a1(ssize(a)),\
     \ b1(ssize(b));\n  vector<Mint2> a2(ssize(a)), b2(ssize(b));\n  for(int i = 0;\
@@ -35,15 +31,11 @@ data:
     \ i = 0; i < ssize(x); i++) {\n    int y0 = x[i].get();\n    int y1 = (im0 * (y[i]\
     \ - y0)).get();\n    int y2 = (im0m1 * (z[i] - y0) - im1 * y1).get();\n    res[i]\
     \ = y0 + m0 * y1 + m0m1 * y2;\n  }\n\n  return res;\n}\n"
-  code: "/**\n * template name: NTTanyMod\n * author: Misuki\n * last update: 2023/12/04\n\
-    \ * reference: https://math314.hateblo.jp/entry/2015/05/07/014908\n *        \
-    \    https://judge.yosupo.jp/submission/15581\n * remark: n * mod^2 < prod of\
-    \ mods(~= 5e26) should be satisfied\n * some common modulo: 998244353  = 2^23\
-    \ * 119 + 1, R = 3\n *                     469762049  = 2^26 * 7   + 1, R = 3\n\
-    \ *                     167772161  = 2^25 * 5   + 1, R = 3\n * verify: Library\
-    \ Checker - Convolution (Mod 1,000,000,007)\n */\n\ntemplate<class Mint>\nvector<Mint>\
-    \ convAnyMod(vector<Mint> a, vector<Mint> b) {\n  using Mint0 = MontgomeryModInt<998244353>;\n\
-    \  using Mint1 = MontgomeryModInt<469762049>;\n  using Mint2 = MontgomeryModInt<167772161>;\n\
+  code: "//reference: https://math314.hateblo.jp/entry/2015/05/07/014908\n//reference:\
+    \ https://judge.yosupo.jp/submission/15581\n//remark: n * mod^2 < prod of mods(~=\
+    \ 5e26) should be satisfied\n\ntemplate<class Mint>\nvector<Mint> convAnyMod(vector<Mint>\
+    \ a, vector<Mint> b) {\n  using Mint0 = MontgomeryModInt<998244353>;\n  using\
+    \ Mint1 = MontgomeryModInt<469762049>;\n  using Mint2 = MontgomeryModInt<167772161>;\n\
     \  NTT<23, 119, 3, Mint0> ntt0;\n  NTT<26, 7, 3, Mint1> ntt1;\n  NTT<25, 5, 3,\
     \ Mint2> ntt2;\n  vector<Mint0> a0(ssize(a)), b0(ssize(b));\n  vector<Mint1> a1(ssize(a)),\
     \ b1(ssize(b));\n  vector<Mint2> a2(ssize(a)), b2(ssize(b));\n  for(int i = 0;\
@@ -61,7 +53,7 @@ data:
   isVerificationFile: false
   path: poly/NTTanymod.cpp
   requiredBy: []
-  timestamp: '2024-01-20 02:52:24+08:00'
+  timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution_1e9+7.test.cpp

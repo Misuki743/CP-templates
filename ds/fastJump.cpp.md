@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lowest_common_ancestor.test.cpp
     title: test/lowest_common_ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/vertex_add_path_sum.test.cpp
     title: test/vertex_add_path_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fastJump.cpp\"\nstruct fastJump {\n  vector<int> p, jp,\
@@ -56,7 +56,7 @@ data:
   path: ds/fastJump.cpp
   requiredBy: []
   timestamp: '2024-01-21 01:13:07+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/jump_on_tree.test.cpp
   - test/vertex_add_path_sum.test.cpp

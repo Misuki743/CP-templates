@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -42,15 +42,13 @@ data:
     \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
     \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
     \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"string/zFunc.cpp\"\n/**\n\
-    \ * template name: zFunc\n * author: Misuki\n * last update: 2024/01/01\n * verify:\
-    \ Library Checker - Z Algorithm\n */\n\nvector<int> zFunc(string &s) {\n  vector<int>\
-    \ z(ssize(s));\n  z[0] = ssize(s);\n  for(int i = 1, l = 0, r = -1; i < ssize(s);\
-    \ i++) {\n    if (i <= r)\n      z[i] = min(r - i + 1, z[i - l]);\n    while(i\
-    \ + z[i] < ssize(s) and s[i + z[i]] == s[z[i]])\n      l = i, r = i + z[i], z[i]\
-    \ += 1;\n  }\n  return z;\n}\n#line 5 \"test/Z_algorithm.test.cpp\"\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  string s; cin >>\
-    \ s;\n  cout << zFunc(s) << '\\n';\n\n  return 0;\n}\n"
+    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"string/zFunc.cpp\"\nvector<int>\
+    \ zFunc(string &s) {\n  vector<int> z(ssize(s));\n  z[0] = ssize(s);\n  for(int\
+    \ i = 1, l = 0, r = -1; i < ssize(s); i++) {\n    if (i <= r)\n      z[i] = min(r\
+    \ - i + 1, z[i - l]);\n    while(i + z[i] < ssize(s) and s[i + z[i]] == s[z[i]])\n\
+    \      l = i, r = i + z[i], z[i] += 1;\n  }\n  return z;\n}\n#line 5 \"test/Z_algorithm.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  string\
+    \ s; cin >> s;\n  cout << zFunc(s) << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../string/zFunc.cpp\"\n\nsigned main() {\n\
     \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  string s; cin >> s;\n  cout\
@@ -61,7 +59,7 @@ data:
   isVerificationFile: true
   path: test/Z_algorithm.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 17:57:21+08:00'
+  timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Z_algorithm.test.cpp

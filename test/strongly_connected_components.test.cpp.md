@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/SCC.cpp
     title: graph/SCC.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/scc
@@ -42,31 +42,30 @@ data:
     \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
     \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
     \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"graph/SCC.cpp\"\n/**\n *\
-    \ template name: SCC\n * author: Misuki\n * last update: 2024/01/11\n * verify:\
-    \ Library Checker - Strongly Connected Components\n */\n\nstruct SCC {\n  vector<int>\
-    \ groupId;\n  vector<vector<int>> group, G;\n  int size;\n\n  SCC(vector<vector<int>>\
-    \ &g) : groupId(ssize(g)), size(0) {\n    vector<vector<int>> gr(g.size());\n\
-    \    for(int u = 0; u < ssize(g); u++)\n      for(int v : g[u])\n        gr[v].emplace_back(u);\n\
-    \n    int t = 0;\n    vector<bool> vis(ssize(g), false);\n    vector<int> tout(ssize(g));\n\
-    \    auto dfs = [&](int v, auto self) -> void {\n      vis[v] = true;\n      for(int\
-    \ x : gr[v])\n        if (!vis[x])\n          self(x, self);\n      tout[t++]\
-    \ = v;\n    };\n\n    for(int v = 0; v < ssize(g); v++)\n      if (!vis[v])\n\
-    \        dfs(v, dfs);\n\n    auto dfs2 = [&](int v, auto self) -> void {\n   \
-    \   vis[v] = true;\n      for(int x : g[v])\n        if (!vis[x])\n          self(x,\
-    \ self);\n      groupId[v] = size;\n    };\n    fill(vis.begin(), vis.end(), false);\n\
-    \    for(int v = ssize(g) - 1; v >= 0; v--) {\n      if (!vis[tout[v]]) {\n  \
-    \      dfs2(tout[v], dfs2);\n        size += 1;\n      }\n    }\n\n    for(int\
-    \ &x : groupId)\n      x = size - x - 1;\n\n    group.resize(size);\n    for(int\
-    \ v = 0; v < ssize(g); v++)\n      group[groupId[v]].emplace_back(v);\n\n    G.resize(size);\n\
-    \    for(int v = 0; v < ssize(g); v++)\n      for(int x : g[v])\n        if (groupId[v]\
-    \ != groupId[x])\n          G[groupId[v]].emplace_back(groupId[x]);\n  }\n};\n\
-    #line 5 \"test/strongly_connected_components.test.cpp\"\n\nsigned main() {\n \
-    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n\
-    \  vector<vector<int>> g(n);\n  for(; m--; ) {\n    int u, v; cin >> u >> v;\n\
-    \    g[u].emplace_back(v);\n  }\n\n  SCC scc(g);\n\n  cout << scc.size << '\\\
-    n';\n  for(int i = 0; i < scc.size; i++)\n    cout << ssize(scc.group[i]) << '\
-    \ ' << scc.group[i] << '\\n';\n\n  return 0;\n}\n"
+    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"graph/SCC.cpp\"\nstruct\
+    \ SCC {\n  vector<int> groupId;\n  vector<vector<int>> group, G;\n  int size;\n\
+    \n  SCC(vector<vector<int>> &g) : groupId(ssize(g)), size(0) {\n    vector<vector<int>>\
+    \ gr(g.size());\n    for(int u = 0; u < ssize(g); u++)\n      for(int v : g[u])\n\
+    \        gr[v].emplace_back(u);\n\n    int t = 0;\n    vector<bool> vis(ssize(g),\
+    \ false);\n    vector<int> tout(ssize(g));\n    auto dfs = [&](int v, auto self)\
+    \ -> void {\n      vis[v] = true;\n      for(int x : gr[v])\n        if (!vis[x])\n\
+    \          self(x, self);\n      tout[t++] = v;\n    };\n\n    for(int v = 0;\
+    \ v < ssize(g); v++)\n      if (!vis[v])\n        dfs(v, dfs);\n\n    auto dfs2\
+    \ = [&](int v, auto self) -> void {\n      vis[v] = true;\n      for(int x : g[v])\n\
+    \        if (!vis[x])\n          self(x, self);\n      groupId[v] = size;\n  \
+    \  };\n    fill(vis.begin(), vis.end(), false);\n    for(int v = ssize(g) - 1;\
+    \ v >= 0; v--) {\n      if (!vis[tout[v]]) {\n        dfs2(tout[v], dfs2);\n \
+    \       size += 1;\n      }\n    }\n\n    for(int &x : groupId)\n      x = size\
+    \ - x - 1;\n\n    group.resize(size);\n    for(int v = 0; v < ssize(g); v++)\n\
+    \      group[groupId[v]].emplace_back(v);\n\n    G.resize(size);\n    for(int\
+    \ v = 0; v < ssize(g); v++)\n      for(int x : g[v])\n        if (groupId[v] !=\
+    \ groupId[x])\n          G[groupId[v]].emplace_back(groupId[x]);\n  }\n};\n#line\
+    \ 5 \"test/strongly_connected_components.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<vector<int>> g(n);\n\
+    \  for(; m--; ) {\n    int u, v; cin >> u >> v;\n    g[u].emplace_back(v);\n \
+    \ }\n\n  SCC scc(g);\n\n  cout << scc.size << '\\n';\n  for(int i = 0; i < scc.size;\
+    \ i++)\n    cout << ssize(scc.group[i]) << ' ' << scc.group[i] << '\\n';\n\n \
+    \ return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/scc\"\n\n#include \"../default/t.cpp\"\
     \n#include \"../graph/SCC.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<vector<int>> g(n);\n\
@@ -80,8 +79,8 @@ data:
   isVerificationFile: true
   path: test/strongly_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 17:57:21+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-24 20:41:29+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/strongly_connected_components.test.cpp
 layout: document

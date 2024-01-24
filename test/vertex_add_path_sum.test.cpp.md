@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/eulerTour.cpp
     title: ds/eulerTour.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastJump.cpp
     title: ds/fastJump.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segtree/dualSegmentTree.cpp
     title: segtree/dualSegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -66,25 +66,23 @@ data:
     \  int m = lca(s, t);\n    if (dep[s] + dep[t] - 2 * dep[m] < k)\n      return\
     \ -1;\n    else if (dep[s] - dep[m] >= k)\n      return jump(s, k);\n    else\n\
     \      return jump(t, dep[s] + dep[t] - 2 * dep[m] - k);\n  }\n};\n#line 1 \"\
-    segtree/dualSegmentTree.cpp\"\n/**\n * template name: dualSegmentTree\n * author:\
-    \ Misuki\n * last update: 2024/01/11\n * verify: Library Checker - Range Affine\
-    \ Point Get\n */\n\ntemplate<class M, class T, M(*Munit)(), T(*Tunit)(), T(*Tope)(const\
-    \ T&, const T&), M(*comp)(const M&, const T&)>\nstruct dualSegmentTree {\n  vector<M>\
-    \ data;\n  vector<T> tag;\n  int size;\n\n  dualSegmentTree(int _size) : data(_size,\
-    \ Munit()), tag(_size, Tunit()), size(_size) {}\n  dualSegmentTree(vector<M> init)\
-    \ : data(init), tag(ssize(init), Tunit()), size(ssize(init)) {}\n\n  void apply(int\
-    \ i, T x) {\n    if (i < size)\n      tag[i] = Tope(tag[i], x);\n    else\n  \
-    \    data[i - size] = comp(data[i - size], x);\n  }\n\n  int trunc(unsigned i)\
-    \ { return i >> countr_zero(i); }\n\n  void push(int i) {\n    for(int s = bit_width((unsigned)i)\
-    \ - 1; s > 0; s--) {\n      if (tag[i >> s] != Tunit()) {\n        apply(i >>\
-    \ (s - 1), tag[i >> s]);\n        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n    \
-    \    tag[i >> s] = Tunit();\n      }\n    }\n  }\n\n  void set(int i, M x) {\n\
-    \    push(i + size);\n    data[i] = x;\n  }\n\n  M get(int i) {\n    push(i +\
-    \ size);\n    return data[i];\n  }\n\n  void modify(int l, int r, T x) {\n   \
-    \ if (x == Tunit()) return;\n    push(trunc(l + size)), push(trunc(r + size) -\
-    \ 1);\n    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n      if (l &\
-    \ 1) apply(l++, x);\n      if (r & 1) apply(--r, x);\n    }\n  }\n};\n#line 1\
-    \ \"ds/eulerTour.cpp\"\n//#include<ds/fastJump.cpp>\n//#include<segtree/dualSegmentTree.cpp>\n\
+    segtree/dualSegmentTree.cpp\"\ntemplate<class M, class T, M(*Munit)(), T(*Tunit)(),\
+    \ T(*Tope)(const T&, const T&), M(*comp)(const M&, const T&)>\nstruct dualSegmentTree\
+    \ {\n  vector<M> data;\n  vector<T> tag;\n  int size;\n\n  dualSegmentTree(int\
+    \ _size) : data(_size, Munit()), tag(_size, Tunit()), size(_size) {}\n  dualSegmentTree(vector<M>\
+    \ init) : data(init), tag(ssize(init), Tunit()), size(ssize(init)) {}\n\n  void\
+    \ apply(int i, T x) {\n    if (i < size)\n      tag[i] = Tope(tag[i], x);\n  \
+    \  else\n      data[i - size] = comp(data[i - size], x);\n  }\n\n  int trunc(unsigned\
+    \ i) { return i >> countr_zero(i); }\n\n  void push(int i) {\n    for(int s =\
+    \ bit_width((unsigned)i) - 1; s > 0; s--) {\n      if (tag[i >> s] != Tunit())\
+    \ {\n        apply(i >> (s - 1), tag[i >> s]);\n        apply(i >> (s - 1) ^ 1,\
+    \ tag[i >> s]);\n        tag[i >> s] = Tunit();\n      }\n    }\n  }\n\n  void\
+    \ set(int i, M x) {\n    push(i + size);\n    data[i] = x;\n  }\n\n  M get(int\
+    \ i) {\n    push(i + size);\n    return data[i];\n  }\n\n  void modify(int l,\
+    \ int r, T x) {\n    if (x == Tunit()) return;\n    push(trunc(l + size)), push(trunc(r\
+    \ + size) - 1);\n    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n  \
+    \    if (l & 1) apply(l++, x);\n      if (r & 1) apply(--r, x);\n    }\n  }\n\
+    };\n#line 1 \"ds/eulerTour.cpp\"\n//#include<ds/fastJump.cpp>\n//#include<segtree/dualSegmentTree.cpp>\n\
     \ntemplate<class M, class T, M(*Munit)(), T(*Tunit)(), M(*Mope)(const M&, const\
     \ M&), \nT(*Tope)(const T&, const T&), M(*comp)(const M&, const T&), M(*inv)(const\
     \ M&)>\nstruct eulerTour {\n  vector<int> tin, tout, p;\n  dualSegmentTree<M,\
@@ -128,8 +126,8 @@ data:
   isVerificationFile: true
   path: test/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 17:57:06+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-24 20:41:29+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/vertex_add_path_sum.test.cpp
 layout: document

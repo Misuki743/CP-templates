@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -42,15 +42,13 @@ data:
     \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
     \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
     \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"ds/hashTable.cpp\"\n/**\n\
-    \ * template name: hashTable\n * reference: https://codeforces.com/blog/entry/62393\n\
-    \ * last update: 2022/12/03\n * header: bit/extc++.h (or ext/pb_ds/assoc_container.hpp\
-    \ for CF)\n */\n\nstruct custom_hash {\n    static uint64_t splitmix64(uint64_t\
-    \ x) {\n        x += 0x9e3779b97f4a7c15;\n        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n\
-    \        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n        return x ^ (x >> 31);\n\
-    \    }\n\n    size_t operator()(uint64_t x) const {\n        static const uint64_t\
-    \ FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();\n   \
-    \     return splitmix64(x + FIXED_RANDOM);\n    }\n};\n\nusing namespace __gnu_pbds;\n\
+    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"ds/hashTable.cpp\"\n//source:\
+    \ https://codeforces.com/blog/entry/62393\n\nstruct custom_hash {\n    static\
+    \ uint64_t splitmix64(uint64_t x) {\n        x += 0x9e3779b97f4a7c15;\n      \
+    \  x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n\
+    \        return x ^ (x >> 31);\n    }\n\n    size_t operator()(uint64_t x) const\
+    \ {\n        static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();\n\
+    \        return splitmix64(x + FIXED_RANDOM);\n    }\n};\n\nusing namespace __gnu_pbds;\n\
     \n//gp_hash_table<ll, int, custom_hash> m;\n#line 6 \"test/associative_array.test.cpp\"\
     \n\ngp_hash_table<ll, ll, custom_hash> m({}, {}, {}, {}, {1 << 20});\n\nsigned\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin >> q;\n\
@@ -70,7 +68,7 @@ data:
   isVerificationFile: true
   path: test/associative_array.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 17:57:21+08:00'
+  timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/associative_array.test.cpp

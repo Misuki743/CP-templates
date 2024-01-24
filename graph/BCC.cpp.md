@@ -12,11 +12,10 @@ data:
     - https://judge.yosupo.jp/submission/96487
     - https://www.geeksforgeeks.org/biconnected-components/
     - https://www.hackerearth.com/practice/algorithms/graphs/biconnected-components/tutorial/
-  bundledCode: "#line 1 \"graph/BCC.cpp\"\n/**\n * template name: BCC\n * reference:\
-    \ https://judge.yosupo.jp/submission/96487\n */\n\n/*\n\u7121\u5411\u30B0\u30E9\
-    \u30D5\u306B\u5BFE\u3057\u3066\u4F7F\u3046\n\n\u4E8C\u91CD\u9023\u7D50\u6210\u5206\
-    \u5206\u89E3\u3068\u3082\u547C\u3070\u308C\u308B\u3002\n\n\nO(V+E)\n\u53C2\u8003\
-    :\nhttps://ei1333.github.io/luzhiled/snippets/graph/bi-connected-components.html\n\
+  bundledCode: "#line 1 \"graph/BCC.cpp\"\n//source: https://judge.yosupo.jp/submission/96487\n\
+    \n/*\n\u7121\u5411\u30B0\u30E9\u30D5\u306B\u5BFE\u3057\u3066\u4F7F\u3046\n\n\u4E8C\
+    \u91CD\u9023\u7D50\u6210\u5206\u5206\u89E3\u3068\u3082\u547C\u3070\u308C\u308B\
+    \u3002\n\n\nO(V+E)\n\u53C2\u8003:\nhttps://ei1333.github.io/luzhiled/snippets/graph/bi-connected-components.html\n\
     https://www.hackerearth.com/practice/algorithms/graphs/biconnected-components/tutorial/\n\
     https://www.geeksforgeeks.org/biconnected-components/\n*/\n\ntemplate<class T,class\
     \ U>constexpr bool chmin(T&a,const U b){if(a<=b)return false;a=b;return true;}\n\
@@ -84,10 +83,10 @@ data:
     \ continue;\n                forest[t].push_back(s);\n            }\n        }\n\
     \        group.resize(times);\n        for(int i=0;i<sz;i++){\n            group[group_id[i]].push_back(i);\n\
     \        }*/\n    }\n\n};\n"
-  code: "/**\n * template name: BCC\n * reference: https://judge.yosupo.jp/submission/96487\n\
-    \ */\n\n/*\n\u7121\u5411\u30B0\u30E9\u30D5\u306B\u5BFE\u3057\u3066\u4F7F\u3046\
-    \n\n\u4E8C\u91CD\u9023\u7D50\u6210\u5206\u5206\u89E3\u3068\u3082\u547C\u3070\u308C\
-    \u308B\u3002\n\n\nO(V+E)\n\u53C2\u8003:\nhttps://ei1333.github.io/luzhiled/snippets/graph/bi-connected-components.html\n\
+  code: "//source: https://judge.yosupo.jp/submission/96487\n\n/*\n\u7121\u5411\u30B0\
+    \u30E9\u30D5\u306B\u5BFE\u3057\u3066\u4F7F\u3046\n\n\u4E8C\u91CD\u9023\u7D50\u6210\
+    \u5206\u5206\u89E3\u3068\u3082\u547C\u3070\u308C\u308B\u3002\n\n\nO(V+E)\n\u53C2\
+    \u8003:\nhttps://ei1333.github.io/luzhiled/snippets/graph/bi-connected-components.html\n\
     https://www.hackerearth.com/practice/algorithms/graphs/biconnected-components/tutorial/\n\
     https://www.geeksforgeeks.org/biconnected-components/\n*/\n\ntemplate<class T,class\
     \ U>constexpr bool chmin(T&a,const U b){if(a<=b)return false;a=b;return true;}\n\
@@ -159,7 +158,7 @@ data:
   isVerificationFile: false
   path: graph/BCC.cpp
   requiredBy: []
-  timestamp: '2024-01-20 02:52:24+08:00'
+  timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/BCC.cpp

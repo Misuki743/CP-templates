@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/sparseTable.cpp
     title: ds/sparseTable.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -42,12 +42,10 @@ data:
     \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
     \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
     \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"ds/sparseTable.cpp\"\n/**\n\
-    \ * template name: sparseTable\n * author: Misuki\n * last update: 2024/01/01\n\
-    \ * verify: Library Checker - Static RMQ\n */\n\ntemplate<class T>\nstruct sparseTable{\n\
-    \  vector<vector<T> > table;\n  function<T(const T&, const T&)> comb;\n  int size\
-    \ = 0;\n\n  sparseTable(vector<T> base, function<T(const T&, const T&)> _comb)\
-    \ {\n    comb = _comb;\n    size = base.size();\n    table.resize(bit_width((unsigned)size),\
+    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"ds/sparseTable.cpp\"\ntemplate<class\
+    \ T>\nstruct sparseTable{\n  vector<vector<T> > table;\n  function<T(const T&,\
+    \ const T&)> comb;\n  int size = 0;\n\n  sparseTable(vector<T> base, function<T(const\
+    \ T&, const T&)> _comb) {\n    comb = _comb;\n    size = base.size();\n    table.resize(bit_width((unsigned)size),\
     \ std::vector<T>(size));\n    \n    table[0] = base;\n    for(int i = 1; i < ssize(table);\
     \ i++) {\n      for(int j = 0; j < size; j++) {\n        if (j + (1 << (i - 1))\
     \ < size)\n          table[i][j] = comb(table[i - 1][j], table[i - 1][j + (1 <<\
@@ -72,8 +70,8 @@ data:
   isVerificationFile: true
   path: test/static_RMQ.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 17:57:21+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-24 20:41:29+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/static_RMQ.test.cpp
 layout: document

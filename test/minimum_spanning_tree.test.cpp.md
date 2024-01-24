@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/DSU.cpp
     title: ds/DSU.cpp
   - icon: ':heavy_check_mark:'
@@ -46,25 +46,24 @@ data:
     \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
     \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
     \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"ds/DSU.cpp\"\n/**\n * template\
-    \ name: DSU\n * author: Misuki\n * last update: 2024/01/01\n * verify: Library\
-    \ Checker - Unionfind\n */\n\nstruct DSU {\n  vector<int> bos, sz;\n  int size;\n\
-    \n  DSU(int _size) : bos(_size), sz(_size, 1), size(_size) {\n    iota(bos.begin(),\
-    \ bos.end(), 0);\n  }\n\n  int query(int v) {\n    if (bos[v] == v)\n      return\
-    \ v;\n    else\n      return bos[v] = query(bos[v]);\n  }\n\n  bool merge(int\
-    \ v1, int v2) {\n    int b1 = query(v1), b2 = query(v2);\n\n    if (b1 == b2)\n\
-    \      return false;\n\n    if (sz[b1] > sz[b2])\n      swap(b1, b2);\n    bos[b1]\
-    \ = b2, sz[b2] += sz[b1];\n\n    return true;\n  }\n};\n#line 1 \"graph/Kruskal.cpp\"\
-    \n//#include \"ds/DSU.cpp\"\n\ntemplate<class T>\npair<T, vector<int>> Kruskal(vector<array<T,\
-    \ 3>> &e, int n) {\n  vector<int> id(ssize(e));\n  iota(id.begin(), id.end(),\
-    \ 0);\n  sort(id.begin(), id.end(), [&e](int i, int j) { return e[i][2] < e[j][2];\
-    \ });\n\n  T cost = 0;\n  DSU dsu(n);\n  vector<int> res;\n  for(int i : id) {\n\
-    \    auto [u, v, w] = e[i];\n    if (dsu.merge(u, v)) {\n      cost += w;\n  \
-    \    res.emplace_back(i);\n    }\n  }\n  return make_pair(cost, res);\n}\n#line\
-    \ 6 \"test/minimum_spanning_tree.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<array<ll, 3>> e(m);\n\
-    \  for(auto &[u, v, w] : e)\n    cin >> u >> v >> w;\n\n  auto [cost, eid] = Kruskal(e,\
-    \ n);\n  cout << cost << '\\n';\n  cout << eid << '\\n';\n\n  return 0;\n}\n"
+    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"ds/DSU.cpp\"\nstruct DSU\
+    \ {\n  vector<int> bos, sz;\n  int size;\n\n  DSU(int _size) : bos(_size), sz(_size,\
+    \ 1), size(_size) {\n    iota(bos.begin(), bos.end(), 0);\n  }\n\n  int query(int\
+    \ v) {\n    if (bos[v] == v)\n      return v;\n    else\n      return bos[v] =\
+    \ query(bos[v]);\n  }\n\n  bool merge(int v1, int v2) {\n    int b1 = query(v1),\
+    \ b2 = query(v2);\n\n    if (b1 == b2)\n      return false;\n\n    if (sz[b1]\
+    \ > sz[b2])\n      swap(b1, b2);\n    bos[b1] = b2, sz[b2] += sz[b1];\n\n    return\
+    \ true;\n  }\n};\n#line 1 \"graph/Kruskal.cpp\"\n//#include \"ds/DSU.cpp\"\n\n\
+    template<class T>\npair<T, vector<int>> Kruskal(vector<array<T, 3>> &e, int n)\
+    \ {\n  vector<int> id(ssize(e));\n  iota(id.begin(), id.end(), 0);\n  sort(id.begin(),\
+    \ id.end(), [&e](int i, int j) { return e[i][2] < e[j][2]; });\n\n  T cost = 0;\n\
+    \  DSU dsu(n);\n  vector<int> res;\n  for(int i : id) {\n    auto [u, v, w] =\
+    \ e[i];\n    if (dsu.merge(u, v)) {\n      cost += w;\n      res.emplace_back(i);\n\
+    \    }\n  }\n  return make_pair(cost, res);\n}\n#line 6 \"test/minimum_spanning_tree.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ m; cin >> n >> m;\n  vector<array<ll, 3>> e(m);\n  for(auto &[u, v, w] : e)\n\
+    \    cin >> u >> v >> w;\n\n  auto [cost, eid] = Kruskal(e, n);\n  cout << cost\
+    \ << '\\n';\n  cout << eid << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/minimum_spanning_tree\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../ds/DSU.cpp\"\n#include \"../graph/Kruskal.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
@@ -78,7 +77,7 @@ data:
   isVerificationFile: true
   path: test/minimum_spanning_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-23 21:38:15+08:00'
+  timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/minimum_spanning_tree.test.cpp

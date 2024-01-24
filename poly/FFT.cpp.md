@@ -8,8 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"poly/FFT.cpp\"\n/**\n * template name: FFT\n * author: Misuki\n\
-    \ * last update: 2022/04/07\n */\n\nconst double PI = acos(-1);\nvector<complex<double>\
+  bundledCode: "#line 1 \"poly/FFT.cpp\"\nconst double PI = acos(-1);\nvector<complex<double>\
     \ > w(2, 1), w_inv(2, 1);\n\nvoid FFT(vector<complex<double> > &a, bool inverse)\
     \ {\n  int n = a.size();\n\n  if (w.size() < n) {\n    int lgSz = __lg((int)w.size());\n\
     \    int lgN = __lg(n);\n    w.resize(n);\n    w_inv.resize(n);\n    for(int i\
@@ -35,9 +34,8 @@ data:
     \ = 0; i < n; i++)\n    c[i] = c[i] * d[i];\n\n  FFT(c, true);\n\n  vector<int>\
     \ res(mxSz);\n  for(int i = 0; i < mxSz; i++)\n    res[i] = round(c[i].real());\n\
     \n  return res;\n}\n"
-  code: "/**\n * template name: FFT\n * author: Misuki\n * last update: 2022/04/07\n\
-    \ */\n\nconst double PI = acos(-1);\nvector<complex<double> > w(2, 1), w_inv(2,\
-    \ 1);\n\nvoid FFT(vector<complex<double> > &a, bool inverse) {\n  int n = a.size();\n\
+  code: "const double PI = acos(-1);\nvector<complex<double> > w(2, 1), w_inv(2, 1);\n\
+    \nvoid FFT(vector<complex<double> > &a, bool inverse) {\n  int n = a.size();\n\
     \n  if (w.size() < n) {\n    int lgSz = __lg((int)w.size());\n    int lgN = __lg(n);\n\
     \    w.resize(n);\n    w_inv.resize(n);\n    for(int i = lgSz; i < lgN; i++) {\n\
     \      complex<double> w_k = exp(complex<double>(0, PI / (double)(1 << i)));\n\
@@ -66,7 +64,7 @@ data:
   isVerificationFile: false
   path: poly/FFT.cpp
   requiredBy: []
-  timestamp: '2024-01-20 02:52:24+08:00'
+  timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/FFT.cpp

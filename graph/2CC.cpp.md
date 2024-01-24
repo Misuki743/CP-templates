@@ -12,18 +12,17 @@ data:
     - https://atcoder.jp/contests/arc039/submissions/33364987
     - https://ei1333.github.io/library/graph/connected-components/two-edge-connected-components.hpp
     - https://judge.yosupo.jp/submission/96489
-  bundledCode: "#line 1 \"graph/2CC.cpp\"\n/**\n * template name: 2CC\n * reference:\
-    \ https://judge.yosupo.jp/submission/96489\n */\n\n/*\n\u7121\u5411\u30B0\u30E9\
-    \u30D5\u306B\u5BFE\u3057\u3066\u4F7F\u3046\n\n\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\
-    \u5206\u89E3\u3068\u3082. \u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u3068\u306F\
-    , 1\u672C\u306E\u8FBA\u3092\u53D6\u308A\u9664\u3044\u3066\u3082\u9023\u7D50\u3067\
-    \u3042\u308B\u90E8\u5206\u30B0\u30E9\u30D5\u3067\u3042\u308B. \n\u3064\u307E\u308A\
-    , \u6A4B\u3092\u542B\u307E\u306A\u3044\u90E8\u5206\u30B0\u30E9\u30D5\u306A\u306E\
-    \u3067, \u6A4B\u3092\u5217\u6319\u3059\u308B\u3053\u3068\u3067\u4E8C\u91CD\u8FBA\
-    \u9023\u7D50\u6210\u5206\u3092\u5217\u6319\u3067\u304D\u308B.\n\n\u4E8C\u91CD\u8FBA\
-    \u9023\u7D50\u6210\u5206\u3067\u7E2E\u7D04\u5F8C\u306E\u9802\u70B9\u3068\u6A4B\
-    \u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5\u306F\u68EE\u306B\u306A\u3063\u3066\
-    \u3044\u308B.\n\nO(V+E)\n\nverify:\nhttps://atcoder.jp/contests/arc039/submissions/33364987\n\
+  bundledCode: "#line 1 \"graph/2CC.cpp\"\n//source: https://judge.yosupo.jp/submission/96489\n\
+    \n/*\n\u7121\u5411\u30B0\u30E9\u30D5\u306B\u5BFE\u3057\u3066\u4F7F\u3046\n\n\u4E8C\
+    \u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\u3068\u3082. \u4E8C\u91CD\u8FBA\u9023\
+    \u7D50\u6210\u5206\u3068\u306F, 1\u672C\u306E\u8FBA\u3092\u53D6\u308A\u9664\u3044\
+    \u3066\u3082\u9023\u7D50\u3067\u3042\u308B\u90E8\u5206\u30B0\u30E9\u30D5\u3067\
+    \u3042\u308B. \n\u3064\u307E\u308A, \u6A4B\u3092\u542B\u307E\u306A\u3044\u90E8\
+    \u5206\u30B0\u30E9\u30D5\u306A\u306E\u3067, \u6A4B\u3092\u5217\u6319\u3059\u308B\
+    \u3053\u3068\u3067\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u3092\u5217\u6319\
+    \u3067\u304D\u308B.\n\n\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u3067\u7E2E\u7D04\
+    \u5F8C\u306E\u9802\u70B9\u3068\u6A4B\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5\
+    \u306F\u68EE\u306B\u306A\u3063\u3066\u3044\u308B.\n\nO(V+E)\n\nverify:\nhttps://atcoder.jp/contests/arc039/submissions/33364987\n\
     \u53C2\u8003:\nhttps://ei1333.github.io/library/graph/connected-components/two-edge-connected-components.hpp\n\
     chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://hos.ac/slides/20110504_graph.pdf\n\
     */\n\ntemplate<class T,class U>constexpr bool chmin(T&a,const U b){if(a<=b)return\
@@ -71,18 +70,18 @@ data:
     \n            forest[u].push_back(v);\n            forest[v].push_back(u);\n \
     \       }\n        group.resize(id);\n        for(int i=0;i<sz;i++){\n       \
     \     group[group_id[i]].push_back(i);\n        }\n    }\n\n};\n"
-  code: "/**\n * template name: 2CC\n * reference: https://judge.yosupo.jp/submission/96489\n\
-    \ */\n\n/*\n\u7121\u5411\u30B0\u30E9\u30D5\u306B\u5BFE\u3057\u3066\u4F7F\u3046\
-    \n\n\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\u3068\u3082. \u4E8C\u91CD\
-    \u8FBA\u9023\u7D50\u6210\u5206\u3068\u306F, 1\u672C\u306E\u8FBA\u3092\u53D6\u308A\
-    \u9664\u3044\u3066\u3082\u9023\u7D50\u3067\u3042\u308B\u90E8\u5206\u30B0\u30E9\
-    \u30D5\u3067\u3042\u308B. \n\u3064\u307E\u308A, \u6A4B\u3092\u542B\u307E\u306A\
-    \u3044\u90E8\u5206\u30B0\u30E9\u30D5\u306A\u306E\u3067, \u6A4B\u3092\u5217\u6319\
-    \u3059\u308B\u3053\u3068\u3067\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u3092\
-    \u5217\u6319\u3067\u304D\u308B.\n\n\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u3067\
-    \u7E2E\u7D04\u5F8C\u306E\u9802\u70B9\u3068\u6A4B\u304B\u3089\u306A\u308B\u30B0\
-    \u30E9\u30D5\u306F\u68EE\u306B\u306A\u3063\u3066\u3044\u308B.\n\nO(V+E)\n\nverify:\n\
-    https://atcoder.jp/contests/arc039/submissions/33364987\n\u53C2\u8003:\nhttps://ei1333.github.io/library/graph/connected-components/two-edge-connected-components.hpp\n\
+  code: "//source: https://judge.yosupo.jp/submission/96489\n\n/*\n\u7121\u5411\u30B0\
+    \u30E9\u30D5\u306B\u5BFE\u3057\u3066\u4F7F\u3046\n\n\u4E8C\u8FBA\u9023\u7D50\u6210\
+    \u5206\u5206\u89E3\u3068\u3082. \u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u3068\
+    \u306F, 1\u672C\u306E\u8FBA\u3092\u53D6\u308A\u9664\u3044\u3066\u3082\u9023\u7D50\
+    \u3067\u3042\u308B\u90E8\u5206\u30B0\u30E9\u30D5\u3067\u3042\u308B. \n\u3064\u307E\
+    \u308A, \u6A4B\u3092\u542B\u307E\u306A\u3044\u90E8\u5206\u30B0\u30E9\u30D5\u306A\
+    \u306E\u3067, \u6A4B\u3092\u5217\u6319\u3059\u308B\u3053\u3068\u3067\u4E8C\u91CD\
+    \u8FBA\u9023\u7D50\u6210\u5206\u3092\u5217\u6319\u3067\u304D\u308B.\n\n\u4E8C\u91CD\
+    \u8FBA\u9023\u7D50\u6210\u5206\u3067\u7E2E\u7D04\u5F8C\u306E\u9802\u70B9\u3068\
+    \u6A4B\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5\u306F\u68EE\u306B\u306A\u3063\
+    \u3066\u3044\u308B.\n\nO(V+E)\n\nverify:\nhttps://atcoder.jp/contests/arc039/submissions/33364987\n\
+    \u53C2\u8003:\nhttps://ei1333.github.io/library/graph/connected-components/two-edge-connected-components.hpp\n\
     chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://hos.ac/slides/20110504_graph.pdf\n\
     */\n\ntemplate<class T,class U>constexpr bool chmin(T&a,const U b){if(a<=b)return\
     \ false;a=b;return true;}\ntemplate<class T,class U>constexpr bool chmax(T&a,const\
@@ -133,7 +132,7 @@ data:
   isVerificationFile: false
   path: graph/2CC.cpp
   requiredBy: []
-  timestamp: '2024-01-20 02:52:24+08:00'
+  timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/2CC.cpp

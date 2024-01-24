@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/eulerTour2.cpp
     title: ds/eulerTour2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segtree/segmentTree.cpp
     title: segtree/segmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -47,37 +47,36 @@ data:
     \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
     \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
     \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"segtree/segmentTree.cpp\"\
-    \n/**\n * template name: segmentTree\n * author: Misuki\n * last update: 2024/01/01\n\
-    \ * verify: library checker - Point Add Range Sum, Static RMQ\n */\n\ntemplate<class\
-    \ M, M(*unit)(), M(*combine)(const M&, const M&)>\nstruct segmentTree {\n  vector<M>\
-    \ data;\n  int size;\n\n  segmentTree(int _size) : data(2 * _size, unit()), size(_size)\
-    \ {}\n\n  segmentTree(vector<M> init) : data(2 * ssize(init), unit()), size(ssize(init))\
-    \ {\n    copy(init.begin(), init.end(), data.begin() + size);\n    for(int i =\
-    \ size - 1; i > 0; i--)\n      data[i] = combine(data[i << 1], data[i << 1 | 1]);\n\
-    \  }\n\n  void set(int i, M x) {\n    data[i += size] = x;\n    while(i >>= 1)\n\
-    \      data[i] = combine(data[i << 1], data[i << 1 | 1]);\n  }\n\n  M get(int\
-    \ i) { return data[i + size]; }\n\n  M query(int l, int r) {\n    M L = unit(),\
-    \ R = unit();\n    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n    \
-    \  if (l & 1) L = combine(L, data[l++]);\n      if (r & 1) R = combine(data[--r],\
-    \ R);\n    }\n    return combine(L, R);\n  }\n};\n#line 1 \"ds/eulerTour2.cpp\"\
-    \n//#include<segtree/segmentTree.cpp>\n\ntemplate<class M, M(*unit)(), M(*combine)(const\
-    \ M&, const M&)>\nstruct eulerTour2 {\n  vector<int> tin, tout, p;\n  segmentTree<M,\
-    \ unit, combine> st;\n\n  eulerTour2(vector<vector<int>> g, int root = 0) : tin(ssize(g)),\
-    \ tout(ssize(g)), p(ssize(g), -1), st(ssize(g)) {\n    int t = 0;\n    auto dfs\
-    \ = [&](int v, auto self) -> void {\n      tin[v] = t++;\n      for(int x : g[v])\
-    \ {\n        if (x == p[v]) continue;\n        p[x] = v;\n        self(x, self);\n\
-    \      }\n      tout[v] = t;\n    };\n\n    dfs(root, dfs);\n  }\n\n  void set(int\
-    \ v, M x) { st.set(tin[v], x); }\n  M get(int v) { return st.get(tin[v]); }\n\
-    \  M query(int v) { return st.query(tin[v], tout[v]); }\n};\n#line 6 \"test/vertex_add_subtree_sum.test.cpp\"\
-    \n\nll unit() { return 0ll; }\nll add(const ll &a, const ll &b) { return a + b;\
-    \ }\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int\
-    \ n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x : a)\n    cin >> x;\n\
-    \  vector<vector<int>> g(n);\n  for(int u = 1; u < n; u++) {\n    int v; cin >>\
-    \ v;\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n  }\n\n  eulerTour2<ll,\
-    \ unit, add> eu(g);\n\n  for(int v = 0; v < n; v++)\n    eu.set(v, a[v]);\n\n\
-    \  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int x, y; cin\
-    \ >> x >> y;\n      eu.set(x, eu.get(x) + y);\n    } else {\n      int x; cin\
-    \ >> x;\n      cout << eu.query(x) << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+    \ntemplate<class M, M(*unit)(), M(*combine)(const M&, const M&)>\nstruct segmentTree\
+    \ {\n  vector<M> data;\n  int size;\n\n  segmentTree(int _size) : data(2 * _size,\
+    \ unit()), size(_size) {}\n\n  segmentTree(vector<M> init) : data(2 * ssize(init),\
+    \ unit()), size(ssize(init)) {\n    copy(init.begin(), init.end(), data.begin()\
+    \ + size);\n    for(int i = size - 1; i > 0; i--)\n      data[i] = combine(data[i\
+    \ << 1], data[i << 1 | 1]);\n  }\n\n  void set(int i, M x) {\n    data[i += size]\
+    \ = x;\n    while(i >>= 1)\n      data[i] = combine(data[i << 1], data[i << 1\
+    \ | 1]);\n  }\n\n  M get(int i) { return data[i + size]; }\n\n  M query(int l,\
+    \ int r) {\n    M L = unit(), R = unit();\n    for(l += size, r += size; l < r;\
+    \ l >>= 1, r >>= 1) {\n      if (l & 1) L = combine(L, data[l++]);\n      if (r\
+    \ & 1) R = combine(data[--r], R);\n    }\n    return combine(L, R);\n  }\n};\n\
+    #line 1 \"ds/eulerTour2.cpp\"\n//#include<segtree/segmentTree.cpp>\n\ntemplate<class\
+    \ M, M(*unit)(), M(*combine)(const M&, const M&)>\nstruct eulerTour2 {\n  vector<int>\
+    \ tin, tout, p;\n  segmentTree<M, unit, combine> st;\n\n  eulerTour2(vector<vector<int>>\
+    \ g, int root = 0) : tin(ssize(g)), tout(ssize(g)), p(ssize(g), -1), st(ssize(g))\
+    \ {\n    int t = 0;\n    auto dfs = [&](int v, auto self) -> void {\n      tin[v]\
+    \ = t++;\n      for(int x : g[v]) {\n        if (x == p[v]) continue;\n      \
+    \  p[x] = v;\n        self(x, self);\n      }\n      tout[v] = t;\n    };\n\n\
+    \    dfs(root, dfs);\n  }\n\n  void set(int v, M x) { st.set(tin[v], x); }\n \
+    \ M get(int v) { return st.get(tin[v]); }\n  M query(int v) { return st.query(tin[v],\
+    \ tout[v]); }\n};\n#line 6 \"test/vertex_add_subtree_sum.test.cpp\"\n\nll unit()\
+    \ { return 0ll; }\nll add(const ll &a, const ll &b) { return a + b; }\n\nsigned\
+    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
+    \ n >> q;\n  vector<ll> a(n);\n  for(ll &x : a)\n    cin >> x;\n  vector<vector<int>>\
+    \ g(n);\n  for(int u = 1; u < n; u++) {\n    int v; cin >> v;\n    g[u].emplace_back(v);\n\
+    \    g[v].emplace_back(u);\n  }\n\n  eulerTour2<ll, unit, add> eu(g);\n\n  for(int\
+    \ v = 0; v < n; v++)\n    eu.set(v, a[v]);\n\n  while(q--) {\n    int t; cin >>\
+    \ t;\n    if (t == 0) {\n      int x, y; cin >> x >> y;\n      eu.set(x, eu.get(x)\
+    \ + y);\n    } else {\n      int x; cin >> x;\n      cout << eu.query(x) << '\\\
+    n';\n    }\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../segtree/segmentTree.cpp\"\n#include\
     \ \"../ds/eulerTour2.cpp\"\n\nll unit() { return 0ll; }\nll add(const ll &a, const\
@@ -97,8 +96,8 @@ data:
   isVerificationFile: true
   path: test/vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 17:57:06+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-24 20:41:29+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/vertex_add_subtree_sum.test.cpp
 layout: document

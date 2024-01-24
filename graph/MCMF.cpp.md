@@ -8,16 +8,15 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"graph/MCMF.cpp\"\n/**\n * template name: MCMF\n * author:\
-    \ Misuki\n * last update: 2021/11/11\n */\n\nstruct MCMF {\n  struct Edge {\n\
-    \    int to, rev;\n    long long cap, cos;\n    Edge(int _to, long long _cap,\
-    \ long long _cos, int _rev) :\n        to(_to), cap(_cap), cos(_cos), rev(_rev)\
-    \ {}\n  };\n\n  static const int SIZE = 3502;\n  int n, s, t;\n  vector<Edge>\
-    \ G[SIZE];\n  array<int, SIZE> par, idx;\n  array<long long, SIZE> pot, dis, f;\
-    \ \n\n  void init(int _n, int _s, int _t) {\n    n = _n, s = _s, t = _t;\n   \
-    \ for(int i = 0; i < n; i++)\n      G[i].clear();\n  }\n\n  void addEdge(int from,\
-    \ int to, long long cap, long long cos) {\n    G[from].emplace_back(Edge(to, cap,\
-    \ cos, G[to].size()));\n    G[to].emplace_back(Edge(from, 0, -cos, (int)G[from].size()\
+  bundledCode: "#line 1 \"graph/MCMF.cpp\"\nstruct MCMF {\n  struct Edge {\n    int\
+    \ to, rev;\n    long long cap, cos;\n    Edge(int _to, long long _cap, long long\
+    \ _cos, int _rev) :\n        to(_to), cap(_cap), cos(_cos), rev(_rev) {}\n  };\n\
+    \n  static const int SIZE = 3502;\n  int n, s, t;\n  vector<Edge> G[SIZE];\n \
+    \ array<int, SIZE> par, idx;\n  array<long long, SIZE> pot, dis, f; \n\n  void\
+    \ init(int _n, int _s, int _t) {\n    n = _n, s = _s, t = _t;\n    for(int i =\
+    \ 0; i < n; i++)\n      G[i].clear();\n  }\n\n  void addEdge(int from, int to,\
+    \ long long cap, long long cos) {\n    G[from].emplace_back(Edge(to, cap, cos,\
+    \ G[to].size()));\n    G[to].emplace_back(Edge(from, 0, -cos, (int)G[from].size()\
     \ - 1));\n  }\n\n  void initPotential() {\n    fill(dis.begin(), dis.end(), LLONG_MAX);\n\
     \    dis[s] = 0;\n    for(int i = 1; i < n; i++) {\n      for(int j = 0; j < n;\
     \ j++) {\n        if (dis[j] == LLONG_MAX)\n          continue;\n        for(Edge\
@@ -40,8 +39,7 @@ data:
     \      }\n      Flow += bot, Cost += bot * (dis[t] - pot[s] + pot[t]);\n\n   \
     \   for(int i = 0; i < n; i++) {\n        dis[i] += pot[i] - pot[s];\n      }\n\
     \      pot.swap(dis);\n    }\n\n    return make_pair(Flow, Cost);\n  }\n};\n"
-  code: "/**\n * template name: MCMF\n * author: Misuki\n * last update: 2021/11/11\n\
-    \ */\n\nstruct MCMF {\n  struct Edge {\n    int to, rev;\n    long long cap, cos;\n\
+  code: "struct MCMF {\n  struct Edge {\n    int to, rev;\n    long long cap, cos;\n\
     \    Edge(int _to, long long _cap, long long _cos, int _rev) :\n        to(_to),\
     \ cap(_cap), cos(_cos), rev(_rev) {}\n  };\n\n  static const int SIZE = 3502;\n\
     \  int n, s, t;\n  vector<Edge> G[SIZE];\n  array<int, SIZE> par, idx;\n  array<long\
@@ -75,7 +73,7 @@ data:
   isVerificationFile: false
   path: graph/MCMF.cpp
   requiredBy: []
-  timestamp: '2024-01-20 02:52:24+08:00'
+  timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/MCMF.cpp

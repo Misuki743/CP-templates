@@ -8,8 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"poly/FFTmod.cpp\"\n/**\n * template name: FFTmod\n * author:\
-    \ Misuki\n * last update: 2022/04/07\n * include template: FFT\n */\n\nconst long\
+  bundledCode: "#line 1 \"poly/FFTmod.cpp\"\n//#include<poly/FFT.cpp>\n\nconst long\
     \ long MOD = 1e9 + 7;\nconst long long SQRT = sqrt(MOD);\nvoid sqrtDivide(vector<long\
     \ long> &a, vector<long long> &b) {\n  vector<long long> tmp = a;\n  a.clear();\n\
     \  b.clear();\n  a.resize(tmp.size());\n  b.resize(tmp.size());\n  for(int i =\
@@ -32,8 +31,7 @@ data:
     \    c1d1Val %= MOD;\n    c1d2Val %= MOD;\n    c2d1Val %= MOD;\n    c2d2Val %=\
     \ MOD;\n\n    res[i] = ((((((c2d2Val * SQRT) % MOD) + (c1d2Val + c2d1Val)) * SQRT)\
     \ % MOD) + c1d1Val) % MOD;\n  }\n\n  return res;\n}\n"
-  code: "/**\n * template name: FFTmod\n * author: Misuki\n * last update: 2022/04/07\n\
-    \ * include template: FFT\n */\n\nconst long long MOD = 1e9 + 7;\nconst long long\
+  code: "//#include<poly/FFT.cpp>\n\nconst long long MOD = 1e9 + 7;\nconst long long\
     \ SQRT = sqrt(MOD);\nvoid sqrtDivide(vector<long long> &a, vector<long long> &b)\
     \ {\n  vector<long long> tmp = a;\n  a.clear();\n  b.clear();\n  a.resize(tmp.size());\n\
     \  b.resize(tmp.size());\n  for(int i = 0; i < tmp.size(); i++) {\n    a[i] =\
@@ -60,7 +58,7 @@ data:
   isVerificationFile: false
   path: poly/FFTmod.cpp
   requiredBy: []
-  timestamp: '2024-01-20 02:52:24+08:00'
+  timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/FFTmod.cpp

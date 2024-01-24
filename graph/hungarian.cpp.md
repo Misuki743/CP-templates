@@ -9,8 +9,8 @@ data:
   attributes:
     links:
     - https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/Matching/Hungarian.h
-  bundledCode: "#line 1 \"graph/hungarian.cpp\"\n/**\n * Author: Benjamin Qi, chilli\n\
-    \ * Date: 2020-04-04\n * License: CC0\n * Source: https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/Matching/Hungarian.h\n\
+  bundledCode: "#line 1 \"graph/hungarian.cpp\"\n//source: KACTL\n\n/**\n * Author:\
+    \ Benjamin Qi, chilli\n * Date: 2020-04-04\n * License: CC0\n * Source: https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/Matching/Hungarian.h\n\
     \ * Description: Given a weighted bipartite graph, matches every node on\n * the\
     \ left with a node on the right such that no\n * nodes are in two matchings and\
     \ the sum of the edge weights is minimal. Takes\n * cost[N][M], where cost[i][j]\
@@ -30,8 +30,8 @@ data:
     \ path\n\t\t\tint j1 = pre[j0];\n\t\t\tp[j0] = p[j1], j0 = j1;\n\t\t}\n\t}\n\t\
     rep(j,1,m) if (p[j]) ans[p[j] - 1] = j - 1;\n\treturn {-v[0], ans}; // min cost\n\
     }\n"
-  code: "/**\n * Author: Benjamin Qi, chilli\n * Date: 2020-04-04\n * License: CC0\n\
-    \ * Source: https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/Matching/Hungarian.h\n\
+  code: "//source: KACTL\n\n/**\n * Author: Benjamin Qi, chilli\n * Date: 2020-04-04\n\
+    \ * License: CC0\n * Source: https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/Matching/Hungarian.h\n\
     \ * Description: Given a weighted bipartite graph, matches every node on\n * the\
     \ left with a node on the right such that no\n * nodes are in two matchings and\
     \ the sum of the edge weights is minimal. Takes\n * cost[N][M], where cost[i][j]\
@@ -55,7 +55,7 @@ data:
   isVerificationFile: false
   path: graph/hungarian.cpp
   requiredBy: []
-  timestamp: '2024-01-20 02:52:24+08:00'
+  timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/hungarian.cpp
