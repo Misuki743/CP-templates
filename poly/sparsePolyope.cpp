@@ -1,10 +1,6 @@
-/**
- * template name: sparsePolyope
- * author: Misuki
- * last update: 2024/01/11
- * include: FPS/NTT/mint
- * verify: Library Checker - Inv of Formal Power Series (Sparse)
- */
+//#include<poly/FPS.cpp>
+//#include<poly/NTTmint.cpp>
+//#include<modint/MontgomeryModInt.cpp>
 
 namespace sparsePolyope {
   template<class Mint>

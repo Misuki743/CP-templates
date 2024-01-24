@@ -1,14 +1,8 @@
-/**
- * template name: NTT
- * author: Misuki
- * last update: 2023/12/04
- * remark: MOD = 2^K * C + 1, R is a primitive root modulo MOD
- * remark: a.size() <= 2^K must be satisfied
- * some common modulo: 998244353  = 2^23 * 119 + 1, R = 3
- *                     469762049  = 2^26 * 7   + 1, R = 3
- *                     1224736769 = 2^24 * 73  + 1, R = 3
- * verify: Library Checker - Convolution
- */
+//remark: MOD = 2^K * C + 1, R is a primitive root modulo MOD
+//remark: a.size() <= 2^K must be satisfied
+//some common modulo: 998244353  = 2^23 * 119 + 1, R = 3
+//                    469762049  = 2^26 * 7   + 1, R = 3
+//                    1224736769 = 2^24 * 73  + 1, R = 3
 
 template<int32_t k, int32_t c, int32_t r>
 struct NTT {

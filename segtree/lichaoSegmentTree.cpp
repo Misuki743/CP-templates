@@ -1,12 +1,4 @@
-/**
- * template name: lichaoSegmentTree
- * author: Misuki
- * last update: 2024/01/01
- * note: size should be power of 2
- *       finding min line in default
- * verify: Library Checker - Line Add Get Min
- *         Library Checker - Segment Add Get Min
- */
+//note: size should be power of 2, finding min line in default
 
 template<class M, M unit>
 struct lichaoSegmentTree {

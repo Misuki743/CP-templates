@@ -1,10 +1,3 @@
-/**
- * template name: KMPA
- * author: Misuki
- * last update: 2023/08/24
- * verify: CF 1721E - Prefix Function Queries
- */
-
 struct KMPA {
   static constexpr array<int, 26> UNIT = {};
   vector<array<int, 26>> v;

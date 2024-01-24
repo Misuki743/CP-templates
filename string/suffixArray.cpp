@@ -1,10 +1,6 @@
-/**
- * template name: suffixArray
- * source: AtCoderLibrary(ACL)
- * last update: 2022/07/13
- * usage: suffix_array(vector<> s)
- *        lcp_array(vector<> s, vector<int> sa)
- */
+//source: AtCoderLibrary(ACL)
+// usage: suffix_array(vector<> s)
+//        lcp_array(vector<> s, vector<int> sa)
 
 std::vector<int> sa_naive(const std::vector<int>& s) {
     int n = int(s.size());

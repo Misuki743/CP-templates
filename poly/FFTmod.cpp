@@ -1,9 +1,4 @@
-/**
- * template name: FFTmod
- * author: Misuki
- * last update: 2022/04/07
- * include template: FFT
- */
+//#include<poly/FFT.cpp>
 
 const long long MOD = 1e9 + 7;
 const long long SQRT = sqrt(MOD);

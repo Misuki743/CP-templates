@@ -1,10 +1,3 @@
-/**
- * template name: palindromicTree
- * author: Misuki
- * last update: 2024/01/13
- * verify: yukicoder - No.2606 Mirror Relay
- */
-
 template<unsigned sigma = 26, char base = 'a'>
 struct palindromicTree {
   vector<int> len, link;

@@ -1,12 +1,3 @@
-/**
- * template name: Bostan-Mori
- * author: Misuki
- * last update: 2024/01/06
- * include: NTT, mint
- * usage: compute k-th term of P(x)/Q(x) in O(dlgdlgk)
- * verify: Library Checker - Kth term of Linearly Recurrent Sequence
- */
-
 template<NTT Ntt, class Mint>
 mint BostanMori(vector<Mint> P, vector<Mint> Q, ll k) {
   assert(!P.empty() and !Q.empty() and Q[0] != 0);

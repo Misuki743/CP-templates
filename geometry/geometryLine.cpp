@@ -1,7 +1,4 @@
-/**
- * template name: geometryLine
- * source: kactl
- */
+//source: KACTL
 
 typedef Point<double> P;
 double segDist(P& s, P& e, P& p) {

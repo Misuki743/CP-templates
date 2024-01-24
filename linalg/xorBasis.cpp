@@ -1,11 +1,5 @@
-/**
- * template name: xorBasis
- * author: Misuki
- * last update: 2023/01/01
- * note: querying whether x can be represented as linear combination of some
- *       vector with label >= lb
- * verify: CF1902F - Trees and XOR Queries Again
- */
+// note: querying whether x can be represented as linear combination of some
+//       vector with label >= lb
 
 template<int size>
 struct xorBasis {

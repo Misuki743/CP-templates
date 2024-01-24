@@ -1,10 +1,3 @@
-/**
- * template name: sparseTable
- * author: Misuki
- * last update: 2024/01/01
- * verify: Library Checker - Static RMQ
- */
-
 template<class T>
 struct sparseTable{
   vector<vector<T> > table;

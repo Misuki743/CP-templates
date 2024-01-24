@@ -1,4 +1,4 @@
-//#include "fastFactorize.cpp"
+//#include "numtheory/fastFactorize.cpp"
 
 ull primitiveRoot(ull p) {
   auto fac = factor(p - 1);

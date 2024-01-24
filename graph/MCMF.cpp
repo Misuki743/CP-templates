@@ -1,9 +1,3 @@
-/**
- * template name: MCMF
- * author: Misuki
- * last update: 2021/11/11
- */
-
 struct MCMF {
   struct Edge {
     int to, rev;

@@ -1,9 +1,3 @@
-/**
- * template name: linearSieve
- * author: Misuki
- * last update: 2022/12/13
- */
-
 const int C = 1000001;
 vector<int> prime;
 int mpf[C];

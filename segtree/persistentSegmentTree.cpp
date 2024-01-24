@@ -1,10 +1,3 @@
-/**
- * template name: persistentSegmentTree
- * author: Misuki
- * last update: 2022/12/13
- * verify: library checker - Range Kth Smallest
- */
-
 template<class T>
 struct persistentSegmentTree {
   struct node {

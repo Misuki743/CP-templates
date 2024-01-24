@@ -1,9 +1,4 @@
-/**
- * template name: minkowski sum
- * source: https://cp-algorithms.com/geometry/minkowski.html#implementation
- * last update: 2023/08/18
- * verify: CF1841F - Monocarp and a Strategic Game
- */
+//source: https://cp-algorithms.com/geometry/minkowski.html#implementation
 
 template<class pt>
 void reorder_polygon(vector<pt> & P){

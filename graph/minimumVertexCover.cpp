@@ -1,10 +1,4 @@
-/**
- * template name: minimumVertexCover
- * author: Misuki
- * last update: 2023/10/14
- * verify: CF1721F - Matching Reduction
- * require: hopcroft-karp
- */
+//#include<graph/hopcroftKarp.cpp>
 
 array<vector<int>, 2> MVC(vector<vi> &g, vi& btoa) {
   int n1 = sz(g), n2 = sz(btoa);

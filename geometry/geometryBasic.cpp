@@ -1,7 +1,4 @@
-/**
- * template name: geometryBasic
- * source: kactl
- */
+//source: KACTL
 
 template <class T> int sgn(T x) { return (x > 0) - (x < 0); }
 template<class T>

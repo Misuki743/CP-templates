@@ -1,14 +1,4 @@
-/**
- * template name: ultraLazySegmentTree
- * author: Misuki
- * last update: 2024/01/06
- * include: lazySegmentTree
- * verify: Codeforces Edu Segment Tree part 2 step 2 pA - Addition and Minimum
- *         Codeforces Edu Segment Tree part 2 step 2 pD - Addition and Sum 
- *         Codeforces Edu Segment Tree part 2 step 2 pE - Assignment and Minimum 
- *         Codeforces Edu Segment Tree part 2 step 2 pF - Assignment and Sum 
- *         Library Checker - Area of Union of Rectangles
- */
+//#include<segtree/lazySegmentTree.cpp>
 
 namespace ultraLazySegmentTree {
   template<class T> T mn(const T &a, const T &b) { return min(a, b); }

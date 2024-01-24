@@ -1,10 +1,3 @@
-/**
- * template name: SCC
- * author: Misuki
- * last update: 2024/01/11
- * verify: Library Checker - Strongly Connected Components
- */
-
 struct SCC {
   vector<int> groupId;
   vector<vector<int>> group, G;

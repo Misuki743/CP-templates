@@ -1,9 +1,4 @@
-/**
- * template name: comb
- * author: Misuki
- * last update: 2023/01/22
- * note: remember to call init() before using it.
- */
+// note: remember to call init() before using it.
 
 const int MAX = 2000001;
 mint fac[MAX], facInv[MAX];

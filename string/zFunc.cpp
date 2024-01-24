@@ -1,10 +1,3 @@
-/**
- * template name: zFunc
- * author: Misuki
- * last update: 2024/01/01
- * verify: Library Checker - Z Algorithm
- */
-
 vector<int> zFunc(string &s) {
   vector<int> z(ssize(s));
   z[0] = ssize(s);

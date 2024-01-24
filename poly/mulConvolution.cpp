@@ -1,7 +1,7 @@
-//#include "../numtheory/primitiveRoot.cpp"
-//#include "../numtheory/fastFactorize.cpp"
-//#include "../poly/NTTmint.cpp"
-//#include "../modint/MontgomeryModInt.cpp"
+//#include "numtheory/primitiveRoot.cpp"
+//#include "numtheory/fastFactorize.cpp"
+//#include "poly/NTTmint.cpp"
+//#include "modint/MontgomeryModInt.cpp"
 
 struct mulConvolution {
   const int P, root;

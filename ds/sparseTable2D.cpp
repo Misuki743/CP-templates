@@ -1,9 +1,3 @@
-/**
- * template name: sparseTable2D
- * author: Misuki
- * last update: 2023/11/30
- * verify: CF 1301-E
- */
 template<class T>
 struct sparseTable2D {
   vector<vector<vector<vector<T>>>> table;

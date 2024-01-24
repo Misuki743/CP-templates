@@ -1,10 +1,3 @@
-/**
- * template name: DSU
- * author: Misuki
- * last update: 2024/01/01
- * verify: Library Checker - Unionfind
- */
-
 struct DSU {
   vector<int> bos, sz;
   int size;

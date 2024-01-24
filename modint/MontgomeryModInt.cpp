@@ -1,10 +1,5 @@
-/**
- * template name: MontgomeryModInt
- * author: Misuki
- * reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
- * last update: 2023/11/30
- * note: mod should be a prime less than 2^30.
- */
+//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
+//note: mod should be a prime less than 2^30.
 
 template<uint32_t mod>
 struct MontgomeryModInt {

@@ -1,9 +1,3 @@
-/**
- * template name: segmentTree2D
- * author: Misuki
- * last update: 2022/05/08
- */
-
 template<class T> 
 struct segmentTree2D {
   static const int MAXR = 2000;

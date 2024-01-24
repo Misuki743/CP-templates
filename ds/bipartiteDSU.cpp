@@ -1,10 +1,3 @@
-/**
- * template name: bipartite checking DSU
- * author: Misuki
- * last update: 2023/08/04
- * verify: CF 1844E - Great Grids
- */
-
 struct DSU {
   vector<int> dep;
   vector<int> bos;

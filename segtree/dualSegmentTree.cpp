@@ -1,10 +1,3 @@
-/**
- * template name: dualSegmentTree
- * author: Misuki
- * last update: 2024/01/11
- * verify: Library Checker - Range Affine Point Get
- */
-
 template<class M, class T, M(*Munit)(), T(*Tunit)(), T(*Tope)(const T&, const T&), M(*comp)(const M&, const T&)>
 struct dualSegmentTree {
   vector<M> data;

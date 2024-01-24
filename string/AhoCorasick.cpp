@@ -1,9 +1,3 @@
-/**
- * template name: AhoCorasick
- * author: Misuki
- * last update: 2022/09/11
- */
-
 struct AhoCorasick {
   struct node {
     static const int sigma = 26;

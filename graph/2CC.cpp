@@ -1,7 +1,4 @@
-/**
- * template name: 2CC
- * reference: https://judge.yosupo.jp/submission/96489
- */
+//source: https://judge.yosupo.jp/submission/96489
 
 /*
 無向グラフに対して使う

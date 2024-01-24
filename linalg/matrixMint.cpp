@@ -1,14 +1,4 @@
-/**
- * template name: matrixMint
- * author: Misuki
- * include: mint
- * reference: kactl (for det() and inv())
- * last update: 2024/01/17
- * verify: Library Checker - Matrix Product
- *         Library Checker - Determinant of Matrix
- *         Library Checker - Inverse Matrix
- *         Library Checker - Pow of Matrix
- */
+//source: KACTL(for det() and inv())
 
 template<class Mint>
 struct matrix : vector<vector<Mint>> {

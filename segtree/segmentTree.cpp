@@ -1,10 +1,3 @@
-/**
- * template name: segmentTree
- * author: Misuki
- * last update: 2024/01/01
- * verify: library checker - Point Add Range Sum, Static RMQ
- */
-
 template<class M, M(*unit)(), M(*combine)(const M&, const M&)>
 struct segmentTree {
   vector<M> data;

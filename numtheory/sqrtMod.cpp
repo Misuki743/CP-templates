@@ -1,8 +1,4 @@
-/**
- * template name: sqrtMod
- * source: KACTL
- * verify: Library Checker - Sqrt Mod
- */
+//source: KACTL
 
 ll modpow(ll b, ll e, ll p) {
   ll ans = 1;

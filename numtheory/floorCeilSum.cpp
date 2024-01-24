@@ -1,13 +1,6 @@
-/**
- * template name: floorCeilSum
- * author: Misuki
- * last update: 2024/01/11
- * note: g = floor(x / val) is the greatest value s.t. floor(x / g) = val for floor sum, 
- *       g = ceil(x / val) is the least value s.t. ceil(x / g) = val for ceil sum. 
- * verify: brute forced x <= 1e4
- *         Library Checker - Enumerate Quotients
- */
-
+// note: g = floor(x / val) is the greatest value s.t. floor(x / g) = val for floor sum, 
+//       g = ceil(x / val) is the least value s.t. ceil(x / g) = val for ceil sum. 
+//
 template<class T>
 vector<array<T, 3>> calc_floor(T x) {
   vector<T> v, rng;

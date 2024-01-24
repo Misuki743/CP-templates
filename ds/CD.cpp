@@ -1,9 +1,3 @@
-/**
- * template name: CentroidDecomposition
- * author: Misuki
- * last update: 2023/07/23
- */
-
 struct CentroidDecomposition {
   vector<bool> vis;
   vector<int> sz;

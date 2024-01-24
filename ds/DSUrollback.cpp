@@ -1,10 +1,3 @@
-/**
- * template name: DSU rollback
- * author: Misuki
- * last update: 2024/01/05
- * verify: Library Checker - Persistent Unionfind
- */
-
 struct DSU {
   vector<array<int, 4>> his;
   vector<int> bos, sz;

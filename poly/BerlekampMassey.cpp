@@ -1,11 +1,3 @@
-/**
- * template name: Berlekamp-Massey
- * author: Misuki
- * last update: 2024/01/06
- * include: mint
- * verify: Library Checker - Find Linear Recurrence
- */
-
 vector<mint> BerlekampMassey(vector<mint> s) {
   vector<mint> c(1, 0), oldC(1, 0);
   int f = -1;

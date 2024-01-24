@@ -1,10 +1,5 @@
-/**
- * template name: exgcd
- * reference: KACTL
- * last update: 2023/08/03
- * verify: CF 1748D - ConstructOR
- * note: inv calculate modulo inverse of r mod m where gcd(r, m) = 1
- */
+//source: KACTL
+//note: inv calculate modulo inverse of r mod m where gcd(r, m) = 1
 
 ll euclid(ll a, ll b, ll &x, ll &y) {
 	if (!b) return x = 1, y = 0, a;

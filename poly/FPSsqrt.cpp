@@ -1,10 +1,6 @@
-/**
- * template name: FPSsqrt
- * author: Misuki
- * last update: 2024/01/11
- * include: NTT/mint/sqrtMod
- * verify: Library Checker - Sqrt of Formal Power Series
- */
+//#include<poly/NTTmint.cpp>
+//#include<modint/MontgomeryModInt.cpp>
+//#include<numtheory/sqrtMod.cpp>
 
 template<class Mint>
 FPS<Mint> FPSsqrt(FPS<Mint> F, int k) {

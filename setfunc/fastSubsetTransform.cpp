@@ -1,10 +1,4 @@
-/**
- * template name: fastSubsetTransform
- * author: Misuki
- * last update: 2024/01/10
- * include template: FPS
- * verify: Library Checker - Subset Convolution
- */
+//#include<poly/FPS.cpp>
 
 template<class FPS>
 vector<FPS> FST(FPS f) {

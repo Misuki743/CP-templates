@@ -1,7 +1,4 @@
-/**
- * template name: geometryPolygon
- * source: kactl
- */
+//source: KACTL
 
 bool inPolygon(vector<P> &p, P a, bool strict = true) {
 	int cnt = 0, n = sz(p);

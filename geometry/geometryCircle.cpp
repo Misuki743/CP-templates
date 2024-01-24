@@ -1,7 +1,4 @@
-/**
- * template name: geometry circle
- * source: kactl
- */
+//source: KACTL
 
 #define arg(p, q) atan2(p.cross(q), p.dot(q))
 

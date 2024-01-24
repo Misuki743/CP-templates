@@ -1,15 +1,6 @@
-/**
- * template name: NTTanyMod
- * author: Misuki
- * last update: 2023/12/04
- * reference: https://math314.hateblo.jp/entry/2015/05/07/014908
- *            https://judge.yosupo.jp/submission/15581
- * remark: n * mod^2 < prod of mods(~= 5e26) should be satisfied
- * some common modulo: 998244353  = 2^23 * 119 + 1, R = 3
- *                     469762049  = 2^26 * 7   + 1, R = 3
- *                     167772161  = 2^25 * 5   + 1, R = 3
- * verify: Library Checker - Convolution (Mod 1,000,000,007)
- */
+//reference: https://math314.hateblo.jp/entry/2015/05/07/014908
+//reference: https://judge.yosupo.jp/submission/15581
+//remark: n * mod^2 < prod of mods(~= 5e26) should be satisfied
 
 template<class Mint>
 vector<Mint> convAnyMod(vector<Mint> a, vector<Mint> b) {

@@ -1,9 +1,4 @@
-/**
- * template name: mint
- * author: Misuki
- * last update: 2022/06/01
- * note: inversion only works when MOD is a prime
- */
+//note: inversion only works when MOD is a prime
 
 struct mint {
   static const long long MOD = 998244353;

@@ -1,9 +1,3 @@
-/**
- * template name: KMP
- * author: Misuki
- * last update: 2022/02/04
- */
-
 int fail[1000000];
 void build(string &s) {
   fail[0] = -1;

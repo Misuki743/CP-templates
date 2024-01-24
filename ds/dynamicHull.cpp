@@ -1,8 +1,4 @@
-/**
- * template name: dynamicHull
- * source: https://codeforces.com/blog/entry/112458
- * last update: 2023/03/18
- */
+//source: https://codeforces.com/blog/entry/112458
 
 struct pt {
 	int x, y;
