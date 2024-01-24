@@ -8,7 +8,7 @@ data:
       title: combi/comb.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -22,7 +22,7 @@ data:
     - icon: ':warning:'
       path: ds/CD.cpp
       title: ds/CD.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/DSU.cpp
       title: ds/DSU.cpp
     - icon: ':heavy_check_mark:'
@@ -37,13 +37,13 @@ data:
     - icon: ':warning:'
       path: ds/dynamicHull.cpp
       title: ds/dynamicHull.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/eulerTour.cpp
       title: ds/eulerTour.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/eulerTour2.cpp
       title: ds/eulerTour2.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fastJump.cpp
       title: ds/fastJump.cpp
     - icon: ':warning:'
@@ -58,7 +58,7 @@ data:
     - icon: ':warning:'
       path: ds/persistentTreap.cpp
       title: ds/persistentTreap.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/sparseTable.cpp
       title: ds/sparseTable.cpp
     - icon: ':warning:'
@@ -89,7 +89,7 @@ data:
     - icon: ':warning:'
       path: graph/2CC.cpp
       title: graph/2CC.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/2sat.cpp
       title: graph/2sat.cpp
     - icon: ':warning:'
@@ -104,7 +104,7 @@ data:
     - icon: ':warning:'
       path: graph/MCMF.cpp
       title: graph/MCMF.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/SCC.cpp
       title: graph/SCC.cpp
     - icon: ':heavy_check_mark:'
@@ -129,7 +129,7 @@ data:
       title: linalg/xorBasis.cpp
   - name: modint
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':warning:'
@@ -140,7 +140,7 @@ data:
     - icon: ':warning:'
       path: numtheory/exgcd.cpp
       title: numtheory/exgcd.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/fastFactorize.cpp
       title: numtheory/fastFactorize.cpp
     - icon: ':heavy_check_mark:'
@@ -149,10 +149,10 @@ data:
     - icon: ':warning:'
       path: numtheory/linearSieve.cpp
       title: numtheory/linearSieve.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/primitiveRoot.cpp
       title: numtheory/primitiveRoot.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/sqrtMod.cpp
       title: numtheory/sqrtMod.cpp
   - name: poly
@@ -169,10 +169,10 @@ data:
     - icon: ':warning:'
       path: poly/FFTmod.cpp
       title: poly/FFTmod.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/FPS.cpp
       title: poly/FPS.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/FPSsqrt.cpp
       title: poly/FPSsqrt.cpp
     - icon: ':warning:'
@@ -181,10 +181,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/NTTanymod.cpp
       title: poly/NTTanymod.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/NTTmint.cpp
       title: poly/NTTmint.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/mulConvolution.cpp
       title: mulConvolution
     - icon: ':warning:'
@@ -195,19 +195,19 @@ data:
       title: poly/sparsePolyope.cpp
   - name: segtree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: segtree/dualSegmentTree.cpp
       title: segtree/dualSegmentTree.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: segtree/lazySegmentTree.cpp
       title: segtree/lazySegmentTree.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: segtree/lichaoSegmentTree.cpp
       title: segtree/lichaoSegmentTree.cpp
     - icon: ':warning:'
       path: segtree/persistentSegmentTree.cpp
       title: segtree/persistentSegmentTree.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: segtree/segmentTree.cpp
       title: segtree/segmentTree.cpp
     - icon: ':warning:'
@@ -224,7 +224,7 @@ data:
     - icon: ':warning:'
       path: setfunc/FWHT.cpp
       title: setfunc/FWHT.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/fastSubsetTransform.cpp
       title: setfunc/fastSubsetTransform.cpp
     - icon: ':warning:'
@@ -244,7 +244,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/Manacher.cpp
       title: string/Manacher.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/palindromicTree.cpp
       title: string/palindromicTree.cpp
     - icon: ':warning:'
@@ -346,48 +346,50 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/primitive_root.test.cpp
       title: test/primitive_root.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/range_affine_point_get.test.cpp
       title: test/range_affine_point_get.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/range_affine_range_sum.test.cpp
       title: test/range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/segment_add_get_min.test.cpp
       title: test/segment_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/shortest_path.test.cpp
       title: test/shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/sqrt_of_formal_power_series.test.cpp
       title: test/sqrt_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/static_RMQ.test.cpp
       title: test/static_RMQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/strongly_connected_components.test.cpp
       title: test/strongly_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/subset_convolution.test.cpp
       title: test/subset_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/two_sat.test.cpp
       title: test/two_sat.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unionfind.test.cpp
       title: test/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_add_subtree_sum.test.cpp
       title: test/vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2606.test.cpp
       title: test/yuki_2606.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2613.test.cpp
       title: test/yuki_2613.test.cpp
 layout: toppage
 ---
 template used for online programming contest. some of the code are not written by myself, and these codes would contain reference to the original sources.
+
+the "KACTL" in the reference of template code is from https://github.com/kth-competitive-programming/kactl

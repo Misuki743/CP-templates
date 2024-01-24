@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/primitiveRoot.cpp\"\n//#include \"numtheory/fastFactorize.cpp\"\
@@ -33,7 +33,7 @@ data:
   path: numtheory/primitiveRoot.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/primitive_root.test.cpp
   - test/yuki_2613.test.cpp

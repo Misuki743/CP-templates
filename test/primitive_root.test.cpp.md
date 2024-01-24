@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/fastFactorize.cpp
     title: numtheory/fastFactorize.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/primitiveRoot.cpp
     title: numtheory/primitiveRoot.cpp
   _extendedRequiredBy: []

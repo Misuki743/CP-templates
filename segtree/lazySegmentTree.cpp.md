@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segtree/lazySegmentTree.cpp\"\ntemplate<class M, class T,\
@@ -89,7 +89,7 @@ data:
   path: segtree/lazySegmentTree.cpp
   requiredBy: []
   timestamp: '2024-01-21 17:57:06+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/range_affine_range_sum.test.cpp
 documentation_of: segtree/lazySegmentTree.cpp

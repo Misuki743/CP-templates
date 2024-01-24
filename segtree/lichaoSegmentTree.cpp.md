@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/line_add_get_min.test.cpp
     title: test/line_add_get_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/segment_add_get_min.test.cpp
     title: test/segment_add_get_min.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segtree/lichaoSegmentTree.cpp\"\n//note: size should be\
@@ -66,7 +66,7 @@ data:
   path: segtree/lichaoSegmentTree.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segment_add_get_min.test.cpp
   - test/line_add_get_min.test.cpp
