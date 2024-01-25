@@ -6,9 +6,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yuki_2613.test.cpp
-    title: test/yuki_2613.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -36,7 +33,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/primitive_root.test.cpp
-  - test/yuki_2613.test.cpp
 documentation_of: numtheory/primitiveRoot.cpp
 layout: document
 redirect_from:
