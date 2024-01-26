@@ -99,6 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/range_kth_smallest.test.cpp
+    title: test/range_kth_smallest.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/segment_add_get_min.test.cpp
     title: test/segment_add_get_min.test.cpp
@@ -111,6 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/static_RMQ.test.cpp
     title: test/static_RMQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/static_range_frequency.test.cpp
+    title: test/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
@@ -135,9 +141,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -195,13 +201,14 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/pow_of_formal_power_series.test.cpp
   - test/range_affine_point_get.test.cpp
   - test/vertex_add_subtree_sum.test.cpp
   - test/segment_add_get_min.test.cpp
   - test/static_RMQ.test.cpp
+  - test/static_range_frequency.test.cpp
   - test/pow_of_matrix.test.cpp
   - test/determinant_of_matrix.test.cpp
   - test/inverse_matrix.test.cpp
@@ -236,6 +243,7 @@ data:
   - test/minimum_spanning_tree.test.cpp
   - test/line_add_get_min.test.cpp
   - test/strongly_connected_components.test.cpp
+  - test/range_kth_smallest.test.cpp
   - test/matching_on_bipartite_graph.test.cpp
   - test/two_sat.test.cpp
   - test/Z_algorithm.test.cpp

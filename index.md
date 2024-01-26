@@ -8,7 +8,7 @@ data:
       title: combi/comb.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -67,6 +67,9 @@ data:
     - icon: ':warning:'
       path: ds/treap.cpp
       title: ds/treap.cpp
+    - icon: ':question:'
+      path: ds/waveletMatrix.cpp
+      title: ds/waveletMatrix.cpp
   - name: geometry
     pages:
     - icon: ':warning:'
@@ -127,6 +130,11 @@ data:
     - icon: ':warning:'
       path: linalg/xorBasis.cpp
       title: linalg/xorBasis.cpp
+  - name: misc
+    pages:
+    - icon: ':question:'
+      path: misc/compression.cpp
+      title: misc/compression.cpp
   - name: modint
     pages:
     - icon: ':heavy_check_mark:'
@@ -352,6 +360,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/range_affine_range_sum.test.cpp
       title: test/range_affine_range_sum.test.cpp
+    - icon: ':x:'
+      path: test/range_kth_smallest.test.cpp
+      title: test/range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/segment_add_get_min.test.cpp
       title: test/segment_add_get_min.test.cpp
@@ -364,6 +375,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/static_RMQ.test.cpp
       title: test/static_RMQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/static_range_frequency.test.cpp
+      title: test/static_range_frequency.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/strongly_connected_components.test.cpp
       title: test/strongly_connected_components.test.cpp
