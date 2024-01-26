@@ -17,7 +17,7 @@ signed main() {
 
   while(q--) {
     int l, r, k; cin >> l >> r >> k;
-    cout << xs.getVal(wv.kth(l, r, k)) << '\n';
+    cout << xs.val[wv.kth(l, r, k)] << '\n';
   }
 
   return 0;
