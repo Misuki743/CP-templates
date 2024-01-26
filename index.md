@@ -8,7 +8,7 @@ data:
       title: combi/comb.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -67,7 +67,7 @@ data:
     - icon: ':warning:'
       path: ds/treap.cpp
       title: ds/treap.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/waveletMatrix.cpp
       title: ds/waveletMatrix.cpp
   - name: geometry
@@ -132,7 +132,7 @@ data:
       title: linalg/xorBasis.cpp
   - name: misc
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: misc/compression.cpp
       title: misc/compression.cpp
   - name: modint
@@ -360,7 +360,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/range_affine_range_sum.test.cpp
       title: test/range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/range_kth_smallest.test.cpp
       title: test/range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'

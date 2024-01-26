@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/waveletMatrix.cpp
     title: ds/waveletMatrix.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: misc/compression.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -85,14 +85,14 @@ data:
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> a(n);\n  for(int\
     \ &x : a)\n    cin >> x;\n\n  compression<int> xs(a);\n  waveletMatrix<int, 17>\
     \ wv(xs.ord);\n\n  while(q--) {\n    int l, r, k; cin >> l >> r >> k;\n    cout\
-    \ << xs.getVal(wv.kth(l, r, k)) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ << xs.val[wv.kth(l, r, k)] << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../misc/compression.cpp\"\n#include\
     \ \"../ds/waveletMatrix.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> a(n);\n  for(int\
     \ &x : a)\n    cin >> x;\n\n  compression<int> xs(a);\n  waveletMatrix<int, 17>\
     \ wv(xs.ord);\n\n  while(q--) {\n    int l, r, k; cin >> l >> r >> k;\n    cout\
-    \ << xs.getVal(wv.kth(l, r, k)) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ << xs.val[wv.kth(l, r, k)] << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - misc/compression.cpp
@@ -100,8 +100,8 @@ data:
   isVerificationFile: true
   path: test/range_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 01:09:14+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-27 01:23:01+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/range_kth_smallest.test.cpp
 layout: document
