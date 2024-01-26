@@ -35,6 +35,7 @@
 "test/shortest_path.test.cpp": "2024-01-23 21:38:15 +0800",
 "test/sqrt_of_formal_power_series.test.cpp": "2024-01-24 20:41:29 +0800",
 "test/static_RMQ.test.cpp": "2024-01-24 20:41:29 +0800",
+"test/static_range_frequency.test.cpp": "2024-01-27 01:09:14 +0800",
 "test/strongly_connected_components.test.cpp": "2024-01-24 20:41:29 +0800",
 "test/subset_convolution.test.cpp": "2024-01-24 20:41:29 +0800",
 "test/two_sat.test.cpp": "2024-01-24 20:41:29 +0800",
