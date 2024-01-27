@@ -109,6 +109,9 @@ data:
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/rectangle_sum.test.cpp
+    title: test/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/segment_add_get_min.test.cpp
     title: test/segment_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -231,6 +234,7 @@ data:
   - test/division_of_polynomials.test.cpp
   - test/yuki_2606.test.cpp
   - test/jump_on_tree.test.cpp
+  - test/rectangle_sum.test.cpp
   - test/lowest_common_ancestor.test.cpp
   - test/area_of_union_of_rectangles.test.cpp
   - test/yuki_2613.test.cpp

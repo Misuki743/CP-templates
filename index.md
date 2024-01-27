@@ -140,8 +140,8 @@ data:
       title: misc/areaOfUnionOfRectangles.cpp
     - icon: ':heavy_check_mark:'
       path: misc/compression.cpp
-      title: misc/compression.cpp
-    - icon: ':warning:'
+      title: compression
+    - icon: ':heavy_check_mark:'
       path: misc/rectangleSum.cpp
       title: misc/rectangleSum.cpp
   - name: modint
@@ -378,7 +378,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/range_kth_smallest.test.cpp
       title: test/range_kth_smallest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/rectangle_sum.test.cpp
       title: test/rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'

@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/point_add_range_sum.test.cpp
     title: test/point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/rectangle_sum.test.cpp
+    title: test/rectangle_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -37,6 +40,7 @@ data:
   timestamp: '2024-01-27 18:42:26+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/rectangle_sum.test.cpp
   - test/point_add_range_sum.test.cpp
 documentation_of: ds/fenwickTree.cpp
 layout: document

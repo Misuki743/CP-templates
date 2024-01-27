@@ -9,7 +9,7 @@ data:
     title: ds/waveletMatrix.cpp
   - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
-    title: misc/compression.cpp
+    title: compression
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
