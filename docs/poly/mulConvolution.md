@@ -10,8 +10,9 @@ reduce the problem to the normal convolution and can be solved by NTT.
 
 ## usage
 
-Given prime $P$ and two polynomial $f(x), g(x)$, compute $h(x) = \sum\limits_{ij \equiv k \text{ mod } P} f_ig_j x^{k}$ in $O(P\lg P)$
+Given prime $P$ and two polynomial $f(x), g(x)$, compute $h(x)\text{ s.t. } h_k = \sum\limits_{ij \equiv k \text{ mod } P} f_ig_j$ in $O(P\lg P)$
 
 - `transform(f)` map $f_i$ to $f_{i'}$ where $r^{i'} \equiv i \text{ mod } P$
 - `invTransform(f)` map $f_{i'}$ back to $f_i$
-- `mulConv(f, g, conv)` compute $h(x) = \sum\limits_{ij \equiv k \text{ mod } P} f_ig_j x^{k}$
+- `mulConv(f, g, conv)` compute $h(x)\text{ s.t. } h_k = \sum\limits_{ij \equiv k \text{ mod } P} f_ig_j$
+

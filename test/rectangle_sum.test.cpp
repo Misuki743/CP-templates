@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rectangle_sum"
 
-#include<../default/t.cpp>
-#include<../ds/fenwickTree.cpp>
-#include<../misc/compression.cpp>
-#include<../misc/rectangleSum.cpp>
+#include "../default/t.cpp"
+#include "../ds/fenwickTree.cpp"
+#include "../misc/compression.cpp"
+#include "../misc/rectangleSum.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
