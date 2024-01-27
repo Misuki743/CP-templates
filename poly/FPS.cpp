@@ -6,7 +6,7 @@ struct FPS : vector<Mint> {
 
   static function<vector<Mint>(vector<Mint>, vector<Mint>)> conv;
 
-  FPS(vector<Mint> v) { *this = v; }
+  FPS(vector<Mint> v) : vector<Mint>(v) {}
 
   using vector<Mint>::vector;
   FPS& operator+=(FPS b) {
@@ -186,6 +186,17 @@ struct FPS : vector<Mint> {
     for(int i = n - 1; i > 0; i--)
       res[i] = res[i << 1] * data[i << 1 | 1] + res[i << 1 | 1] * data[i << 1];
     return res[1];
+  }
+
+  static vector<Mint> allProd(vector<FPS> &fs) {
+    if (fs.empty()) return {1};
+    auto dfs = [&](int l, int r, auto self) -> FPS {
+      if (l + 1 == r)
+        return fs[l];
+      else
+        return self(l, (l + r) / 2, self) * self((l + r) / 2, r, self);
+    };
+    return dfs(0, ssize(fs), dfs);
   }
 
   friend FPS operator+(FPS a, FPS b) { return a += b; }
