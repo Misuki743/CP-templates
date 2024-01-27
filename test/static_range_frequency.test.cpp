@@ -18,7 +18,7 @@ signed main() {
 
   while(q--) {
     int l, r, x; cin >> l >> r >> x;
-    int y = xs.lb(x);
+    int y = xs.lower_bound(x);
     if (xs.val[y] != x)
       cout << 0 << '\n';
     else

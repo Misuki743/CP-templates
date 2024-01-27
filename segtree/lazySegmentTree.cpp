@@ -45,7 +45,7 @@ struct lazySegmentTree {
   }
 
   void modify(int l, int r, T x) {
-    if (x == Tunit()) return;
+    if (l >= r or x == Tunit()) return;
     push(trunc(l += size)), push(trunc(r += size) - 1);
     int l0 = l, r0 = r;
     for(; l < r; l >>= 1, r >>= 1) {
@@ -56,6 +56,7 @@ struct lazySegmentTree {
   }
 
   M query(int l, int r) {
+    if (l >= r) return Munit();
     M L = Munit(), R = Munit();
     push(trunc(l += size)), push(trunc(r += size) - 1);
     for(; l < r; l >>= 1, r >>= 1) {

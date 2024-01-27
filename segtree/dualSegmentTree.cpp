@@ -37,7 +37,7 @@ struct dualSegmentTree {
   }
 
   void modify(int l, int r, T x) {
-    if (x == Tunit()) return;
+    if (l >= r or x == Tunit()) return;
     push(trunc(l + size)), push(trunc(r + size) - 1);
     for(l += size, r += size; l < r; l >>= 1, r >>= 1) {
       if (l & 1) apply(l++, x);
