@@ -79,10 +79,10 @@ data:
     \ tag[i >> s]);\n        tag[i >> s] = Tunit();\n      }\n    }\n  }\n\n  void\
     \ set(int i, M x) {\n    push(i + size);\n    data[i] = x;\n  }\n\n  M get(int\
     \ i) {\n    push(i + size);\n    return data[i];\n  }\n\n  void modify(int l,\
-    \ int r, T x) {\n    if (x == Tunit()) return;\n    push(trunc(l + size)), push(trunc(r\
-    \ + size) - 1);\n    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n  \
-    \    if (l & 1) apply(l++, x);\n      if (r & 1) apply(--r, x);\n    }\n  }\n\
-    };\n#line 1 \"ds/eulerTour.cpp\"\n//#include<ds/fastJump.cpp>\n//#include<segtree/dualSegmentTree.cpp>\n\
+    \ int r, T x) {\n    if (l >= r or x == Tunit()) return;\n    push(trunc(l + size)),\
+    \ push(trunc(r + size) - 1);\n    for(l += size, r += size; l < r; l >>= 1, r\
+    \ >>= 1) {\n      if (l & 1) apply(l++, x);\n      if (r & 1) apply(--r, x);\n\
+    \    }\n  }\n};\n#line 1 \"ds/eulerTour.cpp\"\n//#include<ds/fastJump.cpp>\n//#include<segtree/dualSegmentTree.cpp>\n\
     \ntemplate<class M, class T, M(*Munit)(), T(*Tunit)(), M(*Mope)(const M&, const\
     \ M&), \nT(*Tope)(const T&, const T&), M(*comp)(const M&, const T&), M(*inv)(const\
     \ M&)>\nstruct eulerTour {\n  vector<int> tin, tout, p;\n  dualSegmentTree<M,\
@@ -126,7 +126,7 @@ data:
   isVerificationFile: true
   path: test/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-01-24 20:41:29+08:00'
+  timestamp: '2024-01-27 18:42:26+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_add_path_sum.test.cpp

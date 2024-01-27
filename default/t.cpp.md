@@ -7,6 +7,9 @@ data:
     path: test/Z_algorithm.test.cpp
     title: test/Z_algorithm.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/area_of_union_of_rectangles.test.cpp
+    title: test/area_of_union_of_rectangles.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/associative_array.test.cpp
     title: test/associative_array.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,6 +78,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/persistent_unionfind.test.cpp
     title: test/persistent_unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/point_add_range_sum.test.cpp
+    title: test/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/point_set_range_composite.test.cpp
     title: test/point_set_range_composite.test.cpp
@@ -226,6 +232,7 @@ data:
   - test/yuki_2606.test.cpp
   - test/jump_on_tree.test.cpp
   - test/lowest_common_ancestor.test.cpp
+  - test/area_of_union_of_rectangles.test.cpp
   - test/yuki_2613.test.cpp
   - test/exp_of_formal_power_series.test.cpp
   - test/polynomial_interpolation.test.cpp
@@ -237,6 +244,7 @@ data:
   - test/inv_of_formal_power_series.test.cpp
   - test/enumerate_quotients.test.cpp
   - test/point_set_range_composite.test.cpp
+  - test/point_add_range_sum.test.cpp
   - test/enumerate_palindromes.test.cpp
   - test/find_linear_recurrence.test.cpp
   - test/multipoint_evaluation.test.cpp

@@ -48,14 +48,20 @@ data:
     \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
     \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"misc/compression.cpp\"\n\
     template<class T, bool duplicate = false>\nstruct compression {\n  vector<int>\
-    \ ord;\n  vector<T> val;\n  compression(vector<T> &init) : ord(ssize(init)), val(init)\
-    \ {\n    R::sort(val);\n    if constexpr (duplicate) {\n      vector<int> cnt(ssize(init));\n\
-    \      iota(cnt.begin(), cnt.end(), 0);\n      for(int i = 0; i < ssize(init);\
-    \ i++)\n        ord[i] = cnt[lb(init[i])]++;\n    } else {\n      val.resize(unique(val.begin(),\
-    \ val.end()) - val.begin());\n      for(int i = 0; i < ssize(init); i++)\n   \
-    \     ord[i] = lb(init[i]);\n    }\n  }\n  int lb(T x) { return R::lower_bound(val,\
-    \ x) - val.begin(); }\n};\n#line 1 \"ds/waveletMatrix.cpp\"\ntemplate<class T,\
-    \ int mxBit>\nstruct waveletMatrix {\n  struct bitvector {\n    static constexpr\
+    \ ord;\n  vector<T> val;\n\n  compression(vector<T> &init) : val(init) { precompute();\
+    \ }\n  compression(int size = 0) { val.reserve(size); }\n\n  void precompute()\
+    \ {\n    vector<T> init = val;\n    ord.resize(ssize(val));\n    R::sort(val);\n\
+    \    if constexpr (duplicate) {\n      vector<int> cnt(ssize(init));\n      iota(cnt.begin(),\
+    \ cnt.end(), 0);\n      for(int i = 0; i < ssize(ord); i++)\n        ord[i] =\
+    \ cnt[lower_bound(init[i])]++;\n    } else {\n      val.resize(unique(val.begin(),\
+    \ val.end()) - val.begin());\n      for(int i = 0; i < ssize(ord); i++)\n    \
+    \    ord[i] = lower_bound(init[i]);\n    }\n  }\n\n  int lower_bound(T x) { return\
+    \ R::lower_bound(val, x) - val.begin(); }\n  int size() { return ssize(val); }\n\
+    \  template<R::range rng, class proj = identity>\n  void mapping(rng &v, proj\
+    \ p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }\n  template<R::range\
+    \ rng, class proj = identity>\n  void insert(rng &v, proj p = {}) { for(auto &x\
+    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"ds/waveletMatrix.cpp\"\ntemplate<class\
+    \ T, int mxBit>\nstruct waveletMatrix {\n  struct bitvector {\n    static constexpr\
     \ uint W = 64;\n    int cnt0 = 0, size;\n    vector<ull> bv;\n    vector<int>\
     \ pre;\n\n    bitvector(uint _size) : size(_size), bv(_size / W + 1), pre(_size\
     \ / W + 1) {};\n    void set(uint i) { bv[i / W] |= 1LL << (i % W); }\n    uint\
@@ -86,18 +92,18 @@ data:
     \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n\
     \  vector<int> a(n);\n  for(int &x : a)\n    cin >> x;\n\n  a.emplace_back(INT_MAX);\n\
     \  compression<int> xs(a);\n  waveletMatrix<int, 18> wv(xs.ord);\n\n  while(q--)\
-    \ {\n    int l, r, x; cin >> l >> r >> x;\n    int y = xs.lb(x);\n    if (xs.val[y]\
-    \ != x)\n      cout << 0 << '\\n';\n    else\n      cout << wv.rectQuery(l, r,\
-    \ y, y + 1) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ {\n    int l, r, x; cin >> l >> r >> x;\n    int y = xs.lower_bound(x);\n  \
+    \  if (xs.val[y] != x)\n      cout << 0 << '\\n';\n    else\n      cout << wv.rectQuery(l,\
+    \ r, y, y + 1) << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_frequency\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../misc/compression.cpp\"\n#include\
     \ \"../ds/waveletMatrix.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> a(n);\n  for(int\
     \ &x : a)\n    cin >> x;\n\n  a.emplace_back(INT_MAX);\n  compression<int> xs(a);\n\
     \  waveletMatrix<int, 18> wv(xs.ord);\n\n  while(q--) {\n    int l, r, x; cin\
-    \ >> l >> r >> x;\n    int y = xs.lb(x);\n    if (xs.val[y] != x)\n      cout\
-    \ << 0 << '\\n';\n    else\n      cout << wv.rectQuery(l, r, y, y + 1) << '\\\
-    n';\n  }\n\n  return 0;\n}\n"
+    \ >> l >> r >> x;\n    int y = xs.lower_bound(x);\n    if (xs.val[y] != x)\n \
+    \     cout << 0 << '\\n';\n    else\n      cout << wv.rectQuery(l, r, y, y + 1)\
+    \ << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - misc/compression.cpp
@@ -105,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/static_range_frequency.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 01:09:14+08:00'
+  timestamp: '2024-01-27 18:42:26+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/static_range_frequency.test.cpp

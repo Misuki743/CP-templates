@@ -46,6 +46,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastJump.cpp
       title: ds/fastJump.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds/fenwickTree.cpp
+      title: ds/fenwickTree.cpp
     - icon: ':warning:'
       path: ds/fenwickTree2D.cpp
       title: ds/fenwickTree2D.cpp
@@ -133,8 +136,14 @@ data:
   - name: misc
     pages:
     - icon: ':heavy_check_mark:'
+      path: misc/areaOfUnionOfRectangles.cpp
+      title: misc/areaOfUnionOfRectangles.cpp
+    - icon: ':heavy_check_mark:'
       path: misc/compression.cpp
       title: misc/compression.cpp
+    - icon: ':warning:'
+      path: misc/rectangleSum.cpp
+      title: misc/rectangleSum.cpp
   - name: modint
     pages:
     - icon: ':heavy_check_mark:'
@@ -224,7 +233,7 @@ data:
     - icon: ':warning:'
       path: segtree/segmentTreeLazyDynamic.cpp
       title: segtree/segmentTreeLazyDynamic.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: segtree/ultraLazySegmentTree.cpp
       title: segtree/ultraLazySegmentTree.cpp
   - name: setfunc
@@ -267,6 +276,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Z_algorithm.test.cpp
       title: test/Z_algorithm.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/area_of_union_of_rectangles.test.cpp
+      title: test/area_of_union_of_rectangles.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/associative_array.test.cpp
       title: test/associative_array.test.cpp
@@ -337,6 +349,9 @@ data:
       path: test/persistent_unionfind.test.cpp
       title: test/persistent_unionfind.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/point_add_range_sum.test.cpp
+      title: test/point_add_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/point_set_range_composite.test.cpp
       title: test/point_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -363,6 +378,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/range_kth_smallest.test.cpp
       title: test/range_kth_smallest.test.cpp
+    - icon: ':x:'
+      path: test/rectangle_sum.test.cpp
+      title: test/rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/segment_add_get_min.test.cpp
       title: test/segment_add_get_min.test.cpp

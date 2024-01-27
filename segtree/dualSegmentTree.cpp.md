@@ -27,10 +27,10 @@ data:
     \        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n        tag[i >> s] = Tunit();\n\
     \      }\n    }\n  }\n\n  void set(int i, M x) {\n    push(i + size);\n    data[i]\
     \ = x;\n  }\n\n  M get(int i) {\n    push(i + size);\n    return data[i];\n  }\n\
-    \n  void modify(int l, int r, T x) {\n    if (x == Tunit()) return;\n    push(trunc(l\
-    \ + size)), push(trunc(r + size) - 1);\n    for(l += size, r += size; l < r; l\
-    \ >>= 1, r >>= 1) {\n      if (l & 1) apply(l++, x);\n      if (r & 1) apply(--r,\
-    \ x);\n    }\n  }\n};\n"
+    \n  void modify(int l, int r, T x) {\n    if (l >= r or x == Tunit()) return;\n\
+    \    push(trunc(l + size)), push(trunc(r + size) - 1);\n    for(l += size, r +=\
+    \ size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) apply(l++, x);\n      if\
+    \ (r & 1) apply(--r, x);\n    }\n  }\n};\n"
   code: "template<class M, class T, M(*Munit)(), T(*Tunit)(), T(*Tope)(const T&, const\
     \ T&), M(*comp)(const M&, const T&)>\nstruct dualSegmentTree {\n  vector<M> data;\n\
     \  vector<T> tag;\n  int size;\n\n  dualSegmentTree(int _size) : data(_size, Munit()),\
@@ -44,14 +44,15 @@ data:
     \    tag[i >> s] = Tunit();\n      }\n    }\n  }\n\n  void set(int i, M x) {\n\
     \    push(i + size);\n    data[i] = x;\n  }\n\n  M get(int i) {\n    push(i +\
     \ size);\n    return data[i];\n  }\n\n  void modify(int l, int r, T x) {\n   \
-    \ if (x == Tunit()) return;\n    push(trunc(l + size)), push(trunc(r + size) -\
-    \ 1);\n    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n      if (l &\
-    \ 1) apply(l++, x);\n      if (r & 1) apply(--r, x);\n    }\n  }\n};\n"
+    \ if (l >= r or x == Tunit()) return;\n    push(trunc(l + size)), push(trunc(r\
+    \ + size) - 1);\n    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n  \
+    \    if (l & 1) apply(l++, x);\n      if (r & 1) apply(--r, x);\n    }\n  }\n\
+    };\n"
   dependsOn: []
   isVerificationFile: false
   path: segtree/dualSegmentTree.cpp
   requiredBy: []
-  timestamp: '2024-01-24 20:41:29+08:00'
+  timestamp: '2024-01-27 18:42:26+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/range_affine_point_get.test.cpp

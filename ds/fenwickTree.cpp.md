@@ -1,0 +1,47 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/point_add_range_sum.test.cpp
+    title: test/point_add_range_sum.test.cpp
+  _isVerificationFailed: false
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"ds/fenwickTree.cpp\"\ntemplate<class T>\nstruct fenwickTree\
+    \ {\n  const int size;\n  vector<T> data;\n\n  fenwickTree(int _size) : size(_size\
+    \ + 1), data(_size + 1) {}\n  fenwickTree(vector<T> &init) : size(ssize(init)\
+    \ + 1), data(ssize(init) + 1) {\n    partial_sum(init.begin(), init.end(), data.begin()\
+    \ + 1);\n    for(int i = size - 1; i > 0; i--)\n      data[i] -= data[i - (i &\
+    \ (-i))];\n  }\n\n  void add(int i, T d) {\n    for(i += 1; i < size; i += i &\
+    \ (-i))\n      data[i] += d;\n  }\n\n  T query(int i) {\n    T res = T(0);\n \
+    \   for(i += 1; i > 0; i -= i & (-i))\n      res += data[i];\n    return res;\n\
+    \  }\n\n  T query(int l, int r) {\n    return query(r - 1) - query(l - 1);\n \
+    \ }\n};\n"
+  code: "template<class T>\nstruct fenwickTree {\n  const int size;\n  vector<T> data;\n\
+    \n  fenwickTree(int _size) : size(_size + 1), data(_size + 1) {}\n  fenwickTree(vector<T>\
+    \ &init) : size(ssize(init) + 1), data(ssize(init) + 1) {\n    partial_sum(init.begin(),\
+    \ init.end(), data.begin() + 1);\n    for(int i = size - 1; i > 0; i--)\n    \
+    \  data[i] -= data[i - (i & (-i))];\n  }\n\n  void add(int i, T d) {\n    for(i\
+    \ += 1; i < size; i += i & (-i))\n      data[i] += d;\n  }\n\n  T query(int i)\
+    \ {\n    T res = T(0);\n    for(i += 1; i > 0; i -= i & (-i))\n      res += data[i];\n\
+    \    return res;\n  }\n\n  T query(int l, int r) {\n    return query(r - 1) -\
+    \ query(l - 1);\n  }\n};\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: ds/fenwickTree.cpp
+  requiredBy: []
+  timestamp: '2024-01-27 18:42:26+08:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/point_add_range_sum.test.cpp
+documentation_of: ds/fenwickTree.cpp
+layout: document
+redirect_from:
+- /library/ds/fenwickTree.cpp
+- /library/ds/fenwickTree.cpp.html
+title: ds/fenwickTree.cpp
+---
