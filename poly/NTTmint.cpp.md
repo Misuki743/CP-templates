@@ -37,8 +37,14 @@ data:
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/product_of_polynomial_sequence.test.cpp
+    title: test/product_of_polynomial_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/stirling_number_of_the_first_kind.test.cpp
+    title: test/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
@@ -117,12 +123,14 @@ data:
   - test/subset_convolution.test.cpp
   - test/convolution.test.cpp
   - test/division_of_polynomials.test.cpp
+  - test/product_of_polynomial_sequence.test.cpp
   - test/yuki_2613.test.cpp
   - test/exp_of_formal_power_series.test.cpp
   - test/polynomial_interpolation.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
   - test/log_of_formal_power_series.test.cpp
   - test/inv_of_formal_power_series.test.cpp
+  - test/stirling_number_of_the_first_kind.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/convolution_1e9+7.test.cpp
 documentation_of: poly/NTTmint.cpp

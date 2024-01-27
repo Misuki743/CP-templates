@@ -10,6 +10,9 @@ data:
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/assignment_problem.test.cpp
+    title: test/assignment_problem.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/associative_array.test.cpp
     title: test/associative_array.test.cpp
   - icon: ':heavy_check_mark:'
@@ -18,6 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/convolution_1e9+7.test.cpp
     title: test/convolution_1e9+7.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/cycle_detection_directed.test.cpp
+    title: test/cycle_detection_directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/cycle_detection_undirected.test.cpp
+    title: test/cycle_detection_undirected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/determinant_of_matrix.test.cpp
     title: test/determinant_of_matrix.test.cpp
@@ -70,6 +79,9 @@ data:
     path: test/matrix_product.test.cpp
     title: test/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/maximum_independent_set.test.cpp
+    title: test/maximum_independent_set.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/minimum_spanning_tree.test.cpp
     title: test/minimum_spanning_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -100,6 +112,9 @@ data:
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/product_of_polynomial_sequence.test.cpp
+    title: test/product_of_polynomial_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
   - icon: ':heavy_check_mark:'
@@ -111,6 +126,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/rectangle_sum.test.cpp
     title: test/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/rooted_tree_isomorphism_classification.test.cpp
+    title: test/rooted_tree_isomorphism_classification.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/segment_add_get_min.test.cpp
     title: test/segment_add_get_min.test.cpp
@@ -127,11 +145,17 @@ data:
     path: test/static_range_frequency.test.cpp
     title: test/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/stirling_number_of_the_first_kind.test.cpp
+    title: test/stirling_number_of_the_first_kind.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree_diameter.test.cpp
+    title: test/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/two_sat.test.cpp
     title: test/two_sat.test.cpp
@@ -220,6 +244,7 @@ data:
   - test/static_range_frequency.test.cpp
   - test/pow_of_matrix.test.cpp
   - test/determinant_of_matrix.test.cpp
+  - test/tree_diameter.test.cpp
   - test/inverse_matrix.test.cpp
   - test/shortest_path.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -231,11 +256,14 @@ data:
   - test/associative_array.test.cpp
   - test/vertex_add_path_sum.test.cpp
   - test/matrix_product.test.cpp
+  - test/maximum_independent_set.test.cpp
   - test/division_of_polynomials.test.cpp
   - test/yuki_2606.test.cpp
   - test/jump_on_tree.test.cpp
   - test/rectangle_sum.test.cpp
   - test/lowest_common_ancestor.test.cpp
+  - test/rooted_tree_isomorphism_classification.test.cpp
+  - test/product_of_polynomial_sequence.test.cpp
   - test/area_of_union_of_rectangles.test.cpp
   - test/yuki_2613.test.cpp
   - test/exp_of_formal_power_series.test.cpp
@@ -246,12 +274,16 @@ data:
   - test/unionfind.test.cpp
   - test/log_of_formal_power_series.test.cpp
   - test/inv_of_formal_power_series.test.cpp
+  - test/cycle_detection_undirected.test.cpp
   - test/enumerate_quotients.test.cpp
   - test/point_set_range_composite.test.cpp
   - test/point_add_range_sum.test.cpp
   - test/enumerate_palindromes.test.cpp
+  - test/assignment_problem.test.cpp
+  - test/stirling_number_of_the_first_kind.test.cpp
   - test/find_linear_recurrence.test.cpp
   - test/multipoint_evaluation.test.cpp
+  - test/cycle_detection_directed.test.cpp
   - test/minimum_spanning_tree.test.cpp
   - test/line_add_get_min.test.cpp
   - test/strongly_connected_components.test.cpp

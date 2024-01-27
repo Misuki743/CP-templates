@@ -6,6 +6,9 @@ data:
     - icon: ':warning:'
       path: combi/comb.cpp
       title: combi/comb.cpp
+    - icon: ':heavy_check_mark:'
+      path: combi/stirlingFirst.cpp
+      title: combi/stirlingFirst.cpp
   - name: default
     pages:
     - icon: ':heavy_check_mark:'
@@ -49,7 +52,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwickTree.cpp
       title: ds/fenwickTree.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/fenwickTree2D.cpp
       title: ds/fenwickTree2D.cpp
     - icon: ':heavy_check_mark:'
@@ -111,20 +114,32 @@ data:
       path: graph/MCMF.cpp
       title: graph/MCMF.cpp
     - icon: ':heavy_check_mark:'
+      path: graph/MIS.cpp
+      title: graph/MIS.cpp
+    - icon: ':heavy_check_mark:'
       path: graph/SCC.cpp
       title: graph/SCC.cpp
+    - icon: ':heavy_check_mark:'
+      path: graph/cycleDetection.cpp
+      title: graph/cycleDetection.cpp
     - icon: ':heavy_check_mark:'
       path: graph/dinic.cpp
       title: graph/dinic.cpp
     - icon: ':warning:'
       path: graph/hopcroftKarp.cpp
       title: graph/hopcroftKarp.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/hungarian.cpp
       title: graph/hungarian.cpp
     - icon: ':warning:'
       path: graph/minimumVertexCover.cpp
       title: graph/minimumVertexCover.cpp
+    - icon: ':heavy_check_mark:'
+      path: graph/treeDiameter.cpp
+      title: graph/treeDiameter.cpp
+    - icon: ':heavy_check_mark:'
+      path: graph/treeHash.cpp
+      title: graph/treeHash.cpp
   - name: linalg
     pages:
     - icon: ':heavy_check_mark:'
@@ -138,9 +153,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: misc/areaOfUnionOfRectangles.cpp
       title: misc/areaOfUnionOfRectangles.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: misc/compression.cpp
       title: compression
+    - icon: ':x:'
+      path: misc/rectangleAddPointGet.cpp
+      title: misc/rectangleAddPointGet.cpp
     - icon: ':heavy_check_mark:'
       path: misc/rectangleSum.cpp
       title: misc/rectangleSum.cpp
@@ -280,6 +298,9 @@ data:
       path: test/area_of_union_of_rectangles.test.cpp
       title: test/area_of_union_of_rectangles.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/assignment_problem.test.cpp
+      title: test/assignment_problem.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/associative_array.test.cpp
       title: test/associative_array.test.cpp
     - icon: ':heavy_check_mark:'
@@ -288,6 +309,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/convolution_1e9+7.test.cpp
       title: test/convolution_1e9+7.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/cycle_detection_directed.test.cpp
+      title: test/cycle_detection_directed.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/cycle_detection_undirected.test.cpp
+      title: test/cycle_detection_undirected.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/determinant_of_matrix.test.cpp
       title: test/determinant_of_matrix.test.cpp
@@ -340,6 +367,9 @@ data:
       path: test/matrix_product.test.cpp
       title: test/matrix_product.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/maximum_independent_set.test.cpp
+      title: test/maximum_independent_set.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/minimum_spanning_tree.test.cpp
       title: test/minimum_spanning_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -370,6 +400,9 @@ data:
       path: test/primitive_root.test.cpp
       title: test/primitive_root.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/product_of_polynomial_sequence.test.cpp
+      title: test/product_of_polynomial_sequence.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/range_affine_point_get.test.cpp
       title: test/range_affine_point_get.test.cpp
     - icon: ':heavy_check_mark:'
@@ -378,9 +411,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/range_kth_smallest.test.cpp
       title: test/range_kth_smallest.test.cpp
+    - icon: ':x:'
+      path: test/rectange_add_point_get.test.cpp
+      title: test/rectange_add_point_get.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/rectangle_sum.test.cpp
       title: test/rectangle_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/rooted_tree_isomorphism_classification.test.cpp
+      title: test/rooted_tree_isomorphism_classification.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/segment_add_get_min.test.cpp
       title: test/segment_add_get_min.test.cpp
@@ -397,11 +436,17 @@ data:
       path: test/static_range_frequency.test.cpp
       title: test/static_range_frequency.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/stirling_number_of_the_first_kind.test.cpp
+      title: test/stirling_number_of_the_first_kind.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/strongly_connected_components.test.cpp
       title: test/strongly_connected_components.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/subset_convolution.test.cpp
       title: test/subset_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/tree_diameter.test.cpp
+      title: test/tree_diameter.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/two_sat.test.cpp
       title: test/two_sat.test.cpp

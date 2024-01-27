@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/waveletMatrix.cpp
     title: ds/waveletMatrix.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: misc/compression.cpp
     title: compression
   _extendedRequiredBy: []

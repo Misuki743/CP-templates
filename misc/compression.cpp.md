@@ -9,15 +9,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
+  - icon: ':x:'
+    path: test/rectange_add_point_get.test.cpp
+    title: test/rectange_add_point_get.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/rectangle_sum.test.cpp
     title: test/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/static_range_frequency.test.cpp
     title: test/static_range_frequency.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/compression.cpp\"\ntemplate<class T, bool duplicate\
@@ -53,11 +56,12 @@ data:
   path: misc/compression.cpp
   requiredBy: []
   timestamp: '2024-01-27 18:42:26+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/static_range_frequency.test.cpp
   - test/rectangle_sum.test.cpp
   - test/area_of_union_of_rectangles.test.cpp
+  - test/rectange_add_point_get.test.cpp
   - test/range_kth_smallest.test.cpp
 documentation_of: misc/compression.cpp
 layout: document

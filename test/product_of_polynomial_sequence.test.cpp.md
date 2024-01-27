@@ -20,26 +20,26 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
+    PROBLEM: https://judge.yosupo.jp/problem/product_of_polynomial_sequence
     links:
-    - https://judge.yosupo.jp/problem/division_of_polynomials
-  bundledCode: "#line 1 \"test/division_of_polynomials.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/division_of_polynomials\"\n\n#line 1 \"default/t.cpp\"\
-    \n#include <algorithm>\n#include <array>\n#include <bit>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <compare>\n#include <complex>\n#include <concepts>\n#include <cstdarg>\n#include\
-    \ <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include\
-    \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
-    \ <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
-    #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
-    #include <map>\n#include <memory>\n#include <new>\n#include <numbers>\n#include\
-    \ <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n#include\
-    \ <ranges>\n#include <set>\n#include <span>\n#include <sstream>\n#include <stack>\n\
-    #include <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n\
-    #include <variant>\n\n#define INT128_MAX (__int128)(((unsigned __int128) 1 <<\
-    \ ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX\
-    \ - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
+    - https://judge.yosupo.jp/problem/product_of_polynomial_sequence
+  bundledCode: "#line 1 \"test/product_of_polynomial_sequence.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/product_of_polynomial_sequence\"\n\
+    \n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
+    \ <bit>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n\
+    #include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n\
+    #include <cmath>\n#include <compare>\n#include <complex>\n#include <concepts>\n\
+    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
+    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
+    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
+    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
+    #include <numbers>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
+    #include <random>\n#include <ranges>\n#include <set>\n#include <span>\n#include\
+    \ <sstream>\n#include <stack>\n#include <streambuf>\n#include <string>\n#include\
+    \ <tuple>\n#include <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
+    \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
+    \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nnamespace R = std::ranges;\nnamespace V = std::views;\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
     using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\ntemplate<class T>\n\
@@ -180,34 +180,33 @@ data:
     \ FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint b) { return a\
     \ *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b; }\n};\n\nNTT\
     \ ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
-    \ vector<mint>)> fps::conv = ntt.conv;\n#line 7 \"test/division_of_polynomials.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ m; cin >> n >> m;\n  fps f(n), g(m);\n  for(mint &x : f)\n    cin >> x;\n  for(mint\
-    \ &x : g)\n    cin >> x;\n\n  auto [q, r] = f.div(g);\n  cout << ssize(q) << '\
-    \ ' << ssize(r) << '\\n';\n  cout << q << '\\n';\n  cout << r << '\\n';\n\n  return\
-    \ 0;\n}\n\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\
+    \ vector<mint>)> fps::conv = ntt.conv;\n#line 7 \"test/product_of_polynomial_sequence.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
+    \ cin >> n;\n  vector<fps> fs(n);\n  for(int i = 0; i < n; i++) {\n    int d;\
+    \ cin >> d;\n    fs[i].resize(d + 1);\n    for(mint &x : fs[i])\n      cin >>\
+    \ x;\n  }\n\n  cout << fps::allProd(fs) << '\\n';\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/product_of_polynomial_sequence\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
     \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >> n >>\
-    \ m;\n  fps f(n), g(m);\n  for(mint &x : f)\n    cin >> x;\n  for(mint &x : g)\n\
-    \    cin >> x;\n\n  auto [q, r] = f.div(g);\n  cout << ssize(q) << ' ' << ssize(r)\
-    \ << '\\n';\n  cout << q << '\\n';\n  cout << r << '\\n';\n\n  return 0;\n}\n\n"
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<fps>\
+    \ fs(n);\n  for(int i = 0; i < n; i++) {\n    int d; cin >> d;\n    fs[i].resize(d\
+    \ + 1);\n    for(mint &x : fs[i])\n      cin >> x;\n  }\n\n  cout << fps::allProd(fs)\
+    \ << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
   - poly/FPS.cpp
   isVerificationFile: true
-  path: test/division_of_polynomials.test.cpp
+  path: test/product_of_polynomial_sequence.test.cpp
   requiredBy: []
   timestamp: '2024-01-28 03:46:27+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/division_of_polynomials.test.cpp
+documentation_of: test/product_of_polynomial_sequence.test.cpp
 layout: document
 redirect_from:
-- /verify/test/division_of_polynomials.test.cpp
-- /verify/test/division_of_polynomials.test.cpp.html
-title: test/division_of_polynomials.test.cpp
+- /verify/test/product_of_polynomial_sequence.test.cpp
+- /verify/test/product_of_polynomial_sequence.test.cpp.html
+title: test/product_of_polynomial_sequence.test.cpp
 ---

@@ -55,6 +55,9 @@ data:
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/product_of_polynomial_sequence.test.cpp
+    title: test/product_of_polynomial_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/stirling_number_of_the_first_kind.test.cpp
+    title: test/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
@@ -156,6 +162,7 @@ data:
   - test/convolution.test.cpp
   - test/matrix_product.test.cpp
   - test/division_of_polynomials.test.cpp
+  - test/product_of_polynomial_sequence.test.cpp
   - test/yuki_2613.test.cpp
   - test/exp_of_formal_power_series.test.cpp
   - test/polynomial_interpolation.test.cpp
@@ -163,6 +170,7 @@ data:
   - test/log_of_formal_power_series.test.cpp
   - test/inv_of_formal_power_series.test.cpp
   - test/point_set_range_composite.test.cpp
+  - test/stirling_number_of_the_first_kind.test.cpp
   - test/find_linear_recurrence.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/convolution_1e9+7.test.cpp
