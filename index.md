@@ -4,6 +4,9 @@ data:
   - name: combi
     pages:
     - icon: ':warning:'
+      path: combi/bernoulliNumber.cpp
+      title: combi/bernoulliNumber.cpp
+    - icon: ':warning:'
       path: combi/comb.cpp
       title: combi/comb.cpp
     - icon: ':heavy_check_mark:'
@@ -11,7 +14,7 @@ data:
       title: combi/stirlingFirst.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -34,6 +37,9 @@ data:
     - icon: ':warning:'
       path: ds/HLD.cpp
       title: ds/HLD.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds/binaryTrie.cpp
+      title: ds/binaryTrie.cpp
     - icon: ':warning:'
       path: ds/bipartiteDSU.cpp
       title: ds/bipartiteDSU.cpp
@@ -70,7 +76,7 @@ data:
     - icon: ':warning:'
       path: ds/sparseTable2D.cpp
       title: ds/sparseTable2D.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/treap.cpp
       title: ds/treap.cpp
     - icon: ':heavy_check_mark:'
@@ -125,6 +131,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dinic.cpp
       title: graph/dinic.cpp
+    - icon: ':question:'
+      path: graph/eulerianTrail.cpp
+      title: graph/eulerianTrail.cpp
     - icon: ':warning:'
       path: graph/hopcroftKarp.cpp
       title: graph/hopcroftKarp.cpp
@@ -151,11 +160,17 @@ data:
   - name: misc
     pages:
     - icon: ':heavy_check_mark:'
+      path: misc/LIS.cpp
+      title: misc/LIS.cpp
+    - icon: ':heavy_check_mark:'
       path: misc/areaOfUnionOfRectangles.cpp
       title: misc/areaOfUnionOfRectangles.cpp
     - icon: ':question:'
       path: misc/compression.cpp
       title: compression
+    - icon: ':x:'
+      path: misc/pointAddRectangleSum.cpp
+      title: misc/pointAddRectangleSum.cpp
     - icon: ':x:'
       path: misc/rectangleAddPointGet.cpp
       title: misc/rectangleAddPointGet.cpp
@@ -164,7 +179,7 @@ data:
       title: misc/rectangleSum.cpp
   - name: modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':warning:'
@@ -204,7 +219,7 @@ data:
     - icon: ':warning:'
       path: poly/FFTmod.cpp
       title: poly/FFTmod.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/FPS.cpp
       title: poly/FPS.cpp
     - icon: ':heavy_check_mark:'
@@ -216,7 +231,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/NTTanymod.cpp
       title: poly/NTTanymod.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/NTTmint.cpp
       title: poly/NTTmint.cpp
     - icon: ':heavy_check_mark:'
@@ -303,6 +318,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/associative_array.test.cpp
       title: test/associative_array.test.cpp
+    - icon: ':x:'
+      path: test/bernoulli_number.test.cpp
+      title: test/bernoulli_number.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/convolution.test.cpp
       title: test/convolution.test.cpp
@@ -322,11 +340,20 @@ data:
       path: test/division_of_polynomials.test.cpp
       title: test/division_of_polynomials.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/dynamic_sequence_range_affine_range_sum.test.cpp
+      title: test/dynamic_sequence_range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/enumerate_palindromes.test.cpp
       title: test/enumerate_palindromes.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/enumerate_quotients.test.cpp
       title: test/enumerate_quotients.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/eulerian_trail_directed.test.cpp
+      title: test/eulerian_trail_directed.test.cpp
+    - icon: ':x:'
+      path: test/eulerian_trail_undirected.test.cpp
+      title: test/eulerian_trail_undirected.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/exp_of_formal_power_series.test.cpp
       title: test/exp_of_formal_power_series.test.cpp
@@ -358,6 +385,9 @@ data:
       path: test/log_of_formal_power_series.test.cpp
       title: test/log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/longest_increasing_subsequence.test.cpp
+      title: test/longest_increasing_subsequence.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/lowest_common_ancestor.test.cpp
       title: test/lowest_common_ancestor.test.cpp
     - icon: ':heavy_check_mark:'
@@ -373,6 +403,9 @@ data:
       path: test/minimum_spanning_tree.test.cpp
       title: test/minimum_spanning_tree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mul_modp_convolution.test.cpp
+      title: test/mul_modp_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/multipoint_evaluation.test.cpp
       title: test/multipoint_evaluation.test.cpp
     - icon: ':heavy_check_mark:'
@@ -381,6 +414,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/point_add_range_sum.test.cpp
       title: test/point_add_range_sum.test.cpp
+    - icon: ':x:'
+      path: test/point_add_rectangle_sum.test.cpp
+      title: test/point_add_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/point_set_range_composite.test.cpp
       title: test/point_set_range_composite.test.cpp
@@ -411,6 +447,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/range_kth_smallest.test.cpp
       title: test/range_kth_smallest.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/range_reverse_range_sum.test.cpp
+      title: test/range_reverse_range_sum.test.cpp
     - icon: ':x:'
       path: test/rectange_add_point_get.test.cpp
       title: test/rectange_add_point_get.test.cpp
@@ -423,6 +462,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/segment_add_get_min.test.cpp
       title: test/segment_add_get_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/set_xor_min.test.cpp
+      title: test/set_xor_min.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/shortest_path.test.cpp
       title: test/shortest_path.test.cpp

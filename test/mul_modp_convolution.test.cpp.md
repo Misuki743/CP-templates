@@ -20,25 +20,26 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/2613
+    PROBLEM: https://judge.yosupo.jp/problem/mul_modp_convolution
     links:
-    - https://yukicoder.me/problems/no/2613
-  bundledCode: "#line 1 \"test/yuki_2613.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/2613\"\
-    \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
-    \ <bit>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n\
-    #include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n\
-    #include <cmath>\n#include <compare>\n#include <complex>\n#include <concepts>\n\
-    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
-    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
-    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
-    #include <numbers>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
-    #include <random>\n#include <ranges>\n#include <set>\n#include <span>\n#include\
-    \ <sstream>\n#include <stack>\n#include <streambuf>\n#include <string>\n#include\
-    \ <tuple>\n#include <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
-    \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
-    \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
+    - https://judge.yosupo.jp/problem/mul_modp_convolution
+  bundledCode: "#line 1 \"test/mul_modp_convolution.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/mul_modp_convolution\"\n\n#line 1 \"default/t.cpp\"\
+    \n#include <algorithm>\n#include <array>\n#include <bit>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <compare>\n#include <complex>\n#include <concepts>\n#include <cstdarg>\n#include\
+    \ <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include\
+    \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
+    \ <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
+    #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
+    #include <map>\n#include <memory>\n#include <new>\n#include <numbers>\n#include\
+    \ <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n#include\
+    \ <ranges>\n#include <set>\n#include <span>\n#include <sstream>\n#include <stack>\n\
+    #include <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n\
+    #include <variant>\n\n#define INT128_MAX (__int128)(((unsigned __int128) 1 <<\
+    \ ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX\
+    \ - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nnamespace R = std::ranges;\nnamespace V = std::views;\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
     using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\ntemplate<class T>\n\
@@ -131,49 +132,33 @@ data:
     \ b[0] + accumulate(b.begin() + 1, b.end(), mint(0)) * a[0];\n    a = transform(a),\
     \ b = transform(b);\n    a = conv(a, b);\n    for(int i = P - 1; i < 2 * P - 3;\
     \ i++)\n      a[i - (P - 1)] += a[i];\n    a.resize(P - 1);\n    a = invTransform(a);\n\
-    \    a[0] = zero;\n    return a;\n  }\n};\n#line 7 \"test/yuki_2613.test.cpp\"\
-    \n\nint p;\nint fac[200000], facInv[200000];\nint C(int a, int b) {\n  if (b >\
-    \ a or b < 0) return 0;\n  else return (ll)fac[a] * facInv[b] % p * facInv[a -\
-    \ b] % p;\n}\n\nNTT ntt;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
-    \n  ll n; cin >> n >> p;\n\n  fac[0] = 1;\n  for(int i = 1; i < p; i++)\n    fac[i]\
-    \ = (ll)fac[i - 1] * i % p;\n  facInv[p - 1] = 1;\n  for(int i = 0; i < p - 2;\
-    \ i++)\n    facInv[p - 1] = (ll)facInv[p - 1] * fac[p - 1] % p;\n  for(int i =\
-    \ p - 2; i >= 0; i--)\n    facInv[i] = (ll)facInv[i + 1] * (i + 1) % p;\n\n  mulConvolution\
-    \ mu(p);\n\n  vector<mint> f(p);\n  f[1] = 1;\n  while(n) {\n    int nd = n %\
-    \ p; n /= p;\n    vector<mint> g(p);\n    for(int i = 0; i < p; i++)\n      g[C(nd,\
-    \ i)] += 1;\n    f = mu.mulConv(f, g, ntt.conv);\n  }\n\n  mint ans = 0;\n  for(int\
-    \ i = 1; i < p; i++)\n    ans += f[i] * i;\n\n  cout << ans << '\\n';\n\n  return\
-    \ 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/2613\"\n\n#include \"\
-    ../default/t.cpp\";\n#include \"../modint/MontgomeryModInt.cpp\"\n#include \"\
-    ../poly/NTTmint.cpp\"\n#include \"../poly/mulConvolution.cpp\"\n\nint p;\nint\
-    \ fac[200000], facInv[200000];\nint C(int a, int b) {\n  if (b > a or b < 0) return\
-    \ 0;\n  else return (ll)fac[a] * facInv[b] % p * facInv[a - b] % p;\n}\n\nNTT\
-    \ ntt;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n \
-    \ ll n; cin >> n >> p;\n\n  fac[0] = 1;\n  for(int i = 1; i < p; i++)\n    fac[i]\
-    \ = (ll)fac[i - 1] * i % p;\n  facInv[p - 1] = 1;\n  for(int i = 0; i < p - 2;\
-    \ i++)\n    facInv[p - 1] = (ll)facInv[p - 1] * fac[p - 1] % p;\n  for(int i =\
-    \ p - 2; i >= 0; i--)\n    facInv[i] = (ll)facInv[i + 1] * (i + 1) % p;\n\n  mulConvolution\
-    \ mu(p);\n\n  vector<mint> f(p);\n  f[1] = 1;\n  while(n) {\n    int nd = n %\
-    \ p; n /= p;\n    vector<mint> g(p);\n    for(int i = 0; i < p; i++)\n      g[C(nd,\
-    \ i)] += 1;\n    f = mu.mulConv(f, g, ntt.conv);\n  }\n\n  mint ans = 0;\n  for(int\
-    \ i = 1; i < p; i++)\n    ans += f[i] * i;\n\n  cout << ans << '\\n';\n\n  return\
-    \ 0;\n}\n"
+    \    a[0] = zero;\n    return a;\n  }\n};\n#line 7 \"test/mul_modp_convolution.test.cpp\"\
+    \n\nNTT ntt;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \n  int p; cin >> p;\n  vector<mint> a(p), b(p);\n  for(mint &x : a)\n    cin\
+    \ >> x;\n  for(mint &x : b)\n    cin >> x;\n\n  mulConvolution mu(p);\n  cout\
+    \ << mu.mulConv(a, b, ntt.conv) << '\\n';\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/mul_modp_convolution\"\n\
+    \n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\n\
+    #include \"../poly/NTTmint.cpp\"\n#include \"../poly/mulConvolution.cpp\"\n\n\
+    NTT ntt;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n\
+    \  int p; cin >> p;\n  vector<mint> a(p), b(p);\n  for(mint &x : a)\n    cin >>\
+    \ x;\n  for(mint &x : b)\n    cin >> x;\n\n  mulConvolution mu(p);\n  cout <<\
+    \ mu.mulConv(a, b, ntt.conv) << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
   - poly/mulConvolution.cpp
   isVerificationFile: true
-  path: test/yuki_2613.test.cpp
+  path: test/mul_modp_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-01-26 03:52:48+08:00'
+  timestamp: '2024-01-28 22:59:51+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yuki_2613.test.cpp
+documentation_of: test/mul_modp_convolution.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yuki_2613.test.cpp
-- /verify/test/yuki_2613.test.cpp.html
-title: test/yuki_2613.test.cpp
+- /verify/test/mul_modp_convolution.test.cpp
+- /verify/test/mul_modp_convolution.test.cpp.html
+title: test/mul_modp_convolution.test.cpp
 ---

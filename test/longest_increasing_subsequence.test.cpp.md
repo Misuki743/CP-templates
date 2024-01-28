@@ -5,8 +5,8 @@ data:
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
-    path: ds/DSU.cpp
-    title: ds/DSU.cpp
+    path: misc/LIS.cpp
+    title: misc/LIS.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,11 +14,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/unionfind
+    PROBLEM: https://judge.yosupo.jp/problem/longest_increasing_subsequence
     links:
-    - https://judge.yosupo.jp/problem/unionfind
-  bundledCode: "#line 1 \"test/unionfind.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\
-    \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
+    - https://judge.yosupo.jp/problem/longest_increasing_subsequence
+  bundledCode: "#line 1 \"test/longest_increasing_subsequence.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/longest_increasing_subsequence\"\n\
+    \n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bit>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n\
     #include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n\
     #include <cmath>\n#include <compare>\n#include <complex>\n#include <concepts>\n\
@@ -42,37 +43,37 @@ data:
     \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
     \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
     \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"ds/DSU.cpp\"\nstruct DSU\
-    \ {\n  vector<int> bos, sz;\n  int size;\n\n  DSU(int _size) : bos(_size), sz(_size,\
-    \ 1), size(_size) {\n    iota(bos.begin(), bos.end(), 0);\n  }\n\n  int query(int\
-    \ v) {\n    if (bos[v] == v)\n      return v;\n    else\n      return bos[v] =\
-    \ query(bos[v]);\n  }\n\n  bool merge(int v1, int v2) {\n    int b1 = query(v1),\
-    \ b2 = query(v2);\n\n    if (b1 == b2)\n      return false;\n\n    if (sz[b1]\
-    \ > sz[b2])\n      swap(b1, b2);\n    bos[b1] = b2, sz[b2] += sz[b1];\n\n    return\
-    \ true;\n  }\n};\n#line 5 \"test/unionfind.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  DSU dsu(n);\n  while(q--) {\n\
-    \    int t, u, v; cin >> t >> u >> v;\n    if (t == 0)\n      dsu.merge(u, v);\n\
-    \    else\n      cout << (dsu.query(u) == dsu.query(v)) << '\\n';\n  }\n\n  return\
-    \ 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../ds/DSU.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  DSU dsu(n);\n  while(q--) {\n\
-    \    int t, u, v; cin >> t >> u >> v;\n    if (t == 0)\n      dsu.merge(u, v);\n\
-    \    else\n      cout << (dsu.query(u) == dsu.query(v)) << '\\n';\n  }\n\n  return\
-    \ 0;\n}\n"
+    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"misc/LIS.cpp\"\ntemplate<class\
+    \ T, T inf, bool strict = true>\nvector<int> LIS(vector<T> &a) {\n  vector<T>\
+    \ dp(ssize(a), inf);\n  vector<int> id(ssize(a)), pre(ssize(a), -1);\n  for(int\
+    \ i = 0; i < ssize(a); i++) {\n    int j;\n    if constexpr (strict)\n      j\
+    \ = R::lower_bound(dp, a[i]) - dp.begin();\n    else\n      j = R::upper_bound(dp,\
+    \ a[i]) - dp.begin();\n    if (a[i] < dp[j])\n      dp[j] = a[i], id[j] = i;\n\
+    \    if (j >= 1)\n      pre[i] = id[j - 1];\n  }\n\n  vector<T> lis;\n  int i\
+    \ = id[R::lower_bound(dp, inf) - dp.begin() - 1];\n  while(i != -1) {\n    lis.emplace_back(i);\n\
+    \    i = pre[i];\n  }\n  R::reverse(lis);\n\n  return lis;\n}\n#line 5 \"test/longest_increasing_subsequence.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
+    \ cin >> n;\n  vector<int> a(n);\n  for(int &x : a)\n    cin >> x;\n\n  auto lis\
+    \ = LIS<int, INT_MAX>(a);\n  cout << ssize(lis) << '\\n';\n  cout << lis << '\\\
+    n';\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/longest_increasing_subsequence\"\
+    \n\n#include \"../default/t.cpp\"\n#include \"../misc/LIS.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<int>\
+    \ a(n);\n  for(int &x : a)\n    cin >> x;\n\n  auto lis = LIS<int, INT_MAX>(a);\n\
+    \  cout << ssize(lis) << '\\n';\n  cout << lis << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - ds/DSU.cpp
+  - misc/LIS.cpp
   isVerificationFile: true
-  path: test/unionfind.test.cpp
+  path: test/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2024-01-24 20:41:29+08:00'
+  timestamp: '2024-01-28 22:59:51+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/unionfind.test.cpp
+documentation_of: test/longest_increasing_subsequence.test.cpp
 layout: document
 redirect_from:
-- /verify/test/unionfind.test.cpp
-- /verify/test/unionfind.test.cpp.html
-title: test/unionfind.test.cpp
+- /verify/test/longest_increasing_subsequence.test.cpp
+- /verify/test/longest_increasing_subsequence.test.cpp.html
+title: test/longest_increasing_subsequence.test.cpp
 ---

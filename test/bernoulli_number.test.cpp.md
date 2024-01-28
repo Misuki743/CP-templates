@@ -13,20 +13,17 @@ data:
   - icon: ':question:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
-  - icon: ':heavy_check_mark:'
-    path: setfunc/fastSubsetTransform.cpp
-    title: setfunc/fastSubsetTransform.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
+    PROBLEM: https://judge.yosupo.jp/problem/bernoulli_number
     links:
-    - https://judge.yosupo.jp/problem/subset_convolution
-  bundledCode: "#line 1 \"test/subset_convolution.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\
+    - https://judge.yosupo.jp/problem/bernoulli_number
+  bundledCode: "#line 1 \"test/bernoulli_number.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bit>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n\
     #include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n\
@@ -182,51 +179,29 @@ data:
     \ FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint b) { return a\
     \ *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b; }\n};\n\nNTT\
     \ ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
-    \ vector<mint>)> fps::conv = ntt.conv;\n#line 1 \"setfunc/fastSubsetTransform.cpp\"\
-    \n//#include<poly/FPS.cpp>\n\ntemplate<class FPS>\nvector<FPS> FST(FPS f) {\n\
-    \  assert(popcount(f.size()) == 1);\n  int n = bit_width(f.size()) - 1;\n  vector<FPS>\
-    \ fHat(1 << n, FPS(n + 1));\n  for(unsigned i = 0; i < (1 << n); i++)\n    fHat[i][popcount(i)]\
-    \ = f[i];\n\n  for(int k = 0; k < n; k++)\n    for(int i = 0; i < (1 << n); i++)\n\
-    \      if (!(i >> k & 1))\n        for(int j = 0; j <= n; j++)\n          fHat[i|1<<k][j]\
-    \ += fHat[i][j];\n\n  return fHat;\n}\n\ntemplate<class FPS>\nFPS FSTinv(vector<FPS>\
-    \ fHat) {\n  int n = bit_width(fHat.size()) - 1;\n  for(int k = 0; k < n; k++)\n\
-    \    for(int i = 0; i < (1 << n); i++)\n      if (!(i >> k & 1))\n        for(int\
-    \ j = 0; j <= n; j++)\n          fHat[i|1<<k][j] -= fHat[i][j];\n\n  FPS f(1 <<\
-    \ n);\n  for(unsigned i = 0; i < (1 << n); i++)\n    f[i] = fHat[i][popcount(i)];\n\
-    \n  return f;\n}\n\ntemplate<class FPS>\nFPS conv(FPS f, FPS g) {\n  assert(ssize(f)\
-    \ == ssize(g));\n  auto fHat = FST(f), gHat = FST(g);\n  for(int i = 0; i < ssize(fHat);\
-    \ i++) {\n    fHat[i] *= gHat[i];\n    fHat[i].resize(ssize(gHat[i]));\n  }\n\
-    \  return FSTinv(fHat);\n}\n\n/* OMG this is so slowwwwwwwwwwwwwwwww\nFPS subsetPow(FPS\
-    \ f, long long idx) {\n  int n = __lg(f.size());\n  vector<FPS> fHat = FST(f);\n\
-    \  for(int i = 0; i < fHat.size(); i++)\n    fHat[i] = fHat[i].pow(idx, n + 1);\n\
-    \  f = FSTinv(fHat);\n  return f;\n}\n*/\n#line 8 \"test/subset_convolution.test.cpp\"\
+    \ vector<mint>)> fps::conv = ntt.conv;\n#line 7 \"test/bernoulli_number.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
-    \ cin >> n;\n  fps a(1 << n), b(1 << n);\n  for(mint &x : a)\n    cin >> x;\n\
-    \  for(mint &x : b)\n    cin >> x;\n\n  cout << conv(a, b) << '\\n';\n\n  return\
-    \ 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\n\n\
+    \ cin >> n;\n  cout << bernoulliNumber<mint>(n) << '\\n';\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\n#include\
-    \ \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"../setfunc/fastSubsetTransform.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
-    \ cin >> n;\n  fps a(1 << n), b(1 << n);\n  for(mint &x : a)\n    cin >> x;\n\
-    \  for(mint &x : b)\n    cin >> x;\n\n  cout << conv(a, b) << '\\n';\n\n  return\
-    \ 0;\n}\n"
+    \ \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n\nsigned main() {\n \
+    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  cout <<\
+    \ bernoulliNumber<mint>(n) << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
   - poly/FPS.cpp
-  - setfunc/fastSubsetTransform.cpp
   isVerificationFile: true
-  path: test/subset_convolution.test.cpp
+  path: test/bernoulli_number.test.cpp
   requiredBy: []
-  timestamp: '2024-01-28 03:46:27+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-28 22:59:51+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/subset_convolution.test.cpp
+documentation_of: test/bernoulli_number.test.cpp
 layout: document
 redirect_from:
-- /verify/test/subset_convolution.test.cpp
-- /verify/test/subset_convolution.test.cpp.html
-title: test/subset_convolution.test.cpp
+- /verify/test/bernoulli_number.test.cpp
+- /verify/test/bernoulli_number.test.cpp.html
+title: test/bernoulli_number.test.cpp
 ---

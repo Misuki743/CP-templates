@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/mul_modp_convolution.test.cpp
+    title: test/mul_modp_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
   _isVerificationFailed: false
@@ -71,6 +74,7 @@ data:
   timestamp: '2024-01-26 03:52:48+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mul_modp_convolution.test.cpp
   - test/yuki_2613.test.cpp
 documentation_of: poly/mulConvolution.cpp
 layout: document

@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/bernoulli_number.test.cpp
+    title: test/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/convolution.test.cpp
     title: test/convolution.test.cpp
@@ -15,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/division_of_polynomials.test.cpp
     title: test/division_of_polynomials.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/dynamic_sequence_range_affine_range_sum.test.cpp
+    title: test/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
@@ -39,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/matrix_product.test.cpp
     title: test/matrix_product.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mul_modp_convolution.test.cpp
+    title: test/mul_modp_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
@@ -75,9 +84,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
@@ -148,7 +157,7 @@ data:
   path: modint/MontgomeryModInt.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/pow_of_formal_power_series.test.cpp
   - test/range_affine_point_get.test.cpp
@@ -162,11 +171,14 @@ data:
   - test/convolution.test.cpp
   - test/matrix_product.test.cpp
   - test/division_of_polynomials.test.cpp
+  - test/mul_modp_convolution.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
+  - test/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/yuki_2613.test.cpp
   - test/exp_of_formal_power_series.test.cpp
   - test/polynomial_interpolation.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
+  - test/bernoulli_number.test.cpp
   - test/log_of_formal_power_series.test.cpp
   - test/inv_of_formal_power_series.test.cpp
   - test/point_set_range_composite.test.cpp

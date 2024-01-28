@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
+  - icon: ':x:'
+    path: test/point_add_rectangle_sum.test.cpp
+    title: test/point_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
@@ -59,6 +62,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/static_range_frequency.test.cpp
+  - test/point_add_rectangle_sum.test.cpp
   - test/rectangle_sum.test.cpp
   - test/area_of_union_of_rectangles.test.cpp
   - test/rectange_add_point_get.test.cpp

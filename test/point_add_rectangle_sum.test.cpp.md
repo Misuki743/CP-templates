@@ -8,8 +8,8 @@ data:
     path: misc/compression.cpp
     title: compression
   - icon: ':x:'
-    path: misc/rectangleAddPointGet.cpp
-    title: misc/rectangleAddPointGet.cpp
+    path: misc/pointAddRectangleSum.cpp
+    title: misc/pointAddRectangleSum.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -17,11 +17,11 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/rectangle_add_point_get
+    PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
     links:
-    - https://judge.yosupo.jp/problem/rectangle_add_point_get
-  bundledCode: "#line 1 \"test/rectange_add_point_get.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/rectangle_add_point_get\"\n\n#line 1 \"ds/fenwickTree2D.cpp\"\
+    - https://judge.yosupo.jp/problem/point_add_rectangle_sum
+  bundledCode: "#line 1 \"test/point_add_rectangle_sum.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\n\n#line 1 \"ds/fenwickTree2D.cpp\"\
     \n//source: KACTL\n\n/**\n * Author: Lukas Polacek\n * Date: 2009-10-30\n * License:\
     \ CC0\n * Source: folklore/TopCoder\n * Description: Computes partial sums a[0]\
     \ + a[1] + ... + a[pos - 1], and updates single elements a[i],\n * taking the\
@@ -61,56 +61,53 @@ data:
     \ }\n  int size() { return ssize(val); }\n  template<R::range rng, class proj\
     \ = identity>\n  void mapping(rng &v, proj p = {}) { for(auto &x : v) p(x) = lower_bound(p(x));\
     \ }\n  template<R::range rng, class proj = identity>\n  void insert(rng &v, proj\
-    \ p = {}) { for(auto &x : v) val.emplace_back(p(x)); }\n};\n#line 1 \"misc/rectangleAddPointGet.cpp\"\
+    \ p = {}) { for(auto &x : v) val.emplace_back(p(x)); }\n};\n#line 1 \"misc/pointAddRectangleSum.cpp\"\
     \n//#include<ds/fenwickTree2D.cpp>\n//#include<misc/compression.cpp>\n\ntemplate<class\
-    \ T1, class T2>\nvector<T2> rectAddPointGet(vector<tuple<T1, T1, T1, T1, T2>>\
-    \ &rect, vector<array<T1, 2>> &query, vector<int> updT) {\n  compression<T1> xs(ssize(query));\n\
-    \  xs.insert(query, [](auto &x) { return x[0]; });\n  xs.precompute();\n  xs.mapping(query,\
-    \ [](auto &x) -> T1& { return x[0]; });\n  xs.mapping(rect, [](auto &x) -> T1&\
-    \ { return get<0>(x); });\n  xs.mapping(rect, [](auto &x) -> T1& { return get<1>(x);\
-    \ });\n\n  FT2<T1, T2> bit(xs.size());\n  for(auto &[l, r, d, u, w] : rect) {\n\
-    \    bit.fakeUpdate(l, d);\n    bit.fakeUpdate(r, u);\n    bit.fakeUpdate(l, u);\n\
-    \    bit.fakeUpdate(r, d);\n  }\n  bit.init();\n\n  vector<T2> ans(ssize(query));\n\
-    \  for(int i = 0, ptr = 0; auto &[x, y] : query) {\n    while(ptr < ssize(rect)\
-    \ and updT[ptr] <= i) {\n      auto [l, r, d, u, w] = rect[ptr++];\n      bit.update(l,\
-    \ d, w);\n      bit.update(r, u, w);\n      bit.update(l, u, -w);\n      bit.update(r,\
-    \ d, -w);\n    }\n    ans[i++] = bit.query(x + 1, y + 1);\n  }\n\n  return ans;\n\
-    }\n#line 6 \"test/rectange_add_point_get.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<tuple<int, int, int,\
-    \ int, ll>> rect(n);\n  for(auto &[l, r, d, u, w] : rect)\n    cin >> l >> d >>\
-    \ r >> u >> w;\n  vector<array<int, 2>> query;\n  vector<int> updT(n, 0);\n  while(q--)\
-    \ {\n    int op; cin >> op;\n    if (op == 0) {\n      int l, d, r, u; cin >>\
-    \ l >> d >> r >> u;\n      ll w; cin >> w;\n      rect.emplace_back(l, r, d, u,\
-    \ w);\n      updT.emplace_back(ssize(query));\n    } else if (op == 1) {\n   \
-    \   int x, y; cin >> x >> y;\n      query.push_back({x, y});\n    }\n  }\n\n \
-    \ for(ll ans : rectAddPointGet<int, ll, INT_MAX>(rect, query, updT))\n    cout\
-    \ << ans << '\\n';\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_add_point_get\"\
+    \ T1, class T2>\nvector<T2> pointAddRectSum(vector<tuple<T1, T1, T2>> pt, vector<array<T1,\
+    \ 4>> query, vector<int> updT) {\n  compression<T1> xs(ssize(pt));\n  xs.insert(pt,\
+    \ [](auto &x) { return get<0>(x); });\n  xs.precompute();\n  xs.mapping(pt, [](auto\
+    \ &x) -> T1& { return get<0>(x); });\n  xs.mapping(query, [](auto &x) -> T1& {\
+    \ return x[0]; });\n  xs.mapping(query, [](auto &x) -> T1& { return x[1]; });\n\
+    \n  FT2<T1, T2> bit(xs.size());\n  for(auto [x, y, __] : pt)\n    bit.fakeUpdate(x,\
+    \ y);\n  bit.init();\n\n  vector<T2> ans(ssize(query));\n  for(int i = 0, ptr\
+    \ = 0; auto [l, r, d, u] : query) {\n    while(ptr < ssize(pt) and updT[ptr] <=\
+    \ i) {\n      auto [x, y, w] = pt[ptr++];\n      bit.update(x, y, w);\n    }\n\
+    \    ans[i++] = bit.query(r, u) - bit.query(l, u) - bit.query(r, d) + bit.query(l,\
+    \ d);\n  }\n  \n  return ans;\n}\n#line 6 \"test/point_add_rectangle_sum.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vector<tuple<int, int, ll>> pt(n);\n  for(auto &[x, y,\
+    \ w] : pt)\n    cin >> x >> y >> w;\n  vector<array<int, 4>> query;\n  vector<int>\
+    \ updT(n);\n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int\
+    \ x, y, w; cin >> x >> y >> w;\n      updT.emplace_back(ssize(query));\n     \
+    \ pt.emplace_back(x, y, w);\n    } else if (t == 1) {\n      int l, r, d, u; cin\
+    \ >> l >> d >> r >> u;\n      query.push_back({l, r, d, u});\n    }\n  }\n\n \
+    \ for(ll x : pointAddRectSum<int, ll>(pt, query, updT))\n    cout << x << '\\\
+    n';\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\
     \n\n#include \"../ds/fenwickTree2D.cpp\"\n#include \"../misc/compression.cpp\"\
-    \n#include \"../misc/rectangleAddPointGet.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<tuple<int, int, int,\
-    \ int, ll>> rect(n);\n  for(auto &[l, r, d, u, w] : rect)\n    cin >> l >> d >>\
-    \ r >> u >> w;\n  vector<array<int, 2>> query;\n  vector<int> updT(n, 0);\n  while(q--)\
-    \ {\n    int op; cin >> op;\n    if (op == 0) {\n      int l, d, r, u; cin >>\
-    \ l >> d >> r >> u;\n      ll w; cin >> w;\n      rect.emplace_back(l, r, d, u,\
-    \ w);\n      updT.emplace_back(ssize(query));\n    } else if (op == 1) {\n   \
-    \   int x, y; cin >> x >> y;\n      query.push_back({x, y});\n    }\n  }\n\n \
-    \ for(ll ans : rectAddPointGet<int, ll, INT_MAX>(rect, query, updT))\n    cout\
-    \ << ans << '\\n';\n\n  return 0;\n}\n"
+    \n#include \"../misc/pointAddRectangleSum.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<tuple<int, int, ll>>\
+    \ pt(n);\n  for(auto &[x, y, w] : pt)\n    cin >> x >> y >> w;\n  vector<array<int,\
+    \ 4>> query;\n  vector<int> updT(n);\n  while(q--) {\n    int t; cin >> t;\n \
+    \   if (t == 0) {\n      int x, y, w; cin >> x >> y >> w;\n      updT.emplace_back(ssize(query));\n\
+    \      pt.emplace_back(x, y, w);\n    } else if (t == 1) {\n      int l, r, d,\
+    \ u; cin >> l >> d >> r >> u;\n      query.push_back({l, r, d, u});\n    }\n \
+    \ }\n\n  for(ll x : pointAddRectSum<int, ll>(pt, query, updT))\n    cout << x\
+    \ << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - ds/fenwickTree2D.cpp
   - misc/compression.cpp
-  - misc/rectangleAddPointGet.cpp
+  - misc/pointAddRectangleSum.cpp
   isVerificationFile: true
-  path: test/rectange_add_point_get.test.cpp
+  path: test/point_add_rectangle_sum.test.cpp
   requiredBy: []
   timestamp: '2024-01-28 22:59:51+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/rectange_add_point_get.test.cpp
+documentation_of: test/point_add_rectangle_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/rectange_add_point_get.test.cpp
-- /verify/test/rectange_add_point_get.test.cpp.html
-title: test/rectange_add_point_get.test.cpp
+- /verify/test/point_add_rectangle_sum.test.cpp
+- /verify/test/point_add_rectangle_sum.test.cpp.html
+title: test/point_add_rectangle_sum.test.cpp
 ---
