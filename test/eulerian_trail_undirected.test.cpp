@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/eulerian_trail_directed"
+#define PROBLEM "https://judge.yosupo.jp/problem/eulerian_trail_undirected"
 
 #include "../default/t.cpp"
 #include "../graph/eulerianTrail.cpp"

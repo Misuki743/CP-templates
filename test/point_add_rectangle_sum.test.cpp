@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_rectangle_sum"
 
+#include "../default/t.cpp"
 #include "../ds/fenwickTree2D.cpp"
 #include "../misc/compression.cpp"
 #include "../misc/pointAddRectangleSum.cpp"
