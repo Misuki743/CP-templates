@@ -1,11 +1,10 @@
 //#include<ds/fenwickTree2D.cpp>
 //#include<misc/compression.cpp>
 
-template<class T1, class T2, T1 inf>
+template<class T1, class T2>
 vector<T2> rectAddPointGet(vector<tuple<T1, T1, T1, T1, T2>> &rect, vector<array<T1, 2>> &query, vector<int> updT) {
-  compression<T1> xs(ssize(query) + 1);
+  compression<T1> xs(ssize(query));
   xs.insert(query, [](auto &x) { return x[0]; });
-  xs.val.emplace_back(inf);
   xs.precompute();
   xs.mapping(query, [](auto &x) -> T1& { return x[0]; });
   xs.mapping(rect, [](auto &x) -> T1& { return get<0>(x); });
