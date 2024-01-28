@@ -14,7 +14,7 @@ data:
       title: combi/stirlingFirst.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -58,7 +58,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwickTree.cpp
       title: ds/fenwickTree.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwickTree2D.cpp
       title: ds/fenwickTree2D.cpp
     - icon: ':heavy_check_mark:'
@@ -165,13 +165,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: misc/areaOfUnionOfRectangles.cpp
       title: misc/areaOfUnionOfRectangles.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: misc/compression.cpp
       title: compression
     - icon: ':heavy_check_mark:'
       path: misc/pointAddRectangleSum.cpp
       title: misc/pointAddRectangleSum.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: misc/rectangleAddPointGet.cpp
       title: misc/rectangleAddPointGet.cpp
     - icon: ':heavy_check_mark:'
@@ -450,7 +450,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/range_reverse_range_sum.test.cpp
       title: test/range_reverse_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/rectangle_add_point_get.test.cpp
       title: test/rectangle_add_point_get.test.cpp
     - icon: ':heavy_check_mark:'

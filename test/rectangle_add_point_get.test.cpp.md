@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwickTree2D.cpp
     title: ds/fenwickTree2D.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: misc/rectangleAddPointGet.cpp
     title: misc/rectangleAddPointGet.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_add_point_get
@@ -111,8 +111,8 @@ data:
     \ l >> d >> r >> u;\n      ll w; cin >> w;\n      rect.emplace_back(l, r, d, u,\
     \ w);\n      updT.emplace_back(ssize(query));\n    } else if (op == 1) {\n   \
     \   int x, y; cin >> x >> y;\n      query.push_back({x, y});\n    }\n  }\n\n \
-    \ for(ll ans : rectAddPointGet<int, ll, INT_MAX>(rect, query, updT))\n    cout\
-    \ << ans << '\\n';\n\n  return 0;\n}\n"
+    \ for(ll ans : rectAddPointGet<int, ll>(rect, query, updT))\n    cout << ans <<\
+    \ '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_add_point_get\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../ds/fenwickTree2D.cpp\"\n#include\
     \ \"../misc/compression.cpp\"\n#include \"../misc/rectangleAddPointGet.cpp\"\n\
@@ -123,8 +123,8 @@ data:
     \    if (op == 0) {\n      int l, d, r, u; cin >> l >> d >> r >> u;\n      ll\
     \ w; cin >> w;\n      rect.emplace_back(l, r, d, u, w);\n      updT.emplace_back(ssize(query));\n\
     \    } else if (op == 1) {\n      int x, y; cin >> x >> y;\n      query.push_back({x,\
-    \ y});\n    }\n  }\n\n  for(ll ans : rectAddPointGet<int, ll, INT_MAX>(rect, query,\
-    \ updT))\n    cout << ans << '\\n';\n\n  return 0;\n}\n"
+    \ y});\n    }\n  }\n\n  for(ll ans : rectAddPointGet<int, ll>(rect, query, updT))\n\
+    \    cout << ans << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - ds/fenwickTree2D.cpp
@@ -133,8 +133,8 @@ data:
   isVerificationFile: true
   path: test/rectangle_add_point_get.test.cpp
   requiredBy: []
-  timestamp: '2024-01-28 23:19:06+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-28 23:24:24+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rectangle_add_point_get.test.cpp
 layout: document
