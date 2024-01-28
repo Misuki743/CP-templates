@@ -27,7 +27,7 @@ signed main() {
     }
   }
 
-  for(ll ans : rectAddPointGet<int, ll, INT_MAX>(rect, query, updT))
+  for(ll ans : rectAddPointGet<int, ll>(rect, query, updT))
     cout << ans << '\n';
 
   return 0;
