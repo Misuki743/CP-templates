@@ -47,6 +47,7 @@
 "test/range_affine_range_sum.test.cpp": "2024-01-27 18:42:26 +0800",
 "test/range_kth_smallest.test.cpp": "2024-01-27 18:42:26 +0800",
 "test/range_reverse_range_sum.test.cpp": "2024-01-28 22:59:51 +0800",
+"test/rectangle_add_point_get.test.cpp": "2024-01-28 23:24:24 +0800",
 "test/rectangle_sum.test.cpp": "2024-01-27 19:56:42 +0800",
 "test/rooted_tree_isomorphism_classification.test.cpp": "2024-01-28 03:46:27 +0800",
 "test/segment_add_get_min.test.cpp": "2024-01-24 20:41:29 +0800",
