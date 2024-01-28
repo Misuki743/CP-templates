@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/bernoulli_number.test.cpp
     title: test/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,9 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/FPS.cpp\"\n//#include \"poly/MontgomeryModInt.cpp\"\
@@ -200,7 +200,7 @@ data:
   path: poly/FPS.cpp
   requiredBy: []
   timestamp: '2024-01-28 03:46:27+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/pow_of_formal_power_series.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp

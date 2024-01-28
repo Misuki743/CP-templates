@@ -1,23 +1,26 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: combi/bernoulliNumber.cpp
+    title: combi/bernoulliNumber.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bernoulli_number
@@ -179,24 +182,32 @@ data:
     \ FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint b) { return a\
     \ *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b; }\n};\n\nNTT\
     \ ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
-    \ vector<mint>)> fps::conv = ntt.conv;\n#line 7 \"test/bernoulli_number.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
-    \ cin >> n;\n  cout << bernoulliNumber<mint>(n) << '\\n';\n\n  return 0;\n}\n"
+    \ vector<mint>)> fps::conv = ntt.conv;\n#line 1 \"combi/bernoulliNumber.cpp\"\n\
+    //#include<modint/MontgomeryModInt.cpp>\n//#include<poly/NTTmint.cpp>\n//#include<poly/FPS.cpp>\n\
+    \ntemplate<class Mint>\nFPS<Mint> bernoulliNumber(int n) {\n  fps fac(n + 2);\n\
+    \  fac[0] = 1;\n  for(int i = 1; i <= n + 1; i++)\n    fac[i] = fac[i - 1] * i;\n\
+    \  fps f(n + 2);\n  f[n + 1] = Mint(1) / fac[n + 1];\n  for(int i = n; i > 0;\
+    \ i--)\n    f[i] = f[i + 1] * (i + 1);\n  f.erase(f.begin());\n  f = f.inv(n +\
+    \ 1);\n  for(int i = 0; i <= n; i++)\n    f[i] *= fac[i];\n  return f;\n}\n#line\
+    \ 8 \"test/bernoulli_number.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  cout << bernoulliNumber<mint>(n) <<\
+    \ '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\n#include\
-    \ \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n\nsigned main() {\n \
-    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  cout <<\
-    \ bernoulliNumber<mint>(n) << '\\n';\n\n  return 0;\n}\n"
+    \ \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"../combi/bernoulliNumber.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
+    \ cin >> n;\n  cout << bernoulliNumber<mint>(n) << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
   - poly/FPS.cpp
+  - combi/bernoulliNumber.cpp
   isVerificationFile: true
   path: test/bernoulli_number.test.cpp
   requiredBy: []
-  timestamp: '2024-01-28 22:59:51+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-28 23:19:06+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/bernoulli_number.test.cpp
 layout: document

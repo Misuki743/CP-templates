@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: combi
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: combi/bernoulliNumber.cpp
       title: combi/bernoulliNumber.cpp
     - icon: ':warning:'
@@ -58,7 +58,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwickTree.cpp
       title: ds/fenwickTree.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/fenwickTree2D.cpp
       title: ds/fenwickTree2D.cpp
     - icon: ':heavy_check_mark:'
@@ -131,7 +131,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dinic.cpp
       title: graph/dinic.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/eulerianTrail.cpp
       title: graph/eulerianTrail.cpp
     - icon: ':warning:'
@@ -168,7 +168,7 @@ data:
     - icon: ':question:'
       path: misc/compression.cpp
       title: compression
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: misc/pointAddRectangleSum.cpp
       title: misc/pointAddRectangleSum.cpp
     - icon: ':x:'
@@ -179,7 +179,7 @@ data:
       title: misc/rectangleSum.cpp
   - name: modint
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':warning:'
@@ -219,7 +219,7 @@ data:
     - icon: ':warning:'
       path: poly/FFTmod.cpp
       title: poly/FFTmod.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/FPS.cpp
       title: poly/FPS.cpp
     - icon: ':heavy_check_mark:'
@@ -231,7 +231,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/NTTanymod.cpp
       title: poly/NTTanymod.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/NTTmint.cpp
       title: poly/NTTmint.cpp
     - icon: ':heavy_check_mark:'
@@ -318,7 +318,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/associative_array.test.cpp
       title: test/associative_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/bernoulli_number.test.cpp
       title: test/bernoulli_number.test.cpp
     - icon: ':heavy_check_mark:'
@@ -351,7 +351,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/eulerian_trail_directed.test.cpp
       title: test/eulerian_trail_directed.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/eulerian_trail_undirected.test.cpp
       title: test/eulerian_trail_undirected.test.cpp
     - icon: ':heavy_check_mark:'
@@ -414,7 +414,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/point_add_range_sum.test.cpp
       title: test/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/point_add_rectangle_sum.test.cpp
       title: test/point_add_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -451,8 +451,8 @@ data:
       path: test/range_reverse_range_sum.test.cpp
       title: test/range_reverse_range_sum.test.cpp
     - icon: ':x:'
-      path: test/rectange_add_point_get.test.cpp
-      title: test/rectange_add_point_get.test.cpp
+      path: test/rectangle_add_point_get.test.cpp
+      title: test/rectangle_add_point_get.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/rectangle_sum.test.cpp
       title: test/rectangle_sum.test.cpp

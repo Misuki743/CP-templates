@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_add_rectangle_sum.test.cpp
     title: test/point_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
   - icon: ':x:'
-    path: test/rectange_add_point_get.test.cpp
-    title: test/rectange_add_point_get.test.cpp
+    path: test/rectangle_add_point_get.test.cpp
+    title: test/rectangle_add_point_get.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/rectangle_sum.test.cpp
     title: test/rectangle_sum.test.cpp
@@ -61,11 +61,11 @@ data:
   timestamp: '2024-01-27 18:42:26+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/rectangle_add_point_get.test.cpp
   - test/static_range_frequency.test.cpp
   - test/point_add_rectangle_sum.test.cpp
   - test/rectangle_sum.test.cpp
   - test/area_of_union_of_rectangles.test.cpp
-  - test/rectange_add_point_get.test.cpp
   - test/range_kth_smallest.test.cpp
 documentation_of: misc/compression.cpp
 layout: document

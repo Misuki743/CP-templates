@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/associative_array.test.cpp
     title: test/associative_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/bernoulli_number.test.cpp
     title: test/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/eulerian_trail_directed.test.cpp
     title: test/eulerian_trail_directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/eulerian_trail_undirected.test.cpp
     title: test/eulerian_trail_undirected.test.cpp
   - icon: ':heavy_check_mark:'
@@ -112,6 +112,9 @@ data:
     path: test/point_add_range_sum.test.cpp
     title: test/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/point_add_rectangle_sum.test.cpp
+    title: test/point_add_rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/point_set_range_composite.test.cpp
     title: test/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,6 +147,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/range_reverse_range_sum.test.cpp
     title: test/range_reverse_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/rectangle_add_point_get.test.cpp
+    title: test/rectangle_add_point_get.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/rectangle_sum.test.cpp
     title: test/rectangle_sum.test.cpp
@@ -262,10 +268,12 @@ data:
   verifiedWith:
   - test/pow_of_formal_power_series.test.cpp
   - test/range_affine_point_get.test.cpp
+  - test/rectangle_add_point_get.test.cpp
   - test/vertex_add_subtree_sum.test.cpp
   - test/segment_add_get_min.test.cpp
   - test/static_RMQ.test.cpp
   - test/static_range_frequency.test.cpp
+  - test/point_add_rectangle_sum.test.cpp
   - test/range_reverse_range_sum.test.cpp
   - test/pow_of_matrix.test.cpp
   - test/determinant_of_matrix.test.cpp

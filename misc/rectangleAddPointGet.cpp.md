@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/rectange_add_point_get.test.cpp
-    title: test/rectange_add_point_get.test.cpp
+    path: test/rectangle_add_point_get.test.cpp
+    title: test/rectangle_add_point_get.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
@@ -46,7 +46,7 @@ data:
   timestamp: '2024-01-28 22:59:51+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/rectange_add_point_get.test.cpp
+  - test/rectangle_add_point_get.test.cpp
 documentation_of: misc/rectangleAddPointGet.cpp
 layout: document
 redirect_from:

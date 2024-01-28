@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_add_rectangle_sum.test.cpp
     title: test/point_add_rectangle_sum.test.cpp
   - icon: ':x:'
-    path: test/rectange_add_point_get.test.cpp
-    title: test/rectange_add_point_get.test.cpp
+    path: test/rectangle_add_point_get.test.cpp
+    title: test/rectangle_add_point_get.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fenwickTree2D.cpp\"\n//source: KACTL\n\n/**\n * Author:\
@@ -73,10 +73,10 @@ data:
   path: ds/fenwickTree2D.cpp
   requiredBy: []
   timestamp: '2024-01-28 03:46:27+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/rectangle_add_point_get.test.cpp
   - test/point_add_rectangle_sum.test.cpp
-  - test/rectange_add_point_get.test.cpp
 documentation_of: ds/fenwickTree2D.cpp
 layout: document
 redirect_from:

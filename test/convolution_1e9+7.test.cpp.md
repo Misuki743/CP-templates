@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   - icon: ':heavy_check_mark:'
     path: poly/NTTanymod.cpp
     title: poly/NTTanymod.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
   _extendedRequiredBy: []
