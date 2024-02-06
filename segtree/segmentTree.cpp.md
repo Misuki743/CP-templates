@@ -44,8 +44,8 @@ data:
   timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/vertex_add_subtree_sum.test.cpp
   - test/point_set_range_composite.test.cpp
+  - test/vertex_add_subtree_sum.test.cpp
 documentation_of: segtree/segmentTree.cpp
 layout: document
 redirect_from:

@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/log_of_formal_power_series_sparse.test.cpp
+    title: test/log_of_formal_power_series_sparse.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -20,7 +23,12 @@ data:
     \ g(k);\n    Mint inv = 1 / f[0];\n    g[0] = 1;\n    auto fs = sparsify(f);\n\
     \    for(int i = 0; i < k; i++) {\n      for(auto [j, val] : fs | V::drop(1))\n\
     \        if (j <= i)\n          g[i] -= g[i - j] * val;\n      g[i] *= inv;\n\
-    \    }\n    return g;\n  }\n}\n\nusing namespace sparsePolyope;\n"
+    \    }\n    return g;\n  }\n  template<class Mint>\n  FPS<Mint> sparseLog(FPS<Mint>\
+    \ f, int k) {\n    assert(f[0] == 1);\n    auto invf = sparseInv(f, k);\n    auto\
+    \ fs = sparsify(f.derivative());\n    FPS<Mint> g(k - 1);\n    for(int i = 0;\
+    \ i < k - 1; i++)\n      for(auto [j, val] : fs)\n        if (j <= i)\n      \
+    \    g[i] += invf[i - j] * val;\n    return g.integral();\n  }\n}\n\nusing namespace\
+    \ sparsePolyope;\n"
   code: "//#include<poly/FPS.cpp>\n//#include<poly/NTTmint.cpp>\n//#include<modint/MontgomeryModInt.cpp>\n\
     \nnamespace sparsePolyope {\n  template<class Mint>\n  vector<pair<int, Mint>>\
     \ sparsify(FPS<Mint> f) {\n    vector<pair<int, Mint>> g;\n    for(int i = 0;\
@@ -29,15 +37,20 @@ data:
     \ int k) {\n    assert(f[0] != 0);\n    FPS<Mint> g(k);\n    Mint inv = 1 / f[0];\n\
     \    g[0] = 1;\n    auto fs = sparsify(f);\n    for(int i = 0; i < k; i++) {\n\
     \      for(auto [j, val] : fs | V::drop(1))\n        if (j <= i)\n          g[i]\
-    \ -= g[i - j] * val;\n      g[i] *= inv;\n    }\n    return g;\n  }\n}\n\nusing\
-    \ namespace sparsePolyope;\n"
+    \ -= g[i - j] * val;\n      g[i] *= inv;\n    }\n    return g;\n  }\n  template<class\
+    \ Mint>\n  FPS<Mint> sparseLog(FPS<Mint> f, int k) {\n    assert(f[0] == 1);\n\
+    \    auto invf = sparseInv(f, k);\n    auto fs = sparsify(f.derivative());\n \
+    \   FPS<Mint> g(k - 1);\n    for(int i = 0; i < k - 1; i++)\n      for(auto [j,\
+    \ val] : fs)\n        if (j <= i)\n          g[i] += invf[i - j] * val;\n    return\
+    \ g.integral();\n  }\n}\n\nusing namespace sparsePolyope;\n"
   dependsOn: []
   isVerificationFile: false
   path: poly/sparsePolyope.cpp
   requiredBy: []
-  timestamp: '2024-01-24 20:41:29+08:00'
+  timestamp: '2024-02-06 18:26:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/log_of_formal_power_series_sparse.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
 documentation_of: poly/sparsePolyope.cpp
 layout: document

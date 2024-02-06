@@ -385,6 +385,9 @@ data:
       path: test/log_of_formal_power_series.test.cpp
       title: test/log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/log_of_formal_power_series_sparse.test.cpp
+      title: test/log_of_formal_power_series_sparse.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/longest_increasing_subsequence.test.cpp
       title: test/longest_increasing_subsequence.test.cpp
     - icon: ':heavy_check_mark:'

@@ -82,6 +82,9 @@ data:
     path: test/log_of_formal_power_series.test.cpp
     title: test/log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/log_of_formal_power_series_sparse.test.cpp
+    title: test/log_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/longest_increasing_subsequence.test.cpp
     title: test/longest_increasing_subsequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -266,73 +269,74 @@ data:
   timestamp: '2024-01-20 02:52:24+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/pow_of_formal_power_series.test.cpp
-  - test/range_affine_point_get.test.cpp
-  - test/rectangle_add_point_get.test.cpp
-  - test/vertex_add_subtree_sum.test.cpp
-  - test/segment_add_get_min.test.cpp
-  - test/static_RMQ.test.cpp
-  - test/static_range_frequency.test.cpp
-  - test/point_add_rectangle_sum.test.cpp
-  - test/range_reverse_range_sum.test.cpp
-  - test/pow_of_matrix.test.cpp
-  - test/determinant_of_matrix.test.cpp
-  - test/tree_diameter.test.cpp
-  - test/inverse_matrix.test.cpp
-  - test/shortest_path.test.cpp
-  - test/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/inv_of_formal_power_series_sparse.test.cpp
-  - test/subset_convolution.test.cpp
-  - test/longest_increasing_subsequence.test.cpp
-  - test/range_affine_range_sum.test.cpp
-  - test/convolution.test.cpp
-  - test/primitive_root.test.cpp
-  - test/associative_array.test.cpp
-  - test/vertex_add_path_sum.test.cpp
-  - test/matrix_product.test.cpp
   - test/maximum_independent_set.test.cpp
-  - test/division_of_polynomials.test.cpp
-  - test/yuki_2606.test.cpp
-  - test/jump_on_tree.test.cpp
-  - test/mul_modp_convolution.test.cpp
-  - test/rectangle_sum.test.cpp
-  - test/lowest_common_ancestor.test.cpp
-  - test/rooted_tree_isomorphism_classification.test.cpp
-  - test/product_of_polynomial_sequence.test.cpp
-  - test/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/area_of_union_of_rectangles.test.cpp
-  - test/yuki_2613.test.cpp
-  - test/exp_of_formal_power_series.test.cpp
-  - test/polynomial_interpolation.test.cpp
-  - test/eulerian_trail_directed.test.cpp
-  - test/persistent_unionfind.test.cpp
-  - test/sqrt_of_formal_power_series.test.cpp
-  - test/factorize.test.cpp
-  - test/unionfind.test.cpp
-  - test/bernoulli_number.test.cpp
-  - test/log_of_formal_power_series.test.cpp
-  - test/inv_of_formal_power_series.test.cpp
-  - test/eulerian_trail_undirected.test.cpp
-  - test/cycle_detection_undirected.test.cpp
-  - test/enumerate_quotients.test.cpp
-  - test/point_set_range_composite.test.cpp
-  - test/point_add_range_sum.test.cpp
-  - test/enumerate_palindromes.test.cpp
-  - test/assignment_problem.test.cpp
-  - test/stirling_number_of_the_first_kind.test.cpp
-  - test/find_linear_recurrence.test.cpp
-  - test/multipoint_evaluation.test.cpp
-  - test/cycle_detection_directed.test.cpp
-  - test/minimum_spanning_tree.test.cpp
-  - test/line_add_get_min.test.cpp
-  - test/strongly_connected_components.test.cpp
-  - test/range_kth_smallest.test.cpp
   - test/set_xor_min.test.cpp
-  - test/matching_on_bipartite_graph.test.cpp
-  - test/two_sat.test.cpp
-  - test/Z_algorithm.test.cpp
-  - test/convolution_1e9+7.test.cpp
+  - test/enumerate_palindromes.test.cpp
   - test/primality_test.test.cpp
+  - test/range_affine_point_get.test.cpp
+  - test/bernoulli_number.test.cpp
+  - test/point_set_range_composite.test.cpp
+  - test/lowest_common_ancestor.test.cpp
+  - test/stirling_number_of_the_first_kind.test.cpp
+  - test/polynomial_interpolation.test.cpp
+  - test/matching_on_bipartite_graph.test.cpp
+  - test/inverse_matrix.test.cpp
+  - test/static_RMQ.test.cpp
+  - test/determinant_of_matrix.test.cpp
+  - test/Z_algorithm.test.cpp
+  - test/find_linear_recurrence.test.cpp
+  - test/exp_of_formal_power_series.test.cpp
+  - test/vertex_add_path_sum.test.cpp
+  - test/line_add_get_min.test.cpp
+  - test/multipoint_evaluation.test.cpp
+  - test/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/unionfind.test.cpp
+  - test/rectangle_add_point_get.test.cpp
+  - test/area_of_union_of_rectangles.test.cpp
+  - test/convolution.test.cpp
+  - test/subset_convolution.test.cpp
+  - test/log_of_formal_power_series.test.cpp
+  - test/pow_of_matrix.test.cpp
+  - test/rectangle_sum.test.cpp
+  - test/inv_of_formal_power_series.test.cpp
+  - test/two_sat.test.cpp
+  - test/longest_increasing_subsequence.test.cpp
+  - test/enumerate_quotients.test.cpp
+  - test/primitive_root.test.cpp
+  - test/range_kth_smallest.test.cpp
+  - test/assignment_problem.test.cpp
+  - test/convolution_1e9+7.test.cpp
+  - test/rooted_tree_isomorphism_classification.test.cpp
+  - test/strongly_connected_components.test.cpp
+  - test/range_reverse_range_sum.test.cpp
+  - test/yuki_2606.test.cpp
+  - test/shortest_path.test.cpp
+  - test/jump_on_tree.test.cpp
+  - test/division_of_polynomials.test.cpp
+  - test/log_of_formal_power_series_sparse.test.cpp
+  - test/range_affine_range_sum.test.cpp
+  - test/minimum_spanning_tree.test.cpp
+  - test/static_range_frequency.test.cpp
+  - test/cycle_detection_directed.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/product_of_polynomial_sequence.test.cpp
+  - test/associative_array.test.cpp
+  - test/eulerian_trail_directed.test.cpp
+  - test/segment_add_get_min.test.cpp
+  - test/cycle_detection_undirected.test.cpp
+  - test/point_add_rectangle_sum.test.cpp
+  - test/tree_diameter.test.cpp
+  - test/factorize.test.cpp
+  - test/pow_of_formal_power_series.test.cpp
+  - test/sqrt_of_formal_power_series.test.cpp
+  - test/vertex_add_subtree_sum.test.cpp
+  - test/mul_modp_convolution.test.cpp
+  - test/matrix_product.test.cpp
+  - test/point_add_range_sum.test.cpp
+  - test/yuki_2613.test.cpp
+  - test/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/eulerian_trail_undirected.test.cpp
+  - test/persistent_unionfind.test.cpp
 documentation_of: default/t.cpp
 layout: document
 redirect_from:

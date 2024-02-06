@@ -107,7 +107,7 @@ data:
     \n    a.resize(n, 0);\n    ntt(a, false);\n    b.resize(n, 0);\n    ntt(b, false);\n\
     \n    for(int i = 0; i < n; i++)\n      a[i] *= b[i];\n\n    ntt(a, true);\n\n\
     \    a.resize(sz);\n\n    return a;\n  }\n};\n#line 1 \"poly/FPS.cpp\"\n//#include\
-    \ \"poly/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\n\ntemplate<class\
+    \ \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\n\ntemplate<class\
     \ Mint>\nstruct FPS : vector<Mint> {\n\n  static function<vector<Mint>(vector<Mint>,\
     \ vector<Mint>)> conv;\n\n  FPS(vector<Mint> v) : vector<Mint>(v) {}\n\n  using\
     \ vector<Mint>::vector;\n  FPS& operator+=(FPS b) {\n    if (ssize(*this) < ssize(b))\
@@ -122,68 +122,68 @@ data:
     \    b = Mint(1) / b;\n    for(int i = 0; i < ssize(*this); i++)\n      (*this)[i]\
     \ *= b;\n    return *this;\n  }\n\n  FPS shrink() {\n    FPS F = *this;\n    int\
     \ size = ssize(F);\n    while(size and F[size - 1] == 0) size -= 1;\n    F.resize(size);\n\
-    \    return F;\n  }\n\n  FPS integral() {\n    vector<Mint> Inv(ssize(*this) +\
-    \ 1);\n    Inv[1] = 1;\n    for(int i = 2; i < ssize(Inv); i++)\n      Inv[i]\
-    \ = (Mint::get_mod() - Mint::get_mod() / i) * Inv[Mint::get_mod() % i];\n    FPS\
-    \ Q(ssize(*this) + 1, 0);\n    for(int i = 0; i < ssize(*this); i++)\n      Q[i\
-    \ + 1] = (*this)[i] * Inv[i + 1];\n    return Q;\n  }\n\n  FPS derivative() {\n\
-    \    assert(!this -> empty());\n    FPS Q(ssize(*this) - 1);\n    for(int i =\
-    \ 1; i < ssize(*this); i++)\n      Q[i - 1] = (*this)[i] * i;\n    return Q;\n\
-    \  }\n\n  Mint eval(Mint x) {\n    Mint base = 1, res = 0;\n    for(int i = 0;\
-    \ i < ssize(*this); i++, base *= x)\n      res += (*this)[i] * base;\n    return\
-    \ res;\n  }\n\n  FPS inv(int k) { // 1 / FPS (mod x^k)\n    assert(!this -> empty()\
-    \ and (*this)[0] != 0);\n    FPS Q(1, 1 / (*this)[0]);\n    for(int i = 1; (1\
-    \ << (i - 1)) < k; i++) {\n      FPS P = (*this);\n      P.resize(1 << i, 0);\n\
-    \      Q = Q * (FPS(1, 2) - P * Q);\n      Q.resize(1 << i, 0);\n    }\n    Q.resize(k);\n\
-    \    return Q;\n  }\n\n  array<FPS, 2> div(FPS G) {\n    FPS F = this -> shrink();\n\
-    \    G = G.shrink();\n    assert(!G.empty());\n    if (ssize(G) > ssize(F))\n\
-    \      return {{{}, F}};\n    int n = ssize(F) - ssize(G) + 1;\n    auto FR =\
-    \ F, GR = G;\n    R::reverse(FR);\n    R::reverse(GR);\n    FPS Q = FR * GR.inv(n);\n\
-    \    Q.resize(n);\n    R::reverse(Q);\n    return {Q, (F - G * Q).shrink()};\n\
-    \  }\n\n  FPS log(int k) {\n    assert(!this -> empty() and (*this)[0] == 1);\n\
-    \    FPS Q = *this;\n    Q = (Q.derivative() * Q.inv(k));\n    Q.resize(k - 1);\n\
-    \    return Q.integral();\n  }\n\n  FPS exp(int k) {\n    assert(!this -> empty()\
-    \ and (*this)[0] == 0);\n    FPS Q(1, 1);\n    for(int i = 1; (1 << (i - 1)) <\
-    \ k; i++) {\n      FPS P = (*this);\n      P.resize(1 << i, 0);\n      Q = Q *\
-    \ (FPS(1, 1) + P - Q.log(1 << i));\n      Q.resize(1 << i, 0);\n    }\n    Q.resize(k);\n\
-    \    return Q;\n  }\n\n  FPS pow(ll idx, int k) {\n    if (idx == 0) {\n     \
-    \ FPS res(k, 0);\n      res[0] = 1;\n      return res;\n    }\n    for(int i =\
-    \ 0; i < ssize(*this) and i * idx < k; i++) {\n      if ((*this)[i] != 0) {\n\
-    \        Mint Inv = 1 / (*this)[i];\n        FPS Q(ssize(*this) - i);\n      \
-    \  for(int j = i; j < ssize(*this); j++)\n          Q[j - i] = (*this)[j] * Inv;\n\
-    \        Q = (Q.log(k) * idx).exp(k);\n        FPS Q2(k, 0);\n        Mint Pow\
-    \ = (*this)[i].pow(idx);\n        for(int j = 0; j + i * idx < k; j++)\n     \
-    \     Q2[j + i * idx] = Q[j] * Pow;\n        return Q2;\n      }\n    } \n   \
-    \ return FPS(k, 0);\n  }\n\n  vector<Mint> multieval(vector<Mint> xs) {\n    int\
-    \ n = ssize(xs);\n    vector<FPS> data(2 * n);\n    for(int i = 0; i < n; i++)\n\
-    \      data[n + i] = {-xs[i], 1};\n    for(int i = n - 1; i > 0; i--)\n      data[i]\
-    \ = data[i << 1] * data[i << 1 | 1];\n    data[1] = (this -> div(data[1]))[1];\n\
-    \    for(int i = 1; i < n; i++) {\n      data[i << 1] = data[i].div(data[i <<\
-    \ 1])[1];\n      data[i << 1 | 1] = data[i].div(data[i << 1 | 1])[1];\n    }\n\
-    \    vector<Mint> res(n);\n    for(int i = 0; i < n; i++)\n      res[i] = data[n\
-    \ + i].empty() ? 0 : data[n + i][0];\n    return res;\n  }\n\n  static vector<Mint>\
-    \ interpolate(vector<Mint> xs, vector<Mint> ys) {\n    assert(ssize(xs) == ssize(ys));\n\
-    \    int n = ssize(xs);\n    vector<FPS> data(2 * n), res(2 * n);\n    for(int\
-    \ i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n    for(int i = n - 1;\
-    \ i > 0; i--)\n      data[i] = data[i << 1] * data[i << 1 | 1];\n    res[1] =\
-    \ data[1].derivative().div(data[1])[1];\n    for(int i = 1; i < n; i++) {\n  \
-    \    res[i << 1] = res[i].div(data[i << 1])[1];\n      res[i << 1 | 1] = res[i].div(data[i\
-    \ << 1 | 1])[1];\n    }\n    for(int i = 0; i < n; i++)\n      res[n + i][0] =\
-    \ ys[i] / res[n + i][0];\n    for(int i = n - 1; i > 0; i--)\n      res[i] = res[i\
-    \ << 1] * data[i << 1 | 1] + res[i << 1 | 1] * data[i << 1];\n    return res[1];\n\
-    \  }\n\n  static vector<Mint> allProd(vector<FPS> &fs) {\n    if (fs.empty())\
-    \ return {1};\n    auto dfs = [&](int l, int r, auto self) -> FPS {\n      if\
-    \ (l + 1 == r)\n        return fs[l];\n      else\n        return self(l, (l +\
-    \ r) / 2, self) * self((l + r) / 2, r, self);\n    };\n    return dfs(0, ssize(fs),\
-    \ dfs);\n  }\n\n  friend FPS operator+(FPS a, FPS b) { return a += b; }\n  friend\
-    \ FPS operator-(FPS a, FPS b) { return a -= b; }\n  friend FPS operator*(FPS a,\
-    \ FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint b) { return a\
-    \ *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b; }\n};\n\nNTT\
-    \ ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
-    \ vector<mint>)> fps::conv = ntt.conv;\n#line 7 \"test/inv_of_formal_power_series.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
-    \ cin >> n;\n  fps f(n);\n  for(mint &x : f)\n    cin >> x;\n\n  cout << f.inv(n)\
-    \ << '\\n';\n\n  return 0;\n}\n"
+    \    return F;\n  }\n\n  FPS integral() {\n    if (this -> empty()) return {0};\n\
+    \    vector<Mint> Inv(ssize(*this) + 1);\n    Inv[1] = 1;\n    for(int i = 2;\
+    \ i < ssize(Inv); i++)\n      Inv[i] = (Mint::get_mod() - Mint::get_mod() / i)\
+    \ * Inv[Mint::get_mod() % i];\n    FPS Q(ssize(*this) + 1, 0);\n    for(int i\
+    \ = 0; i < ssize(*this); i++)\n      Q[i + 1] = (*this)[i] * Inv[i + 1];\n   \
+    \ return Q;\n  }\n\n  FPS derivative() {\n    assert(!this -> empty());\n    FPS\
+    \ Q(ssize(*this) - 1);\n    for(int i = 1; i < ssize(*this); i++)\n      Q[i -\
+    \ 1] = (*this)[i] * i;\n    return Q;\n  }\n\n  Mint eval(Mint x) {\n    Mint\
+    \ base = 1, res = 0;\n    for(int i = 0; i < ssize(*this); i++, base *= x)\n \
+    \     res += (*this)[i] * base;\n    return res;\n  }\n\n  FPS inv(int k) { //\
+    \ 1 / FPS (mod x^k)\n    assert(!this -> empty() and (*this)[0] != 0);\n    FPS\
+    \ Q(1, 1 / (*this)[0]);\n    for(int i = 1; (1 << (i - 1)) < k; i++) {\n     \
+    \ FPS P = (*this);\n      P.resize(1 << i, 0);\n      Q = Q * (FPS(1, 2) - P *\
+    \ Q);\n      Q.resize(1 << i, 0);\n    }\n    Q.resize(k);\n    return Q;\n  }\n\
+    \n  array<FPS, 2> div(FPS G) {\n    FPS F = this -> shrink();\n    G = G.shrink();\n\
+    \    assert(!G.empty());\n    if (ssize(G) > ssize(F))\n      return {{{}, F}};\n\
+    \    int n = ssize(F) - ssize(G) + 1;\n    auto FR = F, GR = G;\n    R::reverse(FR);\n\
+    \    R::reverse(GR);\n    FPS Q = FR * GR.inv(n);\n    Q.resize(n);\n    R::reverse(Q);\n\
+    \    return {Q, (F - G * Q).shrink()};\n  }\n\n  FPS log(int k) {\n    assert(!this\
+    \ -> empty() and (*this)[0] == 1);\n    FPS Q = *this;\n    Q = (Q.derivative()\
+    \ * Q.inv(k));\n    Q.resize(k - 1);\n    return Q.integral();\n  }\n\n  FPS exp(int\
+    \ k) {\n    assert(!this -> empty() and (*this)[0] == 0);\n    FPS Q(1, 1);\n\
+    \    for(int i = 1; (1 << (i - 1)) < k; i++) {\n      FPS P = (*this);\n     \
+    \ P.resize(1 << i, 0);\n      Q = Q * (FPS(1, 1) + P - Q.log(1 << i));\n     \
+    \ Q.resize(1 << i, 0);\n    }\n    Q.resize(k);\n    return Q;\n  }\n\n  FPS pow(ll\
+    \ idx, int k) {\n    if (idx == 0) {\n      FPS res(k, 0);\n      res[0] = 1;\n\
+    \      return res;\n    }\n    for(int i = 0; i < ssize(*this) and i * idx < k;\
+    \ i++) {\n      if ((*this)[i] != 0) {\n        Mint Inv = 1 / (*this)[i];\n \
+    \       FPS Q(ssize(*this) - i);\n        for(int j = i; j < ssize(*this); j++)\n\
+    \          Q[j - i] = (*this)[j] * Inv;\n        Q = (Q.log(k) * idx).exp(k);\n\
+    \        FPS Q2(k, 0);\n        Mint Pow = (*this)[i].pow(idx);\n        for(int\
+    \ j = 0; j + i * idx < k; j++)\n          Q2[j + i * idx] = Q[j] * Pow;\n    \
+    \    return Q2;\n      }\n    } \n    return FPS(k, 0);\n  }\n\n  vector<Mint>\
+    \ multieval(vector<Mint> xs) {\n    int n = ssize(xs);\n    vector<FPS> data(2\
+    \ * n);\n    for(int i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n  \
+    \  for(int i = n - 1; i > 0; i--)\n      data[i] = data[i << 1] * data[i << 1\
+    \ | 1];\n    data[1] = (this -> div(data[1]))[1];\n    for(int i = 1; i < n; i++)\
+    \ {\n      data[i << 1] = data[i].div(data[i << 1])[1];\n      data[i << 1 | 1]\
+    \ = data[i].div(data[i << 1 | 1])[1];\n    }\n    vector<Mint> res(n);\n    for(int\
+    \ i = 0; i < n; i++)\n      res[i] = data[n + i].empty() ? 0 : data[n + i][0];\n\
+    \    return res;\n  }\n\n  static vector<Mint> interpolate(vector<Mint> xs, vector<Mint>\
+    \ ys) {\n    assert(ssize(xs) == ssize(ys));\n    int n = ssize(xs);\n    vector<FPS>\
+    \ data(2 * n), res(2 * n);\n    for(int i = 0; i < n; i++)\n      data[n + i]\
+    \ = {-xs[i], 1};\n    for(int i = n - 1; i > 0; i--)\n      data[i] = data[i <<\
+    \ 1] * data[i << 1 | 1];\n    res[1] = data[1].derivative().div(data[1])[1];\n\
+    \    for(int i = 1; i < n; i++) {\n      res[i << 1] = res[i].div(data[i << 1])[1];\n\
+    \      res[i << 1 | 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int\
+    \ i = 0; i < n; i++)\n      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int\
+    \ i = n - 1; i > 0; i--)\n      res[i] = res[i << 1] * data[i << 1 | 1] + res[i\
+    \ << 1 | 1] * data[i << 1];\n    return res[1];\n  }\n\n  static vector<Mint>\
+    \ allProd(vector<FPS> &fs) {\n    if (fs.empty()) return {1};\n    auto dfs =\
+    \ [&](int l, int r, auto self) -> FPS {\n      if (l + 1 == r)\n        return\
+    \ fs[l];\n      else\n        return self(l, (l + r) / 2, self) * self((l + r)\
+    \ / 2, r, self);\n    };\n    return dfs(0, ssize(fs), dfs);\n  }\n\n  friend\
+    \ FPS operator+(FPS a, FPS b) { return a += b; }\n  friend FPS operator-(FPS a,\
+    \ FPS b) { return a -= b; }\n  friend FPS operator*(FPS a, FPS b) { return a *=\
+    \ b; }\n  friend FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS\
+    \ operator/(FPS a, Mint b) { return a /= b; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\n\
+    template<>\nfunction<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\n\
+    #line 7 \"test/inv_of_formal_power_series.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  fps f(n);\n  for(mint &x : f)\n    cin\
+    \ >> x;\n\n  cout << f.inv(n) << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
     \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n\nsigned main()\
@@ -198,7 +198,7 @@ data:
   isVerificationFile: true
   path: test/inv_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2024-01-28 03:46:27+08:00'
+  timestamp: '2024-02-06 18:26:29+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/inv_of_formal_power_series.test.cpp

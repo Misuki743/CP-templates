@@ -15,18 +15,19 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/waveletMatrix.cpp\"\ntemplate<class T, int mxBit>\nstruct\
-    \ waveletMatrix {\n  struct bitvector {\n    static constexpr uint W = 64;\n \
-    \   int cnt0 = 0, size;\n    vector<ull> bv;\n    vector<int> pre;\n\n    bitvector(uint\
-    \ _size) : size(_size), bv(_size / W + 1), pre(_size / W + 1) {};\n    void set(uint\
-    \ i) { bv[i / W] |= 1LL << (i % W); }\n    uint get(uint i) { return bv[i / W]\
-    \ >> (i % W) & 1; }\n    void build() {\n      for(int i = 1; i < ssize(pre);\
-    \ i++)\n        pre[i] = pre[i - 1] + popcount(bv[i - 1]);\n      cnt0 = rank0(size);\n\
-    \    }\n    int rank1(uint i) { return pre[i / W] + popcount(bv[i / W] & ((1LL\
-    \ << i) - 1)); }\n    int rank0(uint i) { return i - rank1(i); }\n  };\n\n  vector<bitvector>\
-    \ level;\n  waveletMatrix(vector<T> init) : level(mxBit + 1, bitvector(init.size())){\n\
-    \    for(int bit = mxBit; bit >= 0; bit--) {\n      for(int i = 0; i < ssize(init);\
-    \ i++)\n        if (init[i] >> bit & 1)\n          level[bit].set(i);\n      level[bit].build();\n\
-    \      vector<T> tmp(ssize(init));\n      array<int, 2> ptr = {0, level[bit].cnt0};\n\
+    \ waveletMatrix {\n  using uint = uint32_t;\n  struct bitvector {\n    static\
+    \ constexpr uint W = 64;\n    int cnt0 = 0, size;\n    vector<ull> bv;\n    vector<int>\
+    \ pre;\n\n    bitvector(uint _size) : size(_size), bv(_size / W + 1), pre(_size\
+    \ / W + 1) {};\n    void set(uint i) { bv[i / W] |= 1LL << (i % W); }\n    uint\
+    \ get(uint i) { return bv[i / W] >> (i % W) & 1; }\n    void build() {\n     \
+    \ for(int i = 1; i < ssize(pre); i++)\n        pre[i] = pre[i - 1] + popcount(bv[i\
+    \ - 1]);\n      cnt0 = rank0(size);\n    }\n    int rank1(uint i) { return pre[i\
+    \ / W] + popcount(bv[i / W] & ((1LL << i) - 1)); }\n    int rank0(uint i) { return\
+    \ i - rank1(i); }\n  };\n\n  vector<bitvector> level;\n  waveletMatrix(vector<T>\
+    \ init) : level(mxBit + 1, bitvector(init.size())){\n    for(int bit = mxBit;\
+    \ bit >= 0; bit--) {\n      for(int i = 0; i < ssize(init); i++)\n        if (init[i]\
+    \ >> bit & 1)\n          level[bit].set(i);\n      level[bit].build();\n     \
+    \ vector<T> tmp(ssize(init));\n      array<int, 2> ptr = {0, level[bit].cnt0};\n\
     \      for(int i = 0; i < ssize(init); i++) {\n        assert(ptr[level[bit].get(i)]\
     \ < ssize(tmp));\n        tmp[ptr[level[bit].get(i)]++] = init[i];\n      }\n\
     \      init.swap(tmp);\n    }\n  }\n\n  T kth(int l, int r, int k) {\n    T res\
@@ -42,16 +43,16 @@ data:
     \ r = level[bit].rank0(r);\n      }\n    }\n    return cnt;\n  }\n\n  int rectQuery(int\
     \ l, int r, T d, T u) {\n    return rangeLess(l, r, u) - rangeLess(l, r, d);\n\
     \  }\n};\n"
-  code: "template<class T, int mxBit>\nstruct waveletMatrix {\n  struct bitvector\
-    \ {\n    static constexpr uint W = 64;\n    int cnt0 = 0, size;\n    vector<ull>\
-    \ bv;\n    vector<int> pre;\n\n    bitvector(uint _size) : size(_size), bv(_size\
-    \ / W + 1), pre(_size / W + 1) {};\n    void set(uint i) { bv[i / W] |= 1LL <<\
-    \ (i % W); }\n    uint get(uint i) { return bv[i / W] >> (i % W) & 1; }\n    void\
-    \ build() {\n      for(int i = 1; i < ssize(pre); i++)\n        pre[i] = pre[i\
-    \ - 1] + popcount(bv[i - 1]);\n      cnt0 = rank0(size);\n    }\n    int rank1(uint\
-    \ i) { return pre[i / W] + popcount(bv[i / W] & ((1LL << i) - 1)); }\n    int\
-    \ rank0(uint i) { return i - rank1(i); }\n  };\n\n  vector<bitvector> level;\n\
-    \  waveletMatrix(vector<T> init) : level(mxBit + 1, bitvector(init.size())){\n\
+  code: "template<class T, int mxBit>\nstruct waveletMatrix {\n  using uint = uint32_t;\n\
+    \  struct bitvector {\n    static constexpr uint W = 64;\n    int cnt0 = 0, size;\n\
+    \    vector<ull> bv;\n    vector<int> pre;\n\n    bitvector(uint _size) : size(_size),\
+    \ bv(_size / W + 1), pre(_size / W + 1) {};\n    void set(uint i) { bv[i / W]\
+    \ |= 1LL << (i % W); }\n    uint get(uint i) { return bv[i / W] >> (i % W) & 1;\
+    \ }\n    void build() {\n      for(int i = 1; i < ssize(pre); i++)\n        pre[i]\
+    \ = pre[i - 1] + popcount(bv[i - 1]);\n      cnt0 = rank0(size);\n    }\n    int\
+    \ rank1(uint i) { return pre[i / W] + popcount(bv[i / W] & ((1LL << i) - 1));\
+    \ }\n    int rank0(uint i) { return i - rank1(i); }\n  };\n\n  vector<bitvector>\
+    \ level;\n  waveletMatrix(vector<T> init) : level(mxBit + 1, bitvector(init.size())){\n\
     \    for(int bit = mxBit; bit >= 0; bit--) {\n      for(int i = 0; i < ssize(init);\
     \ i++)\n        if (init[i] >> bit & 1)\n          level[bit].set(i);\n      level[bit].build();\n\
     \      vector<T> tmp(ssize(init));\n      array<int, 2> ptr = {0, level[bit].cnt0};\n\
@@ -74,11 +75,11 @@ data:
   isVerificationFile: false
   path: ds/waveletMatrix.cpp
   requiredBy: []
-  timestamp: '2024-01-27 01:09:14+08:00'
+  timestamp: '2024-02-06 18:26:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/static_range_frequency.test.cpp
   - test/range_kth_smallest.test.cpp
+  - test/static_range_frequency.test.cpp
 documentation_of: ds/waveletMatrix.cpp
 layout: document
 redirect_from:

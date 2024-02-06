@@ -58,9 +58,9 @@ data:
   timestamp: '2024-01-21 01:13:07+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/lowest_common_ancestor.test.cpp
   - test/vertex_add_path_sum.test.cpp
   - test/jump_on_tree.test.cpp
-  - test/lowest_common_ancestor.test.cpp
 documentation_of: ds/fastJump.cpp
 layout: document
 redirect_from:

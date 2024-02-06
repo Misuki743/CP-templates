@@ -128,8 +128,8 @@ data:
     \ &f) {\n    assert(ssize(f) == P - 1);\n    vector<Mint> g(P);\n    for(int i\
     \ = 0; i < P - 1; i++)\n      g[powR[i]] = f[i];\n    return g;\n  }\n\n  template<class\
     \ Mint>\n  vector<Mint> mulConv(vector<Mint> a, vector<Mint> b, vector<Mint>(*conv)(vector<Mint>,\
-    \ vector<Mint>)) {\n    Mint zero = accumulate(a.begin(), a.end(), mint(0)) *\
-    \ b[0] + accumulate(b.begin() + 1, b.end(), mint(0)) * a[0];\n    a = transform(a),\
+    \ vector<Mint>)) {\n    Mint zero = accumulate(a.begin(), a.end(), Mint(0)) *\
+    \ b[0] + accumulate(b.begin() + 1, b.end(), Mint(0)) * a[0];\n    a = transform(a),\
     \ b = transform(b);\n    a = conv(a, b);\n    for(int i = P - 1; i < 2 * P - 3;\
     \ i++)\n      a[i - (P - 1)] += a[i];\n    a.resize(P - 1);\n    a = invTransform(a);\n\
     \    a[0] = zero;\n    return a;\n  }\n};\n#line 7 \"test/mul_modp_convolution.test.cpp\"\
@@ -152,7 +152,7 @@ data:
   isVerificationFile: true
   path: test/mul_modp_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-01-28 22:59:51+08:00'
+  timestamp: '2024-02-06 18:26:29+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mul_modp_convolution.test.cpp

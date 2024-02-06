@@ -62,11 +62,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/rectangle_add_point_get.test.cpp
+  - test/area_of_union_of_rectangles.test.cpp
+  - test/rectangle_sum.test.cpp
+  - test/range_kth_smallest.test.cpp
   - test/static_range_frequency.test.cpp
   - test/point_add_rectangle_sum.test.cpp
-  - test/rectangle_sum.test.cpp
-  - test/area_of_union_of_rectangles.test.cpp
-  - test/range_kth_smallest.test.cpp
 documentation_of: misc/compression.cpp
 layout: document
 title: compression
