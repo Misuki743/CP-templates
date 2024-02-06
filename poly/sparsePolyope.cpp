@@ -26,6 +26,18 @@ namespace sparsePolyope {
     }
     return g;
   }
+  template<class Mint>
+  FPS<Mint> sparseLog(FPS<Mint> f, int k) {
+    assert(f[0] == 1);
+    auto invf = sparseInv(f, k);
+    auto fs = sparsify(f.derivative());
+    FPS<Mint> g(k - 1);
+    for(int i = 0; i < k - 1; i++)
+      for(auto [j, val] : fs)
+        if (j <= i)
+          g[i] += invf[i - j] * val;
+    return g.integral();
+  }
 }
 
 using namespace sparsePolyope;

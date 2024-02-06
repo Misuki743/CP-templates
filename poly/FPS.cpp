@@ -1,4 +1,4 @@
-//#include "poly/MontgomeryModInt.cpp"
+//#include "modint/MontgomeryModInt.cpp"
 //#include "poly/NTTmint.cpp"
 
 template<class Mint>
@@ -52,6 +52,7 @@ struct FPS : vector<Mint> {
   }
 
   FPS integral() {
+    if (this -> empty()) return {0};
     vector<Mint> Inv(ssize(*this) + 1);
     Inv[1] = 1;
     for(int i = 2; i < ssize(Inv); i++)

@@ -1,5 +1,6 @@
 template<class T, int mxBit>
 struct waveletMatrix {
+  using uint = uint32_t;
   struct bitvector {
     static constexpr uint W = 64;
     int cnt0 = 0, size;
