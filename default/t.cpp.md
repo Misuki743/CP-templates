@@ -166,6 +166,9 @@ data:
     path: test/set_xor_min.test.cpp
     title: test/set_xor_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/sharp_p_subset_sum.test.cpp
+    title: test/sharp_p_subset_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/shortest_path.test.cpp
     title: test/shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
@@ -302,6 +305,7 @@ data:
   - test/two_sat.test.cpp
   - test/longest_increasing_subsequence.test.cpp
   - test/enumerate_quotients.test.cpp
+  - test/sharp_p_subset_sum.test.cpp
   - test/primitive_root.test.cpp
   - test/range_kth_smallest.test.cpp
   - test/assignment_problem.test.cpp

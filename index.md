@@ -177,6 +177,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: misc/rectangleSum.cpp
       title: misc/rectangleSum.cpp
+    - icon: ':heavy_check_mark:'
+      path: misc/sharpPSubsetSum.cpp
+      title: misc/sharpPSubsetSum.cpp
   - name: modint
     pages:
     - icon: ':heavy_check_mark:'
@@ -468,6 +471,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/set_xor_min.test.cpp
       title: test/set_xor_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/sharp_p_subset_sum.test.cpp
+      title: test/sharp_p_subset_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/shortest_path.test.cpp
       title: test/shortest_path.test.cpp

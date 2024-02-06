@@ -76,6 +76,9 @@ data:
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/sharp_p_subset_sum.test.cpp
+    title: test/sharp_p_subset_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -178,6 +181,7 @@ data:
   - test/log_of_formal_power_series.test.cpp
   - test/pow_of_matrix.test.cpp
   - test/inv_of_formal_power_series.test.cpp
+  - test/sharp_p_subset_sum.test.cpp
   - test/convolution_1e9+7.test.cpp
   - test/division_of_polynomials.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
