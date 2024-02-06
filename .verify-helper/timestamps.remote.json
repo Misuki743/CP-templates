@@ -53,6 +53,7 @@
 "test/rooted_tree_isomorphism_classification.test.cpp": "2024-01-28 03:46:27 +0800",
 "test/segment_add_get_min.test.cpp": "2024-01-24 20:41:29 +0800",
 "test/set_xor_min.test.cpp": "2024-01-28 22:59:51 +0800",
+"test/sharp_p_subset_sum.test.cpp": "2024-02-06 18:50:15 +0800",
 "test/shortest_path.test.cpp": "2024-01-23 21:38:15 +0800",
 "test/sqrt_of_formal_power_series.test.cpp": "2024-02-06 18:26:29 +0800",
 "test/static_RMQ.test.cpp": "2024-01-24 20:41:29 +0800",
