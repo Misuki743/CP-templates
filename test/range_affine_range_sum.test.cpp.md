@@ -1,23 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: actedmonoid/actedMonoid_affineSum.cpp
     title: actedmonoid/actedMonoid_affineSum.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
+  - icon: ':heavy_check_mark:'
+    path: segtree/ultraLazySegmentTree.cpp
+    title: segtree/ultraLazySegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -117,13 +120,18 @@ data:
     \ 1, tag[v]);\n        apply(v << 1 | 1, tag[v]);\n        tag[v] = Tid();\n \
     \     }\n      if (f(Mop(pre, data[v << 1])))\n        v = v << 1;\n      else\n\
     \        pre = Mop(pre, data[v << 1]), v = v << 1 | 1;\n    }\n    return v -\
-    \ size;\n  }\n};\n#line 1 \"actedmonoid/actedMonoid_affineSum.cpp\"\ntemplate<class\
-    \ U>\nstruct actedMonoid_affineSum {\n  using M = array<U, 2>;\n  static M Mid()\
-    \ { return M{0, 0}; }\n  static M Mop(const M &a, const M &b) { return {a[0] +\
-    \ b[0], a[1] + b[1]}; }\n  using T = array<U, 2>;\n  static T Tid() { return T{1,\
-    \ 0}; }\n  static T Top(const T &a, const T &b) { return T{a[0] * b[0], a[1] *\
-    \ b[0] + b[1]}; }\n  static M act(const M &a, const T &b) { return {a[0] * b[0]\
-    \ + a[1] * b[1], a[1]}; }\n};\n#line 7 \"test/range_affine_range_sum.test.cpp\"\
+    \ size;\n  }\n};\n#line 1 \"segtree/ultraLazySegmentTree.cpp\"\n//#include<segtree/lazySegmentTree.cpp>\n\
+    \ntemplate<class AM>\nstruct ultraLazySegmentTree : lazySegmentTree<typename AM::M,\
+    \ AM::Mid, AM::Mop, typename AM::T, AM::Tid, AM::Top, AM::act> {\n  using base\
+    \ = lazySegmentTree<typename AM::M, AM::Mid, AM::Mop, typename AM::T, AM::Tid,\
+    \ AM::Top, AM::act>;\n  ultraLazySegmentTree(vector<typename AM::M> init) : base(init)\
+    \ {}\n  ultraLazySegmentTree(int size) : base(size) {}\n};\n#line 1 \"actedmonoid/actedMonoid_affineSum.cpp\"\
+    \ntemplate<class U>\nstruct actedMonoid_affineSum {\n  using M = array<U, 2>;\n\
+    \  static M Mid() { return M{0, 0}; }\n  static M Mop(const M &a, const M &b)\
+    \ { return {a[0] + b[0], a[1] + b[1]}; }\n  using T = array<U, 2>;\n  static T\
+    \ Tid() { return T{1, 0}; }\n  static T Top(const T &a, const T &b) { return T{a[0]\
+    \ * b[0], a[1] * b[0] + b[1]}; }\n  static M act(const M &a, const T &b) { return\
+    \ {a[0] * b[0] + a[1] * b[1], a[1]}; }\n};\n#line 8 \"test/range_affine_range_sum.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
     \ q; cin >> n >> q;\n  vector<array<mint, 2>> a(n);\n  for(auto &[x, s] : a) {\n\
     \    cin >> x;\n    s = 1;\n  }\n\n  ultraLazySegmentTree<actedMonoid_affineSum<mint>>\
@@ -133,24 +141,26 @@ data:
     \ << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../segtree/lazySegmentTree.cpp\"\n#include \"../actedmonoid/actedMonoid_affineSum.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vector<array<mint, 2>> a(n);\n  for(auto &[x, s] : a) {\n\
-    \    cin >> x;\n    s = 1;\n  }\n\n  ultraLazySegmentTree<actedMonoid_affineSum<mint>>\
-    \ st(a);\n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int l,\
-    \ r, b, c; cin >> l >> r >> b >> c;\n      st.modify(l, r, array<mint, 2>{b, c});\n\
-    \    } else {\n      int l, r; cin >> l >> r;\n      cout << st.query(l, r)[0]\
-    \ << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+    \n#include \"../segtree/lazySegmentTree.cpp\"\n#include \"../segtree/ultraLazySegmentTree.cpp\"\
+    \n#include \"../actedmonoid/actedMonoid_affineSum.cpp\"\n\nsigned main() {\n \
+    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n\
+    \  vector<array<mint, 2>> a(n);\n  for(auto &[x, s] : a) {\n    cin >> x;\n  \
+    \  s = 1;\n  }\n\n  ultraLazySegmentTree<actedMonoid_affineSum<mint>> st(a);\n\
+    \  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int l, r, b, c;\
+    \ cin >> l >> r >> b >> c;\n      st.modify(l, r, array<mint, 2>{b, c});\n   \
+    \ } else {\n      int l, r; cin >> l >> r;\n      cout << st.query(l, r)[0] <<\
+    \ '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - segtree/lazySegmentTree.cpp
+  - segtree/ultraLazySegmentTree.cpp
   - actedmonoid/actedMonoid_affineSum.cpp
   isVerificationFile: true
   path: test/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 22:57:04+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-02-09 23:05:20+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/range_affine_range_sum.test.cpp
 layout: document

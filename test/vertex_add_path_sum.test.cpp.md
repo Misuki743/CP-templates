@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/eulerTour.cpp
     title: ds/eulerTour.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastJump.cpp
     title: ds/fastJump.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/dualSegmentTree.cpp
     title: segtree/dualSegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -102,7 +102,7 @@ data:
     \n  int n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x : a)\n    cin >>\
     \ x;\n  vector<vector<int>> g(n);\n  for(int i = 1; i < n; i++) {\n    int u,\
     \ v; cin >> u >> v;\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n  }\n\
-    \n  eulerTour<ll, zero, add, ll, zero, add, add, inv> eu(g);\n\n  for(int v =\
+    \n  eulerTour<ll, zero, add, inv, ll, zero, add, add> eu(g);\n\n  for(int v =\
     \ 0; v < n; v++)\n    eu.modify(v, a[v]);\n\n  while(q--) {\n    int t, x, y;\
     \ cin >> t >> x >> y;\n    if (t == 0)\n      eu.modify(x, y);\n    else\n   \
     \   cout << eu.query(x, y) << '\\n';\n  }\n\n  return 0;\n}\n"
@@ -114,7 +114,7 @@ data:
     \n  int n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x : a)\n    cin >>\
     \ x;\n  vector<vector<int>> g(n);\n  for(int i = 1; i < n; i++) {\n    int u,\
     \ v; cin >> u >> v;\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n  }\n\
-    \n  eulerTour<ll, zero, add, ll, zero, add, add, inv> eu(g);\n\n  for(int v =\
+    \n  eulerTour<ll, zero, add, inv, ll, zero, add, add> eu(g);\n\n  for(int v =\
     \ 0; v < n; v++)\n    eu.modify(v, a[v]);\n\n  while(q--) {\n    int t, x, y;\
     \ cin >> t >> x >> y;\n    if (t == 0)\n      eu.modify(x, y);\n    else\n   \
     \   cout << eu.query(x, y) << '\\n';\n  }\n\n  return 0;\n}\n"
@@ -126,8 +126,8 @@ data:
   isVerificationFile: true
   path: test/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 22:57:04+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-02-09 23:05:20+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_add_path_sum.test.cpp
 layout: document

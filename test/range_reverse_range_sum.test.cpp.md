@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: actedmonoid/actedMonoid_affineSum.cpp
     title: actedmonoid/actedMonoid_affineSum.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/treap.cpp
     title: ds/treap.cpp
   _extendedRequiredBy: []
@@ -93,7 +93,7 @@ data:
     \ Tid() { return T{1, 0}; }\n  static T Top(const T &a, const T &b) { return T{a[0]\
     \ * b[0], a[1] * b[0] + b[1]}; }\n  static M act(const M &a, const T &b) { return\
     \ {a[0] * b[0] + a[1] * b[1], a[1]}; }\n};\n#line 6 \"test/range_reverse_range_sum.test.cpp\"\
-    \n\nusing am = actedMonoid_affineSum<mint>;\nusing Treap = treap<am::M, am::Mid,\
+    \n\nusing am = actedMonoid_affineSum<ll>;\nusing Treap = treap<am::M, am::Mid,\
     \ am::Mop, am::T, am::Tid, am::Top, am::act>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x\
     \ : a)\n    cin >> x;\n\n  Treap::node* tr = Treap::build(a);\n\n  while(q--)\
@@ -102,7 +102,7 @@ data:
     n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_reverse_range_sum\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../ds/treap.cpp\"\n#include \"../actedmonoid/actedMonoid_affineSum.cpp\"\
-    \n\nusing am = actedMonoid_affineSum<mint>;\nusing Treap = treap<am::M, am::Mid,\
+    \n\nusing am = actedMonoid_affineSum<ll>;\nusing Treap = treap<am::M, am::Mid,\
     \ am::Mop, am::T, am::Tid, am::Top, am::act>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x\
     \ : a)\n    cin >> x;\n\n  Treap::node* tr = Treap::build(a);\n\n  while(q--)\
@@ -116,7 +116,7 @@ data:
   isVerificationFile: true
   path: test/range_reverse_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 22:57:04+08:00'
+  timestamp: '2024-02-09 23:05:20+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/range_reverse_range_sum.test.cpp

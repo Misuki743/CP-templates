@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/range_affine_range_sum.test.cpp
+    title: test/range_affine_range_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -31,6 +34,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/area_of_union_of_rectangles.test.cpp
+  - test/range_affine_range_sum.test.cpp
 documentation_of: segtree/ultraLazySegmentTree.cpp
 layout: document
 redirect_from:

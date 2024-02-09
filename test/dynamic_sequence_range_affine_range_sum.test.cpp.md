@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: actedmonoid/actedMonoid_affineSum.cpp
     title: actedmonoid/actedMonoid_affineSum.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/treap.cpp
     title: ds/treap.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -134,7 +134,7 @@ data:
     \n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int i, x; cin\
     \ >> i >> x;\n      Treap::insert(tr, i, {x, 1});\n    } else if (t == 1) {\n\
     \      int i; cin >> i;\n      Treap::erase(tr, i);\n    } else if (t == 2) {\n\
-    \      int l, r; cin >> l >> r;\n      Treap::modify(tr, l, r, Tunit(), true);\n\
+    \      int l, r; cin >> l >> r;\n      Treap::modify(tr, l, r, am::Tid(), true);\n\
     \    } else if (t == 3) {\n      int l, r, b, c; cin >> l >> r >> b >> c;\n  \
     \    Treap::modify(tr, l, r, {b, c});\n    } else if (t == 4) {\n      int l,\
     \ r; cin >> l >> r;\n      cout << Treap::query(tr, l, r)[0] << '\\n';\n    }\n\
@@ -149,7 +149,7 @@ data:
     \n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int i, x; cin\
     \ >> i >> x;\n      Treap::insert(tr, i, {x, 1});\n    } else if (t == 1) {\n\
     \      int i; cin >> i;\n      Treap::erase(tr, i);\n    } else if (t == 2) {\n\
-    \      int l, r; cin >> l >> r;\n      Treap::modify(tr, l, r, Tunit(), true);\n\
+    \      int l, r; cin >> l >> r;\n      Treap::modify(tr, l, r, am::Tid(), true);\n\
     \    } else if (t == 3) {\n      int l, r, b, c; cin >> l >> r >> b >> c;\n  \
     \    Treap::modify(tr, l, r, {b, c});\n    } else if (t == 4) {\n      int l,\
     \ r; cin >> l >> r;\n      cout << Treap::query(tr, l, r)[0] << '\\n';\n    }\n\
@@ -162,8 +162,8 @@ data:
   isVerificationFile: true
   path: test/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 22:57:04+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-02-09 23:05:20+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/dynamic_sequence_range_affine_range_sum.test.cpp
 layout: document

@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
   - icon: ':heavy_check_mark:'
