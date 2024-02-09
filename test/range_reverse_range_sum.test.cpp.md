@@ -1,20 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: actedmonoid/actedMonoid_affineSum.cpp
-    title: actedmonoid/actedMonoid_affineSum.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/treap.cpp
     title: ds/treap.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_reverse_range_sum
@@ -86,38 +83,35 @@ data:
     \ 3> tmp = {};\n    tmp[1] = new node(x);\n    split(root, i, tmp[0], tmp[2]);\n\
     \    root = uncut(tmp);\n  }\n\n  static void erase(node *&root, int i) {\n  \
     \  auto tmp = cut(root, i, i + 1);\n    delete tmp[1];\n    tmp[1] = nullptr;\n\
-    \    root = uncut(tmp);\n  }\n};\n#line 1 \"actedmonoid/actedMonoid_affineSum.cpp\"\
-    \ntemplate<class U>\nstruct actedMonoid_affineSum {\n  using M = array<U, 2>;\n\
-    \  static M Mid() { return M{0, 0}; }\n  static M Mop(const M &a, const M &b)\
-    \ { return {a[0] + b[0], a[1] + b[1]}; }\n  using T = array<U, 2>;\n  static T\
-    \ Tid() { return T{1, 0}; }\n  static T Top(const T &a, const T &b) { return T{a[0]\
-    \ * b[0], a[1] * b[0] + b[1]}; }\n  static M act(const M &a, const T &b) { return\
-    \ {a[0] * b[0] + a[1] * b[1], a[1]}; }\n};\n#line 6 \"test/range_reverse_range_sum.test.cpp\"\
-    \n\nusing am = actedMonoid_affineSum<ll>;\nusing Treap = treap<am::M, am::Mid,\
-    \ am::Mop, am::T, am::Tid, am::Top, am::act>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \    root = uncut(tmp);\n  }\n};\n#line 5 \"test/range_reverse_range_sum.test.cpp\"\
+    \n\nll Mid() { return 0ll; }\nbool Tid() { return true; }\nll Mop(const ll &a,\
+    \ const ll &b) { return a + b; }\nbool Top(const bool&, const bool&) { return\
+    \ true; }\nll act(const ll &a, const bool&) { return a; }\n\nusing Treap = treap<ll,\
+    \ Mid, Mop, bool, Tid, Top, act>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x\
     \ : a)\n    cin >> x;\n\n  Treap::node* tr = Treap::build(a);\n\n  while(q--)\
     \ {\n    int t, l, r; cin >> t >> l >> r;\n    if (t == 0)\n      Treap::modify(tr,\
-    \ l, r, Tunit(), true);\n    else\n      cout << Treap::query(tr, l, r) << '\\\
-    n';\n  }\n\n  return 0;\n}\n"
+    \ l, r, Tid(), true);\n    else\n      cout << Treap::query(tr, l, r) << '\\n';\n\
+    \  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_reverse_range_sum\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../ds/treap.cpp\"\n#include \"../actedmonoid/actedMonoid_affineSum.cpp\"\
-    \n\nusing am = actedMonoid_affineSum<ll>;\nusing Treap = treap<am::M, am::Mid,\
-    \ am::Mop, am::T, am::Tid, am::Top, am::act>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x\
-    \ : a)\n    cin >> x;\n\n  Treap::node* tr = Treap::build(a);\n\n  while(q--)\
-    \ {\n    int t, l, r; cin >> t >> l >> r;\n    if (t == 0)\n      Treap::modify(tr,\
-    \ l, r, Tunit(), true);\n    else\n      cout << Treap::query(tr, l, r) << '\\\
-    n';\n  }\n\n  return 0;\n}\n"
+    \n\n#include \"../default/t.cpp\"\n#include \"../ds/treap.cpp\"\n\nll Mid() {\
+    \ return 0ll; }\nbool Tid() { return true; }\nll Mop(const ll &a, const ll &b)\
+    \ { return a + b; }\nbool Top(const bool&, const bool&) { return true; }\nll act(const\
+    \ ll &a, const bool&) { return a; }\n\nusing Treap = treap<ll, Mid, Mop, bool,\
+    \ Tid, Top, act>;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \n  int n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x : a)\n    cin >>\
+    \ x;\n\n  Treap::node* tr = Treap::build(a);\n\n  while(q--) {\n    int t, l,\
+    \ r; cin >> t >> l >> r;\n    if (t == 0)\n      Treap::modify(tr, l, r, Tid(),\
+    \ true);\n    else\n      cout << Treap::query(tr, l, r) << '\\n';\n  }\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - ds/treap.cpp
-  - actedmonoid/actedMonoid_affineSum.cpp
   isVerificationFile: true
   path: test/range_reverse_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 23:05:20+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-02-09 23:15:26+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/range_reverse_range_sum.test.cpp
 layout: document
