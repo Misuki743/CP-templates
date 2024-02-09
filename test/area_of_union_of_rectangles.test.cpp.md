@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: actedmonoid/actedMonoid_addMinCnt.cpp
     title: actedmonoid/actedMonoid_addMinCnt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: misc/areaOfUnionOfRectangles.cpp
     title: misc/areaOfUnionOfRectangles.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segtree/ultraLazySegmentTree.cpp
     title: segtree/ultraLazySegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/area_of_union_of_rectangles
@@ -131,13 +131,13 @@ data:
     \ int, int>> add;\n  add.reserve(ssize(rect));\n  for(int i = 0; auto &[l, r,\
     \ _, __] : rect) {\n    add.emplace_back(l, 1, i);\n    add.emplace_back(r, -1,\
     \ i++);\n  }\n  R::sort(add, {}, [](auto &x) { return get<0>(x); });\n\n  vector<pair<T1,\
-    \ T1>> init(ssize(ys) - 1);\n  for(int i = 0; i + 1 < ssize(ys); i++)\n    init[i]\
+    \ T1>> init(ys.size() - 1);\n  for(int i = 0; i + 1 < ys.size(); i++)\n    init[i]\
     \ = make_pair(T1(0), ys.val[i + 1] - ys.val[i]);\n  ultraLazySegmentTree<actedMonoid_addMinCnt<T1>>\
-    \ st(init);\n\n  T2 ans = 0;\n  for(int i = 1, ptr = 0; i < ssize(xs); i++) {\n\
+    \ st(init);\n\n  T2 ans = 0;\n  for(int i = 1, ptr = 0; i < xs.size(); i++) {\n\
     \    while(ptr < ssize(add) and get<0>(add[ptr]) < i) {\n      auto [x, r, i]\
     \ = add[ptr++];\n      auto [_, __, d, u] = rect[i];\n      st.modify(d, u, r);\n\
     \    }\n    ans += T2(xs.val[i] - xs.val[i - 1]) * ((ys.val.back() - ys.val[0])\
-    \ - actedMonoid_addMinCnt::Mop(st.query(0, st.size), make_pair(0, 0)).second);\n\
+    \ - actedMonoid_addMinCnt<T1>::Mop(st.query(0, st.size), make_pair(0, 0)).second);\n\
     \  }\n\n  return ans;\n}\n#line 9 \"test/area_of_union_of_rectangles.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
     \ cin >> n;\n  vector<array<int, 4>> rect(n);\n  for(auto &[l, r, d, u] : rect)\n\
@@ -161,8 +161,8 @@ data:
   isVerificationFile: true
   path: test/area_of_union_of_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 22:16:52+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-02-09 22:19:36+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/area_of_union_of_rectangles.test.cpp
 layout: document

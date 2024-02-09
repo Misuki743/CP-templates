@@ -9,7 +9,7 @@ data:
     - icon: ':warning:'
       path: actedmonoid/actedMonoid_addMin.cpp
       title: actedmonoid/actedMonoid_addMin.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: actedmonoid/actedMonoid_addMinCnt.cpp
       title: actedmonoid/actedMonoid_addMinCnt.cpp
     - icon: ':warning:'
@@ -37,7 +37,7 @@ data:
       title: combi/stirlingFirst.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -185,10 +185,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: misc/LIS.cpp
       title: misc/LIS.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: misc/areaOfUnionOfRectangles.cpp
       title: misc/areaOfUnionOfRectangles.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: misc/compression.cpp
       title: compression
     - icon: ':heavy_check_mark:'
@@ -274,7 +274,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: segtree/dualSegmentTree.cpp
       title: segtree/dualSegmentTree.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: segtree/lazySegmentTree.cpp
       title: segtree/lazySegmentTree.cpp
     - icon: ':heavy_check_mark:'
@@ -292,7 +292,7 @@ data:
     - icon: ':warning:'
       path: segtree/segmentTreeLazyDynamic.cpp
       title: segtree/segmentTreeLazyDynamic.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: segtree/ultraLazySegmentTree.cpp
       title: segtree/ultraLazySegmentTree.cpp
   - name: setfunc
@@ -335,7 +335,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Z_algorithm.test.cpp
       title: test/Z_algorithm.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/area_of_union_of_rectangles.test.cpp
       title: test/area_of_union_of_rectangles.test.cpp
     - icon: ':heavy_check_mark:'
