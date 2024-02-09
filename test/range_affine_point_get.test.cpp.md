@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segtree/dualSegmentTree.cpp
     title: segtree/dualSegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_point_get
@@ -78,45 +78,37 @@ data:
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"segtree/dualSegmentTree.cpp\"\
-    \ntemplate<class M, class T, M(*Munit)(), T(*Tunit)(), T(*Tope)(const T&, const\
-    \ T&), M(*comp)(const M&, const T&)>\nstruct dualSegmentTree {\n  vector<M> data;\n\
-    \  vector<T> tag;\n  int size;\n\n  dualSegmentTree(int _size) : data(_size, Munit()),\
-    \ tag(_size, Tunit()), size(_size) {}\n  dualSegmentTree(vector<M> init) : data(init),\
-    \ tag(ssize(init), Tunit()), size(ssize(init)) {}\n\n  void apply(int i, T x)\
-    \ {\n    if (i < size)\n      tag[i] = Tope(tag[i], x);\n    else\n      data[i\
-    \ - size] = comp(data[i - size], x);\n  }\n\n  int trunc(unsigned i) { return\
-    \ i >> countr_zero(i); }\n\n  void push(int i) {\n    for(int s = bit_width((unsigned)i)\
-    \ - 1; s > 0; s--) {\n      if (tag[i >> s] != Tunit()) {\n        apply(i >>\
-    \ (s - 1), tag[i >> s]);\n        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n    \
-    \    tag[i >> s] = Tunit();\n      }\n    }\n  }\n\n  void set(int i, M x) {\n\
-    \    push(i + size);\n    data[i] = x;\n  }\n\n  M get(int i) {\n    push(i +\
-    \ size);\n    return data[i];\n  }\n\n  void modify(int l, int r, T x) {\n   \
-    \ if (l >= r or x == Tunit()) return;\n    push(trunc(l + size)), push(trunc(r\
-    \ + size) - 1);\n    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n  \
-    \    if (l & 1) apply(l++, x);\n      if (r & 1) apply(--r, x);\n    }\n  }\n\
-    };\n#line 6 \"test/range_affine_point_get.test.cpp\"\n\nmint Munit() { return\
-    \ mint(0); }\narray<mint, 2> Tunit() { return {1, 0}; }\narray<mint, 2> ope(const\
-    \ array<mint, 2> &l, const array<mint, 2> &r) { return {l[0] * r[0], l[1] * r[0]\
-    \ + r[1]}; }\nmint comp(const mint &l, const array<mint, 2> &r) { return r[0]\
-    \ * l + r[1]; }\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
-    \n  int n, q; cin >> n >> q;\n  vector<mint> a(n);\n  for(mint &x : a)\n    cin\
-    \ >> x;\n\n  dualSegmentTree<mint, array<mint, 2>, Munit, Tunit, ope, comp> st(a);\n\
-    \  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int l, r, b, c;\
-    \ cin >> l >> r >> b >> c;\n      st.modify(l, r, {b, c});\n    } else {\n   \
-    \   int i; cin >> i;\n      cout << st.get(i) << '\\n';\n    }\n  }\n\n  return\
-    \ 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../segtree/dualSegmentTree.cpp\"\n\nmint Munit() { return mint(0);\
-    \ }\narray<mint, 2> Tunit() { return {1, 0}; }\narray<mint, 2> ope(const array<mint,\
-    \ 2> &l, const array<mint, 2> &r) { return {l[0] * r[0], l[1] * r[0] + r[1]};\
-    \ }\nmint comp(const mint &l, const array<mint, 2> &r) { return r[0] * l + r[1];\
-    \ }\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int\
-    \ n, q; cin >> n >> q;\n  vector<mint> a(n);\n  for(mint &x : a)\n    cin >> x;\n\
-    \n  dualSegmentTree<mint, array<mint, 2>, Munit, Tunit, ope, comp> st(a);\n  while(q--)\
+    \ntemplate<class M, M(*Mid)(), class T, T(*Tid)(), T(*Top)(const T&, const T&),\
+    \ M(*act)(const M&, const T&)>\nstruct dualSegmentTree {\n  vector<M> data;\n\
+    \  vector<T> tag;\n  int size;\n\n  dualSegmentTree(int _size) : data(_size, Mid()),\
+    \ tag(_size, Tid()), size(_size) {}\n  dualSegmentTree(vector<M> init) : data(init),\
+    \ tag(ssize(init), Tid()), size(ssize(init)) {}\n\n  void apply(int i, T x) {\n\
+    \    if (i < size)\n      tag[i] = Top(tag[i], x);\n    else\n      data[i - size]\
+    \ = act(data[i - size], x);\n  }\n\n  int trunc(unsigned i) { return i >> countr_zero(i);\
+    \ }\n\n  void push(int i) {\n    for(int s = bit_width((unsigned)i) - 1; s > 0;\
+    \ s--) {\n      if (tag[i >> s] != Tid()) {\n        apply(i >> (s - 1), tag[i\
+    \ >> s]);\n        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n        tag[i >> s]\
+    \ = Tid();\n      }\n    }\n  }\n\n  void set(int i, M x) {\n    push(i + size);\n\
+    \    data[i] = x;\n  }\n\n  M get(int i) {\n    push(i + size);\n    return data[i];\n\
+    \  }\n\n  void modify(int l, int r, T x) {\n    if (l >= r or x == Tid()) return;\n\
+    \    push(trunc(l + size)), push(trunc(r + size) - 1);\n    for(l += size, r +=\
+    \ size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) apply(l++, x);\n      if\
+    \ (r & 1) apply(--r, x);\n    }\n  }\n};\n#line 6 \"test/range_affine_point_get.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vector<mint> a(n);\n  for(mint &x : a)\n    cin >> x;\n\
+    \n  dualSegmentTree<mint, Mid, array<mint, 2>, Tid, op, act> st(a);\n  while(q--)\
     \ {\n    int t; cin >> t;\n    if (t == 0) {\n      int l, r, b, c; cin >> l >>\
     \ r >> b >> c;\n      st.modify(l, r, {b, c});\n    } else {\n      int i; cin\
     \ >> i;\n      cout << st.get(i) << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
+    \n#include \"../segtree/dualSegmentTree.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<mint> a(n);\n  for(mint\
+    \ &x : a)\n    cin >> x;\n\n  dualSegmentTree<mint, Mid, array<mint, 2>, Tid,\
+    \ op, act> st(a);\n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n \
+    \     int l, r, b, c; cin >> l >> r >> b >> c;\n      st.modify(l, r, {b, c});\n\
+    \    } else {\n      int i; cin >> i;\n      cout << st.get(i) << '\\n';\n   \
+    \ }\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
@@ -124,8 +116,8 @@ data:
   isVerificationFile: true
   path: test/range_affine_point_get.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 18:42:26+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-02-09 21:58:48+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/range_affine_point_get.test.cpp
 layout: document

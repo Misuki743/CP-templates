@@ -103,8 +103,8 @@ data:
   timestamp: '2024-01-28 22:59:51+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/range_reverse_range_sum.test.cpp
+  - test/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: ds/treap.cpp
 layout: document
 redirect_from:

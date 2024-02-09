@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -21,9 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/static_range_frequency.test.cpp
     title: test/static_range_frequency.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/compression.cpp\"\ntemplate<class T, bool duplicate\
@@ -59,13 +59,13 @@ data:
   path: misc/compression.cpp
   requiredBy: []
   timestamp: '2024-01-27 18:42:26+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/rectangle_add_point_get.test.cpp
   - test/area_of_union_of_rectangles.test.cpp
+  - test/rectangle_add_point_get.test.cpp
   - test/rectangle_sum.test.cpp
-  - test/range_kth_smallest.test.cpp
   - test/static_range_frequency.test.cpp
+  - test/range_kth_smallest.test.cpp
   - test/point_add_rectangle_sum.test.cpp
 documentation_of: misc/compression.cpp
 layout: document

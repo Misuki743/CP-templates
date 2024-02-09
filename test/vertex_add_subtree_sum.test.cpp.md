@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -47,20 +47,19 @@ data:
     \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
     \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
     \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"segtree/segmentTree.cpp\"\
-    \ntemplate<class M, M(*unit)(), M(*combine)(const M&, const M&)>\nstruct segmentTree\
+    \ntemplate<class M, M(*id)(), M(*op)(const M&, const M&)>\nstruct segmentTree\
     \ {\n  vector<M> data;\n  int size;\n\n  segmentTree(int _size) : data(2 * _size,\
-    \ unit()), size(_size) {}\n\n  segmentTree(vector<M> init) : data(2 * ssize(init),\
-    \ unit()), size(ssize(init)) {\n    copy(init.begin(), init.end(), data.begin()\
-    \ + size);\n    for(int i = size - 1; i > 0; i--)\n      data[i] = combine(data[i\
-    \ << 1], data[i << 1 | 1]);\n  }\n\n  void set(int i, M x) {\n    data[i += size]\
-    \ = x;\n    while(i >>= 1)\n      data[i] = combine(data[i << 1], data[i << 1\
-    \ | 1]);\n  }\n\n  M get(int i) { return data[i + size]; }\n\n  M query(int l,\
-    \ int r) {\n    M L = unit(), R = unit();\n    for(l += size, r += size; l < r;\
-    \ l >>= 1, r >>= 1) {\n      if (l & 1) L = combine(L, data[l++]);\n      if (r\
-    \ & 1) R = combine(data[--r], R);\n    }\n    return combine(L, R);\n  }\n};\n\
-    #line 1 \"ds/eulerTour2.cpp\"\n//#include<segtree/segmentTree.cpp>\n\ntemplate<class\
-    \ M, M(*unit)(), M(*combine)(const M&, const M&)>\nstruct eulerTour2 {\n  vector<int>\
-    \ tin, tout, p;\n  segmentTree<M, unit, combine> st;\n\n  eulerTour2(vector<vector<int>>\
+    \ id()), size(_size) {}\n\n  segmentTree(vector<M> init) : data(2 * ssize(init),\
+    \ id()), size(ssize(init)) {\n    copy(init.begin(), init.end(), data.begin()\
+    \ + size);\n    for(int i = size - 1; i > 0; i--)\n      data[i] = op(data[i <<\
+    \ 1], data[i << 1 | 1]);\n  }\n\n  void set(int i, M x) {\n    data[i += size]\
+    \ = x;\n    while(i >>= 1)\n      data[i] = op(data[i << 1], data[i << 1 | 1]);\n\
+    \  }\n\n  M get(int i) { return data[i + size]; }\n\n  M query(int l, int r) {\n\
+    \    M L = id(), R = id();\n    for(l += size, r += size; l < r; l >>= 1, r >>=\
+    \ 1) {\n      if (l & 1) L = op(L, data[l++]);\n      if (r & 1) R = op(data[--r],\
+    \ R);\n    }\n    return op(L, R);\n  }\n};\n#line 1 \"ds/eulerTour2.cpp\"\n//#include<segtree/segmentTree.cpp>\n\
+    \ntemplate<class M, M(*unit)(), M(*combine)(const M&, const M&)>\nstruct eulerTour2\
+    \ {\n  vector<int> tin, tout, p;\n  segmentTree<M, unit, combine> st;\n\n  eulerTour2(vector<vector<int>>\
     \ g, int root = 0) : tin(ssize(g)), tout(ssize(g)), p(ssize(g), -1), st(ssize(g))\
     \ {\n    int t = 0;\n    auto dfs = [&](int v, auto self) -> void {\n      tin[v]\
     \ = t++;\n      for(int x : g[v]) {\n        if (x == p[v]) continue;\n      \
@@ -96,7 +95,7 @@ data:
   isVerificationFile: true
   path: test/vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-01-24 20:41:29+08:00'
+  timestamp: '2024-02-09 21:58:48+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_add_subtree_sum.test.cpp

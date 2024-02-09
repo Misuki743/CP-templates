@@ -78,8 +78,8 @@ data:
   timestamp: '2024-02-06 18:26:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/range_kth_smallest.test.cpp
   - test/static_range_frequency.test.cpp
+  - test/range_kth_smallest.test.cpp
 documentation_of: ds/waveletMatrix.cpp
 layout: document
 redirect_from:
