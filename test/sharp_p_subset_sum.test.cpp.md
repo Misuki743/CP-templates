@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: misc/sharpPSubsetSum.cpp
     title: misc/sharpPSubsetSum.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   - icon: ':heavy_check_mark:'

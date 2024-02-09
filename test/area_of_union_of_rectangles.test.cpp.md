@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: actedmonoid/actedMonoid_addMinCnt.cpp
+    title: actedmonoid/actedMonoid_addMinCnt.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
@@ -10,7 +13,7 @@ data:
   - icon: ':question:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':x:'
+  - icon: ':question:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
   - icon: ':x:'
@@ -94,14 +97,20 @@ data:
     \ AM::Mid, AM::Mop, typename AM::T, AM::Tid, AM::Top, AM::act> {\n  using base\
     \ = lazySegmentTree<typename AM::M, AM::Mid, AM::Mop, typename AM::T, AM::Tid,\
     \ AM::Top, AM::act>;\n  ultraLazySegmentTree(vector<typename AM::M> init) : base(init)\
-    \ {}\n  ultraLazySegmentTree(int size) : base(size) {}\n};\n#line 1 \"misc/compression.cpp\"\
-    \ntemplate<class T, bool duplicate = false>\nstruct compression {\n  vector<int>\
-    \ ord;\n  vector<T> val;\n\n  compression(vector<T> &init) : val(init) { precompute();\
-    \ }\n  compression(int size = 0) { val.reserve(size); }\n\n  void precompute()\
-    \ {\n    vector<T> init = val;\n    ord.resize(ssize(val));\n    R::sort(val);\n\
-    \    if constexpr (duplicate) {\n      vector<int> cnt(ssize(init));\n      iota(cnt.begin(),\
-    \ cnt.end(), 0);\n      for(int i = 0; i < ssize(ord); i++)\n        ord[i] =\
-    \ cnt[lower_bound(init[i])]++;\n    } else {\n      val.resize(unique(val.begin(),\
+    \ {}\n  ultraLazySegmentTree(int size) : base(size) {}\n};\n#line 1 \"actedmonoid/actedMonoid_addMinCnt.cpp\"\
+    \ntemplate<class U>\nstruct actedMonoid_addMinCnt {\n  using M = pair<U, int>;\n\
+    \  static M Mid() { return make_pair(numeric_limits<U>::max(), 0); }\n  static\
+    \ M Mop(const M &a, const M &b) { return a.first == b.first ? make_pair(a.first,\
+    \ a.second + b.second) : min(a, b); }\n  using T = U;\n  static T Tid() { return\
+    \ T(0); }\n  static T Top(const T &a, const T &b) { return a + b; }\n  static\
+    \ M act(const M &a, const T &b) { return make_pair(a.first + b, a.second); }\n\
+    };\n#line 1 \"misc/compression.cpp\"\ntemplate<class T, bool duplicate = false>\n\
+    struct compression {\n  vector<int> ord;\n  vector<T> val;\n\n  compression(vector<T>\
+    \ &init) : val(init) { precompute(); }\n  compression(int size = 0) { val.reserve(size);\
+    \ }\n\n  void precompute() {\n    vector<T> init = val;\n    ord.resize(ssize(val));\n\
+    \    R::sort(val);\n    if constexpr (duplicate) {\n      vector<int> cnt(ssize(init));\n\
+    \      iota(cnt.begin(), cnt.end(), 0);\n      for(int i = 0; i < ssize(ord);\
+    \ i++)\n        ord[i] = cnt[lower_bound(init[i])]++;\n    } else {\n      val.resize(unique(val.begin(),\
     \ val.end()) - val.begin());\n      for(int i = 0; i < ssize(ord); i++)\n    \
     \    ord[i] = lower_bound(init[i]);\n    }\n  }\n\n  int lower_bound(T x) { return\
     \ R::lower_bound(val, x) - val.begin(); }\n  int size() { return ssize(val); }\n\
@@ -129,28 +138,30 @@ data:
     \ = add[ptr++];\n      auto [_, __, d, u] = rect[i];\n      st.modify(d, u, r);\n\
     \    }\n    ans += T2(xs.val[i] - xs.val[i - 1]) * ((ys.val.back() - ys.val[0])\
     \ - prMinSum<T1>(st.query(0, st.size), make_pair(0, 0)).second);\n  }\n\n  return\
-    \ ans;\n}\n#line 8 \"test/area_of_union_of_rectangles.test.cpp\"\n\nsigned main()\
+    \ ans;\n}\n#line 9 \"test/area_of_union_of_rectangles.test.cpp\"\n\nsigned main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<array<int,\
     \ 4>> rect(n);\n  for(auto &[l, r, d, u] : rect)\n    cin >> l >> d >> r >> u;\n\
     \n  cout << areaOfUnionOfRectangles<int, ll>(rect) << '\\n';\n\n  return 0;\n\
     }\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/area_of_union_of_rectangles\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../segtree/lazySegmentTree.cpp\"\
-    \n#include \"../segtree/ultraLazySegmentTree.cpp\"\n#include \"../misc/compression.cpp\"\
-    \n#include \"../misc/areaOfUnionOfRectangles.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<array<int, 4>> rect(n);\n  for(auto\
-    \ &[l, r, d, u] : rect)\n    cin >> l >> d >> r >> u;\n\n  cout << areaOfUnionOfRectangles<int,\
-    \ ll>(rect) << '\\n';\n\n  return 0;\n}\n\n"
+    \n#include \"../segtree/ultraLazySegmentTree.cpp\"\n#include \"../actedmonoid/actedMonoid_addMinCnt.cpp\"\
+    \n#include \"../misc/compression.cpp\"\n#include \"../misc/areaOfUnionOfRectangles.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
+    \ cin >> n;\n  vector<array<int, 4>> rect(n);\n  for(auto &[l, r, d, u] : rect)\n\
+    \    cin >> l >> d >> r >> u;\n\n  cout << areaOfUnionOfRectangles<int, ll>(rect)\
+    \ << '\\n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - segtree/lazySegmentTree.cpp
   - segtree/ultraLazySegmentTree.cpp
+  - actedmonoid/actedMonoid_addMinCnt.cpp
   - misc/compression.cpp
   - misc/areaOfUnionOfRectangles.cpp
   isVerificationFile: true
   path: test/area_of_union_of_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 21:58:48+08:00'
+  timestamp: '2024-02-09 22:11:02+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/area_of_union_of_rectangles.test.cpp

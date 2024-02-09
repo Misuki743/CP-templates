@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segtree/dualSegmentTree.cpp
     title: segtree/dualSegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_point_get
@@ -94,21 +94,28 @@ data:
     \    push(trunc(l + size)), push(trunc(r + size) - 1);\n    for(l += size, r +=\
     \ size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) apply(l++, x);\n      if\
     \ (r & 1) apply(--r, x);\n    }\n  }\n};\n#line 6 \"test/range_affine_point_get.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vector<mint> a(n);\n  for(mint &x : a)\n    cin >> x;\n\
-    \n  dualSegmentTree<mint, Mid, array<mint, 2>, Tid, op, act> st(a);\n  while(q--)\
-    \ {\n    int t; cin >> t;\n    if (t == 0) {\n      int l, r, b, c; cin >> l >>\
-    \ r >> b >> c;\n      st.modify(l, r, {b, c});\n    } else {\n      int i; cin\
-    \ >> i;\n      cout << st.get(i) << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../segtree/dualSegmentTree.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n\nmint Mid() { return mint(0); }\narray<mint, 2> Tid() { return {1, 0}; }\n\
+    array<mint, 2> op(const array<mint, 2> &l, const array<mint, 2> &r) { return {l[0]\
+    \ * r[0], l[1] * r[0] + r[1]}; }\nmint act(const mint &l, const array<mint, 2>\
+    \ &r) { return r[0] * l + r[1]; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<mint> a(n);\n  for(mint\
     \ &x : a)\n    cin >> x;\n\n  dualSegmentTree<mint, Mid, array<mint, 2>, Tid,\
     \ op, act> st(a);\n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n \
     \     int l, r, b, c; cin >> l >> r >> b >> c;\n      st.modify(l, r, {b, c});\n\
     \    } else {\n      int i; cin >> i;\n      cout << st.get(i) << '\\n';\n   \
     \ }\n  }\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
+    \n#include \"../segtree/dualSegmentTree.cpp\"\n\nmint Mid() { return mint(0);\
+    \ }\narray<mint, 2> Tid() { return {1, 0}; }\narray<mint, 2> op(const array<mint,\
+    \ 2> &l, const array<mint, 2> &r) { return {l[0] * r[0], l[1] * r[0] + r[1]};\
+    \ }\nmint act(const mint &l, const array<mint, 2> &r) { return r[0] * l + r[1];\
+    \ }\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int\
+    \ n, q; cin >> n >> q;\n  vector<mint> a(n);\n  for(mint &x : a)\n    cin >> x;\n\
+    \n  dualSegmentTree<mint, Mid, array<mint, 2>, Tid, op, act> st(a);\n  while(q--)\
+    \ {\n    int t; cin >> t;\n    if (t == 0) {\n      int l, r, b, c; cin >> l >>\
+    \ r >> b >> c;\n      st.modify(l, r, {b, c});\n    } else {\n      int i; cin\
+    \ >> i;\n      cout << st.get(i) << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
@@ -116,8 +123,8 @@ data:
   isVerificationFile: true
   path: test/range_affine_point_get.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 21:58:48+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-02-09 22:11:02+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/range_affine_point_get.test.cpp
 layout: document

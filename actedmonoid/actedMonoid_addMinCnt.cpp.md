@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/area_of_union_of_rectangles.test.cpp
+    title: test/area_of_union_of_rectangles.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"actedmonoid/actedMonoid_addMinCnt.cpp\"\ntemplate<class\
@@ -27,8 +30,9 @@ data:
   path: actedmonoid/actedMonoid_addMinCnt.cpp
   requiredBy: []
   timestamp: '2024-02-09 21:58:48+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/area_of_union_of_rectangles.test.cpp
 documentation_of: actedmonoid/actedMonoid_addMinCnt.cpp
 layout: document
 redirect_from:

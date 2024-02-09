@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -115,33 +115,32 @@ data:
     \     }\n      if (f(Mop(pre, data[v << 1])))\n        v = v << 1;\n      else\n\
     \        pre = Mop(pre, data[v << 1]), v = v << 1 | 1;\n    }\n    return v -\
     \ size;\n  }\n};\n#line 6 \"test/range_affine_range_sum.test.cpp\"\n\nusing monoid\
-    \ = array<mint, 2>;\nusing tag = array<mint, 2>;\nmonoid Munit() { return monoid{0,\
-    \ 0}; }\ntag Tunit() { return tag{1, 0}; }\nmonoid Mope(const monoid &l, const\
-    \ monoid &r) { return {l[0] + r[0], l[1] + r[1]}; }\ntag Tope(const tag &l, const\
-    \ tag &r) { return tag{l[0] * r[0], l[1] * r[0] + r[1]}; }\nmonoid comp(const\
-    \ monoid &l, const tag &r) { return {l[0] * r[0] + l[1] * r[1], l[1]}; }\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
-    \ n >> q;\n  vector<monoid> a(n);\n  for(auto &[x, s] : a) {\n    cin >> x;\n\
-    \    s = 1;\n  }\n\n  lazySegmentTree<monoid, tag, Munit, Tunit, Mope, Tope, comp>\
-    \ st(a);\n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int l,\
-    \ r, b, c; cin >> l >> r >> b >> c;\n      st.modify(l, r, tag{b, c});\n    }\
-    \ else {\n      int l, r; cin >> l >> r;\n      cout << st.query(l, r)[0] << '\\\
-    n';\n    }\n  }\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../segtree/lazySegmentTree.cpp\"\n\nusing monoid = array<mint, 2>;\n\
-    using tag = array<mint, 2>;\nmonoid Munit() { return monoid{0, 0}; }\ntag Tunit()\
-    \ { return tag{1, 0}; }\nmonoid Mope(const monoid &l, const monoid &r) { return\
-    \ {l[0] + r[0], l[1] + r[1]}; }\ntag Tope(const tag &l, const tag &r) { return\
-    \ tag{l[0] * r[0], l[1] * r[0] + r[1]}; }\nmonoid comp(const monoid &l, const\
-    \ tag &r) { return {l[0] * r[0] + l[1] * r[1], l[1]}; }\n\nsigned main() {\n \
-    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n\
-    \  vector<monoid> a(n);\n  for(auto &[x, s] : a) {\n    cin >> x;\n    s = 1;\n\
-    \  }\n\n  lazySegmentTree<monoid, tag, Munit, Tunit, Mope, Tope, comp> st(a);\n\
+    \ = array<mint, 2>;\nusing tag = array<mint, 2>;\nmonoid Mid() { return monoid{0,\
+    \ 0}; }\ntag Tid() { return tag{1, 0}; }\nmonoid Mop(const monoid &l, const monoid\
+    \ &r) { return {l[0] + r[0], l[1] + r[1]}; }\ntag Top(const tag &l, const tag\
+    \ &r) { return tag{l[0] * r[0], l[1] * r[0] + r[1]}; }\nmonoid act(const monoid\
+    \ &l, const tag &r) { return {l[0] * r[0] + l[1] * r[1], l[1]}; }\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
+    \ q;\n  vector<monoid> a(n);\n  for(auto &[x, s] : a) {\n    cin >> x;\n    s\
+    \ = 1;\n  }\n\n  lazySegmentTree<monoid, Mid, Mop, tag, Tid, Top, act> st(a);\n\
     \  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int l, r, b, c;\
     \ cin >> l >> r >> b >> c;\n      st.modify(l, r, tag{b, c});\n    } else {\n\
     \      int l, r; cin >> l >> r;\n      cout << st.query(l, r)[0] << '\\n';\n \
     \   }\n  }\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
+    \n#include \"../segtree/lazySegmentTree.cpp\"\n\nusing monoid = array<mint, 2>;\n\
+    using tag = array<mint, 2>;\nmonoid Mid() { return monoid{0, 0}; }\ntag Tid()\
+    \ { return tag{1, 0}; }\nmonoid Mop(const monoid &l, const monoid &r) { return\
+    \ {l[0] + r[0], l[1] + r[1]}; }\ntag Top(const tag &l, const tag &r) { return\
+    \ tag{l[0] * r[0], l[1] * r[0] + r[1]}; }\nmonoid act(const monoid &l, const tag\
+    \ &r) { return {l[0] * r[0] + l[1] * r[1], l[1]}; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<monoid> a(n);\n  for(auto\
+    \ &[x, s] : a) {\n    cin >> x;\n    s = 1;\n  }\n\n  lazySegmentTree<monoid,\
+    \ Mid, Mop, tag, Tid, Top, act> st(a);\n  while(q--) {\n    int t; cin >> t;\n\
+    \    if (t == 0) {\n      int l, r, b, c; cin >> l >> r >> b >> c;\n      st.modify(l,\
+    \ r, tag{b, c});\n    } else {\n      int l, r; cin >> l >> r;\n      cout <<\
+    \ st.query(l, r)[0] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
@@ -149,8 +148,8 @@ data:
   isVerificationFile: true
   path: test/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 21:58:48+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-02-09 22:11:02+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/range_affine_range_sum.test.cpp
 layout: document

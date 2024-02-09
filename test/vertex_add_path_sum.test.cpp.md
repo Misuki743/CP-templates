@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/eulerTour.cpp
     title: ds/eulerTour.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastJump.cpp
     title: ds/fastJump.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segtree/dualSegmentTree.cpp
     title: segtree/dualSegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -83,19 +83,19 @@ data:
     \ + size) - 1);\n    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n  \
     \    if (l & 1) apply(l++, x);\n      if (r & 1) apply(--r, x);\n    }\n  }\n\
     };\n#line 1 \"ds/eulerTour.cpp\"\n//#include<ds/fastJump.cpp>\n//#include<segtree/dualSegmentTree.cpp>\n\
-    \ntemplate<class M, class T, M(*Munit)(), T(*Tunit)(), M(*Mope)(const M&, const\
-    \ M&), \nT(*Tope)(const T&, const T&), M(*comp)(const M&, const T&), M(*inv)(const\
+    \ntemplate<class M, class T, M(*Mid)(), T(*Tid)(), M(*Mop)(const M&, const M&),\
+    \ \nT(*Top)(const T&, const T&), M(*comp)(const M&, const T&), M(*Minv)(const\
     \ M&)>\nstruct eulerTour {\n  vector<int> tin, tout, p;\n  dualSegmentTree<M,\
-    \ T, Munit, Tunit, Tope, comp> st;\n  fastJump jp;\n\n  eulerTour(vector<vector<int>>\
+    \ Mid, T, Tid, Top, comp> st;\n  fastJump jp;\n\n  eulerTour(vector<vector<int>>\
     \ g, int root = 0) : tin(ssize(g)), tout(ssize(g)), p(ssize(g), -1), st(ssize(g)),\
     \ jp(g, root) {\n    int t = 0;\n    auto dfs = [&](int v, auto self) -> void\
     \ {\n      tin[v] = t++;\n      for(int x : g[v]) {\n        if (x == p[v]) continue;\n\
     \        p[x] = v;\n        self(x, self);\n      }\n      tout[v] = t;\n    };\n\
     \n    dfs(root, dfs);\n  }\n\n  //for point modify, path query, inversion of monoid\
     \ is needed\n  void modify(int v, T x) { st.modify(tin[v], tout[v], x); }\n  M\
-    \ query(int u, int v) {\n    int lca = jp.lca(u, v);\n    M res = Mope(st.get(tin[u]),\
-    \ st.get(tin[v]));\n    res = Mope(res, inv(st.get(tin[lca])));\n    if (p[lca]\
-    \ != -1)\n      res = Mope(res, inv(st.get(tin[p[lca]])));\n    return res;\n\
+    \ query(int u, int v) {\n    int lca = jp.lca(u, v);\n    M res = Mop(st.get(tin[u]),\
+    \ st.get(tin[v]));\n    res = Mop(res, Minv(st.get(tin[lca])));\n    if (p[lca]\
+    \ != -1)\n      res = Mop(res, Minv(st.get(tin[p[lca]])));\n    return res;\n\
     \  }\n};\n#line 7 \"test/vertex_add_path_sum.test.cpp\"\n\nll add(const ll &a,\
     \ const ll &b) { return a + b; }\nll zero() { return 0ll; }\nll inv(const ll &x)\
     \ { return -x; }\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
@@ -126,8 +126,8 @@ data:
   isVerificationFile: true
   path: test/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 21:58:48+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-02-09 22:11:02+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_add_path_sum.test.cpp
 layout: document

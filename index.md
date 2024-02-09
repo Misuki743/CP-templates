@@ -9,7 +9,7 @@ data:
     - icon: ':warning:'
       path: actedmonoid/actedMonoid_addMin.cpp
       title: actedmonoid/actedMonoid_addMin.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: actedmonoid/actedMonoid_addMinCnt.cpp
       title: actedmonoid/actedMonoid_addMinCnt.cpp
     - icon: ':warning:'
@@ -69,13 +69,13 @@ data:
     - icon: ':warning:'
       path: ds/dynamicHull.cpp
       title: ds/dynamicHull.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/eulerTour.cpp
       title: ds/eulerTour.cpp
     - icon: ':heavy_check_mark:'
       path: ds/eulerTour2.cpp
       title: ds/eulerTour2.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fastJump.cpp
       title: ds/fastJump.cpp
     - icon: ':heavy_check_mark:'
@@ -205,7 +205,7 @@ data:
       title: misc/sharpPSubsetSum.cpp
   - name: modint
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':warning:'
@@ -271,10 +271,10 @@ data:
       title: poly/sparsePolyope.cpp
   - name: segtree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: segtree/dualSegmentTree.cpp
       title: segtree/dualSegmentTree.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: segtree/lazySegmentTree.cpp
       title: segtree/lazySegmentTree.cpp
     - icon: ':heavy_check_mark:'
@@ -467,10 +467,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/product_of_polynomial_sequence.test.cpp
       title: test/product_of_polynomial_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/range_affine_point_get.test.cpp
       title: test/range_affine_point_get.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/range_affine_range_sum.test.cpp
       title: test/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -527,7 +527,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unionfind.test.cpp
       title: test/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
     - icon: ':heavy_check_mark:'
