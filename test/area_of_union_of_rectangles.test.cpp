@@ -14,7 +14,7 @@ signed main() {
   for(auto &[l, r, d, u] : rect)
     cin >> l >> d >> r >> u;
 
-  cout << areaOfUnionOfRectangles<int, ll, INT_MAX>(rect) << '\n';
+  cout << areaOfUnionOfRectangles<int, ll>(rect) << '\n';
 
   return 0;
 }

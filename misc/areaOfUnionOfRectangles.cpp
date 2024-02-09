@@ -1,8 +1,9 @@
 //#include<segtree/lazySegmentTree.cpp>
 //#include<segtree/ultraLazySegmentTree.cpp>
+//#include<actedmonoid/actedMonoid_addMinCnt.cpp>
 //#include<misc/compression.cpp>
 
-template<class T1, class T2, T1 inf>
+template<class T1, class T2>
 T2 areaOfUnionOfRectangles(vector<array<T1, 4>> rect) {
   compression<T1> xs(2 * ssize(rect)), ys(2 * ssize(rect));
   xs.insert(rect, [](auto &x) { return x[0]; });
@@ -27,7 +28,7 @@ T2 areaOfUnionOfRectangles(vector<array<T1, 4>> rect) {
   vector<pair<T1, T1>> init(ys.size() - 1);
   for(int i = 0; i + 1 < ys.size(); i++)
     init[i] = make_pair(T1(0), ys.val[i + 1] - ys.val[i]);
-  addMinCntLazySegmentTree<T1, inf> st(init);
+  ultraLazySegmentTree<actedMonoid_addMinCnt<T1>> st(init);
 
   T2 ans = 0;
   for(int i = 1, ptr = 0; i < xs.size(); i++) {

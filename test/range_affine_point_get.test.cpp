@@ -4,11 +4,6 @@
 #include "../modint/MontgomeryModInt.cpp"
 #include "../segtree/dualSegmentTree.cpp"
 
-mint Munit() { return mint(0); }
-array<mint, 2> Tunit() { return {1, 0}; }
-array<mint, 2> ope(const array<mint, 2> &l, const array<mint, 2> &r) { return {l[0] * r[0], l[1] * r[0] + r[1]}; }
-mint comp(const mint &l, const array<mint, 2> &r) { return r[0] * l + r[1]; }
-
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
@@ -17,7 +12,7 @@ signed main() {
   for(mint &x : a)
     cin >> x;
 
-  dualSegmentTree<mint, array<mint, 2>, Munit, Tunit, ope, comp> st(a);
+  dualSegmentTree<mint, Mid, array<mint, 2>, Tid, op, act> st(a);
   while(q--) {
     int t; cin >> t;
     if (t == 0) {
