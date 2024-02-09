@@ -1,6 +1,6 @@
 mt19937 rng(clock);
 
-template<class M, class T, M(*Munit)(), T(*Tunit)(), M(*Mope)(const M&, const M&), T(*Tope)(const T&, const T&), M(*comp)(const M&, const T&)>
+template<class M, M(*Mid)(), M(*Mop)(const M&, const M&), class T, T(*Tid)(), T(*Top)(const T&, const T&), M(*act)(const M&, const T&)>
 struct treap {
   struct node {
     int pri, size = 1;
@@ -8,12 +8,12 @@ struct treap {
     node *l = nullptr, *r = nullptr;
     M data, prod;
     T tag;
-    node() : pri(rng()), data(Munit()), prod(Munit()), tag(Tunit()) {}
-    node(M init) : pri(rng()), data(init), prod(init), tag(Tunit()) {}
+    node() : pri(rng()), data(Mid()), prod(Mid()), tag(Tid()) {}
+    node(M init) : pri(rng()), data(init), prod(init), tag(Tid()) {}
   };
 
   static int size(node *v) { return v ? v -> size : 0; }
-  static M get(node *v) { return v ? v -> prod : Munit(); }
+  static M get(node *v) { return v ? v -> prod : Mid(); }
 
   static node* build(vector<M> init) {
     node* res = nullptr;
@@ -24,10 +24,10 @@ struct treap {
 
   static void apply(node *v, T x, bool rev) {
     if (!v) return;
-    if (x != Tunit()) {
-      v -> data = comp(v -> data, x);
-      v -> prod = comp(v -> prod, x);
-      v -> tag = Tope(v -> tag, x);
+    if (x != Tid()) {
+      v -> data = act(v -> data, x);
+      v -> prod = act(v -> prod, x);
+      v -> tag = Top(v -> tag, x);
     }
     if (rev) {
       v -> rev ^= 1;
@@ -39,7 +39,7 @@ struct treap {
     if (!v) return;
     for(node* c : {v -> l, v -> r})
       apply(c, v -> tag, v -> rev);
-    v -> tag = Tunit(), v -> rev = false;
+    v -> tag = Tid(), v -> rev = false;
   }
 
   static void pull(node *v) {
@@ -47,11 +47,11 @@ struct treap {
     v -> size = 1, v -> prod = v -> data;
     if (node* lc = v -> l; lc) {
       v -> size += lc -> size;
-      v -> prod = Mope(lc -> prod, v -> prod);
+      v -> prod = Mop(lc -> prod, v -> prod);
     }
     if (node* rc = v -> r; rc) {
       v -> size += rc -> size;
-      v -> prod = Mope(v -> prod, rc -> prod);
+      v -> prod = Mop(v -> prod, rc -> prod);
     }
   }
 

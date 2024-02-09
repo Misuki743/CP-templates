@@ -23,7 +23,7 @@ signed main() {
     g[v].emplace_back(u);
   }
 
-  eulerTour<ll, ll, zero, zero, add, add, add, inv> eu(g);
+  eulerTour<ll, zero, add, ll, zero, add, add, inv> eu(g);
 
   for(int v = 0; v < n; v++)
     eu.modify(v, a[v]);

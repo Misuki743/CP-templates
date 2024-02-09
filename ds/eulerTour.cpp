@@ -1,11 +1,11 @@
 //#include<ds/fastJump.cpp>
 //#include<segtree/dualSegmentTree.cpp>
 
-template<class M, class T, M(*Mid)(), T(*Tid)(), M(*Mop)(const M&, const M&), 
-T(*Top)(const T&, const T&), M(*comp)(const M&, const T&), M(*Minv)(const M&)>
+template<class M, M(*Mid)(), M(*Mop)(const M&, const M&), M(*Minv)(const M&), 
+class T, T(*Tid)(), T(*Top)(const T&, const T&), M(*act)(const M&, const T&)>
 struct eulerTour {
   vector<int> tin, tout, p;
-  dualSegmentTree<M, Mid, T, Tid, Top, comp> st;
+  dualSegmentTree<M, Mid, T, Tid, Top, act> st;
   fastJump jp;
 
   eulerTour(vector<vector<int>> g, int root = 0) : tin(ssize(g)), tout(ssize(g)), p(ssize(g), -1), st(ssize(g)), jp(g, root) {

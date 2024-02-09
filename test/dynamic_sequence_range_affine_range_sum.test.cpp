@@ -3,17 +3,10 @@
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
 #include "../ds/treap.cpp"
+#include "../actedmonoid/actedMonoid_affineSum.cpp"
 
-using monoid = array<mint, 2>;
-using tag = array<mint, 2>;
-
-monoid Munit() { return monoid{0, 0}; }
-tag Tunit() { return tag{1, 0}; }
-monoid Mope(const monoid &l, const monoid &r) { return {l[0] + r[0], l[1] + r[1]}; }
-tag Tope(const tag &l, const tag &r) { return tag{l[0] * r[0], l[1] * r[0] + r[1]}; }
-monoid comp(const monoid &l, const tag &r) { return {l[0] * r[0] + l[1] * r[1], l[1]}; }
-
-using Treap = treap<monoid, tag, Munit, Tunit, Mope, Tope, comp>;
+using am = actedMonoid_affineSum<mint>;
+using Treap = treap<am::M, am::Mid, am::Mop, am::T, am::Tid, am::Top, am::act>;
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

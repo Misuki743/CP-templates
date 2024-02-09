@@ -1,9 +1,9 @@
 //#include<segtree/segmentTree.cpp>
 
-template<class M, M(*unit)(), M(*combine)(const M&, const M&)>
+template<class M, M(*id)(), M(*op)(const M&, const M&)>
 struct eulerTour2 {
   vector<int> tin, tout, p;
-  segmentTree<M, unit, combine> st;
+  segmentTree<M, id, op> st;
 
   eulerTour2(vector<vector<int>> g, int root = 0) : tin(ssize(g)), tout(ssize(g)), p(ssize(g), -1), st(ssize(g)) {
     int t = 0;

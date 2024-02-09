@@ -3,31 +3,24 @@
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
 #include "../segtree/lazySegmentTree.cpp"
-
-using monoid = array<mint, 2>;
-using tag = array<mint, 2>;
-monoid Mid() { return monoid{0, 0}; }
-tag Tid() { return tag{1, 0}; }
-monoid Mop(const monoid &l, const monoid &r) { return {l[0] + r[0], l[1] + r[1]}; }
-tag Top(const tag &l, const tag &r) { return tag{l[0] * r[0], l[1] * r[0] + r[1]}; }
-monoid act(const monoid &l, const tag &r) { return {l[0] * r[0] + l[1] * r[1], l[1]}; }
+#include "../actedmonoid/actedMonoid_affineSum.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
-  vector<monoid> a(n);
+  vector<array<mint, 2>> a(n);
   for(auto &[x, s] : a) {
     cin >> x;
     s = 1;
   }
 
-  lazySegmentTree<monoid, Mid, Mop, tag, Tid, Top, act> st(a);
+  ultraLazySegmentTree<actedMonoid_affineSum<mint>> st(a);
   while(q--) {
     int t; cin >> t;
     if (t == 0) {
       int l, r, b, c; cin >> l >> r >> b >> c;
-      st.modify(l, r, tag{b, c});
+      st.modify(l, r, array<mint, 2>{b, c});
     } else {
       int l, r; cin >> l >> r;
       cout << st.query(l, r)[0] << '\n';
