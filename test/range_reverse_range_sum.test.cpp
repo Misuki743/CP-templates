@@ -2,10 +2,14 @@
 
 #include "../default/t.cpp"
 #include "../ds/treap.cpp"
-#include "../actedmonoid/actedMonoid_affineSum.cpp"
 
-using am = actedMonoid_affineSum<ll>;
-using Treap = treap<am::M, am::Mid, am::Mop, am::T, am::Tid, am::Top, am::act>;
+ll Mid() { return 0ll; }
+bool Tid() { return true; }
+ll Mop(const ll &a, const ll &b) { return a + b; }
+bool Top(const bool&, const bool&) { return true; }
+ll act(const ll &a, const bool&) { return a; }
+
+using Treap = treap<ll, Mid, Mop, bool, Tid, Top, act>;
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
@@ -20,7 +24,7 @@ signed main() {
   while(q--) {
     int t, l, r; cin >> t >> l >> r;
     if (t == 0)
-      Treap::modify(tr, l, r, Tunit(), true);
+      Treap::modify(tr, l, r, Tid(), true);
     else
       cout << Treap::query(tr, l, r) << '\n';
   }
