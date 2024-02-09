@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/division_of_polynomials.test.cpp
     title: test/division_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -141,13 +141,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_reverse_range_sum.test.cpp
     title: test/range_reverse_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,7 +198,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unionfind.test.cpp
     title: test/unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/vertex_add_path_sum.test.cpp
     title: test/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,9 +210,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -270,7 +270,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/area_of_union_of_rectangles.test.cpp
   - test/vertex_add_path_sum.test.cpp

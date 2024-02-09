@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: actedmonoid/actedMonoid_affineSum.cpp
+    title: actedmonoid/actedMonoid_affineSum.cpp
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -114,42 +117,40 @@ data:
     \ 1, tag[v]);\n        apply(v << 1 | 1, tag[v]);\n        tag[v] = Tid();\n \
     \     }\n      if (f(Mop(pre, data[v << 1])))\n        v = v << 1;\n      else\n\
     \        pre = Mop(pre, data[v << 1]), v = v << 1 | 1;\n    }\n    return v -\
-    \ size;\n  }\n};\n#line 6 \"test/range_affine_range_sum.test.cpp\"\n\nusing monoid\
-    \ = array<mint, 2>;\nusing tag = array<mint, 2>;\nmonoid Mid() { return monoid{0,\
-    \ 0}; }\ntag Tid() { return tag{1, 0}; }\nmonoid Mop(const monoid &l, const monoid\
-    \ &r) { return {l[0] + r[0], l[1] + r[1]}; }\ntag Top(const tag &l, const tag\
-    \ &r) { return tag{l[0] * r[0], l[1] * r[0] + r[1]}; }\nmonoid act(const monoid\
-    \ &l, const tag &r) { return {l[0] * r[0] + l[1] * r[1], l[1]}; }\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
-    \ q;\n  vector<monoid> a(n);\n  for(auto &[x, s] : a) {\n    cin >> x;\n    s\
-    \ = 1;\n  }\n\n  lazySegmentTree<monoid, Mid, Mop, tag, Tid, Top, act> st(a);\n\
-    \  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int l, r, b, c;\
-    \ cin >> l >> r >> b >> c;\n      st.modify(l, r, tag{b, c});\n    } else {\n\
-    \      int l, r; cin >> l >> r;\n      cout << st.query(l, r)[0] << '\\n';\n \
-    \   }\n  }\n\n  return 0;\n}\n"
+    \ size;\n  }\n};\n#line 1 \"actedmonoid/actedMonoid_affineSum.cpp\"\ntemplate<class\
+    \ U>\nstruct actedMonoid_affineSum {\n  using M = array<U, 2>;\n  static M Mid()\
+    \ { return M{0, 0}; }\n  static M Mop(const M &a, const M &b) { return {a[0] +\
+    \ b[0], a[1] + b[1]}; }\n  using T = array<U, 2>;\n  static T Tid() { return T{1,\
+    \ 0}; }\n  static T Top(const T &a, const T &b) { return T{a[0] * b[0], a[1] *\
+    \ b[0] + b[1]}; }\n  static M act(const M &a, const T &b) { return {a[0] * b[0]\
+    \ + a[1] * b[1], a[1]}; }\n};\n#line 7 \"test/range_affine_range_sum.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vector<array<mint, 2>> a(n);\n  for(auto &[x, s] : a) {\n\
+    \    cin >> x;\n    s = 1;\n  }\n\n  ultraLazySegmentTree<actedMonoid_affineSum<mint>>\
+    \ st(a);\n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int l,\
+    \ r, b, c; cin >> l >> r >> b >> c;\n      st.modify(l, r, array<mint, 2>{b, c});\n\
+    \    } else {\n      int l, r; cin >> l >> r;\n      cout << st.query(l, r)[0]\
+    \ << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../segtree/lazySegmentTree.cpp\"\n\nusing monoid = array<mint, 2>;\n\
-    using tag = array<mint, 2>;\nmonoid Mid() { return monoid{0, 0}; }\ntag Tid()\
-    \ { return tag{1, 0}; }\nmonoid Mop(const monoid &l, const monoid &r) { return\
-    \ {l[0] + r[0], l[1] + r[1]}; }\ntag Top(const tag &l, const tag &r) { return\
-    \ tag{l[0] * r[0], l[1] * r[0] + r[1]}; }\nmonoid act(const monoid &l, const tag\
-    \ &r) { return {l[0] * r[0] + l[1] * r[1], l[1]}; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<monoid> a(n);\n  for(auto\
-    \ &[x, s] : a) {\n    cin >> x;\n    s = 1;\n  }\n\n  lazySegmentTree<monoid,\
-    \ Mid, Mop, tag, Tid, Top, act> st(a);\n  while(q--) {\n    int t; cin >> t;\n\
-    \    if (t == 0) {\n      int l, r, b, c; cin >> l >> r >> b >> c;\n      st.modify(l,\
-    \ r, tag{b, c});\n    } else {\n      int l, r; cin >> l >> r;\n      cout <<\
-    \ st.query(l, r)[0] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+    \n#include \"../segtree/lazySegmentTree.cpp\"\n#include \"../actedmonoid/actedMonoid_affineSum.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vector<array<mint, 2>> a(n);\n  for(auto &[x, s] : a) {\n\
+    \    cin >> x;\n    s = 1;\n  }\n\n  ultraLazySegmentTree<actedMonoid_affineSum<mint>>\
+    \ st(a);\n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int l,\
+    \ r, b, c; cin >> l >> r >> b >> c;\n      st.modify(l, r, array<mint, 2>{b, c});\n\
+    \    } else {\n      int l, r; cin >> l >> r;\n      cout << st.query(l, r)[0]\
+    \ << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - segtree/lazySegmentTree.cpp
+  - actedmonoid/actedMonoid_affineSum.cpp
   isVerificationFile: true
   path: test/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 22:11:02+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-02-09 22:57:04+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/range_affine_range_sum.test.cpp
 layout: document

@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: actedmonoid/actedMonoid_affineSum.cpp
+    title: actedmonoid/actedMonoid_affineSum.cpp
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/treap.cpp
     title: ds/treap.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -78,72 +81,69 @@ data:
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"ds/treap.cpp\"\
-    \nmt19937 rng(clock);\n\ntemplate<class M, class T, M(*Munit)(), T(*Tunit)(),\
-    \ M(*Mope)(const M&, const M&), T(*Tope)(const T&, const T&), M(*comp)(const M&,\
-    \ const T&)>\nstruct treap {\n  struct node {\n    int pri, size = 1;\n    bool\
-    \ rev = false;\n    node *l = nullptr, *r = nullptr;\n    M data, prod;\n    T\
-    \ tag;\n    node() : pri(rng()), data(Munit()), prod(Munit()), tag(Tunit()) {}\n\
-    \    node(M init) : pri(rng()), data(init), prod(init), tag(Tunit()) {}\n  };\n\
-    \n  static int size(node *v) { return v ? v -> size : 0; }\n  static M get(node\
-    \ *v) { return v ? v -> prod : Munit(); }\n\n  static node* build(vector<M> init)\
-    \ {\n    node* res = nullptr;\n    for(M &x : init)\n      res = merge(res, new\
-    \ node(x));\n    return res;\n  }\n\n  static void apply(node *v, T x, bool rev)\
-    \ {\n    if (!v) return;\n    if (x != Tunit()) {\n      v -> data = comp(v ->\
-    \ data, x);\n      v -> prod = comp(v -> prod, x);\n      v -> tag = Tope(v ->\
-    \ tag, x);\n    }\n    if (rev) {\n      v -> rev ^= 1;\n      swap(v -> l, v\
-    \ -> r);\n    }\n  }\n\n  static void push(node *v) {\n    if (!v) return;\n \
-    \   for(node* c : {v -> l, v -> r})\n      apply(c, v -> tag, v -> rev);\n   \
-    \ v -> tag = Tunit(), v -> rev = false;\n  }\n\n  static void pull(node *v) {\n\
-    \    if (!v) return;\n    v -> size = 1, v -> prod = v -> data;\n    if (node*\
-    \ lc = v -> l; lc) {\n      v -> size += lc -> size;\n      v -> prod = Mope(lc\
-    \ -> prod, v -> prod);\n    }\n    if (node* rc = v -> r; rc) {\n      v -> size\
-    \ += rc -> size;\n      v -> prod = Mope(v -> prod, rc -> prod);\n    }\n  }\n\
-    \n  static void split(node *v, int x, node *&l, node *&r, int add = 0) {\n   \
-    \ if (!v) {\n      l = r = nullptr;\n      return;\n    }\n    push(v);\n    if\
-    \ (int key = add + size(v -> l); key < x)\n      split(v -> r, x, v -> r, r, add\
-    \ + size(v -> l) + 1), l = v;\n    else\n      split(v -> l, x, l, v -> l, add),\
-    \ r = v;\n    pull(v);\n  }\n\n  static node* merge(node *l, node *r) {\n    if\
-    \ (!l or !r) return l ? l : r;\n    push(l), push(r);\n    if (l -> pri < r ->\
-    \ pri) {\n      l -> r = merge(l -> r, r);\n      pull(l);\n      return l;\n\
-    \    } else {\n      r -> l = merge(l, r -> l);\n      pull(r);\n      return\
-    \ r;\n    }\n  }\n\n  static array<node*, 3> cut(node *root, int l, int r) {\n\
-    \    array<node*, 3> tmp = {};\n    split(root, l, tmp[0], tmp[1]);\n    split(tmp[1],\
-    \ r - l, tmp[1], tmp[2]);\n    return tmp;\n  }\n\n  static node* uncut(array<node*,\
-    \ 3> roots) {\n    return merge(roots[0], merge(roots[1], roots[2]));\n  }\n\n\
-    \  static void modify(node *root, int l, int r, T x, bool rev = false) {\n   \
-    \ auto tmp = cut(root, l, r);\n    apply(tmp[1], x, rev);\n    uncut(tmp);\n \
-    \ }\n\n  static M query(node *root, int l, int r) {\n    auto tmp = cut(root,\
-    \ l, r);\n    M res = get(tmp[1]);\n    uncut(tmp);\n    return res;\n  }\n\n\
-    \  static void insert(node *&root, int i, M x) {\n    array<node*, 3> tmp = {};\n\
-    \    tmp[1] = new node(x);\n    split(root, i, tmp[0], tmp[2]);\n    root = uncut(tmp);\n\
-    \  }\n\n  static void erase(node *&root, int i) {\n    auto tmp = cut(root, i,\
-    \ i + 1);\n    delete tmp[1];\n    tmp[1] = nullptr;\n    root = uncut(tmp);\n\
-    \  }\n};\n#line 6 \"test/dynamic_sequence_range_affine_range_sum.test.cpp\"\n\n\
-    using monoid = array<mint, 2>;\nusing tag = array<mint, 2>;\n\nmonoid Munit()\
-    \ { return monoid{0, 0}; }\ntag Tunit() { return tag{1, 0}; }\nmonoid Mope(const\
-    \ monoid &l, const monoid &r) { return {l[0] + r[0], l[1] + r[1]}; }\ntag Tope(const\
-    \ tag &l, const tag &r) { return tag{l[0] * r[0], l[1] * r[0] + r[1]}; }\nmonoid\
-    \ comp(const monoid &l, const tag &r) { return {l[0] * r[0] + l[1] * r[1], l[1]};\
-    \ }\n\nusing Treap = treap<monoid, tag, Munit, Tunit, Mope, Tope, comp>;\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
-    \ n >> q;\n  vector<array<mint, 2>> a(n, {0, 1});\n  for(auto &[x, _] : a)\n \
-    \   cin >> x;\n\n  Treap::node* tr = Treap::build(a);\n\n  while(q--) {\n    int\
-    \ t; cin >> t;\n    if (t == 0) {\n      int i, x; cin >> i >> x;\n      Treap::insert(tr,\
-    \ i, {x, 1});\n    } else if (t == 1) {\n      int i; cin >> i;\n      Treap::erase(tr,\
-    \ i);\n    } else if (t == 2) {\n      int l, r; cin >> l >> r;\n      Treap::modify(tr,\
-    \ l, r, Tunit(), true);\n    } else if (t == 3) {\n      int l, r, b, c; cin >>\
-    \ l >> r >> b >> c;\n      Treap::modify(tr, l, r, {b, c});\n    } else if (t\
-    \ == 4) {\n      int l, r; cin >> l >> r;\n      cout << Treap::query(tr, l, r)[0]\
-    \ << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+    \nmt19937 rng(clock);\n\ntemplate<class M, M(*Mid)(), M(*Mop)(const M&, const\
+    \ M&), class T, T(*Tid)(), T(*Top)(const T&, const T&), M(*act)(const M&, const\
+    \ T&)>\nstruct treap {\n  struct node {\n    int pri, size = 1;\n    bool rev\
+    \ = false;\n    node *l = nullptr, *r = nullptr;\n    M data, prod;\n    T tag;\n\
+    \    node() : pri(rng()), data(Mid()), prod(Mid()), tag(Tid()) {}\n    node(M\
+    \ init) : pri(rng()), data(init), prod(init), tag(Tid()) {}\n  };\n\n  static\
+    \ int size(node *v) { return v ? v -> size : 0; }\n  static M get(node *v) { return\
+    \ v ? v -> prod : Mid(); }\n\n  static node* build(vector<M> init) {\n    node*\
+    \ res = nullptr;\n    for(M &x : init)\n      res = merge(res, new node(x));\n\
+    \    return res;\n  }\n\n  static void apply(node *v, T x, bool rev) {\n    if\
+    \ (!v) return;\n    if (x != Tid()) {\n      v -> data = act(v -> data, x);\n\
+    \      v -> prod = act(v -> prod, x);\n      v -> tag = Top(v -> tag, x);\n  \
+    \  }\n    if (rev) {\n      v -> rev ^= 1;\n      swap(v -> l, v -> r);\n    }\n\
+    \  }\n\n  static void push(node *v) {\n    if (!v) return;\n    for(node* c :\
+    \ {v -> l, v -> r})\n      apply(c, v -> tag, v -> rev);\n    v -> tag = Tid(),\
+    \ v -> rev = false;\n  }\n\n  static void pull(node *v) {\n    if (!v) return;\n\
+    \    v -> size = 1, v -> prod = v -> data;\n    if (node* lc = v -> l; lc) {\n\
+    \      v -> size += lc -> size;\n      v -> prod = Mop(lc -> prod, v -> prod);\n\
+    \    }\n    if (node* rc = v -> r; rc) {\n      v -> size += rc -> size;\n   \
+    \   v -> prod = Mop(v -> prod, rc -> prod);\n    }\n  }\n\n  static void split(node\
+    \ *v, int x, node *&l, node *&r, int add = 0) {\n    if (!v) {\n      l = r =\
+    \ nullptr;\n      return;\n    }\n    push(v);\n    if (int key = add + size(v\
+    \ -> l); key < x)\n      split(v -> r, x, v -> r, r, add + size(v -> l) + 1),\
+    \ l = v;\n    else\n      split(v -> l, x, l, v -> l, add), r = v;\n    pull(v);\n\
+    \  }\n\n  static node* merge(node *l, node *r) {\n    if (!l or !r) return l ?\
+    \ l : r;\n    push(l), push(r);\n    if (l -> pri < r -> pri) {\n      l -> r\
+    \ = merge(l -> r, r);\n      pull(l);\n      return l;\n    } else {\n      r\
+    \ -> l = merge(l, r -> l);\n      pull(r);\n      return r;\n    }\n  }\n\n  static\
+    \ array<node*, 3> cut(node *root, int l, int r) {\n    array<node*, 3> tmp = {};\n\
+    \    split(root, l, tmp[0], tmp[1]);\n    split(tmp[1], r - l, tmp[1], tmp[2]);\n\
+    \    return tmp;\n  }\n\n  static node* uncut(array<node*, 3> roots) {\n    return\
+    \ merge(roots[0], merge(roots[1], roots[2]));\n  }\n\n  static void modify(node\
+    \ *root, int l, int r, T x, bool rev = false) {\n    auto tmp = cut(root, l, r);\n\
+    \    apply(tmp[1], x, rev);\n    uncut(tmp);\n  }\n\n  static M query(node *root,\
+    \ int l, int r) {\n    auto tmp = cut(root, l, r);\n    M res = get(tmp[1]);\n\
+    \    uncut(tmp);\n    return res;\n  }\n\n  static void insert(node *&root, int\
+    \ i, M x) {\n    array<node*, 3> tmp = {};\n    tmp[1] = new node(x);\n    split(root,\
+    \ i, tmp[0], tmp[2]);\n    root = uncut(tmp);\n  }\n\n  static void erase(node\
+    \ *&root, int i) {\n    auto tmp = cut(root, i, i + 1);\n    delete tmp[1];\n\
+    \    tmp[1] = nullptr;\n    root = uncut(tmp);\n  }\n};\n#line 1 \"actedmonoid/actedMonoid_affineSum.cpp\"\
+    \ntemplate<class U>\nstruct actedMonoid_affineSum {\n  using M = array<U, 2>;\n\
+    \  static M Mid() { return M{0, 0}; }\n  static M Mop(const M &a, const M &b)\
+    \ { return {a[0] + b[0], a[1] + b[1]}; }\n  using T = array<U, 2>;\n  static T\
+    \ Tid() { return T{1, 0}; }\n  static T Top(const T &a, const T &b) { return T{a[0]\
+    \ * b[0], a[1] * b[0] + b[1]}; }\n  static M act(const M &a, const T &b) { return\
+    \ {a[0] * b[0] + a[1] * b[1], a[1]}; }\n};\n#line 7 \"test/dynamic_sequence_range_affine_range_sum.test.cpp\"\
+    \n\nusing am = actedMonoid_affineSum<mint>;\nusing Treap = treap<am::M, am::Mid,\
+    \ am::Mop, am::T, am::Tid, am::Top, am::act>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<array<mint, 2>> a(n,\
+    \ {0, 1});\n  for(auto &[x, _] : a)\n    cin >> x;\n\n  Treap::node* tr = Treap::build(a);\n\
+    \n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int i, x; cin\
+    \ >> i >> x;\n      Treap::insert(tr, i, {x, 1});\n    } else if (t == 1) {\n\
+    \      int i; cin >> i;\n      Treap::erase(tr, i);\n    } else if (t == 2) {\n\
+    \      int l, r; cin >> l >> r;\n      Treap::modify(tr, l, r, Tunit(), true);\n\
+    \    } else if (t == 3) {\n      int l, r, b, c; cin >> l >> r >> b >> c;\n  \
+    \    Treap::modify(tr, l, r, {b, c});\n    } else if (t == 4) {\n      int l,\
+    \ r; cin >> l >> r;\n      cout << Treap::query(tr, l, r)[0] << '\\n';\n    }\n\
+    \  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../ds/treap.cpp\"\n\nusing monoid = array<mint, 2>;\nusing tag =\
-    \ array<mint, 2>;\n\nmonoid Munit() { return monoid{0, 0}; }\ntag Tunit() { return\
-    \ tag{1, 0}; }\nmonoid Mope(const monoid &l, const monoid &r) { return {l[0] +\
-    \ r[0], l[1] + r[1]}; }\ntag Tope(const tag &l, const tag &r) { return tag{l[0]\
-    \ * r[0], l[1] * r[0] + r[1]}; }\nmonoid comp(const monoid &l, const tag &r) {\
-    \ return {l[0] * r[0] + l[1] * r[1], l[1]}; }\n\nusing Treap = treap<monoid, tag,\
-    \ Munit, Tunit, Mope, Tope, comp>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n#include \"../ds/treap.cpp\"\n#include \"../actedmonoid/actedMonoid_affineSum.cpp\"\
+    \n\nusing am = actedMonoid_affineSum<mint>;\nusing Treap = treap<am::M, am::Mid,\
+    \ am::Mop, am::T, am::Tid, am::Top, am::act>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<array<mint, 2>> a(n,\
     \ {0, 1});\n  for(auto &[x, _] : a)\n    cin >> x;\n\n  Treap::node* tr = Treap::build(a);\n\
     \n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int i, x; cin\
@@ -158,11 +158,12 @@ data:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - ds/treap.cpp
+  - actedmonoid/actedMonoid_affineSum.cpp
   isVerificationFile: true
   path: test/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-01-28 22:59:51+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-02-09 22:57:04+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/dynamic_sequence_range_affine_range_sum.test.cpp
 layout: document

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/eulerTour.cpp
     title: ds/eulerTour.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastJump.cpp
     title: ds/fastJump.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segtree/dualSegmentTree.cpp
     title: segtree/dualSegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -83,13 +83,13 @@ data:
     \ + size) - 1);\n    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n  \
     \    if (l & 1) apply(l++, x);\n      if (r & 1) apply(--r, x);\n    }\n  }\n\
     };\n#line 1 \"ds/eulerTour.cpp\"\n//#include<ds/fastJump.cpp>\n//#include<segtree/dualSegmentTree.cpp>\n\
-    \ntemplate<class M, class T, M(*Mid)(), T(*Tid)(), M(*Mop)(const M&, const M&),\
-    \ \nT(*Top)(const T&, const T&), M(*comp)(const M&, const T&), M(*Minv)(const\
-    \ M&)>\nstruct eulerTour {\n  vector<int> tin, tout, p;\n  dualSegmentTree<M,\
-    \ Mid, T, Tid, Top, comp> st;\n  fastJump jp;\n\n  eulerTour(vector<vector<int>>\
-    \ g, int root = 0) : tin(ssize(g)), tout(ssize(g)), p(ssize(g), -1), st(ssize(g)),\
-    \ jp(g, root) {\n    int t = 0;\n    auto dfs = [&](int v, auto self) -> void\
-    \ {\n      tin[v] = t++;\n      for(int x : g[v]) {\n        if (x == p[v]) continue;\n\
+    \ntemplate<class M, M(*Mid)(), M(*Mop)(const M&, const M&), M(*Minv)(const M&),\
+    \ \nclass T, T(*Tid)(), T(*Top)(const T&, const T&), M(*act)(const M&, const T&)>\n\
+    struct eulerTour {\n  vector<int> tin, tout, p;\n  dualSegmentTree<M, Mid, T,\
+    \ Tid, Top, act> st;\n  fastJump jp;\n\n  eulerTour(vector<vector<int>> g, int\
+    \ root = 0) : tin(ssize(g)), tout(ssize(g)), p(ssize(g), -1), st(ssize(g)), jp(g,\
+    \ root) {\n    int t = 0;\n    auto dfs = [&](int v, auto self) -> void {\n  \
+    \    tin[v] = t++;\n      for(int x : g[v]) {\n        if (x == p[v]) continue;\n\
     \        p[x] = v;\n        self(x, self);\n      }\n      tout[v] = t;\n    };\n\
     \n    dfs(root, dfs);\n  }\n\n  //for point modify, path query, inversion of monoid\
     \ is needed\n  void modify(int v, T x) { st.modify(tin[v], tout[v], x); }\n  M\
@@ -102,7 +102,7 @@ data:
     \n  int n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x : a)\n    cin >>\
     \ x;\n  vector<vector<int>> g(n);\n  for(int i = 1; i < n; i++) {\n    int u,\
     \ v; cin >> u >> v;\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n  }\n\
-    \n  eulerTour<ll, ll, zero, zero, add, add, add, inv> eu(g);\n\n  for(int v =\
+    \n  eulerTour<ll, zero, add, ll, zero, add, add, inv> eu(g);\n\n  for(int v =\
     \ 0; v < n; v++)\n    eu.modify(v, a[v]);\n\n  while(q--) {\n    int t, x, y;\
     \ cin >> t >> x >> y;\n    if (t == 0)\n      eu.modify(x, y);\n    else\n   \
     \   cout << eu.query(x, y) << '\\n';\n  }\n\n  return 0;\n}\n"
@@ -114,7 +114,7 @@ data:
     \n  int n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x : a)\n    cin >>\
     \ x;\n  vector<vector<int>> g(n);\n  for(int i = 1; i < n; i++) {\n    int u,\
     \ v; cin >> u >> v;\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n  }\n\
-    \n  eulerTour<ll, ll, zero, zero, add, add, add, inv> eu(g);\n\n  for(int v =\
+    \n  eulerTour<ll, zero, add, ll, zero, add, add, inv> eu(g);\n\n  for(int v =\
     \ 0; v < n; v++)\n    eu.modify(v, a[v]);\n\n  while(q--) {\n    int t, x, y;\
     \ cin >> t >> x >> y;\n    if (t == 0)\n      eu.modify(x, y);\n    else\n   \
     \   cout << eu.query(x, y) << '\\n';\n  }\n\n  return 0;\n}\n"
@@ -126,8 +126,8 @@ data:
   isVerificationFile: true
   path: test/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 22:11:02+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-02-09 22:57:04+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/vertex_add_path_sum.test.cpp
 layout: document

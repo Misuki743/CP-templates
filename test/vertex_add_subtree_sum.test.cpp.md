@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -58,8 +58,8 @@ data:
     \    M L = id(), R = id();\n    for(l += size, r += size; l < r; l >>= 1, r >>=\
     \ 1) {\n      if (l & 1) L = op(L, data[l++]);\n      if (r & 1) R = op(data[--r],\
     \ R);\n    }\n    return op(L, R);\n  }\n};\n#line 1 \"ds/eulerTour2.cpp\"\n//#include<segtree/segmentTree.cpp>\n\
-    \ntemplate<class M, M(*unit)(), M(*combine)(const M&, const M&)>\nstruct eulerTour2\
-    \ {\n  vector<int> tin, tout, p;\n  segmentTree<M, unit, combine> st;\n\n  eulerTour2(vector<vector<int>>\
+    \ntemplate<class M, M(*id)(), M(*op)(const M&, const M&)>\nstruct eulerTour2 {\n\
+    \  vector<int> tin, tout, p;\n  segmentTree<M, id, op> st;\n\n  eulerTour2(vector<vector<int>>\
     \ g, int root = 0) : tin(ssize(g)), tout(ssize(g)), p(ssize(g), -1), st(ssize(g))\
     \ {\n    int t = 0;\n    auto dfs = [&](int v, auto self) -> void {\n      tin[v]\
     \ = t++;\n      for(int x : g[v]) {\n        if (x == p[v]) continue;\n      \
@@ -95,7 +95,7 @@ data:
   isVerificationFile: true
   path: test/vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 21:58:48+08:00'
+  timestamp: '2024-02-09 22:57:04+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_add_subtree_sum.test.cpp

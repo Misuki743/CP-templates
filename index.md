@@ -15,6 +15,9 @@ data:
     - icon: ':warning:'
       path: actedmonoid/actedMonoid_addSum.cpp
       title: actedmonoid/actedMonoid_addSum.cpp
+    - icon: ':x:'
+      path: actedmonoid/actedMonoid_affineSum.cpp
+      title: actedmonoid/actedMonoid_affineSum.cpp
     - icon: ':warning:'
       path: actedmonoid/actedMonoid_setMax.cpp
       title: actedmonoid/actedMonoid_setMax.cpp
@@ -37,7 +40,7 @@ data:
       title: combi/stirlingFirst.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -69,13 +72,13 @@ data:
     - icon: ':warning:'
       path: ds/dynamicHull.cpp
       title: ds/dynamicHull.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/eulerTour.cpp
       title: ds/eulerTour.cpp
     - icon: ':heavy_check_mark:'
       path: ds/eulerTour2.cpp
       title: ds/eulerTour2.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fastJump.cpp
       title: ds/fastJump.cpp
     - icon: ':heavy_check_mark:'
@@ -99,7 +102,7 @@ data:
     - icon: ':warning:'
       path: ds/sparseTable2D.cpp
       title: ds/sparseTable2D.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/treap.cpp
       title: ds/treap.cpp
     - icon: ':heavy_check_mark:'
@@ -205,7 +208,7 @@ data:
       title: misc/sharpPSubsetSum.cpp
   - name: modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':warning:'
@@ -271,10 +274,10 @@ data:
       title: poly/sparsePolyope.cpp
   - name: segtree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: segtree/dualSegmentTree.cpp
       title: segtree/dualSegmentTree.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: segtree/lazySegmentTree.cpp
       title: segtree/lazySegmentTree.cpp
     - icon: ':heavy_check_mark:'
@@ -365,7 +368,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/division_of_polynomials.test.cpp
       title: test/division_of_polynomials.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/dynamic_sequence_range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -470,13 +473,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/range_affine_point_get.test.cpp
       title: test/range_affine_point_get.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/range_affine_range_sum.test.cpp
       title: test/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/range_kth_smallest.test.cpp
       title: test/range_kth_smallest.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/range_reverse_range_sum.test.cpp
       title: test/range_reverse_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -527,7 +530,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unionfind.test.cpp
       title: test/unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
     - icon: ':heavy_check_mark:'
