@@ -28,7 +28,7 @@ signed main() {
       Treap::erase(tr, i);
     } else if (t == 2) {
       int l, r; cin >> l >> r;
-      Treap::modify(tr, l, r, Tunit(), true);
+      Treap::modify(tr, l, r, am::Tid(), true);
     } else if (t == 3) {
       int l, r, b, c; cin >> l >> r >> b >> c;
       Treap::modify(tr, l, r, {b, c});

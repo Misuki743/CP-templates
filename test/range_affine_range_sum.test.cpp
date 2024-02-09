@@ -3,6 +3,7 @@
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
 #include "../segtree/lazySegmentTree.cpp"
+#include "../segtree/ultraLazySegmentTree.cpp"
 #include "../actedmonoid/actedMonoid_affineSum.cpp"
 
 signed main() {

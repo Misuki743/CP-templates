@@ -4,7 +4,7 @@
 #include "../ds/treap.cpp"
 #include "../actedmonoid/actedMonoid_affineSum.cpp"
 
-using am = actedMonoid_affineSum<mint>;
+using am = actedMonoid_affineSum<ll>;
 using Treap = treap<am::M, am::Mid, am::Mop, am::T, am::Tid, am::Top, am::act>;
 
 signed main() {
