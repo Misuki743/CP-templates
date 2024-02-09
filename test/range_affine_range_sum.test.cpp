@@ -6,11 +6,11 @@
 
 using monoid = array<mint, 2>;
 using tag = array<mint, 2>;
-monoid Munit() { return monoid{0, 0}; }
-tag Tunit() { return tag{1, 0}; }
-monoid Mope(const monoid &l, const monoid &r) { return {l[0] + r[0], l[1] + r[1]}; }
-tag Tope(const tag &l, const tag &r) { return tag{l[0] * r[0], l[1] * r[0] + r[1]}; }
-monoid comp(const monoid &l, const tag &r) { return {l[0] * r[0] + l[1] * r[1], l[1]}; }
+monoid Mid() { return monoid{0, 0}; }
+tag Tid() { return tag{1, 0}; }
+monoid Mop(const monoid &l, const monoid &r) { return {l[0] + r[0], l[1] + r[1]}; }
+tag Top(const tag &l, const tag &r) { return tag{l[0] * r[0], l[1] * r[0] + r[1]}; }
+monoid act(const monoid &l, const tag &r) { return {l[0] * r[0] + l[1] * r[1], l[1]}; }
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
@@ -22,7 +22,7 @@ signed main() {
     s = 1;
   }
 
-  lazySegmentTree<monoid, tag, Munit, Tunit, Mope, Tope, comp> st(a);
+  lazySegmentTree<monoid, Mid, Mop, tag, Tid, Top, act> st(a);
   while(q--) {
     int t; cin >> t;
     if (t == 0) {

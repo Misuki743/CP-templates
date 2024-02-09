@@ -3,6 +3,7 @@
 #include "../default/t.cpp"
 #include "../segtree/lazySegmentTree.cpp"
 #include "../segtree/ultraLazySegmentTree.cpp"
+#include "../actedmonoid/actedMonoid_addMinCnt.cpp"
 #include "../misc/compression.cpp"
 #include "../misc/areaOfUnionOfRectangles.cpp"
 

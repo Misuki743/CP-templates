@@ -1,11 +1,11 @@
 //#include<ds/fastJump.cpp>
 //#include<segtree/dualSegmentTree.cpp>
 
-template<class M, class T, M(*Munit)(), T(*Tunit)(), M(*Mope)(const M&, const M&), 
-T(*Tope)(const T&, const T&), M(*comp)(const M&, const T&), M(*inv)(const M&)>
+template<class M, class T, M(*Mid)(), T(*Tid)(), M(*Mop)(const M&, const M&), 
+T(*Top)(const T&, const T&), M(*comp)(const M&, const T&), M(*Minv)(const M&)>
 struct eulerTour {
   vector<int> tin, tout, p;
-  dualSegmentTree<M, T, Munit, Tunit, Tope, comp> st;
+  dualSegmentTree<M, Mid, T, Tid, Top, comp> st;
   fastJump jp;
 
   eulerTour(vector<vector<int>> g, int root = 0) : tin(ssize(g)), tout(ssize(g)), p(ssize(g), -1), st(ssize(g)), jp(g, root) {
@@ -27,10 +27,10 @@ struct eulerTour {
   void modify(int v, T x) { st.modify(tin[v], tout[v], x); }
   M query(int u, int v) {
     int lca = jp.lca(u, v);
-    M res = Mope(st.get(tin[u]), st.get(tin[v]));
-    res = Mope(res, inv(st.get(tin[lca])));
+    M res = Mop(st.get(tin[u]), st.get(tin[v]));
+    res = Mop(res, Minv(st.get(tin[lca])));
     if (p[lca] != -1)
-      res = Mope(res, inv(st.get(tin[p[lca]])));
+      res = Mop(res, Minv(st.get(tin[p[lca]])));
     return res;
   }
 };

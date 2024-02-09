@@ -4,6 +4,11 @@
 #include "../modint/MontgomeryModInt.cpp"
 #include "../segtree/dualSegmentTree.cpp"
 
+mint Mid() { return mint(0); }
+array<mint, 2> Tid() { return {1, 0}; }
+array<mint, 2> op(const array<mint, 2> &l, const array<mint, 2> &r) { return {l[0] * r[0], l[1] * r[0] + r[1]}; }
+mint act(const mint &l, const array<mint, 2> &r) { return r[0] * l + r[1]; }
+
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
