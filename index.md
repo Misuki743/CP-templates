@@ -108,6 +108,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/waveletMatrix.cpp
       title: ds/waveletMatrix.cpp
+    - icon: ':warning:'
+      path: ds/waveletMatrixWithMonoid.cpp
+      title: ds/waveletMatrixWithMonoid.cpp
   - name: geometry
     pages:
     - icon: ':warning:'
