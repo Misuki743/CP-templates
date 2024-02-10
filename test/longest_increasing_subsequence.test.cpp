@@ -11,7 +11,7 @@ signed main() {
   for(int &x : a)
     cin >> x;
 
-  auto lis = LIS<int, INT_MAX>(a);
+  auto lis = LIS<int>(a);
   cout << ssize(lis) << '\n';
   cout << lis << '\n';
 

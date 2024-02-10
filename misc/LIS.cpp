@@ -1,6 +1,6 @@
-template<class T, T inf, bool strict = true>
+template<class T, bool strict = true>
 vector<int> LIS(vector<T> &a) {
-  vector<T> dp(ssize(a), inf);
+  vector<T> dp(ssize(a), numeric_limits<T>::max());
   vector<int> id(ssize(a)), pre(ssize(a), -1);
   for(int i = 0; i < ssize(a); i++) {
     int j;
@@ -15,7 +15,7 @@ vector<int> LIS(vector<T> &a) {
   }
 
   vector<T> lis;
-  int i = id[R::lower_bound(dp, inf) - dp.begin() - 1];
+  int i = id[R::lower_bound(dp, numeric_limits<T>::max()) - dp.begin() - 1];
   while(i != -1) {
     lis.emplace_back(i);
     i = pre[i];
