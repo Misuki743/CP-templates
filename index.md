@@ -40,7 +40,7 @@ data:
       title: combi/stirlingFirst.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -51,24 +51,21 @@ data:
       title: default/ttt.cpp
   - name: ds
     pages:
-    - icon: ':warning:'
-      path: ds/CD.cpp
-      title: ds/CD.cpp
     - icon: ':heavy_check_mark:'
       path: ds/DSU.cpp
       title: ds/DSU.cpp
     - icon: ':heavy_check_mark:'
       path: ds/DSUrollback.cpp
       title: ds/DSUrollback.cpp
-    - icon: ':warning:'
-      path: ds/HLD.cpp
-      title: ds/HLD.cpp
     - icon: ':heavy_check_mark:'
       path: ds/binaryTrie.cpp
       title: ds/binaryTrie.cpp
     - icon: ':warning:'
       path: ds/bipartiteDSU.cpp
       title: ds/bipartiteDSU.cpp
+    - icon: ':warning:'
+      path: ds/centroidTree.cpp
+      title: ds/centroidTree.cpp
     - icon: ':warning:'
       path: ds/dynamicHull.cpp
       title: ds/dynamicHull.cpp
@@ -78,10 +75,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/eulerTour2.cpp
       title: ds/eulerTour2.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fastJump.cpp
       title: ds/fastJump.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fenwickTree.cpp
       title: ds/fenwickTree.cpp
     - icon: ':heavy_check_mark:'
@@ -91,11 +88,17 @@ data:
       path: ds/hashTable.cpp
       title: ds/hashTable.cpp
     - icon: ':warning:'
+      path: ds/heavyLightDecomposition.cpp
+      title: ds/heavyLightDecomposition.cpp
+    - icon: ':x:'
       path: ds/pbdsSet.cpp
       title: ds/pbdsSet.cpp
     - icon: ':warning:'
       path: ds/persistentTreap.cpp
       title: ds/persistentTreap.cpp
+    - icon: ':warning:'
+      path: ds/slidingWindowAggregation.cpp
+      title: ds/slidingWindowAggregation.cpp
     - icon: ':heavy_check_mark:'
       path: ds/sparseTable.cpp
       title: ds/sparseTable.cpp
@@ -473,6 +476,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/product_of_polynomial_sequence.test.cpp
       title: test/product_of_polynomial_sequence.test.cpp
+    - icon: ':x:'
+      path: test/queue_operate_all_composite.test.cpp
+      title: test/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/range_affine_point_get.test.cpp
       title: test/range_affine_point_get.test.cpp
@@ -536,9 +542,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
+    - icon: ':x:'
+      path: test/vertex_add_range_contour_sum_on_tree.test.cpp
+      title: test/vertex_add_range_contour_sum_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_subtree_sum.test.cpp
       title: test/vertex_add_subtree_sum.test.cpp
+    - icon: ':x:'
+      path: test/vertex_get_range_contour_add_on_tree.test.cpp
+      title: test/vertex_get_range_contour_add_on_tree.test.cpp
+    - icon: ':x:'
+      path: test/vertex_set_path_composite.test.cpp
+      title: test/vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yuki_2606.test.cpp
       title: test/yuki_2606.test.cpp

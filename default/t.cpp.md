@@ -201,18 +201,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/vertex_add_path_sum.test.cpp
     title: test/vertex_add_path_sum.test.cpp
+  - icon: ':x:'
+    path: test/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/vertex_add_subtree_sum.test.cpp
     title: test/vertex_add_subtree_sum.test.cpp
+  - icon: ':x:'
+    path: test/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/vertex_get_range_contour_add_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki_2606.test.cpp
     title: test/yuki_2606.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -270,7 +276,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/area_of_union_of_rectangles.test.cpp
   - test/vertex_add_path_sum.test.cpp
@@ -296,6 +302,7 @@ data:
   - test/exp_of_formal_power_series.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
   - test/tree_diameter.test.cpp
+  - test/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/stirling_number_of_the_first_kind.test.cpp
   - test/matching_on_bipartite_graph.test.cpp
   - test/Z_algorithm.test.cpp
@@ -325,6 +332,7 @@ data:
   - test/eulerian_trail_undirected.test.cpp
   - test/convolution.test.cpp
   - test/rooted_tree_isomorphism_classification.test.cpp
+  - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/maximum_independent_set.test.cpp
   - test/enumerate_quotients.test.cpp
   - test/division_of_polynomials.test.cpp
