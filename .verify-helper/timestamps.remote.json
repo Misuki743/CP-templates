@@ -44,6 +44,7 @@
 "test/primality_test.test.cpp": "2024-01-23 02:14:10 +0800",
 "test/primitive_root.test.cpp": "2024-01-24 20:41:29 +0800",
 "test/product_of_polynomial_sequence.test.cpp": "2024-02-06 18:26:29 +0800",
+"test/queue_operate_all_composite.test.cpp": "2024-02-11 12:44:47 +0800",
 "test/range_affine_point_get.test.cpp": "2024-02-09 22:11:02 +0800",
 "test/range_affine_range_sum.test.cpp": "2024-02-09 23:05:20 +0800",
 "test/range_kth_smallest.test.cpp": "2024-02-06 18:26:29 +0800",
@@ -66,6 +67,7 @@
 "test/unionfind.test.cpp": "2024-01-24 20:41:29 +0800",
 "test/vertex_add_path_sum.test.cpp": "2024-02-09 23:05:20 +0800",
 "test/vertex_add_subtree_sum.test.cpp": "2024-02-09 22:57:04 +0800",
+"test/vertex_set_path_composite.test.cpp": "2024-02-11 12:44:47 +0800",
 "test/yuki_2606.test.cpp": "2024-01-24 20:41:29 +0800",
 "test/yuki_2613.test.cpp": "2024-02-06 18:26:29 +0800"
 }
