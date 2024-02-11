@@ -70,6 +70,9 @@ data:
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/queue_operate_all_composite.test.cpp
+    title: test/queue_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,6 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/vertex_set_path_composite.test.cpp
+    title: test/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
@@ -179,9 +185,11 @@ data:
   - test/stirling_number_of_the_first_kind.test.cpp
   - test/matrix_product.test.cpp
   - test/mul_modp_convolution.test.cpp
+  - test/vertex_set_path_composite.test.cpp
   - test/inv_of_formal_power_series.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
   - test/find_linear_recurrence.test.cpp
+  - test/queue_operate_all_composite.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/range_affine_point_get.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp

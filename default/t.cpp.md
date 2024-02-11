@@ -139,6 +139,9 @@ data:
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/queue_operate_all_composite.test.cpp
+    title: test/queue_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,6 +213,9 @@ data:
   - icon: ':x:'
     path: test/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/vertex_get_range_contour_add_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/vertex_set_path_composite.test.cpp
+    title: test/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki_2606.test.cpp
     title: test/yuki_2606.test.cpp
@@ -309,9 +315,11 @@ data:
   - test/matrix_product.test.cpp
   - test/set_xor_min.test.cpp
   - test/mul_modp_convolution.test.cpp
+  - test/vertex_set_path_composite.test.cpp
   - test/inv_of_formal_power_series.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
   - test/find_linear_recurrence.test.cpp
+  - test/queue_operate_all_composite.test.cpp
   - test/static_range_frequency.test.cpp
   - test/line_add_get_min.test.cpp
   - test/primitive_root.test.cpp

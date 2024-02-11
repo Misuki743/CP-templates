@@ -63,7 +63,7 @@ data:
     - icon: ':warning:'
       path: ds/bipartiteDSU.cpp
       title: ds/bipartiteDSU.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/centroidTree.cpp
       title: ds/centroidTree.cpp
     - icon: ':warning:'
@@ -87,7 +87,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/hashTable.cpp
       title: ds/hashTable.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/heavyLightDecomposition.cpp
       title: ds/heavyLightDecomposition.cpp
     - icon: ':x:'
@@ -96,7 +96,7 @@ data:
     - icon: ':warning:'
       path: ds/persistentTreap.cpp
       title: ds/persistentTreap.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/slidingWindowAggregation.cpp
       title: ds/slidingWindowAggregation.cpp
     - icon: ':heavy_check_mark:'
@@ -476,7 +476,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/product_of_polynomial_sequence.test.cpp
       title: test/product_of_polynomial_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/queue_operate_all_composite.test.cpp
       title: test/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -551,7 +551,7 @@ data:
     - icon: ':x:'
       path: test/vertex_get_range_contour_add_on_tree.test.cpp
       title: test/vertex_get_range_contour_add_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_set_path_composite.test.cpp
       title: test/vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'

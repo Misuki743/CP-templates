@@ -7,8 +7,14 @@ data:
     path: test/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/queue_operate_all_composite.test.cpp
+    title: test/queue_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/vertex_set_path_composite.test.cpp
+    title: test/vertex_set_path_composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -35,6 +41,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/range_affine_range_sum.test.cpp
+  - test/vertex_set_path_composite.test.cpp
+  - test/queue_operate_all_composite.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: actedmonoid/actedMonoid_affineSum.cpp
 layout: document

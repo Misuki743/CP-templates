@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/queue_operate_all_composite.test.cpp
+    title: test/queue_operate_all_composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/slidingWindowAggregation.cpp\"\ntemplate<class M, M(*id)(),\
@@ -28,8 +31,9 @@ data:
   path: ds/slidingWindowAggregation.cpp
   requiredBy: []
   timestamp: '2024-02-10 22:33:36+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/queue_operate_all_composite.test.cpp
 documentation_of: ds/slidingWindowAggregation.cpp
 layout: document
 redirect_from:

@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':x:'
+    path: test/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/vertex_get_range_contour_add_on_tree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/centroidTree.cpp\"\npair<vector<vector<int>>, int> centroidTree(vector<vector<int>>\
@@ -39,8 +45,10 @@ data:
   path: ds/centroidTree.cpp
   requiredBy: []
   timestamp: '2024-02-10 22:33:36+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/vertex_get_range_contour_add_on_tree.test.cpp
 documentation_of: ds/centroidTree.cpp
 layout: document
 redirect_from:
