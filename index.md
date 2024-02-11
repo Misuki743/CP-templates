@@ -84,13 +84,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwickTree2D.cpp
       title: ds/fenwickTree2D.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/hashTable.cpp
       title: ds/hashTable.cpp
     - icon: ':heavy_check_mark:'
       path: ds/heavyLightDecomposition.cpp
       title: ds/heavyLightDecomposition.cpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: ds/pbdsSet.cpp
       title: ds/pbdsSet.cpp
     - icon: ':warning:'

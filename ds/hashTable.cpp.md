@@ -6,9 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/associative_array.test.cpp
     title: test/associative_array.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':x:'
+    path: test/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/vertex_get_range_contour_add_on_tree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/62393
@@ -32,8 +38,10 @@ data:
   path: ds/hashTable.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/associative_array.test.cpp
 documentation_of: ds/hashTable.cpp
 layout: document

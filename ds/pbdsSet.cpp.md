@@ -2,16 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/vertex_add_range_contour_sum_on_tree.test.cpp
-    title: test/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
-    path: test/vertex_get_range_contour_add_on_tree.test.cpp
-    title: test/vertex_get_range_contour_add_on_tree.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/pbdsSet.cpp\"\n//#include<ext/pb_ds/assoc_container.hpp>\n\
@@ -28,10 +22,8 @@ data:
   path: ds/pbdsSet.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/vertex_get_range_contour_add_on_tree.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/pbdsSet.cpp
 layout: document
 redirect_from:
