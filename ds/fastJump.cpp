@@ -51,4 +51,8 @@ struct fastJump {
     else
       return jump(t, dep[s] + dep[t] - 2 * dep[m] - k);
   }
+
+  int dis(int u, int v) {
+    return dep[u] + dep[v] - 2 * dep[lca(u, v)];
+  }
 };
