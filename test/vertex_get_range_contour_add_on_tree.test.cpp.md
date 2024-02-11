@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/centroidTree.cpp
     title: ds/centroidTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastJump.cpp
     title: ds/fastJump.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashTable.cpp
     title: ds/hashTable.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_get_range_contour_add_on_tree
@@ -77,8 +77,9 @@ data:
     \ p[v];\n    }\n    return p[u];\n  }\n\n  int kth(int s, int t, int k) {\n  \
     \  int m = lca(s, t);\n    if (dep[s] + dep[t] - 2 * dep[m] < k)\n      return\
     \ -1;\n    else if (dep[s] - dep[m] >= k)\n      return jump(s, k);\n    else\n\
-    \      return jump(t, dep[s] + dep[t] - 2 * dep[m] - k);\n  }\n};\n#line 1 \"\
-    ds/centroidTree.cpp\"\npair<vector<vector<int>>, int> centroidTree(vector<vector<int>>\
+    \      return jump(t, dep[s] + dep[t] - 2 * dep[m] - k);\n  }\n\n  int dis(int\
+    \ u, int v) {\n    return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n  }\n};\n#line\
+    \ 1 \"ds/centroidTree.cpp\"\npair<vector<vector<int>>, int> centroidTree(vector<vector<int>>\
     \ &g) {\n  int n = ssize(g);\n  vector<vector<int>> g2(n);\n  vector<int> sz(n);\n\
     \  vector<bool> block(n, false);\n\n  auto calc = [&](int v, int p, auto self)\
     \ -> void {\n    sz[v] = 1;\n    for(int x : g[v]) {\n      if (x == p or block[x])\
@@ -163,8 +164,8 @@ data:
   isVerificationFile: true
   path: test/vertex_get_range_contour_add_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-02-11 12:48:42+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-02-11 12:51:49+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_get_range_contour_add_on_tree.test.cpp
 layout: document

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastJump.cpp
     title: ds/fastJump.cpp
   _extendedRequiredBy: []
@@ -58,8 +58,9 @@ data:
     \ p[v];\n    }\n    return p[u];\n  }\n\n  int kth(int s, int t, int k) {\n  \
     \  int m = lca(s, t);\n    if (dep[s] + dep[t] - 2 * dep[m] < k)\n      return\
     \ -1;\n    else if (dep[s] - dep[m] >= k)\n      return jump(s, k);\n    else\n\
-    \      return jump(t, dep[s] + dep[t] - 2 * dep[m] - k);\n  }\n};\n#line 5 \"\
-    test/lowest_common_ancestor.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \      return jump(t, dep[s] + dep[t] - 2 * dep[m] - k);\n  }\n\n  int dis(int\
+    \ u, int v) {\n    return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n  }\n};\n#line\
+    \ 5 \"test/lowest_common_ancestor.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<vector<int>> g(n);\n\
     \  for(int u = 1; u < n; u++) {\n    int v; cin >> v;\n    g[u].emplace_back(v);\n\
     \    g[v].emplace_back(u);\n  }\n\n  fastJump jp(g);\n\n  while(q--) {\n    int\
@@ -78,7 +79,7 @@ data:
   isVerificationFile: true
   path: test/lowest_common_ancestor.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 01:13:07+08:00'
+  timestamp: '2024-02-11 12:51:49+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lowest_common_ancestor.test.cpp

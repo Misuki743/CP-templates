@@ -40,7 +40,7 @@ data:
       title: combi/stirlingFirst.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -63,7 +63,7 @@ data:
     - icon: ':warning:'
       path: ds/bipartiteDSU.cpp
       title: ds/bipartiteDSU.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/centroidTree.cpp
       title: ds/centroidTree.cpp
     - icon: ':warning:'
@@ -75,16 +75,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/eulerTour2.cpp
       title: ds/eulerTour2.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fastJump.cpp
       title: ds/fastJump.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwickTree.cpp
       title: ds/fenwickTree.cpp
     - icon: ':heavy_check_mark:'
       path: ds/fenwickTree2D.cpp
       title: ds/fenwickTree2D.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashTable.cpp
       title: ds/hashTable.cpp
     - icon: ':heavy_check_mark:'
@@ -542,13 +542,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/vertex_add_range_contour_sum_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_subtree_sum.test.cpp
       title: test/vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_get_range_contour_add_on_tree.test.cpp
       title: test/vertex_get_range_contour_add_on_tree.test.cpp
     - icon: ':heavy_check_mark:'

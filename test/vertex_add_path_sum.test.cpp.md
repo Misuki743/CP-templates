@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: ds/eulerTour.cpp
     title: ds/eulerTour.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastJump.cpp
     title: ds/fastJump.cpp
   - icon: ':heavy_check_mark:'
@@ -65,8 +65,9 @@ data:
     \ p[v];\n    }\n    return p[u];\n  }\n\n  int kth(int s, int t, int k) {\n  \
     \  int m = lca(s, t);\n    if (dep[s] + dep[t] - 2 * dep[m] < k)\n      return\
     \ -1;\n    else if (dep[s] - dep[m] >= k)\n      return jump(s, k);\n    else\n\
-    \      return jump(t, dep[s] + dep[t] - 2 * dep[m] - k);\n  }\n};\n#line 1 \"\
-    segtree/dualSegmentTree.cpp\"\ntemplate<class M, M(*Mid)(), class T, T(*Tid)(),\
+    \      return jump(t, dep[s] + dep[t] - 2 * dep[m] - k);\n  }\n\n  int dis(int\
+    \ u, int v) {\n    return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n  }\n};\n#line\
+    \ 1 \"segtree/dualSegmentTree.cpp\"\ntemplate<class M, M(*Mid)(), class T, T(*Tid)(),\
     \ T(*Top)(const T&, const T&), M(*act)(const M&, const T&)>\nstruct dualSegmentTree\
     \ {\n  vector<M> data;\n  vector<T> tag;\n  int size;\n\n  dualSegmentTree(int\
     \ _size) : data(_size, Mid()), tag(_size, Tid()), size(_size) {}\n  dualSegmentTree(vector<M>\
@@ -126,7 +127,7 @@ data:
   isVerificationFile: true
   path: test/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 23:05:20+08:00'
+  timestamp: '2024-02-11 12:51:49+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_add_path_sum.test.cpp
