@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
 #include "../ds/slidingWindowAggregation.cpp"
-#include "../actedmonoid/affineSum.cpp"
+#include "../actedmonoid/actedMonoid_affineSum.cpp"
 
 using am = actedMonoid_affineSum<mint>;
 

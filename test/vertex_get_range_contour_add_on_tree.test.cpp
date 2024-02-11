@@ -5,6 +5,7 @@
 #include "../ds/pbdsSet.cpp"
 #include "../ds/fenwickTree.cpp"
 #include "../ds/fastJump.cpp"
+#include "../ds/centroidTree.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

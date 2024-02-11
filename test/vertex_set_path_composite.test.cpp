@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
 #include "../segtree/segmentTree.cpp"
-#include "../actedmonoid/actMonoid_affineSum.cpp"
+#include "../actedmonoid/actedMonoid_affineSum.cpp"
 #include "../ds/heavyLightDecomposition.cpp"
 
 using am = actedMonoid_affineSum<mint>;
