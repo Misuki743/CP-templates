@@ -79,6 +79,9 @@ data:
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/range_set_range_composite.test.cpp
+    title: test/range_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/sharp_p_subset_sum.test.cpp
     title: test/sharp_p_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -188,6 +191,7 @@ data:
   - test/vertex_set_path_composite.test.cpp
   - test/inv_of_formal_power_series.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
+  - test/range_set_range_composite.test.cpp
   - test/find_linear_recurrence.test.cpp
   - test/queue_operate_all_composite.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp

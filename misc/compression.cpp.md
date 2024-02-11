@@ -19,6 +19,9 @@ data:
     path: test/rectangle_sum.test.cpp
     title: test/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/static_range_count_distinct.test.cpp
+    title: test/static_range_count_distinct.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/static_range_frequency.test.cpp
     title: test/static_range_frequency.test.cpp
   _isVerificationFailed: false
@@ -64,6 +67,7 @@ data:
   - test/area_of_union_of_rectangles.test.cpp
   - test/rectangle_add_point_get.test.cpp
   - test/rectangle_sum.test.cpp
+  - test/static_range_count_distinct.test.cpp
   - test/static_range_frequency.test.cpp
   - test/range_kth_smallest.test.cpp
   - test/point_add_rectangle_sum.test.cpp

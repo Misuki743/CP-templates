@@ -85,6 +85,9 @@ data:
     path: test/log_of_formal_power_series_sparse.test.cpp
     title: test/log_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/longest_common_substring.test.cpp
+    title: test/longest_common_substring.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/longest_increasing_subsequence.test.cpp
     title: test/longest_increasing_subsequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -154,6 +157,9 @@ data:
     path: test/range_reverse_range_sum.test.cpp
     title: test/range_reverse_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/range_set_range_composite.test.cpp
+    title: test/range_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/rectangle_add_point_get.test.cpp
     title: test/rectangle_add_point_get.test.cpp
   - icon: ':heavy_check_mark:'
@@ -180,6 +186,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/static_RMQ.test.cpp
     title: test/static_RMQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/static_range_count_distinct.test.cpp
+    title: test/static_range_count_distinct.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/static_range_frequency.test.cpp
     title: test/static_range_frequency.test.cpp
@@ -318,8 +327,10 @@ data:
   - test/vertex_set_path_composite.test.cpp
   - test/inv_of_formal_power_series.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
+  - test/range_set_range_composite.test.cpp
   - test/find_linear_recurrence.test.cpp
   - test/queue_operate_all_composite.test.cpp
+  - test/static_range_count_distinct.test.cpp
   - test/static_range_frequency.test.cpp
   - test/line_add_get_min.test.cpp
   - test/primitive_root.test.cpp
@@ -352,6 +363,7 @@ data:
   - test/inverse_matrix.test.cpp
   - test/point_add_rectangle_sum.test.cpp
   - test/cycle_detection_undirected.test.cpp
+  - test/longest_common_substring.test.cpp
   - test/associative_array.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
   - test/strongly_connected_components.test.cpp

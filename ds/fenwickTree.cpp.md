@@ -10,6 +10,9 @@ data:
     path: test/rectangle_sum.test.cpp
     title: test/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/static_range_count_distinct.test.cpp
+    title: test/static_range_count_distinct.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,6 +51,7 @@ data:
   verifiedWith:
   - test/rectangle_sum.test.cpp
   - test/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/static_range_count_distinct.test.cpp
   - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/point_add_range_sum.test.cpp
 documentation_of: ds/fenwickTree.cpp
