@@ -9,7 +9,6 @@ https://misuki743.github.io/CP-templates/
 - doubling(support mataining commutative monoid)
 - rolling hash
 - add lower bound parameter to MCMF::addEdge
-- virtual tree
 - relax convolution
 - kirchoff's tree theorem/BEST theorem
 

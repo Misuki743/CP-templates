@@ -57,6 +57,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/DSUrollback.cpp
       title: ds/DSUrollback.cpp
+    - icon: ':warning:'
+      path: ds/auxiliaryTree.cpp
+      title: ds/auxiliaryTree.cpp
     - icon: ':heavy_check_mark:'
       path: ds/binaryTrie.cpp
       title: ds/binaryTrie.cpp

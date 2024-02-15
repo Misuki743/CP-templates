@@ -47,8 +47,8 @@ data:
   timestamp: '2024-02-10 22:33:36+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: ds/centroidTree.cpp
 layout: document
 redirect_from:

@@ -210,20 +210,20 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/bernoulli_number.test.cpp
-  - test/multipoint_evaluation.test.cpp
-  - test/sharp_p_subset_sum.test.cpp
-  - test/pow_of_formal_power_series.test.cpp
-  - test/log_of_formal_power_series.test.cpp
-  - test/polynomial_interpolation.test.cpp
-  - test/exp_of_formal_power_series.test.cpp
-  - test/log_of_formal_power_series_sparse.test.cpp
-  - test/stirling_number_of_the_first_kind.test.cpp
   - test/inv_of_formal_power_series.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
-  - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/sharp_p_subset_sum.test.cpp
   - test/subset_convolution.test.cpp
-  - test/division_of_polynomials.test.cpp
+  - test/polynomial_interpolation.test.cpp
+  - test/exp_of_formal_power_series.test.cpp
+  - test/pow_of_formal_power_series.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
+  - test/stirling_number_of_the_first_kind.test.cpp
+  - test/log_of_formal_power_series.test.cpp
+  - test/log_of_formal_power_series_sparse.test.cpp
+  - test/division_of_polynomials.test.cpp
+  - test/multipoint_evaluation.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
 documentation_of: poly/FPS.cpp
 layout: document
 redirect_from:

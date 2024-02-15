@@ -51,8 +51,8 @@ data:
   timestamp: '2024-01-28 03:46:27+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/cycle_detection_directed.test.cpp
   - test/cycle_detection_undirected.test.cpp
+  - test/cycle_detection_directed.test.cpp
 documentation_of: graph/cycleDetection.cpp
 layout: document
 redirect_from:
