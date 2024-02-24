@@ -74,5 +74,6 @@
 "test/vertex_get_range_contour_add_on_tree.test.cpp": "2024-02-11 12:51:49 +0800",
 "test/vertex_set_path_composite.test.cpp": "2024-02-11 12:44:47 +0800",
 "test/yuki_2606.test.cpp": "2024-01-24 20:41:29 +0800",
-"test/yuki_2613.test.cpp": "2024-02-06 18:26:29 +0800"
+"test/yuki_2613.test.cpp": "2024-02-06 18:26:29 +0800",
+"test/yuki_2654.test.cpp": "2024-02-25 01:28:51 +0800"
 }
