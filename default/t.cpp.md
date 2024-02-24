@@ -231,6 +231,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki_2654.test.cpp
+    title: test/yuki_2654.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -343,6 +346,7 @@ data:
   - test/convolution_1e9+7.test.cpp
   - test/strongly_connected_components.test.cpp
   - test/maximum_independent_set.test.cpp
+  - test/yuki_2654.test.cpp
   - test/minimum_spanning_tree.test.cpp
   - test/yuki_2606.test.cpp
   - test/enumerate_palindromes.test.cpp

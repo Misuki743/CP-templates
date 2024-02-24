@@ -73,6 +73,9 @@ data:
       path: ds/dynamicHull.cpp
       title: ds/dynamicHull.cpp
     - icon: ':heavy_check_mark:'
+      path: ds/dynamicMedian.cpp
+      title: ds/dynamicMedian.cpp
+    - icon: ':heavy_check_mark:'
       path: ds/eulerTour.cpp
       title: ds/eulerTour.cpp
     - icon: ':heavy_check_mark:'
@@ -108,6 +111,9 @@ data:
     - icon: ':warning:'
       path: ds/sparseTable2D.cpp
       title: ds/sparseTable2D.cpp
+    - icon: ':warning:'
+      path: ds/topoSort.cpp
+      title: ds/topoSort.cpp
     - icon: ':heavy_check_mark:'
       path: ds/treap.cpp
       title: ds/treap.cpp
@@ -581,6 +587,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yuki_2613.test.cpp
       title: test/yuki_2613.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yuki_2654.test.cpp
+      title: test/yuki_2654.test.cpp
 layout: toppage
 ---
 template used for online programming contest. some of the code are not written by myself, and these codes would contain reference to the original sources.
