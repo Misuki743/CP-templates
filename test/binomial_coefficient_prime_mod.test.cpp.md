@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: combi/binom.cpp
     title: combi/binom.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
-    path: modint/mint.cpp
-    title: modint/mint.cpp
+  - icon: ':heavy_check_mark:'
+    path: modint/mintAnyMod.cpp
+    title: modint/mintAnyMod.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
@@ -46,18 +46,18 @@ data:
     \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
     \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
     \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"modint/mint.cpp\"\n//note:\
-    \ inversion only works when MOD is a prime\n\nstruct mint {\n  static const long\
-    \ long MOD = 998244353;\n  long long _val;\n\n  mint(long long init = 0) {\n \
-    \   _val = init % MOD;\n    (*this).norm();\n  }\n\n  mint POW(long long index)\
-    \ {\n    if (index == 0)\n      return mint(1ll);\n    mint base = *this;\n  \
-    \  mint res = (base == 0ll ? 0ll : 1ll);\n    while(index) {\n      if (index\
-    \ & 1)\n        res *= base;\n      base *= base, index >>= 1;\n    }\n    return\
-    \ res;\n  }\n\n  mint inv() { return (*this).POW(MOD - 2); }\n\n  mint& norm()\
-    \ {\n    if (_val >= MOD)\n      _val -= MOD;\n    if (_val < 0)\n      _val +=\
-    \ MOD;\n    return *this;\n  }\n\n  mint& operator+=(mint b) {\n    _val += b._val;\n\
-    \    return (*this).norm();\n  }\n  mint& operator-=(mint b) {\n    _val -= b._val;\n\
-    \    return (*this).norm();\n  }\n  mint& operator*=(mint b) {\n    _val = (_val\
+    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"modint/mintAnyMod.cpp\"\n\
+    //note: inversion only works when MOD is a prime\n\nstruct mint {\n  static long\
+    \ long MOD;\n  long long _val;\n\n  mint(long long init = 0) {\n    _val = init\
+    \ % MOD;\n    (*this).norm();\n  }\n\n  mint POW(long long index) {\n    if (index\
+    \ == 0)\n      return mint(1ll);\n    mint base = *this;\n    mint res = (base\
+    \ == 0ll ? 0ll : 1ll);\n    while(index) {\n      if (index & 1)\n        res\
+    \ *= base;\n      base *= base, index >>= 1;\n    }\n    return res;\n  }\n\n\
+    \  mint inv() { return (*this).POW(MOD - 2); }\n\n  mint& norm() {\n    if (_val\
+    \ >= MOD)\n      _val -= MOD;\n    if (_val < 0)\n      _val += MOD;\n    return\
+    \ *this;\n  }\n\n  mint& operator+=(mint b) {\n    _val += b._val;\n    return\
+    \ (*this).norm();\n  }\n  mint& operator-=(mint b) {\n    _val -= b._val;\n  \
+    \  return (*this).norm();\n  }\n  mint& operator*=(mint b) {\n    _val = (_val\
     \ * b._val) % MOD;\n    return *this;\n  }\n  mint& operator/=(mint b) {\n   \
     \ _val = (_val * b.inv()._val) % MOD;\n    return *this;\n  }\n\n  mint& operator++()\
     \ {\n    _val += 1;\n    return (*this).norm();\n  }\n  mint& operator--() {\n\
@@ -84,20 +84,20 @@ data:
     \  while(t--) {\n    int n, k; cin >> n >> k;\n    cout << bn.binom(n, k) << '\\\
     n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/mint.cpp\"\n#include \"\
-    ../combi/binom.cpp\"\n\nll mint::MOD;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/mintAnyMod.cpp\"\n#include\
+    \ \"../combi/binom.cpp\"\n\nll mint::MOD;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int t; cin >> t >> mint::MOD;\n  binomial<mint> bn(min(mint::MOD,\
     \ 10000000ll));\n  while(t--) {\n    int n, k; cin >> n >> k;\n    cout << bn.binom(n,\
     \ k) << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - modint/mint.cpp
+  - modint/mintAnyMod.cpp
   - combi/binom.cpp
   isVerificationFile: true
   path: test/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2024-03-02 01:56:40+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-02 02:00:27+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/binomial_coefficient_prime_mod.test.cpp
 layout: document
