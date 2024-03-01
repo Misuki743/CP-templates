@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod"
 
 #include "../default/t.cpp"
-#include "../modint/mint.cpp"
+#include "../modint/mintAnyMod.cpp"
 #include "../combi/binom.cpp"
 
 ll mint::MOD;

@@ -1,7 +1,7 @@
 //note: inversion only works when MOD is a prime
 
 struct mint {
-  static const long long MOD = 998244353;
+  static long long MOD;
   long long _val;
 
   mint(long long init = 0) {
