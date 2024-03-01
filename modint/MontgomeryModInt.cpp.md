@@ -97,6 +97,9 @@ data:
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yuki_2544.test.cpp
+    title: test/yuki_2544.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
   _isVerificationFailed: false
@@ -175,6 +178,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/point_set_range_composite.test.cpp
+  - test/yuki_2544.test.cpp
   - test/yuki_2613.test.cpp
   - test/mul_modp_convolution.test.cpp
   - test/pow_of_matrix.test.cpp

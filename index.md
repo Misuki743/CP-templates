@@ -32,15 +32,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/bernoulliNumber.cpp
       title: combi/bernoulliNumber.cpp
-    - icon: ':warning:'
-      path: combi/comb.cpp
-      title: combi/comb.cpp
+    - icon: ':question:'
+      path: combi/binom.cpp
+      title: combi/binom.cpp
     - icon: ':heavy_check_mark:'
       path: combi/stirlingFirst.cpp
       title: combi/stirlingFirst.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -229,7 +229,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: modint/mint.cpp
       title: modint/mint.cpp
   - name: numtheory
@@ -374,6 +374,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/bernoulli_number.test.cpp
       title: test/bernoulli_number.test.cpp
+    - icon: ':x:'
+      path: test/binomial_coefficient_prime_mod.test.cpp
+      title: test/binomial_coefficient_prime_mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/convolution.test.cpp
       title: test/convolution.test.cpp
@@ -581,6 +584,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/vertex_set_path_composite.test.cpp
       title: test/vertex_set_path_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yuki_2544.test.cpp
+      title: test/yuki_2544.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yuki_2606.test.cpp
       title: test/yuki_2606.test.cpp

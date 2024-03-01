@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/binomial_coefficient_prime_mod.test.cpp
+    title: test/binomial_coefficient_prime_mod.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"modint/mint.cpp\"\n//note: inversion only works when MOD\
@@ -63,8 +66,9 @@ data:
   path: modint/mint.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/binomial_coefficient_prime_mod.test.cpp
 documentation_of: modint/mint.cpp
 layout: document
 redirect_from:
