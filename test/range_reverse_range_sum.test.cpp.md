@@ -6,7 +6,7 @@ data:
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: ds/treap.cpp
-    title: ds/treap.cpp
+    title: treap
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

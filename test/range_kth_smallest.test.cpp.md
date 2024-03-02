@@ -6,7 +6,7 @@ data:
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: ds/waveletMatrix.cpp
-    title: ds/waveletMatrix.cpp
+    title: waveletMatrix
   - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression

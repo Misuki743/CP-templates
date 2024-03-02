@@ -59,7 +59,7 @@ data:
       title: ds/DSUrollback.cpp
     - icon: ':warning:'
       path: ds/auxiliaryTree.cpp
-      title: ds/auxiliaryTree.cpp
+      title: auxiliaryTree
     - icon: ':heavy_check_mark:'
       path: ds/binaryTrie.cpp
       title: ds/binaryTrie.cpp
@@ -116,10 +116,10 @@ data:
       title: ds/topoSort.cpp
     - icon: ':heavy_check_mark:'
       path: ds/treap.cpp
-      title: ds/treap.cpp
+      title: treap
     - icon: ':heavy_check_mark:'
       path: ds/waveletMatrix.cpp
-      title: ds/waveletMatrix.cpp
+      title: waveletMatrix
     - icon: ':warning:'
       path: ds/waveletMatrixWithMonoid.cpp
       title: ds/waveletMatrixWithMonoid.cpp

@@ -82,8 +82,11 @@ data:
   - test/static_range_frequency.test.cpp
 documentation_of: ds/waveletMatrix.cpp
 layout: document
-redirect_from:
-- /library/ds/waveletMatrix.cpp
-- /library/ds/waveletMatrix.cpp.html
-title: ds/waveletMatrix.cpp
+title: waveletMatrix
 ---
+
+## usage
+
+- `waveletMatrix<T, mxBit>(init)` construct WM using init, whose value ranges from $0$ to $2^{\text{mxBit} + 1} - 1$, $O(n \text{mxBit})$
+- 'kth(l, r, k)' return k-th smallest number in range $[l, r)$, $O(mxBit)$
+- 'rectQuery(l, r, d, u)' return number of elements with value in $[d, u)$ whose position in $[l, r)$, $O(mxBit)$

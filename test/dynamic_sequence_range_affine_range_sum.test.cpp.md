@@ -9,7 +9,7 @@ data:
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: ds/treap.cpp
-    title: ds/treap.cpp
+    title: treap
   - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
