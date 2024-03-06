@@ -9,53 +9,46 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"string/AhoCorasick.cpp\"\nstruct AhoCorasick {\n  struct\
-    \ node {\n    static const int sigma = 26;\n    int nxt[sigma];\n    int p = -1,\
-    \ link = -1, ex = -1;\n    char ch;\n    bool leaf = false;\n\n    node(int _p,\
-    \ char _ch) {\n      fill(nxt, nxt + sigma, -1);\n      ch = _ch, p = _p;\n  \
-    \  }\n  };\n\n  vector<node> v;\n  AhoCorasick(int sz) {\n    v.reserve(sz);\n\
-    \    v.emplace_back(-1, ' ');\n  }\n\n  void insert(string s) {\n    int now =\
-    \ 0;\n    for(char X : s) {\n      int id = X - 'a';\n      if (v[now].nxt[id]\
-    \ == -1) {\n        v[now].nxt[id] = v.size();\n        v.emplace_back(now, X);\n\
-    \      }\n      now = v[now].nxt[id];\n    }\n    v[now].leaf = true;\n  }\n\n\
-    \  int go(int now, char ch) {\n    int id = ch - 'a';\n    if (v[now].nxt[id]\
-    \ != -1)\n      return v[now].nxt[id];\n    else if (now == 0)\n      return 0;\n\
-    \    else\n      return go(v[now].link, ch);\n  }\n\n  int calcLink(int now) {\n\
-    \    if (now == 0 or v[now].p == 0)\n      return 0;\n    else\n      return go(v[v[now].p].link,\
-    \ v[now].ch);\n  }\n\n  int calcExit(int now) {\n    if (now == 0)\n      return\
-    \ -1;\n    else if (v[v[now].link].leaf)\n      return v[now].link;\n    else\n\
-    \      return v[v[now].link].ex;\n  }\n\n  void build() {\n    queue<int> q;\n\
-    \    q.push(0);\n    while(!q.empty()) {\n      int now = q.front(); q.pop();\n\
-    \      v[now].link = calcLink(now);\n      v[now].ex = calcExit(now);\n      for(int\
-    \ i = 0; i < node::sigma; i++)\n        if (v[now].nxt[i] != -1)\n          q.push(v[now].nxt[i]);\n\
-    \    }\n  }\n\n  string nodeString(int now) {\n    string res;\n    while(now\
-    \ != 0)\n      res += v[now].ch, now = v[now].p;\n    reverse(res.begin(), res.end());\n\
-    \    return res;\n  }\n};\n"
-  code: "struct AhoCorasick {\n  struct node {\n    static const int sigma = 26;\n\
-    \    int nxt[sigma];\n    int p = -1, link = -1, ex = -1;\n    char ch;\n    bool\
-    \ leaf = false;\n\n    node(int _p, char _ch) {\n      fill(nxt, nxt + sigma,\
-    \ -1);\n      ch = _ch, p = _p;\n    }\n  };\n\n  vector<node> v;\n  AhoCorasick(int\
-    \ sz) {\n    v.reserve(sz);\n    v.emplace_back(-1, ' ');\n  }\n\n  void insert(string\
-    \ s) {\n    int now = 0;\n    for(char X : s) {\n      int id = X - 'a';\n   \
+    \ node {\n    static const int size = 26;\n    int nxt[size], p, link = -1, ex\
+    \ = -1, leaf = 0;\n    char ch;\n\n    node(int _p = -1, char _ch = ' ') : p(_p),\
+    \ ch(_ch) {\n      fill(nxt, nxt + size, -1);\n    }\n  };\n\n  vector<node> v;\n\
+    \  AhoCorasick(int sz) : v(1) {\n    v.reserve(sz);\n  }\n\n  void insert(string\
+    \ s) {\n    int now = 0;\n    for(char x : s) {\n      int id = x - 'a';\n   \
     \   if (v[now].nxt[id] == -1) {\n        v[now].nxt[id] = v.size();\n        v.emplace_back(now,\
-    \ X);\n      }\n      now = v[now].nxt[id];\n    }\n    v[now].leaf = true;\n\
-    \  }\n\n  int go(int now, char ch) {\n    int id = ch - 'a';\n    if (v[now].nxt[id]\
-    \ != -1)\n      return v[now].nxt[id];\n    else if (now == 0)\n      return 0;\n\
-    \    else\n      return go(v[now].link, ch);\n  }\n\n  int calcLink(int now) {\n\
-    \    if (now == 0 or v[now].p == 0)\n      return 0;\n    else\n      return go(v[v[now].p].link,\
-    \ v[now].ch);\n  }\n\n  int calcExit(int now) {\n    if (now == 0)\n      return\
-    \ -1;\n    else if (v[v[now].link].leaf)\n      return v[now].link;\n    else\n\
-    \      return v[v[now].link].ex;\n  }\n\n  void build() {\n    queue<int> q;\n\
-    \    q.push(0);\n    while(!q.empty()) {\n      int now = q.front(); q.pop();\n\
-    \      v[now].link = calcLink(now);\n      v[now].ex = calcExit(now);\n      for(int\
-    \ i = 0; i < node::sigma; i++)\n        if (v[now].nxt[i] != -1)\n          q.push(v[now].nxt[i]);\n\
-    \    }\n  }\n\n  string nodeString(int now) {\n    string res;\n    while(now\
-    \ != 0)\n      res += v[now].ch, now = v[now].p;\n    reverse(res.begin(), res.end());\n\
-    \    return res;\n  }\n};\n"
+    \ x);\n      }\n      now = v[now].nxt[id];\n    }\n    v[now].leaf = 1;\n  }\n\
+    \n  int go(int now, char ch) {\n    int id = ch - 'a';\n    if (v[now].nxt[id]\
+    \ != -1) return v[now].nxt[id];\n    else if (now == 0) return 0;\n    else return\
+    \ go(v[now].link, ch);\n  }\n\n  int calcLink(int now) {\n    if (now == 0 or\
+    \ v[now].p == 0) return 0;\n    else return go(v[v[now].p].link, v[now].ch);\n\
+    \  }\n\n  int calcExit(int now) {\n    if (now == 0) return -1;\n    else if (v[v[now].link].leaf)\
+    \ return v[now].link;\n    else return v[v[now].link].ex;\n  }\n\n  void build()\
+    \ {\n    vector<int> q(1, 0);\n    for(int i = 0; i < ssize(q); i++) {\n     \
+    \ int now = q[i];\n      v[now].link = calcLink(now);\n      v[now].ex = calcExit(now);\n\
+    \      for(int i = 0; i < node::size; i++)\n        if (v[now].nxt[i] != -1)\n\
+    \          q.emplace_back(v[now].nxt[i]);\n    }\n  }\n};\n"
+  code: "struct AhoCorasick {\n  struct node {\n    static const int size = 26;\n\
+    \    int nxt[size], p, link = -1, ex = -1, leaf = 0;\n    char ch;\n\n    node(int\
+    \ _p = -1, char _ch = ' ') : p(_p), ch(_ch) {\n      fill(nxt, nxt + size, -1);\n\
+    \    }\n  };\n\n  vector<node> v;\n  AhoCorasick(int sz) : v(1) {\n    v.reserve(sz);\n\
+    \  }\n\n  void insert(string s) {\n    int now = 0;\n    for(char x : s) {\n \
+    \     int id = x - 'a';\n      if (v[now].nxt[id] == -1) {\n        v[now].nxt[id]\
+    \ = v.size();\n        v.emplace_back(now, x);\n      }\n      now = v[now].nxt[id];\n\
+    \    }\n    v[now].leaf = 1;\n  }\n\n  int go(int now, char ch) {\n    int id\
+    \ = ch - 'a';\n    if (v[now].nxt[id] != -1) return v[now].nxt[id];\n    else\
+    \ if (now == 0) return 0;\n    else return go(v[now].link, ch);\n  }\n\n  int\
+    \ calcLink(int now) {\n    if (now == 0 or v[now].p == 0) return 0;\n    else\
+    \ return go(v[v[now].p].link, v[now].ch);\n  }\n\n  int calcExit(int now) {\n\
+    \    if (now == 0) return -1;\n    else if (v[v[now].link].leaf) return v[now].link;\n\
+    \    else return v[v[now].link].ex;\n  }\n\n  void build() {\n    vector<int>\
+    \ q(1, 0);\n    for(int i = 0; i < ssize(q); i++) {\n      int now = q[i];\n \
+    \     v[now].link = calcLink(now);\n      v[now].ex = calcExit(now);\n      for(int\
+    \ i = 0; i < node::size; i++)\n        if (v[now].nxt[i] != -1)\n          q.emplace_back(v[now].nxt[i]);\n\
+    \    }\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: string/AhoCorasick.cpp
   requiredBy: []
-  timestamp: '2024-01-24 20:41:29+08:00'
+  timestamp: '2024-03-07 01:57:47+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/AhoCorasick.cpp

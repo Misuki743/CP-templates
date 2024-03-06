@@ -101,22 +101,21 @@ data:
     \ 0}; }\n  static T Top(const T &a, const T &b) { return T{a[0] * b[0], a[1] *\
     \ b[0] + b[1]}; }\n  static M act(const M &a, const T &b) { return {a[0] * b[0]\
     \ + a[1] * b[1], a[1]}; }\n};\n#line 1 \"ds/heavyLightDecomposition.cpp\"\nstruct\
-    \ heavyLightDecomposition {\n  vector<int> dep, p, head, id;\n\n  heavyLightDecomposition(vector<vector<int>>\
-    \ &g, vector<int> root = vector<int>(1, 0)) {\n    int n = ssize(g);\n    vector<int>\
-    \ sz(n, 1);\n    dep.resize(n);\n    p.resize(n, -1);\n    head.resize(n);\n \
-    \   id.resize(n);\n\n    auto dfs = [&](int v, auto self) -> void {\n      int\
-    \ mxChild = -1;\n      for(int i = -1; int x : g[v]) {\n        i++;\n       \
-    \ if (x == p[v]) continue;\n        p[x] = v, dep[x] = dep[v] + 1;\n        self(x,\
-    \ self);\n        sz[v] += sz[x];\n        if (mxChild == -1 or sz[x] > sz[g[v][mxChild]])\n\
-    \          mxChild = i;\n      }\n      if (mxChild != -1)\n        swap(g[v][0],\
-    \ g[v][mxChild]);\n    };\n\n    int nxt = 0;\n    auto cut = [&](int v, int h,\
-    \ auto self) -> void {\n      id[v] = nxt++, head[v] = h;\n      if (!g[v].empty()\
+    \ HLD {\n  int n;\n  vector<int> dep, p, head, id;\n\n  HLD(vector<vector<int>>\
+    \ &g, vector<int> root = vector<int>(1, 0))\n  : n(ssize(g)), dep(n), p(n, -1),\
+    \ head(n), id(n) {\n    vector<int> sz(n, 1);\n\n    auto dfs = [&](int v, auto\
+    \ self) -> void {\n      int mx = -1;\n      for(int i = -1; int x : g[v]) {\n\
+    \        i++;\n        if (x == p[v]) continue;\n        p[x] = v, dep[x] = dep[v]\
+    \ + 1;\n        self(x, self);\n        sz[v] += sz[x];\n        if (mx == -1\
+    \ or sz[x] > sz[g[v][mx]]) mx = i;\n      }\n      if (mx != -1) swap(g[v][0],\
+    \ g[v][mx]);\n    };\n\n    int nxt = 0;\n    auto cut = [&](int v, int h, auto\
+    \ self) -> void {\n      id[v] = nxt++, head[v] = h;\n      if (!g[v].empty()\
     \ and g[v][0] != p[v])\n        self(g[v][0], h, self);\n      for(int x : g[v]\
-    \ | V::drop(1))\n        if (x != p[v])\n          self(x, x, self);\n    };\n\
-    \n    for(int x : root) {\n      dfs(x, dfs);\n      cut(x, x, cut);\n    }\n\
-    \  }\n\n  //(l, r, rev)\n  vector<tuple<int, int, bool>> query(int u, int v, bool\
-    \ edge = false) {\n    vector<array<int, 2>> resL, resR;\n    while(head[u] !=\
-    \ head[v]) {\n      if (dep[head[u]] >= dep[head[v]]) {\n        resL.push_back({id[head[u]],\
+    \ | V::drop(1)) if (x != p[v])\n          self(x, x, self);\n    };\n\n    for(int\
+    \ x : root) {\n      dfs(x, dfs);\n      cut(x, x, cut);\n    }\n  }\n\n  //(l,\
+    \ r, rev)\n  vector<tuple<int, int, bool>> query(int u, int v, bool edge = false)\
+    \ {\n    vector<array<int, 2>> resL, resR;\n    while(head[u] != head[v]) {\n\
+    \      if (dep[head[u]] >= dep[head[v]]) {\n        resL.push_back({id[head[u]],\
     \ id[u] + 1});\n        u = p[head[u]];\n      } else {\n        resR.push_back({id[head[v]],\
     \ id[v] + 1});\n        v = p[head[v]];\n      }\n    }\n    if (id[v] + edge\
     \ <= id[u])\n      resL.push_back({id[v] + edge, id[u] + 1});\n    else if (id[u]\
@@ -128,8 +127,8 @@ data:
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<am::T> ab(n);\n  for(auto\
     \ &[a, b] : ab)\n    cin >> a >> b;\n  vector<vector<int>> g(n);\n  for(int i\
     \ = 1; i < n; i++) {\n    int u, v; cin >> u >> v;\n    g[u].emplace_back(v);\n\
-    \    g[v].emplace_back(u);\n  }\n\n  heavyLightDecomposition hld(g);\n  vector<am::T>\
-    \ init(n);\n  for(int i = 0; i < n; i++)\n    init[hld.id[i]] = ab[i];\n  segmentTree<am::T,\
+    \    g[v].emplace_back(u);\n  }\n\n  HLD hld(g);\n  vector<am::T> init(n);\n \
+    \ for(int i = 0; i < n; i++)\n    init[hld.id[i]] = ab[i];\n  segmentTree<am::T,\
     \ am::Tid, am::Top> st(init);\n  R::reverse(init);\n  segmentTree<am::T, am::Tid,\
     \ am::Top> str(init);\n\n  while(q--) {\n    int t, a, b, c; cin >> t >> a >>\
     \ b >> c;\n    if (t == 0) {\n      st.set(hld.id[a], am::T{b, c});\n      str.set((n\
@@ -146,16 +145,15 @@ data:
     \ cin >> n >> q;\n  vector<am::T> ab(n);\n  for(auto &[a, b] : ab)\n    cin >>\
     \ a >> b;\n  vector<vector<int>> g(n);\n  for(int i = 1; i < n; i++) {\n    int\
     \ u, v; cin >> u >> v;\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n\
-    \  }\n\n  heavyLightDecomposition hld(g);\n  vector<am::T> init(n);\n  for(int\
-    \ i = 0; i < n; i++)\n    init[hld.id[i]] = ab[i];\n  segmentTree<am::T, am::Tid,\
-    \ am::Top> st(init);\n  R::reverse(init);\n  segmentTree<am::T, am::Tid, am::Top>\
-    \ str(init);\n\n  while(q--) {\n    int t, a, b, c; cin >> t >> a >> b >> c;\n\
-    \    if (t == 0) {\n      st.set(hld.id[a], am::T{b, c});\n      str.set((n -\
-    \ 1) - hld.id[a], am::T{b, c});\n    } else {\n      auto res = am::T{0, c};\n\
-    \      for(auto [l, r, rev] : hld.query(a, b)) {\n        if (rev)\n         \
-    \ res = am::Top(res, str.query(n - r, n - l));\n        else\n          res =\
-    \ am::Top(res, st.query(l, r));\n      }\n      cout << res[1] << '\\n';\n   \
-    \ }\n  }\n\n  return 0;\n}\n"
+    \  }\n\n  HLD hld(g);\n  vector<am::T> init(n);\n  for(int i = 0; i < n; i++)\n\
+    \    init[hld.id[i]] = ab[i];\n  segmentTree<am::T, am::Tid, am::Top> st(init);\n\
+    \  R::reverse(init);\n  segmentTree<am::T, am::Tid, am::Top> str(init);\n\n  while(q--)\
+    \ {\n    int t, a, b, c; cin >> t >> a >> b >> c;\n    if (t == 0) {\n      st.set(hld.id[a],\
+    \ am::T{b, c});\n      str.set((n - 1) - hld.id[a], am::T{b, c});\n    } else\
+    \ {\n      auto res = am::T{0, c};\n      for(auto [l, r, rev] : hld.query(a,\
+    \ b)) {\n        if (rev)\n          res = am::Top(res, str.query(n - r, n - l));\n\
+    \        else\n          res = am::Top(res, st.query(l, r));\n      }\n      cout\
+    \ << res[1] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
@@ -165,7 +163,7 @@ data:
   isVerificationFile: true
   path: test/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-03-07 00:40:25+08:00'
+  timestamp: '2024-03-07 01:57:47+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_set_path_composite.test.cpp
