@@ -1,13 +1,13 @@
 template<class M, M(*Mid)(), M(*Mop)(const M&, const M&), class T, T(*Tid)(), T(*Top)(const T&, const T&), M(*act)(const M&, const T&)>
 struct lazySegmentTree {
+  int size;
   vector<M> data;
   vector<T> tag;
-  int size;
 
-  lazySegmentTree(int _size) : data(2 * _size, Mid()), tag(_size, Tid()), size(_size) {}
+  lazySegmentTree(int _size) : size(_size), data(2 * size, Mid()), tag(size, Tid()) {}
 
-  lazySegmentTree(vector<M> init) : data(2 * ssize(init), Mid()), tag(ssize(init), Tid()), size(ssize(init)) {
-    copy(init.begin(), init.end(), data.begin() + size);
+  lazySegmentTree(vector<M> init) : size(ssize(init)), data(2 * size, Mid()), tag(size, Tid()) {
+    ranges::copy(init, data.begin() + size);
     for(int i = size - 1; i > 0; i--)
       data[i] = Mop(data[i << 1], data[i << 1 | 1]);
   }
@@ -17,8 +17,8 @@ struct lazySegmentTree {
     if (i < size) tag[i] = Top(tag[i], x);
   }
 
-  void push(int i) {
-    for(int s = bit_width((unsigned)i) - 1; s > 0; s--) {
+  void push(unsigned i) {
+    for(int s = bit_width(i) - 1; s > 0; s--) {
       if (tag[i >> s] != Tid()) {
         apply(i >> (s - 1), tag[i >> s]);
         apply(i >> (s - 1) ^ 1, tag[i >> s]);
@@ -34,15 +34,12 @@ struct lazySegmentTree {
   int trunc(unsigned i) { return i >> countr_zero(i); }
 
   void set(int i, M x) {
-    push(i + size);
-    data[i + size] = x;
-    pull(i + size);
+    push(i += size);
+    data[i] = x;
+    pull(i);
   }
 
-  M get(int i) {
-    push(i + size);
-    return data[i + size];
-  }
+  M get(int i) { push(i += size); return data[i]; }
 
   void modify(int l, int r, T x) {
     if (l >= r or x == Tid()) return;

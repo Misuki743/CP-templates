@@ -1,13 +1,13 @@
-template<class T, int mxBit>
+template<class T, int H>
 struct waveletMatrix {
   using uint = uint32_t;
-  struct bitvector {
+  struct bitvec {
     static constexpr uint W = 64;
     int cnt0 = 0, size;
     vector<ull> bv;
     vector<int> pre;
 
-    bitvector(uint _size) : size(_size), bv(_size / W + 1), pre(_size / W + 1) {};
+    bitvec(uint _size) : size(_size), bv(size / W + 1), pre(size / W + 1) {};
     void set(uint i) { bv[i / W] |= 1LL << (i % W); }
     uint get(uint i) { return bv[i / W] >> (i % W) & 1; }
     void build() {
@@ -19,51 +19,52 @@ struct waveletMatrix {
     int rank0(uint i) { return i - rank1(i); }
   };
 
-  vector<bitvector> level;
-  waveletMatrix(vector<T> init) : level(mxBit + 1, bitvector(init.size())){
-    for(int bit = mxBit; bit >= 0; bit--) {
+  vector<bitvec> data;
+  waveletMatrix(vector<T> init) : data(H + 1, bitvec(init.size())) {
+    for(int bit = H; auto &v : data) {
       for(int i = 0; i < ssize(init); i++)
         if (init[i] >> bit & 1)
-          level[bit].set(i);
-      level[bit].build();
+          v.set(i);
+      v.build();
       vector<T> tmp(ssize(init));
-      array<int, 2> ptr = {0, level[bit].cnt0};
-      for(int i = 0; i < ssize(init); i++) {
-        assert(ptr[level[bit].get(i)] < ssize(tmp));
-        tmp[ptr[level[bit].get(i)]++] = init[i];
-      }
+      int ptr[2] = {0, v.cnt0};
+      for(int i = 0; i < ssize(init); i++)
+        tmp[ptr[v.get(i)]++] = init[i];
       init.swap(tmp);
+      bit--;
     }
   }
 
   T kth(int l, int r, int k) {
     T res = 0;
-    for(int bit = mxBit; bit >= 0; bit--) {
-      if (int l0 = level[bit].rank0(l), r0 = level[bit].rank0(r); r0 - l0 <= k) {
+    for(int bit = H; auto &v : data) {
+      if (int l0 = v.rank0(l), r0 = v.rank0(r); r0 - l0 <= k) {
         res |= T(1) << bit, k -= r0 - l0;
-        l = level[bit].cnt0 + level[bit].rank1(l), r = level[bit].cnt0 + level[bit].rank1(r);
+        l = v.cnt0 + v.rank1(l), r = v.cnt0 + v.rank1(r);
       } else {
         l = l0, r = r0;
       }
+      bit--;
     }
     return res;
   }
 
-  int rangeLess(int l, int r, T u) {
-    if (u >= (T(2) << mxBit)) return r - l;
+  int less(int l, int r, T u) {
+    if (u >= (T(2) << H)) return r - l;
     int cnt = 0;
-    for(int bit = mxBit; bit >= 0; bit--) {
+    for(int bit = H; auto &v : data) {
       if (u >> bit & 1) {
-        cnt += level[bit].rank0(r) - level[bit].rank0(l);
-        l = level[bit].cnt0 + level[bit].rank1(l), r = level[bit].cnt0 + level[bit].rank1(r);
+        cnt += v.rank0(r) - v.rank0(l);
+        l = v.cnt0 + v.rank1(l), r = v.cnt0 + v.rank1(r);
       } else {
-        l = level[bit].rank0(l), r = level[bit].rank0(r);
+        l = v.rank0(l), r = v.rank0(r);
       }
+      bit--;
     }
     return cnt;
   }
 
   int rectQuery(int l, int r, T d, T u) {
-    return rangeLess(l, r, u) - rangeLess(l, r, d);
+    return less(l, r, u) - less(l, r, d);
   }
 };

@@ -1,12 +1,11 @@
 template<class M, M(*id)(), M(*op)(const M&, const M&)>
 struct segmentTree {
-  vector<M> data;
   int size;
+  vector<M> data;
 
-  segmentTree(int _size) : data(2 * _size, id()), size(_size) {}
-
-  segmentTree(vector<M> init) : data(2 * ssize(init), id()), size(ssize(init)) {
-    copy(init.begin(), init.end(), data.begin() + size);
+  segmentTree(int _size) : size(_size), data(2 * size, id()) {}
+  segmentTree(vector<M> init) : size(ssize(init)), data(2 * size, id()) {
+    ranges::copy(init, data.begin() + size);
     for(int i = size - 1; i > 0; i--)
       data[i] = op(data[i << 1], data[i << 1 | 1]);
   }
