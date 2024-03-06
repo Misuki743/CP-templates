@@ -50,8 +50,8 @@ data:
   timestamp: '2024-02-06 18:26:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/log_of_formal_power_series_sparse.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/log_of_formal_power_series_sparse.test.cpp
 documentation_of: poly/sparsePolyope.cpp
 layout: document
 redirect_from:

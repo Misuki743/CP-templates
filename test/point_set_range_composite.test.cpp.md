@@ -79,17 +79,17 @@ data:
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"segtree/segmentTree.cpp\"\
     \ntemplate<class M, M(*id)(), M(*op)(const M&, const M&)>\nstruct segmentTree\
-    \ {\n  vector<M> data;\n  int size;\n\n  segmentTree(int _size) : data(2 * _size,\
-    \ id()), size(_size) {}\n\n  segmentTree(vector<M> init) : data(2 * ssize(init),\
-    \ id()), size(ssize(init)) {\n    copy(init.begin(), init.end(), data.begin()\
-    \ + size);\n    for(int i = size - 1; i > 0; i--)\n      data[i] = op(data[i <<\
-    \ 1], data[i << 1 | 1]);\n  }\n\n  void set(int i, M x) {\n    data[i += size]\
-    \ = x;\n    while(i >>= 1)\n      data[i] = op(data[i << 1], data[i << 1 | 1]);\n\
-    \  }\n\n  M get(int i) { return data[i + size]; }\n\n  M query(int l, int r) {\n\
-    \    M L = id(), R = id();\n    for(l += size, r += size; l < r; l >>= 1, r >>=\
-    \ 1) {\n      if (l & 1) L = op(L, data[l++]);\n      if (r & 1) R = op(data[--r],\
-    \ R);\n    }\n    return op(L, R);\n  }\n};\n#line 6 \"test/point_set_range_composite.test.cpp\"\
-    \n\nusing line = array<mint, 2>;\nline unit() { return line{1, 0}; }\nline ope(const\
+    \ {\n  int size;\n  vector<M> data;\n\n  segmentTree(int _size) : size(_size),\
+    \ data(2 * size, id()) {}\n  segmentTree(vector<M> init) : size(ssize(init)),\
+    \ data(2 * size, id()) {\n    ranges::copy(init, data.begin() + size);\n    for(int\
+    \ i = size - 1; i > 0; i--)\n      data[i] = op(data[i << 1], data[i << 1 | 1]);\n\
+    \  }\n\n  void set(int i, M x) {\n    data[i += size] = x;\n    while(i >>= 1)\n\
+    \      data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  M get(int i) {\
+    \ return data[i + size]; }\n\n  M query(int l, int r) {\n    M L = id(), R = id();\n\
+    \    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) L\
+    \ = op(L, data[l++]);\n      if (r & 1) R = op(data[--r], R);\n    }\n    return\
+    \ op(L, R);\n  }\n};\n#line 6 \"test/point_set_range_composite.test.cpp\"\n\n\
+    using line = array<mint, 2>;\nline unit() { return line{1, 0}; }\nline ope(const\
     \ line &l, const line &r) {\n  return {l[0] * r[0], l[1] * r[0] + r[1]};\n}\n\n\
     signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
     \ cin >> n >> q;\n  vector<line> a(n);\n  for(auto &[c, d] : a)\n    cin >> c\
@@ -114,7 +114,7 @@ data:
   isVerificationFile: true
   path: test/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-02-09 21:58:48+08:00'
+  timestamp: '2024-03-07 00:40:25+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/point_set_range_composite.test.cpp

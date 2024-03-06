@@ -85,23 +85,23 @@ data:
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"segtree/segmentTree.cpp\"\
     \ntemplate<class M, M(*id)(), M(*op)(const M&, const M&)>\nstruct segmentTree\
-    \ {\n  vector<M> data;\n  int size;\n\n  segmentTree(int _size) : data(2 * _size,\
-    \ id()), size(_size) {}\n\n  segmentTree(vector<M> init) : data(2 * ssize(init),\
-    \ id()), size(ssize(init)) {\n    copy(init.begin(), init.end(), data.begin()\
-    \ + size);\n    for(int i = size - 1; i > 0; i--)\n      data[i] = op(data[i <<\
-    \ 1], data[i << 1 | 1]);\n  }\n\n  void set(int i, M x) {\n    data[i += size]\
-    \ = x;\n    while(i >>= 1)\n      data[i] = op(data[i << 1], data[i << 1 | 1]);\n\
-    \  }\n\n  M get(int i) { return data[i + size]; }\n\n  M query(int l, int r) {\n\
-    \    M L = id(), R = id();\n    for(l += size, r += size; l < r; l >>= 1, r >>=\
-    \ 1) {\n      if (l & 1) L = op(L, data[l++]);\n      if (r & 1) R = op(data[--r],\
-    \ R);\n    }\n    return op(L, R);\n  }\n};\n#line 1 \"actedmonoid/actedMonoid_affineSum.cpp\"\
-    \ntemplate<class U>\nstruct actedMonoid_affineSum {\n  using M = array<U, 2>;\n\
-    \  static M Mid() { return M{0, 0}; }\n  static M Mop(const M &a, const M &b)\
-    \ { return {a[0] + b[0], a[1] + b[1]}; }\n  using T = array<U, 2>;\n  static T\
-    \ Tid() { return T{1, 0}; }\n  static T Top(const T &a, const T &b) { return T{a[0]\
-    \ * b[0], a[1] * b[0] + b[1]}; }\n  static M act(const M &a, const T &b) { return\
-    \ {a[0] * b[0] + a[1] * b[1], a[1]}; }\n};\n#line 1 \"ds/heavyLightDecomposition.cpp\"\
-    \nstruct heavyLightDecomposition {\n  vector<int> dep, p, head, id;\n\n  heavyLightDecomposition(vector<vector<int>>\
+    \ {\n  int size;\n  vector<M> data;\n\n  segmentTree(int _size) : size(_size),\
+    \ data(2 * size, id()) {}\n  segmentTree(vector<M> init) : size(ssize(init)),\
+    \ data(2 * size, id()) {\n    ranges::copy(init, data.begin() + size);\n    for(int\
+    \ i = size - 1; i > 0; i--)\n      data[i] = op(data[i << 1], data[i << 1 | 1]);\n\
+    \  }\n\n  void set(int i, M x) {\n    data[i += size] = x;\n    while(i >>= 1)\n\
+    \      data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  M get(int i) {\
+    \ return data[i + size]; }\n\n  M query(int l, int r) {\n    M L = id(), R = id();\n\
+    \    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) L\
+    \ = op(L, data[l++]);\n      if (r & 1) R = op(data[--r], R);\n    }\n    return\
+    \ op(L, R);\n  }\n};\n#line 1 \"actedmonoid/actedMonoid_affineSum.cpp\"\ntemplate<class\
+    \ U>\nstruct actedMonoid_affineSum {\n  using M = array<U, 2>;\n  static M Mid()\
+    \ { return M{0, 0}; }\n  static M Mop(const M &a, const M &b) { return {a[0] +\
+    \ b[0], a[1] + b[1]}; }\n  using T = array<U, 2>;\n  static T Tid() { return T{1,\
+    \ 0}; }\n  static T Top(const T &a, const T &b) { return T{a[0] * b[0], a[1] *\
+    \ b[0] + b[1]}; }\n  static M act(const M &a, const T &b) { return {a[0] * b[0]\
+    \ + a[1] * b[1], a[1]}; }\n};\n#line 1 \"ds/heavyLightDecomposition.cpp\"\nstruct\
+    \ heavyLightDecomposition {\n  vector<int> dep, p, head, id;\n\n  heavyLightDecomposition(vector<vector<int>>\
     \ &g, vector<int> root = vector<int>(1, 0)) {\n    int n = ssize(g);\n    vector<int>\
     \ sz(n, 1);\n    dep.resize(n);\n    p.resize(n, -1);\n    head.resize(n);\n \
     \   id.resize(n);\n\n    auto dfs = [&](int v, auto self) -> void {\n      int\
@@ -165,7 +165,7 @@ data:
   isVerificationFile: true
   path: test/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-02-11 12:44:47+08:00'
+  timestamp: '2024-03-07 00:40:25+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_set_path_composite.test.cpp
