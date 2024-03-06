@@ -22,7 +22,7 @@ signed main() {
     g[v].emplace_back(u);
   }
 
-  heavyLightDecomposition hld(g);
+  HLD hld(g);
   vector<am::T> init(n);
   for(int i = 0; i < n; i++)
     init[hld.id[i]] = ab[i];

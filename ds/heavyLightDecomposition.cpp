@@ -1,27 +1,22 @@
-struct heavyLightDecomposition {
+struct HLD {
+  int n;
   vector<int> dep, p, head, id;
 
-  heavyLightDecomposition(vector<vector<int>> &g, vector<int> root = vector<int>(1, 0)) {
-    int n = ssize(g);
+  HLD(vector<vector<int>> &g, vector<int> root = vector<int>(1, 0))
+  : n(ssize(g)), dep(n), p(n, -1), head(n), id(n) {
     vector<int> sz(n, 1);
-    dep.resize(n);
-    p.resize(n, -1);
-    head.resize(n);
-    id.resize(n);
 
     auto dfs = [&](int v, auto self) -> void {
-      int mxChild = -1;
+      int mx = -1;
       for(int i = -1; int x : g[v]) {
         i++;
         if (x == p[v]) continue;
         p[x] = v, dep[x] = dep[v] + 1;
         self(x, self);
         sz[v] += sz[x];
-        if (mxChild == -1 or sz[x] > sz[g[v][mxChild]])
-          mxChild = i;
+        if (mx == -1 or sz[x] > sz[g[v][mx]]) mx = i;
       }
-      if (mxChild != -1)
-        swap(g[v][0], g[v][mxChild]);
+      if (mx != -1) swap(g[v][0], g[v][mx]);
     };
 
     int nxt = 0;
@@ -29,8 +24,7 @@ struct heavyLightDecomposition {
       id[v] = nxt++, head[v] = h;
       if (!g[v].empty() and g[v][0] != p[v])
         self(g[v][0], h, self);
-      for(int x : g[v] | V::drop(1))
-        if (x != p[v])
+      for(int x : g[v] | V::drop(1)) if (x != p[v])
           self(x, x, self);
     };
 

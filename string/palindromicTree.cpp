@@ -8,13 +8,8 @@ struct palindromicTree {
     array<int, sigma> unit;
     fill(unit.begin(), unit.end(), -1);
     len = link = {-1, 0}, go = {unit, unit}, freq = {0, 0};
-    len.reserve(ssize(s) + 2);
-    link.reserve(ssize(s) + 2);
-    go.reserve(ssize(s) + 2);
-    freq.reserve(ssize(s) + 2);
 
-    int v = 0;
-    for(int i = 0; i < ssize(s); i++) {
+    for(int i = 0, v = 0; i < ssize(s); i++) {
       while(len[v] == i or s[i - len[v] - 1] != s[i])
         v = link[v];
       if (go[v][s[i] - base] == -1) {
@@ -27,8 +22,7 @@ struct palindromicTree {
           u = link[u];
         link.emplace_back(u == -1 ? 1 : go[u][s[i] - base]);
       }
-      v = go[v][s[i] - base];
-      freq[v]++;
+      v = go[v][s[i] - base], freq[v]++;
     }
 
     for(int i = ssize(len) - 1; i > 0; i--)

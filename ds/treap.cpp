@@ -16,10 +16,9 @@ struct treap {
   static M get(node *v) { return v ? v -> prod : Mid(); }
 
   static node* build(vector<M> init) {
-    node* res = nullptr;
-    for(M &x : init)
-      res = merge(res, new node(x));
-    return res;
+    node* r = nullptr;
+    for(M &x : init) r = merge(r, new node(x));
+    return r;
   }
 
   static void apply(node *v, T x, bool rev) {

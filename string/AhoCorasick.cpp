@@ -1,80 +1,59 @@
 struct AhoCorasick {
   struct node {
-    static const int sigma = 26;
-    int nxt[sigma];
-    int p = -1, link = -1, ex = -1;
+    static const int size = 26;
+    int nxt[size], p, link = -1, ex = -1, leaf = 0;
     char ch;
-    bool leaf = false;
 
-    node(int _p, char _ch) {
-      fill(nxt, nxt + sigma, -1);
-      ch = _ch, p = _p;
+    node(int _p = -1, char _ch = ' ') : p(_p), ch(_ch) {
+      fill(nxt, nxt + size, -1);
     }
   };
 
   vector<node> v;
-  AhoCorasick(int sz) {
+  AhoCorasick(int sz) : v(1) {
     v.reserve(sz);
-    v.emplace_back(-1, ' ');
   }
 
   void insert(string s) {
     int now = 0;
-    for(char X : s) {
-      int id = X - 'a';
+    for(char x : s) {
+      int id = x - 'a';
       if (v[now].nxt[id] == -1) {
         v[now].nxt[id] = v.size();
-        v.emplace_back(now, X);
+        v.emplace_back(now, x);
       }
       now = v[now].nxt[id];
     }
-    v[now].leaf = true;
+    v[now].leaf = 1;
   }
 
   int go(int now, char ch) {
     int id = ch - 'a';
-    if (v[now].nxt[id] != -1)
-      return v[now].nxt[id];
-    else if (now == 0)
-      return 0;
-    else
-      return go(v[now].link, ch);
+    if (v[now].nxt[id] != -1) return v[now].nxt[id];
+    else if (now == 0) return 0;
+    else return go(v[now].link, ch);
   }
 
   int calcLink(int now) {
-    if (now == 0 or v[now].p == 0)
-      return 0;
-    else
-      return go(v[v[now].p].link, v[now].ch);
+    if (now == 0 or v[now].p == 0) return 0;
+    else return go(v[v[now].p].link, v[now].ch);
   }
 
   int calcExit(int now) {
-    if (now == 0)
-      return -1;
-    else if (v[v[now].link].leaf)
-      return v[now].link;
-    else
-      return v[v[now].link].ex;
+    if (now == 0) return -1;
+    else if (v[v[now].link].leaf) return v[now].link;
+    else return v[v[now].link].ex;
   }
 
   void build() {
-    queue<int> q;
-    q.push(0);
-    while(!q.empty()) {
-      int now = q.front(); q.pop();
+    vector<int> q(1, 0);
+    for(int i = 0; i < ssize(q); i++) {
+      int now = q[i];
       v[now].link = calcLink(now);
       v[now].ex = calcExit(now);
-      for(int i = 0; i < node::sigma; i++)
+      for(int i = 0; i < node::size; i++)
         if (v[now].nxt[i] != -1)
-          q.push(v[now].nxt[i]);
+          q.emplace_back(v[now].nxt[i]);
     }
-  }
-
-  string nodeString(int now) {
-    string res;
-    while(now != 0)
-      res += v[now].ch, now = v[now].p;
-    reverse(res.begin(), res.end());
-    return res;
   }
 };
