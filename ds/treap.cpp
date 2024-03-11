@@ -8,8 +8,7 @@ struct treap {
     node *l = nullptr, *r = nullptr;
     M data, prod;
     T tag;
-    node() : pri(rng()), data(Mid()), prod(Mid()), tag(Tid()) {}
-    node(M init) : pri(rng()), data(init), prod(init), tag(Tid()) {}
+    node(M init = M()) : pri(rng()), data(init), prod(init), tag(Tid()) {}
   };
 
   static int size(node *v) { return v ? v -> size : 0; }
