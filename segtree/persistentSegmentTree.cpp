@@ -1,65 +1,43 @@
-template<class T>
+template<class M, M(*id)(), M(*op)(const M&, const M&)>
 struct persistentSegmentTree {
-  struct node {
-    int lc, rc;
-    T monoid;
-    node(T _monoid, int _lc = -1, int _rc = -1) : monoid(_monoid), lc(_lc), rc(_rc) {}
-    node() {}
-  };
+  vector<int> lc, rc;
+  vector<M> data, init;
+  int nxt = 0;
 
-  static const int MAXSZ = 4500000; //use about 2N + QlgN nodes
-  function<T(const T&, const T&)> combine;
-  T UNIT;
-  vector<node> arr;
-  vector<T> init;
-  int ptr = 0;
-
-  persistentSegmentTree(T _UNIT, function<T(const T&, const T&)> _combine, vector<T> _init = vector<T>(0)) {
-    UNIT = _UNIT;
-    combine = _combine;
-    init = _init;
-    arr.resize(MAXSZ, UNIT);
-  }
+  //sz >= (2n - 1) + q * (bit_width(q) + 1) should be satisfied
+  persistentSegmentTree(int sz, vector<M> _init = vector<M>())
+  : lc(sz, -1), rc(sz, -1), data(sz, id()), init(_init) {}
 
   int build(int l, int r) {
-    int now = ptr;
-    arr[ptr++] = node(UNIT);
+    int i = nxt++;
     if (l + 1 == r) {
-      if (!init.empty())
-        arr[now] = node(init[l]);
+      if (!init.empty()) data[i] = init[l];
     } else {
       int mid = (l + r) / 2;
-      arr[now].lc = build(l, mid);
-      arr[now].rc = build(mid, r);
+      lc[i] = build(l, mid), rc[i] = build(mid, r);
+      data[i] = op(data[lc[i]], data[rc[i]]);
     }
-    return now;
+    return i;
   }
 
-  int set(int now, int l, int r, int idx, T val) {  
-    int tmp = ptr;
-    arr[ptr++] = node(UNIT);
+  int set(int v, int l, int r, int i, M x) {  
+    int vv = nxt++;
     if (l + 1 == r) {
-      arr[tmp] = node(val);    
-      return tmp;
-    }
-    int mid = (l + r) / 2;
-    if (idx < mid) {
-      arr[tmp].lc = set(arr[now].lc, l, mid, idx, val); 
-      arr[tmp].rc = arr[now].rc; 
+      data[vv] = x;
     } else {
-      arr[tmp].lc = arr[now].lc;
-      arr[tmp].rc = set(arr[now].rc, mid, r, idx, val);
+      if (int mid = (l + r) / 2; i < mid)
+        lc[vv] = set(lc[v], l, mid, i, x), rc[vv] = rc[v];
+      else
+        lc[vv] = lc[v], rc[vv] = set(rc[v], mid, r, i, x);
+      data[vv] = op(data[lc[vv]], data[rc[vv]]);
     }
-    arr[tmp].monoid = combine(arr[arr[tmp].lc].monoid, arr[arr[tmp].rc].monoid);
-    return tmp;
+    return vv;
   }
 
-  T query(int now, int l, int r, int ql, int qr) {
-    if (ql == qr or now == -1 or r <= ql or l >= qr)
-      return UNIT;
-    if (ql <= l and r <= qr)
-      return arr[now].monoid;
-    int mid = (l + r) / 2;
-    return combine(query(arr[now].lc, l, mid, ql, qr), query(arr[now].rc, mid, r, ql, qr));
+  M query(int i, int l, int r, int ql, int qr) {
+    if (ql == qr or i == -1 or r <= ql or l >= qr) return id();
+    if (ql <= l and r <= qr) return data[i];
+    return op(query(lc[i], l, (l + r) / 2, ql, qr), 
+              query(rc[i], (l + r) / 2, r, ql, qr));
   }
 };
