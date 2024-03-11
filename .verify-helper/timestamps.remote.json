@@ -50,6 +50,7 @@
 "test/range_affine_point_get.test.cpp": "2024-02-09 22:11:02 +0800",
 "test/range_affine_range_sum.test.cpp": "2024-03-07 00:40:25 +0800",
 "test/range_kth_smallest.test.cpp": "2024-03-07 00:40:25 +0800",
+"test/range_kth_smallest2.test.cpp": "2024-03-11 22:38:30 +0800",
 "test/range_reverse_range_sum.test.cpp": "2024-03-07 01:57:47 +0800",
 "test/range_set_range_composite.test.cpp": "2024-02-11 15:11:45 +0800",
 "test/rectangle_add_point_get.test.cpp": "2024-01-28 23:24:24 +0800",
