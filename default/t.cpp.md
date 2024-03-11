@@ -157,6 +157,9 @@ data:
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/range_kth_smallest2.test.cpp
+    title: test/range_kth_smallest2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/range_reverse_range_sum.test.cpp
     title: test/range_reverse_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -344,6 +347,7 @@ data:
   - test/convolution_1e9+7.test.cpp
   - test/find_linear_recurrence.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/range_kth_smallest2.test.cpp
   - test/lowest_common_ancestor.test.cpp
   - test/inv_of_formal_power_series.test.cpp
   - test/point_add_range_sum.test.cpp

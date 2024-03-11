@@ -301,7 +301,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: segtree/lichaoSegmentTree.cpp
       title: segtree/lichaoSegmentTree.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: segtree/persistentSegmentTree.cpp
       title: segtree/persistentSegmentTree.cpp
     - icon: ':heavy_check_mark:'
@@ -512,6 +512,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/range_kth_smallest.test.cpp
       title: test/range_kth_smallest.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/range_kth_smallest2.test.cpp
+      title: test/range_kth_smallest2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/range_reverse_range_sum.test.cpp
       title: test/range_reverse_range_sum.test.cpp

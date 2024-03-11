@@ -13,6 +13,9 @@ data:
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/range_kth_smallest2.test.cpp
+    title: test/range_kth_smallest2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/rectangle_add_point_get.test.cpp
     title: test/rectangle_add_point_get.test.cpp
   - icon: ':heavy_check_mark:'
@@ -70,6 +73,7 @@ data:
   - test/rectangle_add_point_get.test.cpp
   - test/point_add_rectangle_sum.test.cpp
   - test/static_range_frequency.test.cpp
+  - test/range_kth_smallest2.test.cpp
   - test/rectangle_sum.test.cpp
 documentation_of: misc/compression.cpp
 layout: document
