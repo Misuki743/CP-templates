@@ -68,9 +68,9 @@ data:
   verifiedWith:
   - test/vertex_add_path_sum.test.cpp
   - test/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/lowest_common_ancestor.test.cpp
   - test/jump_on_tree.test.cpp
-  - test/vertex_get_range_contour_add_on_tree.test.cpp
 documentation_of: ds/fastJump.cpp
 layout: document
 redirect_from:

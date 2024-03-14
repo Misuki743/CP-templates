@@ -49,11 +49,11 @@ data:
   timestamp: '2024-01-27 18:42:26+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/rectangle_sum.test.cpp
   - test/static_range_count_distinct.test.cpp
   - test/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/point_add_range_sum.test.cpp
-  - test/rectangle_sum.test.cpp
   - test/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/point_add_range_sum.test.cpp
 documentation_of: ds/fenwickTree.cpp
 layout: document
 redirect_from:

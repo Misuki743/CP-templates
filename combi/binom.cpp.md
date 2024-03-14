@@ -37,8 +37,8 @@ data:
   timestamp: '2024-03-02 01:56:40+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yuki_2544.test.cpp
   - test/binomial_coefficient_prime_mod.test.cpp
+  - test/yuki_2544.test.cpp
 documentation_of: combi/binom.cpp
 layout: document
 redirect_from:
