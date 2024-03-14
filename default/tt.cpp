@@ -1,7 +1,6 @@
 #pragma GCC optimize("O2")
 #include <algorithm>
 #include <array>
-#include <bit>
 #include <bitset>
 #include <cassert>
 #include <cctype>
@@ -11,9 +10,7 @@
 #include <cinttypes>
 #include <climits>
 #include <cmath>
-#include <compare>
 #include <complex>
-#include <concepts>
 #include <cstdarg>
 #include <cstddef>
 #include <cstdint>
@@ -34,14 +31,11 @@
 #include <map>
 #include <memory>
 #include <new>
-#include <numbers>
 #include <numeric>
 #include <ostream>
 #include <queue>
 #include <random>
-#include <ranges>
 #include <set>
-#include <span>
 #include <sstream>
 #include <stack>
 #include <streambuf>
@@ -49,6 +43,28 @@
 #include <tuple>
 #include <type_traits>
 #include <variant>
+
+#if __cplusplus >= 202002L
+
+#include <bit>
+#include <compare>
+#include <concepts>
+#include <numbers>
+#include <ranges>
+#include <span>
+
+#else
+
+#define ssize(v) (int)(v).size()
+#define popcount(x) __builtin_popcountll(x)
+constexpr int bit_width(const unsigned int x) { return x == 0 ? 0 : ((sizeof(unsigned int) * CHAR_BIT) - __builtin_clz(x)); }
+constexpr int bit_width(const unsigned long long x) { return x == 0 ? 0 : ((sizeof(unsigned long long) * CHAR_BIT) - __builtin_clzll(x)); }
+constexpr int countr_zero(const unsigned int x) { return x == 0 ? sizeof(unsigned int) * CHAR_BIT : __builtin_ctz(x); }
+constexpr int countr_zero(const unsigned long long x) { return x == 0 ? sizeof(unsigned long long) * CHAR_BIT : __builtin_ctzll(x); }
+constexpr unsigned int bit_ceil(const unsigned int x) { return x == 0 ? 1 : (popcount(x) == 1 ? x : (1u << bit_width(x))); }
+constexpr unsigned long long bit_ceil(const unsigned long long x) { return x == 0 ? 1 : (popcount(x) == 1 ? x : (1ull << bit_width(x))); }
+
+#endif
 
 #define int ll
 #define INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)
@@ -61,9 +77,6 @@
 #else
 #define dbg(x)
 #endif
-
-namespace R = std::ranges;
-namespace V = std::views;
 
 using namespace std;
 
