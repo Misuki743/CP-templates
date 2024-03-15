@@ -6,6 +6,7 @@ https://misuki743.github.io/CP-templates/
 
 # TODO
 
+- prim's O(n^2) MST algorithm
 - doubling(support mataining commutative monoid)
 - rolling hash
 - add lower bound parameter to MCMF::addEdge
