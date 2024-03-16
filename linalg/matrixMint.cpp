@@ -37,8 +37,8 @@ struct matrix : vector<vector<Mint>> {
     assert(m() == b.n());
     auto res = matrix(n(), b.m());
     for(int i = 0; i < n(); i++)
-      for(int j = 0; j < b.m(); j++)
-        for(int k = 0; k < m(); k++)
+      for(int k = 0; k < m(); k++)
+        for(int j = 0; j < b.m(); j++)
           res[i][j] += (*this)[i][k] * b[k][j];
     this -> swap(res);
     return *this;
