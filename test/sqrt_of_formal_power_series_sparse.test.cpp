@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse"
+#define PROBLEM "https://judge.yosupo.jp/problem/sqrt_of_formal_power_series_sparse"
 
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
@@ -18,7 +18,12 @@ signed main() {
     f[j] = val;
   }
 
-  cout << sparseInv(f, n) << '\n';
+  auto g = sparseSqrt(f, n);
+  if (g.empty())
+    cout << -1 << '\n';
+  else
+    cout << g << '\n';
+
 
   return 0;
 }

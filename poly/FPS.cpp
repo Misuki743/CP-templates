@@ -99,11 +99,11 @@ struct FPS : vector<Mint> {
       return {{{}, F}};
     int n = ssize(F) - ssize(G) + 1;
     auto FR = F, GR = G;
-    R::reverse(FR);
-    R::reverse(GR);
+    ranges::reverse(FR);
+    ranges::reverse(GR);
     FPS Q = FR * GR.inv(n);
     Q.resize(n);
-    R::reverse(Q);
+    ranges::reverse(Q);
     return {Q, (F - G * Q).shrink()};
   }
 

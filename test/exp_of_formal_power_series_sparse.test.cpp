@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse"
+#define PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse"
 
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
@@ -18,7 +18,7 @@ signed main() {
     f[j] = val;
   }
 
-  cout << sparseInv(f, n) << '\n';
+  cout << sparseExp(f, n) << '\n';
 
   return 0;
 }

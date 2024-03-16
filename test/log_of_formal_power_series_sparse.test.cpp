@@ -4,6 +4,8 @@
 #include "../modint/MontgomeryModInt.cpp"
 #include "../poly/NTTmint.cpp"
 #include "../poly/FPS.cpp"
+#include "../combi/binom.cpp"
+#include "../numtheory/sqrtMod.cpp"
 #include "../poly/sparsePolyope.cpp"
 
 signed main() {
