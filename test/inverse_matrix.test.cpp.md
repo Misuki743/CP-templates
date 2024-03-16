@@ -90,8 +90,8 @@ data:
     \ i < n(); i++)\n      for(int j = 0; j < m(); j++)\n        (*this)[i][j] -=\
     \ b[i][j];\n    return *this;\n  }\n\n  matrix& operator*=(const matrix &b) {\n\
     \    assert(m() == b.n());\n    auto res = matrix(n(), b.m());\n    for(int i\
-    \ = 0; i < n(); i++)\n      for(int j = 0; j < b.m(); j++)\n        for(int k\
-    \ = 0; k < m(); k++)\n          res[i][j] += (*this)[i][k] * b[k][j];\n    this\
+    \ = 0; i < n(); i++)\n      for(int k = 0; k < m(); k++)\n        for(int j =\
+    \ 0; j < b.m(); j++)\n          res[i][j] += (*this)[i][k] * b[k][j];\n    this\
     \ -> swap(res);\n    return *this;\n  }\n\n  matrix pow(ll k) const {\n    assert(n()\
     \ == m());\n    auto res = I(n()), base = *this;\n    while(k) {\n      if (k\
     \ & 1) res *= base;\n      base *= base, k >>= 1;\n    }\n    return res;\n  }\n\
@@ -144,7 +144,7 @@ data:
   isVerificationFile: true
   path: test/inverse_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-01-24 20:41:29+08:00'
+  timestamp: '2024-03-16 14:38:00+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/inverse_matrix.test.cpp
