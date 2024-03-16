@@ -1,3 +1,5 @@
+//#include<modint/MontgomeryModInt.cpp>
+
 template<class Mint>
 struct binomial {
   vector<Mint> _fac, _facInv;
@@ -14,4 +16,5 @@ struct binomial {
   Mint fac(int i) { return i < 0 ? 0 : _fac[i]; }
   Mint faci(int i) { return i < 0 ? 0 : _facInv[i]; }
   Mint binom(int n, int r) { return r < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }
+  Mint inv(int i) { return _facInv[i] * _fac[i - 1]; }
 };
