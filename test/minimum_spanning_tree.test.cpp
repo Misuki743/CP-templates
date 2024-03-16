@@ -3,16 +3,23 @@
 #include "../default/t.cpp"
 #include "../ds/DSU.cpp"
 #include "../graph/Kruskal.cpp"
+#include "../graph/Prim.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
-  int n, m; cin >> n >> m;
+  ll n, m; cin >> n >> m;
   vector<array<ll, 3>> e(m);
   for(auto &[u, v, w] : e)
     cin >> u >> v >> w;
 
-  auto [cost, eid] = Kruskal(e, n);
+  ll cost;
+  vector<int> eid;
+  if (n * n < m * (int)bit_width((unsigned)m))
+    tie(cost, eid) = Prim(e, n);
+  else
+    tie(cost, eid) = Kruskal(e, n);
+
   cout << cost << '\n';
   cout << eid << '\n';
 
