@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: combi/binom.cpp
     title: combi/binom.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/sqrtMod.cpp
     title: numtheory/sqrtMod.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sparsePolyope.cpp
     title: poly/sparsePolyope.cpp
   _extendedRequiredBy: []
@@ -190,14 +190,15 @@ data:
     \ b; }\n  friend FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS\
     \ operator/(FPS a, Mint b) { return a /= b; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\n\
     template<>\nfunction<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\n\
-    #line 1 \"combi/binom.cpp\"\ntemplate<class Mint>\nstruct binomial {\n  vector<Mint>\
-    \ _fac, _facInv;\n  binomial(int size) : _fac(size), _facInv(size) {\n    _fac[0]\
-    \ = 1;\n    for(int i = 1; i < size; i++)\n      _fac[i] = _fac[i - 1] * i;\n\
-    \    if (size > 0)\n      _facInv.back() = 1 / _fac.back();\n    for(int i = size\
-    \ - 2; i >= 0; i--)\n      _facInv[i] = _facInv[i + 1] * (i + 1);\n  }\n\n  Mint\
-    \ fac(int i) { return i < 0 ? 0 : _fac[i]; }\n  Mint faci(int i) { return i <\
-    \ 0 ? 0 : _facInv[i]; }\n  Mint binom(int n, int r) { return r < 0 or n < r ?\
-    \ 0 : fac(n) * faci(r) * faci(n - r); }\n};\n#line 1 \"numtheory/sqrtMod.cpp\"\
+    #line 1 \"combi/binom.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\ntemplate<class\
+    \ Mint>\nstruct binomial {\n  vector<Mint> _fac, _facInv;\n  binomial(int size)\
+    \ : _fac(size), _facInv(size) {\n    _fac[0] = 1;\n    for(int i = 1; i < size;\
+    \ i++)\n      _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n      _facInv.back()\
+    \ = 1 / _fac.back();\n    for(int i = size - 2; i >= 0; i--)\n      _facInv[i]\
+    \ = _facInv[i + 1] * (i + 1);\n  }\n\n  Mint fac(int i) { return i < 0 ? 0 : _fac[i];\
+    \ }\n  Mint faci(int i) { return i < 0 ? 0 : _facInv[i]; }\n  Mint binom(int n,\
+    \ int r) { return r < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n  Mint\
+    \ inv(int i) { return _facInv[i] * _fac[i - 1]; }\n};\n#line 1 \"numtheory/sqrtMod.cpp\"\
     \n//source: KACTL\n\nll modpow(ll b, ll e, ll p) {\n  ll ans = 1;\n  for(; e;\
     \ b = b * b % p, e /= 2)\n    if (e & 1) ans = ans * b % p;\n  return ans;\n}\n\
     \nll sqrt(ll a, ll p) {\n\ta %= p; if (a < 0) a += p;\n\tif (a == 0) return 0;\n\
@@ -285,7 +286,7 @@ data:
   isVerificationFile: true
   path: test/inv_of_formal_power_series_sparse.test.cpp
   requiredBy: []
-  timestamp: '2024-03-16 18:32:12+08:00'
+  timestamp: '2024-03-16 18:46:56+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/inv_of_formal_power_series_sparse.test.cpp

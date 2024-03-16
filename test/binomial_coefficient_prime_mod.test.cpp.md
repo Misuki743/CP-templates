@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: combi/binom.cpp
     title: combi/binom.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -71,14 +71,15 @@ data:
     \ mint operator/(mint a, mint b) { return a /= b; }\n\n  friend ostream& operator<<(ostream&\
     \ os, const mint& b) {\n    return os << b._val;\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    long long val;\n    is >> val;\n    b = mint(val);\n   \
-    \ return is;\n  }\n};\n#line 1 \"combi/binom.cpp\"\ntemplate<class Mint>\nstruct\
-    \ binomial {\n  vector<Mint> _fac, _facInv;\n  binomial(int size) : _fac(size),\
-    \ _facInv(size) {\n    _fac[0] = 1;\n    for(int i = 1; i < size; i++)\n     \
-    \ _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n      _facInv.back() = 1 / _fac.back();\n\
-    \    for(int i = size - 2; i >= 0; i--)\n      _facInv[i] = _facInv[i + 1] * (i\
-    \ + 1);\n  }\n\n  Mint fac(int i) { return i < 0 ? 0 : _fac[i]; }\n  Mint faci(int\
-    \ i) { return i < 0 ? 0 : _facInv[i]; }\n  Mint binom(int n, int r) { return r\
-    \ < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n};\n#line 6 \"test/binomial_coefficient_prime_mod.test.cpp\"\
+    \ return is;\n  }\n};\n#line 1 \"combi/binom.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
+    \ntemplate<class Mint>\nstruct binomial {\n  vector<Mint> _fac, _facInv;\n  binomial(int\
+    \ size) : _fac(size), _facInv(size) {\n    _fac[0] = 1;\n    for(int i = 1; i\
+    \ < size; i++)\n      _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n      _facInv.back()\
+    \ = 1 / _fac.back();\n    for(int i = size - 2; i >= 0; i--)\n      _facInv[i]\
+    \ = _facInv[i + 1] * (i + 1);\n  }\n\n  Mint fac(int i) { return i < 0 ? 0 : _fac[i];\
+    \ }\n  Mint faci(int i) { return i < 0 ? 0 : _facInv[i]; }\n  Mint binom(int n,\
+    \ int r) { return r < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n  Mint\
+    \ inv(int i) { return _facInv[i] * _fac[i - 1]; }\n};\n#line 6 \"test/binomial_coefficient_prime_mod.test.cpp\"\
     \n\nll mint::MOD;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
     \n  int t; cin >> t >> mint::MOD;\n  binomial<mint> bn(min(mint::MOD, 10000000ll));\n\
     \  while(t--) {\n    int n, k; cin >> n >> k;\n    cout << bn.binom(n, k) << '\\\
@@ -96,7 +97,7 @@ data:
   isVerificationFile: true
   path: test/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2024-03-02 02:00:27+08:00'
+  timestamp: '2024-03-16 18:46:56+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/binomial_coefficient_prime_mod.test.cpp
