@@ -1,19 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: combi/binom.cpp
+    title: combi/binom.cpp
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: numtheory/sqrtMod.cpp
+    title: numtheory/sqrtMod.cpp
+  - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sparsePolyope.cpp
     title: poly/sparsePolyope.cpp
   _extendedRequiredBy: []
@@ -141,35 +147,35 @@ data:
     \ Q);\n      Q.resize(1 << i, 0);\n    }\n    Q.resize(k);\n    return Q;\n  }\n\
     \n  array<FPS, 2> div(FPS G) {\n    FPS F = this -> shrink();\n    G = G.shrink();\n\
     \    assert(!G.empty());\n    if (ssize(G) > ssize(F))\n      return {{{}, F}};\n\
-    \    int n = ssize(F) - ssize(G) + 1;\n    auto FR = F, GR = G;\n    R::reverse(FR);\n\
-    \    R::reverse(GR);\n    FPS Q = FR * GR.inv(n);\n    Q.resize(n);\n    R::reverse(Q);\n\
-    \    return {Q, (F - G * Q).shrink()};\n  }\n\n  FPS log(int k) {\n    assert(!this\
-    \ -> empty() and (*this)[0] == 1);\n    FPS Q = *this;\n    Q = (Q.derivative()\
-    \ * Q.inv(k));\n    Q.resize(k - 1);\n    return Q.integral();\n  }\n\n  FPS exp(int\
-    \ k) {\n    assert(!this -> empty() and (*this)[0] == 0);\n    FPS Q(1, 1);\n\
-    \    for(int i = 1; (1 << (i - 1)) < k; i++) {\n      FPS P = (*this);\n     \
-    \ P.resize(1 << i, 0);\n      Q = Q * (FPS(1, 1) + P - Q.log(1 << i));\n     \
-    \ Q.resize(1 << i, 0);\n    }\n    Q.resize(k);\n    return Q;\n  }\n\n  FPS pow(ll\
-    \ idx, int k) {\n    if (idx == 0) {\n      FPS res(k, 0);\n      res[0] = 1;\n\
-    \      return res;\n    }\n    for(int i = 0; i < ssize(*this) and i * idx < k;\
-    \ i++) {\n      if ((*this)[i] != 0) {\n        Mint Inv = 1 / (*this)[i];\n \
-    \       FPS Q(ssize(*this) - i);\n        for(int j = i; j < ssize(*this); j++)\n\
-    \          Q[j - i] = (*this)[j] * Inv;\n        Q = (Q.log(k) * idx).exp(k);\n\
-    \        FPS Q2(k, 0);\n        Mint Pow = (*this)[i].pow(idx);\n        for(int\
-    \ j = 0; j + i * idx < k; j++)\n          Q2[j + i * idx] = Q[j] * Pow;\n    \
-    \    return Q2;\n      }\n    } \n    return FPS(k, 0);\n  }\n\n  vector<Mint>\
-    \ multieval(vector<Mint> xs) {\n    int n = ssize(xs);\n    vector<FPS> data(2\
-    \ * n);\n    for(int i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n  \
-    \  for(int i = n - 1; i > 0; i--)\n      data[i] = data[i << 1] * data[i << 1\
-    \ | 1];\n    data[1] = (this -> div(data[1]))[1];\n    for(int i = 1; i < n; i++)\
-    \ {\n      data[i << 1] = data[i].div(data[i << 1])[1];\n      data[i << 1 | 1]\
-    \ = data[i].div(data[i << 1 | 1])[1];\n    }\n    vector<Mint> res(n);\n    for(int\
-    \ i = 0; i < n; i++)\n      res[i] = data[n + i].empty() ? 0 : data[n + i][0];\n\
-    \    return res;\n  }\n\n  static vector<Mint> interpolate(vector<Mint> xs, vector<Mint>\
-    \ ys) {\n    assert(ssize(xs) == ssize(ys));\n    int n = ssize(xs);\n    vector<FPS>\
-    \ data(2 * n), res(2 * n);\n    for(int i = 0; i < n; i++)\n      data[n + i]\
-    \ = {-xs[i], 1};\n    for(int i = n - 1; i > 0; i--)\n      data[i] = data[i <<\
-    \ 1] * data[i << 1 | 1];\n    res[1] = data[1].derivative().div(data[1])[1];\n\
+    \    int n = ssize(F) - ssize(G) + 1;\n    auto FR = F, GR = G;\n    ranges::reverse(FR);\n\
+    \    ranges::reverse(GR);\n    FPS Q = FR * GR.inv(n);\n    Q.resize(n);\n   \
+    \ ranges::reverse(Q);\n    return {Q, (F - G * Q).shrink()};\n  }\n\n  FPS log(int\
+    \ k) {\n    assert(!this -> empty() and (*this)[0] == 1);\n    FPS Q = *this;\n\
+    \    Q = (Q.derivative() * Q.inv(k));\n    Q.resize(k - 1);\n    return Q.integral();\n\
+    \  }\n\n  FPS exp(int k) {\n    assert(!this -> empty() and (*this)[0] == 0);\n\
+    \    FPS Q(1, 1);\n    for(int i = 1; (1 << (i - 1)) < k; i++) {\n      FPS P\
+    \ = (*this);\n      P.resize(1 << i, 0);\n      Q = Q * (FPS(1, 1) + P - Q.log(1\
+    \ << i));\n      Q.resize(1 << i, 0);\n    }\n    Q.resize(k);\n    return Q;\n\
+    \  }\n\n  FPS pow(ll idx, int k) {\n    if (idx == 0) {\n      FPS res(k, 0);\n\
+    \      res[0] = 1;\n      return res;\n    }\n    for(int i = 0; i < ssize(*this)\
+    \ and i * idx < k; i++) {\n      if ((*this)[i] != 0) {\n        Mint Inv = 1\
+    \ / (*this)[i];\n        FPS Q(ssize(*this) - i);\n        for(int j = i; j <\
+    \ ssize(*this); j++)\n          Q[j - i] = (*this)[j] * Inv;\n        Q = (Q.log(k)\
+    \ * idx).exp(k);\n        FPS Q2(k, 0);\n        Mint Pow = (*this)[i].pow(idx);\n\
+    \        for(int j = 0; j + i * idx < k; j++)\n          Q2[j + i * idx] = Q[j]\
+    \ * Pow;\n        return Q2;\n      }\n    } \n    return FPS(k, 0);\n  }\n\n\
+    \  vector<Mint> multieval(vector<Mint> xs) {\n    int n = ssize(xs);\n    vector<FPS>\
+    \ data(2 * n);\n    for(int i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n\
+    \    for(int i = n - 1; i > 0; i--)\n      data[i] = data[i << 1] * data[i <<\
+    \ 1 | 1];\n    data[1] = (this -> div(data[1]))[1];\n    for(int i = 1; i < n;\
+    \ i++) {\n      data[i << 1] = data[i].div(data[i << 1])[1];\n      data[i <<\
+    \ 1 | 1] = data[i].div(data[i << 1 | 1])[1];\n    }\n    vector<Mint> res(n);\n\
+    \    for(int i = 0; i < n; i++)\n      res[i] = data[n + i].empty() ? 0 : data[n\
+    \ + i][0];\n    return res;\n  }\n\n  static vector<Mint> interpolate(vector<Mint>\
+    \ xs, vector<Mint> ys) {\n    assert(ssize(xs) == ssize(ys));\n    int n = ssize(xs);\n\
+    \    vector<FPS> data(2 * n), res(2 * n);\n    for(int i = 0; i < n; i++)\n  \
+    \    data[n + i] = {-xs[i], 1};\n    for(int i = n - 1; i > 0; i--)\n      data[i]\
+    \ = data[i << 1] * data[i << 1 | 1];\n    res[1] = data[1].derivative().div(data[1])[1];\n\
     \    for(int i = 1; i < n; i++) {\n      res[i << 1] = res[i].div(data[i << 1])[1];\n\
     \      res[i << 1 | 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int\
     \ i = 0; i < n; i++)\n      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int\
@@ -184,42 +190,102 @@ data:
     \ b; }\n  friend FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS\
     \ operator/(FPS a, Mint b) { return a /= b; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\n\
     template<>\nfunction<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\n\
-    #line 1 \"poly/sparsePolyope.cpp\"\n//#include<poly/FPS.cpp>\n//#include<poly/NTTmint.cpp>\n\
-    //#include<modint/MontgomeryModInt.cpp>\n\nnamespace sparsePolyope {\n  template<class\
-    \ Mint>\n  vector<pair<int, Mint>> sparsify(FPS<Mint> f) {\n    vector<pair<int,\
-    \ Mint>> g;\n    for(int i = 0; i < ssize(f); i++)\n      if (f[i] != 0)\n   \
-    \     g.emplace_back(i, f[i]);\n    return g;\n  }\n  template<class Mint>\n \
-    \ FPS<Mint> sparseInv(FPS<Mint> f, int k) {\n    assert(f[0] != 0);\n    FPS<Mint>\
-    \ g(k);\n    Mint inv = 1 / f[0];\n    g[0] = 1;\n    auto fs = sparsify(f);\n\
-    \    for(int i = 0; i < k; i++) {\n      for(auto [j, val] : fs | V::drop(1))\n\
-    \        if (j <= i)\n          g[i] -= g[i - j] * val;\n      g[i] *= inv;\n\
-    \    }\n    return g;\n  }\n  template<class Mint>\n  FPS<Mint> sparseLog(FPS<Mint>\
-    \ f, int k) {\n    assert(f[0] == 1);\n    auto invf = sparseInv(f, k);\n    auto\
+    #line 1 \"combi/binom.cpp\"\ntemplate<class Mint>\nstruct binomial {\n  vector<Mint>\
+    \ _fac, _facInv;\n  binomial(int size) : _fac(size), _facInv(size) {\n    _fac[0]\
+    \ = 1;\n    for(int i = 1; i < size; i++)\n      _fac[i] = _fac[i - 1] * i;\n\
+    \    if (size > 0)\n      _facInv.back() = 1 / _fac.back();\n    for(int i = size\
+    \ - 2; i >= 0; i--)\n      _facInv[i] = _facInv[i + 1] * (i + 1);\n  }\n\n  Mint\
+    \ fac(int i) { return i < 0 ? 0 : _fac[i]; }\n  Mint faci(int i) { return i <\
+    \ 0 ? 0 : _facInv[i]; }\n  Mint binom(int n, int r) { return r < 0 or n < r ?\
+    \ 0 : fac(n) * faci(r) * faci(n - r); }\n};\n#line 1 \"numtheory/sqrtMod.cpp\"\
+    \n//source: KACTL\n\nll modpow(ll b, ll e, ll p) {\n  ll ans = 1;\n  for(; e;\
+    \ b = b * b % p, e /= 2)\n    if (e & 1) ans = ans * b % p;\n  return ans;\n}\n\
+    \nll sqrt(ll a, ll p) {\n\ta %= p; if (a < 0) a += p;\n\tif (a == 0) return 0;\n\
+    \t//assert(modpow(a, (p-1)/2, p) == 1); // else no solution\n  if (modpow(a, (p-1)/2,\
+    \ p) != 1) return -1;\n\tif (p % 4 == 3) return modpow(a, (p+1)/4, p);\n\t// a^(n+3)/8\
+    \ or 2^(n+3)/8 * 2^(n-1)/4 works if p % 8 == 5\n\tll s = p - 1, n = 2;\n\tint\
+    \ r = 0, m;\n\twhile (s % 2 == 0)\n\t\t++r, s /= 2;\n\t/// find a non-square mod\
+    \ p\n\twhile (modpow(n, (p - 1) / 2, p) != p - 1) ++n;\n\tll x = modpow(a, (s\
+    \ + 1) / 2, p);\n\tll b = modpow(a, s, p), g = modpow(n, s, p);\n\tfor (;; r =\
+    \ m) {\n\t\tll t = b;\n\t\tfor (m = 0; m < r && t != 1; ++m)\n\t\t\tt = t * t\
+    \ % p;\n\t\tif (m == 0) return x;\n\t\tll gs = modpow(g, 1LL << (r - m - 1), p);\n\
+    \t\tg = gs * gs % p;\n\t\tx = x * gs % p;\n\t\tb = b * g % p;\n\t}\n}\n#line 1\
+    \ \"poly/sparsePolyope.cpp\"\n//#include<poly/FPS.cpp>\n//#include<poly/NTTmint.cpp>\n\
+    //#include<modint/MontgomeryModInt.cpp>\n//#include<combi/binom.cpp>\n//#include<numtheory/sqrtMod.cpp>\n\
+    \nnamespace sparsePolyope {\n  template<class Mint>\n  vector<pair<int, Mint>>\
+    \ sparsify(FPS<Mint> f) {\n    vector<pair<int, Mint>> g;\n    for(int i = 0;\
+    \ i < ssize(f); i++)\n      if (f[i] != 0)\n        g.emplace_back(i, f[i]);\n\
+    \    return g;\n  }\n  template<class Mint>\n  FPS<Mint> sparseInv(FPS<Mint> f,\
+    \ int k) {\n    assert(f[0] != 0);\n    FPS<Mint> g(k);\n    Mint inv = 1 / f[0];\n\
+    \    g[0] = 1;\n    auto fs = sparsify(f);\n    for(int i = 0; i < k; i++) {\n\
+    \      for(auto [j, val] : fs | views::drop(1))\n        if (j <= i)\n       \
+    \   g[i] -= g[i - j] * val;\n      g[i] *= inv;\n    }\n    return g;\n  }\n \
+    \ template<class Mint>\n  FPS<Mint> sparseExp(FPS<Mint> f, int k) {\n    assert(f[0]\
+    \ == 0);\n    binomial<Mint> bn(k);\n    FPS<Mint> g(k);\n    g[0] = 1;\n    auto\
+    \ fs = sparsify(f);\n    for(auto &[i, val] : fs) val *= i--;\n    for(int i =\
+    \ 0; i < k - 1; i++) {\n      for(auto [j, val] : fs)\n        if (j <= i)\n \
+    \         g[i + 1] += g[i - j] * val;\n      g[i + 1] *= bn.inv(i + 1);\n    }\n\
+    \    return g;\n  }\n  template<class Mint>\n  FPS<Mint> sparseLog(FPS<Mint> f,\
+    \ int k) {\n    assert(f[0] == 1);\n    auto invf = sparseInv(f, k);\n    auto\
     \ fs = sparsify(f.derivative());\n    FPS<Mint> g(k - 1);\n    for(int i = 0;\
     \ i < k - 1; i++)\n      for(auto [j, val] : fs)\n        if (j <= i)\n      \
-    \    g[i] += invf[i - j] * val;\n    return g.integral();\n  }\n}\n\nusing namespace\
-    \ sparsePolyope;\n#line 8 \"test/log_of_formal_power_series_sparse.test.cpp\"\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, k;\
-    \ cin >> n >> k;\n  fps f(n);\n  for(int i = 0; i < k; i++) {\n    int j, val;\
+    \    g[i] += invf[i - j] * val;\n    return g.integral();\n  }\n  template<class\
+    \ Mint>\n  FPS<Mint> sparsePow(FPS<Mint> f, ll idx, int k) {\n    if (idx == 0)\
+    \ {\n      FPS<Mint> g(k);\n      g[0] = 1;\n      return g;\n    } else if (f[0]\
+    \ == 0) {\n      for(int i = 0; i < ssize(f) and i * idx < k; i++) {\n       \
+    \ if (f[i] != 0) {\n          FPS<Mint> g = sparsePow<Mint>({f.begin() + i, f.end()},\
+    \ idx, k - i * idx);\n          g.resize(k);\n          for(int j = k - 1; j >=\
+    \ i * idx; j--)\n            swap(g[j], g[j - i * idx]);\n          return g;\n\
+    \        }\n      }\n      return FPS<Mint>(k);\n    } else {\n      Mint inv\
+    \ = 1 / f[0];\n      vector<Mint> g(k), gd(k - 1);\n      binomial<Mint> bn(k);\n\
+    \      g[0] = f[0].pow(idx);\n      auto fs = sparsify(f);\n      auto fds = fs;\n\
+    \      fds.erase(fds.begin());\n      for(auto &[i, val] : fds) val *= i--;\n\
+    \      for(int i = 0; i < k - 1; i++) {\n        for(auto [j, val] : fds)\n  \
+    \        if (j <= i)\n            gd[i] += g[i - j] * val;\n        gd[i] *= idx;\n\
+    \        for(auto [j, val] : fs)\n          if (0 < j and j <= i)\n          \
+    \  gd[i] -= gd[i - j] * val;\n        gd[i] *= inv;\n        g[i + 1] = gd[i]\
+    \ * bn.inv(i + 1);\n      }\n      return g;\n    }\n  }\n  template<class Mint>\n\
+    \  FPS<Mint> sparseSqrt(FPS<Mint> f, int k) {\n    if (f[0] == 0) {\n      for(int\
+    \ i = 0; i < ssize(f) and i < 2 * k; i++) {\n        if (f[i] != 0) {\n      \
+    \    if (i & 1) return FPS<Mint>();\n          FPS<Mint> g = sparseSqrt<Mint>({f.begin()\
+    \ + i, f.end()}, k - i / 2);\n          if (g.empty()) return g;\n          g.resize(k);\n\
+    \          for(int j = k - 1; j >= i / 2; j--)\n            swap(g[j], g[j - i\
+    \ / 2]);\n          return g;\n        }\n      }\n      return FPS<Mint>(k);\n\
+    \    } else {\n      Mint inv = 1 / f[0];\n      vector<Mint> g(k), gd(k - 1);\n\
+    \      binomial<Mint> bn(k);\n      if (ll x = sqrt(f[0].get(), Mint::get_mod());\
+    \ x == -1)\n        return FPS<Mint>();\n      else\n        g[0] = x;\n     \
+    \ auto fs = sparsify(f);\n      auto fds = fs;\n      fds.erase(fds.begin());\n\
+    \      for(auto &[i, val] : fds) val *= i--;\n      Mint half = Mint(1) / 2;\n\
+    \      for(int i = 0; i < k - 1; i++) {\n        for(auto [j, val] : fds)\n  \
+    \        if (j <= i)\n            gd[i] += g[i - j] * val;\n        gd[i] *= half;\n\
+    \        for(auto [j, val] : fs)\n          if (0 < j and j <= i)\n          \
+    \  gd[i] -= gd[i - j] * val;\n        gd[i] *= inv;\n        g[i + 1] = gd[i]\
+    \ * bn.inv(i + 1);\n      }\n      return g;\n    }\n  }\n}\n\nusing namespace\
+    \ sparsePolyope;\n#line 10 \"test/log_of_formal_power_series_sparse.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ k; cin >> n >> k;\n  fps f(n);\n  for(int i = 0; i < k; i++) {\n    int j, val;\
     \ cin >> j >> val;\n    f[j] = val;\n  }\n\n  cout << sparseLog(f, n) << '\\n';\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
     \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"\
-    ../poly/sparsePolyope.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, k; cin >> n >> k;\n  fps f(n);\n  for(int i = 0;\
-    \ i < k; i++) {\n    int j, val; cin >> j >> val;\n    f[j] = val;\n  }\n\n  cout\
-    \ << sparseLog(f, n) << '\\n';\n\n  return 0;\n}\n"
+    ../combi/binom.cpp\"\n#include \"../numtheory/sqrtMod.cpp\"\n#include \"../poly/sparsePolyope.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ k; cin >> n >> k;\n  fps f(n);\n  for(int i = 0; i < k; i++) {\n    int j, val;\
+    \ cin >> j >> val;\n    f[j] = val;\n  }\n\n  cout << sparseLog(f, n) << '\\n';\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
   - poly/FPS.cpp
+  - combi/binom.cpp
+  - numtheory/sqrtMod.cpp
   - poly/sparsePolyope.cpp
   isVerificationFile: true
   path: test/log_of_formal_power_series_sparse.test.cpp
   requiredBy: []
-  timestamp: '2024-02-06 18:26:29+08:00'
+  timestamp: '2024-03-16 18:32:12+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/log_of_formal_power_series_sparse.test.cpp

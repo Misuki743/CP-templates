@@ -2,42 +2,51 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: combi/binom.cpp
+    title: combi/binom.cpp
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   - icon: ':question:'
+    path: numtheory/sqrtMod.cpp
+    title: numtheory/sqrtMod.cpp
+  - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
   - icon: ':question:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
+  - icon: ':question:'
+    path: poly/sparsePolyope.cpp
+    title: poly/sparsePolyope.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse
     links:
-    - https://judge.yosupo.jp/problem/inv_of_formal_power_series
-  bundledCode: "#line 1 \"test/inv_of_formal_power_series.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\n\n#line 1 \"\
-    default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include <bit>\n#include\
-    \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
-    \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
-    \ <cmath>\n#include <compare>\n#include <complex>\n#include <concepts>\n#include\
-    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
-    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
-    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
-    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
-    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numbers>\n\
-    #include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
-    #include <ranges>\n#include <set>\n#include <span>\n#include <sstream>\n#include\
-    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
+    - https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse
+  bundledCode: "#line 1 \"test/pow_of_formal_power_series_sparse.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse\"\
+    \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
+    \ <bit>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n\
+    #include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n\
+    #include <cmath>\n#include <compare>\n#include <complex>\n#include <concepts>\n\
+    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
+    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
+    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
+    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
+    #include <numbers>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
+    #include <random>\n#include <ranges>\n#include <set>\n#include <span>\n#include\
+    \ <sstream>\n#include <stack>\n#include <streambuf>\n#include <string>\n#include\
+    \ <tuple>\n#include <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
     \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nnamespace R = std::ranges;\nnamespace V = std::views;\n\nusing namespace std;\n\
@@ -181,30 +190,108 @@ data:
     \ b; }\n  friend FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS\
     \ operator/(FPS a, Mint b) { return a /= b; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\n\
     template<>\nfunction<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\n\
-    #line 7 \"test/inv_of_formal_power_series.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  fps f(n);\n  for(mint &x : f)\n    cin\
-    \ >> x;\n\n  cout << f.inv(n) << '\\n';\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
+    #line 1 \"combi/binom.cpp\"\ntemplate<class Mint>\nstruct binomial {\n  vector<Mint>\
+    \ _fac, _facInv;\n  binomial(int size) : _fac(size), _facInv(size) {\n    _fac[0]\
+    \ = 1;\n    for(int i = 1; i < size; i++)\n      _fac[i] = _fac[i - 1] * i;\n\
+    \    if (size > 0)\n      _facInv.back() = 1 / _fac.back();\n    for(int i = size\
+    \ - 2; i >= 0; i--)\n      _facInv[i] = _facInv[i + 1] * (i + 1);\n  }\n\n  Mint\
+    \ fac(int i) { return i < 0 ? 0 : _fac[i]; }\n  Mint faci(int i) { return i <\
+    \ 0 ? 0 : _facInv[i]; }\n  Mint binom(int n, int r) { return r < 0 or n < r ?\
+    \ 0 : fac(n) * faci(r) * faci(n - r); }\n};\n#line 1 \"numtheory/sqrtMod.cpp\"\
+    \n//source: KACTL\n\nll modpow(ll b, ll e, ll p) {\n  ll ans = 1;\n  for(; e;\
+    \ b = b * b % p, e /= 2)\n    if (e & 1) ans = ans * b % p;\n  return ans;\n}\n\
+    \nll sqrt(ll a, ll p) {\n\ta %= p; if (a < 0) a += p;\n\tif (a == 0) return 0;\n\
+    \t//assert(modpow(a, (p-1)/2, p) == 1); // else no solution\n  if (modpow(a, (p-1)/2,\
+    \ p) != 1) return -1;\n\tif (p % 4 == 3) return modpow(a, (p+1)/4, p);\n\t// a^(n+3)/8\
+    \ or 2^(n+3)/8 * 2^(n-1)/4 works if p % 8 == 5\n\tll s = p - 1, n = 2;\n\tint\
+    \ r = 0, m;\n\twhile (s % 2 == 0)\n\t\t++r, s /= 2;\n\t/// find a non-square mod\
+    \ p\n\twhile (modpow(n, (p - 1) / 2, p) != p - 1) ++n;\n\tll x = modpow(a, (s\
+    \ + 1) / 2, p);\n\tll b = modpow(a, s, p), g = modpow(n, s, p);\n\tfor (;; r =\
+    \ m) {\n\t\tll t = b;\n\t\tfor (m = 0; m < r && t != 1; ++m)\n\t\t\tt = t * t\
+    \ % p;\n\t\tif (m == 0) return x;\n\t\tll gs = modpow(g, 1LL << (r - m - 1), p);\n\
+    \t\tg = gs * gs % p;\n\t\tx = x * gs % p;\n\t\tb = b * g % p;\n\t}\n}\n#line 1\
+    \ \"poly/sparsePolyope.cpp\"\n//#include<poly/FPS.cpp>\n//#include<poly/NTTmint.cpp>\n\
+    //#include<modint/MontgomeryModInt.cpp>\n//#include<combi/binom.cpp>\n//#include<numtheory/sqrtMod.cpp>\n\
+    \nnamespace sparsePolyope {\n  template<class Mint>\n  vector<pair<int, Mint>>\
+    \ sparsify(FPS<Mint> f) {\n    vector<pair<int, Mint>> g;\n    for(int i = 0;\
+    \ i < ssize(f); i++)\n      if (f[i] != 0)\n        g.emplace_back(i, f[i]);\n\
+    \    return g;\n  }\n  template<class Mint>\n  FPS<Mint> sparseInv(FPS<Mint> f,\
+    \ int k) {\n    assert(f[0] != 0);\n    FPS<Mint> g(k);\n    Mint inv = 1 / f[0];\n\
+    \    g[0] = 1;\n    auto fs = sparsify(f);\n    for(int i = 0; i < k; i++) {\n\
+    \      for(auto [j, val] : fs | views::drop(1))\n        if (j <= i)\n       \
+    \   g[i] -= g[i - j] * val;\n      g[i] *= inv;\n    }\n    return g;\n  }\n \
+    \ template<class Mint>\n  FPS<Mint> sparseExp(FPS<Mint> f, int k) {\n    assert(f[0]\
+    \ == 0);\n    binomial<Mint> bn(k);\n    FPS<Mint> g(k);\n    g[0] = 1;\n    auto\
+    \ fs = sparsify(f);\n    for(auto &[i, val] : fs) val *= i--;\n    for(int i =\
+    \ 0; i < k - 1; i++) {\n      for(auto [j, val] : fs)\n        if (j <= i)\n \
+    \         g[i + 1] += g[i - j] * val;\n      g[i + 1] *= bn.inv(i + 1);\n    }\n\
+    \    return g;\n  }\n  template<class Mint>\n  FPS<Mint> sparseLog(FPS<Mint> f,\
+    \ int k) {\n    assert(f[0] == 1);\n    auto invf = sparseInv(f, k);\n    auto\
+    \ fs = sparsify(f.derivative());\n    FPS<Mint> g(k - 1);\n    for(int i = 0;\
+    \ i < k - 1; i++)\n      for(auto [j, val] : fs)\n        if (j <= i)\n      \
+    \    g[i] += invf[i - j] * val;\n    return g.integral();\n  }\n  template<class\
+    \ Mint>\n  FPS<Mint> sparsePow(FPS<Mint> f, ll idx, int k) {\n    if (idx == 0)\
+    \ {\n      FPS<Mint> g(k);\n      g[0] = 1;\n      return g;\n    } else if (f[0]\
+    \ == 0) {\n      for(int i = 0; i < ssize(f) and i * idx < k; i++) {\n       \
+    \ if (f[i] != 0) {\n          FPS<Mint> g = sparsePow<Mint>({f.begin() + i, f.end()},\
+    \ idx, k - i * idx);\n          g.resize(k);\n          for(int j = k - 1; j >=\
+    \ i * idx; j--)\n            swap(g[j], g[j - i * idx]);\n          return g;\n\
+    \        }\n      }\n      return FPS<Mint>(k);\n    } else {\n      Mint inv\
+    \ = 1 / f[0];\n      vector<Mint> g(k), gd(k - 1);\n      binomial<Mint> bn(k);\n\
+    \      g[0] = f[0].pow(idx);\n      auto fs = sparsify(f);\n      auto fds = fs;\n\
+    \      fds.erase(fds.begin());\n      for(auto &[i, val] : fds) val *= i--;\n\
+    \      for(int i = 0; i < k - 1; i++) {\n        for(auto [j, val] : fds)\n  \
+    \        if (j <= i)\n            gd[i] += g[i - j] * val;\n        gd[i] *= idx;\n\
+    \        for(auto [j, val] : fs)\n          if (0 < j and j <= i)\n          \
+    \  gd[i] -= gd[i - j] * val;\n        gd[i] *= inv;\n        g[i + 1] = gd[i]\
+    \ * bn.inv(i + 1);\n      }\n      return g;\n    }\n  }\n  template<class Mint>\n\
+    \  FPS<Mint> sparseSqrt(FPS<Mint> f, int k) {\n    if (f[0] == 0) {\n      for(int\
+    \ i = 0; i < ssize(f) and i < 2 * k; i++) {\n        if (f[i] != 0) {\n      \
+    \    if (i & 1) return FPS<Mint>();\n          FPS<Mint> g = sparseSqrt<Mint>({f.begin()\
+    \ + i, f.end()}, k - i / 2);\n          if (g.empty()) return g;\n          g.resize(k);\n\
+    \          for(int j = k - 1; j >= i / 2; j--)\n            swap(g[j], g[j - i\
+    \ / 2]);\n          return g;\n        }\n      }\n      return FPS<Mint>(k);\n\
+    \    } else {\n      Mint inv = 1 / f[0];\n      vector<Mint> g(k), gd(k - 1);\n\
+    \      binomial<Mint> bn(k);\n      if (ll x = sqrt(f[0].get(), Mint::get_mod());\
+    \ x == -1)\n        return FPS<Mint>();\n      else\n        g[0] = x;\n     \
+    \ auto fs = sparsify(f);\n      auto fds = fs;\n      fds.erase(fds.begin());\n\
+    \      for(auto &[i, val] : fds) val *= i--;\n      Mint half = Mint(1) / 2;\n\
+    \      for(int i = 0; i < k - 1; i++) {\n        for(auto [j, val] : fds)\n  \
+    \        if (j <= i)\n            gd[i] += g[i - j] * val;\n        gd[i] *= half;\n\
+    \        for(auto [j, val] : fs)\n          if (0 < j and j <= i)\n          \
+    \  gd[i] -= gd[i - j] * val;\n        gd[i] *= inv;\n        g[i + 1] = gd[i]\
+    \ * bn.inv(i + 1);\n      }\n      return g;\n    }\n  }\n}\n\nusing namespace\
+    \ sparsePolyope;\n#line 10 \"test/pow_of_formal_power_series_sparse.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ k; cin >> n >> k;\n  ll m; cin >> m;\n  fps f(n);\n  for(int i = 0; i < k; i++)\
+    \ {\n    int j, val; cin >> j >> val;\n    f[j] = val;\n  }\n\n  cout << sparsePow(f,\
+    \ m, n) << '\\n';\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  fps\
-    \ f(n);\n  for(mint &x : f)\n    cin >> x;\n\n  cout << f.inv(n) << '\\n';\n\n\
-    \  return 0;\n}\n"
+    \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"\
+    ../combi/binom.cpp\"\n#include \"../numtheory/sqrtMod.cpp\"\n#include \"../poly/sparsePolyope.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ k; cin >> n >> k;\n  ll m; cin >> m;\n  fps f(n);\n  for(int i = 0; i < k; i++)\
+    \ {\n    int j, val; cin >> j >> val;\n    f[j] = val;\n  }\n\n  cout << sparsePow(f,\
+    \ m, n) << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
   - poly/FPS.cpp
+  - combi/binom.cpp
+  - numtheory/sqrtMod.cpp
+  - poly/sparsePolyope.cpp
   isVerificationFile: true
-  path: test/inv_of_formal_power_series.test.cpp
+  path: test/pow_of_formal_power_series_sparse.test.cpp
   requiredBy: []
   timestamp: '2024-03-16 18:32:12+08:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/inv_of_formal_power_series.test.cpp
+documentation_of: test/pow_of_formal_power_series_sparse.test.cpp
 layout: document
 redirect_from:
-- /verify/test/inv_of_formal_power_series.test.cpp
-- /verify/test/inv_of_formal_power_series.test.cpp.html
-title: test/inv_of_formal_power_series.test.cpp
+- /verify/test/pow_of_formal_power_series_sparse.test.cpp
+- /verify/test/pow_of_formal_power_series_sparse.test.cpp.html
+title: test/pow_of_formal_power_series_sparse.test.cpp
 ---

@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/exp_of_formal_power_series_sparse.test.cpp
+    title: test/exp_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
@@ -63,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/pow_of_formal_power_series_sparse.test.cpp
+    title: test/pow_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
@@ -87,6 +93,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/sqrt_of_formal_power_series_sparse.test.cpp
+    title: test/sqrt_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_first_kind.test.cpp
     title: test/stirling_number_of_the_first_kind.test.cpp
@@ -102,9 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
@@ -175,7 +184,7 @@ data:
   path: modint/MontgomeryModInt.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/convolution.test.cpp
   - test/pow_of_matrix.test.cpp
@@ -186,6 +195,7 @@ data:
   - test/polynomial_interpolation.test.cpp
   - test/mul_modp_convolution.test.cpp
   - test/bernoulli_number.test.cpp
+  - test/pow_of_formal_power_series_sparse.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/range_set_range_composite.test.cpp
   - test/vertex_set_path_composite.test.cpp
@@ -202,12 +212,14 @@ data:
   - test/yuki_2544.test.cpp
   - test/sharp_p_subset_sum.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/range_affine_range_sum.test.cpp
   - test/point_set_range_composite.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
   - test/division_of_polynomials.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yuki_2613.test.cpp
 documentation_of: modint/MontgomeryModInt.cpp

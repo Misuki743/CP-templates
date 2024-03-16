@@ -32,7 +32,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/bernoulliNumber.cpp
       title: combi/bernoulliNumber.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: combi/binom.cpp
       title: combi/binom.cpp
     - icon: ':heavy_check_mark:'
@@ -40,7 +40,7 @@ data:
       title: combi/stirlingFirst.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -229,7 +229,7 @@ data:
       title: misc/sharpPSubsetSum.cpp
   - name: modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':heavy_check_mark:'
@@ -252,7 +252,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/primitiveRoot.cpp
       title: numtheory/primitiveRoot.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: numtheory/sqrtMod.cpp
       title: numtheory/sqrtMod.cpp
   - name: poly
@@ -269,7 +269,7 @@ data:
     - icon: ':warning:'
       path: poly/FFTmod.cpp
       title: poly/FFTmod.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/FPS.cpp
       title: poly/FPS.cpp
     - icon: ':heavy_check_mark:'
@@ -281,7 +281,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/NTTanymod.cpp
       title: poly/NTTanymod.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/NTTmint.cpp
       title: poly/NTTmint.cpp
     - icon: ':heavy_check_mark:'
@@ -290,7 +290,7 @@ data:
     - icon: ':warning:'
       path: poly/polyope.cpp
       title: poly/polyope.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/sparsePolyope.cpp
       title: poly/sparsePolyope.cpp
   - name: segtree
@@ -416,6 +416,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/exp_of_formal_power_series.test.cpp
       title: test/exp_of_formal_power_series.test.cpp
+    - icon: ':x:'
+      path: test/exp_of_formal_power_series_sparse.test.cpp
+      title: test/exp_of_formal_power_series_sparse.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/factorize.test.cpp
       title: test/factorize.test.cpp
@@ -491,6 +494,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/pow_of_formal_power_series.test.cpp
       title: test/pow_of_formal_power_series.test.cpp
+    - icon: ':x:'
+      path: test/pow_of_formal_power_series_sparse.test.cpp
+      title: test/pow_of_formal_power_series_sparse.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/pow_of_matrix.test.cpp
       title: test/pow_of_matrix.test.cpp
@@ -548,6 +554,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/sqrt_of_formal_power_series.test.cpp
       title: test/sqrt_of_formal_power_series.test.cpp
+    - icon: ':x:'
+      path: test/sqrt_of_formal_power_series_sparse.test.cpp
+      title: test/sqrt_of_formal_power_series_sparse.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/static_RMQ.test.cpp
       title: test/static_RMQ.test.cpp

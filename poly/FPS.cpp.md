@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/exp_of_formal_power_series_sparse.test.cpp
+    title: test/exp_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series.test.cpp
     title: test/inv_of_formal_power_series.test.cpp
@@ -33,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/pow_of_formal_power_series_sparse.test.cpp
+    title: test/pow_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
@@ -42,15 +48,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/sqrt_of_formal_power_series_sparse.test.cpp
+    title: test/sqrt_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_first_kind.test.cpp
     title: test/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/FPS.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
@@ -85,8 +94,8 @@ data:
     \ i, 0);\n    }\n    Q.resize(k);\n    return Q;\n  }\n\n  array<FPS, 2> div(FPS\
     \ G) {\n    FPS F = this -> shrink();\n    G = G.shrink();\n    assert(!G.empty());\n\
     \    if (ssize(G) > ssize(F))\n      return {{{}, F}};\n    int n = ssize(F) -\
-    \ ssize(G) + 1;\n    auto FR = F, GR = G;\n    R::reverse(FR);\n    R::reverse(GR);\n\
-    \    FPS Q = FR * GR.inv(n);\n    Q.resize(n);\n    R::reverse(Q);\n    return\
+    \ ssize(G) + 1;\n    auto FR = F, GR = G;\n    ranges::reverse(FR);\n    ranges::reverse(GR);\n\
+    \    FPS Q = FR * GR.inv(n);\n    Q.resize(n);\n    ranges::reverse(Q);\n    return\
     \ {Q, (F - G * Q).shrink()};\n  }\n\n  FPS log(int k) {\n    assert(!this -> empty()\
     \ and (*this)[0] == 1);\n    FPS Q = *this;\n    Q = (Q.derivative() * Q.inv(k));\n\
     \    Q.resize(k - 1);\n    return Q.integral();\n  }\n\n  FPS exp(int k) {\n \
@@ -159,35 +168,35 @@ data:
     \ Q);\n      Q.resize(1 << i, 0);\n    }\n    Q.resize(k);\n    return Q;\n  }\n\
     \n  array<FPS, 2> div(FPS G) {\n    FPS F = this -> shrink();\n    G = G.shrink();\n\
     \    assert(!G.empty());\n    if (ssize(G) > ssize(F))\n      return {{{}, F}};\n\
-    \    int n = ssize(F) - ssize(G) + 1;\n    auto FR = F, GR = G;\n    R::reverse(FR);\n\
-    \    R::reverse(GR);\n    FPS Q = FR * GR.inv(n);\n    Q.resize(n);\n    R::reverse(Q);\n\
-    \    return {Q, (F - G * Q).shrink()};\n  }\n\n  FPS log(int k) {\n    assert(!this\
-    \ -> empty() and (*this)[0] == 1);\n    FPS Q = *this;\n    Q = (Q.derivative()\
-    \ * Q.inv(k));\n    Q.resize(k - 1);\n    return Q.integral();\n  }\n\n  FPS exp(int\
-    \ k) {\n    assert(!this -> empty() and (*this)[0] == 0);\n    FPS Q(1, 1);\n\
-    \    for(int i = 1; (1 << (i - 1)) < k; i++) {\n      FPS P = (*this);\n     \
-    \ P.resize(1 << i, 0);\n      Q = Q * (FPS(1, 1) + P - Q.log(1 << i));\n     \
-    \ Q.resize(1 << i, 0);\n    }\n    Q.resize(k);\n    return Q;\n  }\n\n  FPS pow(ll\
-    \ idx, int k) {\n    if (idx == 0) {\n      FPS res(k, 0);\n      res[0] = 1;\n\
-    \      return res;\n    }\n    for(int i = 0; i < ssize(*this) and i * idx < k;\
-    \ i++) {\n      if ((*this)[i] != 0) {\n        Mint Inv = 1 / (*this)[i];\n \
-    \       FPS Q(ssize(*this) - i);\n        for(int j = i; j < ssize(*this); j++)\n\
-    \          Q[j - i] = (*this)[j] * Inv;\n        Q = (Q.log(k) * idx).exp(k);\n\
-    \        FPS Q2(k, 0);\n        Mint Pow = (*this)[i].pow(idx);\n        for(int\
-    \ j = 0; j + i * idx < k; j++)\n          Q2[j + i * idx] = Q[j] * Pow;\n    \
-    \    return Q2;\n      }\n    } \n    return FPS(k, 0);\n  }\n\n  vector<Mint>\
-    \ multieval(vector<Mint> xs) {\n    int n = ssize(xs);\n    vector<FPS> data(2\
-    \ * n);\n    for(int i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n  \
-    \  for(int i = n - 1; i > 0; i--)\n      data[i] = data[i << 1] * data[i << 1\
-    \ | 1];\n    data[1] = (this -> div(data[1]))[1];\n    for(int i = 1; i < n; i++)\
-    \ {\n      data[i << 1] = data[i].div(data[i << 1])[1];\n      data[i << 1 | 1]\
-    \ = data[i].div(data[i << 1 | 1])[1];\n    }\n    vector<Mint> res(n);\n    for(int\
-    \ i = 0; i < n; i++)\n      res[i] = data[n + i].empty() ? 0 : data[n + i][0];\n\
-    \    return res;\n  }\n\n  static vector<Mint> interpolate(vector<Mint> xs, vector<Mint>\
-    \ ys) {\n    assert(ssize(xs) == ssize(ys));\n    int n = ssize(xs);\n    vector<FPS>\
-    \ data(2 * n), res(2 * n);\n    for(int i = 0; i < n; i++)\n      data[n + i]\
-    \ = {-xs[i], 1};\n    for(int i = n - 1; i > 0; i--)\n      data[i] = data[i <<\
-    \ 1] * data[i << 1 | 1];\n    res[1] = data[1].derivative().div(data[1])[1];\n\
+    \    int n = ssize(F) - ssize(G) + 1;\n    auto FR = F, GR = G;\n    ranges::reverse(FR);\n\
+    \    ranges::reverse(GR);\n    FPS Q = FR * GR.inv(n);\n    Q.resize(n);\n   \
+    \ ranges::reverse(Q);\n    return {Q, (F - G * Q).shrink()};\n  }\n\n  FPS log(int\
+    \ k) {\n    assert(!this -> empty() and (*this)[0] == 1);\n    FPS Q = *this;\n\
+    \    Q = (Q.derivative() * Q.inv(k));\n    Q.resize(k - 1);\n    return Q.integral();\n\
+    \  }\n\n  FPS exp(int k) {\n    assert(!this -> empty() and (*this)[0] == 0);\n\
+    \    FPS Q(1, 1);\n    for(int i = 1; (1 << (i - 1)) < k; i++) {\n      FPS P\
+    \ = (*this);\n      P.resize(1 << i, 0);\n      Q = Q * (FPS(1, 1) + P - Q.log(1\
+    \ << i));\n      Q.resize(1 << i, 0);\n    }\n    Q.resize(k);\n    return Q;\n\
+    \  }\n\n  FPS pow(ll idx, int k) {\n    if (idx == 0) {\n      FPS res(k, 0);\n\
+    \      res[0] = 1;\n      return res;\n    }\n    for(int i = 0; i < ssize(*this)\
+    \ and i * idx < k; i++) {\n      if ((*this)[i] != 0) {\n        Mint Inv = 1\
+    \ / (*this)[i];\n        FPS Q(ssize(*this) - i);\n        for(int j = i; j <\
+    \ ssize(*this); j++)\n          Q[j - i] = (*this)[j] * Inv;\n        Q = (Q.log(k)\
+    \ * idx).exp(k);\n        FPS Q2(k, 0);\n        Mint Pow = (*this)[i].pow(idx);\n\
+    \        for(int j = 0; j + i * idx < k; j++)\n          Q2[j + i * idx] = Q[j]\
+    \ * Pow;\n        return Q2;\n      }\n    } \n    return FPS(k, 0);\n  }\n\n\
+    \  vector<Mint> multieval(vector<Mint> xs) {\n    int n = ssize(xs);\n    vector<FPS>\
+    \ data(2 * n);\n    for(int i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n\
+    \    for(int i = n - 1; i > 0; i--)\n      data[i] = data[i << 1] * data[i <<\
+    \ 1 | 1];\n    data[1] = (this -> div(data[1]))[1];\n    for(int i = 1; i < n;\
+    \ i++) {\n      data[i << 1] = data[i].div(data[i << 1])[1];\n      data[i <<\
+    \ 1 | 1] = data[i].div(data[i << 1 | 1])[1];\n    }\n    vector<Mint> res(n);\n\
+    \    for(int i = 0; i < n; i++)\n      res[i] = data[n + i].empty() ? 0 : data[n\
+    \ + i][0];\n    return res;\n  }\n\n  static vector<Mint> interpolate(vector<Mint>\
+    \ xs, vector<Mint> ys) {\n    assert(ssize(xs) == ssize(ys));\n    int n = ssize(xs);\n\
+    \    vector<FPS> data(2 * n), res(2 * n);\n    for(int i = 0; i < n; i++)\n  \
+    \    data[n + i] = {-xs[i], 1};\n    for(int i = n - 1; i > 0; i--)\n      data[i]\
+    \ = data[i << 1] * data[i << 1 | 1];\n    res[1] = data[1].derivative().div(data[1])[1];\n\
     \    for(int i = 1; i < n; i++) {\n      res[i << 1] = res[i].div(data[i << 1])[1];\n\
     \      res[i << 1 | 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int\
     \ i = 0; i < n; i++)\n      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int\
@@ -206,13 +215,14 @@ data:
   isVerificationFile: false
   path: poly/FPS.cpp
   requiredBy: []
-  timestamp: '2024-02-06 18:26:29+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-03-16 18:32:12+08:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/exp_of_formal_power_series.test.cpp
   - test/stirling_number_of_the_first_kind.test.cpp
   - test/polynomial_interpolation.test.cpp
   - test/bernoulli_number.test.cpp
+  - test/pow_of_formal_power_series_sparse.test.cpp
   - test/subset_convolution.test.cpp
   - test/inv_of_formal_power_series.test.cpp
   - test/pow_of_formal_power_series.test.cpp
@@ -220,10 +230,12 @@ data:
   - test/log_of_formal_power_series_sparse.test.cpp
   - test/sharp_p_subset_sum.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
   - test/division_of_polynomials.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
 documentation_of: poly/FPS.cpp
 layout: document
 redirect_from:
