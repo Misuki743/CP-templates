@@ -10,6 +10,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/Kruskal.cpp
     title: graph/Kruskal.cpp
+  - icon: ':heavy_check_mark:'
+    path: graph/Prim.cpp
+    title: graph/Prim.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -59,25 +62,41 @@ data:
     \ id.end(), [&e](int i, int j) { return e[i][2] < e[j][2]; });\n\n  T cost = 0;\n\
     \  DSU dsu(n);\n  vector<int> res;\n  for(int i : id) {\n    auto [u, v, w] =\
     \ e[i];\n    if (dsu.merge(u, v)) {\n      cost += w;\n      res.emplace_back(i);\n\
-    \    }\n  }\n  return make_pair(cost, res);\n}\n#line 6 \"test/minimum_spanning_tree.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ m; cin >> n >> m;\n  vector<array<ll, 3>> e(m);\n  for(auto &[u, v, w] : e)\n\
-    \    cin >> u >> v >> w;\n\n  auto [cost, eid] = Kruskal(e, n);\n  cout << cost\
-    \ << '\\n';\n  cout << eid << '\\n';\n\n  return 0;\n}\n"
+    \    }\n  }\n  return make_pair(cost, res);\n}\n#line 1 \"graph/Prim.cpp\"\ntemplate<class\
+    \ T>\npair<T, vector<int>> Prim(vector<array<T, 3>> &e, int n) {\n  vector id(n,\
+    \ vector<int>(n, -1));\n  for(int i = 0; auto [u, v, w] : e) {\n    if (id[u][v]\
+    \ == -1 or w < e[id[u][v]][2])\n      id[u][v] = id[v][u] = i;\n    i++;\n  }\n\
+    \n  T cost = 0;\n  vector<bool> inT(n, false);\n  vector<int> eid, mn = id[0];\n\
+    \  inT[0] = true;\n  for(int i = 0; i < n - 1; i++) {\n    int v = -1;\n    for(int\
+    \ x = 0; x < n; x++)\n      if (!inT[x] and mn[x] != -1 and (v == -1 or e[mn[x]][2]\
+    \ < e[mn[v]][2]))\n        v = x;\n    if (v == -1) break;\n    inT[v] = true,\
+    \ cost += e[mn[v]][2];\n    eid.emplace_back(mn[v]);\n    for(int x = 0; x < n;\
+    \ x++)\n      if (id[v][x] != -1 and (mn[x] == -1 or e[id[v][x]][2] < e[mn[x]][2]))\n\
+    \        mn[x] = id[v][x];\n  }\n\n  if (ssize(eid) == n - 1)\n    return make_pair(cost,\
+    \ eid);\n  else\n    return make_pair(numeric_limits<T>::max(), vector<int>());\n\
+    }\n#line 7 \"test/minimum_spanning_tree.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  ll n, m; cin >> n >> m;\n  vector<array<ll, 3>> e(m);\n\
+    \  for(auto &[u, v, w] : e)\n    cin >> u >> v >> w;\n\n  ll cost;\n  vector<int>\
+    \ eid;\n  if (n * n < m * (int)bit_width((unsigned)m))\n    tie(cost, eid) = Prim(e,\
+    \ n);\n  else\n    tie(cost, eid) = Kruskal(e, n);\n\n  cout << cost << '\\n';\n\
+    \  cout << eid << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/minimum_spanning_tree\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../ds/DSU.cpp\"\n#include \"../graph/Kruskal.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ m; cin >> n >> m;\n  vector<array<ll, 3>> e(m);\n  for(auto &[u, v, w] : e)\n\
-    \    cin >> u >> v >> w;\n\n  auto [cost, eid] = Kruskal(e, n);\n  cout << cost\
-    \ << '\\n';\n  cout << eid << '\\n';\n\n  return 0;\n}\n"
+    \n#include \"../graph/Prim.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  ll n, m; cin >> n >> m;\n  vector<array<ll, 3>> e(m);\n\
+    \  for(auto &[u, v, w] : e)\n    cin >> u >> v >> w;\n\n  ll cost;\n  vector<int>\
+    \ eid;\n  if (n * n < m * (int)bit_width((unsigned)m))\n    tie(cost, eid) = Prim(e,\
+    \ n);\n  else\n    tie(cost, eid) = Kruskal(e, n);\n\n  cout << cost << '\\n';\n\
+    \  cout << eid << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - ds/DSU.cpp
   - graph/Kruskal.cpp
+  - graph/Prim.cpp
   isVerificationFile: true
   path: test/minimum_spanning_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-24 20:41:29+08:00'
+  timestamp: '2024-03-16 14:24:11+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/minimum_spanning_tree.test.cpp

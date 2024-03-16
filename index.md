@@ -164,6 +164,9 @@ data:
       path: graph/MIS.cpp
       title: graph/MIS.cpp
     - icon: ':heavy_check_mark:'
+      path: graph/Prim.cpp
+      title: graph/Prim.cpp
+    - icon: ':heavy_check_mark:'
       path: graph/SCC.cpp
       title: graph/SCC.cpp
     - icon: ':heavy_check_mark:'
