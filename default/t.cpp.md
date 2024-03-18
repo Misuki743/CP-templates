@@ -40,6 +40,9 @@ data:
     path: test/division_of_polynomials.test.cpp
     title: test/division_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/double_ended_priority_queue.test.cpp
+    title: test/double_ended_priority_queue.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -316,6 +319,7 @@ data:
   verifiedWith:
   - test/vertex_add_path_sum.test.cpp
   - test/convolution.test.cpp
+  - test/double_ended_priority_queue.test.cpp
   - test/rooted_tree_isomorphism_classification.test.cpp
   - test/enumerate_palindromes.test.cpp
   - test/tree_diameter.test.cpp

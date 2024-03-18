@@ -69,6 +69,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/centroidTree.cpp
       title: ds/centroidTree.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds/doubleEndedPQ.cpp
+      title: ds/doubleEndedPQ.cpp
     - icon: ':warning:'
       path: ds/dynamicHull.cpp
       title: ds/dynamicHull.cpp
@@ -398,6 +401,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/division_of_polynomials.test.cpp
       title: test/division_of_polynomials.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/double_ended_priority_queue.test.cpp
+      title: test/double_ended_priority_queue.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/dynamic_sequence_range_affine_range_sum.test.cpp
