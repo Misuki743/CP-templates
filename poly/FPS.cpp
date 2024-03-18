@@ -1,6 +1,11 @@
 //#include "modint/MontgomeryModInt.cpp"
 //#include "poly/NTTmint.cpp"
 
+//lagrange inversion formula:
+//  let f(x) be composition inverse of g(x) (i.e. f(g(x)) = x) and [x^0]f(x) = [x^0]g(x) = 0, [x^1]f(x) != 0, [x^1]g(x) != 0, then
+//  [x^n]g(x)^k = k/n [x^{n - k}] (x / f(x))^n
+//  [x^n]g(x) = 1/n [x^{n - 1}] (x / f(x))^n (for k = 1)
+
 template<class Mint>
 struct FPS : vector<Mint> {
 
