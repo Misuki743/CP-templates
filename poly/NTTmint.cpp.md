@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/bernoulli_number.test.cpp
     title: test/bernoulli_number.test.cpp
+  - icon: ':x:'
+    path: test/compositional_inverse_of_formal_power_series_large.test.cpp
+    title: test/compositional_inverse_of_formal_power_series_large.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/convolution.test.cpp
     title: test/convolution.test.cpp
@@ -75,9 +78,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/69896
@@ -139,7 +142,7 @@ data:
   path: poly/NTTmint.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/convolution.test.cpp
   - test/exp_of_formal_power_series.test.cpp
@@ -153,6 +156,7 @@ data:
   - test/pow_of_formal_power_series.test.cpp
   - test/convolution_1e9+7.test.cpp
   - test/log_of_formal_power_series.test.cpp
+  - test/compositional_inverse_of_formal_power_series_large.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
   - test/yuki_2544.test.cpp
   - test/sharp_p_subset_sum.test.cpp

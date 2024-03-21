@@ -4,9 +4,6 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
-    path: misc/sharpPSubsetSum.cpp
-    title: misc/sharpPSubsetSum.cpp
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
@@ -16,17 +13,24 @@ data:
   - icon: ':question:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
+  - icon: ':x:'
+    path: poly/compositionalInverse.cpp
+    title: poly/compositionalInverse.cpp
+  - icon: ':x:'
+    path: poly/kthTermOfPowers.cpp
+    title: poly/kthTermOfPowers.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sharp_p_subset_sum
+    PROBLEM: https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large
     links:
-    - https://judge.yosupo.jp/problem/sharp_p_subset_sum
-  bundledCode: "#line 1 \"test/sharp_p_subset_sum.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/sharp_p_subset_sum\"\
+    - https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large
+  bundledCode: "#line 1 \"test/compositional_inverse_of_formal_power_series_large.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bit>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n\
     #include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n\
@@ -188,41 +192,70 @@ data:
     \ operator/(FPS a, Mint b) { return a /= b; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\n\
     template<>\nfunction<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\n\
     template<>\nfunction<void(vector<mint>&, bool)> fps::dft = ntt.ntt;\n#line 1 \"\
-    misc/sharpPSubsetSum.cpp\"\n//#include<modint/MontgomeryModInt>\n//#include<poly/NTTmint>\n\
-    //#include<poly/FPS>\n\ntemplate<class Mint>\nFPS<Mint> sharpPSubsetSum(vector<int>\
-    \ w, int C) {\n  vector<int> freq(C + 1);\n  for(int x : w)\n    if (x <= C)\n\
-    \      freq[x]++;\n\n  vector<Mint> Inv(C + 1);\n  Inv[1] = 1;\n  for(int i =\
-    \ 2; i < ssize(Inv); i++)\n    Inv[i] = (Mint::get_mod() - Mint::get_mod() / i)\
-    \ * Inv[Mint::get_mod() % i];\n\n  FPS<Mint> f(C + 1);\n  for(int i = 1; i <=\
-    \ C; i++)\n    for(int j = 1; j * i <= C; j++)\n      f[j * i] += freq[i] * Inv[j]\
-    \ * (j % 2 == 0 ? -1 : 1);\n\n  return f.exp(C + 1);\n}\n#line 8 \"test/sharp_p_subset_sum.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ t; cin >> n >> t;\n  vector<int> w(n);\n  for(int &x : w)\n    cin >> x;\n\n\
-    \  auto f = sharpPSubsetSum<mint>(w, t);\n  f.erase(f.begin());\n  cout << f <<\
-    \ '\\n';\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sharp_p_subset_sum\"\n\n\
-    #include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\n#include\
-    \ \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"../misc/sharpPSubsetSum.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ t; cin >> n >> t;\n  vector<int> w(n);\n  for(int &x : w)\n    cin >> x;\n\n\
-    \  auto f = sharpPSubsetSum<mint>(w, t);\n  f.erase(f.begin());\n  cout << f <<\
-    \ '\\n';\n\n  return 0;\n}\n"
+    poly/kthTermOfPowers.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\n//#include\
+    \ \"poly/NTTmint.cpp\"\n//#include \"poly/FPS.cpp\"\n\n//compute [x^k]f(x)^i for\
+    \ all i in [0, n) in O(klg^2k)\n//reference: https://noshi91.hatenablog.com/entry/2024/03/16/224034\n\
+    template<class Mint>\nFPS<Mint> kthTermOfPowers(int k, int n, FPS<Mint> g, FPS<Mint>\
+    \ f = FPS<Mint>(1, 1)) {\n  assert(g[0] == 0);\n  auto remap = [](FPS<Mint> f,\
+    \ int x0, int x1) -> FPS<Mint> {\n    int y0 = (ssize(f) + x0 - 1) / x0;\n   \
+    \ FPS<Mint> g(y0 * x1);\n    for(int y = 0; y < y0; y++)\n      for(int x = 0;\
+    \ x < x0 and y * x0 + x < ssize(f); x++)\n        g[y * x1 + x] = f[y * x0 + x];\n\
+    \    return g;\n  };\n\n  FPS<Mint> P(k + 1), Q(2 * (k + 1));\n  for(int i = 0;\
+    \ i < ssize(f) and i <= k; i++)\n    P[i] = f[i];\n  Q[0] = 1;\n  for(int i =\
+    \ 0; i < ssize(g) and i <= k; i++)\n    Q[i + k + 1] = -g[i];\n\n  while(k) {\n\
+    \    int yp = (ssize(Q) + k) / (k + 1) * 2 - 1, x0 = 2 * k + 1;\n    P = remap(P,\
+    \ k + 1, x0), Q = remap(Q, k + 1, x0);\n    int sz = bit_ceil((unsigned)yp * x0);\n\
+    \    P.resize(sz), Q.resize(sz);\n    FPS<Mint> Qneg = Q;\n    for(int y = 0;\
+    \ y < yp; y++)\n      for(int x = 1; x < x0; x += 2)\n        Qneg[y * x0 + x]\
+    \ *= -1;\n    FPS<Mint>::dft(P, false), FPS<Mint>::dft(Q, false), FPS<Mint>::dft(Qneg,\
+    \ false);\n    FPS<Mint> U(sz), V(sz);\n    for(int i = 0; i < sz; i++)\n    \
+    \  U[i] += P[i] * Qneg[i], V[i] = Q[i] * Qneg[i];\n    FPS<Mint>::dft(U, true),\
+    \ FPS<Mint>::dft(V, true);\n    int xp = k / 2 + 1;\n    FPS<Mint> UU(yp * xp);\n\
+    \    for(int y = 0; y < yp; y++)\n      for(int x = k & 1; x / 2 < xp and y *\
+    \ x0 + x < ssize(U); x += 2)\n        UU[y * xp + x / 2] = U[y * x0 + x];\n  \
+    \  FPS<Mint> VV(yp * xp);\n    for(int y = 0; y < yp; y++)\n      for(int x =\
+    \ 0; x / 2 < xp and y * x0 + x < ssize(V); x += 2)\n        VV[y * xp + x / 2]\
+    \ = V[y * x0 + x];\n    P.swap(UU), Q.swap(VV);\n    k /= 2;\n  }\n\n  FPS<Mint>\
+    \ res = P * Q.inv(n);\n  res.resize(n);\n\n  return res;\n}\n#line 1 \"poly/compositionalInverse.cpp\"\
+    \n//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\n\
+    //#include \"poly/FPS.cpp\"\n//#include \"poly/kthTermOfPowers.cpp\"\n\ntemplate<class\
+    \ Mint>\nFPS<Mint> compositionalInverse(FPS<Mint> f, int k) {\n  assert(ssize(f)\
+    \ >= 2 and f[0] == 0 and f[1] != 0);\n  mint c = f[1];\n  mint invc = 1 / c;\n\
+    \  for(mint &x : f)\n    x *= invc;\n  k -= 1;\n  f = kthTermOfPowers(k, k + 1,\
+    \ f);\n  for(int i = 1; i <= k; i++)\n    f[i] *= mint(k) / i;\n  ranges::reverse(f);\n\
+    \  f = f.log(k + 1);\n  mint inv = 1 / mint(-k);\n  for(mint &x : f) x *= inv;\n\
+    \  f = f.exp(k + 1);\n  f.insert(f.begin(), Mint(0));\n  f.pop_back();\n  for(mint\
+    \ buf = 1; mint &x : f)\n    x *= buf, buf *= invc;\n  return f;\n}\n\nsigned\
+    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n\
+    \  fps f(n);\n  for(mint &x : f)\n    cin >> x;\n  cout << compositionalInverse(f,\
+    \ n) << '\\n';\n\n  return 0;\n}\n#line 9 \"test/compositional_inverse_of_formal_power_series_large.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
+    \ cin >> n;\n  fps f(n);\n  for(mint &x : f)\n    cin >> x;\n  cout << compositionalInverse(f,\
+    \ n) << '\\n';\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large\"\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
+    \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"\
+    ../poly/kthTermOfPowers.cpp\"\n#include \"../poly/compositionalInverse.cpp\"\n\
+    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin\
+    \ >> n;\n  fps f(n);\n  for(mint &x : f)\n    cin >> x;\n  cout << compositionalInverse(f,\
+    \ n) << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
   - poly/FPS.cpp
-  - misc/sharpPSubsetSum.cpp
+  - poly/kthTermOfPowers.cpp
+  - poly/compositionalInverse.cpp
   isVerificationFile: true
-  path: test/sharp_p_subset_sum.test.cpp
+  path: test/compositional_inverse_of_formal_power_series_large.test.cpp
   requiredBy: []
   timestamp: '2024-03-22 01:43:37+08:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/sharp_p_subset_sum.test.cpp
+documentation_of: test/compositional_inverse_of_formal_power_series_large.test.cpp
 layout: document
 redirect_from:
-- /verify/test/sharp_p_subset_sum.test.cpp
-- /verify/test/sharp_p_subset_sum.test.cpp.html
-title: test/sharp_p_subset_sum.test.cpp
+- /verify/test/compositional_inverse_of_formal_power_series_large.test.cpp
+- /verify/test/compositional_inverse_of_formal_power_series_large.test.cpp.html
+title: test/compositional_inverse_of_formal_power_series_large.test.cpp
 ---
