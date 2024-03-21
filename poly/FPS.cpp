@@ -9,6 +9,7 @@
 template<class Mint>
 struct FPS : vector<Mint> {
 
+  static function<void(vector<Mint>&, bool)> dft;
   static function<vector<Mint>(vector<Mint>, vector<Mint>)> conv;
 
   FPS(vector<Mint> v) : vector<Mint>(v) {}
@@ -216,3 +217,5 @@ NTT ntt;
 using fps = FPS<mint>;
 template<>
 function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;
+template<>
+function<void(vector<mint>&, bool)> fps::dft = ntt.ntt;
