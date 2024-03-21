@@ -25,15 +25,3 @@ FPS<Mint> compositionalInverse(FPS<Mint> f, int k) {
     x *= buf, buf *= invc;
   return f;
 }
-
-signed main() {
-  ios::sync_with_stdio(false), cin.tie(NULL);
-
-  int n; cin >> n;
-  fps f(n);
-  for(mint &x : f)
-    cin >> x;
-  cout << compositionalInverse(f, n) << '\n';
-
-  return 0;
-}
