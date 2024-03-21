@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/compositionalInverse.cpp
     title: poly/compositionalInverse.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/kthTermOfPowers.cpp
     title: poly/kthTermOfPowers.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large
@@ -225,12 +225,10 @@ data:
     \ f);\n  for(int i = 1; i <= k; i++)\n    f[i] *= mint(k) / i;\n  ranges::reverse(f);\n\
     \  f = f.log(k + 1);\n  mint inv = 1 / mint(-k);\n  for(mint &x : f) x *= inv;\n\
     \  f = f.exp(k + 1);\n  f.insert(f.begin(), Mint(0));\n  f.pop_back();\n  for(mint\
-    \ buf = 1; mint &x : f)\n    x *= buf, buf *= invc;\n  return f;\n}\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n\
-    \  fps f(n);\n  for(mint &x : f)\n    cin >> x;\n  cout << compositionalInverse(f,\
-    \ n) << '\\n';\n\n  return 0;\n}\n#line 9 \"test/compositional_inverse_of_formal_power_series_large.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
-    \ cin >> n;\n  fps f(n);\n  for(mint &x : f)\n    cin >> x;\n  cout << compositionalInverse(f,\
+    \ buf = 1; mint &x : f)\n    x *= buf, buf *= invc;\n  return f;\n}\n#line 9 \"\
+    test/compositional_inverse_of_formal_power_series_large.test.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  fps\
+    \ f(n);\n  for(mint &x : f)\n    cin >> x;\n  cout << compositionalInverse(f,\
     \ n) << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
@@ -249,8 +247,8 @@ data:
   isVerificationFile: true
   path: test/compositional_inverse_of_formal_power_series_large.test.cpp
   requiredBy: []
-  timestamp: '2024-03-22 01:43:37+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-22 01:59:24+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/compositional_inverse_of_formal_power_series_large.test.cpp
 layout: document

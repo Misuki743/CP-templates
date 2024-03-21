@@ -40,7 +40,7 @@ data:
       title: combi/stirlingFirst.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -232,7 +232,7 @@ data:
       title: misc/sharpPSubsetSum.cpp
   - name: modint
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':heavy_check_mark:'
@@ -272,7 +272,7 @@ data:
     - icon: ':warning:'
       path: poly/FFTmod.cpp
       title: poly/FFTmod.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/FPS.cpp
       title: poly/FPS.cpp
     - icon: ':heavy_check_mark:'
@@ -284,13 +284,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/NTTanymod.cpp
       title: poly/NTTanymod.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/NTTmint.cpp
       title: poly/NTTmint.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/compositionalInverse.cpp
       title: poly/compositionalInverse.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/kthTermOfPowers.cpp
       title: poly/kthTermOfPowers.cpp
     - icon: ':heavy_check_mark:'
@@ -389,7 +389,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/binomial_coefficient_prime_mod.test.cpp
       title: test/binomial_coefficient_prime_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/compositional_inverse_of_formal_power_series_large.test.cpp
       title: test/compositional_inverse_of_formal_power_series_large.test.cpp
     - icon: ':heavy_check_mark:'

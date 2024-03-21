@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/compositional_inverse_of_formal_power_series_large.test.cpp
     title: test/compositional_inverse_of_formal_power_series_large.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/compositionalInverse.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
@@ -20,9 +20,7 @@ data:
     \ *= mint(k) / i;\n  ranges::reverse(f);\n  f = f.log(k + 1);\n  mint inv = 1\
     \ / mint(-k);\n  for(mint &x : f) x *= inv;\n  f = f.exp(k + 1);\n  f.insert(f.begin(),\
     \ Mint(0));\n  f.pop_back();\n  for(mint buf = 1; mint &x : f)\n    x *= buf,\
-    \ buf *= invc;\n  return f;\n}\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  fps f(n);\n  for(mint &x : f)\n    cin\
-    \ >> x;\n  cout << compositionalInverse(f, n) << '\\n';\n\n  return 0;\n}\n"
+    \ buf *= invc;\n  return f;\n}\n"
   code: "//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\
     \n//#include \"poly/FPS.cpp\"\n//#include \"poly/kthTermOfPowers.cpp\"\n\ntemplate<class\
     \ Mint>\nFPS<Mint> compositionalInverse(FPS<Mint> f, int k) {\n  assert(ssize(f)\
@@ -31,16 +29,13 @@ data:
     \ f);\n  for(int i = 1; i <= k; i++)\n    f[i] *= mint(k) / i;\n  ranges::reverse(f);\n\
     \  f = f.log(k + 1);\n  mint inv = 1 / mint(-k);\n  for(mint &x : f) x *= inv;\n\
     \  f = f.exp(k + 1);\n  f.insert(f.begin(), Mint(0));\n  f.pop_back();\n  for(mint\
-    \ buf = 1; mint &x : f)\n    x *= buf, buf *= invc;\n  return f;\n}\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n\
-    \  fps f(n);\n  for(mint &x : f)\n    cin >> x;\n  cout << compositionalInverse(f,\
-    \ n) << '\\n';\n\n  return 0;\n}\n"
+    \ buf = 1; mint &x : f)\n    x *= buf, buf *= invc;\n  return f;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: poly/compositionalInverse.cpp
   requiredBy: []
-  timestamp: '2024-03-22 01:43:37+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-03-22 01:59:24+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/compositional_inverse_of_formal_power_series_large.test.cpp
 documentation_of: poly/compositionalInverse.cpp
