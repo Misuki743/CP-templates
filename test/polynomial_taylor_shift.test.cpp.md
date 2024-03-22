@@ -4,9 +4,6 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
-    path: misc/sharpPSubsetSum.cpp
-    title: misc/sharpPSubsetSum.cpp
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
@@ -16,32 +13,36 @@ data:
   - icon: ':question:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
+  - icon: ':x:'
+    path: poly/taylorShift.cpp
+    title: poly/taylorShift.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sharp_p_subset_sum
+    PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
     links:
-    - https://judge.yosupo.jp/problem/sharp_p_subset_sum
-  bundledCode: "#line 1 \"test/sharp_p_subset_sum.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/sharp_p_subset_sum\"\
-    \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
-    \ <bit>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n\
-    #include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n\
-    #include <cmath>\n#include <compare>\n#include <complex>\n#include <concepts>\n\
-    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
-    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
-    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
-    #include <numbers>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
-    #include <random>\n#include <ranges>\n#include <set>\n#include <span>\n#include\
-    \ <sstream>\n#include <stack>\n#include <streambuf>\n#include <string>\n#include\
-    \ <tuple>\n#include <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
-    \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
-    \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
+    - https://judge.yosupo.jp/problem/polynomial_taylor_shift
+  bundledCode: "#line 1 \"test/polynomial_taylor_shift.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\n\n#line 1 \"default/t.cpp\"\
+    \n#include <algorithm>\n#include <array>\n#include <bit>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <compare>\n#include <complex>\n#include <concepts>\n#include <cstdarg>\n#include\
+    \ <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include\
+    \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
+    \ <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
+    #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
+    #include <map>\n#include <memory>\n#include <new>\n#include <numbers>\n#include\
+    \ <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n#include\
+    \ <ranges>\n#include <set>\n#include <span>\n#include <sstream>\n#include <stack>\n\
+    #include <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n\
+    #include <variant>\n\n#define INT128_MAX (__int128)(((unsigned __int128) 1 <<\
+    \ ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX\
+    \ - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nnamespace R = std::ranges;\nnamespace V = std::views;\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
     using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\ntemplate<class T>\n\
@@ -188,41 +189,39 @@ data:
     \ operator/(FPS a, Mint b) { return a /= b; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\n\
     template<>\nfunction<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\n\
     template<>\nfunction<void(vector<mint>&, bool)> fps::dft = ntt.ntt;\n#line 1 \"\
-    misc/sharpPSubsetSum.cpp\"\n//#include<modint/MontgomeryModInt>\n//#include<poly/NTTmint>\n\
-    //#include<poly/FPS>\n\ntemplate<class Mint>\nFPS<Mint> sharpPSubsetSum(vector<int>\
-    \ w, int C) {\n  vector<int> freq(C + 1);\n  for(int x : w)\n    if (x <= C)\n\
-    \      freq[x]++;\n\n  vector<Mint> Inv(C + 1);\n  Inv[1] = 1;\n  for(int i =\
-    \ 2; i < ssize(Inv); i++)\n    Inv[i] = (Mint::get_mod() - Mint::get_mod() / i)\
-    \ * Inv[Mint::get_mod() % i];\n\n  FPS<Mint> f(C + 1);\n  for(int i = 1; i <=\
-    \ C; i++)\n    for(int j = 1; j * i <= C; j++)\n      f[j * i] += freq[i] * Inv[j]\
-    \ * (j % 2 == 0 ? -1 : 1);\n\n  return f.exp(C + 1);\n}\n#line 8 \"test/sharp_p_subset_sum.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ t; cin >> n >> t;\n  vector<int> w(n);\n  for(int &x : w)\n    cin >> x;\n\n\
-    \  auto f = sharpPSubsetSum<mint>(w, t);\n  f.erase(f.begin());\n  cout << f <<\
-    \ '\\n';\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sharp_p_subset_sum\"\n\n\
-    #include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\n#include\
-    \ \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"../misc/sharpPSubsetSum.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ t; cin >> n >> t;\n  vector<int> w(n);\n  for(int &x : w)\n    cin >> x;\n\n\
-    \  auto f = sharpPSubsetSum<mint>(w, t);\n  f.erase(f.begin());\n  cout << f <<\
-    \ '\\n';\n\n  return 0;\n}\n"
+    poly/taylorShift.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\n//#include\
+    \ \"poly/NTTmint.cpp\"\n//#include \"poly/FPS.cpp\"\n\ntemplate<class Mint>\n\
+    FPS<Mint> taylorShift(FPS<Mint> f, Mint c) {\n  int n = ssize(f);\n  binomial<Mint>\
+    \ bn(n);\n  FPS<Mint> a = f;\n  for(int i = 0; i < n; i++)\n    a[i] *= bn.fac(i);\n\
+    \  FPS<Mint> b(n);\n  Mint pre = 1;\n  for(int i = 0; i < n; i++, pre *= c)\n\
+    \    b[i] = pre * bn.faci(i);\n  ranges::reverse(b);\n  f = a * b;\n  f.erase(f.begin(),\
+    \ f.begin() + n - 1);\n  for(int i = 0; i < n; i++)\n    f[i] *= bn.faci(i);\n\
+    \  return f;\n}\n#line 8 \"test/polynomial_taylor_shift.test.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, c; cin >> n >>\
+    \ c;\n  fps a(n);\n  for(mint &x : a)\n    cin >> x;\n  cout << taylorShift(a,\
+    \ mint(c)) << '\\n';\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
+    \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"\
+    ../poly/taylorShift.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \n  int n, c; cin >> n >> c;\n  fps a(n);\n  for(mint &x : a)\n    cin >> x;\n\
+    \  cout << taylorShift(a, mint(c)) << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
   - poly/FPS.cpp
-  - misc/sharpPSubsetSum.cpp
+  - poly/taylorShift.cpp
   isVerificationFile: true
-  path: test/sharp_p_subset_sum.test.cpp
+  path: test/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2024-03-22 01:43:37+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-03-22 16:07:29+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/sharp_p_subset_sum.test.cpp
+documentation_of: test/polynomial_taylor_shift.test.cpp
 layout: document
 redirect_from:
-- /verify/test/sharp_p_subset_sum.test.cpp
-- /verify/test/sharp_p_subset_sum.test.cpp.html
-title: test/sharp_p_subset_sum.test.cpp
+- /verify/test/polynomial_taylor_shift.test.cpp
+- /verify/test/polynomial_taylor_shift.test.cpp.html
+title: test/polynomial_taylor_shift.test.cpp
 ---

@@ -66,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
+  - icon: ':x:'
+    path: test/polynomial_taylor_shift.test.cpp
+    title: test/polynomial_taylor_shift.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
@@ -114,9 +117,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
@@ -187,7 +190,7 @@ data:
   path: modint/MontgomeryModInt.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/convolution.test.cpp
   - test/pow_of_matrix.test.cpp
@@ -224,6 +227,7 @@ data:
   - test/division_of_polynomials.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
+  - test/polynomial_taylor_shift.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yuki_2613.test.cpp
 documentation_of: modint/MontgomeryModInt.cpp

@@ -4,19 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: combi/binom.cpp
     title: combi/binom.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   - icon: ':heavy_check_mark:'
     path: numtheory/sqrtMod.cpp
     title: numtheory/sqrtMod.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
   - icon: ':heavy_check_mark:'
