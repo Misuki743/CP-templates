@@ -16,6 +16,9 @@ data:
     path: test/log_of_formal_power_series_sparse.test.cpp
     title: test/log_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/polynomial_taylor_shift.test.cpp
+    title: test/polynomial_taylor_shift.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -61,6 +64,7 @@ data:
   - test/inv_of_formal_power_series_sparse.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
+  - test/polynomial_taylor_shift.test.cpp
 documentation_of: combi/binom.cpp
 layout: document
 redirect_from:

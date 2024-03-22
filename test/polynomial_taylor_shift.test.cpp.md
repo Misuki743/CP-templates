@@ -1,26 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: combi/binom.cpp
+    title: combi/binom.cpp
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/taylorShift.cpp
     title: poly/taylorShift.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
@@ -83,31 +86,40 @@ data:
     \ mint operator/(mint a, mint b) { return a /= b; }\n\n  friend ostream& operator<<(ostream&\
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
-    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"poly/NTTmint.cpp\"\
-    \n//reference: https://judge.yosupo.jp/submission/69896\n//remark: MOD = 2^K *\
-    \ C + 1, R is a primitive root modulo MOD\n//remark: a.size() <= 2^K must be satisfied\n\
-    //some common modulo: 998244353  = 2^23 * 119 + 1, R = 3\n//                 \
-    \   469762049  = 2^26 * 7   + 1, R = 3\n//                    1224736769 = 2^24\
-    \ * 73  + 1, R = 3\n\ntemplate<int32_t k = 23, int32_t c = 119, int32_t r = 3,\
-    \ class Mint = MontgomeryModInt<998244353>>\nstruct NTT {\n\n  using u32 = uint32_t;\n\
-    \  static constexpr u32 mod = (1 << k) * c + 1;\n  static constexpr u32 get_mod()\
-    \ { return mod; }\n\n  static void ntt(vector<Mint> &a, bool inverse) {\n    static\
-    \ array<Mint, 30> w, w_inv;\n    if (w[0] == 0) {\n      Mint root = 2;\n    \
-    \  while(root.pow((mod - 1) / 2) == 1) root += 1;\n      for(int i = 0; i < 30;\
-    \ i++)\n        w[i] = -(root.pow((mod - 1) >> (i + 2))), w_inv[i] = 1 / w[i];\n\
-    \    }\n    int n = ssize(a);\n    if (not inverse) {\n      for(int m = n; m\
-    \ >>= 1; ) {\n        Mint ww = 1;\n        for(int s = 0, l = 0; s < n; s +=\
-    \ 2 * m) {\n          for(int i = s, j = s + m; i < s + m; i++, j++) {\n     \
-    \       Mint x = a[i], y = a[j] * ww;\n            a[i] = x + y, a[j] = x - y;\n\
-    \          }\n          ww *= w[__builtin_ctz(++l)];\n        }\n      }\n   \
-    \ } else {\n      for(int m = 1; m < n; m *= 2) {\n        Mint ww = 1;\n    \
-    \    for(int s = 0, l = 0; s < n; s += 2 * m) {\n          for(int i = s, j =\
-    \ s + m; i < s + m; i++, j++) {\n            Mint x = a[i], y = a[j];\n      \
-    \      a[i] = x + y, a[j] = (x - y) * ww;\n          }\n          ww *= w_inv[__builtin_ctz(++l)];\n\
-    \        }\n      }\n      Mint inv = 1 / Mint(n);\n      for(Mint &x : a) x *=\
-    \ inv;\n    }\n  }\n\n  static vector<Mint> conv(vector<Mint> a, vector<Mint>\
-    \ b) {\n    int sz = ssize(a) + ssize(b) - 1;\n    int n = bit_ceil((u32)sz);\n\
-    \n    a.resize(n, 0);\n    ntt(a, false);\n    b.resize(n, 0);\n    ntt(b, false);\n\
+    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"combi/binom.cpp\"\
+    \n//#include<modint/MontgomeryModInt.cpp>\n\ntemplate<class Mint>\nstruct binomial\
+    \ {\n  vector<Mint> _fac, _facInv;\n  binomial(int size) : _fac(size), _facInv(size)\
+    \ {\n    _fac[0] = 1;\n    for(int i = 1; i < size; i++)\n      _fac[i] = _fac[i\
+    \ - 1] * i;\n    if (size > 0)\n      _facInv.back() = 1 / _fac.back();\n    for(int\
+    \ i = size - 2; i >= 0; i--)\n      _facInv[i] = _facInv[i + 1] * (i + 1);\n \
+    \ }\n\n  Mint fac(int i) { return i < 0 ? 0 : _fac[i]; }\n  Mint faci(int i) {\
+    \ return i < 0 ? 0 : _facInv[i]; }\n  Mint binom(int n, int r) { return r < 0\
+    \ or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n  Mint inv(int i) { return\
+    \ _facInv[i] * _fac[i - 1]; }\n};\n#line 1 \"poly/NTTmint.cpp\"\n//reference:\
+    \ https://judge.yosupo.jp/submission/69896\n//remark: MOD = 2^K * C + 1, R is\
+    \ a primitive root modulo MOD\n//remark: a.size() <= 2^K must be satisfied\n//some\
+    \ common modulo: 998244353  = 2^23 * 119 + 1, R = 3\n//                    469762049\
+    \  = 2^26 * 7   + 1, R = 3\n//                    1224736769 = 2^24 * 73  + 1,\
+    \ R = 3\n\ntemplate<int32_t k = 23, int32_t c = 119, int32_t r = 3, class Mint\
+    \ = MontgomeryModInt<998244353>>\nstruct NTT {\n\n  using u32 = uint32_t;\n  static\
+    \ constexpr u32 mod = (1 << k) * c + 1;\n  static constexpr u32 get_mod() { return\
+    \ mod; }\n\n  static void ntt(vector<Mint> &a, bool inverse) {\n    static array<Mint,\
+    \ 30> w, w_inv;\n    if (w[0] == 0) {\n      Mint root = 2;\n      while(root.pow((mod\
+    \ - 1) / 2) == 1) root += 1;\n      for(int i = 0; i < 30; i++)\n        w[i]\
+    \ = -(root.pow((mod - 1) >> (i + 2))), w_inv[i] = 1 / w[i];\n    }\n    int n\
+    \ = ssize(a);\n    if (not inverse) {\n      for(int m = n; m >>= 1; ) {\n   \
+    \     Mint ww = 1;\n        for(int s = 0, l = 0; s < n; s += 2 * m) {\n     \
+    \     for(int i = s, j = s + m; i < s + m; i++, j++) {\n            Mint x = a[i],\
+    \ y = a[j] * ww;\n            a[i] = x + y, a[j] = x - y;\n          }\n     \
+    \     ww *= w[__builtin_ctz(++l)];\n        }\n      }\n    } else {\n      for(int\
+    \ m = 1; m < n; m *= 2) {\n        Mint ww = 1;\n        for(int s = 0, l = 0;\
+    \ s < n; s += 2 * m) {\n          for(int i = s, j = s + m; i < s + m; i++, j++)\
+    \ {\n            Mint x = a[i], y = a[j];\n            a[i] = x + y, a[j] = (x\
+    \ - y) * ww;\n          }\n          ww *= w_inv[__builtin_ctz(++l)];\n      \
+    \  }\n      }\n      Mint inv = 1 / Mint(n);\n      for(Mint &x : a) x *= inv;\n\
+    \    }\n  }\n\n  static vector<Mint> conv(vector<Mint> a, vector<Mint> b) {\n\
+    \    int sz = ssize(a) + ssize(b) - 1;\n    int n = bit_ceil((u32)sz);\n\n   \
+    \ a.resize(n, 0);\n    ntt(a, false);\n    b.resize(n, 0);\n    ntt(b, false);\n\
     \n    for(int i = 0; i < n; i++)\n      a[i] *= b[i];\n\n    ntt(a, true);\n\n\
     \    a.resize(sz);\n\n    return a;\n  }\n};\n#line 1 \"poly/FPS.cpp\"\n//#include\
     \ \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\n\n//lagrange\
@@ -196,27 +208,29 @@ data:
     \  FPS<Mint> b(n);\n  Mint pre = 1;\n  for(int i = 0; i < n; i++, pre *= c)\n\
     \    b[i] = pre * bn.faci(i);\n  ranges::reverse(b);\n  f = a * b;\n  f.erase(f.begin(),\
     \ f.begin() + n - 1);\n  for(int i = 0; i < n; i++)\n    f[i] *= bn.faci(i);\n\
-    \  return f;\n}\n#line 8 \"test/polynomial_taylor_shift.test.cpp\"\n\nsigned main()\
+    \  return f;\n}\n#line 9 \"test/polynomial_taylor_shift.test.cpp\"\n\nsigned main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, c; cin >> n >>\
     \ c;\n  fps a(n);\n  for(mint &x : a)\n    cin >> x;\n  cout << taylorShift(a,\
     \ mint(c)) << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"\
-    ../poly/taylorShift.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
-    \n  int n, c; cin >> n >> c;\n  fps a(n);\n  for(mint &x : a)\n    cin >> x;\n\
-    \  cout << taylorShift(a, mint(c)) << '\\n';\n\n  return 0;\n}\n"
+    \n#include \"../combi/binom.cpp\"\n#include \"../poly/NTTmint.cpp\"\n#include\
+    \ \"../poly/FPS.cpp\"\n#include \"../poly/taylorShift.cpp\"\n\nsigned main() {\n\
+    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, c; cin >> n >> c;\n\
+    \  fps a(n);\n  for(mint &x : a)\n    cin >> x;\n  cout << taylorShift(a, mint(c))\
+    \ << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
+  - combi/binom.cpp
   - poly/NTTmint.cpp
   - poly/FPS.cpp
   - poly/taylorShift.cpp
   isVerificationFile: true
   path: test/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2024-03-22 16:07:29+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-23 03:24:29+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/polynomial_taylor_shift.test.cpp
 layout: document
