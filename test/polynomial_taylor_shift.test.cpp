@@ -2,6 +2,7 @@
 
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
+#include "../combi/binom.cpp"
 #include "../poly/NTTmint.cpp"
 #include "../poly/FPS.cpp"
 #include "../poly/taylorShift.cpp"
