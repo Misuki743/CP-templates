@@ -51,13 +51,13 @@ data:
     \  data[i] -= data[i - (i & (-i))];\n  }\n\n  void add(int i, T d) {\n    for(i\
     \ += 1; i < size; i += i & (-i))\n      data[i] += d;\n  }\n\n  T query(int i)\
     \ {\n    T res = T(0);\n    for(i += 1; i > 0; i -= i & (-i))\n      res += data[i];\n\
-    \    return res;\n  }\n\n  T query(int l, int r) {\n    return query(r - 1) -\
-    \ query(l - 1);\n  }\n};\n#line 5 \"test/point_add_range_sum.test.cpp\"\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
-    \ n >> q;\n  vector<ll> a(n);\n  for(ll &x : a)\n    cin >> x;\n\n  fenwickTree\
-    \ bit(a);\n  while(q--) {\n    int t, x, y; cin >> t >> x >> y;\n    if (t ==\
-    \ 0)\n      bit.add(x, y);\n    else\n      cout << bit.query(x, y) << '\\n';\n\
-    \  }\n\n  return 0;\n}\n"
+    \    return res;\n  }\n\n  T query(int l, int r) { //query [l, r)\n    return\
+    \ query(r - 1) - query(l - 1);\n  }\n};\n#line 5 \"test/point_add_range_sum.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x : a)\n    cin >> x;\n\n \
+    \ fenwickTree bit(a);\n  while(q--) {\n    int t, x, y; cin >> t >> x >> y;\n\
+    \    if (t == 0)\n      bit.add(x, y);\n    else\n      cout << bit.query(x, y)\
+    \ << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
     \n#include \"../default/t.cpp\"\n#include \"../ds/fenwickTree.cpp\"\n\nsigned\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
@@ -71,7 +71,7 @@ data:
   isVerificationFile: true
   path: test/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 18:42:26+08:00'
+  timestamp: '2024-04-04 16:33:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/point_add_range_sum.test.cpp

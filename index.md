@@ -146,6 +146,9 @@ data:
   - name: graph
     pages:
     - icon: ':warning:'
+      path: graph/0kBFS.cpp
+      title: graph/0kBFS.cpp
+    - icon: ':warning:'
       path: graph/2CC.cpp
       title: graph/2CC.cpp
     - icon: ':heavy_check_mark:'

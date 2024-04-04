@@ -57,9 +57,9 @@ data:
     \  data[i] -= data[i - (i & (-i))];\n  }\n\n  void add(int i, T d) {\n    for(i\
     \ += 1; i < size; i += i & (-i))\n      data[i] += d;\n  }\n\n  T query(int i)\
     \ {\n    T res = T(0);\n    for(i += 1; i > 0; i -= i & (-i))\n      res += data[i];\n\
-    \    return res;\n  }\n\n  T query(int l, int r) {\n    return query(r - 1) -\
-    \ query(l - 1);\n  }\n};\n#line 1 \"misc/compression.cpp\"\ntemplate<class T,\
-    \ bool duplicate = false>\nstruct compression {\n  vector<int> ord;\n  vector<T>\
+    \    return res;\n  }\n\n  T query(int l, int r) { //query [l, r)\n    return\
+    \ query(r - 1) - query(l - 1);\n  }\n};\n#line 1 \"misc/compression.cpp\"\ntemplate<class\
+    \ T, bool duplicate = false>\nstruct compression {\n  vector<int> ord;\n  vector<T>\
     \ val;\n\n  compression(vector<T> &init) : val(init) { precompute(); }\n  compression(int\
     \ size = 0) { val.reserve(size); }\n\n  void precompute() {\n    vector<T> init\
     \ = val;\n    ord.resize(ssize(val));\n    R::sort(val);\n    if constexpr (duplicate)\
@@ -103,7 +103,7 @@ data:
   isVerificationFile: true
   path: test/static_range_count_distinct.test.cpp
   requiredBy: []
-  timestamp: '2024-02-11 15:11:45+08:00'
+  timestamp: '2024-04-04 16:33:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/static_range_count_distinct.test.cpp

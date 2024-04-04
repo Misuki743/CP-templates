@@ -60,15 +60,15 @@ data:
     \  data[i] -= data[i - (i & (-i))];\n  }\n\n  void add(int i, T d) {\n    for(i\
     \ += 1; i < size; i += i & (-i))\n      data[i] += d;\n  }\n\n  T query(int i)\
     \ {\n    T res = T(0);\n    for(i += 1; i > 0; i -= i & (-i))\n      res += data[i];\n\
-    \    return res;\n  }\n\n  T query(int l, int r) {\n    return query(r - 1) -\
-    \ query(l - 1);\n  }\n};\n#line 1 \"ds/fastJump.cpp\"\nstruct fastJump {\n  vector<int>\
-    \ p, jp, dep;\n\n  fastJump(vector<vector<int>> g, int root = 0) : p(ssize(g)),\
-    \ jp(ssize(g)), dep(ssize(g)) {\n    auto dfs = [&](int v, auto self) -> void\
-    \ {\n      if (dep[p[v]] + dep[jp[jp[p[v]]]] == 2 * dep[jp[p[v]]])\n        jp[v]\
-    \ = jp[jp[p[v]]];\n      else\n        jp[v] = p[v];\n\n      for(int x : g[v])\
-    \ {\n        if (x == p[v]) continue;\n        p[x] = v, dep[x] = dep[v] + 1;\n\
-    \        self(x, self);\n      }\n    };\n\n    p[root] = jp[root] = root;\n \
-    \   dfs(root, dfs);\n  }\n\n  int jump(int v, int k) {\n    k = min(k, dep[v]);\n\
+    \    return res;\n  }\n\n  T query(int l, int r) { //query [l, r)\n    return\
+    \ query(r - 1) - query(l - 1);\n  }\n};\n#line 1 \"ds/fastJump.cpp\"\nstruct fastJump\
+    \ {\n  vector<int> p, jp, dep;\n\n  fastJump(vector<vector<int>> g, int root =\
+    \ 0) : p(ssize(g)), jp(ssize(g)), dep(ssize(g)) {\n    auto dfs = [&](int v, auto\
+    \ self) -> void {\n      if (dep[p[v]] + dep[jp[jp[p[v]]]] == 2 * dep[jp[p[v]]])\n\
+    \        jp[v] = jp[jp[p[v]]];\n      else\n        jp[v] = p[v];\n\n      for(int\
+    \ x : g[v]) {\n        if (x == p[v]) continue;\n        p[x] = v, dep[x] = dep[v]\
+    \ + 1;\n        self(x, self);\n      }\n    };\n\n    p[root] = jp[root] = root;\n\
+    \    dfs(root, dfs);\n  }\n\n  int jump(int v, int k) {\n    k = min(k, dep[v]);\n\
     \    while(k) {\n      if (int d = dep[v] - dep[jp[v]]; d <= k)\n        v = jp[v],\
     \ k -= d;\n      else\n        v = p[v], k -= 1;\n    }\n    return v;\n  }\n\n\
     \  int lca(int u, int v) {\n    if (dep[u] < dep[v])\n      swap(u, v);\n    u\
@@ -164,7 +164,7 @@ data:
   isVerificationFile: true
   path: test/vertex_get_range_contour_add_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-02-11 12:51:49+08:00'
+  timestamp: '2024-04-04 16:33:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_get_range_contour_add_on_tree.test.cpp
