@@ -22,7 +22,7 @@ struct fenwickTree {
     return res;
   }
 
-  T query(int l, int r) {
+  T query(int l, int r) { //query [l, r)
     return query(r - 1) - query(l - 1);
   }
 };
