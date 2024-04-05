@@ -19,9 +19,9 @@ pair<T, vector<int>> treeDiameter(vector<vector<pair<int, T>>> &g) {
   };
 
   auto dis0 = bfs(0).first;
-  int u = R::max_element(dis0) - dis0.begin();
+  int u = ranges::max_element(dis0) - dis0.begin();
   auto [dis1, pre1] = bfs(u);
-  int v = R::max_element(dis1) - dis1.begin();
+  int v = ranges::max_element(dis1) - dis1.begin();
   T d = dis1[v];
 
   vector<int> diameter(1, v);

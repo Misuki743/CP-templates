@@ -32,18 +32,18 @@ signed main() {
       xs.emplace_back(x);
     }
   }
-  R::sort(xs);
+  ranges::sort(xs);
   xs.resize(unique(xs.begin(), xs.end()) - xs.begin());
   for(auto &[l, r, a, b] : c) {
-    l = R::lower_bound(xs, l) - xs.begin();
-    r = R::lower_bound(xs, r) - xs.begin();
+    l = ranges::lower_bound(xs, l) - xs.begin();
+    r = ranges::lower_bound(xs, r) - xs.begin();
   }
   for(auto &[t, x, y, z, w] : query) {
     if (t == 0) {
-      x = R::lower_bound(xs, x) - xs.begin();
-      y = R::lower_bound(xs, y) - xs.begin();
+      x = ranges::lower_bound(xs, x) - xs.begin();
+      y = ranges::lower_bound(xs, y) - xs.begin();
     } else {
-      x = R::lower_bound(xs, x) - xs.begin();
+      x = ranges::lower_bound(xs, x) - xs.begin();
     }
   }
 

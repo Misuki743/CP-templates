@@ -53,7 +53,7 @@ struct HLD {
     vector<tuple<int, int, bool>> res;
     for(auto [l, r] : resL)
       res.push_back({l, r, true});
-    for(auto [l, r] : resR | V::reverse)
+    for(auto [l, r] : resR | views::reverse)
       res.push_back({l, r, false});
     return res;
   }

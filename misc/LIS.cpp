@@ -15,12 +15,12 @@ vector<int> LIS(vector<T> &a) {
   }
 
   vector<T> lis;
-  int i = id[R::lower_bound(dp, numeric_limits<T>::max()) - dp.begin() - 1];
+  int i = id[ranges::lower_bound(dp, numeric_limits<T>::max()) - dp.begin() - 1];
   while(i != -1) {
     lis.emplace_back(i);
     i = pre[i];
   }
-  R::reverse(lis);
+  ranges::reverse(lis);
 
   return lis;
 }

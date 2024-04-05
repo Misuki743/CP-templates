@@ -9,7 +9,7 @@ pair<int, vector<int>> treeHash(vector<vector<int>> &g, int root = 0) {
     for(int x : g[v]) if (x != p)
       seq.emplace_back(self(x, v, self));
     if constexpr (!ordered)
-      R::sort(seq);
+      ranges::sort(seq);
     if (!toId.contains(seq))
       toId[seq] = nxt++;
     return id[v] = toId[seq];

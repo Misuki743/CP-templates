@@ -10,7 +10,7 @@ vector<T2> rectangleSum(vector<tuple<T1, T1, T2>> pt, vector<array<T1, 4>> query
   ys.mapping(query, [](auto &x) -> T1& { return x[2]; });
   ys.mapping(query, [](auto &x) -> T1& { return x[3]; });
 
-  R::sort(pt, less<T1>{}, [](auto x) { return get<0>(x); });
+  ranges::sort(pt, less<T1>{}, [](auto x) { return get<0>(x); });
 
   vector<tuple<T1, int, int>> qry;
   qry.reserve(2 * ssize(query));
@@ -18,7 +18,7 @@ vector<T2> rectangleSum(vector<tuple<T1, T1, T2>> pt, vector<array<T1, 4>> query
     qry.emplace_back(query[i][0] - 1, -1, i);
     qry.emplace_back(query[i][1] - 1, 1, i);
   }
-  R::sort(qry, {}, [](auto &x) { return get<0>(x); });
+  ranges::sort(qry, {}, [](auto &x) { return get<0>(x); });
 
   fenwickTree<T2> bit(ys.size());
   vector<T2> ans(ssize(query));
