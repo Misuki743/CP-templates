@@ -15,6 +15,12 @@ struct binomial {
 
   Mint fac(int i) { return i < 0 ? 0 : _fac[i]; }
   Mint faci(int i) { return i < 0 ? 0 : _facInv[i]; }
-  Mint binom(int n, int r) { return r < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }
   Mint inv(int i) { return _facInv[i] * _fac[i - 1]; }
+  Mint binom(int n, int r) { return r < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }
+  Mint catalan(int i) { return binom(2 * i, i) - binom(2 * i, i + 1); }
+  Mint excatalan(int n, int m, int k) { //(+1) * n, (-1) * m, prefix sum > -k
+    if (k > m) return binom(n + m, m);
+    else if (k > m - n) return binom(n + m, m) - binom(n + m, m - k);
+    else return Mint(0);
+  }
 };
