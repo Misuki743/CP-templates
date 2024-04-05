@@ -23,9 +23,9 @@ data:
     \  ys.mapping(rect, [](auto &x) -> T1& { return x[3]; });\n\n  vector<tuple<T1,\
     \ int, int>> add;\n  add.reserve(ssize(rect));\n  for(int i = 0; auto &[l, r,\
     \ _, __] : rect) {\n    add.emplace_back(l, 1, i);\n    add.emplace_back(r, -1,\
-    \ i++);\n  }\n  R::sort(add, {}, [](auto &x) { return get<0>(x); });\n\n  vector<pair<T1,\
-    \ T1>> init(ys.size() - 1);\n  for(int i = 0; i + 1 < ys.size(); i++)\n    init[i]\
-    \ = make_pair(T1(0), ys.val[i + 1] - ys.val[i]);\n  ultraLazySegmentTree<actedMonoid_addMinCnt<T1>>\
+    \ i++);\n  }\n  ranges::sort(add, {}, [](auto &x) { return get<0>(x); });\n\n\
+    \  vector<pair<T1, T1>> init(ys.size() - 1);\n  for(int i = 0; i + 1 < ys.size();\
+    \ i++)\n    init[i] = make_pair(T1(0), ys.val[i + 1] - ys.val[i]);\n  ultraLazySegmentTree<actedMonoid_addMinCnt<T1>>\
     \ st(init);\n\n  T2 ans = 0;\n  for(int i = 1, ptr = 0; i < xs.size(); i++) {\n\
     \    while(ptr < ssize(add) and get<0>(add[ptr]) < i) {\n      auto [x, r, i]\
     \ = add[ptr++];\n      auto [_, __, d, u] = rect[i];\n      st.modify(d, u, r);\n\
@@ -44,9 +44,9 @@ data:
     \  ys.mapping(rect, [](auto &x) -> T1& { return x[3]; });\n\n  vector<tuple<T1,\
     \ int, int>> add;\n  add.reserve(ssize(rect));\n  for(int i = 0; auto &[l, r,\
     \ _, __] : rect) {\n    add.emplace_back(l, 1, i);\n    add.emplace_back(r, -1,\
-    \ i++);\n  }\n  R::sort(add, {}, [](auto &x) { return get<0>(x); });\n\n  vector<pair<T1,\
-    \ T1>> init(ys.size() - 1);\n  for(int i = 0; i + 1 < ys.size(); i++)\n    init[i]\
-    \ = make_pair(T1(0), ys.val[i + 1] - ys.val[i]);\n  ultraLazySegmentTree<actedMonoid_addMinCnt<T1>>\
+    \ i++);\n  }\n  ranges::sort(add, {}, [](auto &x) { return get<0>(x); });\n\n\
+    \  vector<pair<T1, T1>> init(ys.size() - 1);\n  for(int i = 0; i + 1 < ys.size();\
+    \ i++)\n    init[i] = make_pair(T1(0), ys.val[i + 1] - ys.val[i]);\n  ultraLazySegmentTree<actedMonoid_addMinCnt<T1>>\
     \ st(init);\n\n  T2 ans = 0;\n  for(int i = 1, ptr = 0; i < xs.size(); i++) {\n\
     \    while(ptr < ssize(add) and get<0>(add[ptr]) < i) {\n      auto [x, r, i]\
     \ = add[ptr++];\n      auto [_, __, d, u] = rect[i];\n      st.modify(d, u, r);\n\
@@ -57,7 +57,7 @@ data:
   isVerificationFile: false
   path: misc/areaOfUnionOfRectangles.cpp
   requiredBy: []
-  timestamp: '2024-02-09 22:19:36+08:00'
+  timestamp: '2024-04-05 18:02:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/area_of_union_of_rectangles.test.cpp

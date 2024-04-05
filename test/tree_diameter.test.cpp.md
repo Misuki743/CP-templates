@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/treeDiameter.cpp
     title: graph/treeDiameter.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
@@ -33,17 +33,16 @@ data:
     \ <tuple>\n#include <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
     \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
-    \nnamespace R = std::ranges;\nnamespace V = std::views;\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
-    using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\ntemplate<class T>\n\
-    ostream& operator<<(ostream& os, const pair<T, T> pr) {\n  return os << pr.first\
-    \ << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
-    \ os, const array<T, N> &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
-    \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
-    \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"graph/treeDiameter.cpp\"\
-    \ntemplate<class T, T inf>\npair<T, vector<int>> treeDiameter(vector<vector<pair<int,\
+    \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
+    using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
+    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
+    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
+    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
+    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
+    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
+    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
+    \ \"graph/treeDiameter.cpp\"\ntemplate<class T, T inf>\npair<T, vector<int>> treeDiameter(vector<vector<pair<int,\
     \ T>>> &g) {\n  const int n = ssize(g);\n  auto bfs = [&](int s) {\n    vector<T>\
     \ dis(n, inf);\n    vector<int> pre(n, -1);\n    queue<int> q;\n    dis[s] = 0;\n\
     \    q.push(s);\n    while(!q.empty()) {\n      int v = q.front(); q.pop();\n\
@@ -72,8 +71,8 @@ data:
   isVerificationFile: true
   path: test/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2024-01-28 03:46:27+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-05 18:02:52+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/tree_diameter.test.cpp
 layout: document

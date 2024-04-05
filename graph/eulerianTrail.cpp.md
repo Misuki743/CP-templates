@@ -32,8 +32,8 @@ data:
     \ i < ssize(g[v]); i++) {\n      if (visE[g[v][i]]) continue;\n      int tmp =\
     \ g[v][i];\n      int x = v ^ e[tmp][0] ^ e[tmp][1];\n      visE[tmp] = true;\n\
     \      self(x, self);\n      vid.emplace_back(x);\n      eid.emplace_back(tmp);\n\
-    \    }\n  };\n\n  dfs(s, dfs);\n  vid.emplace_back(s);\n\n  R::reverse(vid);\n\
-    \  R::reverse(eid);\n\n  if (ssize(eid) != ssize(e))\n    return {};\n  else\n\
+    \    }\n  };\n\n  dfs(s, dfs);\n  vid.emplace_back(s);\n\n  ranges::reverse(vid);\n\
+    \  ranges::reverse(eid);\n\n  if (ssize(eid) != ssize(e))\n    return {};\n  else\n\
     \    return {vid, eid};\n}\n"
   code: "template<bool directed = false, bool circuit = false>\narray<vector<int>,\
     \ 2> eulerianTrail(int n, vector<array<int, 2>> &e) {\n  vector<int> indeg(n),\
@@ -53,13 +53,13 @@ data:
     \ continue;\n      int tmp = g[v][i];\n      int x = v ^ e[tmp][0] ^ e[tmp][1];\n\
     \      visE[tmp] = true;\n      self(x, self);\n      vid.emplace_back(x);\n \
     \     eid.emplace_back(tmp);\n    }\n  };\n\n  dfs(s, dfs);\n  vid.emplace_back(s);\n\
-    \n  R::reverse(vid);\n  R::reverse(eid);\n\n  if (ssize(eid) != ssize(e))\n  \
-    \  return {};\n  else\n    return {vid, eid};\n}\n"
+    \n  ranges::reverse(vid);\n  ranges::reverse(eid);\n\n  if (ssize(eid) != ssize(e))\n\
+    \    return {};\n  else\n    return {vid, eid};\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/eulerianTrail.cpp
   requiredBy: []
-  timestamp: '2024-01-28 22:59:51+08:00'
+  timestamp: '2024-04-05 18:02:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/eulerian_trail_undirected.test.cpp

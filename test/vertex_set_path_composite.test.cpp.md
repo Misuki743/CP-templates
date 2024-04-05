@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: actedmonoid/actedMonoid_affineSum.cpp
     title: actedmonoid/actedMonoid_affineSum.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/heavyLightDecomposition.cpp
     title: ds/heavyLightDecomposition.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segtree/segmentTree.cpp
     title: segtree/segmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -43,17 +43,16 @@ data:
     \ <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
     \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
-    \nnamespace R = std::ranges;\nnamespace V = std::views;\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
-    using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\ntemplate<class T>\n\
-    ostream& operator<<(ostream& os, const pair<T, T> pr) {\n  return os << pr.first\
-    \ << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
-    \ os, const array<T, N> &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
-    \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
-    \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"modint/MontgomeryModInt.cpp\"\
-    \n//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
+    using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
+    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
+    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
+    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
+    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
+    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
+    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
+    \ \"modint/MontgomeryModInt.cpp\"\n//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
     //note: mod should be a prime less than 2^30.\n\ntemplate<uint32_t mod>\nstruct\
     \ MontgomeryModInt {\n  using mint = MontgomeryModInt;\n  using i32 = int32_t;\n\
     \  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static constexpr u32 get_r()\
@@ -111,11 +110,11 @@ data:
     \ g[v][mx]);\n    };\n\n    int nxt = 0;\n    auto cut = [&](int v, int h, auto\
     \ self) -> void {\n      id[v] = nxt++, head[v] = h;\n      if (!g[v].empty()\
     \ and g[v][0] != p[v])\n        self(g[v][0], h, self);\n      for(int x : g[v]\
-    \ | V::drop(1)) if (x != p[v])\n          self(x, x, self);\n    };\n\n    for(int\
-    \ x : root) {\n      dfs(x, dfs);\n      cut(x, x, cut);\n    }\n  }\n\n  //(l,\
-    \ r, rev)\n  vector<tuple<int, int, bool>> query(int u, int v, bool edge = false)\
-    \ {\n    vector<array<int, 2>> resL, resR;\n    while(head[u] != head[v]) {\n\
-    \      if (dep[head[u]] >= dep[head[v]]) {\n        resL.push_back({id[head[u]],\
+    \ | views::drop(1)) if (x != p[v])\n          self(x, x, self);\n    };\n\n  \
+    \  for(int x : root) {\n      dfs(x, dfs);\n      cut(x, x, cut);\n    }\n  }\n\
+    \n  //(l, r, rev)\n  vector<tuple<int, int, bool>> query(int u, int v, bool edge\
+    \ = false) {\n    vector<array<int, 2>> resL, resR;\n    while(head[u] != head[v])\
+    \ {\n      if (dep[head[u]] >= dep[head[v]]) {\n        resL.push_back({id[head[u]],\
     \ id[u] + 1});\n        u = p[head[u]];\n      } else {\n        resR.push_back({id[head[v]],\
     \ id[v] + 1});\n        v = p[head[v]];\n      }\n    }\n    if (id[v] + edge\
     \ <= id[u])\n      resL.push_back({id[v] + edge, id[u] + 1});\n    else if (id[u]\
@@ -129,14 +128,14 @@ data:
     \ = 1; i < n; i++) {\n    int u, v; cin >> u >> v;\n    g[u].emplace_back(v);\n\
     \    g[v].emplace_back(u);\n  }\n\n  HLD hld(g);\n  vector<am::T> init(n);\n \
     \ for(int i = 0; i < n; i++)\n    init[hld.id[i]] = ab[i];\n  segmentTree<am::T,\
-    \ am::Tid, am::Top> st(init);\n  R::reverse(init);\n  segmentTree<am::T, am::Tid,\
-    \ am::Top> str(init);\n\n  while(q--) {\n    int t, a, b, c; cin >> t >> a >>\
-    \ b >> c;\n    if (t == 0) {\n      st.set(hld.id[a], am::T{b, c});\n      str.set((n\
-    \ - 1) - hld.id[a], am::T{b, c});\n    } else {\n      auto res = am::T{0, c};\n\
-    \      for(auto [l, r, rev] : hld.query(a, b)) {\n        if (rev)\n         \
-    \ res = am::Top(res, str.query(n - r, n - l));\n        else\n          res =\
-    \ am::Top(res, st.query(l, r));\n      }\n      cout << res[1] << '\\n';\n   \
-    \ }\n  }\n\n  return 0;\n}\n"
+    \ am::Tid, am::Top> st(init);\n  ranges::reverse(init);\n  segmentTree<am::T,\
+    \ am::Tid, am::Top> str(init);\n\n  while(q--) {\n    int t, a, b, c; cin >> t\
+    \ >> a >> b >> c;\n    if (t == 0) {\n      st.set(hld.id[a], am::T{b, c});\n\
+    \      str.set((n - 1) - hld.id[a], am::T{b, c});\n    } else {\n      auto res\
+    \ = am::T{0, c};\n      for(auto [l, r, rev] : hld.query(a, b)) {\n        if\
+    \ (rev)\n          res = am::Top(res, str.query(n - r, n - l));\n        else\n\
+    \          res = am::Top(res, st.query(l, r));\n      }\n      cout << res[1]\
+    \ << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
     \n#include \"../segtree/segmentTree.cpp\"\n#include \"../actedmonoid/actedMonoid_affineSum.cpp\"\
@@ -147,13 +146,13 @@ data:
     \ u, v; cin >> u >> v;\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n\
     \  }\n\n  HLD hld(g);\n  vector<am::T> init(n);\n  for(int i = 0; i < n; i++)\n\
     \    init[hld.id[i]] = ab[i];\n  segmentTree<am::T, am::Tid, am::Top> st(init);\n\
-    \  R::reverse(init);\n  segmentTree<am::T, am::Tid, am::Top> str(init);\n\n  while(q--)\
-    \ {\n    int t, a, b, c; cin >> t >> a >> b >> c;\n    if (t == 0) {\n      st.set(hld.id[a],\
-    \ am::T{b, c});\n      str.set((n - 1) - hld.id[a], am::T{b, c});\n    } else\
-    \ {\n      auto res = am::T{0, c};\n      for(auto [l, r, rev] : hld.query(a,\
-    \ b)) {\n        if (rev)\n          res = am::Top(res, str.query(n - r, n - l));\n\
-    \        else\n          res = am::Top(res, st.query(l, r));\n      }\n      cout\
-    \ << res[1] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+    \  ranges::reverse(init);\n  segmentTree<am::T, am::Tid, am::Top> str(init);\n\
+    \n  while(q--) {\n    int t, a, b, c; cin >> t >> a >> b >> c;\n    if (t == 0)\
+    \ {\n      st.set(hld.id[a], am::T{b, c});\n      str.set((n - 1) - hld.id[a],\
+    \ am::T{b, c});\n    } else {\n      auto res = am::T{0, c};\n      for(auto [l,\
+    \ r, rev] : hld.query(a, b)) {\n        if (rev)\n          res = am::Top(res,\
+    \ str.query(n - r, n - l));\n        else\n          res = am::Top(res, st.query(l,\
+    \ r));\n      }\n      cout << res[1] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
@@ -163,8 +162,8 @@ data:
   isVerificationFile: true
   path: test/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-03-07 01:57:47+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-05 18:02:52+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/vertex_set_path_composite.test.cpp
 layout: document

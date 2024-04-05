@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/centroidTree.cpp
     title: ds/centroidTree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastJump.cpp
     title: ds/fastJump.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashTable.cpp
     title: ds/hashTable.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
@@ -36,22 +36,22 @@ data:
     \n#include <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
     \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
-    \nnamespace R = std::ranges;\nnamespace V = std::views;\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
-    using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\ntemplate<class T>\n\
-    ostream& operator<<(ostream& os, const pair<T, T> pr) {\n  return os << pr.first\
-    \ << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
-    \ os, const array<T, N> &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
-    \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
-    \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"ds/hashTable.cpp\"\n//source:\
-    \ https://codeforces.com/blog/entry/62393\n\nstruct custom_hash {\n    static\
-    \ uint64_t splitmix64(uint64_t x) {\n        x += 0x9e3779b97f4a7c15;\n      \
-    \  x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n\
-    \        return x ^ (x >> 31);\n    }\n\n    size_t operator()(uint64_t x) const\
-    \ {\n        static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();\n\
-    \        return splitmix64(x + FIXED_RANDOM);\n    }\n};\n\nusing namespace __gnu_pbds;\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
+    using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
+    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
+    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
+    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
+    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
+    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
+    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
+    \ \"ds/hashTable.cpp\"\n//source: https://codeforces.com/blog/entry/62393\n\n\
+    struct custom_hash {\n    static uint64_t splitmix64(uint64_t x) {\n        x\
+    \ += 0x9e3779b97f4a7c15;\n        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n\
+    \        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n        return x ^ (x >> 31);\n\
+    \    }\n\n    size_t operator()(uint64_t x) const {\n        static const uint64_t\
+    \ FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();\n   \
+    \     return splitmix64(x + FIXED_RANDOM);\n    }\n};\n\nusing namespace __gnu_pbds;\n\
     \n//gp_hash_table<ll, int, custom_hash> m;\n#line 1 \"ds/fenwickTree.cpp\"\ntemplate<class\
     \ T>\nstruct fenwickTree {\n  const int size;\n  vector<T> data;\n\n  fenwickTree(int\
     \ _size) : size(_size + 1), data(_size + 1) {}\n  fenwickTree(vector<T> &init)\
@@ -105,11 +105,11 @@ data:
     \ if (p[s] != -1)\n        cand[s + n].push_back({fj.dis(p[s], v), v});\n    \
     \  for(int x : g2[v]) {\n        if (x == p[v]) continue;\n        self(x, self);\n\
     \      }\n    };\n    dfs(s, dfs);\n    for(int d : {0, n}) {\n      base[s +\
-    \ d] = ssize(init);\n      R::sort(cand[s + d]);\n      for(auto [_, v] : cand[s\
-    \ + d]) {\n        toId[(ll)v << 32 | (s + d)] = ssize(init);\n        init.emplace_back(a[v]);\n\
-    \      }\n    }\n  }\n\n  fenwickTree<ll> ft(init);\n  auto query = [&](int v,\
-    \ int l, int r) {\n    int ql = base[v] + (R::lower_bound(cand[v], array<int,\
-    \ 2>{l, -1}) - cand[v].begin());\n    int qr = base[v] + (R::lower_bound(cand[v],\
+    \ d] = ssize(init);\n      ranges::sort(cand[s + d]);\n      for(auto [_, v] :\
+    \ cand[s + d]) {\n        toId[(ll)v << 32 | (s + d)] = ssize(init);\n       \
+    \ init.emplace_back(a[v]);\n      }\n    }\n  }\n\n  fenwickTree<ll> ft(init);\n\
+    \  auto query = [&](int v, int l, int r) {\n    int ql = base[v] + (ranges::lower_bound(cand[v],\
+    \ array<int, 2>{l, -1}) - cand[v].begin());\n    int qr = base[v] + (ranges::lower_bound(cand[v],\
     \ array<int, 2>{r, -1}) - cand[v].begin());\n    return ft.query(ql, qr);\n  };\n\
     \n  while(q--) {\n    int op; cin >> op;\n    if (op == 0) {\n      int x, d;\
     \ cin >> x >> d;\n      int v = x;\n      while(v != -1) {\n        ft.add(toId[(ll)x\
@@ -137,11 +137,11 @@ data:
     \        cand[s + n].push_back({fj.dis(p[s], v), v});\n      for(int x : g2[v])\
     \ {\n        if (x == p[v]) continue;\n        self(x, self);\n      }\n    };\n\
     \    dfs(s, dfs);\n    for(int d : {0, n}) {\n      base[s + d] = ssize(init);\n\
-    \      R::sort(cand[s + d]);\n      for(auto [_, v] : cand[s + d]) {\n       \
-    \ toId[(ll)v << 32 | (s + d)] = ssize(init);\n        init.emplace_back(a[v]);\n\
+    \      ranges::sort(cand[s + d]);\n      for(auto [_, v] : cand[s + d]) {\n  \
+    \      toId[(ll)v << 32 | (s + d)] = ssize(init);\n        init.emplace_back(a[v]);\n\
     \      }\n    }\n  }\n\n  fenwickTree<ll> ft(init);\n  auto query = [&](int v,\
-    \ int l, int r) {\n    int ql = base[v] + (R::lower_bound(cand[v], array<int,\
-    \ 2>{l, -1}) - cand[v].begin());\n    int qr = base[v] + (R::lower_bound(cand[v],\
+    \ int l, int r) {\n    int ql = base[v] + (ranges::lower_bound(cand[v], array<int,\
+    \ 2>{l, -1}) - cand[v].begin());\n    int qr = base[v] + (ranges::lower_bound(cand[v],\
     \ array<int, 2>{r, -1}) - cand[v].begin());\n    return ft.query(ql, qr);\n  };\n\
     \n  while(q--) {\n    int op; cin >> op;\n    if (op == 0) {\n      int x, d;\
     \ cin >> x >> d;\n      int v = x;\n      while(v != -1) {\n        ft.add(toId[(ll)x\
@@ -161,8 +161,8 @@ data:
   isVerificationFile: true
   path: test/vertex_add_range_contour_sum_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-04-04 16:33:52+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-05 18:02:52+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/vertex_add_range_contour_sum_on_tree.test.cpp
 layout: document

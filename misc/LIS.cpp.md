@@ -3,19 +3,19 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/longest_increasing_subsequence.test.cpp
     title: test/longest_increasing_subsequence.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/LIS.cpp\"\ntemplate<class T, bool strict = true>\n\
     vector<int> LIS(vector<T> &a) {\n  vector<T> dp(ssize(a), numeric_limits<T>::max());\n\
     \  vector<int> id(ssize(a)), pre(ssize(a), -1);\n  for(int i = 0; i < ssize(a);\
-    \ i++) {\n    int j;\n    if constexpr (strict)\n      j = R::lower_bound(dp,\
-    \ a[i]) - dp.begin();\n    else\n      j = R::upper_bound(dp, a[i]) - dp.begin();\n\
+    \ i++) {\n    int j;\n    if constexpr (strict)\n      j = ranges::lower_bound(dp,\
+    \ a[i]) - dp.begin();\n    else\n      j = ranges::upper_bound(dp, a[i]) - dp.begin();\n\
     \    if (a[i] < dp[j])\n      dp[j] = a[i], id[j] = i;\n    if (j >= 1)\n    \
     \  pre[i] = id[j - 1];\n  }\n\n  vector<T> lis;\n  int i = id[R::lower_bound(dp,\
     \ numeric_limits<T>::max()) - dp.begin() - 1];\n  while(i != -1) {\n    lis.emplace_back(i);\n\
@@ -23,18 +23,18 @@ data:
   code: "template<class T, bool strict = true>\nvector<int> LIS(vector<T> &a) {\n\
     \  vector<T> dp(ssize(a), numeric_limits<T>::max());\n  vector<int> id(ssize(a)),\
     \ pre(ssize(a), -1);\n  for(int i = 0; i < ssize(a); i++) {\n    int j;\n    if\
-    \ constexpr (strict)\n      j = R::lower_bound(dp, a[i]) - dp.begin();\n    else\n\
-    \      j = R::upper_bound(dp, a[i]) - dp.begin();\n    if (a[i] < dp[j])\n   \
-    \   dp[j] = a[i], id[j] = i;\n    if (j >= 1)\n      pre[i] = id[j - 1];\n  }\n\
-    \n  vector<T> lis;\n  int i = id[R::lower_bound(dp, numeric_limits<T>::max())\
+    \ constexpr (strict)\n      j = ranges::lower_bound(dp, a[i]) - dp.begin();\n\
+    \    else\n      j = ranges::upper_bound(dp, a[i]) - dp.begin();\n    if (a[i]\
+    \ < dp[j])\n      dp[j] = a[i], id[j] = i;\n    if (j >= 1)\n      pre[i] = id[j\
+    \ - 1];\n  }\n\n  vector<T> lis;\n  int i = id[R::lower_bound(dp, numeric_limits<T>::max())\
     \ - dp.begin() - 1];\n  while(i != -1) {\n    lis.emplace_back(i);\n    i = pre[i];\n\
     \  }\n  R::reverse(lis);\n\n  return lis;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: misc/LIS.cpp
   requiredBy: []
-  timestamp: '2024-02-10 22:33:36+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-04-05 18:02:52+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/longest_increasing_subsequence.test.cpp
 documentation_of: misc/LIS.cpp

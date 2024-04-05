@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_add_rectangle_sum.test.cpp
     title: test/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/rectangle_add_point_get.test.cpp
     title: test/rectangle_add_point_get.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fenwickTree2D.cpp\"\n//source: KACTL\n\n/**\n * Author:\
@@ -35,12 +35,12 @@ data:
     \ stress-tested\n */\ntemplate<class T1, class T2>\nstruct FT2 {\n\tvector<vector<T1>>\
     \ ys; vector<FT<T2>> ft;\n\tFT2(int limx) : ys(limx) {}\n\tvoid fakeUpdate(int\
     \ x, T1 y) {\n\t\tfor (; x < ssize(ys); x |= x + 1) ys[x].push_back(y);\n\t}\n\
-    \tvoid init() {\n\t\tfor (vector<T1>& v : ys) R::sort(v), ft.emplace_back(ssize(v));\n\
-    \t}\n\tint ind(int x, T1 y) {\n\t\treturn (int)(R::lower_bound(ys[x], y) - ys[x].begin());\
-    \ }\n\tvoid update(int x, T1 y, T2 dif) {\n\t\tfor (; x < ssize(ys); x |= x +\
-    \ 1)\n\t\t\tft[x].update(ind(x, y), dif);\n\t}\n\tT2 query(int x, T1 y) {\n\t\t\
-    T2 sum = 0;\n\t\tfor (; x; x &= x - 1)\n\t\t\tsum += ft[x-1].query(ind(x-1, y));\n\
-    \t\treturn sum;\n\t}\n};\n"
+    \tvoid init() {\n\t\tfor (vector<T1>& v : ys) ranges::sort(v), ft.emplace_back(ssize(v));\n\
+    \t}\n\tint ind(int x, T1 y) {\n\t\treturn (int)(ranges::lower_bound(ys[x], y)\
+    \ - ys[x].begin()); }\n\tvoid update(int x, T1 y, T2 dif) {\n\t\tfor (; x < ssize(ys);\
+    \ x |= x + 1)\n\t\t\tft[x].update(ind(x, y), dif);\n\t}\n\tT2 query(int x, T1\
+    \ y) {\n\t\tT2 sum = 0;\n\t\tfor (; x; x &= x - 1)\n\t\t\tsum += ft[x-1].query(ind(x-1,\
+    \ y));\n\t\treturn sum;\n\t}\n};\n"
   code: "//source: KACTL\n\n/**\n * Author: Lukas Polacek\n * Date: 2009-10-30\n *\
     \ License: CC0\n * Source: folklore/TopCoder\n * Description: Computes partial\
     \ sums a[0] + a[1] + ... + a[pos - 1], and updates single elements a[i],\n * taking\
@@ -62,18 +62,18 @@ data:
     \ stress-tested\n */\ntemplate<class T1, class T2>\nstruct FT2 {\n\tvector<vector<T1>>\
     \ ys; vector<FT<T2>> ft;\n\tFT2(int limx) : ys(limx) {}\n\tvoid fakeUpdate(int\
     \ x, T1 y) {\n\t\tfor (; x < ssize(ys); x |= x + 1) ys[x].push_back(y);\n\t}\n\
-    \tvoid init() {\n\t\tfor (vector<T1>& v : ys) R::sort(v), ft.emplace_back(ssize(v));\n\
-    \t}\n\tint ind(int x, T1 y) {\n\t\treturn (int)(R::lower_bound(ys[x], y) - ys[x].begin());\
-    \ }\n\tvoid update(int x, T1 y, T2 dif) {\n\t\tfor (; x < ssize(ys); x |= x +\
-    \ 1)\n\t\t\tft[x].update(ind(x, y), dif);\n\t}\n\tT2 query(int x, T1 y) {\n\t\t\
-    T2 sum = 0;\n\t\tfor (; x; x &= x - 1)\n\t\t\tsum += ft[x-1].query(ind(x-1, y));\n\
-    \t\treturn sum;\n\t}\n};\n"
+    \tvoid init() {\n\t\tfor (vector<T1>& v : ys) ranges::sort(v), ft.emplace_back(ssize(v));\n\
+    \t}\n\tint ind(int x, T1 y) {\n\t\treturn (int)(ranges::lower_bound(ys[x], y)\
+    \ - ys[x].begin()); }\n\tvoid update(int x, T1 y, T2 dif) {\n\t\tfor (; x < ssize(ys);\
+    \ x |= x + 1)\n\t\t\tft[x].update(ind(x, y), dif);\n\t}\n\tT2 query(int x, T1\
+    \ y) {\n\t\tT2 sum = 0;\n\t\tfor (; x; x &= x - 1)\n\t\t\tsum += ft[x-1].query(ind(x-1,\
+    \ y));\n\t\treturn sum;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/fenwickTree2D.cpp
   requiredBy: []
-  timestamp: '2024-01-28 03:46:27+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-04-05 18:02:52+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/rectangle_add_point_get.test.cpp
   - test/point_add_rectangle_sum.test.cpp

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segtree/persistentSegmentTree.cpp
     title: segtree/persistentSegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -37,28 +37,27 @@ data:
     #include <variant>\n\n#define INT128_MAX (__int128)(((unsigned __int128) 1 <<\
     \ ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX\
     \ - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
-    \nnamespace R = std::ranges;\nnamespace V = std::views;\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
-    using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\ntemplate<class T>\n\
-    ostream& operator<<(ostream& os, const pair<T, T> pr) {\n  return os << pr.first\
-    \ << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
-    \ os, const array<T, N> &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
-    \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
-    \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"misc/compression.cpp\"\n\
-    template<class T, bool duplicate = false>\nstruct compression {\n  vector<int>\
-    \ ord;\n  vector<T> val;\n\n  compression(vector<T> &init) : val(init) { precompute();\
-    \ }\n  compression(int size = 0) { val.reserve(size); }\n\n  void precompute()\
-    \ {\n    vector<T> init = val;\n    ord.resize(ssize(val));\n    R::sort(val);\n\
-    \    if constexpr (duplicate) {\n      vector<int> cnt(ssize(init));\n      iota(cnt.begin(),\
-    \ cnt.end(), 0);\n      for(int i = 0; i < ssize(ord); i++)\n        ord[i] =\
-    \ cnt[lower_bound(init[i])]++;\n    } else {\n      val.resize(unique(val.begin(),\
+    \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
+    using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
+    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
+    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
+    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
+    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
+    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
+    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
+    \ \"misc/compression.cpp\"\ntemplate<class T, bool duplicate = false>\nstruct\
+    \ compression {\n  vector<int> ord;\n  vector<T> val;\n\n  compression(vector<T>\
+    \ &init) : val(init) { precompute(); }\n  compression(int size = 0) { val.reserve(size);\
+    \ }\n\n  void precompute() {\n    vector<T> init = val;\n    ord.resize(ssize(val));\n\
+    \    ranges::sort(val);\n    if constexpr (duplicate) {\n      vector<int> cnt(ssize(init));\n\
+    \      iota(cnt.begin(), cnt.end(), 0);\n      for(int i = 0; i < ssize(ord);\
+    \ i++)\n        ord[i] = cnt[lower_bound(init[i])]++;\n    } else {\n      val.resize(unique(val.begin(),\
     \ val.end()) - val.begin());\n      for(int i = 0; i < ssize(ord); i++)\n    \
     \    ord[i] = lower_bound(init[i]);\n    }\n  }\n\n  int lower_bound(T x) { return\
-    \ R::lower_bound(val, x) - val.begin(); }\n  int size() { return ssize(val); }\n\
-    \  template<R::range rng, class proj = identity>\n  void mapping(rng &v, proj\
-    \ p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }\n  template<R::range\
+    \ ranges::lower_bound(val, x) - val.begin(); }\n  int size() { return ssize(val);\
+    \ }\n  template<ranges::range rng, class proj = identity>\n  void mapping(rng\
+    \ &v, proj p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }\n  template<ranges::range\
     \ rng, class proj = identity>\n  void insert(rng &v, proj p = {}) { for(auto &x\
     \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"segtree/persistentSegmentTree.cpp\"\
     \ntemplate<class M, M(*id)(), M(*op)(const M&, const M&)>\nstruct persistentSegmentTree\
@@ -112,8 +111,8 @@ data:
   isVerificationFile: true
   path: test/range_kth_smallest2.test.cpp
   requiredBy: []
-  timestamp: '2024-03-11 22:38:30+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-05 18:02:52+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/range_kth_smallest2.test.cpp
 layout: document

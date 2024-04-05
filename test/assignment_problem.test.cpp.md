@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -33,18 +33,17 @@ data:
     \ <tuple>\n#include <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
     \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
-    \nnamespace R = std::ranges;\nnamespace V = std::views;\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
-    using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\ntemplate<class T>\n\
-    ostream& operator<<(ostream& os, const pair<T, T> pr) {\n  return os << pr.first\
-    \ << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
-    \ os, const array<T, N> &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
-    \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
-    \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"graph/hungarian.cpp\"\n\
-    //source: KACTL\n\n/**\n * Author: Benjamin Qi, chilli\n * Date: 2020-04-04\n\
-    \ * License: CC0\n * Source: https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/Matching/Hungarian.h\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
+    using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
+    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
+    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
+    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
+    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
+    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
+    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
+    \ \"graph/hungarian.cpp\"\n//source: KACTL\n\n/**\n * Author: Benjamin Qi, chilli\n\
+    \ * Date: 2020-04-04\n * License: CC0\n * Source: https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/Matching/Hungarian.h\n\
     \ * Description: Given a weighted bipartite graph, matches every node on\n * the\
     \ left with a node on the right such that no\n * nodes are in two matchings and\
     \ the sum of the edge weights is minimal. Takes\n * cost[N][M], where cost[i][j]\
@@ -81,7 +80,7 @@ data:
   isVerificationFile: true
   path: test/assignment_problem.test.cpp
   requiredBy: []
-  timestamp: '2024-01-28 03:46:27+08:00'
+  timestamp: '2024-04-05 18:02:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/assignment_problem.test.cpp

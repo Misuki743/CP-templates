@@ -4,19 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: actedmonoid/actedMonoid_addMinCnt.cpp
     title: actedmonoid/actedMonoid_addMinCnt.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: misc/areaOfUnionOfRectangles.cpp
     title: misc/areaOfUnionOfRectangles.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segtree/ultraLazySegmentTree.cpp
     title: segtree/ultraLazySegmentTree.cpp
   _extendedRequiredBy: []
@@ -46,28 +46,28 @@ data:
     \ <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
     \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
-    \nnamespace R = std::ranges;\nnamespace V = std::views;\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
-    using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\ntemplate<class T>\n\
-    ostream& operator<<(ostream& os, const pair<T, T> pr) {\n  return os << pr.first\
-    \ << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
-    \ os, const array<T, N> &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
-    \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
-    \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"segtree/lazySegmentTree.cpp\"\
-    \ntemplate<class M, M(*Mid)(), M(*Mop)(const M&, const M&), class T, T(*Tid)(),\
-    \ T(*Top)(const T&, const T&), M(*act)(const M&, const T&)>\nstruct lazySegmentTree\
-    \ {\n  int size;\n  vector<M> data;\n  vector<T> tag;\n\n  lazySegmentTree(int\
-    \ _size) : size(_size), data(2 * size, Mid()), tag(size, Tid()) {}\n\n  lazySegmentTree(vector<M>\
-    \ init) : size(ssize(init)), data(2 * size, Mid()), tag(size, Tid()) {\n    ranges::copy(init,\
-    \ data.begin() + size);\n    for(int i = size - 1; i > 0; i--)\n      data[i]\
-    \ = Mop(data[i << 1], data[i << 1 | 1]);\n  }\n\n  void apply(int i, T x) {\n\
-    \    data[i] = act(data[i], x);\n    if (i < size) tag[i] = Top(tag[i], x);\n\
-    \  }\n\n  void push(unsigned i) {\n    for(int s = bit_width(i) - 1; s > 0; s--)\
-    \ {\n      if (tag[i >> s] != Tid()) {\n        apply(i >> (s - 1), tag[i >> s]);\n\
-    \        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n        tag[i >> s] = Tid();\n\
-    \      }\n    }\n  }\n\n  void pull(int i) {\n    while(i >>= 1) data[i] = Mop(data[i\
+    \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
+    using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
+    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
+    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
+    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
+    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
+    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
+    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
+    \ \"segtree/lazySegmentTree.cpp\"\ntemplate<class M, M(*Mid)(), M(*Mop)(const\
+    \ M&, const M&), class T, T(*Tid)(), T(*Top)(const T&, const T&), M(*act)(const\
+    \ M&, const T&)>\nstruct lazySegmentTree {\n  int size;\n  vector<M> data;\n \
+    \ vector<T> tag;\n\n  lazySegmentTree(int _size) : size(_size), data(2 * size,\
+    \ Mid()), tag(size, Tid()) {}\n\n  lazySegmentTree(vector<M> init) : size(ssize(init)),\
+    \ data(2 * size, Mid()), tag(size, Tid()) {\n    ranges::copy(init, data.begin()\
+    \ + size);\n    for(int i = size - 1; i > 0; i--)\n      data[i] = Mop(data[i\
+    \ << 1], data[i << 1 | 1]);\n  }\n\n  void apply(int i, T x) {\n    data[i] =\
+    \ act(data[i], x);\n    if (i < size) tag[i] = Top(tag[i], x);\n  }\n\n  void\
+    \ push(unsigned i) {\n    for(int s = bit_width(i) - 1; s > 0; s--) {\n      if\
+    \ (tag[i >> s] != Tid()) {\n        apply(i >> (s - 1), tag[i >> s]);\n      \
+    \  apply(i >> (s - 1) ^ 1, tag[i >> s]);\n        tag[i >> s] = Tid();\n     \
+    \ }\n    }\n  }\n\n  void pull(int i) {\n    while(i >>= 1) data[i] = Mop(data[i\
     \ << 1], data[i << 1 | 1]);\n  }\n\n  int trunc(unsigned i) { return i >> countr_zero(i);\
     \ }\n\n  void set(int i, M x) {\n    push(i += size);\n    data[i] = x;\n    pull(i);\n\
     \  }\n\n  M get(int i) { push(i += size); return data[i]; }\n\n  void modify(int\
@@ -106,15 +106,15 @@ data:
     \ntemplate<class T, bool duplicate = false>\nstruct compression {\n  vector<int>\
     \ ord;\n  vector<T> val;\n\n  compression(vector<T> &init) : val(init) { precompute();\
     \ }\n  compression(int size = 0) { val.reserve(size); }\n\n  void precompute()\
-    \ {\n    vector<T> init = val;\n    ord.resize(ssize(val));\n    R::sort(val);\n\
+    \ {\n    vector<T> init = val;\n    ord.resize(ssize(val));\n    ranges::sort(val);\n\
     \    if constexpr (duplicate) {\n      vector<int> cnt(ssize(init));\n      iota(cnt.begin(),\
     \ cnt.end(), 0);\n      for(int i = 0; i < ssize(ord); i++)\n        ord[i] =\
     \ cnt[lower_bound(init[i])]++;\n    } else {\n      val.resize(unique(val.begin(),\
     \ val.end()) - val.begin());\n      for(int i = 0; i < ssize(ord); i++)\n    \
     \    ord[i] = lower_bound(init[i]);\n    }\n  }\n\n  int lower_bound(T x) { return\
-    \ R::lower_bound(val, x) - val.begin(); }\n  int size() { return ssize(val); }\n\
-    \  template<R::range rng, class proj = identity>\n  void mapping(rng &v, proj\
-    \ p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }\n  template<R::range\
+    \ ranges::lower_bound(val, x) - val.begin(); }\n  int size() { return ssize(val);\
+    \ }\n  template<ranges::range rng, class proj = identity>\n  void mapping(rng\
+    \ &v, proj p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }\n  template<ranges::range\
     \ rng, class proj = identity>\n  void insert(rng &v, proj p = {}) { for(auto &x\
     \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"misc/areaOfUnionOfRectangles.cpp\"\
     \n//#include<segtree/lazySegmentTree.cpp>\n//#include<segtree/ultraLazySegmentTree.cpp>\n\
@@ -129,9 +129,9 @@ data:
     \  ys.mapping(rect, [](auto &x) -> T1& { return x[3]; });\n\n  vector<tuple<T1,\
     \ int, int>> add;\n  add.reserve(ssize(rect));\n  for(int i = 0; auto &[l, r,\
     \ _, __] : rect) {\n    add.emplace_back(l, 1, i);\n    add.emplace_back(r, -1,\
-    \ i++);\n  }\n  R::sort(add, {}, [](auto &x) { return get<0>(x); });\n\n  vector<pair<T1,\
-    \ T1>> init(ys.size() - 1);\n  for(int i = 0; i + 1 < ys.size(); i++)\n    init[i]\
-    \ = make_pair(T1(0), ys.val[i + 1] - ys.val[i]);\n  ultraLazySegmentTree<actedMonoid_addMinCnt<T1>>\
+    \ i++);\n  }\n  ranges::sort(add, {}, [](auto &x) { return get<0>(x); });\n\n\
+    \  vector<pair<T1, T1>> init(ys.size() - 1);\n  for(int i = 0; i + 1 < ys.size();\
+    \ i++)\n    init[i] = make_pair(T1(0), ys.val[i + 1] - ys.val[i]);\n  ultraLazySegmentTree<actedMonoid_addMinCnt<T1>>\
     \ st(init);\n\n  T2 ans = 0;\n  for(int i = 1, ptr = 0; i < xs.size(); i++) {\n\
     \    while(ptr < ssize(add) and get<0>(add[ptr]) < i) {\n      auto [x, r, i]\
     \ = add[ptr++];\n      auto [_, __, d, u] = rect[i];\n      st.modify(d, u, r);\n\
@@ -160,7 +160,7 @@ data:
   isVerificationFile: true
   path: test/area_of_union_of_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2024-03-07 00:40:25+08:00'
+  timestamp: '2024-04-05 18:02:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/area_of_union_of_rectangles.test.cpp

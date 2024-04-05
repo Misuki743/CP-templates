@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: combi/binom.cpp
     title: combi/binom.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -37,32 +37,31 @@ data:
     \ <tuple>\n#include <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
     \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
-    \nnamespace R = std::ranges;\nnamespace V = std::views;\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
-    using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\ntemplate<class T>\n\
-    ostream& operator<<(ostream& os, const pair<T, T> pr) {\n  return os << pr.first\
-    \ << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
-    \ os, const array<T, N> &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
-    \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
-    \ T>\nostream& operator<<(ostream& os, const set<T> &s) {\n  for(const T &x :\
-    \ s)\n    os << x << ' ';\n  return os;\n}\n#line 1 \"modint/mintAnyMod.cpp\"\n\
-    //note: inversion only works when MOD is a prime\n\nstruct mint {\n  static long\
-    \ long MOD;\n  long long _val;\n\n  mint(long long init = 0) {\n    _val = init\
-    \ % MOD;\n    (*this).norm();\n  }\n\n  mint POW(long long index) {\n    if (index\
-    \ == 0)\n      return mint(1ll);\n    mint base = *this;\n    mint res = (base\
-    \ == 0ll ? 0ll : 1ll);\n    while(index) {\n      if (index & 1)\n        res\
-    \ *= base;\n      base *= base, index >>= 1;\n    }\n    return res;\n  }\n\n\
-    \  mint inv() { return (*this).POW(MOD - 2); }\n\n  mint& norm() {\n    if (_val\
-    \ >= MOD)\n      _val -= MOD;\n    if (_val < 0)\n      _val += MOD;\n    return\
-    \ *this;\n  }\n\n  mint& operator+=(mint b) {\n    _val += b._val;\n    return\
-    \ (*this).norm();\n  }\n  mint& operator-=(mint b) {\n    _val -= b._val;\n  \
-    \  return (*this).norm();\n  }\n  mint& operator*=(mint b) {\n    _val = (_val\
-    \ * b._val) % MOD;\n    return *this;\n  }\n  mint& operator/=(mint b) {\n   \
-    \ _val = (_val * b.inv()._val) % MOD;\n    return *this;\n  }\n\n  mint& operator++()\
-    \ {\n    _val += 1;\n    return (*this).norm();\n  }\n  mint& operator--() {\n\
-    \    _val -= 1;\n    return (*this).norm();\n  }\n  mint operator++(signed) {\n\
-    \    mint tmp = *this;\n    ++(*this);\n    return tmp;\n  }\n  mint operator--(signed)\
+    \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
+    using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
+    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
+    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
+    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
+    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
+    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
+    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
+    \ \"modint/mintAnyMod.cpp\"\n//note: inversion only works when MOD is a prime\n\
+    \nstruct mint {\n  static long long MOD;\n  long long _val;\n\n  mint(long long\
+    \ init = 0) {\n    _val = init % MOD;\n    (*this).norm();\n  }\n\n  mint POW(long\
+    \ long index) {\n    if (index == 0)\n      return mint(1ll);\n    mint base =\
+    \ *this;\n    mint res = (base == 0ll ? 0ll : 1ll);\n    while(index) {\n    \
+    \  if (index & 1)\n        res *= base;\n      base *= base, index >>= 1;\n  \
+    \  }\n    return res;\n  }\n\n  mint inv() { return (*this).POW(MOD - 2); }\n\n\
+    \  mint& norm() {\n    if (_val >= MOD)\n      _val -= MOD;\n    if (_val < 0)\n\
+    \      _val += MOD;\n    return *this;\n  }\n\n  mint& operator+=(mint b) {\n\
+    \    _val += b._val;\n    return (*this).norm();\n  }\n  mint& operator-=(mint\
+    \ b) {\n    _val -= b._val;\n    return (*this).norm();\n  }\n  mint& operator*=(mint\
+    \ b) {\n    _val = (_val * b._val) % MOD;\n    return *this;\n  }\n  mint& operator/=(mint\
+    \ b) {\n    _val = (_val * b.inv()._val) % MOD;\n    return *this;\n  }\n\n  mint&\
+    \ operator++() {\n    _val += 1;\n    return (*this).norm();\n  }\n  mint& operator--()\
+    \ {\n    _val -= 1;\n    return (*this).norm();\n  }\n  mint operator++(signed)\
+    \ {\n    mint tmp = *this;\n    ++(*this);\n    return tmp;\n  }\n  mint operator--(signed)\
     \ {\n    mint tmp = *this;\n    --(*this);\n    return tmp;\n  }\n\n  mint operator-()\
     \ { return mint(-_val); }\n  bool operator==(mint b) { return _val == b._val;\
     \ }\n  bool operator!=(mint b) { return _val != b._val; }\n  \n  friend mint operator+(mint\
@@ -101,7 +100,7 @@ data:
   isVerificationFile: true
   path: test/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 17:40:38+08:00'
+  timestamp: '2024-04-05 18:02:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/binomial_coefficient_prime_mod.test.cpp
