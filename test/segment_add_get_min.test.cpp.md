@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/lichaoSegmentTree.cpp
     title: segtree/lichaoSegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -74,17 +74,17 @@ data:
     \ &[l, r, a, b] : c) {\n    xs.emplace_back(l);\n    xs.emplace_back(r);\n  }\n\
     \  for(auto &[t, x, y, z, w] : query) {\n    if (t == 0) {\n      xs.emplace_back(x);\n\
     \      xs.emplace_back(y);\n    } else {\n      xs.emplace_back(x);\n    }\n \
-    \ }\n  R::sort(xs);\n  xs.resize(unique(xs.begin(), xs.end()) - xs.begin());\n\
-    \  for(auto &[l, r, a, b] : c) {\n    l = R::lower_bound(xs, l) - xs.begin();\n\
-    \    r = R::lower_bound(xs, r) - xs.begin();\n  }\n  for(auto &[t, x, y, z, w]\
-    \ : query) {\n    if (t == 0) {\n      x = R::lower_bound(xs, x) - xs.begin();\n\
-    \      y = R::lower_bound(xs, y) - xs.begin();\n    } else {\n      x = R::lower_bound(xs,\
-    \ x) - xs.begin();\n    }\n  }\n\n  lichaoSegmentTree<ll, LLONG_MAX> st(bit_ceil(xs.size()),\
-    \ xs);\n  for(auto &[l, r, a, b] : c)\n    st.insertRange(l, r, a, b);\n  for(auto\
-    \ &[t, x, y, z, w] : query) {\n    if (t == 0) {\n      st.insertRange(x, y, z,\
-    \ w);\n    } else {\n      if (ll ans = st.query(x); ans == LLONG_MAX)\n     \
-    \   cout << \"INFINITY\\n\";\n      else\n        cout << ans << '\\n';\n    }\n\
-    \      \n  }\n\n  return 0;\n}\n"
+    \ }\n  ranges::sort(xs);\n  xs.resize(unique(xs.begin(), xs.end()) - xs.begin());\n\
+    \  for(auto &[l, r, a, b] : c) {\n    l = ranges::lower_bound(xs, l) - xs.begin();\n\
+    \    r = ranges::lower_bound(xs, r) - xs.begin();\n  }\n  for(auto &[t, x, y,\
+    \ z, w] : query) {\n    if (t == 0) {\n      x = ranges::lower_bound(xs, x) -\
+    \ xs.begin();\n      y = ranges::lower_bound(xs, y) - xs.begin();\n    } else\
+    \ {\n      x = ranges::lower_bound(xs, x) - xs.begin();\n    }\n  }\n\n  lichaoSegmentTree<ll,\
+    \ LLONG_MAX> st(bit_ceil(xs.size()), xs);\n  for(auto &[l, r, a, b] : c)\n   \
+    \ st.insertRange(l, r, a, b);\n  for(auto &[t, x, y, z, w] : query) {\n    if\
+    \ (t == 0) {\n      st.insertRange(x, y, z, w);\n    } else {\n      if (ll ans\
+    \ = st.query(x); ans == LLONG_MAX)\n        cout << \"INFINITY\\n\";\n      else\n\
+    \        cout << ans << '\\n';\n    }\n      \n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\n\
     \n#include \"../default/t.cpp\"\n#include \"../segtree/lichaoSegmentTree.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
@@ -95,25 +95,25 @@ data:
     \ &[l, r, a, b] : c) {\n    xs.emplace_back(l);\n    xs.emplace_back(r);\n  }\n\
     \  for(auto &[t, x, y, z, w] : query) {\n    if (t == 0) {\n      xs.emplace_back(x);\n\
     \      xs.emplace_back(y);\n    } else {\n      xs.emplace_back(x);\n    }\n \
-    \ }\n  R::sort(xs);\n  xs.resize(unique(xs.begin(), xs.end()) - xs.begin());\n\
-    \  for(auto &[l, r, a, b] : c) {\n    l = R::lower_bound(xs, l) - xs.begin();\n\
-    \    r = R::lower_bound(xs, r) - xs.begin();\n  }\n  for(auto &[t, x, y, z, w]\
-    \ : query) {\n    if (t == 0) {\n      x = R::lower_bound(xs, x) - xs.begin();\n\
-    \      y = R::lower_bound(xs, y) - xs.begin();\n    } else {\n      x = R::lower_bound(xs,\
-    \ x) - xs.begin();\n    }\n  }\n\n  lichaoSegmentTree<ll, LLONG_MAX> st(bit_ceil(xs.size()),\
-    \ xs);\n  for(auto &[l, r, a, b] : c)\n    st.insertRange(l, r, a, b);\n  for(auto\
-    \ &[t, x, y, z, w] : query) {\n    if (t == 0) {\n      st.insertRange(x, y, z,\
-    \ w);\n    } else {\n      if (ll ans = st.query(x); ans == LLONG_MAX)\n     \
-    \   cout << \"INFINITY\\n\";\n      else\n        cout << ans << '\\n';\n    }\n\
-    \      \n  }\n\n  return 0;\n}\n"
+    \ }\n  ranges::sort(xs);\n  xs.resize(unique(xs.begin(), xs.end()) - xs.begin());\n\
+    \  for(auto &[l, r, a, b] : c) {\n    l = ranges::lower_bound(xs, l) - xs.begin();\n\
+    \    r = ranges::lower_bound(xs, r) - xs.begin();\n  }\n  for(auto &[t, x, y,\
+    \ z, w] : query) {\n    if (t == 0) {\n      x = ranges::lower_bound(xs, x) -\
+    \ xs.begin();\n      y = ranges::lower_bound(xs, y) - xs.begin();\n    } else\
+    \ {\n      x = ranges::lower_bound(xs, x) - xs.begin();\n    }\n  }\n\n  lichaoSegmentTree<ll,\
+    \ LLONG_MAX> st(bit_ceil(xs.size()), xs);\n  for(auto &[l, r, a, b] : c)\n   \
+    \ st.insertRange(l, r, a, b);\n  for(auto &[t, x, y, z, w] : query) {\n    if\
+    \ (t == 0) {\n      st.insertRange(x, y, z, w);\n    } else {\n      if (ll ans\
+    \ = st.query(x); ans == LLONG_MAX)\n        cout << \"INFINITY\\n\";\n      else\n\
+    \        cout << ans << '\\n';\n    }\n      \n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - segtree/lichaoSegmentTree.cpp
   isVerificationFile: true
   path: test/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-05 19:44:35+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segment_add_get_min.test.cpp
 layout: document

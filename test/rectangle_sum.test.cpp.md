@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: misc/rectangleSum.cpp
     title: misc/rectangleSum.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -76,20 +76,20 @@ data:
     \  ys.insert(pt, [](auto &x) { return get<1>(x); });\n  ys.precompute();\n  ys.mapping(pt,\
     \ [](auto &x) -> T1& { return get<1>(x); });\n  ys.mapping(query, [](auto &x)\
     \ -> T1& { return x[2]; });\n  ys.mapping(query, [](auto &x) -> T1& { return x[3];\
-    \ });\n\n  R::sort(pt, less<T1>{}, [](auto x) { return get<0>(x); });\n\n  vector<tuple<T1,\
-    \ int, int>> qry;\n  qry.reserve(2 * ssize(query));\n  for(int i = 0; i < ssize(query);\
-    \ i++) {\n    qry.emplace_back(query[i][0] - 1, -1, i);\n    qry.emplace_back(query[i][1]\
-    \ - 1, 1, i);\n  }\n  R::sort(qry, {}, [](auto &x) { return get<0>(x); });\n\n\
-    \  fenwickTree<T2> bit(ys.size());\n  vector<T2> ans(ssize(query));\n  for(int\
-    \ ptr = 0; auto [x, r, i] : qry) {\n    while(ptr < ssize(pt) and get<0>(pt[ptr])\
-    \ <= x) {\n      auto [_, y, w] = pt[ptr++];\n      bit.add(y, w);\n    }\n  \
-    \  ans[i] += r * bit.query(query[i][2], query[i][3]);\n  }\n\n  return ans;\n\
-    }\n#line 7 \"test/rectangle_sum.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<tuple<int, int, ll>>\
-    \ pts(n);\n  for(auto &[x, y, w] : pts)\n    cin >> x >> y >> w;\n  vector<array<int,\
-    \ 4>> query(q);\n  for(auto &[l, d, r, u] : query)\n    cin >> l >> r >> d >>\
-    \ u;\n\n  for(ll ans : rectangleSum(pts, query))\n    cout << ans << '\\n';\n\n\
-    \  return 0;\n}\n"
+    \ });\n\n  ranges::sort(pt, less<T1>{}, [](auto x) { return get<0>(x); });\n\n\
+    \  vector<tuple<T1, int, int>> qry;\n  qry.reserve(2 * ssize(query));\n  for(int\
+    \ i = 0; i < ssize(query); i++) {\n    qry.emplace_back(query[i][0] - 1, -1, i);\n\
+    \    qry.emplace_back(query[i][1] - 1, 1, i);\n  }\n  ranges::sort(qry, {}, [](auto\
+    \ &x) { return get<0>(x); });\n\n  fenwickTree<T2> bit(ys.size());\n  vector<T2>\
+    \ ans(ssize(query));\n  for(int ptr = 0; auto [x, r, i] : qry) {\n    while(ptr\
+    \ < ssize(pt) and get<0>(pt[ptr]) <= x) {\n      auto [_, y, w] = pt[ptr++];\n\
+    \      bit.add(y, w);\n    }\n    ans[i] += r * bit.query(query[i][2], query[i][3]);\n\
+    \  }\n\n  return ans;\n}\n#line 7 \"test/rectangle_sum.test.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
+    \ q;\n  vector<tuple<int, int, ll>> pts(n);\n  for(auto &[x, y, w] : pts)\n  \
+    \  cin >> x >> y >> w;\n  vector<array<int, 4>> query(q);\n  for(auto &[l, d,\
+    \ r, u] : query)\n    cin >> l >> r >> d >> u;\n\n  for(ll ans : rectangleSum(pts,\
+    \ query))\n    cout << ans << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../ds/fenwickTree.cpp\"\n#include \"../misc/compression.cpp\"\
     \n#include \"../misc/rectangleSum.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
@@ -106,8 +106,8 @@ data:
   isVerificationFile: true
   path: test/rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-05 19:44:35+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rectangle_sum.test.cpp
 layout: document

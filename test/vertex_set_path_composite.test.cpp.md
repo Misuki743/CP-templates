@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: actedmonoid/actedMonoid_affineSum.cpp
     title: actedmonoid/actedMonoid_affineSum.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/heavyLightDecomposition.cpp
     title: ds/heavyLightDecomposition.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/segmentTree.cpp
     title: segtree/segmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -120,7 +120,7 @@ data:
     \ <= id[u])\n      resL.push_back({id[v] + edge, id[u] + 1});\n    else if (id[u]\
     \ + edge <= id[v])\n      resR.push_back({id[u] + edge, id[v] + 1});\n    vector<tuple<int,\
     \ int, bool>> res;\n    for(auto [l, r] : resL)\n      res.push_back({l, r, true});\n\
-    \    for(auto [l, r] : resR | V::reverse)\n      res.push_back({l, r, false});\n\
+    \    for(auto [l, r] : resR | views::reverse)\n      res.push_back({l, r, false});\n\
     \    return res;\n  }\n};\n#line 8 \"test/vertex_set_path_composite.test.cpp\"\
     \n\nusing am = actedMonoid_affineSum<mint>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<am::T> ab(n);\n  for(auto\
@@ -162,8 +162,8 @@ data:
   isVerificationFile: true
   path: test/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-05 19:44:35+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_set_path_composite.test.cpp
 layout: document

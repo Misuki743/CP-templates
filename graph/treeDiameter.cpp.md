@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree_diameter.test.cpp
     title: test/tree_diameter.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/treeDiameter.cpp\"\ntemplate<class T, T inf>\npair<T,\
@@ -18,8 +18,8 @@ data:
     \ {\n      int v = q.front(); q.pop();\n      for(auto [x, w] : g[v]) {\n    \
     \    if (dis[x] != inf) continue;\n        pre[x] = v, dis[x] = dis[v] + w;\n\
     \        q.push(x);\n      }\n    }\n    return make_pair(dis, pre);\n  };\n\n\
-    \  auto dis0 = bfs(0).first;\n  int u = R::max_element(dis0) - dis0.begin();\n\
-    \  auto [dis1, pre1] = bfs(u);\n  int v = R::max_element(dis1) - dis1.begin();\n\
+    \  auto dis0 = bfs(0).first;\n  int u = ranges::max_element(dis0) - dis0.begin();\n\
+    \  auto [dis1, pre1] = bfs(u);\n  int v = ranges::max_element(dis1) - dis1.begin();\n\
     \  T d = dis1[v];\n\n  vector<int> diameter(1, v);\n  while(pre1[v] != -1)\n \
     \   diameter.emplace_back(v = pre1[v]);\n\n  return make_pair(d, diameter);\n\
     }\n"
@@ -30,16 +30,16 @@ data:
     \      for(auto [x, w] : g[v]) {\n        if (dis[x] != inf) continue;\n     \
     \   pre[x] = v, dis[x] = dis[v] + w;\n        q.push(x);\n      }\n    }\n   \
     \ return make_pair(dis, pre);\n  };\n\n  auto dis0 = bfs(0).first;\n  int u =\
-    \ R::max_element(dis0) - dis0.begin();\n  auto [dis1, pre1] = bfs(u);\n  int v\
-    \ = R::max_element(dis1) - dis1.begin();\n  T d = dis1[v];\n\n  vector<int> diameter(1,\
-    \ v);\n  while(pre1[v] != -1)\n    diameter.emplace_back(v = pre1[v]);\n\n  return\
-    \ make_pair(d, diameter);\n}\n"
+    \ ranges::max_element(dis0) - dis0.begin();\n  auto [dis1, pre1] = bfs(u);\n \
+    \ int v = ranges::max_element(dis1) - dis1.begin();\n  T d = dis1[v];\n\n  vector<int>\
+    \ diameter(1, v);\n  while(pre1[v] != -1)\n    diameter.emplace_back(v = pre1[v]);\n\
+    \n  return make_pair(d, diameter);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/treeDiameter.cpp
   requiredBy: []
-  timestamp: '2024-01-28 03:46:27+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-04-05 19:44:35+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/tree_diameter.test.cpp
 documentation_of: graph/treeDiameter.cpp

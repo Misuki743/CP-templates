@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/heavyLightDecomposition.cpp\"\nstruct HLD {\n  int n;\n\
@@ -32,7 +32,7 @@ data:
     \ <= id[u])\n      resL.push_back({id[v] + edge, id[u] + 1});\n    else if (id[u]\
     \ + edge <= id[v])\n      resR.push_back({id[u] + edge, id[v] + 1});\n    vector<tuple<int,\
     \ int, bool>> res;\n    for(auto [l, r] : resL)\n      res.push_back({l, r, true});\n\
-    \    for(auto [l, r] : resR | V::reverse)\n      res.push_back({l, r, false});\n\
+    \    for(auto [l, r] : resR | views::reverse)\n      res.push_back({l, r, false});\n\
     \    return res;\n  }\n};\n"
   code: "struct HLD {\n  int n;\n  vector<int> dep, p, head, id;\n\n  HLD(vector<vector<int>>\
     \ &g, vector<int> root = vector<int>(1, 0))\n  : n(ssize(g)), dep(n), p(n, -1),\
@@ -54,14 +54,14 @@ data:
     \ <= id[u])\n      resL.push_back({id[v] + edge, id[u] + 1});\n    else if (id[u]\
     \ + edge <= id[v])\n      resR.push_back({id[u] + edge, id[v] + 1});\n    vector<tuple<int,\
     \ int, bool>> res;\n    for(auto [l, r] : resL)\n      res.push_back({l, r, true});\n\
-    \    for(auto [l, r] : resR | V::reverse)\n      res.push_back({l, r, false});\n\
+    \    for(auto [l, r] : resR | views::reverse)\n      res.push_back({l, r, false});\n\
     \    return res;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/heavyLightDecomposition.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-04-05 19:44:35+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/vertex_set_path_composite.test.cpp
 documentation_of: ds/heavyLightDecomposition.cpp

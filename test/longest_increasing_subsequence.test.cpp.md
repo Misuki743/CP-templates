@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: misc/LIS.cpp
     title: misc/LIS.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/longest_increasing_subsequence
@@ -49,9 +49,9 @@ data:
     \ constexpr (strict)\n      j = ranges::lower_bound(dp, a[i]) - dp.begin();\n\
     \    else\n      j = ranges::upper_bound(dp, a[i]) - dp.begin();\n    if (a[i]\
     \ < dp[j])\n      dp[j] = a[i], id[j] = i;\n    if (j >= 1)\n      pre[i] = id[j\
-    \ - 1];\n  }\n\n  vector<T> lis;\n  int i = id[R::lower_bound(dp, numeric_limits<T>::max())\
+    \ - 1];\n  }\n\n  vector<T> lis;\n  int i = id[ranges::lower_bound(dp, numeric_limits<T>::max())\
     \ - dp.begin() - 1];\n  while(i != -1) {\n    lis.emplace_back(i);\n    i = pre[i];\n\
-    \  }\n  R::reverse(lis);\n\n  return lis;\n}\n#line 5 \"test/longest_increasing_subsequence.test.cpp\"\
+    \  }\n  ranges::reverse(lis);\n\n  return lis;\n}\n#line 5 \"test/longest_increasing_subsequence.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
     \ cin >> n;\n  vector<int> a(n);\n  for(int &x : a)\n    cin >> x;\n\n  auto lis\
     \ = LIS<int>(a);\n  cout << ssize(lis) << '\\n';\n  cout << lis << '\\n';\n\n\
@@ -67,8 +67,8 @@ data:
   isVerificationFile: true
   path: test/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-05 19:44:35+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/longest_increasing_subsequence.test.cpp
 layout: document

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/treeDiameter.cpp
     title: graph/treeDiameter.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
@@ -49,13 +49,13 @@ data:
     \      for(auto [x, w] : g[v]) {\n        if (dis[x] != inf) continue;\n     \
     \   pre[x] = v, dis[x] = dis[v] + w;\n        q.push(x);\n      }\n    }\n   \
     \ return make_pair(dis, pre);\n  };\n\n  auto dis0 = bfs(0).first;\n  int u =\
-    \ R::max_element(dis0) - dis0.begin();\n  auto [dis1, pre1] = bfs(u);\n  int v\
-    \ = R::max_element(dis1) - dis1.begin();\n  T d = dis1[v];\n\n  vector<int> diameter(1,\
-    \ v);\n  while(pre1[v] != -1)\n    diameter.emplace_back(v = pre1[v]);\n\n  return\
-    \ make_pair(d, diameter);\n}\n#line 5 \"test/tree_diameter.test.cpp\"\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n\
-    \  vector<vector<pair<int, ll>>> g(n);\n  for(int i = 1; i < n; i++) {\n    int\
-    \ u, v, w; cin >> u >> v >> w;\n    g[u].emplace_back(v, w);\n    g[v].emplace_back(u,\
+    \ ranges::max_element(dis0) - dis0.begin();\n  auto [dis1, pre1] = bfs(u);\n \
+    \ int v = ranges::max_element(dis1) - dis1.begin();\n  T d = dis1[v];\n\n  vector<int>\
+    \ diameter(1, v);\n  while(pre1[v] != -1)\n    diameter.emplace_back(v = pre1[v]);\n\
+    \n  return make_pair(d, diameter);\n}\n#line 5 \"test/tree_diameter.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
+    \ cin >> n;\n  vector<vector<pair<int, ll>>> g(n);\n  for(int i = 1; i < n; i++)\
+    \ {\n    int u, v, w; cin >> u >> v >> w;\n    g[u].emplace_back(v, w);\n    g[v].emplace_back(u,\
     \ w);\n  }\n\n  auto [d, vs] = treeDiameter<ll, LLONG_MAX>(g);\n  cout << d <<\
     \ ' ' << ssize(vs) << '\\n';\n  cout << vs << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n\n#include\
@@ -71,8 +71,8 @@ data:
   isVerificationFile: true
   path: test/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-05 19:44:35+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree_diameter.test.cpp
 layout: document
