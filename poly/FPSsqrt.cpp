@@ -13,7 +13,7 @@ FPS<Mint> FPSsqrt(FPS<Mint> F, int k) {
         auto Q = FPSsqrt(FPS<Mint>(F.begin() + i, F.end()), k - i / 2);
         if (Q.empty()) return {}; //no solution
         Q.resize(k, 0);
-        R::rotate(Q, Q.begin() + k - i / 2);
+        ranges::rotate(Q, Q.begin() + k - i / 2);
         return Q;
       }
     }

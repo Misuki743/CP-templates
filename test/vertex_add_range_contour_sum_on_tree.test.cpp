@@ -51,7 +51,7 @@ signed main() {
     dfs(s, dfs);
     for(int d : {0, n}) {
       base[s + d] = ssize(init);
-      R::sort(cand[s + d]);
+      ranges::sort(cand[s + d]);
       for(auto [_, v] : cand[s + d]) {
         toId[(ll)v << 32 | (s + d)] = ssize(init);
         init.emplace_back(a[v]);
@@ -61,8 +61,8 @@ signed main() {
 
   fenwickTree<ll> ft(init);
   auto query = [&](int v, int l, int r) {
-    int ql = base[v] + (R::lower_bound(cand[v], array<int, 2>{l, -1}) - cand[v].begin());
-    int qr = base[v] + (R::lower_bound(cand[v], array<int, 2>{r, -1}) - cand[v].begin());
+    int ql = base[v] + (ranges::lower_bound(cand[v], array<int, 2>{l, -1}) - cand[v].begin());
+    int qr = base[v] + (ranges::lower_bound(cand[v], array<int, 2>{r, -1}) - cand[v].begin());
     return ft.query(ql, qr);
   };
 

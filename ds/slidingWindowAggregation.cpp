@@ -10,7 +10,7 @@ struct SWAG {
   }
   void pop() {
     if (ssize(left) == 1) {
-      for(auto &x : right | V::reverse)
+      for(auto &x : right | views::reverse)
         left.emplace_back(op(x, left.back()));
       vector<M> tmp;
       right.swap(tmp);

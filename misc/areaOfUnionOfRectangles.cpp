@@ -23,7 +23,7 @@ T2 areaOfUnionOfRectangles(vector<array<T1, 4>> rect) {
     add.emplace_back(l, 1, i);
     add.emplace_back(r, -1, i++);
   }
-  R::sort(add, {}, [](auto &x) { return get<0>(x); });
+  ranges::sort(add, {}, [](auto &x) { return get<0>(x); });
 
   vector<pair<T1, T1>> init(ys.size() - 1);
   for(int i = 0; i + 1 < ys.size(); i++)

@@ -9,7 +9,7 @@ struct compression {
   void precompute() {
     vector<T> init = val;
     ord.resize(ssize(val));
-    R::sort(val);
+    ranges::sort(val);
     if constexpr (duplicate) {
       vector<int> cnt(ssize(init));
       iota(cnt.begin(), cnt.end(), 0);
@@ -22,10 +22,10 @@ struct compression {
     }
   }
 
-  int lower_bound(T x) { return R::lower_bound(val, x) - val.begin(); }
+  int lower_bound(T x) { return ranges::lower_bound(val, x) - val.begin(); }
   int size() { return ssize(val); }
-  template<R::range rng, class proj = identity>
+  template<ranges::range rng, class proj = identity>
   void mapping(rng &v, proj p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }
-  template<R::range rng, class proj = identity>
+  template<ranges::range rng, class proj = identity>
   void insert(rng &v, proj p = {}) { for(auto &x : v) val.emplace_back(p(x)); }
 };

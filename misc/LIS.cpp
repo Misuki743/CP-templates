@@ -5,9 +5,9 @@ vector<int> LIS(vector<T> &a) {
   for(int i = 0; i < ssize(a); i++) {
     int j;
     if constexpr (strict)
-      j = R::lower_bound(dp, a[i]) - dp.begin();
+      j = ranges::lower_bound(dp, a[i]) - dp.begin();
     else
-      j = R::upper_bound(dp, a[i]) - dp.begin();
+      j = ranges::upper_bound(dp, a[i]) - dp.begin();
     if (a[i] < dp[j])
       dp[j] = a[i], id[j] = i;
     if (j >= 1)

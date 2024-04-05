@@ -27,7 +27,7 @@ signed main() {
   for(int i = 0; i < n; i++)
     init[hld.id[i]] = ab[i];
   segmentTree<am::T, am::Tid, am::Top> st(init);
-  R::reverse(init);
+  ranges::reverse(init);
   segmentTree<am::T, am::Tid, am::Top> str(init);
 
   while(q--) {

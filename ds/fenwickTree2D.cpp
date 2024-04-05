@@ -52,10 +52,10 @@ struct FT2 {
 		for (; x < ssize(ys); x |= x + 1) ys[x].push_back(y);
 	}
 	void init() {
-		for (vector<T1>& v : ys) R::sort(v), ft.emplace_back(ssize(v));
+		for (vector<T1>& v : ys) ranges::sort(v), ft.emplace_back(ssize(v));
 	}
 	int ind(int x, T1 y) {
-		return (int)(R::lower_bound(ys[x], y) - ys[x].begin()); }
+		return (int)(ranges::lower_bound(ys[x], y) - ys[x].begin()); }
 	void update(int x, T1 y, T2 dif) {
 		for (; x < ssize(ys); x |= x + 1)
 			ft[x].update(ind(x, y), dif);

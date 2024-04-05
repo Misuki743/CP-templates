@@ -20,7 +20,7 @@ array<vector<int>, 2> cycleDetection(vector<array<int, 2>> &e) {
       int x = v ^ e[i][0] ^ e[i][1];
       es.emplace_back(i);
       if (inStack[x]) {
-        vs = vector<int>(R::find(vs, x), vs.end());
+        vs = vector<int>(ranges::find(vs, x), vs.end());
         es = vector<int>(es.end() - ssize(vs), es.end());
         return true;
       } else if (!vis[x] and self(x, i, self)) {

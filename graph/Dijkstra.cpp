@@ -26,6 +26,6 @@ vector<int> recover(vector<int> &pre, int t) {
   vector<int> path(1, t);
   while(pre[t] != -1)
     path.emplace_back(t = pre[t]);
-  R::reverse(path);
+  ranges::reverse(path);
   return path;
 }

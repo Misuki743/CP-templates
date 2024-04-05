@@ -55,8 +55,8 @@ array<vector<int>, 2> eulerianTrail(int n, vector<array<int, 2>> &e) {
   dfs(s, dfs);
   vid.emplace_back(s);
 
-  R::reverse(vid);
-  R::reverse(eid);
+  ranges::reverse(vid);
+  ranges::reverse(eid);
 
   if (ssize(eid) != ssize(e))
     return {};

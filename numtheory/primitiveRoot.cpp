@@ -2,7 +2,7 @@
 
 ull primitiveRoot(ull p) {
   auto fac = factor(p - 1);
-  R::sort(fac);
+  ranges::sort(fac);
   fac.resize(unique(fac.begin(), fac.end()) - fac.begin());
   auto test = [p, fac](ull x) {
     for(ull d : fac)

@@ -54,9 +54,6 @@
 
 #define clock chrono::steady_clock::now().time_since_epoch().count()
 
-namespace R = std::ranges;
-namespace V = std::views;
-
 using namespace std;
 
 using ll = long long;

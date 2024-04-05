@@ -22,11 +22,11 @@ signed main() {
     if (t == 1)
       pt.emplace_back(a);
 
-  R::sort(pt);
+  ranges::sort(pt);
   pt.resize(unique(pt.begin(), pt.end()) - pt.begin());
   for(auto &[t, a, b] : query)
     if (t == 1)
-      a = R::lower_bound(pt, a) - pt.begin();
+      a = ranges::lower_bound(pt, a) - pt.begin();
 
   lichaoSegmentTree<ll, LLONG_MAX> st(bit_ceil((unsigned)q), pt);
   for(auto [a, b] : ab)

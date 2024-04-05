@@ -24,7 +24,7 @@ struct HLD {
       id[v] = nxt++, head[v] = h;
       if (!g[v].empty() and g[v][0] != p[v])
         self(g[v][0], h, self);
-      for(int x : g[v] | V::drop(1)) if (x != p[v])
+      for(int x : g[v] | views::drop(1)) if (x != p[v])
           self(x, x, self);
     };
 

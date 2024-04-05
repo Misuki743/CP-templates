@@ -10,7 +10,7 @@ signed main() {
   while(q--) {
     ull x; cin >> x;
     auto ans = factor(x);
-    R::sort(ans);
+    ranges::sort(ans);
     cout << ssize(ans) << ' ' << ans << '\n';
   }
 

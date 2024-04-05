@@ -10,7 +10,7 @@ vector<int> rangeCountDistinct(vector<T> a, vector<array<int, 2>> query) {
 
   vector<int> qId(ssize(query));
   iota(qId.begin(), qId.end(), 0);
-  R::sort(qId, less<int>{}, [&](auto &i) { return query[i][1]; });
+  ranges::sort(qId, less<int>{}, [&](auto &i) { return query[i][1]; });
 
   fenwickTree<int> ft(ssize(a));
   vector<int> ans(ssize(query)), pos(ssize(b), -1);

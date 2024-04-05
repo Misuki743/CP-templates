@@ -13,7 +13,7 @@ signed main() {
   for(int i = 2; i < ssize(pt.len); i++)
     dp[i] = dp[pt.link[i]] + pt.freq[i] * pt.len[i];
 
-  cout << R::max(dp) << '\n';
+  cout << ranges::max(dp) << '\n';
 
   return 0;
 }
