@@ -77,9 +77,13 @@ data:
     \ < size; i++)\n      _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n      _facInv.back()\
     \ = 1 / _fac.back();\n    for(int i = size - 2; i >= 0; i--)\n      _facInv[i]\
     \ = _facInv[i + 1] * (i + 1);\n  }\n\n  Mint fac(int i) { return i < 0 ? 0 : _fac[i];\
-    \ }\n  Mint faci(int i) { return i < 0 ? 0 : _facInv[i]; }\n  Mint binom(int n,\
-    \ int r) { return r < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n  Mint\
-    \ inv(int i) { return _facInv[i] * _fac[i - 1]; }\n};\n#line 6 \"test/binomial_coefficient_prime_mod.test.cpp\"\
+    \ }\n  Mint faci(int i) { return i < 0 ? 0 : _facInv[i]; }\n  Mint inv(int i)\
+    \ { return _facInv[i] * _fac[i - 1]; }\n  Mint binom(int n, int r) { return r\
+    \ < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n  Mint catalan(int i)\
+    \ { return binom(2 * i, i) - binom(2 * i, i + 1); }\n  Mint excatalan(int n, int\
+    \ m, int k) { //(+1) * n, (-1) * m, prefix sum > -k\n    if (k > m) return binom(n\
+    \ + m, m);\n    else if (k > m - n) return binom(n + m, m) - binom(n + m, m -\
+    \ k);\n    else return Mint(0);\n  }\n};\n#line 6 \"test/binomial_coefficient_prime_mod.test.cpp\"\
     \n\nll mint::MOD;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
     \n  int t; cin >> t >> mint::MOD;\n  binomial<mint> bn(min(mint::MOD, 10000000ll));\n\
     \  while(t--) {\n    int n, k; cin >> n >> k;\n    cout << bn.binom(n, k) << '\\\
@@ -97,7 +101,7 @@ data:
   isVerificationFile: true
   path: test/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2024-03-16 18:46:56+08:00'
+  timestamp: '2024-04-05 17:40:38+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/binomial_coefficient_prime_mod.test.cpp

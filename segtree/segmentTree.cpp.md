@@ -47,8 +47,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/vertex_add_subtree_sum.test.cpp
-  - test/point_set_range_composite.test.cpp
   - test/vertex_set_path_composite.test.cpp
+  - test/point_set_range_composite.test.cpp
 documentation_of: segtree/segmentTree.cpp
 layout: document
 redirect_from:

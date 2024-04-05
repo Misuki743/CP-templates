@@ -201,16 +201,20 @@ data:
     \ _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n      _facInv.back() = 1 / _fac.back();\n\
     \    for(int i = size - 2; i >= 0; i--)\n      _facInv[i] = _facInv[i + 1] * (i\
     \ + 1);\n  }\n\n  Mint fac(int i) { return i < 0 ? 0 : _fac[i]; }\n  Mint faci(int\
-    \ i) { return i < 0 ? 0 : _facInv[i]; }\n  Mint binom(int n, int r) { return r\
-    \ < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n  Mint inv(int i) { return\
-    \ _facInv[i] * _fac[i - 1]; }\n};\n#line 1 \"numtheory/sqrtMod.cpp\"\n//source:\
-    \ KACTL\n\nll modpow(ll b, ll e, ll p) {\n  ll ans = 1;\n  for(; e; b = b * b\
-    \ % p, e /= 2)\n    if (e & 1) ans = ans * b % p;\n  return ans;\n}\n\nll sqrt(ll\
-    \ a, ll p) {\n\ta %= p; if (a < 0) a += p;\n\tif (a == 0) return 0;\n\t//assert(modpow(a,\
-    \ (p-1)/2, p) == 1); // else no solution\n  if (modpow(a, (p-1)/2, p) != 1) return\
-    \ -1;\n\tif (p % 4 == 3) return modpow(a, (p+1)/4, p);\n\t// a^(n+3)/8 or 2^(n+3)/8\
-    \ * 2^(n-1)/4 works if p % 8 == 5\n\tll s = p - 1, n = 2;\n\tint r = 0, m;\n\t\
-    while (s % 2 == 0)\n\t\t++r, s /= 2;\n\t/// find a non-square mod p\n\twhile (modpow(n,\
+    \ i) { return i < 0 ? 0 : _facInv[i]; }\n  Mint inv(int i) { return _facInv[i]\
+    \ * _fac[i - 1]; }\n  Mint binom(int n, int r) { return r < 0 or n < r ? 0 : fac(n)\
+    \ * faci(r) * faci(n - r); }\n  Mint catalan(int i) { return binom(2 * i, i) -\
+    \ binom(2 * i, i + 1); }\n  Mint excatalan(int n, int m, int k) { //(+1) * n,\
+    \ (-1) * m, prefix sum > -k\n    if (k > m) return binom(n + m, m);\n    else\
+    \ if (k > m - n) return binom(n + m, m) - binom(n + m, m - k);\n    else return\
+    \ Mint(0);\n  }\n};\n#line 1 \"numtheory/sqrtMod.cpp\"\n//source: KACTL\n\nll\
+    \ modpow(ll b, ll e, ll p) {\n  ll ans = 1;\n  for(; e; b = b * b % p, e /= 2)\n\
+    \    if (e & 1) ans = ans * b % p;\n  return ans;\n}\n\nll sqrt(ll a, ll p) {\n\
+    \ta %= p; if (a < 0) a += p;\n\tif (a == 0) return 0;\n\t//assert(modpow(a, (p-1)/2,\
+    \ p) == 1); // else no solution\n  if (modpow(a, (p-1)/2, p) != 1) return -1;\n\
+    \tif (p % 4 == 3) return modpow(a, (p+1)/4, p);\n\t// a^(n+3)/8 or 2^(n+3)/8 *\
+    \ 2^(n-1)/4 works if p % 8 == 5\n\tll s = p - 1, n = 2;\n\tint r = 0, m;\n\twhile\
+    \ (s % 2 == 0)\n\t\t++r, s /= 2;\n\t/// find a non-square mod p\n\twhile (modpow(n,\
     \ (p - 1) / 2, p) != p - 1) ++n;\n\tll x = modpow(a, (s + 1) / 2, p);\n\tll b\
     \ = modpow(a, s, p), g = modpow(n, s, p);\n\tfor (;; r = m) {\n\t\tll t = b;\n\
     \t\tfor (m = 0; m < r && t != 1; ++m)\n\t\t\tt = t * t % p;\n\t\tif (m == 0) return\
@@ -290,7 +294,7 @@ data:
   isVerificationFile: true
   path: test/inv_of_formal_power_series_sparse.test.cpp
   requiredBy: []
-  timestamp: '2024-03-22 01:43:37+08:00'
+  timestamp: '2024-04-05 17:40:38+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/inv_of_formal_power_series_sparse.test.cpp

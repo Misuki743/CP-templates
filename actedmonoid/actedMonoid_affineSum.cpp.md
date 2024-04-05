@@ -43,11 +43,11 @@ data:
   timestamp: '2024-02-09 22:57:04+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/queue_operate_all_composite.test.cpp
-  - test/range_affine_range_sum.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/range_set_range_composite.test.cpp
   - test/vertex_set_path_composite.test.cpp
+  - test/queue_operate_all_composite.test.cpp
+  - test/range_affine_range_sum.test.cpp
 documentation_of: actedmonoid/actedMonoid_affineSum.cpp
 layout: document
 redirect_from:

@@ -129,10 +129,10 @@ data:
   timestamp: '2024-03-16 14:38:00+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/determinant_of_matrix.test.cpp
+  - test/pow_of_matrix.test.cpp
   - test/matrix_product.test.cpp
   - test/inverse_matrix.test.cpp
-  - test/pow_of_matrix.test.cpp
+  - test/determinant_of_matrix.test.cpp
 documentation_of: linalg/matrixMint.cpp
 layout: document
 redirect_from:
