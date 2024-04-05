@@ -68,8 +68,8 @@ data:
   timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/segment_add_get_min.test.cpp
   - test/line_add_get_min.test.cpp
+  - test/segment_add_get_min.test.cpp
 documentation_of: segtree/lichaoSegmentTree.cpp
 layout: document
 redirect_from:

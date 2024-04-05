@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/ultraLazySegmentTree.cpp
     title: segtree/ultraLazySegmentTree.cpp
   _extendedRequiredBy: []

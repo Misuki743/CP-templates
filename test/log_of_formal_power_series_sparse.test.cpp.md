@@ -10,16 +10,16 @@ data:
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/sqrtMod.cpp
     title: numtheory/sqrtMod.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
   - icon: ':question:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sparsePolyope.cpp
     title: poly/sparsePolyope.cpp
   _extendedRequiredBy: []
