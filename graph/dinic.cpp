@@ -60,7 +60,10 @@ struct Dinic {
       fill(iter.begin(), iter.end(), 0);
       T del;
       while((del = DFS(t, MAX)) > 0) {
-        res += del;
+        if (res >= MAX - del)
+          res = MAX;
+        else
+          res += del;
       }
     }
 

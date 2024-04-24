@@ -6,6 +6,7 @@ https://misuki743.github.io/CP-templates/
 
 # TODO
 
+- actedMonoid for linear add/sum query
 - doubling(support mataining commutative monoid)
 - rolling hash
 - add lower bound parameter to MCMF::addEdge

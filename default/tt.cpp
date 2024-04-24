@@ -73,7 +73,7 @@ constexpr unsigned long long bit_ceil(const unsigned long long x) { return x == 
 #define clock chrono::steady_clock::now().time_since_epoch().count()
 
 #ifdef DEBUG
-#define dbg(x) cout << (#x) << " = " << x << '\n'
+#define dbg(x) cout << (#x) << " = " << (x) << '\n'
 #else
 #define dbg(x)
 #endif
