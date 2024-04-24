@@ -35,7 +35,7 @@ data:
     \ == 1 ? x : (1ull << bit_width(x))); }\n\n#endif\n\n#define int ll\n#define INT128_MAX\
     \ (__int128)(((unsigned __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1))\
     \ - 1)\n#define INT128_MIN (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
-    \n#ifdef DEBUG\n#define dbg(x) cout << (#x) << \" = \" << x << '\\n'\n#else\n\
+    \n#ifdef DEBUG\n#define dbg(x) cout << (#x) << \" = \" << (x) << '\\n'\n#else\n\
     #define dbg(x)\n#endif\n\nusing namespace std;\n\nusing ll = long long;\nusing\
     \ ull = unsigned long long;\nusing ldb = long double;\nusing pii = pair<int, int>;\n\
     using pll = pair<ll, ll>;\n//#define double ldb\n\ntemplate<class T>\nostream&\
@@ -74,7 +74,7 @@ data:
     #define int ll\n#define INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128)\
     \ * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX - 1)\n\n#define\
     \ clock chrono::steady_clock::now().time_since_epoch().count()\n\n#ifdef DEBUG\n\
-    #define dbg(x) cout << (#x) << \" = \" << x << '\\n'\n#else\n#define dbg(x)\n\
+    #define dbg(x) cout << (#x) << \" = \" << (x) << '\\n'\n#else\n#define dbg(x)\n\
     #endif\n\nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned\
     \ long long;\nusing ldb = long double;\nusing pii = pair<int, int>;\nusing pll\
     \ = pair<ll, ll>;\n//#define double ldb\n\ntemplate<class T>\nostream& operator<<(ostream&\
@@ -90,7 +90,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2024-03-14 16:57:55+08:00'
+  timestamp: '2024-04-24 23:34:37+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp

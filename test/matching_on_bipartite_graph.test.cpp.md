@@ -63,16 +63,17 @@ data:
     \ tmp;\n        }\n      }\n    }\n\n    return 0;\n  }\n\n  T flow() {\n    T\
     \ res = 0;\n    while(true) {\n      BFS();\n      if (level[t] == INT_MAX)\n\
     \        break;\n      fill(iter.begin(), iter.end(), 0);\n      T del;\n    \
-    \  while((del = DFS(t, MAX)) > 0) {\n        res += del;\n      }\n    }\n\n \
-    \   return res;\n  }\n\n  bool left(int idx) {\n    return level[idx] != INT_MAX;\n\
-    \  }\n};\n#line 5 \"test/matching_on_bipartite_graph.test.cpp\"\n\nint main()\
-    \ {\n  int l, r, m; cin >> l >> r >> m;\n\n  const int s = l + r, t = l + r +\
-    \ 1;\n  Dinic<int, INT_MAX> flow(l + r + 2);\n  flow.init(l + r + 2, s, t);\n\
-    \  while(m--) {\n    int u, v; cin >> u >> v;\n    flow.addEdge(u, v + l, 1);\n\
-    \  }\n  for(int i = 0; i < l; i++)\n    flow.addEdge(s, i, 1);\n  for(int i =\
-    \ l; i < l + r; i++)\n    flow.addEdge(i, t, 1);\n\n  cout << flow.flow() << '\\\
-    n';\n  for(int i = l; i < l + r; i++)\n    for(auto e : flow.G[i])\n      if (e.to\
-    \ != t and e.cap == 1)\n        cout << e.to << ' ' << i - l << '\\n';\n}\n"
+    \  while((del = DFS(t, MAX)) > 0) {\n        if (res >= MAX - del)\n         \
+    \ res = MAX;\n        else\n          res += del;\n      }\n    }\n\n    return\
+    \ res;\n  }\n\n  bool left(int idx) {\n    return level[idx] != INT_MAX;\n  }\n\
+    };\n#line 5 \"test/matching_on_bipartite_graph.test.cpp\"\n\nint main() {\n  int\
+    \ l, r, m; cin >> l >> r >> m;\n\n  const int s = l + r, t = l + r + 1;\n  Dinic<int,\
+    \ INT_MAX> flow(l + r + 2);\n  flow.init(l + r + 2, s, t);\n  while(m--) {\n \
+    \   int u, v; cin >> u >> v;\n    flow.addEdge(u, v + l, 1);\n  }\n  for(int i\
+    \ = 0; i < l; i++)\n    flow.addEdge(s, i, 1);\n  for(int i = l; i < l + r; i++)\n\
+    \    flow.addEdge(i, t, 1);\n\n  cout << flow.flow() << '\\n';\n  for(int i =\
+    \ l; i < l + r; i++)\n    for(auto e : flow.G[i])\n      if (e.to != t and e.cap\
+    \ == 1)\n        cout << e.to << ' ' << i - l << '\\n';\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../graph/dinic.cpp\"\n\nint main() {\n\
     \  int l, r, m; cin >> l >> r >> m;\n\n  const int s = l + r, t = l + r + 1;\n\
@@ -88,7 +89,7 @@ data:
   isVerificationFile: true
   path: test/matching_on_bipartite_graph.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
+  timestamp: '2024-04-24 23:34:37+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/matching_on_bipartite_graph.test.cpp

@@ -31,9 +31,10 @@ data:
     \ tmp;\n        }\n      }\n    }\n\n    return 0;\n  }\n\n  T flow() {\n    T\
     \ res = 0;\n    while(true) {\n      BFS();\n      if (level[t] == INT_MAX)\n\
     \        break;\n      fill(iter.begin(), iter.end(), 0);\n      T del;\n    \
-    \  while((del = DFS(t, MAX)) > 0) {\n        res += del;\n      }\n    }\n\n \
-    \   return res;\n  }\n\n  bool left(int idx) {\n    return level[idx] != INT_MAX;\n\
-    \  }\n};\n"
+    \  while((del = DFS(t, MAX)) > 0) {\n        if (res >= MAX - del)\n         \
+    \ res = MAX;\n        else\n          res += del;\n      }\n    }\n\n    return\
+    \ res;\n  }\n\n  bool left(int idx) {\n    return level[idx] != INT_MAX;\n  }\n\
+    };\n"
   code: "template<class T, T MAX>\nstruct Dinic {\n  const int N;\n  struct Edge {\n\
     \    int to, rev;\n    T cap;\n    Edge(int _to, T _cap, int _rev) : to(_to),\
     \ rev(_rev), cap(_cap) {}\n  };\n  vector<vector<Edge>> G;\n  Dinic(int _N) :\
@@ -54,13 +55,14 @@ data:
     \      }\n    }\n\n    return 0;\n  }\n\n  T flow() {\n    T res = 0;\n    while(true)\
     \ {\n      BFS();\n      if (level[t] == INT_MAX)\n        break;\n      fill(iter.begin(),\
     \ iter.end(), 0);\n      T del;\n      while((del = DFS(t, MAX)) > 0) {\n    \
-    \    res += del;\n      }\n    }\n\n    return res;\n  }\n\n  bool left(int idx)\
-    \ {\n    return level[idx] != INT_MAX;\n  }\n};\n"
+    \    if (res >= MAX - del)\n          res = MAX;\n        else\n          res\
+    \ += del;\n      }\n    }\n\n    return res;\n  }\n\n  bool left(int idx) {\n\
+    \    return level[idx] != INT_MAX;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/dinic.cpp
   requiredBy: []
-  timestamp: '2024-01-21 19:52:41+08:00'
+  timestamp: '2024-04-24 23:34:37+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/matching_on_bipartite_graph.test.cpp
