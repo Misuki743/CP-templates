@@ -40,7 +40,7 @@ data:
       title: combi/stirlingFirst.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -179,6 +179,9 @@ data:
       path: graph/SCC.cpp
       title: graph/SCC.cpp
     - icon: ':heavy_check_mark:'
+      path: graph/complementConnectivity.cpp
+      title: graph/complementConnectivity.cpp
+    - icon: ':heavy_check_mark:'
       path: graph/cycleDetection.cpp
       title: graph/cycleDetection.cpp
     - icon: ':heavy_check_mark:'
@@ -196,7 +199,7 @@ data:
     - icon: ':warning:'
       path: graph/minimumVertexCover.cpp
       title: graph/minimumVertexCover.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/treeDiameter.cpp
       title: graph/treeDiameter.cpp
     - icon: ':heavy_check_mark:'
@@ -402,6 +405,9 @@ data:
       path: test/compositional_inverse_of_formal_power_series_large.test.cpp
       title: test/compositional_inverse_of_formal_power_series_large.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/connected_components_of_complement_graph.test.cpp
+      title: test/connected_components_of_complement_graph.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/convolution.test.cpp
       title: test/convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -602,7 +608,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/subset_convolution.test.cpp
       title: test/subset_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/tree_diameter.test.cpp
       title: test/tree_diameter.test.cpp
     - icon: ':heavy_check_mark:'

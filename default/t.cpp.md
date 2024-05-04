@@ -25,6 +25,9 @@ data:
     path: test/compositional_inverse_of_formal_power_series_large.test.cpp
     title: test/compositional_inverse_of_formal_power_series_large.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/connected_components_of_complement_graph.test.cpp
+    title: test/connected_components_of_complement_graph.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/convolution.test.cpp
     title: test/convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -225,7 +228,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree_diameter.test.cpp
     title: test/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
@@ -261,9 +264,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -319,7 +322,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/assignment_problem.test.cpp
   - test/two_sat.test.cpp
@@ -375,6 +378,7 @@ data:
   - test/multipoint_evaluation.test.cpp
   - test/static_range_frequency.test.cpp
   - test/range_set_range_composite.test.cpp
+  - test/connected_components_of_complement_graph.test.cpp
   - test/division_of_polynomials.test.cpp
   - test/lowest_common_ancestor.test.cpp
   - test/point_add_rectangle_sum.test.cpp
