@@ -191,6 +191,9 @@ data:
       path: graph/eulerianTrail.cpp
       title: graph/eulerianTrail.cpp
     - icon: ':warning:'
+      path: graph/functionalGraphDistance.cpp
+      title: graph/functionalGraphDistance.cpp
+    - icon: ':warning:'
       path: graph/hopcroftKarp.cpp
       title: graph/hopcroftKarp.cpp
     - icon: ':heavy_check_mark:'
