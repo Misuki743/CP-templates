@@ -14,7 +14,7 @@ signed main() {
     g[v].emplace_back(u, w);
   }
 
-  auto [d, vs] = treeDiameter<ll, LLONG_MAX>(g);
+  auto [d, _, __, vs] = treeDiameter<ll>(g);
   cout << d << ' ' << ssize(vs) << '\n';
   cout << vs << '\n';
 
