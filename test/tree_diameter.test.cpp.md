@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/treeDiameter.cpp
     title: graph/treeDiameter.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
@@ -58,15 +58,15 @@ data:
     }\n#line 5 \"test/tree_diameter.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<vector<pair<int, ll>>> g(n);\n\
     \  for(int i = 1; i < n; i++) {\n    int u, v, w; cin >> u >> v >> w;\n    g[u].emplace_back(v,\
-    \ w);\n    g[v].emplace_back(u, w);\n  }\n\n  auto [d, vs] = treeDiameter<ll,\
-    \ LLONG_MAX>(g);\n  cout << d << ' ' << ssize(vs) << '\\n';\n  cout << vs << '\\\
-    n';\n\n  return 0;\n}\n"
+    \ w);\n    g[v].emplace_back(u, w);\n  }\n\n  auto [d, _, __, vs] = treeDiameter<ll>(g);\n\
+    \  cout << d << ' ' << ssize(vs) << '\\n';\n  cout << vs << '\\n';\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../graph/treeDiameter.cpp\"\n\nsigned main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<vector<pair<int,\
     \ ll>>> g(n);\n  for(int i = 1; i < n; i++) {\n    int u, v, w; cin >> u >> v\
     \ >> w;\n    g[u].emplace_back(v, w);\n    g[v].emplace_back(u, w);\n  }\n\n \
-    \ auto [d, vs] = treeDiameter<ll, LLONG_MAX>(g);\n  cout << d << ' ' << ssize(vs)\
+    \ auto [d, _, __, vs] = treeDiameter<ll>(g);\n  cout << d << ' ' << ssize(vs)\
     \ << '\\n';\n  cout << vs << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
@@ -74,8 +74,8 @@ data:
   isVerificationFile: true
   path: test/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2024-05-04 14:16:48+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-05-04 14:34:04+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree_diameter.test.cpp
 layout: document
