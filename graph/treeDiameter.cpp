@@ -1,5 +1,6 @@
-template<class T, T inf>
-pair<T, vector<int>> treeDiameter(vector<vector<pair<int, T>>> &g) {
+template<class T>
+tuple<T, T, T, vector<int>> treeDiameter(vector<vector<pair<int, T>>> &g) {
+  const T inf = numeric_limits<T>::max();
   const int n = ssize(g);
   auto bfs = [&](int s) {
     vector<T> dis(n, inf);
@@ -28,5 +29,10 @@ pair<T, vector<int>> treeDiameter(vector<vector<pair<int, T>>> &g) {
   while(pre1[v] != -1)
     diameter.emplace_back(v = pre1[v]);
 
-  return make_pair(d, diameter);
+  int radius = inf, center = -1;
+  for(int v : diameter)
+    if (int x = max(dis1[v], d - dis1[v]); x < radius)
+      radius = x, center = v;
+
+  return make_tuple(d, radius, center, diameter);
 }

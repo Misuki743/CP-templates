@@ -4,7 +4,7 @@ struct persistentSegmentTree {
   vector<M> data, init;
   int nxt = 0;
 
-  //sz >= (2n - 1) + q * (bit_width(q) + 1) should be satisfied
+  //sz >= (2n - 1) + q * (bit_width(n) + 1) should be satisfied
   persistentSegmentTree(int sz, vector<M> _init = vector<M>())
   : lc(sz, -1), rc(sz, -1), data(sz, id()), init(_init) {}
 
