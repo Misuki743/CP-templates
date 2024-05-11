@@ -142,6 +142,11 @@ data:
     \ b) {\n    for(int i = 0; i < ssize(*this); i++)\n      (*this)[i] *= b;\n  \
     \  return *this;\n  }\n\n  FPS& operator/=(Mint b) {\n    b = Mint(1) / b;\n \
     \   for(int i = 0; i < ssize(*this); i++)\n      (*this)[i] *= b;\n    return\
+    \ *this;\n  }\n\n  FPS& operator<<=(int x) {\n    this -> resize(ssize(*this)\
+    \ + x, Mint(0));\n    ranges::rotate(*this, this -> end() - x);\n    return *this;\n\
+    \  }\n\n  FPS& operator>>=(int x) {\n    if (x >= ssize(*this)) {\n      this\
+    \ -> resize(1);\n      (*this)[0] = 0;\n    } else {\n      ranges::rotate(*this,\
+    \ this -> begin() + x);\n      this -> resize(ssize(*this) - x);\n    }\n    return\
     \ *this;\n  }\n\n  FPS shrink() {\n    FPS F = *this;\n    int size = ssize(F);\n\
     \    while(size and F[size - 1] == 0) size -= 1;\n    F.resize(size);\n    return\
     \ F;\n  }\n\n  FPS integral() {\n    if (this -> empty()) return {0};\n    vector<Mint>\
@@ -176,7 +181,10 @@ data:
     \         Q[j - i] = (*this)[j] * Inv;\n        Q = (Q.log(k) * idx).exp(k);\n\
     \        FPS Q2(k, 0);\n        Mint Pow = (*this)[i].pow(idx);\n        for(int\
     \ j = 0; j + i * idx < k; j++)\n          Q2[j + i * idx] = Q[j] * Pow;\n    \
-    \    return Q2;\n      }\n    } \n    return FPS(k, 0);\n  }\n\n  vector<Mint>\
+    \    return Q2;\n      }\n    } \n    return FPS(k, 0);\n  }\n\n  FPS pow(ll idx)\
+    \ {\n    int mxDeg = (ssize(*this) - 1) * idx;\n    FPS a = (*this);\n    a.resize(bit_ceil((unsigned)(mxDeg\
+    \ + 1)));\n    dft(a, false);\n    for(Mint &x : a) x = x.pow(idx);\n    dft(a,\
+    \ true);\n    return FPS(a.begin(), a.begin() + mxDeg + 1);\n  }\n\n  vector<Mint>\
     \ multieval(vector<Mint> xs) {\n    int n = ssize(xs);\n    vector<FPS> data(2\
     \ * n);\n    for(int i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n  \
     \  for(int i = n - 1; i > 0; i--)\n      data[i] = data[i << 1] * data[i << 1\
@@ -201,20 +209,21 @@ data:
     \ FPS operator+(FPS a, FPS b) { return a += b; }\n  friend FPS operator-(FPS a,\
     \ FPS b) { return a -= b; }\n  friend FPS operator*(FPS a, FPS b) { return a *=\
     \ b; }\n  friend FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS\
-    \ operator/(FPS a, Mint b) { return a /= b; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\n\
-    template<>\nfunction<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\n\
-    template<>\nfunction<void(vector<mint>&, bool)> fps::dft = ntt.ntt;\n#line 1 \"\
-    poly/taylorShift.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\n//#include\
-    \ \"poly/NTTmint.cpp\"\n//#include \"poly/FPS.cpp\"\n\ntemplate<class Mint>\n\
-    FPS<Mint> taylorShift(FPS<Mint> f, Mint c) {\n  int n = ssize(f);\n  binomial<Mint>\
-    \ bn(n);\n  FPS<Mint> a = f;\n  for(int i = 0; i < n; i++)\n    a[i] *= bn.fac(i);\n\
-    \  FPS<Mint> b(n);\n  Mint pre = 1;\n  for(int i = 0; i < n; i++, pre *= c)\n\
-    \    b[i] = pre * bn.faci(i);\n  ranges::reverse(b);\n  f = a * b;\n  f.erase(f.begin(),\
-    \ f.begin() + n - 1);\n  for(int i = 0; i < n; i++)\n    f[i] *= bn.faci(i);\n\
-    \  return f;\n}\n#line 9 \"test/polynomial_taylor_shift.test.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, c; cin >> n >>\
-    \ c;\n  fps a(n);\n  for(mint &x : a)\n    cin >> x;\n  cout << taylorShift(a,\
-    \ mint(c)) << '\\n';\n\n  return 0;\n}\n"
+    \ operator/(FPS a, Mint b) { return a /= b; }\n  friend FPS operator<<(FPS a,\
+    \ int x) { return a <<= x; }\n  friend FPS operator>>(FPS a, int x) { return a\
+    \ >>= x; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
+    \ vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\nfunction<void(vector<mint>&,\
+    \ bool)> fps::dft = ntt.ntt;\n#line 1 \"poly/taylorShift.cpp\"\n//#include \"\
+    modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\n//#include \"\
+    poly/FPS.cpp\"\n\ntemplate<class Mint>\nFPS<Mint> taylorShift(FPS<Mint> f, Mint\
+    \ c) {\n  int n = ssize(f);\n  binomial<Mint> bn(n);\n  FPS<Mint> a = f;\n  for(int\
+    \ i = 0; i < n; i++)\n    a[i] *= bn.fac(i);\n  FPS<Mint> b(n);\n  Mint pre =\
+    \ 1;\n  for(int i = 0; i < n; i++, pre *= c)\n    b[i] = pre * bn.faci(i);\n \
+    \ ranges::reverse(b);\n  f = a * b;\n  f.erase(f.begin(), f.begin() + n - 1);\n\
+    \  for(int i = 0; i < n; i++)\n    f[i] *= bn.faci(i);\n  return f;\n}\n#line\
+    \ 9 \"test/polynomial_taylor_shift.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, c; cin >> n >> c;\n  fps a(n);\n  for(mint &x : a)\n\
+    \    cin >> x;\n  cout << taylorShift(a, mint(c)) << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
     \n#include \"../combi/binom.cpp\"\n#include \"../poly/NTTmint.cpp\"\n#include\
@@ -232,7 +241,7 @@ data:
   isVerificationFile: true
   path: test/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
+  timestamp: '2024-05-11 22:13:26+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/polynomial_taylor_shift.test.cpp

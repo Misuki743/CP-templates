@@ -76,6 +76,9 @@ data:
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/wildcard_pattern_matching.test.cpp
+    title: test/wildcard_pattern_matching.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2544.test.cpp
     title: test/yuki_2544.test.cpp
   - icon: ':heavy_check_mark:'
@@ -160,6 +163,7 @@ data:
   - test/polynomial_interpolation.test.cpp
   - test/pow_of_formal_power_series.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/wildcard_pattern_matching.test.cpp
   - test/sharp_p_subset_sum.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/division_of_polynomials.test.cpp

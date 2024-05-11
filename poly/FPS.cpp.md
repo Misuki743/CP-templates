@@ -63,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/wildcard_pattern_matching.test.cpp
+    title: test/wildcard_pattern_matching.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -86,6 +89,11 @@ data:
     \ b) {\n    for(int i = 0; i < ssize(*this); i++)\n      (*this)[i] *= b;\n  \
     \  return *this;\n  }\n\n  FPS& operator/=(Mint b) {\n    b = Mint(1) / b;\n \
     \   for(int i = 0; i < ssize(*this); i++)\n      (*this)[i] *= b;\n    return\
+    \ *this;\n  }\n\n  FPS& operator<<=(int x) {\n    this -> resize(ssize(*this)\
+    \ + x, Mint(0));\n    ranges::rotate(*this, this -> end() - x);\n    return *this;\n\
+    \  }\n\n  FPS& operator>>=(int x) {\n    if (x >= ssize(*this)) {\n      this\
+    \ -> resize(1);\n      (*this)[0] = 0;\n    } else {\n      ranges::rotate(*this,\
+    \ this -> begin() + x);\n      this -> resize(ssize(*this) - x);\n    }\n    return\
     \ *this;\n  }\n\n  FPS shrink() {\n    FPS F = *this;\n    int size = ssize(F);\n\
     \    while(size and F[size - 1] == 0) size -= 1;\n    F.resize(size);\n    return\
     \ F;\n  }\n\n  FPS integral() {\n    if (this -> empty()) return {0};\n    vector<Mint>\
@@ -120,7 +128,10 @@ data:
     \         Q[j - i] = (*this)[j] * Inv;\n        Q = (Q.log(k) * idx).exp(k);\n\
     \        FPS Q2(k, 0);\n        Mint Pow = (*this)[i].pow(idx);\n        for(int\
     \ j = 0; j + i * idx < k; j++)\n          Q2[j + i * idx] = Q[j] * Pow;\n    \
-    \    return Q2;\n      }\n    } \n    return FPS(k, 0);\n  }\n\n  vector<Mint>\
+    \    return Q2;\n      }\n    } \n    return FPS(k, 0);\n  }\n\n  FPS pow(ll idx)\
+    \ {\n    int mxDeg = (ssize(*this) - 1) * idx;\n    FPS a = (*this);\n    a.resize(bit_ceil((unsigned)(mxDeg\
+    \ + 1)));\n    dft(a, false);\n    for(Mint &x : a) x = x.pow(idx);\n    dft(a,\
+    \ true);\n    return FPS(a.begin(), a.begin() + mxDeg + 1);\n  }\n\n  vector<Mint>\
     \ multieval(vector<Mint> xs) {\n    int n = ssize(xs);\n    vector<FPS> data(2\
     \ * n);\n    for(int i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n  \
     \  for(int i = n - 1; i > 0; i--)\n      data[i] = data[i << 1] * data[i << 1\
@@ -145,9 +156,11 @@ data:
     \ FPS operator+(FPS a, FPS b) { return a += b; }\n  friend FPS operator-(FPS a,\
     \ FPS b) { return a -= b; }\n  friend FPS operator*(FPS a, FPS b) { return a *=\
     \ b; }\n  friend FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS\
-    \ operator/(FPS a, Mint b) { return a /= b; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\n\
-    template<>\nfunction<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\n\
-    template<>\nfunction<void(vector<mint>&, bool)> fps::dft = ntt.ntt;\n"
+    \ operator/(FPS a, Mint b) { return a /= b; }\n  friend FPS operator<<(FPS a,\
+    \ int x) { return a <<= x; }\n  friend FPS operator>>(FPS a, int x) { return a\
+    \ >>= x; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
+    \ vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\nfunction<void(vector<mint>&,\
+    \ bool)> fps::dft = ntt.ntt;\n"
   code: "//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\
     \n\n//lagrange inversion formula:\n//  let f(x) be composition inverse of g(x)\
     \ (i.e. f(g(x)) = x) and [x^0]f(x) = [x^0]g(x) = 0, [x^1]f(x) != 0, [x^1]g(x)\
@@ -166,6 +179,11 @@ data:
     \   for(int i = 0; i < ssize(*this); i++)\n      (*this)[i] *= b;\n    return\
     \ *this;\n  }\n\n  FPS& operator/=(Mint b) {\n    b = Mint(1) / b;\n    for(int\
     \ i = 0; i < ssize(*this); i++)\n      (*this)[i] *= b;\n    return *this;\n \
+    \ }\n\n  FPS& operator<<=(int x) {\n    this -> resize(ssize(*this) + x, Mint(0));\n\
+    \    ranges::rotate(*this, this -> end() - x);\n    return *this;\n  }\n\n  FPS&\
+    \ operator>>=(int x) {\n    if (x >= ssize(*this)) {\n      this -> resize(1);\n\
+    \      (*this)[0] = 0;\n    } else {\n      ranges::rotate(*this, this -> begin()\
+    \ + x);\n      this -> resize(ssize(*this) - x);\n    }\n    return *this;\n \
     \ }\n\n  FPS shrink() {\n    FPS F = *this;\n    int size = ssize(F);\n    while(size\
     \ and F[size - 1] == 0) size -= 1;\n    F.resize(size);\n    return F;\n  }\n\n\
     \  FPS integral() {\n    if (this -> empty()) return {0};\n    vector<Mint> Inv(ssize(*this)\
@@ -200,7 +218,10 @@ data:
     \         Q[j - i] = (*this)[j] * Inv;\n        Q = (Q.log(k) * idx).exp(k);\n\
     \        FPS Q2(k, 0);\n        Mint Pow = (*this)[i].pow(idx);\n        for(int\
     \ j = 0; j + i * idx < k; j++)\n          Q2[j + i * idx] = Q[j] * Pow;\n    \
-    \    return Q2;\n      }\n    } \n    return FPS(k, 0);\n  }\n\n  vector<Mint>\
+    \    return Q2;\n      }\n    } \n    return FPS(k, 0);\n  }\n\n  FPS pow(ll idx)\
+    \ {\n    int mxDeg = (ssize(*this) - 1) * idx;\n    FPS a = (*this);\n    a.resize(bit_ceil((unsigned)(mxDeg\
+    \ + 1)));\n    dft(a, false);\n    for(Mint &x : a) x = x.pow(idx);\n    dft(a,\
+    \ true);\n    return FPS(a.begin(), a.begin() + mxDeg + 1);\n  }\n\n  vector<Mint>\
     \ multieval(vector<Mint> xs) {\n    int n = ssize(xs);\n    vector<FPS> data(2\
     \ * n);\n    for(int i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n  \
     \  for(int i = n - 1; i > 0; i--)\n      data[i] = data[i << 1] * data[i << 1\
@@ -225,14 +246,16 @@ data:
     \ FPS operator+(FPS a, FPS b) { return a += b; }\n  friend FPS operator-(FPS a,\
     \ FPS b) { return a -= b; }\n  friend FPS operator*(FPS a, FPS b) { return a *=\
     \ b; }\n  friend FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS\
-    \ operator/(FPS a, Mint b) { return a /= b; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\n\
-    template<>\nfunction<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\n\
-    template<>\nfunction<void(vector<mint>&, bool)> fps::dft = ntt.ntt;\n"
+    \ operator/(FPS a, Mint b) { return a /= b; }\n  friend FPS operator<<(FPS a,\
+    \ int x) { return a <<= x; }\n  friend FPS operator>>(FPS a, int x) { return a\
+    \ >>= x; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
+    \ vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\nfunction<void(vector<mint>&,\
+    \ bool)> fps::dft = ntt.ntt;\n"
   dependsOn: []
   isVerificationFile: false
   path: poly/FPS.cpp
   requiredBy: []
-  timestamp: '2024-03-22 01:43:37+08:00'
+  timestamp: '2024-05-11 22:13:26+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/compositional_inverse_of_formal_power_series_large.test.cpp
@@ -245,6 +268,7 @@ data:
   - test/polynomial_interpolation.test.cpp
   - test/pow_of_formal_power_series.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/wildcard_pattern_matching.test.cpp
   - test/sharp_p_subset_sum.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/division_of_polynomials.test.cpp

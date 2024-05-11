@@ -35,6 +35,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/binom.cpp
       title: combi/binom.cpp
+    - icon: ':warning:'
+      path: combi/pathCounting.cpp
+      title: combi/pathCounting.cpp
     - icon: ':heavy_check_mark:'
       path: combi/stirlingFirst.cpp
       title: combi/stirlingFirst.cpp
@@ -242,6 +245,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: misc/sharpPSubsetSum.cpp
       title: misc/sharpPSubsetSum.cpp
+    - icon: ':heavy_check_mark:'
+      path: misc/wildcardPatternMatcing.cpp
+      title: misc/wildcardPatternMatcing.cpp
   - name: modint
     pages:
     - icon: ':heavy_check_mark:'
@@ -311,6 +317,9 @@ data:
     - icon: ':warning:'
       path: poly/polyope.cpp
       title: poly/polyope.cpp
+    - icon: ':warning:'
+      path: poly/semiOnlineConvolution.cpp
+      title: poly/semiOnlineConvolution.cpp
     - icon: ':heavy_check_mark:'
       path: poly/sparsePolyope.cpp
       title: poly/sparsePolyope.cpp
@@ -635,6 +644,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/vertex_set_path_composite.test.cpp
       title: test/vertex_set_path_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/wildcard_pattern_matching.test.cpp
+      title: test/wildcard_pattern_matching.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yuki_2544.test.cpp
       title: test/yuki_2544.test.cpp
