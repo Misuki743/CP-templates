@@ -49,6 +49,23 @@ struct FPS : vector<Mint> {
     return *this;
   }
 
+  FPS& operator<<=(int x) {
+    this -> resize(ssize(*this) + x, Mint(0));
+    ranges::rotate(*this, this -> end() - x);
+    return *this;
+  }
+
+  FPS& operator>>=(int x) {
+    if (x >= ssize(*this)) {
+      this -> resize(1);
+      (*this)[0] = 0;
+    } else {
+      ranges::rotate(*this, this -> begin() + x);
+      this -> resize(ssize(*this) - x);
+    }
+    return *this;
+  }
+
   FPS shrink() {
     FPS F = *this;
     int size = ssize(F);
@@ -157,6 +174,16 @@ struct FPS : vector<Mint> {
     return FPS(k, 0);
   }
 
+  FPS pow(ll idx) {
+    int mxDeg = (ssize(*this) - 1) * idx;
+    FPS a = (*this);
+    a.resize(bit_ceil((unsigned)(mxDeg + 1)));
+    dft(a, false);
+    for(Mint &x : a) x = x.pow(idx);
+    dft(a, true);
+    return FPS(a.begin(), a.begin() + mxDeg + 1);
+  }
+
   vector<Mint> multieval(vector<Mint> xs) {
     int n = ssize(xs);
     vector<FPS> data(2 * n);
@@ -211,6 +238,8 @@ struct FPS : vector<Mint> {
   friend FPS operator*(FPS a, FPS b) { return a *= b; }
   friend FPS operator*(FPS a, Mint b) { return a *= b; }
   friend FPS operator/(FPS a, Mint b) { return a /= b; }
+  friend FPS operator<<(FPS a, int x) { return a <<= x; }
+  friend FPS operator>>(FPS a, int x) { return a >>= x; }
 };
 
 NTT ntt;

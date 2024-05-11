@@ -43,28 +43,12 @@
 #include <tuple>
 #include <type_traits>
 #include <variant>
-
-#if __cplusplus >= 202002L
-
 #include <bit>
 #include <compare>
 #include <concepts>
 #include <numbers>
 #include <ranges>
 #include <span>
-
-#else
-
-#define ssize(v) (int)(v).size()
-#define popcount(x) __builtin_popcountll(x)
-constexpr int bit_width(const unsigned int x) { return x == 0 ? 0 : ((sizeof(unsigned int) * CHAR_BIT) - __builtin_clz(x)); }
-constexpr int bit_width(const unsigned long long x) { return x == 0 ? 0 : ((sizeof(unsigned long long) * CHAR_BIT) - __builtin_clzll(x)); }
-constexpr int countr_zero(const unsigned int x) { return x == 0 ? sizeof(unsigned int) * CHAR_BIT : __builtin_ctz(x); }
-constexpr int countr_zero(const unsigned long long x) { return x == 0 ? sizeof(unsigned long long) * CHAR_BIT : __builtin_ctzll(x); }
-constexpr unsigned int bit_ceil(const unsigned int x) { return x == 0 ? 1 : (popcount(x) == 1 ? x : (1u << bit_width(x))); }
-constexpr unsigned long long bit_ceil(const unsigned long long x) { return x == 0 ? 1 : (popcount(x) == 1 ? x : (1ull << bit_width(x))); }
-
-#endif
 
 #define int ll
 #define INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)
@@ -86,6 +70,17 @@ using ldb = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 //#define double ldb
+
+template<class T>
+T floorDiv(T a, T b) {
+  if (b < 0) a *= -1, b *= -1;
+  return a >= 0 ? a / b : (a - b + 1) / b;
+}
+template<class T>
+T ceilDiv(T a, T b) {
+  if (b < 0) a *= -1, b *= -1;
+  return a >= 0 ? (a + b - 1) / b : a / b;
+}
 
 template<class T>
 ostream& operator<<(ostream& os, const pair<T, T> pr) {
