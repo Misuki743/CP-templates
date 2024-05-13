@@ -19,6 +19,9 @@ data:
     path: test/bernoulli_number.test.cpp
     title: test/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/biconnected_components.test.cpp
+    title: test/biconnected_components.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/binomial_coefficient_prime_mod.test.cpp
     title: test/binomial_coefficient_prime_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -367,6 +370,7 @@ data:
   - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/unionfind.test.cpp
   - test/strongly_connected_components.test.cpp
+  - test/biconnected_components.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
   - test/line_add_get_min.test.cpp
   - test/yuki_2606.test.cpp

@@ -160,7 +160,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/2sat.cpp
       title: graph/2sat.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/BCC.cpp
       title: graph/BCC.cpp
     - icon: ':heavy_check_mark:'
@@ -410,6 +410,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/bernoulli_number.test.cpp
       title: test/bernoulli_number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/biconnected_components.test.cpp
+      title: test/biconnected_components.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/binomial_coefficient_prime_mod.test.cpp
       title: test/binomial_coefficient_prime_mod.test.cpp
