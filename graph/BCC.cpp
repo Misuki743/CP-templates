@@ -1,158 +1,78 @@
-//source: https://judge.yosupo.jp/submission/96487
+struct BCC {
+  vector<int> f, vb, eb, gv, ge, eid, vid;
+  int size = -1;
 
-/*
-無向グラフに対して使う
+  BCC(vector<array<int, 2>> &e, int n)
+  : f(n), eid(ssize(e)), vid(n) {
 
-二重連結成分分解とも呼ばれる。
+    auto newComp = [&]() {
+      vb.emplace_back(ssize(gv));
+      eb.emplace_back(ssize(ge));
+      size++;
+    };
 
-
-O(V+E)
-参考:
-https://ei1333.github.io/luzhiled/snippets/graph/bi-connected-components.html
-https://www.hackerearth.com/practice/algorithms/graphs/biconnected-components/tutorial/
-https://www.geeksforgeeks.org/biconnected-components/
-*/
-
-template<class T,class U>constexpr bool chmin(T&a,const U b){if(a<=b)return false;a=b;return true;}
-template<class T,class U>constexpr bool chmax(T&a,const U b){if(a>=b)return false;a=b;return true;}
-template<typename T> constexpr int bitUP(T x,int a){return (x>>a)&1;}
-
-using Graph=vector<vector<int>>;
-
-struct LowLink{
-    const Graph &g;
-    int sz;
-    //low[u]:=uから以下の方法でたどり着ける頂点のうち,ordの最小値
-    //1. DFS木の辺を根から葉の向きへ進む(何度でも)
-    //2. 後退辺を進む(1回だけ)
-    vector<int> ord,low;
-    vector<bool> used;
-    vector<int> articulation; //関節点
-    vector<pii> bridge; //橋 first<secondになっている
-    int k;
-
-    void dfs(int idx,int par){
-        used[idx]=true;
-        ord[idx]=k++;
-        low[idx]=ord[idx];
-        bool is_articulation=false;
-        int cnt=0;
-        int par_edge_cnt=0; //parに向かう辺の数 2個以上なら後退辺として考慮する
-        for(int to:g[idx]){
-            if(!used[to]){
-                cnt++;
-                dfs(to,idx); //この辺はDFS木に追加する
-                chmin(low[idx],low[to]);
-                if(ord[idx]<low[to]) bridge.emplace_back(minmax(idx,to));//toに行ったきり、戻ってこれないなら追加
-                is_articulation |=(par!=-1 && ord[idx]<=low[to]);
-            }else if(to!=par){
-                //この辺は後退辺
-                chmin(low[idx],ord[to]);
-            }else{
-                //to==par
-                par_edge_cnt++;
-            }
-        }
-        if(par_edge_cnt>=2) chmin(low[idx],ord[par]);
-        is_articulation |= (par==-1 && cnt>=2);
-        if(is_articulation) articulation.push_back(idx);
-
+    vector<vector<int>> g(n);
+    for(int i = 0; auto [u, v] : e) {
+      g[u].emplace_back(i);
+      g[v].emplace_back(i++);
     }
 
-    LowLink(const Graph &g):g(g){
-        sz=g.size();
-        used.assign(sz,false);
-        ord.assign(sz,0);
-        low.assign(sz,0);
-        k=0;
-        for(int i=0;i<sz;i++){
-            if(!used[i]) dfs(i,-1);
+    int t = 0, root;
+    vector<int> tin(n, -1), low(n), cnt(n), s;
+    vector<bool> vis(ssize(e), false);
+    auto dfs = [&](int v, auto &&self) -> void {
+      tin[v] = low[v] = t++;
+      for(int i : g[v]) if (!vis[i]) {
+        int x = e[i][0] ^ e[i][1] ^ v;
+        vis[i] = true, s.emplace_back(i);
+        if (tin[x] != -1) {
+          low[v] = min(low[v], tin[x]);
+        } else {
+          self(x, self);
+          low[v] = min(low[v], low[x]);
+          if (low[x] >= tin[v]) {
+            newComp();
+            do {
+              int j = s.back(); s.pop_back();
+              for(int u : e[j])
+                if (++cnt[u] == 1)
+                  gv.emplace_back(u);
+              eid[j] = size;
+              ge.emplace_back(j);
+            } while(ge.back() != i);
+            for(int u : gv | views::drop(vb.back()))
+              cnt[u] = 0, f[u]++, vid[u] = size;
+          }
         }
-    }
-};
-struct BiConnectedComponents{
+      }
+      if (g[v].empty()) newComp(), gv.emplace_back(v);
+    };
 
-    int sz;
-    LowLink L;
-    vector<int> group_id;//どのグループに属すか
-    Graph forest; //二重頂点連結成分分解後のグラフ
-    vector<vector<int>> group; //[i]:=グループiに属する頂点の番号 昇順
+    for(int v = 0; v < n; v++)
+      if (tin[v] == -1)
+        dfs(root = v, dfs);
+    newComp();
+  }
 
-    BiConnectedComponents(const Graph &g):sz(g.size()),L(g),group_id(g.size(),-1),group(sz*2){
-        vector<bool> is_articulation(sz,false);
-        for(int v:L.articulation){
-            is_articulation[v]=true;
+  vector<int> vertexGroup(int id) {
+    return {gv.begin() + vb[id], gv.begin() + vb[id + 1]};
+  }
+  vector<int> edgeGroup(int id) {
+    return {ge.begin() + eb[id], ge.begin() + eb[id + 1]};
+  }
+  bool isCutVertex(int v) { return f[v] > 1; }
+  pair<vector<vector<int>>, vector<int>> blockCutTree() {
+    int n = ssize(f);
+    vector<vector<int>> g(n + size);
+    vector<int> mp = vid;
+    for(int &x : mp) x += n;
+    for(int i = 0; i < size; i++)
+      for(int v : vertexGroup(i))
+        if (isCutVertex(v)) {
+          g[i + n].emplace_back(v);
+          g[v].emplace_back(i + n);
+          mp[v] = v;
         }
-        vector<int> st;
-        vector<int> used(sz,false);
-        int times=0;
-        auto dfs=[&](int idx,int par,auto self)->void{
-            used[idx]=true;
-            group_id[idx]=times;
-            int loop=0;
-            for(int to:g[idx]){
-                if(to==par) continue;
-                if(used[to]){
-                    if(L.ord[to]<L.ord[idx])st.push_back(to);
-                    continue;
-                }
-                loop++;
-                int now_id=st.size();
-                st.push_back(idx);
-                st.push_back(to);
-                self(to,idx,self);
-                bool is_pop=false;
-                if(par==-1 and loop>=2) is_pop=true;
-                if(par!=-1 && L.ord[idx]<=L.low[to]) is_pop=true;
-
-                if(is_pop){
-                    for(int i=now_id;i<int(st.size());i++){
-                        group[times].push_back(st[i]);
-                        group_id[st[i]]=times;
-                    }
-                    st.resize(now_id);
-                    times++;
-                }
-            }
-            return;
-        };
-        for(int i=0;i<sz;i++){
-            if(used[i]==false){
-                dfs(i,-1,dfs);
-                if(g[i].size()==0 or st.size()){
-                    st.push_back(i);
-                    for(int v:st){
-                        group[times].push_back(v);
-                        group_id[v]=times;
-                    }
-                    times++;
-                    st.clear();
-                }
-            }
-        }
-        for(auto &v:group){
-            sort(v.begin(),v.end());
-            v.erase(unique(v.begin(),v.end()),v.end());
-        }
-        group.resize(times);
-        /*for(int v:L.articulation){
-            group_id[v]=times++;
-        }
-        forest.resize(times);
-        
-        for(int v:L.articulation){
-            for(int to:g[v]){
-                int s=group_id[v];
-                int t=group_id[to];
-                forest[s].push_back(t);
-                if(is_articulation[to]) continue;
-                forest[t].push_back(s);
-            }
-        }
-        group.resize(times);
-        for(int i=0;i<sz;i++){
-            group[group_id[i]].push_back(i);
-        }*/
-    }
-
+    return make_pair(g, mp);
+  }
 };
