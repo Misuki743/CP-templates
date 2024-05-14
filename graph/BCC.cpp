@@ -17,7 +17,7 @@ struct BCC {
       g[v].emplace_back(i++);
     }
 
-    int t = 0, root;
+    int t = 0;
     vector<int> tin(n, -1), low(n), cnt(n), s;
     vector<bool> vis(ssize(e), false);
     auto dfs = [&](int v, auto &&self) -> void {
@@ -50,7 +50,7 @@ struct BCC {
 
     for(int v = 0; v < n; v++)
       if (tin[v] == -1)
-        dfs(root = v, dfs);
+        dfs(v, dfs);
     newComp();
   }
 
