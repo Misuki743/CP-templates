@@ -1,91 +1,99 @@
+template<class capT, class cosT>
 struct MCMF {
-  struct Edge {
+  struct edge {
     int to, rev;
-    long long cap, cos;
-    Edge(int _to, long long _cap, long long _cos, int _rev) :
-        to(_to), cap(_cap), cos(_cos), rev(_rev) {}
+    capT cap;
+    cosT cos;
+    edge(int _to, capT _cap, cosT _cos, int _rev) :
+        to(_to), rev(_rev), cap(_cap), cos(_cos) {}
   };
 
-  static const int SIZE = 3502;
-  int n, s, t;
-  vector<Edge> G[SIZE];
-  array<int, SIZE> par, idx;
-  array<long long, SIZE> pot, dis, f; 
+  int n;
+  const capT CAP_MAX = numeric_limits<capT>::max();
+  const cosT COS_MAX = numeric_limits<cosT>::max();
+  vector<vector<edge>> g;
+  vector<int> par, idx;
+  vector<capT> f;
+  vector<cosT> pot, dis;
 
-  void init(int _n, int _s, int _t) {
-    n = _n, s = _s, t = _t;
-    for(int i = 0; i < n; i++)
-      G[i].clear();
+  MCMF(int _n) : n(_n), g(n), par(n),
+    idx(n), f(n), pot(n), dis(n) {}
+
+  void addEdge(int from, int to, capT cap, cosT cos) {
+    g[from].emplace_back(to, cap, cos, ssize(g[to]));
+    g[to].emplace_back(from, 0, -cos, ssize(g[from]) - 1);
   }
 
-  void addEdge(int from, int to, long long cap, long long cos) {
-    G[from].emplace_back(Edge(to, cap, cos, G[to].size()));
-    G[to].emplace_back(Edge(from, 0, -cos, (int)G[from].size() - 1));
-  }
-
-  void initPotential() {
-    fill(dis.begin(), dis.end(), LLONG_MAX);
+  void initPotential(int s) {
+    fill(dis.begin(), dis.end(), COS_MAX);
     dis[s] = 0;
     for(int i = 1; i < n; i++) {
-      for(int j = 0; j < n; j++) {
-        if (dis[j] == LLONG_MAX)
-          continue;
-        for(Edge E : G[j]) {
-          if (E.cap == 0)
-            continue;
-          if (dis[j] + E.cos < dis[E.to])
-            dis[E.to] = dis[j] + E.cos;
-        }
+      for(int v = 0; v < n; v++) {
+        if (dis[v] == COS_MAX) continue;
+        for(edge e : g[v])
+          if (e.cap != 0 and dis[v] + e.cos < dis[e.to])
+            dis[e.to] = dis[v] + e.cos;
       }
     }
     pot.swap(dis);
   }
 
-  pll flow() {
-    long long Cost = 0, Flow = 0;
+  pair<capT, cosT> runFlow(int s, int t, bool dense = false) {
+    cosT cost = 0;
+    capT flow = 0;
     while(true) {
-      priority_queue<pii, vector<pii>, greater<pii> > pq;
-      fill(dis.begin(), dis.end(), LLONG_MAX);
-      dis[s] = 0, f[s] = LLONG_MAX;
-      pq.push(make_pair(0, s));
-      while(!pq.empty()) {
-        pii now = pq.top(); pq.pop();
-        if (dis[now.second] != now.first)
-          continue;
-
-        int V = now.second;
-        for(Edge E : G[V]) {
-          if (E.cap == 0)
-            continue;
-          if (dis[V] + E.cos + pot[V] - pot[E.to] < dis[E.to]) {
-            dis[E.to] = dis[V] + E.cos + pot[V] - pot[E.to];
-            f[E.to] = min(f[V], E.cap);
-            par[E.to] = V;
-            idx[E.to] = G[E.to][E.rev].rev;
-            pq.push(make_pair(dis[E.to], E.to));
+      fill(dis.begin(), dis.end(), COS_MAX);
+      dis[s] = 0, f[s] = CAP_MAX;
+      if (dense) {
+        vector<bool> vis(n, false);
+        for(int i = 0; i < n; i++) {
+          int v = -1;
+          for(int j = 0; j < n; j++)
+            if (!vis[j] and (v == -1 or dis[j] < dis[v]))
+              v = j;
+          if (v == -1 or dis[v] == COS_MAX) break;
+          vis[v] = true;
+          for(edge e : g[v]) {
+            if (e.cap == 0) continue;
+            if (cosT x = dis[v] + e.cos + pot[v] - pot[e.to]; x < dis[e.to]) {
+              dis[e.to] = x, f[e.to] = min(f[v], e.cap);
+              par[e.to] = v, idx[e.to] = g[e.to][e.rev].rev;
+            }
+          }
+        }
+      } else {
+        using T = pair<cosT, int>;
+        priority_queue<T, vector<T>, greater<T>> pq;
+        pq.push(make_pair(dis[s], s));
+        while(!pq.empty()) {
+          auto [d, v] = pq.top(); pq.pop();
+          if (dis[v] != d) continue;
+          for(edge e : g[v]) {
+            if (e.cap == 0) continue;
+            if (cosT x = dis[v] + e.cos + pot[v] - pot[e.to]; x < dis[e.to]) {
+              dis[e.to] = x, f[e.to] = min(f[v], e.cap);
+              par[e.to] = v, idx[e.to] = g[e.to][e.rev].rev;
+              pq.push(make_pair(dis[e.to], e.to));
+            }
           }
         }
       }
 
-      if (dis[t] == LLONG_MAX)
-        break;
+      if (dis[t] == COS_MAX) break;
 
-      long long bot = f[t];
-      int now = t;
-      while(now != s) {
-        Edge &E = G[par[now]][idx[now]];
-        E.cap -= bot;
-        G[now][E.rev].cap += bot;
-        now = par[now];
+      int v = t;
+      while(v != s) {
+        edge &e = g[par[v]][idx[v]];
+        e.cap -= f[t], g[v][e.rev].cap += f[t];
+        v = par[v];
       }
-      Flow += bot, Cost += bot * (dis[t] - pot[s] + pot[t]);
-
-      for(int i = 0; i < n; i++) {
-        dis[i] += pot[i] - pot[s];
-      }
+      flow += f[t], cost += f[t] * (dis[t] - pot[s] + pot[t]);
+      for(int i = 0; i < n; i++)
+        if (dis[i] != COS_MAX)
+          dis[i] += pot[i] - pot[s];
       pot.swap(dis);
     }
 
-    return make_pair(Flow, Cost);
+    return {flow, cost};
   }
 };
