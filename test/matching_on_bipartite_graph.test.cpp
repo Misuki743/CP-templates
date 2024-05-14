@@ -3,24 +3,24 @@
 #include "../default/t.cpp"
 #include "../graph/Dinic.cpp"
 
-int main() {
+signed main() {
+  ios::sync_with_stdio(false), cin.tie(NULL);
+
   int l, r, m; cin >> l >> r >> m;
-
   const int s = l + r, t = l + r + 1;
-  Dinic<int, INT_MAX> flow(l + r + 2);
-  flow.init(l + r + 2, s, t);
-  while(m--) {
+  Dinic<int> dinic(l + r + 2);
+  for(int i = 0; i < l; i++) dinic.addEdge(s, i, 1);
+  for(int i = l; i < l + r; i++) dinic.addEdge(i, t, 1);
+  for(int i = 0; i < m; i++) {
     int u, v; cin >> u >> v;
-    flow.addEdge(u, v + l, 1);
+    dinic.addEdge(u, v + l, 1);
   }
-  for(int i = 0; i < l; i++)
-    flow.addEdge(s, i, 1);
-  for(int i = l; i < l + r; i++)
-    flow.addEdge(i, t, 1);
 
-  cout << flow.flow() << '\n';
-  for(int i = l; i < l + r; i++)
-    for(auto e : flow.G[i])
-      if (e.to != t and e.cap == 1)
-        cout << e.to << ' ' << i - l << '\n';
+  cout << dinic.runFlow(s, t) << '\n';
+  for(int v = 0; v < l; v++)
+    for(auto &e : dinic.g[v])
+      if (e.cap == 0 and e.to != s)
+        cout << v << ' ' << e.to - l << '\n';
+
+  return 0;
 }
