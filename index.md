@@ -43,7 +43,7 @@ data:
       title: combi/stirlingFirst.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -163,7 +163,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/Dijkstra.cpp
       title: graph/Dijkstra.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/Dinic.cpp
       title: graph/Dinic.cpp
     - icon: ':heavy_check_mark:'

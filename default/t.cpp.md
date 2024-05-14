@@ -117,6 +117,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lowest_common_ancestor.test.cpp
     title: test/lowest_common_ancestor.test.cpp
+  - icon: ':x:'
+    path: test/matching_on_bipartite_graph.test.cpp
+    title: test/matching_on_bipartite_graph.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/matrix_product.test.cpp
     title: test/matrix_product.test.cpp
@@ -276,9 +279,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -334,7 +337,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/assignment_problem.test.cpp
   - test/two_sat.test.cpp
@@ -360,6 +363,7 @@ data:
   - test/range_affine_point_get.test.cpp
   - test/longest_increasing_subsequence.test.cpp
   - test/exp_of_formal_power_series.test.cpp
+  - test/matching_on_bipartite_graph.test.cpp
   - test/range_reverse_range_sum.test.cpp
   - test/convolution.test.cpp
   - test/convolution_1e9+7.test.cpp
