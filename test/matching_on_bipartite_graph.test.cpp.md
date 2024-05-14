@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Dinic.cpp
     title: graph/Dinic.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bipartitematching
@@ -64,31 +64,32 @@ data:
     \      while((del = dfs(t, CAP_MAX, dfs)) > 0)\n        flow = (flow >= CAP_MAX\
     \ - del ? CAP_MAX : flow + del);\n    }\n\n    return flow;\n  }\n\n  bool left(int\
     \ idx) { return lev[idx] != INT_MAX; }\n};\n#line 5 \"test/matching_on_bipartite_graph.test.cpp\"\
-    \n\nint main() {\n  int l, r, m; cin >> l >> r >> m;\n\n  const int s = l + r,\
-    \ t = l + r + 1;\n  Dinic<int, INT_MAX> flow(l + r + 2);\n  flow.init(l + r +\
-    \ 2, s, t);\n  while(m--) {\n    int u, v; cin >> u >> v;\n    flow.addEdge(u,\
-    \ v + l, 1);\n  }\n  for(int i = 0; i < l; i++)\n    flow.addEdge(s, i, 1);\n\
-    \  for(int i = l; i < l + r; i++)\n    flow.addEdge(i, t, 1);\n\n  cout << flow.flow()\
-    \ << '\\n';\n  for(int i = l; i < l + r; i++)\n    for(auto e : flow.G[i])\n \
-    \     if (e.to != t and e.cap == 1)\n        cout << e.to << ' ' << i - l << '\\\
-    n';\n}\n"
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int l,\
+    \ r, m; cin >> l >> r >> m;\n  const int s = l + r, t = l + r + 1;\n  Dinic<int>\
+    \ dinic(l + r + 2);\n  for(int i = 0; i < l; i++) dinic.addEdge(s, i, 1);\n  for(int\
+    \ i = l; i < l + r; i++) dinic.addEdge(i, t, 1);\n  for(int i = 0; i < m; i++)\
+    \ {\n    int u, v; cin >> u >> v;\n    dinic.addEdge(u, v + l, 1);\n  }\n\n  cout\
+    \ << dinic.runFlow(s, t) << '\\n';\n  for(int v = 0; v < l; v++)\n    for(auto\
+    \ &e : dinic.g[v])\n      if (e.cap == 0 and e.to != s)\n        cout << v <<\
+    \ ' ' << e.to - l << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\n\n\
-    #include \"../default/t.cpp\"\n#include \"../graph/Dinic.cpp\"\n\nint main() {\n\
-    \  int l, r, m; cin >> l >> r >> m;\n\n  const int s = l + r, t = l + r + 1;\n\
-    \  Dinic<int, INT_MAX> flow(l + r + 2);\n  flow.init(l + r + 2, s, t);\n  while(m--)\
-    \ {\n    int u, v; cin >> u >> v;\n    flow.addEdge(u, v + l, 1);\n  }\n  for(int\
-    \ i = 0; i < l; i++)\n    flow.addEdge(s, i, 1);\n  for(int i = l; i < l + r;\
-    \ i++)\n    flow.addEdge(i, t, 1);\n\n  cout << flow.flow() << '\\n';\n  for(int\
-    \ i = l; i < l + r; i++)\n    for(auto e : flow.G[i])\n      if (e.to != t and\
-    \ e.cap == 1)\n        cout << e.to << ' ' << i - l << '\\n';\n}\n"
+    #include \"../default/t.cpp\"\n#include \"../graph/Dinic.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int l, r, m; cin >> l\
+    \ >> r >> m;\n  const int s = l + r, t = l + r + 1;\n  Dinic<int> dinic(l + r\
+    \ + 2);\n  for(int i = 0; i < l; i++) dinic.addEdge(s, i, 1);\n  for(int i = l;\
+    \ i < l + r; i++) dinic.addEdge(i, t, 1);\n  for(int i = 0; i < m; i++) {\n  \
+    \  int u, v; cin >> u >> v;\n    dinic.addEdge(u, v + l, 1);\n  }\n\n  cout <<\
+    \ dinic.runFlow(s, t) << '\\n';\n  for(int v = 0; v < l; v++)\n    for(auto &e\
+    \ : dinic.g[v])\n      if (e.cap == 0 and e.to != s)\n        cout << v << ' '\
+    \ << e.to - l << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - graph/Dinic.cpp
   isVerificationFile: true
   path: test/matching_on_bipartite_graph.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 23:57:42+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-05-15 00:03:32+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/matching_on_bipartite_graph.test.cpp
 layout: document
