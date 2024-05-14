@@ -10,6 +10,9 @@ data:
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/assignment.test.cpp
+    title: test/assignment.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/assignment_problem.test.cpp
     title: test/assignment_problem.test.cpp
   - icon: ':heavy_check_mark:'
@@ -24,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/binomial_coefficient_prime_mod.test.cpp
     title: test/binomial_coefficient_prime_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/bipartitematching.test.cpp
+    title: test/bipartitematching.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/compositional_inverse_of_formal_power_series_large.test.cpp
     title: test/compositional_inverse_of_formal_power_series_large.test.cpp
@@ -111,9 +117,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lowest_common_ancestor.test.cpp
     title: test/lowest_common_ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/matching_on_bipartite_graph.test.cpp
-    title: test/matching_on_bipartite_graph.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/matrix_product.test.cpp
     title: test/matrix_product.test.cpp
@@ -357,7 +360,6 @@ data:
   - test/range_affine_point_get.test.cpp
   - test/longest_increasing_subsequence.test.cpp
   - test/exp_of_formal_power_series.test.cpp
-  - test/matching_on_bipartite_graph.test.cpp
   - test/range_reverse_range_sum.test.cpp
   - test/convolution.test.cpp
   - test/convolution_1e9+7.test.cpp
@@ -371,6 +373,7 @@ data:
   - test/eulerian_trail_undirected.test.cpp
   - test/vertex_set_path_composite.test.cpp
   - test/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/assignment.test.cpp
   - test/unionfind.test.cpp
   - test/strongly_connected_components.test.cpp
   - test/biconnected_components.test.cpp
@@ -385,6 +388,7 @@ data:
   - test/inv_of_formal_power_series_sparse.test.cpp
   - test/wildcard_pattern_matching.test.cpp
   - test/inverse_matrix.test.cpp
+  - test/bipartitematching.test.cpp
   - test/sharp_p_subset_sum.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/static_range_frequency.test.cpp

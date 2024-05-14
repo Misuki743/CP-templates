@@ -2,80 +2,99 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/assignment.test.cpp
+    title: test/assignment.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"graph/MCMF.cpp\"\nstruct MCMF {\n  struct Edge {\n    int\
-    \ to, rev;\n    long long cap, cos;\n    Edge(int _to, long long _cap, long long\
-    \ _cos, int _rev) :\n        to(_to), cap(_cap), cos(_cos), rev(_rev) {}\n  };\n\
-    \n  static const int SIZE = 3502;\n  int n, s, t;\n  vector<Edge> G[SIZE];\n \
-    \ array<int, SIZE> par, idx;\n  array<long long, SIZE> pot, dis, f; \n\n  void\
-    \ init(int _n, int _s, int _t) {\n    n = _n, s = _s, t = _t;\n    for(int i =\
-    \ 0; i < n; i++)\n      G[i].clear();\n  }\n\n  void addEdge(int from, int to,\
-    \ long long cap, long long cos) {\n    G[from].emplace_back(Edge(to, cap, cos,\
-    \ G[to].size()));\n    G[to].emplace_back(Edge(from, 0, -cos, (int)G[from].size()\
-    \ - 1));\n  }\n\n  void initPotential() {\n    fill(dis.begin(), dis.end(), LLONG_MAX);\n\
-    \    dis[s] = 0;\n    for(int i = 1; i < n; i++) {\n      for(int j = 0; j < n;\
-    \ j++) {\n        if (dis[j] == LLONG_MAX)\n          continue;\n        for(Edge\
-    \ E : G[j]) {\n          if (E.cap == 0)\n            continue;\n          if\
-    \ (dis[j] + E.cos < dis[E.to])\n            dis[E.to] = dis[j] + E.cos;\n    \
-    \    }\n      }\n    }\n    pot.swap(dis);\n  }\n\n  pll flow() {\n    long long\
-    \ Cost = 0, Flow = 0;\n    while(true) {\n      priority_queue<pii, vector<pii>,\
-    \ greater<pii> > pq;\n      fill(dis.begin(), dis.end(), LLONG_MAX);\n      dis[s]\
-    \ = 0, f[s] = LLONG_MAX;\n      pq.push(make_pair(0, s));\n      while(!pq.empty())\
-    \ {\n        pii now = pq.top(); pq.pop();\n        if (dis[now.second] != now.first)\n\
-    \          continue;\n\n        int V = now.second;\n        for(Edge E : G[V])\
-    \ {\n          if (E.cap == 0)\n            continue;\n          if (dis[V] +\
-    \ E.cos + pot[V] - pot[E.to] < dis[E.to]) {\n            dis[E.to] = dis[V] +\
-    \ E.cos + pot[V] - pot[E.to];\n            f[E.to] = min(f[V], E.cap);\n     \
-    \       par[E.to] = V;\n            idx[E.to] = G[E.to][E.rev].rev;\n        \
-    \    pq.push(make_pair(dis[E.to], E.to));\n          }\n        }\n      }\n\n\
-    \      if (dis[t] == LLONG_MAX)\n        break;\n\n      long long bot = f[t];\n\
-    \      int now = t;\n      while(now != s) {\n        Edge &E = G[par[now]][idx[now]];\n\
-    \        E.cap -= bot;\n        G[now][E.rev].cap += bot;\n        now = par[now];\n\
-    \      }\n      Flow += bot, Cost += bot * (dis[t] - pot[s] + pot[t]);\n\n   \
-    \   for(int i = 0; i < n; i++) {\n        dis[i] += pot[i] - pot[s];\n      }\n\
-    \      pot.swap(dis);\n    }\n\n    return make_pair(Flow, Cost);\n  }\n};\n"
-  code: "struct MCMF {\n  struct Edge {\n    int to, rev;\n    long long cap, cos;\n\
-    \    Edge(int _to, long long _cap, long long _cos, int _rev) :\n        to(_to),\
-    \ cap(_cap), cos(_cos), rev(_rev) {}\n  };\n\n  static const int SIZE = 3502;\n\
-    \  int n, s, t;\n  vector<Edge> G[SIZE];\n  array<int, SIZE> par, idx;\n  array<long\
-    \ long, SIZE> pot, dis, f; \n\n  void init(int _n, int _s, int _t) {\n    n =\
-    \ _n, s = _s, t = _t;\n    for(int i = 0; i < n; i++)\n      G[i].clear();\n \
-    \ }\n\n  void addEdge(int from, int to, long long cap, long long cos) {\n    G[from].emplace_back(Edge(to,\
-    \ cap, cos, G[to].size()));\n    G[to].emplace_back(Edge(from, 0, -cos, (int)G[from].size()\
-    \ - 1));\n  }\n\n  void initPotential() {\n    fill(dis.begin(), dis.end(), LLONG_MAX);\n\
-    \    dis[s] = 0;\n    for(int i = 1; i < n; i++) {\n      for(int j = 0; j < n;\
-    \ j++) {\n        if (dis[j] == LLONG_MAX)\n          continue;\n        for(Edge\
-    \ E : G[j]) {\n          if (E.cap == 0)\n            continue;\n          if\
-    \ (dis[j] + E.cos < dis[E.to])\n            dis[E.to] = dis[j] + E.cos;\n    \
-    \    }\n      }\n    }\n    pot.swap(dis);\n  }\n\n  pll flow() {\n    long long\
-    \ Cost = 0, Flow = 0;\n    while(true) {\n      priority_queue<pii, vector<pii>,\
-    \ greater<pii> > pq;\n      fill(dis.begin(), dis.end(), LLONG_MAX);\n      dis[s]\
-    \ = 0, f[s] = LLONG_MAX;\n      pq.push(make_pair(0, s));\n      while(!pq.empty())\
-    \ {\n        pii now = pq.top(); pq.pop();\n        if (dis[now.second] != now.first)\n\
-    \          continue;\n\n        int V = now.second;\n        for(Edge E : G[V])\
-    \ {\n          if (E.cap == 0)\n            continue;\n          if (dis[V] +\
-    \ E.cos + pot[V] - pot[E.to] < dis[E.to]) {\n            dis[E.to] = dis[V] +\
-    \ E.cos + pot[V] - pot[E.to];\n            f[E.to] = min(f[V], E.cap);\n     \
-    \       par[E.to] = V;\n            idx[E.to] = G[E.to][E.rev].rev;\n        \
-    \    pq.push(make_pair(dis[E.to], E.to));\n          }\n        }\n      }\n\n\
-    \      if (dis[t] == LLONG_MAX)\n        break;\n\n      long long bot = f[t];\n\
-    \      int now = t;\n      while(now != s) {\n        Edge &E = G[par[now]][idx[now]];\n\
-    \        E.cap -= bot;\n        G[now][E.rev].cap += bot;\n        now = par[now];\n\
-    \      }\n      Flow += bot, Cost += bot * (dis[t] - pot[s] + pot[t]);\n\n   \
-    \   for(int i = 0; i < n; i++) {\n        dis[i] += pot[i] - pot[s];\n      }\n\
-    \      pot.swap(dis);\n    }\n\n    return make_pair(Flow, Cost);\n  }\n};\n"
+  bundledCode: "#line 1 \"graph/MCMF.cpp\"\ntemplate<class capT, class cosT>\nstruct\
+    \ MCMF {\n  struct edge {\n    int to, rev;\n    capT cap;\n    cosT cos;\n  \
+    \  edge(int _to, capT _cap, cosT _cos, int _rev) :\n        to(_to), rev(_rev),\
+    \ cap(_cap), cos(_cos) {}\n  };\n\n  int n;\n  const capT CAP_MAX = numeric_limits<capT>::max();\n\
+    \  const cosT COS_MAX = numeric_limits<cosT>::max();\n  vector<vector<edge>> g;\n\
+    \  vector<int> par, idx;\n  vector<capT> f;\n  vector<cosT> pot, dis;\n\n  MCMF(int\
+    \ _n) : n(_n), g(n), par(n),\n    idx(n), f(n), pot(n), dis(n) {}\n\n  void addEdge(int\
+    \ from, int to, capT cap, cosT cos) {\n    g[from].emplace_back(to, cap, cos,\
+    \ ssize(g[to]));\n    g[to].emplace_back(from, 0, -cos, ssize(g[from]) - 1);\n\
+    \  }\n\n  void initPotential(int s) {\n    fill(dis.begin(), dis.end(), COS_MAX);\n\
+    \    dis[s] = 0;\n    for(int i = 1; i < n; i++) {\n      for(int v = 0; v < n;\
+    \ v++) {\n        if (dis[v] == COS_MAX) continue;\n        for(edge e : g[v])\n\
+    \          if (e.cap != 0 and dis[v] + e.cos < dis[e.to])\n            dis[e.to]\
+    \ = dis[v] + e.cos;\n      }\n    }\n    pot.swap(dis);\n  }\n\n  pair<capT, cosT>\
+    \ runFlow(int s, int t, bool dense = false) {\n    cosT cost = 0;\n    capT flow\
+    \ = 0;\n    while(true) {\n      fill(dis.begin(), dis.end(), COS_MAX);\n    \
+    \  dis[s] = 0, f[s] = CAP_MAX;\n      if (dense) {\n        vector<bool> vis(n,\
+    \ false);\n        for(int i = 0; i < n; i++) {\n          int v = -1;\n     \
+    \     for(int j = 0; j < n; j++)\n            if (!vis[j] and (v == -1 or dis[j]\
+    \ < dis[v]))\n              v = j;\n          if (v == -1 or dis[v] == COS_MAX)\
+    \ break;\n          vis[v] = true;\n          for(edge e : g[v]) {\n         \
+    \   if (e.cap == 0) continue;\n            if (cosT x = dis[v] + e.cos + pot[v]\
+    \ - pot[e.to]; x < dis[e.to]) {\n              dis[e.to] = x, f[e.to] = min(f[v],\
+    \ e.cap);\n              par[e.to] = v, idx[e.to] = g[e.to][e.rev].rev;\n    \
+    \        }\n          }\n        }\n      } else {\n        using T = pair<cosT,\
+    \ int>;\n        priority_queue<T, vector<T>, greater<T>> pq;\n        pq.push(make_pair(dis[s],\
+    \ s));\n        while(!pq.empty()) {\n          auto [d, v] = pq.top(); pq.pop();\n\
+    \          if (dis[v] != d) continue;\n          for(edge e : g[v]) {\n      \
+    \      if (e.cap == 0) continue;\n            if (cosT x = dis[v] + e.cos + pot[v]\
+    \ - pot[e.to]; x < dis[e.to]) {\n              dis[e.to] = x, f[e.to] = min(f[v],\
+    \ e.cap);\n              par[e.to] = v, idx[e.to] = g[e.to][e.rev].rev;\n    \
+    \          pq.push(make_pair(dis[e.to], e.to));\n            }\n          }\n\
+    \        }\n      }\n\n      if (dis[t] == COS_MAX) break;\n\n      int v = t;\n\
+    \      while(v != s) {\n        edge &e = g[par[v]][idx[v]];\n        e.cap -=\
+    \ f[t], g[v][e.rev].cap += f[t];\n        v = par[v];\n      }\n      flow +=\
+    \ f[t], cost += f[t] * (dis[t] - pot[s] + pot[t]);\n      for(int i = 0; i < n;\
+    \ i++)\n        if (dis[i] != COS_MAX)\n          dis[i] += pot[i] - pot[s];\n\
+    \      pot.swap(dis);\n    }\n\n    return {flow, cost};\n  }\n};\n"
+  code: "template<class capT, class cosT>\nstruct MCMF {\n  struct edge {\n    int\
+    \ to, rev;\n    capT cap;\n    cosT cos;\n    edge(int _to, capT _cap, cosT _cos,\
+    \ int _rev) :\n        to(_to), rev(_rev), cap(_cap), cos(_cos) {}\n  };\n\n \
+    \ int n;\n  const capT CAP_MAX = numeric_limits<capT>::max();\n  const cosT COS_MAX\
+    \ = numeric_limits<cosT>::max();\n  vector<vector<edge>> g;\n  vector<int> par,\
+    \ idx;\n  vector<capT> f;\n  vector<cosT> pot, dis;\n\n  MCMF(int _n) : n(_n),\
+    \ g(n), par(n),\n    idx(n), f(n), pot(n), dis(n) {}\n\n  void addEdge(int from,\
+    \ int to, capT cap, cosT cos) {\n    g[from].emplace_back(to, cap, cos, ssize(g[to]));\n\
+    \    g[to].emplace_back(from, 0, -cos, ssize(g[from]) - 1);\n  }\n\n  void initPotential(int\
+    \ s) {\n    fill(dis.begin(), dis.end(), COS_MAX);\n    dis[s] = 0;\n    for(int\
+    \ i = 1; i < n; i++) {\n      for(int v = 0; v < n; v++) {\n        if (dis[v]\
+    \ == COS_MAX) continue;\n        for(edge e : g[v])\n          if (e.cap != 0\
+    \ and dis[v] + e.cos < dis[e.to])\n            dis[e.to] = dis[v] + e.cos;\n \
+    \     }\n    }\n    pot.swap(dis);\n  }\n\n  pair<capT, cosT> runFlow(int s, int\
+    \ t, bool dense = false) {\n    cosT cost = 0;\n    capT flow = 0;\n    while(true)\
+    \ {\n      fill(dis.begin(), dis.end(), COS_MAX);\n      dis[s] = 0, f[s] = CAP_MAX;\n\
+    \      if (dense) {\n        vector<bool> vis(n, false);\n        for(int i =\
+    \ 0; i < n; i++) {\n          int v = -1;\n          for(int j = 0; j < n; j++)\n\
+    \            if (!vis[j] and (v == -1 or dis[j] < dis[v]))\n              v =\
+    \ j;\n          if (v == -1 or dis[v] == COS_MAX) break;\n          vis[v] = true;\n\
+    \          for(edge e : g[v]) {\n            if (e.cap == 0) continue;\n     \
+    \       if (cosT x = dis[v] + e.cos + pot[v] - pot[e.to]; x < dis[e.to]) {\n \
+    \             dis[e.to] = x, f[e.to] = min(f[v], e.cap);\n              par[e.to]\
+    \ = v, idx[e.to] = g[e.to][e.rev].rev;\n            }\n          }\n        }\n\
+    \      } else {\n        using T = pair<cosT, int>;\n        priority_queue<T,\
+    \ vector<T>, greater<T>> pq;\n        pq.push(make_pair(dis[s], s));\n       \
+    \ while(!pq.empty()) {\n          auto [d, v] = pq.top(); pq.pop();\n        \
+    \  if (dis[v] != d) continue;\n          for(edge e : g[v]) {\n            if\
+    \ (e.cap == 0) continue;\n            if (cosT x = dis[v] + e.cos + pot[v] - pot[e.to];\
+    \ x < dis[e.to]) {\n              dis[e.to] = x, f[e.to] = min(f[v], e.cap);\n\
+    \              par[e.to] = v, idx[e.to] = g[e.to][e.rev].rev;\n              pq.push(make_pair(dis[e.to],\
+    \ e.to));\n            }\n          }\n        }\n      }\n\n      if (dis[t]\
+    \ == COS_MAX) break;\n\n      int v = t;\n      while(v != s) {\n        edge\
+    \ &e = g[par[v]][idx[v]];\n        e.cap -= f[t], g[v][e.rev].cap += f[t];\n \
+    \       v = par[v];\n      }\n      flow += f[t], cost += f[t] * (dis[t] - pot[s]\
+    \ + pot[t]);\n      for(int i = 0; i < n; i++)\n        if (dis[i] != COS_MAX)\n\
+    \          dis[i] += pot[i] - pot[s];\n      pot.swap(dis);\n    }\n\n    return\
+    \ {flow, cost};\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/MCMF.cpp
   requiredBy: []
-  timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-05-14 23:51:19+08:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/assignment.test.cpp
 documentation_of: graph/MCMF.cpp
 layout: document
 redirect_from:

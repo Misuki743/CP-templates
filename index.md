@@ -164,12 +164,15 @@ data:
       path: graph/Dijkstra.cpp
       title: graph/Dijkstra.cpp
     - icon: ':heavy_check_mark:'
+      path: graph/Dinic.cpp
+      title: graph/Dinic.cpp
+    - icon: ':heavy_check_mark:'
       path: graph/ECC.cpp
       title: graph/ECC.cpp
     - icon: ':heavy_check_mark:'
       path: graph/Kruskal.cpp
       title: graph/Kruskal.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/MCMF.cpp
       title: graph/MCMF.cpp
     - icon: ':heavy_check_mark:'
@@ -187,9 +190,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/cycleDetection.cpp
       title: graph/cycleDetection.cpp
-    - icon: ':heavy_check_mark:'
-      path: graph/dinic.cpp
-      title: graph/dinic.cpp
     - icon: ':heavy_check_mark:'
       path: graph/eulerianTrail.cpp
       title: graph/eulerianTrail.cpp
@@ -402,6 +402,9 @@ data:
       path: test/area_of_union_of_rectangles.test.cpp
       title: test/area_of_union_of_rectangles.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/assignment.test.cpp
+      title: test/assignment.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/assignment_problem.test.cpp
       title: test/assignment_problem.test.cpp
     - icon: ':heavy_check_mark:'
@@ -416,6 +419,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/binomial_coefficient_prime_mod.test.cpp
       title: test/binomial_coefficient_prime_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/bipartitematching.test.cpp
+      title: test/bipartitematching.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/compositional_inverse_of_formal_power_series_large.test.cpp
       title: test/compositional_inverse_of_formal_power_series_large.test.cpp
@@ -503,7 +509,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lowest_common_ancestor.test.cpp
       title: test/lowest_common_ancestor.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/matching_on_bipartite_graph.test.cpp
       title: test/matching_on_bipartite_graph.test.cpp
     - icon: ':heavy_check_mark:'
