@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bipartitematching"
 
 #include "../default/t.cpp"
-#include "../graph/dinic.cpp"
+#include "../graph/Dinic.cpp"
 
 int main() {
   int l, r, m; cin >> l >> r >> m;
