@@ -48,20 +48,20 @@ data:
     \ vid(n) {\n\n    auto newComp = [&]() {\n      vb.emplace_back(ssize(gv));\n\
     \      eb.emplace_back(ssize(ge));\n      size++;\n    };\n\n    vector<vector<int>>\
     \ g(n);\n    for(int i = 0; auto [u, v] : e) {\n      g[u].emplace_back(i);\n\
-    \      g[v].emplace_back(i++);\n    }\n\n    int t = 0, root;\n    vector<int>\
-    \ tin(n, -1), low(n), cnt(n), s;\n    vector<bool> vis(ssize(e), false);\n   \
-    \ auto dfs = [&](int v, auto &&self) -> void {\n      tin[v] = low[v] = t++;\n\
-    \      for(int i : g[v]) if (!vis[i]) {\n        int x = e[i][0] ^ e[i][1] ^ v;\n\
-    \        vis[i] = true, s.emplace_back(i);\n        if (tin[x] != -1) {\n    \
-    \      low[v] = min(low[v], tin[x]);\n        } else {\n          self(x, self);\n\
-    \          low[v] = min(low[v], low[x]);\n          if (low[x] >= tin[v]) {\n\
-    \            newComp();\n            do {\n              int j = s.back(); s.pop_back();\n\
+    \      g[v].emplace_back(i++);\n    }\n\n    int t = 0;\n    vector<int> tin(n,\
+    \ -1), low(n), cnt(n), s;\n    vector<bool> vis(ssize(e), false);\n    auto dfs\
+    \ = [&](int v, auto &&self) -> void {\n      tin[v] = low[v] = t++;\n      for(int\
+    \ i : g[v]) if (!vis[i]) {\n        int x = e[i][0] ^ e[i][1] ^ v;\n        vis[i]\
+    \ = true, s.emplace_back(i);\n        if (tin[x] != -1) {\n          low[v] =\
+    \ min(low[v], tin[x]);\n        } else {\n          self(x, self);\n         \
+    \ low[v] = min(low[v], low[x]);\n          if (low[x] >= tin[v]) {\n         \
+    \   newComp();\n            do {\n              int j = s.back(); s.pop_back();\n\
     \              for(int u : e[j])\n                if (++cnt[u] == 1)\n       \
     \           gv.emplace_back(u);\n              eid[j] = size;\n              ge.emplace_back(j);\n\
     \            } while(ge.back() != i);\n            for(int u : gv | views::drop(vb.back()))\n\
     \              cnt[u] = 0, f[u]++, vid[u] = size;\n          }\n        }\n  \
     \    }\n      if (g[v].empty()) newComp(), gv.emplace_back(v);\n    };\n\n   \
-    \ for(int v = 0; v < n; v++)\n      if (tin[v] == -1)\n        dfs(root = v, dfs);\n\
+    \ for(int v = 0; v < n; v++)\n      if (tin[v] == -1)\n        dfs(v, dfs);\n\
     \    newComp();\n  }\n\n  vector<int> vertexGroup(int id) {\n    return {gv.begin()\
     \ + vb[id], gv.begin() + vb[id + 1]};\n  }\n  vector<int> edgeGroup(int id) {\n\
     \    return {ge.begin() + eb[id], ge.begin() + eb[id + 1]};\n  }\n  bool isCutVertex(int\
@@ -91,7 +91,7 @@ data:
   isVerificationFile: true
   path: test/biconnected_components.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 02:47:13+08:00'
+  timestamp: '2024-05-14 17:31:22+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/biconnected_components.test.cpp

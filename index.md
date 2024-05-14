@@ -167,6 +167,9 @@ data:
       path: graph/Dijkstra.cpp
       title: graph/Dijkstra.cpp
     - icon: ':heavy_check_mark:'
+      path: graph/ECC.cpp
+      title: graph/ECC.cpp
+    - icon: ':heavy_check_mark:'
       path: graph/Kruskal.cpp
       title: graph/Kruskal.cpp
     - icon: ':warning:'
@@ -626,6 +629,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/tree_diameter.test.cpp
       title: test/tree_diameter.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/two_edge_connected_components.test.cpp
+      title: test/two_edge_connected_components.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/two_sat.test.cpp
       title: test/two_sat.test.cpp

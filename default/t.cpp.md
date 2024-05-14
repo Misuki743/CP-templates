@@ -235,6 +235,9 @@ data:
     path: test/tree_diameter.test.cpp
     title: test/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/two_edge_connected_components.test.cpp
+    title: test/two_edge_connected_components.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/two_sat.test.cpp
     title: test/two_sat.test.cpp
   - icon: ':heavy_check_mark:'
@@ -408,6 +411,7 @@ data:
   - test/mul_modp_convolution.test.cpp
   - test/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/pow_of_matrix.test.cpp
+  - test/two_edge_connected_components.test.cpp
   - test/vertex_add_subtree_sum.test.cpp
   - test/tree_diameter.test.cpp
   - test/persistent_unionfind.test.cpp
