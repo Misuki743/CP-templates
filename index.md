@@ -276,6 +276,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/sqrtMod.cpp
       title: numtheory/sqrtMod.cpp
+    - icon: ':warning:'
+      path: numtheory/sumOfFloorOfLinear.cpp
+      title: numtheory/sumOfFloorOfLinear.cpp
   - name: poly
     pages:
     - icon: ':heavy_check_mark:'
@@ -386,6 +389,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/palindromicTree.cpp
       title: string/palindromicTree.cpp
+    - icon: ':warning:'
+      path: string/rollingHash.cpp
+      title: string/rollingHash.cpp
     - icon: ':heavy_check_mark:'
       path: string/suffixArray.cpp
       title: string/suffixArray.cpp
