@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tree_path_composite_sum"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModint.cpp"
+#include "../modint/MontgomeryModInt.cpp"
 #include "../misc/rerootingDP.cpp"
 
 using V = array<mint, 2>;
