@@ -241,6 +241,9 @@ data:
     path: test/tree_diameter.test.cpp
     title: test/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/tree_path_composite_sum.test.cpp
+    title: test/tree_path_composite_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/two_edge_connected_components.test.cpp
     title: test/two_edge_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
@@ -423,6 +426,7 @@ data:
   - test/range_kth_smallest.test.cpp
   - test/lowest_common_ancestor.test.cpp
   - test/tree_diameter.test.cpp
+  - test/tree_path_composite_sum.test.cpp
   - test/maximum_independent_set.test.cpp
   - test/rooted_tree_isomorphism_classification.test.cpp
   - test/point_add_rectangle_sum.test.cpp

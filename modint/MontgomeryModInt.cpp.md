@@ -109,6 +109,9 @@ data:
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/tree_path_composite_sum.test.cpp
+    title: test/tree_path_composite_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -233,6 +236,7 @@ data:
   - test/yuki_2613.test.cpp
   - test/yuki_2544.test.cpp
   - test/exp_of_formal_power_series.test.cpp
+  - test/tree_path_composite_sum.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
 documentation_of: modint/MontgomeryModInt.cpp
 layout: document
