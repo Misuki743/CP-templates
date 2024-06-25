@@ -131,8 +131,8 @@ data:
   verifiedWith:
   - test/inverse_matrix.test.cpp
   - test/matrix_product.test.cpp
-  - test/determinant_of_matrix.test.cpp
   - test/pow_of_matrix.test.cpp
+  - test/determinant_of_matrix.test.cpp
 documentation_of: linalg/matrixMint.cpp
 layout: document
 redirect_from:

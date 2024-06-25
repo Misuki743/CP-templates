@@ -111,6 +111,9 @@ data:
     - icon: ':warning:'
       path: ds/persistentTreap.cpp
       title: ds/persistentTreap.cpp
+    - icon: ':warning:'
+      path: ds/potentialDSU.cpp
+      title: ds/potentialDSU.cpp
     - icon: ':heavy_check_mark:'
       path: ds/slidingWindowAggregation.cpp
       title: ds/slidingWindowAggregation.cpp

@@ -92,8 +92,8 @@ data:
   timestamp: '2024-03-07 00:40:25+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/area_of_union_of_rectangles.test.cpp
   - test/range_affine_range_sum.test.cpp
+  - test/area_of_union_of_rectangles.test.cpp
 documentation_of: segtree/lazySegmentTree.cpp
 layout: document
 redirect_from:
