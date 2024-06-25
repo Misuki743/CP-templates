@@ -71,6 +71,18 @@ using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 //#define double ldb
 
+template<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class OP = plus<T>>
+void pSum(rng &&v) {
+  if (!v.empty())
+    for(T p = v[0]; T &x : v | views::drop(1))
+      x = p = OP()(p, x);
+}
+template<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class OP>
+void pSum(rng &&v, OP op) {
+  if (!v.empty())
+    for(T p = v[0]; T &x : v | views::drop(1))
+      x = p = op(p, x);
+}
 template<class T>
 T floorDiv(T a, T b) {
   if (b < 0) a *= -1, b *= -1;
