@@ -27,12 +27,17 @@ data:
     #define dbg(x) cout << (#x) << \" = \" << (x) << '\\n'\n#else\n#define dbg(x)\n\
     #endif\n\nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned\
     \ long long;\nusing ldb = long double;\nusing pii = pair<int, int>;\nusing pll\
-    \ = pair<ll, ll>;\n//#define double ldb\n\ntemplate<class T>\nT floorDiv(T a,\
-    \ T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1)\
-    \ / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *=\
-    \ -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\nostream&\
-    \ operator<<(ostream& os, const pair<T, T> pr) {\n  return os << pr.first << '\
-    \ ' << pr.second;\n}\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
+    \ = pair<ll, ll>;\n//#define double ldb\n\ntemplate<ranges::forward_range rng,\
+    \ class T = ranges::range_value_t<rng>, class OP = plus<T>>\nvoid pSum(rng &&v)\
+    \ {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n     \
+    \ x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>,\
+    \ class OP>\nvoid pSum(rng &&v, OP op) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = op(p, x);\n}\ntemplate<class T>\n\
+    T floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a /\
+    \ b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class\
+    \ T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n  return os <<\
+    \ pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
     \ os, const array<T, N> &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n\
     \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
     \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
@@ -57,12 +62,17 @@ data:
     \n#ifdef DEBUG\n#define dbg(x) cout << (#x) << \" = \" << (x) << '\\n'\n#else\n\
     #define dbg(x)\n#endif\n\nusing namespace std;\n\nusing ll = long long;\nusing\
     \ ull = unsigned long long;\nusing ldb = long double;\nusing pii = pair<int, int>;\n\
-    using pll = pair<ll, ll>;\n//#define double ldb\n\ntemplate<class T>\nT floorDiv(T\
-    \ a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b\
-    \ + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1,\
-    \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\n\
-    ostream& operator<<(ostream& os, const pair<T, T> pr) {\n  return os << pr.first\
-    \ << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
+    using pll = pair<ll, ll>;\n//#define double ldb\n\ntemplate<ranges::forward_range\
+    \ rng, class T = ranges::range_value_t<rng>, class OP = plus<T>>\nvoid pSum(rng\
+    \ &&v) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n\
+    \      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>,\
+    \ class OP>\nvoid pSum(rng &&v, OP op) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = op(p, x);\n}\ntemplate<class T>\n\
+    T floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a /\
+    \ b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class\
+    \ T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n  return os <<\
+    \ pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\nostream& operator<<(ostream&\
     \ os, const array<T, N> &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n\
     \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T>\
     \ &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
@@ -73,7 +83,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2024-05-11 22:13:26+08:00'
+  timestamp: '2024-06-26 03:33:00+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp
