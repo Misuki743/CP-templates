@@ -15,6 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/convolution_1e9+7.test.cpp
     title: test/convolution_1e9+7.test.cpp
+  - icon: ':x:'
+    path: test/counting_eulerian_circuits.test.cpp
+    title: test/counting_eulerian_circuits.test.cpp
+  - icon: ':x:'
+    path: test/counting_spanning_tree_directed.test.cpp
+    title: test/counting_spanning_tree_directed.test.cpp
+  - icon: ':x:'
+    path: test/counting_spanning_tree_undirected.test.cpp
+    title: test/counting_spanning_tree_undirected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/determinant_of_matrix.test.cpp
     title: test/determinant_of_matrix.test.cpp
@@ -123,9 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
@@ -196,7 +205,7 @@ data:
   path: modint/MontgomeryModInt.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/multipoint_evaluation.test.cpp
   - test/tree_path_composite_sum.test.cpp
@@ -215,6 +224,8 @@ data:
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
   - test/polynomial_taylor_shift.test.cpp
+  - test/counting_eulerian_circuits.test.cpp
+  - test/counting_spanning_tree_directed.test.cpp
   - test/convolution.test.cpp
   - test/yuki_2544.test.cpp
   - test/exp_of_formal_power_series.test.cpp
@@ -230,6 +241,7 @@ data:
   - test/division_of_polynomials.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/counting_spanning_tree_undirected.test.cpp
   - test/yuki_2613.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/log_of_formal_power_series.test.cpp

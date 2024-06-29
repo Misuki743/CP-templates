@@ -42,6 +42,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/convolution_1e9+7.test.cpp
     title: test/convolution_1e9+7.test.cpp
+  - icon: ':x:'
+    path: test/counting_eulerian_circuits.test.cpp
+    title: test/counting_eulerian_circuits.test.cpp
+  - icon: ':x:'
+    path: test/counting_spanning_tree_directed.test.cpp
+    title: test/counting_spanning_tree_directed.test.cpp
+  - icon: ':x:'
+    path: test/counting_spanning_tree_undirected.test.cpp
+    title: test/counting_spanning_tree_undirected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/cycle_detection_directed.test.cpp
     title: test/cycle_detection_directed.test.cpp
@@ -282,9 +291,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -340,7 +349,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/two_sat.test.cpp
   - test/persistent_unionfind.test.cpp
@@ -380,8 +389,10 @@ data:
   - test/point_add_rectangle_sum.test.cpp
   - test/minimum_spanning_tree.test.cpp
   - test/primitive_root.test.cpp
+  - test/counting_eulerian_circuits.test.cpp
   - test/biconnected_components.test.cpp
   - test/unionfind.test.cpp
+  - test/counting_spanning_tree_directed.test.cpp
   - test/rooted_tree_isomorphism_classification.test.cpp
   - test/set_xor_min.test.cpp
   - test/convolution.test.cpp
@@ -416,6 +427,7 @@ data:
   - test/vertex_add_subtree_sum.test.cpp
   - test/line_add_get_min.test.cpp
   - test/bipartitematching.test.cpp
+  - test/counting_spanning_tree_undirected.test.cpp
   - test/static_range_frequency.test.cpp
   - test/cycle_detection_directed.test.cpp
   - test/yuki_2613.test.cpp

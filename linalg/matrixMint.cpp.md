@@ -3,6 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/counting_eulerian_circuits.test.cpp
+    title: test/counting_eulerian_circuits.test.cpp
+  - icon: ':x:'
+    path: test/counting_spanning_tree_directed.test.cpp
+    title: test/counting_spanning_tree_directed.test.cpp
+  - icon: ':x:'
+    path: test/counting_spanning_tree_undirected.test.cpp
+    title: test/counting_spanning_tree_undirected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/determinant_of_matrix.test.cpp
     title: test/determinant_of_matrix.test.cpp
@@ -15,9 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/matrixMint.cpp\"\n//source: KACTL(for det() and inv())\n\
@@ -127,10 +136,13 @@ data:
   path: linalg/matrixMint.cpp
   requiredBy: []
   timestamp: '2024-03-16 14:38:00+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/inverse_matrix.test.cpp
   - test/matrix_product.test.cpp
+  - test/counting_eulerian_circuits.test.cpp
+  - test/counting_spanning_tree_directed.test.cpp
+  - test/counting_spanning_tree_undirected.test.cpp
   - test/pow_of_matrix.test.cpp
   - test/determinant_of_matrix.test.cpp
 documentation_of: linalg/matrixMint.cpp

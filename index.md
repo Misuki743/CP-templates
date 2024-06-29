@@ -35,6 +35,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/binom.cpp
       title: combi/binom.cpp
+    - icon: ':x:'
+      path: combi/countEulerianCircuit.cpp
+      title: combi/countEulerianCircuit.cpp
+    - icon: ':x:'
+      path: combi/countSpanningForest.cpp
+      title: combi/countSpanningForest.cpp
     - icon: ':warning:'
       path: combi/pathCounting.cpp
       title: combi/pathCounting.cpp
@@ -43,7 +49,7 @@ data:
       title: combi/stirlingFirst.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -206,6 +212,9 @@ data:
       path: graph/hungarian.cpp
       title: graph/hungarian.cpp
     - icon: ':warning:'
+      path: graph/incrementalSCC.cpp
+      title: graph/incrementalSCC.cpp
+    - icon: ':warning:'
       path: graph/minimumVertexCover.cpp
       title: graph/minimumVertexCover.cpp
     - icon: ':heavy_check_mark:'
@@ -216,7 +225,7 @@ data:
       title: graph/treeHash.cpp
   - name: linalg
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: linalg/matrixMint.cpp
       title: linalg/matrixMint.cpp
     - icon: ':warning:'
@@ -259,7 +268,7 @@ data:
       title: misc/wildcardPatternMatcing.cpp
   - name: modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':heavy_check_mark:'
@@ -449,6 +458,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/convolution_1e9+7.test.cpp
       title: test/convolution_1e9+7.test.cpp
+    - icon: ':x:'
+      path: test/counting_eulerian_circuits.test.cpp
+      title: test/counting_eulerian_circuits.test.cpp
+    - icon: ':x:'
+      path: test/counting_spanning_tree_directed.test.cpp
+      title: test/counting_spanning_tree_directed.test.cpp
+    - icon: ':x:'
+      path: test/counting_spanning_tree_undirected.test.cpp
+      title: test/counting_spanning_tree_undirected.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/cycle_detection_directed.test.cpp
       title: test/cycle_detection_directed.test.cpp

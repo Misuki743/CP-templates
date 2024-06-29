@@ -1,6 +1,12 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: combi/countEulerianCircuit.cpp
+    title: combi/countEulerianCircuit.cpp
+  - icon: ':x:'
+    path: combi/countSpanningForest.cpp
+    title: combi/countSpanningForest.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
@@ -12,28 +18,29 @@ data:
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix
+    PROBLEM: https://judge.yosupo.jp/problem/counting_eulerian_circuits
     links:
-    - https://judge.yosupo.jp/problem/inverse_matrix
-  bundledCode: "#line 1 \"test/inverse_matrix.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\
-    \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
-    \ <bit>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n\
-    #include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n\
-    #include <cmath>\n#include <compare>\n#include <complex>\n#include <concepts>\n\
-    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
-    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
-    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
-    #include <numbers>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
-    #include <random>\n#include <ranges>\n#include <set>\n#include <span>\n#include\
-    \ <sstream>\n#include <stack>\n#include <streambuf>\n#include <string>\n#include\
-    \ <tuple>\n#include <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
+    - https://judge.yosupo.jp/problem/counting_eulerian_circuits
+  bundledCode: "#line 1 \"test/counting_eulerian_circuits.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/counting_eulerian_circuits\"\n\n#line 1 \"\
+    default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include <bit>\n#include\
+    \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
+    \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
+    \ <cmath>\n#include <compare>\n#include <complex>\n#include <concepts>\n#include\
+    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
+    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
+    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
+    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
+    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numbers>\n\
+    #include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
+    #include <ranges>\n#include <set>\n#include <span>\n#include <sstream>\n#include\
+    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
+    \ <type_traits>\n#include <variant>\n\n#define INT128_MAX (__int128)(((unsigned\
     \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
@@ -126,30 +133,57 @@ data:
     \ j < b.m(); j++)\n        os << b[i][j] << ' ';\n    }\n    return os;\n  }\n\
     \  friend istream& operator>>(istream& is, matrix& b) {\n    for(int i = 0; i\
     \ < b.n(); i++)\n      for(int j = 0; j < b.m(); j++)\n        is >> b[i][j];\n\
-    \    return is;\n  }\n};\n#line 6 \"test/inverse_matrix.test.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  matrix<mint>\
-    \ a(n);\n  cin >> a;\n\n  auto b = a.inv();\n  if (b.n() == 0)\n    cout << -1\
-    \ << '\\n';\n  else\n    cout << b << '\\n';\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\n#include\
-    \ \"../linalg/matrixMint.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  matrix<mint> a(n);\n  cin >> a;\n\n\
-    \  auto b = a.inv();\n  if (b.n() == 0)\n    cout << -1 << '\\n';\n  else\n  \
-    \  cout << b << '\\n';\n\n  return 0;\n}\n"
+    \    return is;\n  }\n};\n#line 1 \"combi/countSpanningForest.cpp\"\n//#include\
+    \ \"modint/MontgomeryModInt.cpp\"\n//#include \"linalg/matrixMint.cpp\"\n\ntemplate<class\
+    \ Mint, bool directed = false>\nMint countSpanningForest(vector<tuple<int, int,\
+    \ Mint>> e, int n, vector<int> r = vector(1, 0)) {\n  vector<int> id(n, 1);\n\
+    \  for(int x : r) id[x] = 0;\n  id[0] -= 1;\n  pSum(id);\n  for(int x : r) id[x]\
+    \ = -1;\n\n  matrix<Mint> M(n - ssize(r));\n  for(auto [u, v, w] : e) {\n    u\
+    \ = id[u], v = id[v];\n    if (u != -1 and v != -1) {\n      M[u][v] -= w;\n \
+    \     if constexpr (!directed) M[v][u] -= w;\n    }\n    if constexpr (!directed)\
+    \ if (u != -1) M[u][u] += w;\n    if (v != -1) M[v][v] += w;\n  }\n  return M.det();\n\
+    }\n#line 1 \"combi/countEulerianCircuit.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
+    \n//#include \"linalg/matrixMint.cpp\"\n//#include \"combi/countSpanningForest.cpp\"\
+    \n\ntemplate<class Mint>\nMint countEulerianCircuit(vector<array<int, 2>> e, int\
+    \ n) {\n  vector<int> deg(n);\n  vector<vector<int>> g(n);\n  for(auto [u, v]\
+    \ : e) {\n    deg[v]++;\n    g[u].emplace_back(v);\n  }\n\n  for(int v = 0; v\
+    \ < n; v++)\n    if (deg[v] != ssize(g[v]))\n      return Mint(0);\n\n  vector<bool>\
+    \ vis(n, false);\n  auto dfs = [&](int v, auto &&self) -> void {\n    vis[v] =\
+    \ true;\n    for(int x : g[v])\n      if (!vis[x])\n        self(x, self);\n \
+    \ };\n\n  int s = 0;\n  while(s < n and deg[s] == 0) s++;\n  s %= n;\n  dfs(s,\
+    \ dfs);\n\n  vector<int> r(1, s);\n  for(int v = 0; v < n; v++) if (!vis[v]) {\n\
+    \    if (deg[v] != 0) return Mint(0);\n    else r.emplace_back(v);\n  }\n\n  vector<tuple<int,\
+    \ int, Mint>> ep(ssize(e));\n  for(int i = 0; auto [u, v] : e)\n    ep[i++] =\
+    \ {u, v, Mint(1)};\n  \n  Mint c = 1;\n  binomial<Mint> bn(ssize(e));\n  for(int\
+    \ v = 0; v < n; v++)\n    c *= bn.fac(max(deg[v] - 1, 0));\n\n  return c * countSpanningForest<Mint,\
+    \ true>(ep, n, r);\n}\n#line 8 \"test/counting_eulerian_circuits.test.cpp\"\n\n\
+    signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m;\
+    \ cin >> n >> m;\n  vector<array<int, 2>> e(m);\n  for(auto &[u, v] : e) cin >>\
+    \ u >> v;\n\n  cout << countEulerianCircuit<mint>(e, n) << '\\n';\n\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_eulerian_circuits\"\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
+    \n#include \"../linalg/matrixMint.cpp\"\n#include \"../combi/countSpanningForest.cpp\"\
+    \n#include \"../combi/countEulerianCircuit.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<array<int, 2>> e(m);\n\
+    \  for(auto &[u, v] : e) cin >> u >> v;\n\n  cout << countEulerianCircuit<mint>(e,\
+    \ n) << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - linalg/matrixMint.cpp
+  - combi/countSpanningForest.cpp
+  - combi/countEulerianCircuit.cpp
   isVerificationFile: true
-  path: test/inverse_matrix.test.cpp
+  path: test/counting_eulerian_circuits.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-29 17:34:40+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/inverse_matrix.test.cpp
+documentation_of: test/counting_eulerian_circuits.test.cpp
 layout: document
 redirect_from:
-- /verify/test/inverse_matrix.test.cpp
-- /verify/test/inverse_matrix.test.cpp.html
-title: test/inverse_matrix.test.cpp
+- /verify/test/counting_eulerian_circuits.test.cpp
+- /verify/test/counting_eulerian_circuits.test.cpp.html
+title: test/counting_eulerian_circuits.test.cpp
 ---

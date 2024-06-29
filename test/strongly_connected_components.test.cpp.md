@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -47,14 +47,14 @@ data:
     \ size(0) {\n    vector<vector<int>> gr(g.size());\n    for(int u = 0; u < ssize(g);\
     \ u++)\n      for(int v : g[u])\n        gr[v].emplace_back(u);\n\n    int t =\
     \ 0;\n    vector<bool> vis(ssize(g), false);\n    vector<int> tout(ssize(g));\n\
-    \    auto dfs = [&](int v, auto self) -> void {\n      vis[v] = true;\n      for(int\
-    \ x : gr[v])\n        if (!vis[x])\n          self(x, self);\n      tout[t++]\
+    \    auto dfs = [&](int v, auto &&self) -> void {\n      vis[v] = true;\n    \
+    \  for(int x : gr[v])\n        if (!vis[x])\n          self(x, self);\n      tout[t++]\
     \ = v;\n    };\n\n    for(int v = 0; v < ssize(g); v++)\n      if (!vis[v])\n\
-    \        dfs(v, dfs);\n\n    auto dfs2 = [&](int v, auto self) -> void {\n   \
-    \   vis[v] = true;\n      for(int x : g[v])\n        if (!vis[x])\n          self(x,\
-    \ self);\n      groupId[v] = size;\n    };\n    fill(vis.begin(), vis.end(), false);\n\
-    \    for(int v = ssize(g) - 1; v >= 0; v--) {\n      if (!vis[tout[v]]) {\n  \
-    \      dfs2(tout[v], dfs2);\n        size += 1;\n      }\n    }\n\n    for(int\
+    \        dfs(v, dfs);\n\n    auto dfs2 = [&](int v, auto &&self) -> void {\n \
+    \     vis[v] = true;\n      for(int x : g[v])\n        if (!vis[x])\n        \
+    \  self(x, self);\n      groupId[v] = size;\n    };\n\n    fill(vis.begin(), vis.end(),\
+    \ false);\n    for(int v = ssize(g) - 1; v >= 0; v--) {\n      if (!vis[tout[v]])\
+    \ {\n        dfs2(tout[v], dfs2);\n        size += 1;\n      }\n    }\n\n    for(int\
     \ &x : groupId)\n      x = size - x - 1;\n\n    group.resize(size);\n    for(int\
     \ v = 0; v < ssize(g); v++)\n      group[groupId[v]].emplace_back(v);\n\n    G.resize(size);\n\
     \    for(int v = 0; v < ssize(g); v++)\n      for(int x : g[v])\n        if (groupId[v]\
@@ -78,7 +78,7 @@ data:
   isVerificationFile: true
   path: test/strongly_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
+  timestamp: '2024-06-29 17:34:40+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/strongly_connected_components.test.cpp
