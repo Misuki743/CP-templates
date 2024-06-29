@@ -3,6 +3,7 @@
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
 #include "../linalg/matrixMint.cpp"
+#include "../combi/binom.cpp"
 #include "../combi/countSpanningForest.cpp"
 #include "../combi/countEulerianCircuit.cpp"
 
