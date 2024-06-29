@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/mulConvolution.cpp
     title: mulConvolution
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/mul_modp_convolution
@@ -42,14 +42,23 @@ data:
     \ - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
     using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
-    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
-    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
-    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
-    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
-    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
-    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
-    \ \"modint/MontgomeryModInt.cpp\"\n//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
+    \ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class\
+    \ OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
+    \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
+    \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
+    \     x = p = op(p, x);\n}\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b\
+    \ < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const pair<T, T> pr) {\n  return os << pr.first << ' ' << pr.second;\n}\n\
+    template<class T, size_t N>\nostream& operator<<(ostream& os, const array<T, N>\
+    \ &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
+    \ T>\nostream& operator<<(ostream& os, const vector<T> &vec) {\n  for(const T\
+    \ &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream&\
+    \ operator<<(ostream& os, const set<T> &s) {\n  for(const T &x : s)\n    os <<\
+    \ x << ' ';\n  return os;\n}\n#line 1 \"modint/MontgomeryModInt.cpp\"\n//reference:\
+    \ https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
     //note: mod should be a prime less than 2^30.\n\ntemplate<uint32_t mod>\nstruct\
     \ MontgomeryModInt {\n  using mint = MontgomeryModInt;\n  using i32 = int32_t;\n\
     \  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static constexpr u32 get_r()\
@@ -151,8 +160,8 @@ data:
   isVerificationFile: true
   path: test/mul_modp_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-29 18:02:37+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mul_modp_convolution.test.cpp
 layout: document

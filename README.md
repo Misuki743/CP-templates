@@ -8,7 +8,9 @@ https://misuki743.github.io/CP-templates/
 
 - actedMonoid for linear add/sum query
 - doubling(support mataining commutative monoid)
-- kirchoff's tree theorem/BEST theorem
+- add chmin/chmax to default template
+- chromatic polynomial/number
+- min plus convolution
 
 # MAYBE, IF I HAVE NOTHING TO DO
 

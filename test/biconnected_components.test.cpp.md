@@ -36,29 +36,38 @@ data:
     \ - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
     using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
-    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
-    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
-    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
-    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
-    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
-    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
-    \ \"graph/BCC.cpp\"\nstruct BCC {\n  vector<int> f, vb, eb, gv, ge, eid, vid;\n\
-    \  int size = -1;\n\n  BCC(vector<array<int, 2>> &e, int n)\n  : f(n), eid(ssize(e)),\
-    \ vid(n) {\n\n    auto newComp = [&]() {\n      vb.emplace_back(ssize(gv));\n\
-    \      eb.emplace_back(ssize(ge));\n      size++;\n    };\n\n    vector<vector<int>>\
-    \ g(n);\n    for(int i = 0; auto [u, v] : e) {\n      g[u].emplace_back(i);\n\
-    \      g[v].emplace_back(i++);\n    }\n\n    int t = 0;\n    vector<int> tin(n,\
-    \ -1), low(n), cnt(n), s;\n    vector<bool> vis(ssize(e), false);\n    auto dfs\
-    \ = [&](int v, auto &&self) -> void {\n      tin[v] = low[v] = t++;\n      for(int\
-    \ i : g[v]) if (!vis[i]) {\n        int x = e[i][0] ^ e[i][1] ^ v;\n        vis[i]\
-    \ = true, s.emplace_back(i);\n        if (tin[x] != -1) {\n          low[v] =\
-    \ min(low[v], tin[x]);\n        } else {\n          self(x, self);\n         \
-    \ low[v] = min(low[v], low[x]);\n          if (low[x] >= tin[v]) {\n         \
-    \   newComp();\n            do {\n              int j = s.back(); s.pop_back();\n\
-    \              for(int u : e[j])\n                if (++cnt[u] == 1)\n       \
-    \           gv.emplace_back(u);\n              eid[j] = size;\n              ge.emplace_back(j);\n\
-    \            } while(ge.back() != i);\n            for(int u : gv | views::drop(vb.back()))\n\
+    \ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class\
+    \ OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
+    \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
+    \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
+    \     x = p = op(p, x);\n}\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b\
+    \ < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const pair<T, T> pr) {\n  return os << pr.first << ' ' << pr.second;\n}\n\
+    template<class T, size_t N>\nostream& operator<<(ostream& os, const array<T, N>\
+    \ &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
+    \ T>\nostream& operator<<(ostream& os, const vector<T> &vec) {\n  for(const T\
+    \ &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream&\
+    \ operator<<(ostream& os, const set<T> &s) {\n  for(const T &x : s)\n    os <<\
+    \ x << ' ';\n  return os;\n}\n#line 1 \"graph/BCC.cpp\"\nstruct BCC {\n  vector<int>\
+    \ f, vb, eb, gv, ge, eid, vid;\n  int size = -1;\n\n  BCC(vector<array<int, 2>>\
+    \ &e, int n)\n  : f(n), eid(ssize(e)), vid(n) {\n\n    auto newComp = [&]() {\n\
+    \      vb.emplace_back(ssize(gv));\n      eb.emplace_back(ssize(ge));\n      size++;\n\
+    \    };\n\n    vector<vector<int>> g(n);\n    for(int i = 0; auto [u, v] : e)\
+    \ {\n      g[u].emplace_back(i);\n      g[v].emplace_back(i++);\n    }\n\n   \
+    \ int t = 0;\n    vector<int> tin(n, -1), low(n), cnt(n), s;\n    vector<bool>\
+    \ vis(ssize(e), false);\n    auto dfs = [&](int v, auto &&self) -> void {\n  \
+    \    tin[v] = low[v] = t++;\n      for(int i : g[v]) if (!vis[i]) {\n        int\
+    \ x = e[i][0] ^ e[i][1] ^ v;\n        vis[i] = true, s.emplace_back(i);\n    \
+    \    if (tin[x] != -1) {\n          low[v] = min(low[v], tin[x]);\n        } else\
+    \ {\n          self(x, self);\n          low[v] = min(low[v], low[x]);\n     \
+    \     if (low[x] >= tin[v]) {\n            newComp();\n            do {\n    \
+    \          int j = s.back(); s.pop_back();\n              for(int u : e[j])\n\
+    \                if (++cnt[u] == 1)\n                  gv.emplace_back(u);\n \
+    \             eid[j] = size;\n              ge.emplace_back(j);\n            }\
+    \ while(ge.back() != i);\n            for(int u : gv | views::drop(vb.back()))\n\
     \              cnt[u] = 0, f[u]++, vid[u] = size;\n          }\n        }\n  \
     \    }\n      if (g[v].empty()) newComp(), gv.emplace_back(v);\n    };\n\n   \
     \ for(int v = 0; v < n; v++)\n      if (tin[v] == -1)\n        dfs(v, dfs);\n\
@@ -91,7 +100,7 @@ data:
   isVerificationFile: true
   path: test/biconnected_components.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 17:31:22+08:00'
+  timestamp: '2024-06-29 18:02:37+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/biconnected_components.test.cpp

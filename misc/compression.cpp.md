@@ -6,30 +6,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_add_rectangle_sum.test.cpp
     title: test/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_kth_smallest2.test.cpp
     title: test/range_kth_smallest2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/rectangle_add_point_get.test.cpp
     title: test/rectangle_add_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/rectangle_sum.test.cpp
     title: test/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/static_range_count_distinct.test.cpp
     title: test/static_range_count_distinct.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/static_range_frequency.test.cpp
     title: test/static_range_frequency.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/compression.cpp\"\ntemplate<class T, bool duplicate\
@@ -65,7 +65,7 @@ data:
   path: misc/compression.cpp
   requiredBy: []
   timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/range_kth_smallest2.test.cpp
   - test/point_add_rectangle_sum.test.cpp

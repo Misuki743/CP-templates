@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: combi/binom.cpp
     title: combi/binom.cpp
   - icon: ':question:'
@@ -39,32 +39,41 @@ data:
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
     using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
-    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
-    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
-    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
-    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
-    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
-    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
-    \ \"modint/mintAnyMod.cpp\"\n//note: inversion only works when MOD is a prime\n\
-    \nstruct mint {\n  static long long MOD;\n  long long _val;\n\n  mint(long long\
-    \ init = 0) {\n    _val = init % MOD;\n    (*this).norm();\n  }\n\n  mint POW(long\
-    \ long index) {\n    if (index == 0)\n      return mint(1ll);\n    mint base =\
-    \ *this;\n    mint res = (base == 0ll ? 0ll : 1ll);\n    while(index) {\n    \
-    \  if (index & 1)\n        res *= base;\n      base *= base, index >>= 1;\n  \
-    \  }\n    return res;\n  }\n\n  mint inv() { return (*this).POW(MOD - 2); }\n\n\
-    \  mint& norm() {\n    if (_val >= MOD)\n      _val -= MOD;\n    if (_val < 0)\n\
-    \      _val += MOD;\n    return *this;\n  }\n\n  mint& operator+=(mint b) {\n\
-    \    _val += b._val;\n    return (*this).norm();\n  }\n  mint& operator-=(mint\
-    \ b) {\n    _val -= b._val;\n    return (*this).norm();\n  }\n  mint& operator*=(mint\
-    \ b) {\n    _val = (_val * b._val) % MOD;\n    return *this;\n  }\n  mint& operator/=(mint\
-    \ b) {\n    _val = (_val * b.inv()._val) % MOD;\n    return *this;\n  }\n\n  mint&\
-    \ operator++() {\n    _val += 1;\n    return (*this).norm();\n  }\n  mint& operator--()\
-    \ {\n    _val -= 1;\n    return (*this).norm();\n  }\n  mint operator++(signed)\
-    \ {\n    mint tmp = *this;\n    ++(*this);\n    return tmp;\n  }\n  mint operator--(signed)\
-    \ {\n    mint tmp = *this;\n    --(*this);\n    return tmp;\n  }\n\n  mint operator-()\
-    \ { return mint(-_val); }\n  bool operator==(mint b) { return _val == b._val;\
-    \ }\n  bool operator!=(mint b) { return _val != b._val; }\n  \n  friend mint operator+(mint\
+    \ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class\
+    \ OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
+    \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
+    \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
+    \     x = p = op(p, x);\n}\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b\
+    \ < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const pair<T, T> pr) {\n  return os << pr.first << ' ' << pr.second;\n}\n\
+    template<class T, size_t N>\nostream& operator<<(ostream& os, const array<T, N>\
+    \ &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
+    \ T>\nostream& operator<<(ostream& os, const vector<T> &vec) {\n  for(const T\
+    \ &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream&\
+    \ operator<<(ostream& os, const set<T> &s) {\n  for(const T &x : s)\n    os <<\
+    \ x << ' ';\n  return os;\n}\n#line 1 \"modint/mintAnyMod.cpp\"\n//note: inversion\
+    \ only works when MOD is a prime\n\nstruct mint {\n  static long long MOD;\n \
+    \ long long _val;\n\n  mint(long long init = 0) {\n    _val = init % MOD;\n  \
+    \  (*this).norm();\n  }\n\n  mint POW(long long index) {\n    if (index == 0)\n\
+    \      return mint(1ll);\n    mint base = *this;\n    mint res = (base == 0ll\
+    \ ? 0ll : 1ll);\n    while(index) {\n      if (index & 1)\n        res *= base;\n\
+    \      base *= base, index >>= 1;\n    }\n    return res;\n  }\n\n  mint inv()\
+    \ { return (*this).POW(MOD - 2); }\n\n  mint& norm() {\n    if (_val >= MOD)\n\
+    \      _val -= MOD;\n    if (_val < 0)\n      _val += MOD;\n    return *this;\n\
+    \  }\n\n  mint& operator+=(mint b) {\n    _val += b._val;\n    return (*this).norm();\n\
+    \  }\n  mint& operator-=(mint b) {\n    _val -= b._val;\n    return (*this).norm();\n\
+    \  }\n  mint& operator*=(mint b) {\n    _val = (_val * b._val) % MOD;\n    return\
+    \ *this;\n  }\n  mint& operator/=(mint b) {\n    _val = (_val * b.inv()._val)\
+    \ % MOD;\n    return *this;\n  }\n\n  mint& operator++() {\n    _val += 1;\n \
+    \   return (*this).norm();\n  }\n  mint& operator--() {\n    _val -= 1;\n    return\
+    \ (*this).norm();\n  }\n  mint operator++(signed) {\n    mint tmp = *this;\n \
+    \   ++(*this);\n    return tmp;\n  }\n  mint operator--(signed) {\n    mint tmp\
+    \ = *this;\n    --(*this);\n    return tmp;\n  }\n\n  mint operator-() { return\
+    \ mint(-_val); }\n  bool operator==(mint b) { return _val == b._val; }\n  bool\
+    \ operator!=(mint b) { return _val != b._val; }\n  \n  friend mint operator+(mint\
     \ a, mint b) { return a += b; }\n  friend mint operator-(mint a, mint b) { return\
     \ a -= b; }\n  friend mint operator*(mint a, mint b) { return a *= b; }\n  friend\
     \ mint operator/(mint a, mint b) { return a /= b; }\n\n  friend ostream& operator<<(ostream&\
@@ -100,7 +109,7 @@ data:
   isVerificationFile: true
   path: test/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
+  timestamp: '2024-06-29 18:02:37+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/binomial_coefficient_prime_mod.test.cpp

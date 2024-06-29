@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/maximum_independent_set.test.cpp
     title: test/maximum_independent_set.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/MIS.cpp\"\nvector<int> MIS(vector<ull> g, int n) {\n\
@@ -44,7 +44,7 @@ data:
   path: graph/MIS.cpp
   requiredBy: []
   timestamp: '2024-01-28 03:46:27+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/maximum_independent_set.test.cpp
 documentation_of: graph/MIS.cpp

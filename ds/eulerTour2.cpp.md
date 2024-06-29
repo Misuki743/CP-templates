@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/vertex_add_subtree_sum.test.cpp
     title: test/vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/eulerTour2.cpp\"\n//#include<segtree/segmentTree.cpp>\n\
@@ -35,7 +35,7 @@ data:
   path: ds/eulerTour2.cpp
   requiredBy: []
   timestamp: '2024-02-09 22:57:04+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/vertex_add_subtree_sum.test.cpp
 documentation_of: ds/eulerTour2.cpp

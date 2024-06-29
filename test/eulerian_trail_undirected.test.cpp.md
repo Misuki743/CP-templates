@@ -36,22 +36,30 @@ data:
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
     using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
-    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
-    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
-    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
-    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
-    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
-    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
-    \ \"graph/eulerianTrail.cpp\"\ntemplate<bool directed = false, bool circuit =\
-    \ false>\narray<vector<int>, 2> eulerianTrail(int n, vector<array<int, 2>> &e)\
-    \ {\n  vector<int> indeg(n), outdeg(n);\n  vector<vector<int>> g(n);\n  for(int\
-    \ i = 0; auto [u, v] : e) {\n    outdeg[u] += 1, indeg[v] += 1;\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(i);\n    g[u].emplace_back(i++);\n  }\n\
-    \n  int s = -1;\n  if constexpr (directed) {\n    for(int v = 0; v < n; v++) {\n\
-    \      if (abs(indeg[v] - outdeg[v]) >= 2) return {};\n      if (outdeg[v] <=\
-    \ indeg[v]) continue;\n      if (s != -1) return {};\n      s = v;\n    }\n  }\
-    \ else {\n    for(int v = 0, t = -1; v < n; v++) {\n      if ((indeg[v] + outdeg[v])\
+    \ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class\
+    \ OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
+    \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
+    \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
+    \     x = p = op(p, x);\n}\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b\
+    \ < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const pair<T, T> pr) {\n  return os << pr.first << ' ' << pr.second;\n}\n\
+    template<class T, size_t N>\nostream& operator<<(ostream& os, const array<T, N>\
+    \ &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
+    \ T>\nostream& operator<<(ostream& os, const vector<T> &vec) {\n  for(const T\
+    \ &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream&\
+    \ operator<<(ostream& os, const set<T> &s) {\n  for(const T &x : s)\n    os <<\
+    \ x << ' ';\n  return os;\n}\n#line 1 \"graph/eulerianTrail.cpp\"\ntemplate<bool\
+    \ directed = false, bool circuit = false>\narray<vector<int>, 2> eulerianTrail(int\
+    \ n, vector<array<int, 2>> &e) {\n  vector<int> indeg(n), outdeg(n);\n  vector<vector<int>>\
+    \ g(n);\n  for(int i = 0; auto [u, v] : e) {\n    outdeg[u] += 1, indeg[v] +=\
+    \ 1;\n    if constexpr (!directed)\n      g[v].emplace_back(i);\n    g[u].emplace_back(i++);\n\
+    \  }\n\n  int s = -1;\n  if constexpr (directed) {\n    for(int v = 0; v < n;\
+    \ v++) {\n      if (abs(indeg[v] - outdeg[v]) >= 2) return {};\n      if (outdeg[v]\
+    \ <= indeg[v]) continue;\n      if (s != -1) return {};\n      s = v;\n    }\n\
+    \  } else {\n    for(int v = 0, t = -1; v < n; v++) {\n      if ((indeg[v] + outdeg[v])\
     \ % 2 == 0) continue;\n      if (s != -1 and t != -1) return {};\n      if (s\
     \ == -1) s = v;\n      else t = v;\n    }\n  }\n\n  if constexpr (circuit)\n \
     \   if (s != -1) \n      return {};\n\n  if (s == -1)\n    for(int v = 0; v <\
@@ -84,7 +92,7 @@ data:
   isVerificationFile: true
   path: test/eulerian_trail_undirected.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
+  timestamp: '2024-06-29 18:02:37+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/eulerian_trail_undirected.test.cpp

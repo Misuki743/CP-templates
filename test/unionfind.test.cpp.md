@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/DSU.cpp
     title: ds/DSU.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind
@@ -35,24 +35,33 @@ data:
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
     using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
-    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
-    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
-    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
-    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
-    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
-    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
-    \ \"ds/DSU.cpp\"\nstruct DSU {\n  vector<int> bos, sz;\n  int size;\n\n  DSU(int\
-    \ _size) : bos(_size), sz(_size, 1), size(_size) {\n    iota(bos.begin(), bos.end(),\
-    \ 0);\n  }\n\n  int query(int v) {\n    if (bos[v] == v)\n      return v;\n  \
-    \  else\n      return bos[v] = query(bos[v]);\n  }\n\n  bool merge(int v1, int\
-    \ v2) {\n    int b1 = query(v1), b2 = query(v2);\n\n    if (b1 == b2)\n      return\
-    \ false;\n\n    if (sz[b1] > sz[b2])\n      swap(b1, b2);\n    bos[b1] = b2, sz[b2]\
-    \ += sz[b1];\n\n    return true;\n  }\n};\n#line 5 \"test/unionfind.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  DSU dsu(n);\n  while(q--) {\n    int t, u, v; cin >> t\
-    \ >> u >> v;\n    if (t == 0)\n      dsu.merge(u, v);\n    else\n      cout <<\
-    \ (dsu.query(u) == dsu.query(v)) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class\
+    \ OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
+    \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
+    \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
+    \     x = p = op(p, x);\n}\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b\
+    \ < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const pair<T, T> pr) {\n  return os << pr.first << ' ' << pr.second;\n}\n\
+    template<class T, size_t N>\nostream& operator<<(ostream& os, const array<T, N>\
+    \ &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
+    \ T>\nostream& operator<<(ostream& os, const vector<T> &vec) {\n  for(const T\
+    \ &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream&\
+    \ operator<<(ostream& os, const set<T> &s) {\n  for(const T &x : s)\n    os <<\
+    \ x << ' ';\n  return os;\n}\n#line 1 \"ds/DSU.cpp\"\nstruct DSU {\n  vector<int>\
+    \ bos, sz;\n  int size;\n\n  DSU(int _size) : bos(_size), sz(_size, 1), size(_size)\
+    \ {\n    iota(bos.begin(), bos.end(), 0);\n  }\n\n  int query(int v) {\n    if\
+    \ (bos[v] == v)\n      return v;\n    else\n      return bos[v] = query(bos[v]);\n\
+    \  }\n\n  bool merge(int v1, int v2) {\n    int b1 = query(v1), b2 = query(v2);\n\
+    \n    if (b1 == b2)\n      return false;\n\n    if (sz[b1] > sz[b2])\n      swap(b1,\
+    \ b2);\n    bos[b1] = b2, sz[b2] += sz[b1];\n\n    return true;\n  }\n};\n#line\
+    \ 5 \"test/unionfind.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  DSU dsu(n);\n  while(q--) {\n\
+    \    int t, u, v; cin >> t >> u >> v;\n    if (t == 0)\n      dsu.merge(u, v);\n\
+    \    else\n      cout << (dsu.query(u) == dsu.query(v)) << '\\n';\n  }\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../ds/DSU.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  DSU dsu(n);\n  while(q--) {\n\
@@ -65,8 +74,8 @@ data:
   isVerificationFile: true
   path: test/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-29 18:02:37+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/unionfind.test.cpp
 layout: document

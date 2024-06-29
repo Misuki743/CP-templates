@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segtree/lichaoSegmentTree.cpp
     title: segtree/lichaoSegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
@@ -35,47 +35,56 @@ data:
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
     using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
-    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
-    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
-    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
-    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
-    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
-    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
-    \ \"segtree/lichaoSegmentTree.cpp\"\n//note: size should be power of 2, finding\
-    \ min line in default\n\ntemplate<class M, M unit>\nstruct lichaoSegmentTree {\n\
-    \  vector<array<M, 2>> data;\n  vector<M> xMid;\n  unsigned size;\n\n  lichaoSegmentTree(unsigned\
-    \ _size, vector<M> x = vector<M>()) : data(2 * _size, {0, unit}), xMid(2 * _size),\
-    \ size(_size) {\n    assert(popcount(size) == 1);\n    if (x.empty()) {\n    \
-    \  iota(xMid.begin() + size, xMid.end(), 0);\n    } else {\n      copy(x.begin(),\
-    \ x.end(), xMid.begin() + size);\n      fill(xMid.begin() + size + ssize(x), xMid.end(),\
-    \ x.back());\n    }\n    vector<int> r(2 * size);\n    iota(r.begin() + size,\
-    \ r.end(), size);\n    for(int i = size - 1; i > 0; i--)\n      r[i] = r[i <<\
-    \ 1 | 1];\n    for(int i = size - 1; i > 0; i--)\n      xMid[i] = (xMid[r[i <<\
-    \ 1]] + xMid[r[i << 1] + 1]) / 2;\n  }\n\n  M eval(M a, M b, M x) { return a *\
-    \ x + b; }\n\n  void insert(int v, M a, M b) {\n    if (a > data[v][0]) {\n  \
-    \    swap(a, data[v][0]);\n      swap(b, data[v][1]);\n    }\n\n    if (v >= size)\
-    \ {\n      if (eval(a, b, xMid[v]) < eval(data[v][0], data[v][1], xMid[v])) {\n\
-    \        swap(a, data[v][0]);\n        swap(b, data[v][1]);\n      }\n      return;\n\
-    \    }\n\n    if (eval(a, b, xMid[v]) > eval(data[v][0], data[v][1], xMid[v]))\
-    \ {\n      insert(v << 1 | 1, a, b);\n    } else {\n      swap(a, data[v][0]);\n\
-    \      swap(b, data[v][1]);\n      insert(v << 1, a, b);\n    }\n  }\n\n  M query(int\
-    \ v) {\n    v += size;\n    M ans = unit;\n    int x = xMid[v];\n    while(v >=\
-    \ 1)\n      ans = min(ans, eval(data[v][0], data[v][1], x)), v >>= 1;\n    return\
-    \ ans;\n  }\n\n  void insertRange(int l, int r, M a, M b) {\n    for(l += size,\
-    \ r += size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) insert(l++, a, b);\n\
-    \      if (r & 1) insert(--r, a, b);\n    }\n  }\n};\n#line 5 \"test/line_add_get_min.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vector<array<ll, 2>> ab(n);\n  for(auto &[a, b] : ab)\n\
-    \    cin >> a >> b;\n  vector<array<ll, 3>> query(q);\n  for(auto &[t, a, b] :\
-    \ query) {\n    cin >> t >> a;\n    if (t == 0)\n      cin >> b;\n  }\n\n  vector<ll>\
-    \ pt;\n  for(auto [t, a, b] : query)\n    if (t == 1)\n      pt.emplace_back(a);\n\
-    \n  ranges::sort(pt);\n  pt.resize(unique(pt.begin(), pt.end()) - pt.begin());\n\
-    \  for(auto &[t, a, b] : query)\n    if (t == 1)\n      a = ranges::lower_bound(pt,\
-    \ a) - pt.begin();\n\n  lichaoSegmentTree<ll, LLONG_MAX> st(bit_ceil((unsigned)q),\
-    \ pt);\n  for(auto [a, b] : ab)\n    st.insert(1, a, b);\n  for(auto [t, a, b]\
-    \ : query) {\n    if (t == 0)\n      st.insert(1, a, b);\n    else\n      cout\
-    \ << st.query(a) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class\
+    \ OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
+    \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
+    \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
+    \     x = p = op(p, x);\n}\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b\
+    \ < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const pair<T, T> pr) {\n  return os << pr.first << ' ' << pr.second;\n}\n\
+    template<class T, size_t N>\nostream& operator<<(ostream& os, const array<T, N>\
+    \ &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
+    \ T>\nostream& operator<<(ostream& os, const vector<T> &vec) {\n  for(const T\
+    \ &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream&\
+    \ operator<<(ostream& os, const set<T> &s) {\n  for(const T &x : s)\n    os <<\
+    \ x << ' ';\n  return os;\n}\n#line 1 \"segtree/lichaoSegmentTree.cpp\"\n//note:\
+    \ size should be power of 2, finding min line in default\n\ntemplate<class M,\
+    \ M unit>\nstruct lichaoSegmentTree {\n  vector<array<M, 2>> data;\n  vector<M>\
+    \ xMid;\n  unsigned size;\n\n  lichaoSegmentTree(unsigned _size, vector<M> x =\
+    \ vector<M>()) : data(2 * _size, {0, unit}), xMid(2 * _size), size(_size) {\n\
+    \    assert(popcount(size) == 1);\n    if (x.empty()) {\n      iota(xMid.begin()\
+    \ + size, xMid.end(), 0);\n    } else {\n      copy(x.begin(), x.end(), xMid.begin()\
+    \ + size);\n      fill(xMid.begin() + size + ssize(x), xMid.end(), x.back());\n\
+    \    }\n    vector<int> r(2 * size);\n    iota(r.begin() + size, r.end(), size);\n\
+    \    for(int i = size - 1; i > 0; i--)\n      r[i] = r[i << 1 | 1];\n    for(int\
+    \ i = size - 1; i > 0; i--)\n      xMid[i] = (xMid[r[i << 1]] + xMid[r[i << 1]\
+    \ + 1]) / 2;\n  }\n\n  M eval(M a, M b, M x) { return a * x + b; }\n\n  void insert(int\
+    \ v, M a, M b) {\n    if (a > data[v][0]) {\n      swap(a, data[v][0]);\n    \
+    \  swap(b, data[v][1]);\n    }\n\n    if (v >= size) {\n      if (eval(a, b, xMid[v])\
+    \ < eval(data[v][0], data[v][1], xMid[v])) {\n        swap(a, data[v][0]);\n \
+    \       swap(b, data[v][1]);\n      }\n      return;\n    }\n\n    if (eval(a,\
+    \ b, xMid[v]) > eval(data[v][0], data[v][1], xMid[v])) {\n      insert(v << 1\
+    \ | 1, a, b);\n    } else {\n      swap(a, data[v][0]);\n      swap(b, data[v][1]);\n\
+    \      insert(v << 1, a, b);\n    }\n  }\n\n  M query(int v) {\n    v += size;\n\
+    \    M ans = unit;\n    int x = xMid[v];\n    while(v >= 1)\n      ans = min(ans,\
+    \ eval(data[v][0], data[v][1], x)), v >>= 1;\n    return ans;\n  }\n\n  void insertRange(int\
+    \ l, int r, M a, M b) {\n    for(l += size, r += size; l < r; l >>= 1, r >>= 1)\
+    \ {\n      if (l & 1) insert(l++, a, b);\n      if (r & 1) insert(--r, a, b);\n\
+    \    }\n  }\n};\n#line 5 \"test/line_add_get_min.test.cpp\"\n\nsigned main() {\n\
+    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n\
+    \  vector<array<ll, 2>> ab(n);\n  for(auto &[a, b] : ab)\n    cin >> a >> b;\n\
+    \  vector<array<ll, 3>> query(q);\n  for(auto &[t, a, b] : query) {\n    cin >>\
+    \ t >> a;\n    if (t == 0)\n      cin >> b;\n  }\n\n  vector<ll> pt;\n  for(auto\
+    \ [t, a, b] : query)\n    if (t == 1)\n      pt.emplace_back(a);\n\n  ranges::sort(pt);\n\
+    \  pt.resize(unique(pt.begin(), pt.end()) - pt.begin());\n  for(auto &[t, a, b]\
+    \ : query)\n    if (t == 1)\n      a = ranges::lower_bound(pt, a) - pt.begin();\n\
+    \n  lichaoSegmentTree<ll, LLONG_MAX> st(bit_ceil((unsigned)q), pt);\n  for(auto\
+    \ [a, b] : ab)\n    st.insert(1, a, b);\n  for(auto [t, a, b] : query) {\n   \
+    \ if (t == 0)\n      st.insert(1, a, b);\n    else\n      cout << st.query(a)\
+    \ << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../segtree/lichaoSegmentTree.cpp\"\n\
     \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
@@ -95,8 +104,8 @@ data:
   isVerificationFile: true
   path: test/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-29 18:02:37+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/line_add_get_min.test.cpp
 layout: document

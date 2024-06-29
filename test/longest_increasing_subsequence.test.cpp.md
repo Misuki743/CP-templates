@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: misc/LIS.cpp
     title: misc/LIS.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/longest_increasing_subsequence
@@ -36,26 +36,34 @@ data:
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
     using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
-    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
-    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
-    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
-    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
-    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
-    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
-    \ \"misc/LIS.cpp\"\ntemplate<class T, bool strict = true>\nvector<int> LIS(vector<T>\
-    \ &a) {\n  vector<T> dp(ssize(a), numeric_limits<T>::max());\n  vector<int> id(ssize(a)),\
-    \ pre(ssize(a), -1);\n  for(int i = 0; i < ssize(a); i++) {\n    int j;\n    if\
-    \ constexpr (strict)\n      j = ranges::lower_bound(dp, a[i]) - dp.begin();\n\
-    \    else\n      j = ranges::upper_bound(dp, a[i]) - dp.begin();\n    if (a[i]\
-    \ < dp[j])\n      dp[j] = a[i], id[j] = i;\n    if (j >= 1)\n      pre[i] = id[j\
-    \ - 1];\n  }\n\n  vector<T> lis;\n  int i = id[ranges::lower_bound(dp, numeric_limits<T>::max())\
-    \ - dp.begin() - 1];\n  while(i != -1) {\n    lis.emplace_back(i);\n    i = pre[i];\n\
-    \  }\n  ranges::reverse(lis);\n\n  return lis;\n}\n#line 5 \"test/longest_increasing_subsequence.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
-    \ cin >> n;\n  vector<int> a(n);\n  for(int &x : a)\n    cin >> x;\n\n  auto lis\
-    \ = LIS<int>(a);\n  cout << ssize(lis) << '\\n';\n  cout << lis << '\\n';\n\n\
-    \  return 0;\n}\n"
+    \ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class\
+    \ OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
+    \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
+    \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
+    \     x = p = op(p, x);\n}\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b\
+    \ < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const pair<T, T> pr) {\n  return os << pr.first << ' ' << pr.second;\n}\n\
+    template<class T, size_t N>\nostream& operator<<(ostream& os, const array<T, N>\
+    \ &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
+    \ T>\nostream& operator<<(ostream& os, const vector<T> &vec) {\n  for(const T\
+    \ &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream&\
+    \ operator<<(ostream& os, const set<T> &s) {\n  for(const T &x : s)\n    os <<\
+    \ x << ' ';\n  return os;\n}\n#line 1 \"misc/LIS.cpp\"\ntemplate<class T, bool\
+    \ strict = true>\nvector<int> LIS(vector<T> &a) {\n  vector<T> dp(ssize(a), numeric_limits<T>::max());\n\
+    \  vector<int> id(ssize(a)), pre(ssize(a), -1);\n  for(int i = 0; i < ssize(a);\
+    \ i++) {\n    int j;\n    if constexpr (strict)\n      j = ranges::lower_bound(dp,\
+    \ a[i]) - dp.begin();\n    else\n      j = ranges::upper_bound(dp, a[i]) - dp.begin();\n\
+    \    if (a[i] < dp[j])\n      dp[j] = a[i], id[j] = i;\n    if (j >= 1)\n    \
+    \  pre[i] = id[j - 1];\n  }\n\n  vector<T> lis;\n  int i = id[ranges::lower_bound(dp,\
+    \ numeric_limits<T>::max()) - dp.begin() - 1];\n  while(i != -1) {\n    lis.emplace_back(i);\n\
+    \    i = pre[i];\n  }\n  ranges::reverse(lis);\n\n  return lis;\n}\n#line 5 \"\
+    test/longest_increasing_subsequence.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<int> a(n);\n  for(int &x : a)\n\
+    \    cin >> x;\n\n  auto lis = LIS<int>(a);\n  cout << ssize(lis) << '\\n';\n\
+    \  cout << lis << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/longest_increasing_subsequence\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../misc/LIS.cpp\"\n\nsigned main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<int>\
@@ -67,8 +75,8 @@ data:
   isVerificationFile: true
   path: test/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2024-04-05 19:44:35+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-29 18:02:37+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/longest_increasing_subsequence.test.cpp
 layout: document

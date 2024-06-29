@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_kth_smallest2.test.cpp
     title: test/range_kth_smallest2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segtree/persistentSegmentTree.cpp\"\ntemplate<class M, M(*id)(),\
@@ -50,7 +50,7 @@ data:
   path: segtree/persistentSegmentTree.cpp
   requiredBy: []
   timestamp: '2024-05-04 14:16:48+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/range_kth_smallest2.test.cpp
 documentation_of: segtree/persistentSegmentTree.cpp

@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/treeDiameter.cpp
     title: graph/treeDiameter.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
@@ -35,21 +35,30 @@ data:
     \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
     using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
-    \ntemplate<class T>\nostream& operator<<(ostream& os, const pair<T, T> pr) {\n\
-    \  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
-    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(const T &X :\
-    \ arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
-    \ os, const vector<T> &vec) {\n  for(const T &X : vec)\n    os << X << ' ';\n\
-    \  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const set<T>\
-    \ &s) {\n  for(const T &x : s)\n    os << x << ' ';\n  return os;\n}\n#line 1\
-    \ \"graph/treeDiameter.cpp\"\ntemplate<class T>\ntuple<T, T, T, vector<int>> treeDiameter(vector<vector<pair<int,\
-    \ T>>> &g) {\n  const T inf = numeric_limits<T>::max();\n  const int n = ssize(g);\n\
-    \  auto bfs = [&](int s) {\n    vector<T> dis(n, inf);\n    vector<int> pre(n,\
-    \ -1);\n    queue<int> q;\n    dis[s] = 0;\n    q.push(s);\n    while(!q.empty())\
-    \ {\n      int v = q.front(); q.pop();\n      for(auto [x, w] : g[v]) {\n    \
-    \    if (dis[x] != inf) continue;\n        pre[x] = v, dis[x] = dis[v] + w;\n\
-    \        q.push(x);\n      }\n    }\n    return make_pair(dis, pre);\n  };\n\n\
-    \  auto dis0 = bfs(0).first;\n  int u = ranges::max_element(dis0) - dis0.begin();\n\
+    \ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class\
+    \ OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
+    \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
+    \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
+    \     x = p = op(p, x);\n}\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b\
+    \ < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const pair<T, T> pr) {\n  return os << pr.first << ' ' << pr.second;\n}\n\
+    template<class T, size_t N>\nostream& operator<<(ostream& os, const array<T, N>\
+    \ &arr) {\n  for(const T &X : arr)\n    os << X << ' ';\n  return os;\n}\ntemplate<class\
+    \ T>\nostream& operator<<(ostream& os, const vector<T> &vec) {\n  for(const T\
+    \ &X : vec)\n    os << X << ' ';\n  return os;\n}\ntemplate<class T>\nostream&\
+    \ operator<<(ostream& os, const set<T> &s) {\n  for(const T &x : s)\n    os <<\
+    \ x << ' ';\n  return os;\n}\n#line 1 \"graph/treeDiameter.cpp\"\ntemplate<class\
+    \ T>\ntuple<T, T, T, vector<int>> treeDiameter(vector<vector<pair<int, T>>> &g)\
+    \ {\n  const T inf = numeric_limits<T>::max();\n  const int n = ssize(g);\n  auto\
+    \ bfs = [&](int s) {\n    vector<T> dis(n, inf);\n    vector<int> pre(n, -1);\n\
+    \    queue<int> q;\n    dis[s] = 0;\n    q.push(s);\n    while(!q.empty()) {\n\
+    \      int v = q.front(); q.pop();\n      for(auto [x, w] : g[v]) {\n        if\
+    \ (dis[x] != inf) continue;\n        pre[x] = v, dis[x] = dis[v] + w;\n      \
+    \  q.push(x);\n      }\n    }\n    return make_pair(dis, pre);\n  };\n\n  auto\
+    \ dis0 = bfs(0).first;\n  int u = ranges::max_element(dis0) - dis0.begin();\n\
     \  auto [dis1, pre1] = bfs(u);\n  int v = ranges::max_element(dis1) - dis1.begin();\n\
     \  T d = dis1[v];\n\n  vector<int> diameter(1, v);\n  while(pre1[v] != -1)\n \
     \   diameter.emplace_back(v = pre1[v]);\n\n  int radius = inf, center = -1;\n\
@@ -74,8 +83,8 @@ data:
   isVerificationFile: true
   path: test/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2024-05-04 14:34:04+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-29 18:02:37+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/tree_diameter.test.cpp
 layout: document
