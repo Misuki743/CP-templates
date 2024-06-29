@@ -18,3 +18,4 @@ https://misuki743.github.io/CP-templates/
 - actedmonoid: add addHisMin/addHisMax/addHisSum
 - bigInt(I don't want to write this D:)
 - static top tree
+- link-cut tree
