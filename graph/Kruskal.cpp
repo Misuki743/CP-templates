@@ -1,10 +1,11 @@
 //#include "ds/DSU.cpp"
 
-template<class T>
+template<class T, bool sorted = false>
 pair<T, vector<int>> Kruskal(vector<array<T, 3>> &e, int n) {
   vector<int> id(ssize(e));
   iota(id.begin(), id.end(), 0);
-  sort(id.begin(), id.end(), [&e](int i, int j) { return e[i][2] < e[j][2]; });
+  if constexpr (!sorted)
+    ranges::sort(id, {}, [&e](int i) { return e[i][2]; });
 
   T cost = 0;
   DSU dsu(n);

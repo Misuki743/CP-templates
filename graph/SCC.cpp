@@ -12,7 +12,7 @@ struct SCC {
     int t = 0;
     vector<bool> vis(ssize(g), false);
     vector<int> tout(ssize(g));
-    auto dfs = [&](int v, auto self) -> void {
+    auto dfs = [&](int v, auto &&self) -> void {
       vis[v] = true;
       for(int x : gr[v])
         if (!vis[x])
@@ -24,13 +24,14 @@ struct SCC {
       if (!vis[v])
         dfs(v, dfs);
 
-    auto dfs2 = [&](int v, auto self) -> void {
+    auto dfs2 = [&](int v, auto &&self) -> void {
       vis[v] = true;
       for(int x : g[v])
         if (!vis[x])
           self(x, self);
       groupId[v] = size;
     };
+
     fill(vis.begin(), vis.end(), false);
     for(int v = ssize(g) - 1; v >= 0; v--) {
       if (!vis[tout[v]]) {
