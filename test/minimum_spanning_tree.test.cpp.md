@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/DSU.cpp
     title: ds/DSU.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/Kruskal.cpp
     title: graph/Kruskal.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/Prim.cpp
     title: graph/Prim.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/minimum_spanning_tree
@@ -105,7 +105,7 @@ data:
   path: test/minimum_spanning_tree.test.cpp
   requiredBy: []
   timestamp: '2024-06-29 18:02:37+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/minimum_spanning_tree.test.cpp
 layout: document

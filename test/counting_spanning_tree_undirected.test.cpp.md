@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: combi/countSpanningForest.cpp
     title: combi/countSpanningForest.cpp
   - icon: ':question:'

@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: ds/eulerTour.cpp
     title: ds/eulerTour.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fastJump.cpp
     title: ds/fastJump.cpp
   - icon: ':x:'

@@ -1,10 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
+    path: combi/binom.cpp
+    title: combi/binom.cpp
+  - icon: ':heavy_check_mark:'
     path: combi/countEulerianCircuit.cpp
     title: combi/countEulerianCircuit.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: combi/countSpanningForest.cpp
     title: combi/countSpanningForest.cpp
   - icon: ':question:'
@@ -18,9 +21,9 @@ data:
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/counting_eulerian_circuits
@@ -142,10 +145,22 @@ data:
     \ j < b.m(); j++)\n        os << b[i][j] << ' ';\n    }\n    return os;\n  }\n\
     \  friend istream& operator>>(istream& is, matrix& b) {\n    for(int i = 0; i\
     \ < b.n(); i++)\n      for(int j = 0; j < b.m(); j++)\n        is >> b[i][j];\n\
-    \    return is;\n  }\n};\n#line 1 \"combi/countSpanningForest.cpp\"\n//#include\
-    \ \"modint/MontgomeryModInt.cpp\"\n//#include \"linalg/matrixMint.cpp\"\n\ntemplate<class\
-    \ Mint, bool directed = false>\nMint countSpanningForest(vector<tuple<int, int,\
-    \ Mint>> e, int n, vector<int> r = vector(1, 0)) {\n  vector<int> id(n, 1);\n\
+    \    return is;\n  }\n};\n#line 1 \"combi/binom.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
+    \ntemplate<class Mint>\nstruct binomial {\n  vector<Mint> _fac, _facInv;\n  binomial(int\
+    \ size) : _fac(size), _facInv(size) {\n    _fac[0] = 1;\n    for(int i = 1; i\
+    \ < size; i++)\n      _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n      _facInv.back()\
+    \ = 1 / _fac.back();\n    for(int i = size - 2; i >= 0; i--)\n      _facInv[i]\
+    \ = _facInv[i + 1] * (i + 1);\n  }\n\n  Mint fac(int i) { return i < 0 ? 0 : _fac[i];\
+    \ }\n  Mint faci(int i) { return i < 0 ? 0 : _facInv[i]; }\n  Mint inv(int i)\
+    \ { return _facInv[i] * _fac[i - 1]; }\n  Mint binom(int n, int r) { return r\
+    \ < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n  Mint catalan(int i)\
+    \ { return binom(2 * i, i) - binom(2 * i, i + 1); }\n  Mint excatalan(int n, int\
+    \ m, int k) { //(+1) * n, (-1) * m, prefix sum > -k\n    if (k > m) return binom(n\
+    \ + m, m);\n    else if (k > m - n) return binom(n + m, m) - binom(n + m, m -\
+    \ k);\n    else return Mint(0);\n  }\n};\n#line 1 \"combi/countSpanningForest.cpp\"\
+    \n//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"linalg/matrixMint.cpp\"\
+    \n\ntemplate<class Mint, bool directed = false>\nMint countSpanningForest(vector<tuple<int,\
+    \ int, Mint>> e, int n, vector<int> r = vector(1, 0)) {\n  vector<int> id(n, 1);\n\
     \  for(int x : r) id[x] = 0;\n  id[0] -= 1;\n  pSum(id);\n  for(int x : r) id[x]\
     \ = -1;\n\n  matrix<Mint> M(n - ssize(r));\n  for(auto [u, v, w] : e) {\n    u\
     \ = id[u], v = id[v];\n    if (u != -1 and v != -1) {\n      M[u][v] -= w;\n \
@@ -153,41 +168,43 @@ data:
     \ if (u != -1) M[u][u] += w;\n    if (v != -1) M[v][v] += w;\n  }\n  return M.det();\n\
     }\n#line 1 \"combi/countEulerianCircuit.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
     \n//#include \"linalg/matrixMint.cpp\"\n//#include \"combi/countSpanningForest.cpp\"\
-    \n\ntemplate<class Mint>\nMint countEulerianCircuit(vector<array<int, 2>> e, int\
-    \ n) {\n  vector<int> deg(n);\n  vector<vector<int>> g(n);\n  for(auto [u, v]\
-    \ : e) {\n    deg[v]++;\n    g[u].emplace_back(v);\n  }\n\n  for(int v = 0; v\
-    \ < n; v++)\n    if (deg[v] != ssize(g[v]))\n      return Mint(0);\n\n  vector<bool>\
-    \ vis(n, false);\n  auto dfs = [&](int v, auto &&self) -> void {\n    vis[v] =\
-    \ true;\n    for(int x : g[v])\n      if (!vis[x])\n        self(x, self);\n \
-    \ };\n\n  int s = 0;\n  while(s < n and deg[s] == 0) s++;\n  s %= n;\n  dfs(s,\
-    \ dfs);\n\n  vector<int> r(1, s);\n  for(int v = 0; v < n; v++) if (!vis[v]) {\n\
-    \    if (deg[v] != 0) return Mint(0);\n    else r.emplace_back(v);\n  }\n\n  vector<tuple<int,\
-    \ int, Mint>> ep(ssize(e));\n  for(int i = 0; auto [u, v] : e)\n    ep[i++] =\
-    \ {u, v, Mint(1)};\n  \n  Mint c = 1;\n  binomial<Mint> bn(ssize(e));\n  for(int\
-    \ v = 0; v < n; v++)\n    c *= bn.fac(max(deg[v] - 1, 0));\n\n  return c * countSpanningForest<Mint,\
-    \ true>(ep, n, r);\n}\n#line 8 \"test/counting_eulerian_circuits.test.cpp\"\n\n\
-    signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m;\
-    \ cin >> n >> m;\n  vector<array<int, 2>> e(m);\n  for(auto &[u, v] : e) cin >>\
-    \ u >> v;\n\n  cout << countEulerianCircuit<mint>(e, n) << '\\n';\n\n  return\
+    \n//#include \"combi/binom.cpp\"\n\ntemplate<class Mint>\nMint countEulerianCircuit(vector<array<int,\
+    \ 2>> e, int n) {\n  vector<int> deg(n);\n  vector<vector<int>> g(n);\n  for(auto\
+    \ [u, v] : e) {\n    deg[v]++;\n    g[u].emplace_back(v);\n  }\n\n  for(int v\
+    \ = 0; v < n; v++)\n    if (deg[v] != ssize(g[v]))\n      return Mint(0);\n\n\
+    \  vector<bool> vis(n, false);\n  auto dfs = [&](int v, auto &&self) -> void {\n\
+    \    vis[v] = true;\n    for(int x : g[v])\n      if (!vis[x])\n        self(x,\
+    \ self);\n  };\n\n  int s = 0;\n  while(s < n and deg[s] == 0) s++;\n  s %= n;\n\
+    \  dfs(s, dfs);\n\n  vector<int> r(1, s);\n  for(int v = 0; v < n; v++) if (!vis[v])\
+    \ {\n    if (deg[v] != 0) return Mint(0);\n    else r.emplace_back(v);\n  }\n\n\
+    \  vector<tuple<int, int, Mint>> ep(ssize(e));\n  for(int i = 0; auto [u, v] :\
+    \ e)\n    ep[i++] = {u, v, Mint(1)};\n  \n  Mint c = 1;\n  binomial<Mint> bn(ssize(e));\n\
+    \  for(int v = 0; v < n; v++)\n    c *= bn.fac(max(deg[v] - 1, 0));\n\n  return\
+    \ c * countSpanningForest<Mint, true>(ep, n, r);\n}\n#line 9 \"test/counting_eulerian_circuits.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ m; cin >> n >> m;\n  vector<array<int, 2>> e(m);\n  for(auto &[u, v] : e) cin\
+    \ >> u >> v;\n\n  cout << countEulerianCircuit<mint>(e, n) << '\\n';\n\n  return\
     \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_eulerian_circuits\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../linalg/matrixMint.cpp\"\n#include \"../combi/countSpanningForest.cpp\"\
-    \n#include \"../combi/countEulerianCircuit.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<array<int, 2>> e(m);\n\
-    \  for(auto &[u, v] : e) cin >> u >> v;\n\n  cout << countEulerianCircuit<mint>(e,\
-    \ n) << '\\n';\n\n  return 0;\n}\n"
+    \n#include \"../linalg/matrixMint.cpp\"\n#include \"../combi/binom.cpp\"\n#include\
+    \ \"../combi/countSpanningForest.cpp\"\n#include \"../combi/countEulerianCircuit.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ m; cin >> n >> m;\n  vector<array<int, 2>> e(m);\n  for(auto &[u, v] : e) cin\
+    \ >> u >> v;\n\n  cout << countEulerianCircuit<mint>(e, n) << '\\n';\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - linalg/matrixMint.cpp
+  - combi/binom.cpp
   - combi/countSpanningForest.cpp
   - combi/countEulerianCircuit.cpp
   isVerificationFile: true
   path: test/counting_eulerian_circuits.test.cpp
   requiredBy: []
-  timestamp: '2024-06-29 18:02:37+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-06-29 18:16:40+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/counting_eulerian_circuits.test.cpp
 layout: document

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/sqrtMod.cpp
     title: numtheory/sqrtMod.cpp
   - icon: ':question:'

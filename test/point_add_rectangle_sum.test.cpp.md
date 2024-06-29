@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwickTree2D.cpp
     title: ds/fenwickTree2D.cpp
   - icon: ':question:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: misc/pointAddRectangleSum.cpp
     title: misc/pointAddRectangleSum.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -141,7 +141,7 @@ data:
   path: test/point_add_rectangle_sum.test.cpp
   requiredBy: []
   timestamp: '2024-06-29 18:02:37+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/point_add_rectangle_sum.test.cpp
 layout: document

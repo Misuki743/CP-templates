@@ -7,10 +7,10 @@ data:
   - icon: ':x:'
     path: ds/centroidTree.cpp
     title: ds/centroidTree.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fastJump.cpp
     title: ds/fastJump.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
   - icon: ':question:'

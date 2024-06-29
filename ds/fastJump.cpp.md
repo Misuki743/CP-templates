@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/jump_on_tree.test.cpp
     title: test/jump_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/lowest_common_ancestor.test.cpp
     title: test/lowest_common_ancestor.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/vertex_get_range_contour_add_on_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fastJump.cpp\"\nstruct fastJump {\n  vector<int> p, jp,\
@@ -64,7 +64,7 @@ data:
   path: ds/fastJump.cpp
   requiredBy: []
   timestamp: '2024-02-11 12:51:49+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/vertex_add_path_sum.test.cpp
   - test/lowest_common_ancestor.test.cpp
