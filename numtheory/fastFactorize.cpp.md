@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/primality_test.test.cpp
     title: test/primality_test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/kth-competitive-programming/kactl)
@@ -61,7 +61,7 @@ data:
   path: numtheory/fastFactorize.cpp
   requiredBy: []
   timestamp: '2024-01-23 02:14:10+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/factorize.test.cpp
   - test/primitive_root.test.cpp

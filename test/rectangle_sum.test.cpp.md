@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: misc/rectangleSum.cpp
     title: misc/rectangleSum.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -116,7 +116,7 @@ data:
   path: test/rectangle_sum.test.cpp
   requiredBy: []
   timestamp: '2024-06-29 18:02:37+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rectangle_sum.test.cpp
 layout: document

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrixMint.cpp
     title: linalg/matrixMint.cpp
   - icon: ':question:'
