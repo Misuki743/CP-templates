@@ -26,4 +26,36 @@ struct segmentTree {
     }
     return op(L, R);
   }
+
+  int firstTrue(int l, int r, function<bool(const M&)> f) {
+    vector<int> idL, idR;
+    int r0 = r;
+    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {
+      if (l & 1) idL.emplace_back(l++);
+      if (r & 1) idR.emplace_back(--r);
+    }
+    while(!idR.empty()) {
+      idL.emplace_back(idR.back());
+      idR.pop_back();
+    }
+    M pre = id();
+    int v = -1;
+    for(int i : idL) {
+      if (f(op(pre, data[i]))) {
+        v = i;
+        break;
+      } else {
+        pre = op(pre, data[i]);
+      }
+    }
+    if (v == -1)
+      return r0;
+    while(v < size) {
+      if (f(op(pre, data[v << 1])))
+        v = v << 1;
+      else
+        pre = op(pre, data[v << 1]), v = v << 1 | 1;
+    }
+    return v - size;
+  }
 };
