@@ -43,6 +43,9 @@ data:
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/incremental_scc.test.cpp
+    title: test/incremental_scc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series.test.cpp
     title: test/inv_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -239,6 +242,7 @@ data:
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/find_linear_recurrence.test.cpp
   - test/division_of_polynomials.test.cpp
+  - test/incremental_scc.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/counting_spanning_tree_undirected.test.cpp

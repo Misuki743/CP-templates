@@ -211,7 +211,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/hungarian.cpp
       title: graph/hungarian.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/incrementalSCC.cpp
       title: graph/incrementalSCC.cpp
     - icon: ':warning:'
@@ -509,6 +509,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/find_linear_recurrence.test.cpp
       title: test/find_linear_recurrence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/incremental_scc.test.cpp
+      title: test/incremental_scc.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/inv_of_formal_power_series.test.cpp
       title: test/inv_of_formal_power_series.test.cpp

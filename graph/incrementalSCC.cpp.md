@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/incremental_scc.test.cpp
+    title: test/incremental_scc.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/incrementalSCC.cpp\"\n//#include \"ds/DSU.cpp\"\n\
@@ -46,8 +49,9 @@ data:
   path: graph/incrementalSCC.cpp
   requiredBy: []
   timestamp: '2024-06-29 17:34:40+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/incremental_scc.test.cpp
 documentation_of: graph/incrementalSCC.cpp
 layout: document
 redirect_from:

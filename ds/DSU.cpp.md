@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/incremental_scc.test.cpp
+    title: test/incremental_scc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/minimum_spanning_tree.test.cpp
     title: test/minimum_spanning_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -37,6 +40,7 @@ data:
   verifiedWith:
   - test/minimum_spanning_tree.test.cpp
   - test/unionfind.test.cpp
+  - test/incremental_scc.test.cpp
 documentation_of: ds/DSU.cpp
 layout: document
 redirect_from:
