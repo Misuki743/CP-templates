@@ -1,4 +1,3 @@
-#pragma GCC optimize("O2")
 #include <algorithm>
 #include <array>
 #include <bitset>
@@ -56,13 +55,54 @@
 
 #define clock chrono::steady_clock::now().time_since_epoch().count()
 
-#ifdef DEBUG
-#define dbg(x) cout << (#x) << " = " << (x) << '\n'
-#else
-#define dbg(x)
-#endif
-
 using namespace std;
+
+template<class T1, class T2>
+ostream& operator<<(ostream& os, const pair<T1, T2> pr) {
+  return os << pr.first << ' ' << pr.second;
+}
+template<class T, size_t N>
+ostream& operator<<(ostream& os, const array<T, N> &arr) {
+  for(size_t i = 0; T x : arr) {
+    os << x;
+    if (++i != N) os << ' ';
+  }
+  return os;
+}
+template<class T>
+ostream& operator<<(ostream& os, const vector<T> &vec) {
+  for(size_t i = 0; T x : vec) {
+    os << x;
+    if (++i != size(vec)) os << ' ';
+  }
+  return os;
+}
+template<class T>
+ostream& operator<<(ostream& os, const set<T> &s) {
+  for(size_t i = 0; T x : s) {
+    os << x;
+    if (++i != size(s)) os << ' ';
+  }
+  return os;
+}
+template<class T1, class T2>
+ostream& operator<<(ostream& os, const map<T1, T2> &m) {
+  for(size_t i = 0; pair<T1, T2> x : m) {
+    os << x;
+    if (++i != size(m)) os << ' ';
+  }
+  return os;
+}
+
+#ifdef DEBUG
+#define dbg(...) cerr << '(', _do(#__VA_ARGS__), cerr << ") = ", _do2(__VA_ARGS__)
+template<typename T> void _do(T &&x) { cerr << x; }
+template<typename T, typename ...S> void _do(T &&x, S&&...y) { cerr << x << ", "; _do(y...); }
+template<typename T> void _do2(T &&x) { cerr << x << endl; }
+template<typename T, typename ...S> void _do2(T &&x, S&&...y) { cerr << x << ", "; _do2(y...); }
+#else
+#define dbg(...)
+#endif
 
 using ll = long long;
 using ull = unsigned long long;
@@ -83,6 +123,14 @@ void pSum(rng &&v, OP op) {
     for(T p = v[0]; T &x : v | views::drop(1))
       x = p = op(p, x);
 }
+
+template<class T>
+void setBit(T &msk, int bit, bool x) {
+  msk = (msk & ~(T(1) << bit)) | (T(x) << bit);
+}
+template<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }
+template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }
+
 template<class T>
 T floorDiv(T a, T b) {
   if (b < 0) a *= -1, b *= -1;
@@ -94,29 +142,8 @@ T ceilDiv(T a, T b) {
   return a >= 0 ? (a + b - 1) / b : a / b;
 }
 
-template<class T>
-ostream& operator<<(ostream& os, const pair<T, T> pr) {
-  return os << pr.first << ' ' << pr.second;
-}
-template<class T, size_t N>
-ostream& operator<<(ostream& os, const array<T, N> &arr) {
-  for(const T &X : arr)
-    os << X << ' ';
-  return os;
-}
-template<class T>
-ostream& operator<<(ostream& os, const vector<T> &vec) {
-  for(const T &X : vec)
-    os << X << ' ';
-  return os;
-}
-template<class T>
-ostream& operator<<(ostream& os, const set<T> &s) {
-  for(const T &x : s)
-    os << x << ' ';
-  return os;
-}
-
+template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }
+template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
