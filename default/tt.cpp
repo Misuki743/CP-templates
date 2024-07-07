@@ -111,6 +111,9 @@ using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 //#define double ldb
 
+template<typename T> using min_heap = priority_queue<T, vector<T>, greater<T>>;
+template<typename T> using max_heap = priority_queue<T>;
+
 template<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class OP = plus<T>>
 void pSum(rng &&v) {
   if (!v.empty())
