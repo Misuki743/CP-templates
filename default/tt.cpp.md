@@ -42,9 +42,11 @@ data:
     \ void _do2(T &&x, S&&...y) { cerr << x << \", \"; _do2(y...); }\n#else\n#define\
     \ dbg(...)\n#endif\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
     using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
-    //#define double ldb\n\ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>,\
-    \ class OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p =\
-    \ v[0]; T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
+    //#define double ldb\n\ntemplate<typename T> using min_heap = priority_queue<T,\
+    \ vector<T>, greater<T>>;\ntemplate<typename T> using max_heap = priority_queue<T>;\n\
+    \ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class\
+    \ OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
     \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
     \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
     \     x = p = op(p, x);\n}\n\ntemplate<class T>\nvoid setBit(T &msk, int bit,\
@@ -91,9 +93,11 @@ data:
     \ void _do2(T &&x, S&&...y) { cerr << x << \", \"; _do2(y...); }\n#else\n#define\
     \ dbg(...)\n#endif\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
     using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
-    //#define double ldb\n\ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>,\
-    \ class OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p =\
-    \ v[0]; T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
+    //#define double ldb\n\ntemplate<typename T> using min_heap = priority_queue<T,\
+    \ vector<T>, greater<T>>;\ntemplate<typename T> using max_heap = priority_queue<T>;\n\
+    \ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class\
+    \ OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
     \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
     \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
     \     x = p = op(p, x);\n}\n\ntemplate<class T>\nvoid setBit(T &msk, int bit,\
@@ -110,7 +114,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2024-07-07 16:19:53+08:00'
+  timestamp: '2024-07-07 16:37:58+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp
