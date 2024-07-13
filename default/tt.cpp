@@ -127,6 +127,12 @@ void pSum(rng &&v, OP op) {
       x = p = op(p, x);
 }
 
+template<ranges::forward_range rng>
+void Unique(rng &&v) {
+  ranges::sort(v);
+  v.resize(unique(v.begin(), v.end()) - v.begin());
+}
+
 template<class T>
 void setBit(T &msk, int bit, bool x) {
   msk = (msk & ~(T(1) << bit)) | (T(x) << bit);

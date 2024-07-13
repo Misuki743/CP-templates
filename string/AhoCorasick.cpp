@@ -14,7 +14,7 @@ struct AhoCorasick {
     v.reserve(sz);
   }
 
-  void insert(string s) {
+  int insert(string s) {
     int now = 0;
     for(char x : s) {
       int id = x - 'a';
@@ -25,6 +25,7 @@ struct AhoCorasick {
       now = v[now].nxt[id];
     }
     v[now].leaf = 1;
+    return now;
   }
 
   int go(int now, char ch) {
@@ -45,7 +46,7 @@ struct AhoCorasick {
     else return v[v[now].link].ex;
   }
 
-  void build() {
+  vector<int> build() {
     vector<int> q(1, 0);
     for(int i = 0; i < ssize(q); i++) {
       int now = q[i];
@@ -55,5 +56,6 @@ struct AhoCorasick {
         if (v[now].nxt[i] != -1)
           q.emplace_back(v[now].nxt[i]);
     }
+    return q;
   }
 };
