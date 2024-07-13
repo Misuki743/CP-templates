@@ -172,6 +172,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/Dijkstra.cpp
       title: graph/Dijkstra.cpp
+    - icon: ':warning:'
+      path: graph/Dijkstra2.cpp
+      title: graph/Dijkstra2.cpp
     - icon: ':heavy_check_mark:'
       path: graph/Dinic.cpp
       title: graph/Dinic.cpp
@@ -193,6 +196,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/SCC.cpp
       title: graph/SCC.cpp
+    - icon: ':warning:'
+      path: graph/centroid.cpp
+      title: graph/centroid.cpp
     - icon: ':heavy_check_mark:'
       path: graph/complementConnectivity.cpp
       title: graph/complementConnectivity.cpp
@@ -205,6 +211,9 @@ data:
     - icon: ':warning:'
       path: graph/functionalGraphDistance.cpp
       title: graph/functionalGraphDistance.cpp
+    - icon: ':warning:'
+      path: graph/gridBFS.cpp
+      title: graph/gridBFS.cpp
     - icon: ':warning:'
       path: graph/hopcroftKarp.cpp
       title: graph/hopcroftKarp.cpp
@@ -242,6 +251,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: misc/areaOfUnionOfRectangles.cpp
       title: misc/areaOfUnionOfRectangles.cpp
+    - icon: ':warning:'
+      path: misc/arrayUtility.cpp
+      title: misc/arrayUtility.cpp
     - icon: ':heavy_check_mark:'
       path: misc/compression.cpp
       title: compression

@@ -49,16 +49,18 @@ data:
     \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
     \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
     \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
-    \     x = p = op(p, x);\n}\n\ntemplate<class T>\nvoid setBit(T &msk, int bit,\
-    \ bool x) {\n  msk = (msk & ~(T(1) << bit)) | (T(x) << bit);\n}\ntemplate<class\
-    \ T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\ntemplate<class T>\
-    \ bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\ntemplate<class\
-    \ T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0\
-    \ ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if\
-    \ (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\n\
-    template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class\
-    \ T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
+    \     x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng\
+    \ &&v) {\n  ranges::sort(v);\n  v.resize(unique(v.begin(), v.end()) - v.begin());\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) {\n  msk = (msk &\
+    \ ~(T(1) << bit)) | (T(x) << bit);\n}\ntemplate<class T> void flipBit(T &msk,\
+    \ int bit) { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit)\
+    \ { return msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n\
+    \  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n\
+    }\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n\
+    \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
+    \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
+    \ T b) { return a < b ? a = b, 1 : 0; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
   code: "#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
     #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
     \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
@@ -100,21 +102,23 @@ data:
     \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
     \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
     \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
-    \     x = p = op(p, x);\n}\n\ntemplate<class T>\nvoid setBit(T &msk, int bit,\
-    \ bool x) {\n  msk = (msk & ~(T(1) << bit)) | (T(x) << bit);\n}\ntemplate<class\
-    \ T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\ntemplate<class T>\
-    \ bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\ntemplate<class\
-    \ T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0\
-    \ ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if\
-    \ (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\n\
-    template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class\
-    \ T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
+    \     x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng\
+    \ &&v) {\n  ranges::sort(v);\n  v.resize(unique(v.begin(), v.end()) - v.begin());\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) {\n  msk = (msk &\
+    \ ~(T(1) << bit)) | (T(x) << bit);\n}\ntemplate<class T> void flipBit(T &msk,\
+    \ int bit) { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit)\
+    \ { return msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n\
+    \  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n\
+    }\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n\
+    \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
+    \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
+    \ T b) { return a < b ? a = b, 1 : 0; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2024-07-07 16:37:58+08:00'
+  timestamp: '2024-07-13 22:34:20+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp
