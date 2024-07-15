@@ -1,4 +1,5 @@
-vector<int> zFunc(string &s) {
+template<class T>
+vector<int> zFunc(T &s) {
   vector<int> z(ssize(s));
   z[0] = ssize(s);
   for(int i = 1, l = 0, r = -1; i < ssize(s); i++) {

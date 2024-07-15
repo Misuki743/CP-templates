@@ -133,6 +133,19 @@ void Unique(rng &&v) {
   v.resize(unique(v.begin(), v.end()) - v.begin());
 }
 
+template<bool directed>
+vector<vector<int>> readGraph(int n, int m, int base) {
+  vector<vector<int>> g(n);
+  for(int i = 0; i < m; i++) {
+    int u, v; cin >> u >> v;
+    u -= base, v -= base;
+    g[u].emplace_back(v);
+    if constexpr (!directed)
+      g[v].emplace_back(u);
+  }
+  return g;
+}
+
 template<class T>
 void setBit(T &msk, int bit, bool x) {
   msk = (msk & ~(T(1) << bit)) | (T(x) << bit);
