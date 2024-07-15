@@ -51,6 +51,10 @@ data:
     \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
     \     x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng\
     \ &&v) {\n  ranges::sort(v);\n  v.resize(unique(v.begin(), v.end()) - v.begin());\n\
+    }\n\ntemplate<bool directed>\nvector<vector<int>> readGraph(int n, int m, int\
+    \ base) {\n  vector<vector<int>> g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
     }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) {\n  msk = (msk &\
     \ ~(T(1) << bit)) | (T(x) << bit);\n}\ntemplate<class T> void flipBit(T &msk,\
     \ int bit) { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit)\
@@ -104,6 +108,10 @@ data:
     \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
     \     x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng\
     \ &&v) {\n  ranges::sort(v);\n  v.resize(unique(v.begin(), v.end()) - v.begin());\n\
+    }\n\ntemplate<bool directed>\nvector<vector<int>> readGraph(int n, int m, int\
+    \ base) {\n  vector<vector<int>> g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
     }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) {\n  msk = (msk &\
     \ ~(T(1) << bit)) | (T(x) << bit);\n}\ntemplate<class T> void flipBit(T &msk,\
     \ int bit) { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit)\
@@ -118,7 +126,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2024-07-13 22:34:20+08:00'
+  timestamp: '2024-07-15 22:07:26+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp
