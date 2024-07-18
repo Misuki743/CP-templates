@@ -23,7 +23,7 @@ struct DSU {
     int b1 = query(v1), b2 = query(v2);
 
     if (b1 == b2)
-      return false;
+      return op(inv(_pot[v1]), _pot[v2]) == d;
 
     if (sz[b1] > sz[b2]) {
       swap(b1, b2), swap(v1, v2);
