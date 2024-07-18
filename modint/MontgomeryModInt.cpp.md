@@ -124,6 +124,9 @@ data:
     path: test/tree_path_composite_sum.test.cpp
     title: test/tree_path_composite_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/unionfind_with_potential_non_commutative_group.test.cpp
+    title: test/unionfind_with_potential_non_commutative_group.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -250,6 +253,7 @@ data:
   - test/inv_of_formal_power_series_sparse.test.cpp
   - test/convolution_1e9+7.test.cpp
   - test/polynomial_interpolation.test.cpp
+  - test/unionfind_with_potential_non_commutative_group.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/incremental_scc.test.cpp

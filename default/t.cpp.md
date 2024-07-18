@@ -265,6 +265,9 @@ data:
     path: test/unionfind.test.cpp
     title: test/unionfind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/unionfind_with_potential_non_commutative_group.test.cpp
+    title: test/unionfind_with_potential_non_commutative_group.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/vertex_add_path_sum.test.cpp
     title: test/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -459,6 +462,7 @@ data:
   - test/primitive_root.test.cpp
   - test/longest_common_substring.test.cpp
   - test/cycle_detection_undirected.test.cpp
+  - test/unionfind_with_potential_non_commutative_group.test.cpp
   - test/rooted_tree_isomorphism_classification.test.cpp
   - test/persistent_unionfind.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp

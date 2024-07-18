@@ -120,7 +120,7 @@ data:
     - icon: ':warning:'
       path: ds/persistentTreap.cpp
       title: ds/persistentTreap.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/potentialDSU.cpp
       title: ds/potentialDSU.cpp
     - icon: ':heavy_check_mark:'
@@ -695,6 +695,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unionfind.test.cpp
       title: test/unionfind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unionfind_with_potential_non_commutative_group.test.cpp
+      title: test/unionfind_with_potential_non_commutative_group.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
