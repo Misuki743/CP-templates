@@ -30,9 +30,10 @@ vector<int> factors(int val) {
   vector<int> res(1, 1);
   for(auto [p, idx] : factorize(val)) {
     vector<int> tmp;
-    for(int i = 0, base = 1; i <= idx; i++, base *= p)
+    ll base = 1;
+    for(int i = 0; i <= idx; i++, base *= p)
       for(int X : res)
-        tmp.emplace_back(X * base);
+        tmp.emplace_back(X * (int)base);
     res.swap(tmp);
   }
   return res;

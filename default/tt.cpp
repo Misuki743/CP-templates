@@ -115,22 +115,38 @@ template<typename T> using min_heap = priority_queue<T, vector<T>, greater<T>>;
 template<typename T> using max_heap = priority_queue<T>;
 
 template<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class OP = plus<T>>
-void pSum(rng &&v) {
+void pSum(rng &v) {
   if (!v.empty())
     for(T p = v[0]; T &x : v | views::drop(1))
       x = p = OP()(p, x);
 }
 template<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class OP>
-void pSum(rng &&v, OP op) {
+void pSum(rng &v, OP op) {
   if (!v.empty())
     for(T p = v[0]; T &x : v | views::drop(1))
       x = p = op(p, x);
 }
 
 template<ranges::forward_range rng>
-void Unique(rng &&v) {
+void Unique(rng &v) {
   ranges::sort(v);
   v.resize(unique(v.begin(), v.end()) - v.begin());
+}
+
+template<ranges::random_access_range rng>
+rng invPerm(rng &&p) {
+  rng ret = p;
+  for(int i = 0; i < ssize(p); i++)
+    ret[p[i]] = i;
+  return ret;
+}
+
+template<ranges::random_access_range rng, ranges::random_access_range rng2>
+rng Permute(rng &&v, rng2 &&p) {
+  rng ret = v;
+  for(int i = 0; i < ssize(p); i++)
+    ret[p[i]] = v[i];
+  return ret;
 }
 
 template<bool directed>
