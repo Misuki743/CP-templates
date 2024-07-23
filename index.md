@@ -306,6 +306,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/primitiveRoot.cpp
       title: numtheory/primitiveRoot.cpp
+    - icon: ':warning:'
+      path: numtheory/slowFactorize.cpp
+      title: numtheory/slowFactorize.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/sqrtMod.cpp
       title: numtheory/sqrtMod.cpp
