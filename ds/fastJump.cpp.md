@@ -10,9 +10,6 @@ data:
     path: test/lowest_common_ancestor.test.cpp
     title: test/lowest_common_ancestor.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/vertex_add_path_sum.test.cpp
-    title: test/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -69,7 +66,6 @@ data:
   - test/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/lowest_common_ancestor.test.cpp
-  - test/vertex_add_path_sum.test.cpp
   - test/jump_on_tree.test.cpp
 documentation_of: ds/fastJump.cpp
 layout: document

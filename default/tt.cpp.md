@@ -51,24 +51,24 @@ data:
     \ {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n     \
     \ x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng\
     \ &v) {\n  ranges::sort(v);\n  v.resize(unique(v.begin(), v.end()) - v.begin());\n\
-    }\n\ntemplate<ranges::random_access_range rng>\nrng invPerm(rng &&p) {\n  rng\
-    \ ret = p;\n  for(int i = 0; i < ssize(p); i++)\n    ret[p[i]] = i;\n  return\
-    \ ret;\n}\n\ntemplate<ranges::random_access_range rng, ranges::random_access_range\
-    \ rng2>\nrng Permute(rng &&v, rng2 &&p) {\n  rng ret = v;\n  for(int i = 0; i\
-    \ < ssize(p); i++)\n    ret[p[i]] = v[i];\n  return ret;\n}\n\ntemplate<bool directed>\n\
-    vector<vector<int>> readGraph(int n, int m, int base) {\n  vector<vector<int>>\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class T>\nvoid setBit(T\
-    \ &msk, int bit, bool x) {\n  msk = (msk & ~(T(1) << bit)) | (T(x) << bit);\n\
-    }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\ntemplate<class\
-    \ T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\ntemplate<class\
-    \ T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0\
-    \ ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if\
-    \ (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\n\
-    template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class\
-    \ T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
+    }\n\ntemplate<ranges::random_access_range rng>\nrng invPerm(rng &p) {\n  rng ret\
+    \ = p;\n  for(int i = 0; i < ssize(p); i++)\n    ret[p[i]] = i;\n  return ret;\n\
+    }\n\ntemplate<ranges::random_access_range rng, ranges::random_access_range rng2>\n\
+    rng Permute(rng &v, rng2 &p) {\n  rng ret = v;\n  for(int i = 0; i < ssize(p);\
+    \ i++)\n    ret[p[i]] = v[i];\n  return ret;\n}\n\ntemplate<bool directed>\nvector<vector<int>>\
+    \ readGraph(int n, int m, int base) {\n  vector<vector<int>> g(n);\n  for(int\
+    \ i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -= base, v -= base;\n\
+    \    g[u].emplace_back(v);\n    if constexpr (!directed)\n      g[v].emplace_back(u);\n\
+    \  }\n  return g;\n}\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x)\
+    \ {\n  msk = (msk & ~(T(1) << bit)) | (T(x) << bit);\n}\ntemplate<class T> void\
+    \ flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T\
+    \ msk, int bit) { return msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T\
+    \ a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b\
+    \ + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1,\
+    \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\
+    \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
+    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
   code: "#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
     #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
     \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
@@ -112,29 +112,29 @@ data:
     \ {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n     \
     \ x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng\
     \ &v) {\n  ranges::sort(v);\n  v.resize(unique(v.begin(), v.end()) - v.begin());\n\
-    }\n\ntemplate<ranges::random_access_range rng>\nrng invPerm(rng &&p) {\n  rng\
-    \ ret = p;\n  for(int i = 0; i < ssize(p); i++)\n    ret[p[i]] = i;\n  return\
-    \ ret;\n}\n\ntemplate<ranges::random_access_range rng, ranges::random_access_range\
-    \ rng2>\nrng Permute(rng &&v, rng2 &&p) {\n  rng ret = v;\n  for(int i = 0; i\
-    \ < ssize(p); i++)\n    ret[p[i]] = v[i];\n  return ret;\n}\n\ntemplate<bool directed>\n\
-    vector<vector<int>> readGraph(int n, int m, int base) {\n  vector<vector<int>>\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class T>\nvoid setBit(T\
-    \ &msk, int bit, bool x) {\n  msk = (msk & ~(T(1) << bit)) | (T(x) << bit);\n\
-    }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\ntemplate<class\
-    \ T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\ntemplate<class\
-    \ T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0\
-    \ ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if\
-    \ (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\n\
-    template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class\
-    \ T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
+    }\n\ntemplate<ranges::random_access_range rng>\nrng invPerm(rng &p) {\n  rng ret\
+    \ = p;\n  for(int i = 0; i < ssize(p); i++)\n    ret[p[i]] = i;\n  return ret;\n\
+    }\n\ntemplate<ranges::random_access_range rng, ranges::random_access_range rng2>\n\
+    rng Permute(rng &v, rng2 &p) {\n  rng ret = v;\n  for(int i = 0; i < ssize(p);\
+    \ i++)\n    ret[p[i]] = v[i];\n  return ret;\n}\n\ntemplate<bool directed>\nvector<vector<int>>\
+    \ readGraph(int n, int m, int base) {\n  vector<vector<int>> g(n);\n  for(int\
+    \ i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -= base, v -= base;\n\
+    \    g[u].emplace_back(v);\n    if constexpr (!directed)\n      g[v].emplace_back(u);\n\
+    \  }\n  return g;\n}\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x)\
+    \ {\n  msk = (msk & ~(T(1) << bit)) | (T(x) << bit);\n}\ntemplate<class T> void\
+    \ flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T\
+    \ msk, int bit) { return msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T\
+    \ a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b\
+    \ + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1,\
+    \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\
+    \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
+    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2024-07-23 18:02:38+08:00'
+  timestamp: '2024-07-24 13:33:23+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp

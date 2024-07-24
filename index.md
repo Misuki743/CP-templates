@@ -66,6 +66,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/DSUrollback.cpp
       title: ds/DSUrollback.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds/LCA.cpp
+      title: ds/LCA.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds/RMQ.cpp
+      title: ds/RMQ.cpp
     - icon: ':warning:'
       path: ds/auxiliaryTree.cpp
       title: auxiliaryTree
@@ -564,6 +570,9 @@ data:
       path: test/lowest_common_ancestor.test.cpp
       title: test/lowest_common_ancestor.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/lowest_common_ancestor_2.test.cpp
+      title: test/lowest_common_ancestor_2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/matching_on_bipartite_graph.test.cpp
       title: test/matching_on_bipartite_graph.test.cpp
     - icon: ':heavy_check_mark:'
@@ -668,6 +677,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/static_RMQ.test.cpp
       title: test/static_RMQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/static_RMQ_2.test.cpp
+      title: test/static_RMQ_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/static_range_count_distinct.test.cpp
       title: test/static_range_count_distinct.test.cpp

@@ -130,6 +130,9 @@ data:
     path: test/lowest_common_ancestor.test.cpp
     title: test/lowest_common_ancestor.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/lowest_common_ancestor_2.test.cpp
+    title: test/lowest_common_ancestor_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/matching_on_bipartite_graph.test.cpp
     title: test/matching_on_bipartite_graph.test.cpp
   - icon: ':heavy_check_mark:'
@@ -234,6 +237,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/static_RMQ.test.cpp
     title: test/static_RMQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/static_RMQ_2.test.cpp
+    title: test/static_RMQ_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/static_range_count_distinct.test.cpp
     title: test/static_range_count_distinct.test.cpp
@@ -406,6 +412,7 @@ data:
   - test/counting_spanning_tree_directed.test.cpp
   - test/sharp_p_subset_sum.test.cpp
   - test/mul_modp_convolution.test.cpp
+  - test/static_RMQ_2.test.cpp
   - test/enumerate_quotients.test.cpp
   - test/range_reverse_range_sum.test.cpp
   - test/range_kth_smallest.test.cpp
@@ -433,6 +440,7 @@ data:
   - test/counting_spanning_tree_undirected.test.cpp
   - test/two_sat.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
+  - test/lowest_common_ancestor_2.test.cpp
   - test/strongly_connected_components.test.cpp
   - test/tree_path_composite_sum.test.cpp
   - test/log_of_formal_power_series.test.cpp
