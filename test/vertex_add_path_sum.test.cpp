@@ -1,7 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_path_sum"
 
 #include "../default/t.cpp"
-#include "../ds/fastJump.cpp"
+#include "../ds/RMQ.cpp"
+#include "../ds/LCA.cpp"
 #include "../segtree/dualSegmentTree.cpp"
 #include "../ds/eulerTour.cpp"
 

@@ -134,7 +134,7 @@ void Unique(rng &v) {
 }
 
 template<ranges::random_access_range rng>
-rng invPerm(rng &&p) {
+rng invPerm(rng &p) {
   rng ret = p;
   for(int i = 0; i < ssize(p); i++)
     ret[p[i]] = i;
@@ -142,7 +142,7 @@ rng invPerm(rng &&p) {
 }
 
 template<ranges::random_access_range rng, ranges::random_access_range rng2>
-rng Permute(rng &&v, rng2 &&p) {
+rng Permute(rng &v, rng2 &p) {
   rng ret = v;
   for(int i = 0; i < ssize(p); i++)
     ret[p[i]] = v[i];
