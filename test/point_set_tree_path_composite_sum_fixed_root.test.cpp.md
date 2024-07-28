@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/staticTopTree.cpp
     title: ds/staticTopTree.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: misc/dynamicTreeDP.cpp
     title: misc/dynamicTreeDP.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root
@@ -140,14 +140,14 @@ data:
     \ + rsz + 1};\n    } else {\n      setVertex(l, r, v, t);\n      return {v, lsz\
     \ + rsz + 1};\n    }\n  }\n\n  pii compress(int v) {\n    vector<pii> vs(1, addEdge(v));\n\
     \    while(!g[v].empty()) \n      vs.emplace_back(addEdge(v = g[v][0]));\n   \
-    \ return merge(vs, type::Rake);\n  }\n\n  pii addEdge(int v) {\n    auto [l, lsz]\
-    \ = addVertex(v);\n    setVertex(l, -1, v + n, type::AddEdge);\n    return {v\
-    \ + n, lsz + 1};\n  }\n\n  pii addVertex(int v) {\n    if (ssize(g[v]) <= 1) {\n\
-    \      setVertex(-1, -1, v, type::Vertex);\n      return {v, 1};\n    } else {\n\
-    \      auto [l, lsz] = rake(v);\n      setVertex(l, -1, v, type::AddVertex);\n\
+    \ return merge(vs, type::Compress);\n  }\n\n  pii addEdge(int v) {\n    auto [l,\
+    \ lsz] = addVertex(v);\n    setVertex(l, -1, v + n, type::AddEdge);\n    return\
+    \ {v + n, lsz + 1};\n  }\n\n  pii addVertex(int v) {\n    if (ssize(g[v]) <= 1)\
+    \ {\n      setVertex(-1, -1, v, type::Vertex);\n      return {v, 1};\n    } else\
+    \ {\n      auto [l, lsz] = rake(v);\n      setVertex(l, -1, v, type::AddVertex);\n\
     \      return {v, lsz + 1};\n    }\n  }\n\n  pii rake(int v) {\n    vector<pii>\
     \ vs;\n    for(int x : g[v] | views::drop(1))\n      vs.emplace_back(compress(x));\n\
-    \    return merge(vs, type::Compress);\n  }\n};\n#line 1 \"misc/dynamicTreeDP.cpp\"\
+    \    return merge(vs, type::Rake);\n  }\n};\n#line 1 \"misc/dynamicTreeDP.cpp\"\
     \n//#include \"ds/staticTopTree.cpp\"\n\ntemplate<class V, V(*base)(int), class\
     \ E, E(*addEdge)(const V&, int eid),\nE(*op)(const E&, const E&), V(*addVertex)(const\
     \ E&, int vid), E(*compress)(const E&, const E&)>\nstruct dynamicTreeDP {\n  int\
@@ -216,8 +216,8 @@ data:
   isVerificationFile: true
   path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:57:55+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-28 22:15:46+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
 layout: document

@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lowest_common_ancestor_2.test.cpp
     title: test/lowest_common_ancestor_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/static_RMQ_2.test.cpp
     title: test/static_RMQ_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_add_path_sum.test.cpp
     title: test/vertex_add_path_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/RMQ.cpp\"\ntemplate<class T>\nstruct RMQ {\n  uint64_t\
@@ -60,7 +60,7 @@ data:
   path: ds/RMQ.cpp
   requiredBy: []
   timestamp: '2024-07-24 13:33:23+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/static_RMQ_2.test.cpp
   - test/lowest_common_ancestor_2.test.cpp

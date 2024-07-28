@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/staticTopTree.cpp\"\nstruct staticTopTree {\n  enum type\
@@ -37,14 +37,14 @@ data:
     \    } else {\n      setVertex(l, r, v, t);\n      return {v, lsz + rsz + 1};\n\
     \    }\n  }\n\n  pii compress(int v) {\n    vector<pii> vs(1, addEdge(v));\n \
     \   while(!g[v].empty()) \n      vs.emplace_back(addEdge(v = g[v][0]));\n    return\
-    \ merge(vs, type::Rake);\n  }\n\n  pii addEdge(int v) {\n    auto [l, lsz] = addVertex(v);\n\
-    \    setVertex(l, -1, v + n, type::AddEdge);\n    return {v + n, lsz + 1};\n \
-    \ }\n\n  pii addVertex(int v) {\n    if (ssize(g[v]) <= 1) {\n      setVertex(-1,\
-    \ -1, v, type::Vertex);\n      return {v, 1};\n    } else {\n      auto [l, lsz]\
-    \ = rake(v);\n      setVertex(l, -1, v, type::AddVertex);\n      return {v, lsz\
-    \ + 1};\n    }\n  }\n\n  pii rake(int v) {\n    vector<pii> vs;\n    for(int x\
-    \ : g[v] | views::drop(1))\n      vs.emplace_back(compress(x));\n    return merge(vs,\
-    \ type::Compress);\n  }\n};\n"
+    \ merge(vs, type::Compress);\n  }\n\n  pii addEdge(int v) {\n    auto [l, lsz]\
+    \ = addVertex(v);\n    setVertex(l, -1, v + n, type::AddEdge);\n    return {v\
+    \ + n, lsz + 1};\n  }\n\n  pii addVertex(int v) {\n    if (ssize(g[v]) <= 1) {\n\
+    \      setVertex(-1, -1, v, type::Vertex);\n      return {v, 1};\n    } else {\n\
+    \      auto [l, lsz] = rake(v);\n      setVertex(l, -1, v, type::AddVertex);\n\
+    \      return {v, lsz + 1};\n    }\n  }\n\n  pii rake(int v) {\n    vector<pii>\
+    \ vs;\n    for(int x : g[v] | views::drop(1))\n      vs.emplace_back(compress(x));\n\
+    \    return merge(vs, type::Rake);\n  }\n};\n"
   code: "struct staticTopTree {\n  enum type { Vertex, Rake, Compress, AddEdge, AddVertex};\n\
     \n  vector<vector<int>> g;\n  int stt_rt, n;\n  vector<int> lc, rc, p, ord;\n\
     \  vector<type> vt;\n  int nxt;\n\n  staticTopTree(vector<vector<int>> _g, int\
@@ -70,20 +70,20 @@ data:
     \ + rsz + 1};\n    } else {\n      setVertex(l, r, v, t);\n      return {v, lsz\
     \ + rsz + 1};\n    }\n  }\n\n  pii compress(int v) {\n    vector<pii> vs(1, addEdge(v));\n\
     \    while(!g[v].empty()) \n      vs.emplace_back(addEdge(v = g[v][0]));\n   \
-    \ return merge(vs, type::Rake);\n  }\n\n  pii addEdge(int v) {\n    auto [l, lsz]\
-    \ = addVertex(v);\n    setVertex(l, -1, v + n, type::AddEdge);\n    return {v\
-    \ + n, lsz + 1};\n  }\n\n  pii addVertex(int v) {\n    if (ssize(g[v]) <= 1) {\n\
-    \      setVertex(-1, -1, v, type::Vertex);\n      return {v, 1};\n    } else {\n\
-    \      auto [l, lsz] = rake(v);\n      setVertex(l, -1, v, type::AddVertex);\n\
+    \ return merge(vs, type::Compress);\n  }\n\n  pii addEdge(int v) {\n    auto [l,\
+    \ lsz] = addVertex(v);\n    setVertex(l, -1, v + n, type::AddEdge);\n    return\
+    \ {v + n, lsz + 1};\n  }\n\n  pii addVertex(int v) {\n    if (ssize(g[v]) <= 1)\
+    \ {\n      setVertex(-1, -1, v, type::Vertex);\n      return {v, 1};\n    } else\
+    \ {\n      auto [l, lsz] = rake(v);\n      setVertex(l, -1, v, type::AddVertex);\n\
     \      return {v, lsz + 1};\n    }\n  }\n\n  pii rake(int v) {\n    vector<pii>\
     \ vs;\n    for(int x : g[v] | views::drop(1))\n      vs.emplace_back(compress(x));\n\
-    \    return merge(vs, type::Compress);\n  }\n};\n"
+    \    return merge(vs, type::Rake);\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/staticTopTree.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:57:55+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-07-28 22:15:46+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
 documentation_of: ds/staticTopTree.cpp
