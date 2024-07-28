@@ -69,7 +69,7 @@ struct staticTopTree {
     vector<pii> vs(1, addEdge(v));
     while(!g[v].empty()) 
       vs.emplace_back(addEdge(v = g[v][0]));
-    return merge(vs, type::Rake);
+    return merge(vs, type::Compress);
   }
 
   pii addEdge(int v) {
@@ -93,6 +93,6 @@ struct staticTopTree {
     vector<pii> vs;
     for(int x : g[v] | views::drop(1))
       vs.emplace_back(compress(x));
-    return merge(vs, type::Compress);
+    return merge(vs, type::Rake);
   }
 };
