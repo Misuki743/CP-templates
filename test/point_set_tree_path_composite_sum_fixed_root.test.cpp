@@ -14,7 +14,7 @@ V base(int i) { return {a[i], 1}; }
 E addEdge(const V &v, int i) { return {b[i] * v[0] + c[i] * v[1], v[1], b[i], c[i]}; }
 E op(const E &l, const E &r) { return {l[0] + r[0], l[1] + r[1], 0, 0}; }
 V addVertex(const E &e, int i) { return {e[0] + a[i], e[1] + 1}; }
-E rake(const E &l, const E &r) {
+E compress(const E &l, const E &r) {
   auto [c, d, i, j] = l;
   auto [e, f, g, h] = r;
   return {c * g + d * h + e, d + f, i * g, (j * g + h)};
@@ -51,7 +51,7 @@ signed main() {
     b[v] = bb, c[v] = cc;
   }
 
-  dynamicTreeDP<V, base, E, addEdge, op, addVertex, rake> ddp(g);
+  dynamicTreeDP<V, base, E, addEdge, op, addVertex, compress> ddp(g);
 
   while(q--) {
     int op; cin >> op;

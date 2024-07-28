@@ -1,7 +1,7 @@
 //#include "ds/staticTopTree.cpp"
 
 template<class V, V(*base)(int), class E, E(*addEdge)(const V&, int eid),
-E(*op)(const E&, const E&), V(*addVertex)(const E&, int vid), E(*rake)(const E&, const E&)>
+E(*op)(const E&, const E&), V(*addVertex)(const E&, int vid), E(*compress)(const E&, const E&)>
 struct dynamicTreeDP {
   int n;
   staticTopTree stt;
@@ -20,7 +20,7 @@ struct dynamicTreeDP {
     else if (type == 1)
       dpE[v - n] = op(dpE[stt.lc[v] - n], dpE[stt.rc[v] - n]);
     else if (type == 2)
-      dpE[v - n] = rake(dpE[stt.rc[v] - n], dpE[stt.lc[v] - n]);
+      dpE[v - n] = compress(dpE[stt.rc[v] - n], dpE[stt.lc[v] - n]);
     else if (type == 3)
       dpE[v - n] = addEdge(dpV[stt.lc[v]], v - n);
     else if (type == 4)

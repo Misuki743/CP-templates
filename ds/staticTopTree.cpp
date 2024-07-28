@@ -1,5 +1,5 @@
 struct staticTopTree {
-  enum type { Vertex, Compress, Rake, AddEdge, AddVertex};
+  enum type { Vertex, Rake, Compress, AddEdge, AddVertex};
 
   vector<vector<int>> g;
   int stt_rt, n;
@@ -11,7 +11,7 @@ struct staticTopTree {
   lc(4 * n, -1), rc(4 * n, -1), p(4 * n, -1), vt(4 * n, type::Vertex), nxt(2 * n) {
     g.swap(_g);
     dfs(root, -1);
-    stt_rt = rake(root).first;
+    stt_rt = compress(root).first;
     g.swap(_g);
   }
 
@@ -65,7 +65,7 @@ struct staticTopTree {
     }
   }
 
-  pii rake(int v) {
+  pii compress(int v) {
     vector<pii> vs(1, addEdge(v));
     while(!g[v].empty()) 
       vs.emplace_back(addEdge(v = g[v][0]));
@@ -83,16 +83,16 @@ struct staticTopTree {
       setVertex(-1, -1, v, type::Vertex);
       return {v, 1};
     } else {
-      auto [l, lsz] = compress(v);
+      auto [l, lsz] = rake(v);
       setVertex(l, -1, v, type::AddVertex);
       return {v, lsz + 1};
     }
   }
 
-  pii compress(int v) {
+  pii rake(int v) {
     vector<pii> vs;
     for(int x : g[v] | views::drop(1))
-      vs.emplace_back(rake(x));
+      vs.emplace_back(compress(x));
     return merge(vs, type::Compress);
   }
 };
