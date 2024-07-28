@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/longest_common_substring.test.cpp
     title: test/longest_common_substring.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/longestCommonSubstring.cpp\"\n//#include<string/suffixArray.cpp>\n\
@@ -34,7 +34,7 @@ data:
   path: string/longestCommonSubstring.cpp
   requiredBy: []
   timestamp: '2024-02-11 15:11:45+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/longest_common_substring.test.cpp
 documentation_of: string/longestCommonSubstring.cpp

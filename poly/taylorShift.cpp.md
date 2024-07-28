@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/polynomial_taylor_shift.test.cpp
     title: test/polynomial_taylor_shift.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/taylorShift.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
@@ -31,7 +31,7 @@ data:
   path: poly/taylorShift.cpp
   requiredBy: []
   timestamp: '2024-03-22 16:07:29+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/polynomial_taylor_shift.test.cpp
 documentation_of: poly/taylorShift.cpp

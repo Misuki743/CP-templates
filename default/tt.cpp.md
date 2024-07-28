@@ -51,11 +51,11 @@ data:
     \ {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n     \
     \ x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng\
     \ &v) {\n  ranges::sort(v);\n  v.resize(unique(v.begin(), v.end()) - v.begin());\n\
-    }\n\ntemplate<ranges::random_access_range rng>\nrng invPerm(rng &p) {\n  rng ret\
+    }\n\ntemplate<ranges::random_access_range rng>\nrng invPerm(rng p) {\n  rng ret\
     \ = p;\n  for(int i = 0; i < ssize(p); i++)\n    ret[p[i]] = i;\n  return ret;\n\
     }\n\ntemplate<ranges::random_access_range rng, ranges::random_access_range rng2>\n\
-    rng Permute(rng &v, rng2 &p) {\n  rng ret = v;\n  for(int i = 0; i < ssize(p);\
-    \ i++)\n    ret[p[i]] = v[i];\n  return ret;\n}\n\ntemplate<bool directed>\nvector<vector<int>>\
+    rng Permute(rng v, rng2 p) {\n  rng ret = v;\n  for(int i = 0; i < ssize(p); i++)\n\
+    \    ret[p[i]] = v[i];\n  return ret;\n}\n\ntemplate<bool directed>\nvector<vector<int>>\
     \ readGraph(int n, int m, int base) {\n  vector<vector<int>> g(n);\n  for(int\
     \ i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -= base, v -= base;\n\
     \    g[u].emplace_back(v);\n    if constexpr (!directed)\n      g[v].emplace_back(u);\n\
@@ -112,11 +112,11 @@ data:
     \ {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n     \
     \ x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng\
     \ &v) {\n  ranges::sort(v);\n  v.resize(unique(v.begin(), v.end()) - v.begin());\n\
-    }\n\ntemplate<ranges::random_access_range rng>\nrng invPerm(rng &p) {\n  rng ret\
+    }\n\ntemplate<ranges::random_access_range rng>\nrng invPerm(rng p) {\n  rng ret\
     \ = p;\n  for(int i = 0; i < ssize(p); i++)\n    ret[p[i]] = i;\n  return ret;\n\
     }\n\ntemplate<ranges::random_access_range rng, ranges::random_access_range rng2>\n\
-    rng Permute(rng &v, rng2 &p) {\n  rng ret = v;\n  for(int i = 0; i < ssize(p);\
-    \ i++)\n    ret[p[i]] = v[i];\n  return ret;\n}\n\ntemplate<bool directed>\nvector<vector<int>>\
+    rng Permute(rng v, rng2 p) {\n  rng ret = v;\n  for(int i = 0; i < ssize(p); i++)\n\
+    \    ret[p[i]] = v[i];\n  return ret;\n}\n\ntemplate<bool directed>\nvector<vector<int>>\
     \ readGraph(int n, int m, int base) {\n  vector<vector<int>> g(n);\n  for(int\
     \ i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -= base, v -= base;\n\
     \    g[u].emplace_back(v);\n    if constexpr (!directed)\n      g[v].emplace_back(u);\n\
@@ -134,7 +134,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2024-07-24 13:33:23+08:00'
+  timestamp: '2024-07-28 21:04:51+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp

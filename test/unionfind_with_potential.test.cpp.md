@@ -4,15 +4,12 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
+  - icon: ':x:'
+    path: ds/potentialDSU.cpp
+    title: ds/potentialDSU.cpp
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
-    path: poly/NTTmint.cpp
-    title: poly/NTTmint.cpp
-  - icon: ':x:'
-    path: poly/mulConvolution.cpp
-    title: mulConvolution
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -20,11 +17,11 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/mul_modp_convolution
+    PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential
     links:
-    - https://judge.yosupo.jp/problem/mul_modp_convolution
-  bundledCode: "#line 1 \"test/mul_modp_convolution.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/mul_modp_convolution\"\n\n#line 1 \"default/t.cpp\"\
+    - https://judge.yosupo.jp/problem/unionfind_with_potential
+  bundledCode: "#line 1 \"test/unionfind_with_potential.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\n\n#line 1 \"default/t.cpp\"\
     \n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
     #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
     \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
@@ -83,8 +80,20 @@ data:
     \ + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1,\
     \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\
     \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
-    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"modint/MontgomeryModInt.cpp\"\
-    \n//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
+    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"ds/potentialDSU.cpp\"\
+    \ntemplate<class G, G(*id)(), G(*op)(const G&, const G&), G(*inv)(const G&)>\n\
+    struct DSU {\n  vector<int> bos, sz;\n  vector<G> _pot;\n  int size;\n\n  DSU(int\
+    \ _size) : bos(_size), sz(_size, 1), _pot(_size, id()), size(_size) {\n    iota(bos.begin(),\
+    \ bos.end(), 0);\n  }\n\n  int query(int v) {\n    if (bos[v] == v) {\n      return\
+    \ v;\n    } else {\n      int tmp = query(bos[v]);\n      _pot[v] = op(_pot[bos[v]],\
+    \ _pot[v]);\n      return bos[v] = tmp;\n    }\n  }\n\n  //op(v1, d) = v2\n  bool\
+    \ merge(int v1, int v2, G d) {\n    int b1 = query(v1), b2 = query(v2);\n\n  \
+    \  if (b1 == b2)\n      return op(inv(_pot[v1]), _pot[v2]) == d;\n\n    if (sz[b1]\
+    \ > sz[b2]) {\n      swap(b1, b2), swap(v1, v2);\n      d = inv(d);\n    }\n \
+    \   bos[b1] = b2, sz[b2] += sz[b1], _pot[b1] = op(op(_pot[v2], inv(d)), inv(_pot[v1]));\n\
+    \n    return true;\n  }\n\n  //op(inv(v1), v2)\n  G query(int v1, int v2) {\n\
+    \    query(v1), query(v2);\n    return op(inv(_pot[v1]), _pot[v2]);\n  }\n};\n\
+    #line 1 \"modint/MontgomeryModInt.cpp\"\n//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
     //note: mod should be a prime less than 2^30.\n\ntemplate<uint32_t mod>\nstruct\
     \ MontgomeryModInt {\n  using mint = MontgomeryModInt;\n  using i32 = int32_t;\n\
     \  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static constexpr u32 get_r()\
@@ -114,85 +123,38 @@ data:
     \ mint operator/(mint a, mint b) { return a /= b; }\n\n  friend ostream& operator<<(ostream&\
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
-    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"poly/NTTmint.cpp\"\
-    \n//reference: https://judge.yosupo.jp/submission/69896\n//remark: MOD = 2^K *\
-    \ C + 1, R is a primitive root modulo MOD\n//remark: a.size() <= 2^K must be satisfied\n\
-    //some common modulo: 998244353  = 2^23 * 119 + 1, R = 3\n//                 \
-    \   469762049  = 2^26 * 7   + 1, R = 3\n//                    1224736769 = 2^24\
-    \ * 73  + 1, R = 3\n\ntemplate<int32_t k = 23, int32_t c = 119, int32_t r = 3,\
-    \ class Mint = MontgomeryModInt<998244353>>\nstruct NTT {\n\n  using u32 = uint32_t;\n\
-    \  static constexpr u32 mod = (1 << k) * c + 1;\n  static constexpr u32 get_mod()\
-    \ { return mod; }\n\n  static void ntt(vector<Mint> &a, bool inverse) {\n    static\
-    \ array<Mint, 30> w, w_inv;\n    if (w[0] == 0) {\n      Mint root = 2;\n    \
-    \  while(root.pow((mod - 1) / 2) == 1) root += 1;\n      for(int i = 0; i < 30;\
-    \ i++)\n        w[i] = -(root.pow((mod - 1) >> (i + 2))), w_inv[i] = 1 / w[i];\n\
-    \    }\n    int n = ssize(a);\n    if (not inverse) {\n      for(int m = n; m\
-    \ >>= 1; ) {\n        Mint ww = 1;\n        for(int s = 0, l = 0; s < n; s +=\
-    \ 2 * m) {\n          for(int i = s, j = s + m; i < s + m; i++, j++) {\n     \
-    \       Mint x = a[i], y = a[j] * ww;\n            a[i] = x + y, a[j] = x - y;\n\
-    \          }\n          ww *= w[__builtin_ctz(++l)];\n        }\n      }\n   \
-    \ } else {\n      for(int m = 1; m < n; m *= 2) {\n        Mint ww = 1;\n    \
-    \    for(int s = 0, l = 0; s < n; s += 2 * m) {\n          for(int i = s, j =\
-    \ s + m; i < s + m; i++, j++) {\n            Mint x = a[i], y = a[j];\n      \
-    \      a[i] = x + y, a[j] = (x - y) * ww;\n          }\n          ww *= w_inv[__builtin_ctz(++l)];\n\
-    \        }\n      }\n      Mint inv = 1 / Mint(n);\n      for(Mint &x : a) x *=\
-    \ inv;\n    }\n  }\n\n  static vector<Mint> conv(vector<Mint> a, vector<Mint>\
-    \ b) {\n    int sz = ssize(a) + ssize(b) - 1;\n    int n = bit_ceil((u32)sz);\n\
-    \n    a.resize(n, 0);\n    ntt(a, false);\n    b.resize(n, 0);\n    ntt(b, false);\n\
-    \n    for(int i = 0; i < n; i++)\n      a[i] *= b[i];\n\n    ntt(a, true);\n\n\
-    \    a.resize(sz);\n\n    return a;\n  }\n};\n#line 1 \"poly/mulConvolution.cpp\"\
-    \n//#include \"poly/NTTmint.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\n\
-    \nstruct mulConvolution {\n  const int P, root;\n  vector<int> powR, logR;\n\n\
-    \  int primitiveRoot(int p) {\n    vector<int> pf;\n    {\n      int tmp = p -\
-    \ 1;\n      for(int i = 2; i * i <= (p - 1); i++) {\n        if (tmp % i != 0)\
-    \ continue;\n        pf.emplace_back(i);\n        while(tmp % i == 0) tmp /= i;\n\
-    \      }\n      if (tmp != 1)\n        pf.emplace_back(tmp);\n    }\n\n    auto\
-    \ modPow = [p](ll a, int x) -> int {\n      if (x == 0) return 1;\n      if (a\
-    \ == 0) return 0;\n      ll b = 1;\n      while(x) {\n        if (x & 1) b = b\
-    \ * a % p;\n        a = a * a % p, x >>= 1;\n      }\n      return b;\n    };\n\
-    \n    for(int r = 1; ; r++) {\n      bool isRoot = true;\n      for(int d : pf)\
-    \ {\n        if (modPow(r, (p - 1) / d) == 1) {\n          isRoot = false;\n \
-    \         break;\n        }\n      }\n      if (isRoot)\n        return r;\n \
-    \   }\n  }\n\n  mulConvolution(int _P) : P(_P), root(primitiveRoot(_P)), powR(P\
-    \ - 1), logR(P, -1) {\n    for(int i = 0, tmp = 1; i < P - 1; i++, tmp = (ll)tmp\
-    \ * root % P)\n      powR[i] = tmp, logR[tmp] = i;\n  }\n\n  template<class Mint>\n\
-    \  vector<Mint> transform(vector<Mint> &f) {\n    assert(ssize(f) == P);\n   \
-    \ vector<Mint> g(P - 1);\n    for(int i = 1; i < P; i++)\n      g[logR[i]] = f[i];\n\
-    \    return g;\n  }\n\n  template<class Mint>\n  vector<Mint> invTransform(vector<Mint>\
-    \ &f) {\n    assert(ssize(f) == P - 1);\n    vector<Mint> g(P);\n    for(int i\
-    \ = 0; i < P - 1; i++)\n      g[powR[i]] = f[i];\n    return g;\n  }\n\n  template<class\
-    \ Mint>\n  vector<Mint> mulConv(vector<Mint> a, vector<Mint> b, vector<Mint>(*conv)(vector<Mint>,\
-    \ vector<Mint>)) {\n    Mint zero = accumulate(a.begin(), a.end(), Mint(0)) *\
-    \ b[0] + accumulate(b.begin() + 1, b.end(), Mint(0)) * a[0];\n    a = transform(a),\
-    \ b = transform(b);\n    a = conv(a, b);\n    for(int i = P - 1; i < 2 * P - 3;\
-    \ i++)\n      a[i - (P - 1)] += a[i];\n    a.resize(P - 1);\n    a = invTransform(a);\n\
-    \    a[0] = zero;\n    return a;\n  }\n};\n#line 7 \"test/mul_modp_convolution.test.cpp\"\
-    \n\nNTT ntt;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
-    \n  int p; cin >> p;\n  vector<mint> a(p), b(p);\n  for(mint &x : a)\n    cin\
-    \ >> x;\n  for(mint &x : b)\n    cin >> x;\n\n  mulConvolution mu(p);\n  cout\
-    \ << mu.mulConv(a, b, ntt.conv) << '\\n';\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/mul_modp_convolution\"\n\
-    \n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\n\
-    #include \"../poly/NTTmint.cpp\"\n#include \"../poly/mulConvolution.cpp\"\n\n\
-    NTT ntt;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n\
-    \  int p; cin >> p;\n  vector<mint> a(p), b(p);\n  for(mint &x : a)\n    cin >>\
-    \ x;\n  for(mint &x : b)\n    cin >> x;\n\n  mulConvolution mu(p);\n  cout <<\
-    \ mu.mulConv(a, b, ntt.conv) << '\\n';\n\n  return 0;\n}\n"
+    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 6 \"test/unionfind_with_potential.test.cpp\"\
+    \n\nmint id() { return 0; }\nmint op(const mint &a, const mint &b) { return a\
+    \ + b; }\nmint inv(const mint &a) { return mint(0) - a; }\n\nint main() {\n  int\
+    \ n, q; cin >> n >> q;\n\n  DSU<mint, id, op, inv> dsu(n);\n  while(q--) {\n \
+    \   int t, u, v; cin >> t >> u >> v;\n    if (t == 0) {\n      int x; cin >> x;\n\
+    \      cout << dsu.merge(v, u, x) << '\\n';\n    } else {\n      if (dsu.query(u)\
+    \ != dsu.query(v))\n        cout << -1 << '\\n';\n      else\n        cout <<\
+    \ dsu.query(v, u) << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
+    \n\n#include \"../default/t.cpp\"\n#include \"../ds/potentialDSU.cpp\"\n#include\
+    \ \"../modint/MontgomeryModInt.cpp\"\n\nmint id() { return 0; }\nmint op(const\
+    \ mint &a, const mint &b) { return a + b; }\nmint inv(const mint &a) { return\
+    \ mint(0) - a; }\n\nint main() {\n  int n, q; cin >> n >> q;\n\n  DSU<mint, id,\
+    \ op, inv> dsu(n);\n  while(q--) {\n    int t, u, v; cin >> t >> u >> v;\n   \
+    \ if (t == 0) {\n      int x; cin >> x;\n      cout << dsu.merge(v, u, x) << '\\\
+    n';\n    } else {\n      if (dsu.query(u) != dsu.query(v))\n        cout << -1\
+    \ << '\\n';\n      else\n        cout << dsu.query(v, u) << '\\n';\n    }\n  }\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
+  - ds/potentialDSU.cpp
   - modint/MontgomeryModInt.cpp
-  - poly/NTTmint.cpp
-  - poly/mulConvolution.cpp
   isVerificationFile: true
-  path: test/mul_modp_convolution.test.cpp
+  path: test/unionfind_with_potential.test.cpp
   requiredBy: []
   timestamp: '2024-07-28 21:04:51+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/mul_modp_convolution.test.cpp
+documentation_of: test/unionfind_with_potential.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mul_modp_convolution.test.cpp
-- /verify/test/mul_modp_convolution.test.cpp.html
-title: test/mul_modp_convolution.test.cpp
+- /verify/test/unionfind_with_potential.test.cpp
+- /verify/test/unionfind_with_potential.test.cpp.html
+title: test/unionfind_with_potential.test.cpp
 ---
