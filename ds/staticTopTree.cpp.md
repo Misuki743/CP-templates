@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/staticTopTree.cpp\"\nstruct staticTopTree {\n  enum type\
@@ -83,7 +83,7 @@ data:
   path: ds/staticTopTree.cpp
   requiredBy: []
   timestamp: '2024-07-28 21:04:51+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
 documentation_of: ds/staticTopTree.cpp

@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/staticTopTree.cpp
     title: ds/staticTopTree.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: misc/dynamicTreeDP.cpp
     title: misc/dynamicTreeDP.cpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root
@@ -217,7 +217,7 @@ data:
   path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
   requiredBy: []
   timestamp: '2024-07-28 21:04:51+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
 layout: document
