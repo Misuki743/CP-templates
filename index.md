@@ -255,7 +255,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/matrixMint.cpp
       title: linalg/matrixMint.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: linalg/xorBasis.cpp
       title: linalg/xorBasis.cpp
   - name: misc
@@ -590,6 +590,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/matrix_product.test.cpp
       title: test/matrix_product.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/matrix_rank_mod_2.test.cpp
+      title: test/matrix_rank_mod_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/maximum_independent_set.test.cpp
       title: test/maximum_independent_set.test.cpp

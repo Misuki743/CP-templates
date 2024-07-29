@@ -139,6 +139,9 @@ data:
     path: test/matrix_product.test.cpp
     title: test/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/matrix_rank_mod_2.test.cpp
+    title: test/matrix_rank_mod_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/maximum_independent_set.test.cpp
     title: test/maximum_independent_set.test.cpp
   - icon: ':heavy_check_mark:'
@@ -451,6 +454,7 @@ data:
   - test/unionfind_with_potential_non_commutative_group.test.cpp
   - test/shortest_path.test.cpp
   - test/polynomial_taylor_shift.test.cpp
+  - test/matrix_rank_mod_2.test.cpp
   - test/range_kth_smallest2.test.cpp
   - test/rectangle_sum.test.cpp
   - test/convolution.test.cpp
