@@ -283,6 +283,9 @@ data:
     path: test/vertex_add_path_sum.test.cpp
     title: test/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/vertex_add_path_sum_2.test.cpp
+    title: test/vertex_add_path_sum_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -539,6 +542,7 @@ data:
   - test/static_range_frequency.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
   - test/unionfind.test.cpp
+  - test/vertex_add_path_sum_2.test.cpp
   - test/factorize.test.cpp
   - test/determinant_of_matrix.test.cpp
 documentation_of: default/t.cpp

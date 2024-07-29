@@ -72,6 +72,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/RMQ.cpp
       title: ds/RMQ.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds/STT_pathAggregate.cpp
+      title: ds/STT_pathAggregate.cpp
     - icon: ':warning:'
       path: ds/auxiliaryTree.cpp
       title: auxiliaryTree
@@ -141,6 +144,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/staticTopTree.cpp
       title: ds/staticTopTree.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds/staticTopTree2.cpp
+      title: ds/staticTopTree2.cpp
     - icon: ':warning:'
       path: ds/topoSort.cpp
       title: ds/topoSort.cpp
@@ -728,6 +734,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/vertex_add_path_sum_2.test.cpp
+      title: test/vertex_add_path_sum_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/vertex_add_range_contour_sum_on_tree.test.cpp
