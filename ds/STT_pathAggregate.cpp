@@ -14,26 +14,16 @@ struct STT_pathAggregate : staticTopTree {
         data[mp[v]] = init[v];
       for(int v = 0; v < nxt; v++)
         if (vt[v] == type::Compress)
-          recalc(v);
+          data[v] = op(data[lc[v]], data[rc[v]]);
     }
   }
 
   void dfs(int v) {
-    if (lc[v] != -1) {
-      dep[lc[v]] = dep[v] + 1;
-      head[lc[v]] = vt[v] == type::AddVertex or (vt[v] == type::Rake and vt[lc[v]] != type::Rake) ? lc[v] : head[v];
-      dfs(lc[v]);
+    for(int c : {lc[v], rc[v]}) if (c != -1) {
+      dep[c] = dep[v] + 1;
+      head[c] = vt[v] == type::AddVertex or (vt[v] == type::Rake and vt[c] != type::Rake) ? c : head[v];
+      dfs(c);
     }
-    if (rc[v] != -1) {
-      dep[rc[v]] = dep[v] + 1;
-      head[rc[v]] = vt[v] == type::AddVertex or (vt[v] == type::Rake and vt[rc[v]] != type::Rake) ? rc[v] : head[v];
-      dfs(rc[v]);
-    }
-  }
-
-  void recalc(int v) {
-    if (rc[v] != -1) data[v] = op(data[lc[v]], data[rc[v]]);
-    else if (lc[v] != -1) data[v] = op(data[lc[v]], data[v]);
   }
 
   void pull(int v) {

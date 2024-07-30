@@ -5,10 +5,12 @@ struct staticTopTree {
   int n, nxt;
   vector<int> lc, rc, p, vt, mp;
 
-  staticTopTree(vector<vector<int>> _g) : g(_g), n(size(g)), nxt(0),
-  lc(3 * n, -1), rc(3 * n, -1), p(3 * n, -1), vt(3 * n), mp(n) {
+  staticTopTree(vector<vector<int>> _g) : n(size(_g)), nxt(0),
+  lc(2 * n, -1), rc(2 * n, -1), p(2 * n, -1), vt(2 * n), mp(n) {
+    g.swap(_g);
     dfs(0, -1);
     compress(0);
+    g.swap(_g);
   }
 
   int dfs(int v, int p) {
