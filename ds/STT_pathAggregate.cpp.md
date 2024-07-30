@@ -17,16 +17,12 @@ data:
     \ g, vector<M> init = vector<M>())\n  : staticTopTree(g), data(nxt, id()), dep(nxt),\
     \ head(nxt) {\n    head[nxt - 1] = nxt - 1;\n    dfs(nxt - 1);\n    if (!init.empty())\
     \ {\n      for(int v = 0; v < n; v++)\n        data[mp[v]] = init[v];\n      for(int\
-    \ v = 0; v < nxt; v++)\n        if (vt[v] == type::Compress)\n          recalc(v);\n\
-    \    }\n  }\n\n  void dfs(int v) {\n    if (lc[v] != -1) {\n      dep[lc[v]] =\
-    \ dep[v] + 1;\n      head[lc[v]] = vt[v] == type::AddVertex or (vt[v] == type::Rake\
-    \ and vt[lc[v]] != type::Rake) ? lc[v] : head[v];\n      dfs(lc[v]);\n    }\n\
-    \    if (rc[v] != -1) {\n      dep[rc[v]] = dep[v] + 1;\n      head[rc[v]] = vt[v]\
-    \ == type::AddVertex or (vt[v] == type::Rake and vt[rc[v]] != type::Rake) ? rc[v]\
-    \ : head[v];\n      dfs(rc[v]);\n    }\n  }\n\n  void recalc(int v) {\n    if\
-    \ (rc[v] != -1) data[v] = op(data[lc[v]], data[rc[v]]);\n    else if (lc[v] !=\
-    \ -1) data[v] = op(data[lc[v]], data[v]);\n  }\n\n  void pull(int v) {\n    v\
-    \ = p[v];\n    while(v != -1 and vt[v] == type::Compress) {\n      data[v] = op(data[lc[v]],\
+    \ v = 0; v < nxt; v++)\n        if (vt[v] == type::Compress)\n          data[v]\
+    \ = op(data[lc[v]], data[rc[v]]);\n    }\n  }\n\n  void dfs(int v) {\n    for(int\
+    \ c : {lc[v], rc[v]}) if (c != -1) {\n      dep[c] = dep[v] + 1;\n      head[c]\
+    \ = vt[v] == type::AddVertex or (vt[v] == type::Rake and vt[c] != type::Rake)\
+    \ ? c : head[v];\n      dfs(c);\n    }\n  }\n\n  void pull(int v) {\n    v = p[v];\n\
+    \    while(v != -1 and vt[v] == type::Compress) {\n      data[v] = op(data[lc[v]],\
     \ data[rc[v]]);\n      v = p[v];\n    }\n  }\n\n  void set(int v, M x) { data[mp[v]]\
     \ = x, pull(mp[v]); }\n\n  M levelAggregate(int v) {\n    int x = head[v];\n \
     \   M ret = data[v];\n    while(v != x) {\n      int w = p[v];\n      if (vt[w]\
@@ -48,16 +44,12 @@ data:
     \ init = vector<M>())\n  : staticTopTree(g), data(nxt, id()), dep(nxt), head(nxt)\
     \ {\n    head[nxt - 1] = nxt - 1;\n    dfs(nxt - 1);\n    if (!init.empty()) {\n\
     \      for(int v = 0; v < n; v++)\n        data[mp[v]] = init[v];\n      for(int\
-    \ v = 0; v < nxt; v++)\n        if (vt[v] == type::Compress)\n          recalc(v);\n\
-    \    }\n  }\n\n  void dfs(int v) {\n    if (lc[v] != -1) {\n      dep[lc[v]] =\
-    \ dep[v] + 1;\n      head[lc[v]] = vt[v] == type::AddVertex or (vt[v] == type::Rake\
-    \ and vt[lc[v]] != type::Rake) ? lc[v] : head[v];\n      dfs(lc[v]);\n    }\n\
-    \    if (rc[v] != -1) {\n      dep[rc[v]] = dep[v] + 1;\n      head[rc[v]] = vt[v]\
-    \ == type::AddVertex or (vt[v] == type::Rake and vt[rc[v]] != type::Rake) ? rc[v]\
-    \ : head[v];\n      dfs(rc[v]);\n    }\n  }\n\n  void recalc(int v) {\n    if\
-    \ (rc[v] != -1) data[v] = op(data[lc[v]], data[rc[v]]);\n    else if (lc[v] !=\
-    \ -1) data[v] = op(data[lc[v]], data[v]);\n  }\n\n  void pull(int v) {\n    v\
-    \ = p[v];\n    while(v != -1 and vt[v] == type::Compress) {\n      data[v] = op(data[lc[v]],\
+    \ v = 0; v < nxt; v++)\n        if (vt[v] == type::Compress)\n          data[v]\
+    \ = op(data[lc[v]], data[rc[v]]);\n    }\n  }\n\n  void dfs(int v) {\n    for(int\
+    \ c : {lc[v], rc[v]}) if (c != -1) {\n      dep[c] = dep[v] + 1;\n      head[c]\
+    \ = vt[v] == type::AddVertex or (vt[v] == type::Rake and vt[c] != type::Rake)\
+    \ ? c : head[v];\n      dfs(c);\n    }\n  }\n\n  void pull(int v) {\n    v = p[v];\n\
+    \    while(v != -1 and vt[v] == type::Compress) {\n      data[v] = op(data[lc[v]],\
     \ data[rc[v]]);\n      v = p[v];\n    }\n  }\n\n  void set(int v, M x) { data[mp[v]]\
     \ = x, pull(mp[v]); }\n\n  M levelAggregate(int v) {\n    int x = head[v];\n \
     \   M ret = data[v];\n    while(v != x) {\n      int w = p[v];\n      if (vt[w]\
@@ -77,7 +69,7 @@ data:
   isVerificationFile: false
   path: ds/STT_pathAggregate.cpp
   requiredBy: []
-  timestamp: '2024-07-30 00:39:06+08:00'
+  timestamp: '2024-07-30 15:37:30+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/vertex_add_path_sum_2.test.cpp
