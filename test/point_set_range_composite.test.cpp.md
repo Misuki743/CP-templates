@@ -122,16 +122,26 @@ data:
     \ return data[i + size]; }\n\n  M query(int l, int r) {\n    M L = id(), R = id();\n\
     \    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) L\
     \ = op(L, data[l++]);\n      if (r & 1) R = op(data[--r], R);\n    }\n    return\
-    \ op(L, R);\n  }\n\n  int firstTrue(int l, int r, function<bool(const M&)> f)\
-    \ {\n    vector<int> idL, idR;\n    int r0 = r;\n    for(l += size, r += size;\
+    \ op(L, R);\n  }\n\n  //return first j in [i, size) s.t. f(op([l, j])) is true,\n\
+    \  //assume f(id()) is false.\n  int firstTrue(int i, function<bool(const M&)>\
+    \ f) {\n    vector<int> idL, idR;\n    for(int l = i + size, r = size << 1; l\
+    \ < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n      if\
+    \ (r & 1) idR.emplace_back(--r);\n    }\n    idL.insert(idL.end(), idR.rbegin(),\
+    \ idR.rend());\n    M pre = id();\n    int v = -1;\n    for(int j : idL) {\n \
+    \     if (f(op(pre, data[j]))) {\n        v = j;\n        break;\n      } else\
+    \ {\n        pre = op(pre, data[j]);\n      }\n    }\n    if (v == -1) return\
+    \ size;\n    while(v < size) {\n      if (f(op(pre, data[v << 1])))\n        v\
+    \ = v << 1;\n      else\n        pre = op(pre, data[v << 1]), v = v << 1 | 1;\n\
+    \    }\n    return v - size;\n  }\n\n  int lastTrue(int i, function<bool(const\
+    \ M&)> f) {\n    vector<int> idL, idR;\n    for(int l = size, r = (i + 1) + size;\
     \ l < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n      if\
-    \ (r & 1) idR.emplace_back(--r);\n    }\n    while(!idR.empty()) {\n      idL.emplace_back(idR.back());\n\
-    \      idR.pop_back();\n    }\n    M pre = id();\n    int v = -1;\n    for(int\
-    \ i : idL) {\n      if (f(op(pre, data[i]))) {\n        v = i;\n        break;\n\
-    \      } else {\n        pre = op(pre, data[i]);\n      }\n    }\n    if (v ==\
-    \ -1)\n      return r0;\n    while(v < size) {\n      if (f(op(pre, data[v <<\
-    \ 1])))\n        v = v << 1;\n      else\n        pre = op(pre, data[v << 1]),\
-    \ v = v << 1 | 1;\n    }\n    return v - size;\n  }\n};\n#line 6 \"test/point_set_range_composite.test.cpp\"\
+    \ (r & 1) idR.emplace_back(--r);\n    }\n    idR.insert(idR.end(), idL.rbegin(),\
+    \ idL.rend());\n    M suf = id();\n    int v = -1;\n    for(int j : idR) {\n \
+    \     if (f(op(data[j], suf))) {\n        v = j;\n        break;\n      } else\
+    \ {\n        suf = op(data[j], suf);\n      }\n    }\n    if (v == -1) return\
+    \ -1;\n    while(v < size) {\n      if (f(op(data[v << 1 | 1], suf)))\n      \
+    \  v = v << 1 | 1;\n      else\n        suf = op(data[v << 1 | 1], suf), v = v\
+    \ << 1;\n    }\n    return v - size;\n  }\n};\n#line 6 \"test/point_set_range_composite.test.cpp\"\
     \n\nusing line = array<mint, 2>;\nline unit() { return line{1, 0}; }\nline ope(const\
     \ line &l, const line &r) {\n  return {l[0] * r[0], l[1] * r[0] + r[1]};\n}\n\n\
     signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
@@ -157,7 +167,7 @@ data:
   isVerificationFile: true
   path: test/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2024-08-02 18:14:24+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/point_set_range_composite.test.cpp

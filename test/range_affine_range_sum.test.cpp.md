@@ -141,33 +141,43 @@ data:
     \  push(trunc(l += size)), push(trunc(r += size) - 1);\n    for(; l < r; l >>=\
     \ 1, r >>= 1) {\n      if (l & 1) L = Mop(L, data[l++]);\n      if (r & 1) R =\
     \ Mop(data[--r], R);\n    }\n    return Mop(L, R);\n  }\n\n  int firstTrue(int\
-    \ l, int r, function<bool(const M&)> f) {\n    vector<int> idL, idR;\n    int\
-    \ r0 = r;\n    push(trunc(l + size)), push(trunc(r + size) - 1);\n    for(l +=\
-    \ size, r += size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n\
-    \      if (r & 1) idR.emplace_back(--r);\n    }\n    while(!idR.empty()) {\n \
-    \     idL.emplace_back(idR.back());\n      idR.pop_back();\n    }\n    M pre =\
-    \ Mid();\n    int v = -1;\n    for(int i : idL) {\n      if (f(Mop(pre, data[i])))\
-    \ {\n        v = i;\n        break;\n      } else {\n        pre = Mop(pre, data[i]);\n\
-    \      }\n    }\n    if (v == -1)\n      return r0;\n    while(v < size) {\n \
-    \     if (tag[v] != Tid()) {\n        apply(v << 1, tag[v]);\n        apply(v\
-    \ << 1 | 1, tag[v]);\n        tag[v] = Tid();\n      }\n      if (f(Mop(pre, data[v\
-    \ << 1])))\n        v = v << 1;\n      else\n        pre = Mop(pre, data[v <<\
-    \ 1]), v = v << 1 | 1;\n    }\n    return v - size;\n  }\n};\n#line 1 \"segtree/ultraLazySegmentTree.cpp\"\
-    \n//#include<segtree/lazySegmentTree.cpp>\n\ntemplate<class AM>\nstruct ultraLazySegmentTree\
-    \ : lazySegmentTree<typename AM::M, AM::Mid, AM::Mop, typename AM::T, AM::Tid,\
-    \ AM::Top, AM::act> {\n  using base = lazySegmentTree<typename AM::M, AM::Mid,\
-    \ AM::Mop, typename AM::T, AM::Tid, AM::Top, AM::act>;\n  ultraLazySegmentTree(vector<typename\
-    \ AM::M> init) : base(init) {}\n  ultraLazySegmentTree(int size) : base(size)\
-    \ {}\n};\n#line 1 \"actedmonoid/actedMonoid_affineSum.cpp\"\ntemplate<class U>\n\
-    struct actedMonoid_affineSum {\n  using M = array<U, 2>;\n  static M Mid() { return\
-    \ M{0, 0}; }\n  static M Mop(const M &a, const M &b) { return {a[0] + b[0], a[1]\
-    \ + b[1]}; }\n  using T = array<U, 2>;\n  static T Tid() { return T{1, 0}; }\n\
-    \  static T Top(const T &a, const T &b) { return T{a[0] * b[0], a[1] * b[0] +\
-    \ b[1]}; }\n  static M act(const M &a, const T &b) { return {a[0] * b[0] + a[1]\
-    \ * b[1], a[1]}; }\n};\n#line 8 \"test/range_affine_range_sum.test.cpp\"\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
-    \ n >> q;\n  vector<array<mint, 2>> a(n);\n  for(auto &[x, s] : a) {\n    cin\
-    \ >> x;\n    s = 1;\n  }\n\n  ultraLazySegmentTree<actedMonoid_affineSum<mint>>\
+    \ i, function<bool(const M&)> f) {\n    vector<int> idL, idR;\n    push(trunc(i\
+    \ + size)), push(trunc(size << 1) - 1);\n    for(int l = i + size, r = size <<\
+    \ 1; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n   \
+    \   if (r & 1) idR.emplace_back(--r);\n    }\n    idL.insert(idL.end(), idR.rbegin(),\
+    \ idR.rend());\n    M pre = Mid();\n    int v = -1;\n    for(int j : idL) {\n\
+    \      if (f(Mop(pre, data[j]))) {\n        v = j;\n        break;\n      } else\
+    \ {\n        pre = Mop(pre, data[j]);\n      }\n    }\n    if (v == -1) return\
+    \ size;\n    while(v < size) {\n      if (tag[v] != Tid()) {\n        apply(v\
+    \ << 1, tag[v]);\n        apply(v << 1 | 1, tag[v]);\n        tag[v] = Tid();\n\
+    \      }\n      if (f(Mop(pre, data[v << 1])))\n        v = v << 1;\n      else\n\
+    \        pre = Mop(pre, data[v << 1]), v = v << 1 | 1;\n    }\n    return v -\
+    \ size;\n  }\n\n  int lastTrue(int i, function<bool(const M&)> f) {\n    vector<int>\
+    \ idL, idR;\n    push(trunc(size)), push(trunc((i + 1) + size) - 1);\n    for(int\
+    \ l = size, r = (i + 1) + size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n\
+    \      if (r & 1) idR.emplace_back(--r);\n    }\n    idR.insert(idR.end(), idL.rbegin(),\
+    \ idL.rend());\n    M suf = Mid();\n    int v = -1;\n    for(int j : idR) {\n\
+    \      if (f(Mop(data[j], suf))) {\n        v = j;\n        break;\n      } else\
+    \ {\n        suf = Mop(data[j], suf);\n      }\n    }\n    if (v == -1) return\
+    \ -1;\n    while(v < size) {\n      if (tag[v] != Tid()) {\n        apply(v <<\
+    \ 1, tag[v]);\n        apply(v << 1 | 1, tag[v]);\n        tag[v] = Tid();\n \
+    \     }\n      if (f(Mop(data[v << 1 | 1], suf)))\n        v = v << 1 | 1;\n \
+    \     else\n        suf = Mop(data[v << 1 | 1], suf), v = v << 1;\n    }\n   \
+    \ return v - size;\n  }\n};\n#line 1 \"segtree/ultraLazySegmentTree.cpp\"\n//#include<segtree/lazySegmentTree.cpp>\n\
+    \ntemplate<class AM>\nstruct ultraLazySegmentTree : lazySegmentTree<typename AM::M,\
+    \ AM::Mid, AM::Mop, typename AM::T, AM::Tid, AM::Top, AM::act> {\n  using base\
+    \ = lazySegmentTree<typename AM::M, AM::Mid, AM::Mop, typename AM::T, AM::Tid,\
+    \ AM::Top, AM::act>;\n  ultraLazySegmentTree(vector<typename AM::M> init) : base(init)\
+    \ {}\n  ultraLazySegmentTree(int size) : base(size) {}\n};\n#line 1 \"actedmonoid/actedMonoid_affineSum.cpp\"\
+    \ntemplate<class U>\nstruct actedMonoid_affineSum {\n  using M = array<U, 2>;\n\
+    \  static M Mid() { return M{0, 0}; }\n  static M Mop(const M &a, const M &b)\
+    \ { return {a[0] + b[0], a[1] + b[1]}; }\n  using T = array<U, 2>;\n  static T\
+    \ Tid() { return T{1, 0}; }\n  static T Top(const T &a, const T &b) { return T{a[0]\
+    \ * b[0], a[1] * b[0] + b[1]}; }\n  static M act(const M &a, const T &b) { return\
+    \ {a[0] * b[0] + a[1] * b[1], a[1]}; }\n};\n#line 8 \"test/range_affine_range_sum.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vector<array<mint, 2>> a(n);\n  for(auto &[x, s] : a) {\n\
+    \    cin >> x;\n    s = 1;\n  }\n\n  ultraLazySegmentTree<actedMonoid_affineSum<mint>>\
     \ st(a);\n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int l,\
     \ r, b, c; cin >> l >> r >> b >> c;\n      st.modify(l, r, array<mint, 2>{b, c});\n\
     \    } else {\n      int l, r; cin >> l >> r;\n      cout << st.query(l, r)[0]\
@@ -192,7 +202,7 @@ data:
   isVerificationFile: true
   path: test/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2024-08-02 18:14:24+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/range_affine_range_sum.test.cpp
