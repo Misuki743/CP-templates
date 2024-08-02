@@ -81,10 +81,10 @@ struct MontgomeryModInt {
     return (a >= mod ? a - mod : a) != (b.a >= mod ? b.a - mod : b.a);
   }
 
-  friend mint operator+(mint a, mint b) { return a += b; }
-  friend mint operator-(mint a, mint b) { return a -= b; }
-  friend mint operator*(mint a, mint b) { return a *= b; }
-  friend mint operator/(mint a, mint b) { return a /= b; }
+  friend mint operator+(mint c, mint d) { return c += d; }
+  friend mint operator-(mint c, mint d) { return c -= d; }
+  friend mint operator*(mint c, mint d) { return c *= d; }
+  friend mint operator/(mint c, mint d) { return c /= d; }
 
   friend ostream& operator<<(ostream& os, const mint& b) {
     return os << b.get();
