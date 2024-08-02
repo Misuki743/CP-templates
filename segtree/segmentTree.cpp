@@ -27,34 +27,58 @@ struct segmentTree {
     return op(L, R);
   }
 
-  int firstTrue(int l, int r, function<bool(const M&)> f) {
+  //return first j in [i, size) s.t. f(op([l, j])) is true,
+  //assume f(id()) is false.
+  int firstTrue(int i, function<bool(const M&)> f) {
     vector<int> idL, idR;
-    int r0 = r;
-    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {
+    for(int l = i + size, r = size << 1; l < r; l >>= 1, r >>= 1) {
       if (l & 1) idL.emplace_back(l++);
       if (r & 1) idR.emplace_back(--r);
     }
-    while(!idR.empty()) {
-      idL.emplace_back(idR.back());
-      idR.pop_back();
-    }
+    idL.insert(idL.end(), idR.rbegin(), idR.rend());
     M pre = id();
     int v = -1;
-    for(int i : idL) {
-      if (f(op(pre, data[i]))) {
-        v = i;
+    for(int j : idL) {
+      if (f(op(pre, data[j]))) {
+        v = j;
         break;
       } else {
-        pre = op(pre, data[i]);
+        pre = op(pre, data[j]);
       }
     }
-    if (v == -1)
-      return r0;
+    if (v == -1) return size;
     while(v < size) {
       if (f(op(pre, data[v << 1])))
         v = v << 1;
       else
         pre = op(pre, data[v << 1]), v = v << 1 | 1;
+    }
+    return v - size;
+  }
+
+  int lastTrue(int i, function<bool(const M&)> f) {
+    vector<int> idL, idR;
+    for(int l = size, r = (i + 1) + size; l < r; l >>= 1, r >>= 1) {
+      if (l & 1) idL.emplace_back(l++);
+      if (r & 1) idR.emplace_back(--r);
+    }
+    idR.insert(idR.end(), idL.rbegin(), idL.rend());
+    M suf = id();
+    int v = -1;
+    for(int j : idR) {
+      if (f(op(data[j], suf))) {
+        v = j;
+        break;
+      } else {
+        suf = op(data[j], suf);
+      }
+    }
+    if (v == -1) return -1;
+    while(v < size) {
+      if (f(op(data[v << 1 | 1], suf)))
+        v = v << 1 | 1;
+      else
+        suf = op(data[v << 1 | 1], suf), v = v << 1;
     }
     return v - size;
   }

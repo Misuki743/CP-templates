@@ -63,30 +63,25 @@ struct lazySegmentTree {
     return Mop(L, R);
   }
 
-  int firstTrue(int l, int r, function<bool(const M&)> f) {
+  int firstTrue(int i, function<bool(const M&)> f) {
     vector<int> idL, idR;
-    int r0 = r;
-    push(trunc(l + size)), push(trunc(r + size) - 1);
-    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {
+    push(trunc(i + size)), push(trunc(size << 1) - 1);
+    for(int l = i + size, r = size << 1; l < r; l >>= 1, r >>= 1) {
       if (l & 1) idL.emplace_back(l++);
       if (r & 1) idR.emplace_back(--r);
     }
-    while(!idR.empty()) {
-      idL.emplace_back(idR.back());
-      idR.pop_back();
-    }
+    idL.insert(idL.end(), idR.rbegin(), idR.rend());
     M pre = Mid();
     int v = -1;
-    for(int i : idL) {
-      if (f(Mop(pre, data[i]))) {
-        v = i;
+    for(int j : idL) {
+      if (f(Mop(pre, data[j]))) {
+        v = j;
         break;
       } else {
-        pre = Mop(pre, data[i]);
+        pre = Mop(pre, data[j]);
       }
     }
-    if (v == -1)
-      return r0;
+    if (v == -1) return size;
     while(v < size) {
       if (tag[v] != Tid()) {
         apply(v << 1, tag[v]);
@@ -97,6 +92,39 @@ struct lazySegmentTree {
         v = v << 1;
       else
         pre = Mop(pre, data[v << 1]), v = v << 1 | 1;
+    }
+    return v - size;
+  }
+
+  int lastTrue(int i, function<bool(const M&)> f) {
+    vector<int> idL, idR;
+    push(trunc(size)), push(trunc((i + 1) + size) - 1);
+    for(int l = size, r = (i + 1) + size; l < r; l >>= 1, r >>= 1) {
+      if (l & 1) idL.emplace_back(l++);
+      if (r & 1) idR.emplace_back(--r);
+    }
+    idR.insert(idR.end(), idL.rbegin(), idL.rend());
+    M suf = Mid();
+    int v = -1;
+    for(int j : idR) {
+      if (f(Mop(data[j], suf))) {
+        v = j;
+        break;
+      } else {
+        suf = Mop(data[j], suf);
+      }
+    }
+    if (v == -1) return -1;
+    while(v < size) {
+      if (tag[v] != Tid()) {
+        apply(v << 1, tag[v]);
+        apply(v << 1 | 1, tag[v]);
+        tag[v] = Tid();
+      }
+      if (f(Mop(data[v << 1 | 1], suf)))
+        v = v << 1 | 1;
+      else
+        suf = Mop(data[v << 1 | 1], suf), v = v << 1;
     }
     return v - size;
   }
