@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: actedmonoid/actedMonoid_addMinCnt.cpp
     title: actedmonoid/actedMonoid_addMinCnt.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segtree/ultraLazySegmentTree.cpp
     title: segtree/ultraLazySegmentTree.cpp
   _extendedRequiredBy: []

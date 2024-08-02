@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrixMint.cpp
     title: linalg/matrixMint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
@@ -105,9 +105,9 @@ data:
     \ b) const {\n    return (a >= mod ? a - mod : a) == (b.a >= mod ? b.a - mod :\
     \ b.a);\n  }\n  bool operator!=(mint b) const {\n    return (a >= mod ? a - mod\
     \ : a) != (b.a >= mod ? b.a - mod : b.a);\n  }\n\n  friend mint operator+(mint\
-    \ a, mint b) { return a += b; }\n  friend mint operator-(mint a, mint b) { return\
-    \ a -= b; }\n  friend mint operator*(mint a, mint b) { return a *= b; }\n  friend\
-    \ mint operator/(mint a, mint b) { return a /= b; }\n\n  friend ostream& operator<<(ostream&\
+    \ c, mint d) { return c += d; }\n  friend mint operator-(mint c, mint d) { return\
+    \ c -= d; }\n  friend mint operator*(mint c, mint d) { return c *= d; }\n  friend\
+    \ mint operator/(mint c, mint d) { return c /= d; }\n\n  friend ostream& operator<<(ostream&\
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"linalg/matrixMint.cpp\"\
@@ -177,7 +177,7 @@ data:
   isVerificationFile: true
   path: test/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2024-08-02 21:56:58+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/matrix_product.test.cpp
