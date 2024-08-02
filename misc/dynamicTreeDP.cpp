@@ -1,30 +1,29 @@
 //#include "ds/staticTopTree.cpp"
 
-template<class V, V(*base)(int), class E, E(*addEdge)(const V&, int eid),
-E(*op)(const E&, const E&), V(*addVertex)(const E&, int vid), E(*compress)(const E&, const E&)>
+template<class T, T(*vertex)(int), T(*addEdge)(const T&, int eid),
+T(*rake)(const T&, const T&), T(*addVertex)(const T&, int vid), T(*compress)(const T&, const T&)>
 struct dynamicTreeDP {
   int n;
   staticTopTree stt;
-  vector<V> dpV;
-  vector<E> dpE;
+  vector<T> dp;
 
   dynamicTreeDP(vector<vector<int>> &g)
-  : n(size(g)),stt(g), dpV(n), dpE(3 * n) {
+  : n(size(g)),stt(g), dp(4 * n) {
     for(int v : stt.ord)
       update(v);
   }
 
   void update(int v) {
     if (auto type = stt.vt[v]; type == 0)
-      dpV[v] = base(v);
+      dp[v] = vertex(v);
     else if (type == 1)
-      dpE[v - n] = op(dpE[stt.lc[v] - n], dpE[stt.rc[v] - n]);
+      dp[v] = rake(dp[stt.lc[v]], dp[stt.rc[v]]);
     else if (type == 2)
-      dpE[v - n] = compress(dpE[stt.rc[v] - n], dpE[stt.lc[v] - n]);
+      dp[v] = compress(dp[stt.rc[v]], dp[stt.lc[v]]);
     else if (type == 3)
-      dpE[v - n] = addEdge(dpV[stt.lc[v]], v - n);
+      dp[v] = addEdge(dp[stt.lc[v]], v - n);
     else if (type == 4)
-      dpV[v] = addVertex(dpE[stt.lc[v] - n], v);
+      dp[v] = addVertex(dp[stt.lc[v]], v);
   }
 
   void pull(int v) {
@@ -36,5 +35,5 @@ struct dynamicTreeDP {
 
   void updateVertex(int v) { pull(v); }
   void updateEdge(int e) { pull(e + n); }
-  E get() { return dpE[stt.stt_rt - n]; }
+  T get() { return dp[stt.stt_rt]; }
 };

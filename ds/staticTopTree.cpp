@@ -15,12 +15,12 @@ struct staticTopTree {
     g.swap(_g);
   }
 
-  int dfs(int v, int p) {
+  int dfs(int v, int pa) {
     int sz = 1, pid = -1;
     pii heavy(-1, -1);
     for(int i = -1; int x : g[v]) {
       i++;
-      if (x == p) {
+      if (x == pa) {
         pid = i;
         continue;
       }
