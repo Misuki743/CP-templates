@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/staticTopTree.cpp\"\nstruct staticTopTree {\n  enum type\
@@ -17,9 +17,9 @@ data:
     \n  staticTopTree(vector<vector<int>> _g, int root = 0) : n(size(_g)),\n  lc(4\
     \ * n, -1), rc(4 * n, -1), p(4 * n, -1), vt(4 * n, type::Vertex), nxt(2 * n) {\n\
     \    g.swap(_g);\n    dfs(root, -1);\n    stt_rt = compress(root).first;\n   \
-    \ g.swap(_g);\n  }\n\n  int dfs(int v, int p) {\n    int sz = 1, pid = -1;\n \
-    \   pii heavy(-1, -1);\n    for(int i = -1; int x : g[v]) {\n      i++;\n    \
-    \  if (x == p) {\n        pid = i;\n        continue;\n      }\n      int tmp\
+    \ g.swap(_g);\n  }\n\n  int dfs(int v, int pa) {\n    int sz = 1, pid = -1;\n\
+    \    pii heavy(-1, -1);\n    for(int i = -1; int x : g[v]) {\n      i++;\n   \
+    \   if (x == pa) {\n        pid = i;\n        continue;\n      }\n      int tmp\
     \ = dfs(x, v);\n      chmax(heavy, pii(tmp, i));\n      sz += tmp;\n    }\n  \
     \  if (heavy.second != -1) swap(g[v][heavy.second], g[v][0]);\n    if (pid !=\
     \ -1) g[v].erase(g[v].begin() + (pid == 0 and heavy.second != -1 ? heavy.second\
@@ -50,9 +50,9 @@ data:
     \  vector<type> vt;\n  int nxt;\n\n  staticTopTree(vector<vector<int>> _g, int\
     \ root = 0) : n(size(_g)),\n  lc(4 * n, -1), rc(4 * n, -1), p(4 * n, -1), vt(4\
     \ * n, type::Vertex), nxt(2 * n) {\n    g.swap(_g);\n    dfs(root, -1);\n    stt_rt\
-    \ = compress(root).first;\n    g.swap(_g);\n  }\n\n  int dfs(int v, int p) {\n\
+    \ = compress(root).first;\n    g.swap(_g);\n  }\n\n  int dfs(int v, int pa) {\n\
     \    int sz = 1, pid = -1;\n    pii heavy(-1, -1);\n    for(int i = -1; int x\
-    \ : g[v]) {\n      i++;\n      if (x == p) {\n        pid = i;\n        continue;\n\
+    \ : g[v]) {\n      i++;\n      if (x == pa) {\n        pid = i;\n        continue;\n\
     \      }\n      int tmp = dfs(x, v);\n      chmax(heavy, pii(tmp, i));\n     \
     \ sz += tmp;\n    }\n    if (heavy.second != -1) swap(g[v][heavy.second], g[v][0]);\n\
     \    if (pid != -1) g[v].erase(g[v].begin() + (pid == 0 and heavy.second != -1\
@@ -82,8 +82,8 @@ data:
   isVerificationFile: false
   path: ds/staticTopTree.cpp
   requiredBy: []
-  timestamp: '2024-07-28 22:15:46+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-08-03 02:36:00+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
 documentation_of: ds/staticTopTree.cpp
