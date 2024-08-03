@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Z_algorithm.test.cpp
     title: test/Z_algorithm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -301,6 +301,9 @@ data:
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/wildcard_pattern_matching.test.cpp
+    title: test/wildcard_pattern_matching.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2544.test.cpp
     title: test/yuki_2544.test.cpp
   - icon: ':heavy_check_mark:'
@@ -444,6 +447,7 @@ data:
   verifiedWith:
   - test/longest_common_substring.test.cpp
   - test/unionfind_with_potential.test.cpp
+  - test/wildcard_pattern_matching.test.cpp
   - test/determinant_of_matrix.test.cpp
   - test/cycle_detection_directed.test.cpp
   - test/pow_of_matrix.test.cpp

@@ -76,6 +76,9 @@ data:
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/wildcard_pattern_matching.test.cpp
+    title: test/wildcard_pattern_matching.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2544.test.cpp
     title: test/yuki_2544.test.cpp
   - icon: ':heavy_check_mark:'
@@ -147,6 +150,7 @@ data:
   timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/wildcard_pattern_matching.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/convolution_1e9+7.test.cpp
   - test/mul_modp_convolution.test.cpp

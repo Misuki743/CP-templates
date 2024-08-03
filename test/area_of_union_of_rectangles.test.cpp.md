@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: actedmonoid/actedMonoid_addMinCnt.cpp
     title: actedmonoid/actedMonoid_addMinCnt.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds_problem/area_of_union_of_rectangles.cpp
     title: ds_problem/area_of_union_of_rectangles.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/ultraLazySegmentTree.cpp
     title: segtree/ultraLazySegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/area_of_union_of_rectangles
@@ -148,26 +148,26 @@ data:
     \n//#include \"segtree/ultraLazySegmentTree.cpp\"\n//#include \"actedMonoid/actedMonoid_addMinCnt.cpp\"\
     \n\ntemplate<class coordinate_type, class answer_type>\nanswer_type area_of_union_of_rectangles(vector<array<coordinate_type,\
     \ 4>> rect) {\n  vector<coordinate_type> xs(2 * size(rect)), ys(2 * size(rect));\n\
-    \  for(int i = 0; auto r : rect)\n    tie(xs[2 * i], ys[2 * i], xs[2 * i + 1],\
-    \ ys[2 * i + 1]) = r, i++;\n  Unique(xs), Unique(ys);\n\n  vector<array<int, 4>>\
-    \ event(2 * size(rect));\n  for(int i = 0; i < ssize(rect); i++) {\n    event[2\
-    \ * i] = {rect[i][0], rect[i][1], rect[i][3], 1};\n    event[2 * i + 1] = {rect[i][2],\
-    \ rect[i][1], rect[i][3], -1};\n  }\n  ranges::sort(event, {}, [](auto &x) { return\
-    \ x[0]; });\n\n  using AM = actedMonoid_addMinCnt<coordinate_type>;\n  ultraLazySegmentTree<AM>\
-    \ st([&]() {\n    vector<typename AM::M> init(ssize(ys) - 1);\n    for(int i =\
-    \ 0; i + 1 < ssize(ys); i++)\n      init[i] = make_pair(0, ys[i + 1] - ys[i]);\n\
-    \    return init;\n  }());\n\n  auto to_id = [&](int y) { return ranges::lower_bound(ys,\
-    \ y) - ys.begin(); };\n\n  answer_type ans = 0;\n  for(int i = 0, j = 0; ; i =\
-    \ j) {\n    while(j < ssize(event) and event[i][0] == event[j][0]) j++;\n    if\
-    \ (j == ssize(event)) break;\n    for(int k = i; k < j; k++) {\n      auto [_,\
-    \ l, r, d] = event[k];\n      st.modify(to_id(l), to_id(r), d);\n    }\n    auto\
-    \ [mn, cnt] = st.query(0, st.size);\n    answer_type w = event[j][0] - event[i][0];\n\
-    \    ans += (ys.back() - ys[0] - (mn == 0 ? cnt : 0)) * w;\n  }\n\n  return ans;\n\
-    }\n#line 8 \"test/area_of_union_of_rectangles.test.cpp\"\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<array<int,\
-    \ 4>> rect(n);\n  for(auto &[l, d, r, u] : rect)\n    cin >> l >> d >> r >> u;\n\
-    \n  cout << area_of_union_of_rectangles<int, ll>(rect) << '\\n';\n\n  return 0;\n\
-    }\n\n"
+    \  for(int i = 0; auto [a, b, c, d] : rect)\n    tie(xs[2 * i], ys[2 * i], xs[2\
+    \ * i + 1], ys[2 * i + 1]) = make_tuple(a, b, c, d), i++;\n  Unique(xs), Unique(ys);\n\
+    \n  vector<array<int, 4>> event(2 * size(rect));\n  for(int i = 0; i < ssize(rect);\
+    \ i++) {\n    event[2 * i] = {rect[i][0], rect[i][1], rect[i][3], 1};\n    event[2\
+    \ * i + 1] = {rect[i][2], rect[i][1], rect[i][3], -1};\n  }\n  ranges::sort(event,\
+    \ {}, [](auto &x) { return x[0]; });\n\n  using AM = actedMonoid_addMinCnt<coordinate_type>;\n\
+    \  ultraLazySegmentTree<AM> st([&]() {\n    vector<typename AM::M> init(ssize(ys)\
+    \ - 1);\n    for(int i = 0; i + 1 < ssize(ys); i++)\n      init[i] = make_pair(0,\
+    \ ys[i + 1] - ys[i]);\n    return init;\n  }());\n\n  auto to_id = [&](int y)\
+    \ { return ranges::lower_bound(ys, y) - ys.begin(); };\n\n  answer_type ans =\
+    \ 0;\n  for(int i = 0, j = 0; ; i = j) {\n    while(j < ssize(event) and event[i][0]\
+    \ == event[j][0]) j++;\n    if (j == ssize(event)) break;\n    for(int k = i;\
+    \ k < j; k++) {\n      auto [_, l, r, d] = event[k];\n      st.modify(to_id(l),\
+    \ to_id(r), d);\n    }\n    auto [mn, cnt] = st.query(0, st.size);\n    answer_type\
+    \ w = event[j][0] - event[i][0];\n    ans += (ys.back() - ys[0] - (mn == 0 ? cnt\
+    \ : 0)) * w;\n  }\n\n  return ans;\n}\n#line 8 \"test/area_of_union_of_rectangles.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
+    \ cin >> n;\n  vector<array<int, 4>> rect(n);\n  for(auto &[l, d, r, u] : rect)\n\
+    \    cin >> l >> d >> r >> u;\n\n  cout << area_of_union_of_rectangles<int, ll>(rect)\
+    \ << '\\n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/area_of_union_of_rectangles\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../segtree/lazySegmentTree.cpp\"\
     \n#include \"../segtree/ultraLazySegmentTree.cpp\"\n#include \"../actedmonoid/actedMonoid_addMinCnt.cpp\"\
@@ -185,8 +185,8 @@ data:
   isVerificationFile: true
   path: test/area_of_union_of_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2024-08-04 01:36:11+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-08-04 02:01:51+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/area_of_union_of_rectangles.test.cpp
 layout: document
