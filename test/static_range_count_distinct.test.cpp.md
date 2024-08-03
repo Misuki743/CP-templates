@@ -8,11 +8,11 @@ data:
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
   - icon: ':heavy_check_mark:'
+    path: ds_problem/rangeCountDistinct.cpp
+    title: ds_problem/rangeCountDistinct.cpp
+  - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':heavy_check_mark:'
-    path: misc/rangeCountDistinct.cpp
-    title: misc/rangeCountDistinct.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -106,8 +106,8 @@ data:
     \ }\n  template<ranges::range rng, class proj = identity>\n  void mapping(rng\
     \ &v, proj p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }\n  template<ranges::range\
     \ rng, class proj = identity>\n  void insert(rng &v, proj p = {}) { for(auto &x\
-    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"misc/rangeCountDistinct.cpp\"\n\
-    //#include<ds/fenwickTree.cpp>\n//#include<misc/compression.cpp>\n\ntemplate<class\
+    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"ds_problem/rangeCountDistinct.cpp\"\
+    \n//#include<ds/fenwickTree.cpp>\n//#include<misc/compression.cpp>\n\ntemplate<class\
     \ T>\nvector<int> rangeCountDistinct(vector<T> a, vector<array<int, 2>> query)\
     \ {\n  vector<int> b = [&]() {\n    compression ys(a);\n    return ys.ord;\n \
     \ }();\n\n  vector<int> qId(ssize(query));\n  iota(qId.begin(), qId.end(), 0);\n\
@@ -124,21 +124,21 @@ data:
     \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_count_distinct\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../ds/fenwickTree.cpp\"\n#include\
-    \ \"../misc/compression.cpp\"\n#include \"../misc/rangeCountDistinct.cpp\"\n\n\
-    signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
-    \ cin >> n >> q;\n  vector<int> a(n);\n  for(int &x : a)\n    cin >> x;\n  vector<array<int,\
-    \ 2>> query(q);\n  for(auto &[l, r] : query)\n    cin >> l >> r;\n\n  for(int\
-    \ x : rangeCountDistinct(a, query))\n    cout << x << '\\n';\n\n  return 0;\n\
-    }\n"
+    \ \"../misc/compression.cpp\"\n#include \"../ds_problem/rangeCountDistinct.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vector<int> a(n);\n  for(int &x : a)\n    cin >> x;\n \
+    \ vector<array<int, 2>> query(q);\n  for(auto &[l, r] : query)\n    cin >> l >>\
+    \ r;\n\n  for(int x : rangeCountDistinct(a, query))\n    cout << x << '\\n';\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - ds/fenwickTree.cpp
   - misc/compression.cpp
-  - misc/rangeCountDistinct.cpp
+  - ds_problem/rangeCountDistinct.cpp
   isVerificationFile: true
   path: test/static_range_count_distinct.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2024-08-04 01:36:11+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/static_range_count_distinct.test.cpp

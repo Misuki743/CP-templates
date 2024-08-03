@@ -2,16 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/wildcard_pattern_matching.test.cpp
-    title: test/wildcard_pattern_matching.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"misc/wildcardPatternMatcing.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
+  bundledCode: "#line 1 \"string/wildcardPatternMatcing.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
     //#include<poly/NTTmint.cpp>\n//#include<poly/FPS.cpp>\n\ntemplate<class Mint,\
     \ char base = 'a'>\nvector<bool> wildcardPatternMatching(string s, string t) {\n\
     \  mt19937 rng(clock);\n  uniform_int_distribution<int> unif(1, Mint::get_mod()\
@@ -45,16 +42,15 @@ data:
     \ ret;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: misc/wildcardPatternMatcing.cpp
+  path: string/wildcardPatternMatcing.cpp
   requiredBy: []
-  timestamp: '2024-05-11 22:13:26+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/wildcard_pattern_matching.test.cpp
-documentation_of: misc/wildcardPatternMatcing.cpp
+  timestamp: '2024-08-04 01:36:11+08:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: string/wildcardPatternMatcing.cpp
 layout: document
 redirect_from:
-- /library/misc/wildcardPatternMatcing.cpp
-- /library/misc/wildcardPatternMatcing.cpp.html
-title: misc/wildcardPatternMatcing.cpp
+- /library/string/wildcardPatternMatcing.cpp
+- /library/string/wildcardPatternMatcing.cpp.html
+title: string/wildcardPatternMatcing.cpp
 ---

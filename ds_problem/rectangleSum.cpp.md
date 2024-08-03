@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"misc/rectangleSum.cpp\"\n//#include<ds/fenwickTree.cpp>\n\
+  bundledCode: "#line 1 \"ds_problem/rectangleSum.cpp\"\n//#include<ds/fenwickTree.cpp>\n\
     //#include<misc/compression.cpp>\n\ntemplate<class T1, class T2>\nvector<T2> rectangleSum(vector<tuple<T1,\
     \ T1, T2>> pt, vector<array<T1, 4>> query) {\n  compression<T1> ys(ssize(pt));\n\
     \  ys.insert(pt, [](auto &x) { return get<1>(x); });\n  ys.precompute();\n  ys.mapping(pt,\
@@ -43,16 +43,16 @@ data:
     }\n"
   dependsOn: []
   isVerificationFile: false
-  path: misc/rectangleSum.cpp
+  path: ds_problem/rectangleSum.cpp
   requiredBy: []
-  timestamp: '2024-04-05 19:44:35+08:00'
+  timestamp: '2024-08-04 01:36:11+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/rectangle_sum.test.cpp
-documentation_of: misc/rectangleSum.cpp
+documentation_of: ds_problem/rectangleSum.cpp
 layout: document
 redirect_from:
-- /library/misc/rectangleSum.cpp
-- /library/misc/rectangleSum.cpp.html
-title: misc/rectangleSum.cpp
+- /library/ds_problem/rectangleSum.cpp
+- /library/ds_problem/rectangleSum.cpp.html
+title: ds_problem/rectangleSum.cpp
 ---

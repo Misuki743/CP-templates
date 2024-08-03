@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"misc/dynamicTreeDP.cpp\"\n//#include \"ds/staticTopTree.cpp\"\
+  bundledCode: "#line 1 \"dp/dynamicTreeDP.cpp\"\n//#include \"ds/staticTopTree.cpp\"\
     \n\ntemplate<class T, T(*vertex)(int), T(*addEdge)(const T&, int eid),\nT(*rake)(const\
     \ T&, const T&), T(*addVertex)(const T&, int vid), T(*compress)(const T&, const\
     \ T&)>\nstruct dynamicTreeDP {\n  int n;\n  staticTopTree stt;\n  vector<T> dp;\n\
@@ -40,16 +40,16 @@ data:
     \ e) { pull(e + n); }\n  T get() { return dp[stt.stt_rt]; }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: misc/dynamicTreeDP.cpp
+  path: dp/dynamicTreeDP.cpp
   requiredBy: []
-  timestamp: '2024-08-03 02:36:00+08:00'
+  timestamp: '2024-08-04 01:36:11+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
-documentation_of: misc/dynamicTreeDP.cpp
+documentation_of: dp/dynamicTreeDP.cpp
 layout: document
 redirect_from:
-- /library/misc/dynamicTreeDP.cpp
-- /library/misc/dynamicTreeDP.cpp.html
-title: misc/dynamicTreeDP.cpp
+- /library/dp/dynamicTreeDP.cpp
+- /library/dp/dynamicTreeDP.cpp.html
+title: dp/dynamicTreeDP.cpp
 ---

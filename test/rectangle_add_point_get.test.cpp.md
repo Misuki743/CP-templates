@@ -8,11 +8,11 @@ data:
     path: ds/fenwickTree2D.cpp
     title: ds/fenwickTree2D.cpp
   - icon: ':heavy_check_mark:'
+    path: ds_problem/rectangleAddPointGet.cpp
+    title: ds_problem/rectangleAddPointGet.cpp
+  - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':heavy_check_mark:'
-    path: misc/rectangleAddPointGet.cpp
-    title: misc/rectangleAddPointGet.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -124,7 +124,7 @@ data:
     \ }\n  template<ranges::range rng, class proj = identity>\n  void mapping(rng\
     \ &v, proj p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }\n  template<ranges::range\
     \ rng, class proj = identity>\n  void insert(rng &v, proj p = {}) { for(auto &x\
-    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"misc/rectangleAddPointGet.cpp\"\
+    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"ds_problem/rectangleAddPointGet.cpp\"\
     \n//#include<ds/fenwickTree2D.cpp>\n//#include<misc/compression.cpp>\n\ntemplate<class\
     \ T1, class T2>\nvector<T2> rectAddPointGet(vector<tuple<T1, T1, T1, T1, T2>>\
     \ &rect, vector<array<T1, 2>> &query, vector<int> updT) {\n  compression<T1> xs(ssize(query));\n\
@@ -150,9 +150,9 @@ data:
     \ '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_add_point_get\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../ds/fenwickTree2D.cpp\"\n#include\
-    \ \"../misc/compression.cpp\"\n#include \"../misc/rectangleAddPointGet.cpp\"\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
-    \ cin >> n >> q;\n  vector<tuple<int, int, int, int, ll>> rect(n);\n  for(auto\
+    \ \"../misc/compression.cpp\"\n#include \"../ds_problem/rectangleAddPointGet.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vector<tuple<int, int, int, int, ll>> rect(n);\n  for(auto\
     \ &[l, r, d, u, w] : rect)\n    cin >> l >> d >> r >> u >> w;\n  vector<array<int,\
     \ 2>> query;\n  vector<int> updT(n, 0);\n  while(q--) {\n    int op; cin >> op;\n\
     \    if (op == 0) {\n      int l, d, r, u; cin >> l >> d >> r >> u;\n      ll\
@@ -164,11 +164,11 @@ data:
   - default/t.cpp
   - ds/fenwickTree2D.cpp
   - misc/compression.cpp
-  - misc/rectangleAddPointGet.cpp
+  - ds_problem/rectangleAddPointGet.cpp
   isVerificationFile: true
   path: test/rectangle_add_point_get.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2024-08-04 01:36:11+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rectangle_add_point_get.test.cpp

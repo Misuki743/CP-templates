@@ -1,29 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: actedmonoid/actedMonoid_addMinCnt.cpp
     title: actedmonoid/actedMonoid_addMinCnt.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
-    path: misc/areaOfUnionOfRectangles.cpp
-    title: misc/areaOfUnionOfRectangles.cpp
-  - icon: ':heavy_check_mark:'
-    path: misc/compression.cpp
-    title: compression
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: ds_problem/area_of_union_of_rectangles.cpp
+    title: ds_problem/area_of_union_of_rectangles.cpp
+  - icon: ':question:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segtree/ultraLazySegmentTree.cpp
     title: segtree/ultraLazySegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/area_of_union_of_rectangles
@@ -147,65 +144,49 @@ data:
     \ a.second + b.second) : min(a, b); }\n  using T = U;\n  static T Tid() { return\
     \ T(0); }\n  static T Top(const T &a, const T &b) { return a + b; }\n  static\
     \ M act(const M &a, const T &b) { return make_pair(a.first + b, a.second); }\n\
-    };\n#line 1 \"misc/compression.cpp\"\ntemplate<class T, bool duplicate = false>\n\
-    struct compression {\n  vector<int> ord;\n  vector<T> val;\n\n  compression(vector<T>\
-    \ &init) : val(init) { precompute(); }\n  compression(int size = 0) { val.reserve(size);\
-    \ }\n\n  void precompute() {\n    vector<T> init = val;\n    ord.resize(ssize(val));\n\
-    \    ranges::sort(val);\n    if constexpr (duplicate) {\n      vector<int> cnt(ssize(init));\n\
-    \      iota(cnt.begin(), cnt.end(), 0);\n      for(int i = 0; i < ssize(ord);\
-    \ i++)\n        ord[i] = cnt[lower_bound(init[i])]++;\n    } else {\n      val.resize(unique(val.begin(),\
-    \ val.end()) - val.begin());\n      for(int i = 0; i < ssize(ord); i++)\n    \
-    \    ord[i] = lower_bound(init[i]);\n    }\n  }\n\n  int lower_bound(T x) { return\
-    \ ranges::lower_bound(val, x) - val.begin(); }\n  int size() { return ssize(val);\
-    \ }\n  template<ranges::range rng, class proj = identity>\n  void mapping(rng\
-    \ &v, proj p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }\n  template<ranges::range\
-    \ rng, class proj = identity>\n  void insert(rng &v, proj p = {}) { for(auto &x\
-    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"misc/areaOfUnionOfRectangles.cpp\"\
-    \n//#include<segtree/lazySegmentTree.cpp>\n//#include<segtree/ultraLazySegmentTree.cpp>\n\
-    //#include<actedmonoid/actedMonoid_addMinCnt.cpp>\n//#include<misc/compression.cpp>\n\
-    \ntemplate<class T1, class T2>\nT2 areaOfUnionOfRectangles(vector<array<T1, 4>>\
-    \ rect) {\n  compression<T1> xs(2 * ssize(rect)), ys(2 * ssize(rect));\n  xs.insert(rect,\
-    \ [](auto &x) { return x[0]; });\n  xs.insert(rect, [](auto &x) { return x[1];\
-    \ });\n  ys.insert(rect, [](auto &x) { return x[2]; });\n  ys.insert(rect, [](auto\
-    \ &x) { return x[3]; });\n  xs.precompute();\n  ys.precompute();\n  xs.mapping(rect,\
-    \ [](auto &x) -> T1& { return x[0]; });\n  xs.mapping(rect, [](auto &x) -> T1&\
-    \ { return x[1]; });\n  ys.mapping(rect, [](auto &x) -> T1& { return x[2]; });\n\
-    \  ys.mapping(rect, [](auto &x) -> T1& { return x[3]; });\n\n  vector<tuple<T1,\
-    \ int, int>> add;\n  add.reserve(ssize(rect));\n  for(int i = 0; auto &[l, r,\
-    \ _, __] : rect) {\n    add.emplace_back(l, 1, i);\n    add.emplace_back(r, -1,\
-    \ i++);\n  }\n  ranges::sort(add, {}, [](auto &x) { return get<0>(x); });\n\n\
-    \  vector<pair<T1, T1>> init(ys.size() - 1);\n  for(int i = 0; i + 1 < ys.size();\
-    \ i++)\n    init[i] = make_pair(T1(0), ys.val[i + 1] - ys.val[i]);\n  ultraLazySegmentTree<actedMonoid_addMinCnt<T1>>\
-    \ st(init);\n\n  T2 ans = 0;\n  for(int i = 1, ptr = 0; i < xs.size(); i++) {\n\
-    \    while(ptr < ssize(add) and get<0>(add[ptr]) < i) {\n      auto [x, r, i]\
-    \ = add[ptr++];\n      auto [_, __, d, u] = rect[i];\n      st.modify(d, u, r);\n\
-    \    }\n    ans += T2(xs.val[i] - xs.val[i - 1]) * ((ys.val.back() - ys.val[0])\
-    \ - actedMonoid_addMinCnt<T1>::Mop(st.query(0, st.size), make_pair(0, 0)).second);\n\
-    \  }\n\n  return ans;\n}\n#line 9 \"test/area_of_union_of_rectangles.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
-    \ cin >> n;\n  vector<array<int, 4>> rect(n);\n  for(auto &[l, r, d, u] : rect)\n\
-    \    cin >> l >> d >> r >> u;\n\n  cout << areaOfUnionOfRectangles<int, ll>(rect)\
-    \ << '\\n';\n\n  return 0;\n}\n\n"
+    };\n#line 1 \"ds_problem/area_of_union_of_rectangles.cpp\"\n//#include \"segtree/lazySegmentTree.cpp\"\
+    \n//#include \"segtree/ultraLazySegmentTree.cpp\"\n//#include \"actedMonoid/actedMonoid_addMinCnt.cpp\"\
+    \n\ntemplate<class coordinate_type, class answer_type>\nanswer_type area_of_union_of_rectangles(vector<array<coordinate_type,\
+    \ 4>> rect) {\n  vector<coordinate_type> xs(2 * size(rect)), ys(2 * size(rect));\n\
+    \  for(int i = 0; auto r : rect)\n    tie(xs[2 * i], ys[2 * i], xs[2 * i + 1],\
+    \ ys[2 * i + 1]) = r, i++;\n  Unique(xs), Unique(ys);\n\n  vector<array<int, 4>>\
+    \ event(2 * size(rect));\n  for(int i = 0; i < ssize(rect); i++) {\n    event[2\
+    \ * i] = {rect[i][0], rect[i][1], rect[i][3], 1};\n    event[2 * i + 1] = {rect[i][2],\
+    \ rect[i][1], rect[i][3], -1};\n  }\n  ranges::sort(event, {}, [](auto &x) { return\
+    \ x[0]; });\n\n  using AM = actedMonoid_addMinCnt<coordinate_type>;\n  ultraLazySegmentTree<AM>\
+    \ st([&]() {\n    vector<typename AM::M> init(ssize(ys) - 1);\n    for(int i =\
+    \ 0; i + 1 < ssize(ys); i++)\n      init[i] = make_pair(0, ys[i + 1] - ys[i]);\n\
+    \    return init;\n  }());\n\n  auto to_id = [&](int y) { return ranges::lower_bound(ys,\
+    \ y) - ys.begin(); };\n\n  answer_type ans = 0;\n  for(int i = 0, j = 0; ; i =\
+    \ j) {\n    while(j < ssize(event) and event[i][0] == event[j][0]) j++;\n    if\
+    \ (j == ssize(event)) break;\n    for(int k = i; k < j; k++) {\n      auto [_,\
+    \ l, r, d] = event[k];\n      st.modify(to_id(l), to_id(r), d);\n    }\n    auto\
+    \ [mn, cnt] = st.query(0, st.size);\n    answer_type w = event[j][0] - event[i][0];\n\
+    \    ans += (ys.back() - ys[0] - (mn == 0 ? cnt : 0)) * w;\n  }\n\n  return ans;\n\
+    }\n#line 8 \"test/area_of_union_of_rectangles.test.cpp\"\n\nsigned main() {\n\
+    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<array<int,\
+    \ 4>> rect(n);\n  for(auto &[l, d, r, u] : rect)\n    cin >> l >> d >> r >> u;\n\
+    \n  cout << area_of_union_of_rectangles<int, ll>(rect) << '\\n';\n\n  return 0;\n\
+    }\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/area_of_union_of_rectangles\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../segtree/lazySegmentTree.cpp\"\
     \n#include \"../segtree/ultraLazySegmentTree.cpp\"\n#include \"../actedmonoid/actedMonoid_addMinCnt.cpp\"\
-    \n#include \"../misc/compression.cpp\"\n#include \"../misc/areaOfUnionOfRectangles.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
-    \ cin >> n;\n  vector<array<int, 4>> rect(n);\n  for(auto &[l, r, d, u] : rect)\n\
-    \    cin >> l >> d >> r >> u;\n\n  cout << areaOfUnionOfRectangles<int, ll>(rect)\
-    \ << '\\n';\n\n  return 0;\n}\n\n"
+    \n#include \"../ds_problem/area_of_union_of_rectangles.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<array<int,\
+    \ 4>> rect(n);\n  for(auto &[l, d, r, u] : rect)\n    cin >> l >> d >> r >> u;\n\
+    \n  cout << area_of_union_of_rectangles<int, ll>(rect) << '\\n';\n\n  return 0;\n\
+    }\n\n"
   dependsOn:
   - default/t.cpp
   - segtree/lazySegmentTree.cpp
   - segtree/ultraLazySegmentTree.cpp
   - actedmonoid/actedMonoid_addMinCnt.cpp
-  - misc/compression.cpp
-  - misc/areaOfUnionOfRectangles.cpp
+  - ds_problem/area_of_union_of_rectangles.cpp
   isVerificationFile: true
   path: test/area_of_union_of_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2024-08-02 18:14:24+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-04 01:36:11+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/area_of_union_of_rectangles.test.cpp
 layout: document

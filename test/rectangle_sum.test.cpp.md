@@ -8,11 +8,11 @@ data:
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
   - icon: ':heavy_check_mark:'
+    path: ds_problem/rectangleSum.cpp
+    title: ds_problem/rectangleSum.cpp
+  - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':heavy_check_mark:'
-    path: misc/rectangleSum.cpp
-    title: misc/rectangleSum.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -105,29 +105,30 @@ data:
     \ }\n  template<ranges::range rng, class proj = identity>\n  void mapping(rng\
     \ &v, proj p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }\n  template<ranges::range\
     \ rng, class proj = identity>\n  void insert(rng &v, proj p = {}) { for(auto &x\
-    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"misc/rectangleSum.cpp\"\n//#include<ds/fenwickTree.cpp>\n\
-    //#include<misc/compression.cpp>\n\ntemplate<class T1, class T2>\nvector<T2> rectangleSum(vector<tuple<T1,\
-    \ T1, T2>> pt, vector<array<T1, 4>> query) {\n  compression<T1> ys(ssize(pt));\n\
-    \  ys.insert(pt, [](auto &x) { return get<1>(x); });\n  ys.precompute();\n  ys.mapping(pt,\
-    \ [](auto &x) -> T1& { return get<1>(x); });\n  ys.mapping(query, [](auto &x)\
-    \ -> T1& { return x[2]; });\n  ys.mapping(query, [](auto &x) -> T1& { return x[3];\
-    \ });\n\n  ranges::sort(pt, less<T1>{}, [](auto x) { return get<0>(x); });\n\n\
-    \  vector<tuple<T1, int, int>> qry;\n  qry.reserve(2 * ssize(query));\n  for(int\
-    \ i = 0; i < ssize(query); i++) {\n    qry.emplace_back(query[i][0] - 1, -1, i);\n\
-    \    qry.emplace_back(query[i][1] - 1, 1, i);\n  }\n  ranges::sort(qry, {}, [](auto\
-    \ &x) { return get<0>(x); });\n\n  fenwickTree<T2> bit(ys.size());\n  vector<T2>\
-    \ ans(ssize(query));\n  for(int ptr = 0; auto [x, r, i] : qry) {\n    while(ptr\
-    \ < ssize(pt) and get<0>(pt[ptr]) <= x) {\n      auto [_, y, w] = pt[ptr++];\n\
-    \      bit.add(y, w);\n    }\n    ans[i] += r * bit.query(query[i][2], query[i][3]);\n\
-    \  }\n\n  return ans;\n}\n#line 7 \"test/rectangle_sum.test.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
-    \ q;\n  vector<tuple<int, int, ll>> pts(n);\n  for(auto &[x, y, w] : pts)\n  \
-    \  cin >> x >> y >> w;\n  vector<array<int, 4>> query(q);\n  for(auto &[l, d,\
-    \ r, u] : query)\n    cin >> l >> r >> d >> u;\n\n  for(ll ans : rectangleSum(pts,\
-    \ query))\n    cout << ans << '\\n';\n\n  return 0;\n}\n"
+    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"ds_problem/rectangleSum.cpp\"\n\
+    //#include<ds/fenwickTree.cpp>\n//#include<misc/compression.cpp>\n\ntemplate<class\
+    \ T1, class T2>\nvector<T2> rectangleSum(vector<tuple<T1, T1, T2>> pt, vector<array<T1,\
+    \ 4>> query) {\n  compression<T1> ys(ssize(pt));\n  ys.insert(pt, [](auto &x)\
+    \ { return get<1>(x); });\n  ys.precompute();\n  ys.mapping(pt, [](auto &x) ->\
+    \ T1& { return get<1>(x); });\n  ys.mapping(query, [](auto &x) -> T1& { return\
+    \ x[2]; });\n  ys.mapping(query, [](auto &x) -> T1& { return x[3]; });\n\n  ranges::sort(pt,\
+    \ less<T1>{}, [](auto x) { return get<0>(x); });\n\n  vector<tuple<T1, int, int>>\
+    \ qry;\n  qry.reserve(2 * ssize(query));\n  for(int i = 0; i < ssize(query); i++)\
+    \ {\n    qry.emplace_back(query[i][0] - 1, -1, i);\n    qry.emplace_back(query[i][1]\
+    \ - 1, 1, i);\n  }\n  ranges::sort(qry, {}, [](auto &x) { return get<0>(x); });\n\
+    \n  fenwickTree<T2> bit(ys.size());\n  vector<T2> ans(ssize(query));\n  for(int\
+    \ ptr = 0; auto [x, r, i] : qry) {\n    while(ptr < ssize(pt) and get<0>(pt[ptr])\
+    \ <= x) {\n      auto [_, y, w] = pt[ptr++];\n      bit.add(y, w);\n    }\n  \
+    \  ans[i] += r * bit.query(query[i][2], query[i][3]);\n  }\n\n  return ans;\n\
+    }\n#line 7 \"test/rectangle_sum.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<tuple<int, int, ll>>\
+    \ pts(n);\n  for(auto &[x, y, w] : pts)\n    cin >> x >> y >> w;\n  vector<array<int,\
+    \ 4>> query(q);\n  for(auto &[l, d, r, u] : query)\n    cin >> l >> r >> d >>\
+    \ u;\n\n  for(ll ans : rectangleSum(pts, query))\n    cout << ans << '\\n';\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../ds/fenwickTree.cpp\"\n#include \"../misc/compression.cpp\"\
-    \n#include \"../misc/rectangleSum.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n#include \"../ds_problem/rectangleSum.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<tuple<int, int, ll>>\
     \ pts(n);\n  for(auto &[x, y, w] : pts)\n    cin >> x >> y >> w;\n  vector<array<int,\
     \ 4>> query(q);\n  for(auto &[l, d, r, u] : query)\n    cin >> l >> r >> d >>\
@@ -137,11 +138,11 @@ data:
   - default/t.cpp
   - ds/fenwickTree.cpp
   - misc/compression.cpp
-  - misc/rectangleSum.cpp
+  - ds_problem/rectangleSum.cpp
   isVerificationFile: true
   path: test/rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2024-08-04 01:36:11+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rectangle_sum.test.cpp

@@ -8,11 +8,11 @@ data:
     path: ds/fenwickTree2D.cpp
     title: ds/fenwickTree2D.cpp
   - icon: ':heavy_check_mark:'
+    path: ds_problem/pointAddRectangleSum.cpp
+    title: ds_problem/pointAddRectangleSum.cpp
+  - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression
-  - icon: ':heavy_check_mark:'
-    path: misc/pointAddRectangleSum.cpp
-    title: misc/pointAddRectangleSum.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -124,7 +124,7 @@ data:
     \ }\n  template<ranges::range rng, class proj = identity>\n  void mapping(rng\
     \ &v, proj p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }\n  template<ranges::range\
     \ rng, class proj = identity>\n  void insert(rng &v, proj p = {}) { for(auto &x\
-    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"misc/pointAddRectangleSum.cpp\"\
+    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"ds_problem/pointAddRectangleSum.cpp\"\
     \n//#include<ds/fenwickTree2D.cpp>\n//#include<misc/compression.cpp>\n\ntemplate<class\
     \ T1, class T2>\nvector<T2> pointAddRectSum(vector<tuple<T1, T1, T2>> pt, vector<array<T1,\
     \ 4>> query, vector<int> updT) {\n  compression<T1> xs(ssize(pt));\n  xs.insert(pt,\
@@ -148,10 +148,10 @@ data:
     n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../ds/fenwickTree2D.cpp\"\n#include\
-    \ \"../misc/compression.cpp\"\n#include \"../misc/pointAddRectangleSum.cpp\"\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
-    \ cin >> n >> q;\n  vector<tuple<int, int, ll>> pt(n);\n  for(auto &[x, y, w]\
-    \ : pt)\n    cin >> x >> y >> w;\n  vector<array<int, 4>> query;\n  vector<int>\
+    \ \"../misc/compression.cpp\"\n#include \"../ds_problem/pointAddRectangleSum.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vector<tuple<int, int, ll>> pt(n);\n  for(auto &[x, y,\
+    \ w] : pt)\n    cin >> x >> y >> w;\n  vector<array<int, 4>> query;\n  vector<int>\
     \ updT(n);\n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int\
     \ x, y, w; cin >> x >> y >> w;\n      updT.emplace_back(ssize(query));\n     \
     \ pt.emplace_back(x, y, w);\n    } else if (t == 1) {\n      int l, r, d, u; cin\
@@ -162,11 +162,11 @@ data:
   - default/t.cpp
   - ds/fenwickTree2D.cpp
   - misc/compression.cpp
-  - misc/pointAddRectangleSum.cpp
+  - ds_problem/pointAddRectangleSum.cpp
   isVerificationFile: true
   path: test/point_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2024-08-04 01:36:11+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/point_add_rectangle_sum.test.cpp

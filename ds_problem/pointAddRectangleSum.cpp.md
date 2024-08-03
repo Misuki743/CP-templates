@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"misc/pointAddRectangleSum.cpp\"\n//#include<ds/fenwickTree2D.cpp>\n\
+  bundledCode: "#line 1 \"ds_problem/pointAddRectangleSum.cpp\"\n//#include<ds/fenwickTree2D.cpp>\n\
     //#include<misc/compression.cpp>\n\ntemplate<class T1, class T2>\nvector<T2> pointAddRectSum(vector<tuple<T1,\
     \ T1, T2>> pt, vector<array<T1, 4>> query, vector<int> updT) {\n  compression<T1>\
     \ xs(ssize(pt));\n  xs.insert(pt, [](auto &x) { return get<0>(x); });\n  xs.precompute();\n\
@@ -37,16 +37,16 @@ data:
     \ d);\n  }\n  \n  return ans;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: misc/pointAddRectangleSum.cpp
+  path: ds_problem/pointAddRectangleSum.cpp
   requiredBy: []
-  timestamp: '2024-01-28 22:59:51+08:00'
+  timestamp: '2024-08-04 01:36:11+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/point_add_rectangle_sum.test.cpp
-documentation_of: misc/pointAddRectangleSum.cpp
+documentation_of: ds_problem/pointAddRectangleSum.cpp
 layout: document
 redirect_from:
-- /library/misc/pointAddRectangleSum.cpp
-- /library/misc/pointAddRectangleSum.cpp.html
-title: misc/pointAddRectangleSum.cpp
+- /library/ds_problem/pointAddRectangleSum.cpp
+- /library/ds_problem/pointAddRectangleSum.cpp.html
+title: ds_problem/pointAddRectangleSum.cpp
 ---

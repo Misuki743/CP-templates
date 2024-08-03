@@ -11,8 +11,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"misc/rerootingDP.cpp\"\ntemplate<class V, V(*base)(int),\
-    \ class E, E(*addEdge)(const V&, int eid),\nE(*op)(const E&, const E&), V(*addVertex)(const\
+  bundledCode: "#line 1 \"dp/rerootingDP.cpp\"\ntemplate<class V, V(*base)(int), class\
+    \ E, E(*addEdge)(const V&, int eid),\nE(*op)(const E&, const E&), V(*addVertex)(const\
     \ E&, int vid)>\nvector<V> rerootingDP(vector<array<int, 2>> e) {\n  int n = ssize(e)\
     \ + 1;\n  vector<vector<int>> g(n);\n  for(int i = 0; auto [u, v] : e)\n    g[u].emplace_back(i),\
     \ g[v].emplace_back(i++);\n\n  vector<V> data(n);\n  for(int v = 0; v < n; v++)\
@@ -62,16 +62,16 @@ data:
     \  };\n\n  reroot(0, -1, reroot);\n\n  return ret;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: misc/rerootingDP.cpp
+  path: dp/rerootingDP.cpp
   requiredBy: []
-  timestamp: '2024-06-04 00:24:06+08:00'
+  timestamp: '2024-08-04 01:36:11+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/tree_path_composite_sum.test.cpp
-documentation_of: misc/rerootingDP.cpp
+documentation_of: dp/rerootingDP.cpp
 layout: document
 redirect_from:
-- /library/misc/rerootingDP.cpp
-- /library/misc/rerootingDP.cpp.html
-title: misc/rerootingDP.cpp
+- /library/dp/rerootingDP.cpp
+- /library/dp/rerootingDP.cpp.html
+title: dp/rerootingDP.cpp
 ---

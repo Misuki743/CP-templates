@@ -9,7 +9,7 @@ data:
     - icon: ':warning:'
       path: actedmonoid/actedMonoid_addMin.cpp
       title: actedmonoid/actedMonoid_addMin.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: actedmonoid/actedMonoid_addMinCnt.cpp
       title: actedmonoid/actedMonoid_addMinCnt.cpp
     - icon: ':warning:'
@@ -58,6 +58,17 @@ data:
     - icon: ':warning:'
       path: default/ttt.cpp
       title: default/ttt.cpp
+  - name: dp
+    pages:
+    - icon: ':warning:'
+      path: dp/alienDP.cpp
+      title: dp/alienDP.cpp
+    - icon: ':x:'
+      path: dp/dynamicTreeDP.cpp
+      title: dp/dynamicTreeDP.cpp
+    - icon: ':heavy_check_mark:'
+      path: dp/rerootingDP.cpp
+      title: dp/rerootingDP.cpp
   - name: ds
     pages:
     - icon: ':heavy_check_mark:'
@@ -147,9 +158,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/staticTopTree2.cpp
       title: ds/staticTopTree2.cpp
-    - icon: ':warning:'
-      path: ds/topoSort.cpp
-      title: ds/topoSort.cpp
     - icon: ':heavy_check_mark:'
       path: ds/treap.cpp
       title: treap
@@ -159,6 +167,23 @@ data:
     - icon: ':warning:'
       path: ds/waveletMatrixWithMonoid.cpp
       title: ds/waveletMatrixWithMonoid.cpp
+  - name: ds_problem
+    pages:
+    - icon: ':x:'
+      path: ds_problem/area_of_union_of_rectangles.cpp
+      title: ds_problem/area_of_union_of_rectangles.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds_problem/pointAddRectangleSum.cpp
+      title: ds_problem/pointAddRectangleSum.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds_problem/rangeCountDistinct.cpp
+      title: ds_problem/rangeCountDistinct.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds_problem/rectangleAddPointGet.cpp
+      title: ds_problem/rectangleAddPointGet.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds_problem/rectangleSum.cpp
+      title: ds_problem/rectangleSum.cpp
   - name: geometry
     pages:
     - icon: ':warning:'
@@ -244,6 +269,9 @@ data:
     - icon: ':warning:'
       path: graph/minimumVertexCover.cpp
       title: graph/minimumVertexCover.cpp
+    - icon: ':warning:'
+      path: graph/topoSort.cpp
+      title: graph/topoSort.cpp
     - icon: ':heavy_check_mark:'
       path: graph/treeDiameter.cpp
       title: graph/treeDiameter.cpp
@@ -264,41 +292,14 @@ data:
       path: misc/LIS.cpp
       title: misc/LIS.cpp
     - icon: ':warning:'
-      path: misc/alienDP.cpp
-      title: misc/alienDP.cpp
-    - icon: ':heavy_check_mark:'
-      path: misc/areaOfUnionOfRectangles.cpp
-      title: misc/areaOfUnionOfRectangles.cpp
-    - icon: ':warning:'
       path: misc/arrayUtility.cpp
       title: misc/arrayUtility.cpp
     - icon: ':heavy_check_mark:'
       path: misc/compression.cpp
       title: compression
-    - icon: ':x:'
-      path: misc/dynamicTreeDP.cpp
-      title: misc/dynamicTreeDP.cpp
-    - icon: ':heavy_check_mark:'
-      path: misc/pointAddRectangleSum.cpp
-      title: misc/pointAddRectangleSum.cpp
-    - icon: ':heavy_check_mark:'
-      path: misc/rangeCountDistinct.cpp
-      title: misc/rangeCountDistinct.cpp
-    - icon: ':heavy_check_mark:'
-      path: misc/rectangleAddPointGet.cpp
-      title: misc/rectangleAddPointGet.cpp
-    - icon: ':heavy_check_mark:'
-      path: misc/rectangleSum.cpp
-      title: misc/rectangleSum.cpp
-    - icon: ':heavy_check_mark:'
-      path: misc/rerootingDP.cpp
-      title: misc/rerootingDP.cpp
     - icon: ':heavy_check_mark:'
       path: misc/sharpPSubsetSum.cpp
       title: misc/sharpPSubsetSum.cpp
-    - icon: ':heavy_check_mark:'
-      path: misc/wildcardPatternMatcing.cpp
-      title: misc/wildcardPatternMatcing.cpp
   - name: modint
     pages:
     - icon: ':question:'
@@ -391,7 +392,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: segtree/dualSegmentTree.cpp
       title: segtree/dualSegmentTree.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: segtree/lazySegmentTree.cpp
       title: segtree/lazySegmentTree.cpp
     - icon: ':heavy_check_mark:'
@@ -412,7 +413,7 @@ data:
     - icon: ':warning:'
       path: segtree/segmentTreeLazyDynamic.cpp
       title: segtree/segmentTreeLazyDynamic.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: segtree/ultraLazySegmentTree.cpp
       title: segtree/ultraLazySegmentTree.cpp
   - name: setfunc
@@ -452,6 +453,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/suffixArray.cpp
       title: string/suffixArray.cpp
+    - icon: ':warning:'
+      path: string/wildcardPatternMatcing.cpp
+      title: string/wildcardPatternMatcing.cpp
     - icon: ':heavy_check_mark:'
       path: string/zFunc.cpp
       title: string/zFunc.cpp
@@ -461,7 +465,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Z_algorithm.test.cpp
       title: test/Z_algorithm.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/area_of_union_of_rectangles.test.cpp
       title: test/area_of_union_of_rectangles.test.cpp
     - icon: ':heavy_check_mark:'
@@ -755,7 +759,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/vertex_set_path_composite.test.cpp
       title: test/vertex_set_path_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/wildcard_pattern_matching.test.cpp
       title: test/wildcard_pattern_matching.test.cpp
     - icon: ':heavy_check_mark:'

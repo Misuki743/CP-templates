@@ -5,11 +5,11 @@ data:
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':x:'
+    path: dp/dynamicTreeDP.cpp
+    title: dp/dynamicTreeDP.cpp
+  - icon: ':x:'
     path: ds/staticTopTree.cpp
     title: ds/staticTopTree.cpp
-  - icon: ':x:'
-    path: misc/dynamicTreeDP.cpp
-    title: misc/dynamicTreeDP.cpp
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
@@ -147,8 +147,8 @@ data:
     \ {\n      auto [l, lsz] = rake(v);\n      setVertex(l, -1, v, type::AddVertex);\n\
     \      return {v, lsz + 1};\n    }\n  }\n\n  pii rake(int v) {\n    vector<pii>\
     \ vs;\n    for(int x : g[v] | views::drop(1))\n      vs.emplace_back(compress(x));\n\
-    \    return merge(vs, type::Rake);\n  }\n};\n#line 1 \"misc/dynamicTreeDP.cpp\"\
-    \n//#include \"ds/staticTopTree.cpp\"\n\ntemplate<class T, T(*vertex)(int), T(*addEdge)(const\
+    \    return merge(vs, type::Rake);\n  }\n};\n#line 1 \"dp/dynamicTreeDP.cpp\"\n\
+    //#include \"ds/staticTopTree.cpp\"\n\ntemplate<class T, T(*vertex)(int), T(*addEdge)(const\
     \ T&, int eid),\nT(*rake)(const T&, const T&), T(*addVertex)(const T&, int vid),\
     \ T(*compress)(const T&, const T&)>\nstruct dynamicTreeDP {\n  int n;\n  staticTopTree\
     \ stt;\n  vector<T> dp;\n\n  dynamicTreeDP(vector<vector<int>> &g)\n  : n(size(g)),stt(g),\
@@ -184,37 +184,37 @@ data:
     \    cout << ddp.get()[0] << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../ds/staticTopTree.cpp\"\n#include \"../misc/dynamicTreeDP.cpp\"\
-    \n\nusing V = array<mint, 2>;\nusing E = array<mint, 4>;\n\nvector<mint> a, b,\
-    \ c;\n\nV base(int i) { return {a[i], 1}; }\nE addEdge(const V &v, int i) { return\
-    \ {b[i] * v[0] + c[i] * v[1], v[1], b[i], c[i]}; }\nE op(const E &l, const E &r)\
-    \ { return {l[0] + r[0], l[1] + r[1], 0, 0}; }\nV addVertex(const E &e, int i)\
-    \ { return {e[0] + a[i], e[1] + 1}; }\nE compress(const E &l, const E &r) {\n\
-    \  auto [c, d, i, j] = l;\n  auto [e, f, g, h] = r;\n  return {c * g + d * h +\
-    \ e, d + f, i * g, (j * g + h)};\n}\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  a.resize(n);\n  for(mint &x\
-    \ : a) cin >> x;\n  vector<array<int, 4>> e(n - 1);\n  for(auto &[u, v, b, c]\
-    \ : e)\n    cin >> u >> v >> b >> c;\n\n  vector<vector<int>> g(n);\n  for(auto\
-    \ [u, v, _, __] : e) {\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n\
-    \  }\n\n  vector<int> dep(n);\n  auto dfs = [&](int v, int p, auto &&self) ->\
-    \ void {\n    for(int x : g[v]) if (x != p) {\n      dep[x] = dep[v] + 1;\n  \
-    \    self(x, v, self);\n    }\n  };\n  dfs(0, -1, dfs);\n\n  b.resize(n, 1), c.resize(n);\n\
-    \  for(auto &[u, v, bb, cc] : e) {\n    if (dep[u] > dep[v]) swap(u, v);\n   \
-    \ b[v] = bb, c[v] = cc;\n  }\n\n  dynamicTreeDP<V, base, E, addEdge, op, addVertex,\
-    \ compress> ddp(g);\n\n  while(q--) {\n    int op; cin >> op;\n    if (op == 0)\
-    \ {\n      int w, x; cin >> w >> x;\n      a[w] = x;\n      ddp.updateVertex(w);\n\
-    \    } else if (op == 1) {\n      int i, y, z; cin >> i >> y >> z;\n      int\
-    \ id = e[i][1];\n      b[id] = y, c[id] = z;\n      ddp.updateEdge(id);\n    }\n\
+    \n#include \"../ds/staticTopTree.cpp\"\n#include \"../dp/dynamicTreeDP.cpp\"\n\
+    \nusing V = array<mint, 2>;\nusing E = array<mint, 4>;\n\nvector<mint> a, b, c;\n\
+    \nV base(int i) { return {a[i], 1}; }\nE addEdge(const V &v, int i) { return {b[i]\
+    \ * v[0] + c[i] * v[1], v[1], b[i], c[i]}; }\nE op(const E &l, const E &r) { return\
+    \ {l[0] + r[0], l[1] + r[1], 0, 0}; }\nV addVertex(const E &e, int i) { return\
+    \ {e[0] + a[i], e[1] + 1}; }\nE compress(const E &l, const E &r) {\n  auto [c,\
+    \ d, i, j] = l;\n  auto [e, f, g, h] = r;\n  return {c * g + d * h + e, d + f,\
+    \ i * g, (j * g + h)};\n}\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \n  int n, q; cin >> n >> q;\n  a.resize(n);\n  for(mint &x : a) cin >> x;\n \
+    \ vector<array<int, 4>> e(n - 1);\n  for(auto &[u, v, b, c] : e)\n    cin >> u\
+    \ >> v >> b >> c;\n\n  vector<vector<int>> g(n);\n  for(auto [u, v, _, __] : e)\
+    \ {\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n  }\n\n  vector<int>\
+    \ dep(n);\n  auto dfs = [&](int v, int p, auto &&self) -> void {\n    for(int\
+    \ x : g[v]) if (x != p) {\n      dep[x] = dep[v] + 1;\n      self(x, v, self);\n\
+    \    }\n  };\n  dfs(0, -1, dfs);\n\n  b.resize(n, 1), c.resize(n);\n  for(auto\
+    \ &[u, v, bb, cc] : e) {\n    if (dep[u] > dep[v]) swap(u, v);\n    b[v] = bb,\
+    \ c[v] = cc;\n  }\n\n  dynamicTreeDP<V, base, E, addEdge, op, addVertex, compress>\
+    \ ddp(g);\n\n  while(q--) {\n    int op; cin >> op;\n    if (op == 0) {\n    \
+    \  int w, x; cin >> w >> x;\n      a[w] = x;\n      ddp.updateVertex(w);\n   \
+    \ } else if (op == 1) {\n      int i, y, z; cin >> i >> y >> z;\n      int id\
+    \ = e[i][1];\n      b[id] = y, c[id] = z;\n      ddp.updateEdge(id);\n    }\n\
     \    cout << ddp.get()[0] << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - ds/staticTopTree.cpp
-  - misc/dynamicTreeDP.cpp
+  - dp/dynamicTreeDP.cpp
   isVerificationFile: true
   path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
   requiredBy: []
-  timestamp: '2024-08-03 02:36:00+08:00'
+  timestamp: '2024-08-04 01:36:11+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/point_set_tree_path_composite_sum_fixed_root.test.cpp

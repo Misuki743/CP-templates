@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"misc/rectangleAddPointGet.cpp\"\n//#include<ds/fenwickTree2D.cpp>\n\
+  bundledCode: "#line 1 \"ds_problem/rectangleAddPointGet.cpp\"\n//#include<ds/fenwickTree2D.cpp>\n\
     //#include<misc/compression.cpp>\n\ntemplate<class T1, class T2>\nvector<T2> rectAddPointGet(vector<tuple<T1,\
     \ T1, T1, T1, T2>> &rect, vector<array<T1, 2>> &query, vector<int> updT) {\n \
     \ compression<T1> xs(ssize(query));\n  xs.insert(query, [](auto &x) { return x[0];\
@@ -41,16 +41,16 @@ data:
     }\n"
   dependsOn: []
   isVerificationFile: false
-  path: misc/rectangleAddPointGet.cpp
+  path: ds_problem/rectangleAddPointGet.cpp
   requiredBy: []
-  timestamp: '2024-01-28 22:59:51+08:00'
+  timestamp: '2024-08-04 01:36:11+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/rectangle_add_point_get.test.cpp
-documentation_of: misc/rectangleAddPointGet.cpp
+documentation_of: ds_problem/rectangleAddPointGet.cpp
 layout: document
 redirect_from:
-- /library/misc/rectangleAddPointGet.cpp
-- /library/misc/rectangleAddPointGet.cpp.html
-title: misc/rectangleAddPointGet.cpp
+- /library/ds_problem/rectangleAddPointGet.cpp
+- /library/ds_problem/rectangleAddPointGet.cpp.html
+title: ds_problem/rectangleAddPointGet.cpp
 ---

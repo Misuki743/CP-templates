@@ -5,8 +5,8 @@ data:
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
-    path: misc/rerootingDP.cpp
-    title: misc/rerootingDP.cpp
+    path: dp/rerootingDP.cpp
+    title: dp/rerootingDP.cpp
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
@@ -111,7 +111,7 @@ data:
     \ mint operator/(mint c, mint d) { return c /= d; }\n\n  friend ostream& operator<<(ostream&\
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
-    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"misc/rerootingDP.cpp\"\
+    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"dp/rerootingDP.cpp\"\
     \ntemplate<class V, V(*base)(int), class E, E(*addEdge)(const V&, int eid),\n\
     E(*op)(const E&, const E&), V(*addVertex)(const E&, int vid)>\nvector<V> rerootingDP(vector<array<int,\
     \ 2>> e) {\n  int n = ssize(e) + 1;\n  vector<vector<int>> g(n);\n  for(int i\
@@ -148,11 +148,11 @@ data:
     \ << ans[i][0] << \" \\n\"[i + 1 == n];\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_path_composite_sum\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../misc/rerootingDP.cpp\"\n\nusing V = array<mint, 2>;\nusing E =\
-    \ array<mint, 2>;\n\nvector<mint> a, b, c;\n\nV base(int i) { return {a[i], 1};\
-    \ }\nE addEdge(const V &v, int i) { return {b[i] * v[0] + c[i] * v[1], v[1]};\
-    \ }\nE op(const E &l, const E &r) { return {l[0] + r[0], l[1] + r[1]}; }\nV addVertex(const\
-    \ E &e, int i) { return {e[0] + a[i], e[1] + 1}; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n#include \"../dp/rerootingDP.cpp\"\n\nusing V = array<mint, 2>;\nusing E = array<mint,\
+    \ 2>;\n\nvector<mint> a, b, c;\n\nV base(int i) { return {a[i], 1}; }\nE addEdge(const\
+    \ V &v, int i) { return {b[i] * v[0] + c[i] * v[1], v[1]}; }\nE op(const E &l,\
+    \ const E &r) { return {l[0] + r[0], l[1] + r[1]}; }\nV addVertex(const E &e,\
+    \ int i) { return {e[0] + a[i], e[1] + 1}; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n; cin >> n;\n  a.resize(n);\n  for(mint &x : a) cin\
     \ >> x;\n  vector<array<int, 2>> e(n - 1);\n  b.resize(n - 1), c.resize(n - 1);\n\
     \  for(int i = 0; i < n - 1; i++)\n    cin >> e[i][0] >> e[i][1] >> b[i] >> c[i];\n\
@@ -162,11 +162,11 @@ data:
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
-  - misc/rerootingDP.cpp
+  - dp/rerootingDP.cpp
   isVerificationFile: true
   path: test/tree_path_composite_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-08-02 21:56:58+08:00'
+  timestamp: '2024-08-04 01:36:11+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree_path_composite_sum.test.cpp

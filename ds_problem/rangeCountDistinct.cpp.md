@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"misc/rangeCountDistinct.cpp\"\n//#include<ds/fenwickTree.cpp>\n\
+  bundledCode: "#line 1 \"ds_problem/rangeCountDistinct.cpp\"\n//#include<ds/fenwickTree.cpp>\n\
     //#include<misc/compression.cpp>\n\ntemplate<class T>\nvector<int> rangeCountDistinct(vector<T>\
     \ a, vector<array<int, 2>> query) {\n  vector<int> b = [&]() {\n    compression\
     \ ys(a);\n    return ys.ord;\n  }();\n\n  vector<int> qId(ssize(query));\n  iota(qId.begin(),\
@@ -33,16 +33,16 @@ data:
     \ = ft.query(l);\n  }\n\n  return ans;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: misc/rangeCountDistinct.cpp
+  path: ds_problem/rangeCountDistinct.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
+  timestamp: '2024-08-04 01:36:11+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/static_range_count_distinct.test.cpp
-documentation_of: misc/rangeCountDistinct.cpp
+documentation_of: ds_problem/rangeCountDistinct.cpp
 layout: document
 redirect_from:
-- /library/misc/rangeCountDistinct.cpp
-- /library/misc/rangeCountDistinct.cpp.html
-title: misc/rangeCountDistinct.cpp
+- /library/ds_problem/rangeCountDistinct.cpp
+- /library/ds_problem/rangeCountDistinct.cpp.html
+title: ds_problem/rangeCountDistinct.cpp
 ---

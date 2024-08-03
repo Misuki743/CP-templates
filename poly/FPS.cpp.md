@@ -63,9 +63,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/wildcard_pattern_matching.test.cpp
-    title: test/wildcard_pattern_matching.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -258,7 +255,6 @@ data:
   timestamp: '2024-05-11 22:13:26+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/wildcard_pattern_matching.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/stirling_number_of_the_first_kind.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp

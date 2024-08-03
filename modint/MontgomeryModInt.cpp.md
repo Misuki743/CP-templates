@@ -136,9 +136,6 @@ data:
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/wildcard_pattern_matching.test.cpp
-    title: test/wildcard_pattern_matching.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yuki_2544.test.cpp
     title: test/yuki_2544.test.cpp
   - icon: ':heavy_check_mark:'
@@ -220,7 +217,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/unionfind_with_potential.test.cpp
-  - test/wildcard_pattern_matching.test.cpp
   - test/determinant_of_matrix.test.cpp
   - test/pow_of_matrix.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
