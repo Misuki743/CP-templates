@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../ds/fenwickTree.cpp"
 #include "../misc/compression.cpp"
-#include "../misc/rectangleSum.cpp"
+#include "../ds_problem/rectangleSum.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

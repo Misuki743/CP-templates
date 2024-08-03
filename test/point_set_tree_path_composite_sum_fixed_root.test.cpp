@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
 #include "../ds/staticTopTree.cpp"
-#include "../misc/dynamicTreeDP.cpp"
+#include "../dp/dynamicTreeDP.cpp"
 
 using V = array<mint, 2>;
 using E = array<mint, 4>;

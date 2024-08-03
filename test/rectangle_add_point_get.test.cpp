@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../ds/fenwickTree2D.cpp"
 #include "../misc/compression.cpp"
-#include "../misc/rectangleAddPointGet.cpp"
+#include "../ds_problem/rectangleAddPointGet.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

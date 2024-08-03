@@ -2,7 +2,7 @@
 
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
-#include "../misc/rerootingDP.cpp"
+#include "../dp/rerootingDP.cpp"
 
 using V = array<mint, 2>;
 using E = array<mint, 2>;
