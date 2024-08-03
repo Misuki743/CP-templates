@@ -356,6 +356,9 @@ data:
     - icon: ':warning:'
       path: poly/NTT.cpp
       title: poly/NTT.cpp
+    - icon: ':warning:'
+      path: poly/NTT2D.cpp
+      title: poly/NTT2D.cpp
     - icon: ':heavy_check_mark:'
       path: poly/NTTanymod.cpp
       title: poly/NTTanymod.cpp
