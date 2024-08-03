@@ -4,7 +4,7 @@
 #include "../modint/MontgomeryModInt.cpp"
 #include "../poly/NTTmint.cpp"
 #include "../poly/FPS.cpp"
-#include "../misc/wildcardPatternMatcing.cpp"
+#include "../string/wildcardPatternMatcing.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
