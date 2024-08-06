@@ -311,6 +311,9 @@ data:
   - name: numtheory
     pages:
     - icon: ':warning:'
+      path: numtheory/crt.cpp
+      title: numtheory/crt.cpp
+    - icon: ':warning:'
       path: numtheory/exgcd.cpp
       title: numtheory/exgcd.cpp
     - icon: ':heavy_check_mark:'
