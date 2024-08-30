@@ -250,13 +250,13 @@ data:
     \ vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\nfunction<void(vector<mint>&,\
     \ bool)> fps::dft = ntt.ntt;\n#line 1 \"poly/taylorShift.cpp\"\n//#include \"\
     modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\n//#include \"\
-    poly/FPS.cpp\"\n\ntemplate<class Mint>\nFPS<Mint> taylorShift(FPS<Mint> f, Mint\
-    \ c) {\n  int n = ssize(f);\n  binomial<Mint> bn(n);\n  FPS<Mint> a = f;\n  for(int\
-    \ i = 0; i < n; i++)\n    a[i] *= bn.fac(i);\n  FPS<Mint> b(n);\n  Mint pre =\
-    \ 1;\n  for(int i = 0; i < n; i++, pre *= c)\n    b[i] = pre * bn.faci(i);\n \
-    \ ranges::reverse(b);\n  f = a * b;\n  f.erase(f.begin(), f.begin() + n - 1);\n\
-    \  for(int i = 0; i < n; i++)\n    f[i] *= bn.faci(i);\n  return f;\n}\n#line\
-    \ 9 \"test/polynomial_taylor_shift.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    poly/FPS.cpp\"\n//#include \"combi/binom.cpp\"\n\ntemplate<class Mint>\nFPS<Mint>\
+    \ taylorShift(FPS<Mint> f, Mint c) {\n  int n = ssize(f);\n  binomial<Mint> bn(n);\n\
+    \  FPS<Mint> a = f;\n  for(int i = 0; i < n; i++)\n    a[i] *= bn.fac(i);\n  FPS<Mint>\
+    \ b(n);\n  Mint pre = 1;\n  for(int i = 0; i < n; i++, pre *= c)\n    b[i] = pre\
+    \ * bn.faci(i);\n  ranges::reverse(b);\n  f = a * b;\n  f.erase(f.begin(), f.begin()\
+    \ + n - 1);\n  for(int i = 0; i < n; i++)\n    f[i] *= bn.faci(i);\n  return f;\n\
+    }\n#line 9 \"test/polynomial_taylor_shift.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, c; cin >> n >> c;\n  fps a(n);\n  for(mint &x : a)\n\
     \    cin >> x;\n  cout << taylorShift(a, mint(c)) << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
@@ -276,7 +276,7 @@ data:
   isVerificationFile: true
   path: test/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2024-08-02 21:56:58+08:00'
+  timestamp: '2024-08-30 17:59:56+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/polynomial_taylor_shift.test.cpp

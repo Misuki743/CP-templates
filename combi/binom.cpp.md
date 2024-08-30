@@ -68,15 +68,15 @@ data:
   timestamp: '2024-04-05 17:40:38+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/polynomial_taylor_shift.test.cpp
   - test/counting_eulerian_circuits.test.cpp
-  - test/binomial_coefficient_prime_mod.test.cpp
+  - test/yuki_2544.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
+  - test/binomial_coefficient_prime_mod.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
-  - test/yuki_2544.test.cpp
-  - test/inv_of_formal_power_series_sparse.test.cpp
-  - test/polynomial_taylor_shift.test.cpp
 documentation_of: combi/binom.cpp
 layout: document
 redirect_from:

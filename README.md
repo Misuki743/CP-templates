@@ -14,7 +14,6 @@ https://misuki743.github.io/CP-templates/
 # MAYBE, IF I HAVE NOTHING TO DO
 
 - actedMonoid for linear add/sum query
-- doubling(support mataining commutative monoid)
 - lichaoSegmentTree
 - actedmonoid: add addHisMin/addHisMax/addHisSum
 - bigInt(I don't want to write this D:)

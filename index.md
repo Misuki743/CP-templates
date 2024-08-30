@@ -102,6 +102,9 @@ data:
       path: ds/doubleEndedPQ.cpp
       title: ds/doubleEndedPQ.cpp
     - icon: ':warning:'
+      path: ds/doubling.cpp
+      title: ds/doubling.cpp
+    - icon: ':warning:'
       path: ds/dynamicHull.cpp
       title: ds/dynamicHull.cpp
     - icon: ':heavy_check_mark:'
@@ -146,6 +149,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/slidingWindowAggregation.cpp
       title: ds/slidingWindowAggregation.cpp
+    - icon: ':warning:'
+      path: ds/slope_trick.cpp
+      title: ds/slope_trick.cpp
     - icon: ':heavy_check_mark:'
       path: ds/sparseTable.cpp
       title: ds/sparseTable.cpp
