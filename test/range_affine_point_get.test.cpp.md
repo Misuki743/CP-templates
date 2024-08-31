@@ -119,15 +119,15 @@ data:
     \ tag(ssize(init), Tid()), size(ssize(init)) {}\n\n  void apply(int i, T x) {\n\
     \    if (i < size)\n      tag[i] = Top(tag[i], x);\n    else\n      data[i - size]\
     \ = act(data[i - size], x);\n  }\n\n  int trunc(unsigned i) { return i >> countr_zero(i);\
-    \ }\n\n  void push(int i) {\n    for(int s = bit_width((unsigned)i) - 1; s > 0;\
-    \ s--) {\n      if (tag[i >> s] != Tid()) {\n        apply(i >> (s - 1), tag[i\
-    \ >> s]);\n        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n        tag[i >> s]\
-    \ = Tid();\n      }\n    }\n  }\n\n  void set(int i, M x) {\n    push(i + size);\n\
-    \    data[i] = x;\n  }\n\n  M get(int i) {\n    push(i + size);\n    return data[i];\n\
-    \  }\n\n  void modify(int l, int r, T x) {\n    if (l >= r or x == Tid()) return;\n\
-    \    push(trunc(l + size)), push(trunc(r + size) - 1);\n    for(l += size, r +=\
-    \ size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) apply(l++, x);\n      if\
-    \ (r & 1) apply(--r, x);\n    }\n  }\n};\n#line 6 \"test/range_affine_point_get.test.cpp\"\
+    \ }\n\n  void push(int i) {\n    for(int s = (int)bit_width((unsigned)i) - 1;\
+    \ s > 0; s--) {\n      if (tag[i >> s] != Tid()) {\n        apply(i >> (s - 1),\
+    \ tag[i >> s]);\n        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n        tag[i\
+    \ >> s] = Tid();\n      }\n    }\n  }\n\n  void set(int i, M x) {\n    push(i\
+    \ + size);\n    data[i] = x;\n  }\n\n  M get(int i) {\n    push(i + size);\n \
+    \   return data[i];\n  }\n\n  void modify(int l, int r, T x) {\n    if (l >= r\
+    \ or x == Tid()) return;\n    push(trunc(l + size)), push(trunc(r + size) - 1);\n\
+    \    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) apply(l++,\
+    \ x);\n      if (r & 1) apply(--r, x);\n    }\n  }\n};\n#line 6 \"test/range_affine_point_get.test.cpp\"\
     \n\nmint Mid() { return mint(0); }\narray<mint, 2> Tid() { return {1, 0}; }\n\
     array<mint, 2> op(const array<mint, 2> &l, const array<mint, 2> &r) { return {l[0]\
     \ * r[0], l[1] * r[0] + r[1]}; }\nmint act(const mint &l, const array<mint, 2>\
@@ -157,7 +157,7 @@ data:
   isVerificationFile: true
   path: test/range_affine_point_get.test.cpp
   requiredBy: []
-  timestamp: '2024-08-02 21:56:58+08:00'
+  timestamp: '2024-08-31 23:11:05+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/range_affine_point_get.test.cpp

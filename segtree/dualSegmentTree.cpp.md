@@ -22,8 +22,8 @@ data:
     \ size(ssize(init)) {}\n\n  void apply(int i, T x) {\n    if (i < size)\n    \
     \  tag[i] = Top(tag[i], x);\n    else\n      data[i - size] = act(data[i - size],\
     \ x);\n  }\n\n  int trunc(unsigned i) { return i >> countr_zero(i); }\n\n  void\
-    \ push(int i) {\n    for(int s = bit_width((unsigned)i) - 1; s > 0; s--) {\n \
-    \     if (tag[i >> s] != Tid()) {\n        apply(i >> (s - 1), tag[i >> s]);\n\
+    \ push(int i) {\n    for(int s = (int)bit_width((unsigned)i) - 1; s > 0; s--)\
+    \ {\n      if (tag[i >> s] != Tid()) {\n        apply(i >> (s - 1), tag[i >> s]);\n\
     \        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n        tag[i >> s] = Tid();\n\
     \      }\n    }\n  }\n\n  void set(int i, M x) {\n    push(i + size);\n    data[i]\
     \ = x;\n  }\n\n  M get(int i) {\n    push(i + size);\n    return data[i];\n  }\n\
@@ -38,20 +38,20 @@ data:
     \ tag(ssize(init), Tid()), size(ssize(init)) {}\n\n  void apply(int i, T x) {\n\
     \    if (i < size)\n      tag[i] = Top(tag[i], x);\n    else\n      data[i - size]\
     \ = act(data[i - size], x);\n  }\n\n  int trunc(unsigned i) { return i >> countr_zero(i);\
-    \ }\n\n  void push(int i) {\n    for(int s = bit_width((unsigned)i) - 1; s > 0;\
-    \ s--) {\n      if (tag[i >> s] != Tid()) {\n        apply(i >> (s - 1), tag[i\
-    \ >> s]);\n        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n        tag[i >> s]\
-    \ = Tid();\n      }\n    }\n  }\n\n  void set(int i, M x) {\n    push(i + size);\n\
-    \    data[i] = x;\n  }\n\n  M get(int i) {\n    push(i + size);\n    return data[i];\n\
-    \  }\n\n  void modify(int l, int r, T x) {\n    if (l >= r or x == Tid()) return;\n\
-    \    push(trunc(l + size)), push(trunc(r + size) - 1);\n    for(l += size, r +=\
-    \ size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) apply(l++, x);\n      if\
-    \ (r & 1) apply(--r, x);\n    }\n  }\n};\n"
+    \ }\n\n  void push(int i) {\n    for(int s = (int)bit_width((unsigned)i) - 1;\
+    \ s > 0; s--) {\n      if (tag[i >> s] != Tid()) {\n        apply(i >> (s - 1),\
+    \ tag[i >> s]);\n        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n        tag[i\
+    \ >> s] = Tid();\n      }\n    }\n  }\n\n  void set(int i, M x) {\n    push(i\
+    \ + size);\n    data[i] = x;\n  }\n\n  M get(int i) {\n    push(i + size);\n \
+    \   return data[i];\n  }\n\n  void modify(int l, int r, T x) {\n    if (l >= r\
+    \ or x == Tid()) return;\n    push(trunc(l + size)), push(trunc(r + size) - 1);\n\
+    \    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) apply(l++,\
+    \ x);\n      if (r & 1) apply(--r, x);\n    }\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: segtree/dualSegmentTree.cpp
   requiredBy: []
-  timestamp: '2024-02-09 21:58:48+08:00'
+  timestamp: '2024-08-31 23:11:05+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/vertex_add_path_sum.test.cpp

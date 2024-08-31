@@ -127,38 +127,39 @@ data:
     \ tag(ssize(init), Tid()), size(ssize(init)) {}\n\n  void apply(int i, T x) {\n\
     \    if (i < size)\n      tag[i] = Top(tag[i], x);\n    else\n      data[i - size]\
     \ = act(data[i - size], x);\n  }\n\n  int trunc(unsigned i) { return i >> countr_zero(i);\
-    \ }\n\n  void push(int i) {\n    for(int s = bit_width((unsigned)i) - 1; s > 0;\
-    \ s--) {\n      if (tag[i >> s] != Tid()) {\n        apply(i >> (s - 1), tag[i\
-    \ >> s]);\n        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n        tag[i >> s]\
-    \ = Tid();\n      }\n    }\n  }\n\n  void set(int i, M x) {\n    push(i + size);\n\
-    \    data[i] = x;\n  }\n\n  M get(int i) {\n    push(i + size);\n    return data[i];\n\
-    \  }\n\n  void modify(int l, int r, T x) {\n    if (l >= r or x == Tid()) return;\n\
-    \    push(trunc(l + size)), push(trunc(r + size) - 1);\n    for(l += size, r +=\
-    \ size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) apply(l++, x);\n      if\
-    \ (r & 1) apply(--r, x);\n    }\n  }\n};\n#line 1 \"ds/eulerTour.cpp\"\n//#include<ds/RMQ.cpp>\n\
-    //#include<ds/LCA.cpp>\n//#include<segtree/dualSegmentTree.cpp>\n\ntemplate<class\
-    \ M, M(*Mid)(), M(*Mop)(const M&, const M&), M(*Minv)(const M&), \nclass T, T(*Tid)(),\
-    \ T(*Top)(const T&, const T&), M(*act)(const M&, const T&)>\nstruct eulerTour\
-    \ {\n  vector<int> tin, tout, p;\n  dualSegmentTree<M, Mid, T, Tid, Top, act>\
-    \ st;\n  LCA lc;\n\n  eulerTour(vector<vector<int>> g, int root = 0) : tin(ssize(g)),\
-    \ tout(ssize(g)), p(ssize(g), -1), st(ssize(g)), lc(g, root) {\n    int t = 0;\n\
-    \    auto dfs = [&](int v, auto self) -> void {\n      tin[v] = t++;\n      for(int\
-    \ x : g[v]) {\n        if (x == p[v]) continue;\n        p[x] = v;\n        self(x,\
-    \ self);\n      }\n      tout[v] = t;\n    };\n\n    dfs(root, dfs);\n  }\n\n\
-    \  //for point modify, path query, inversion of monoid is needed\n  void modify(int\
-    \ v, T x) { st.modify(tin[v], tout[v], x); }\n  M query(int u, int v) {\n    int\
-    \ Lca = lc.lca(u, v);\n    M res = Mop(st.get(tin[u]), st.get(tin[v]));\n    res\
-    \ = Mop(res, Minv(st.get(tin[Lca])));\n    if (p[Lca] != -1)\n      res = Mop(res,\
-    \ Minv(st.get(tin[p[Lca]])));\n    return res;\n  }\n};\n#line 8 \"test/vertex_add_path_sum.test.cpp\"\
-    \n\nll add(const ll &a, const ll &b) { return a + b; }\nll zero() { return 0ll;\
-    \ }\nll inv(const ll &x) { return -x; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x\
-    \ : a)\n    cin >> x;\n  vector<vector<int>> g(n);\n  for(int i = 1; i < n; i++)\
-    \ {\n    int u, v; cin >> u >> v;\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n\
-    \  }\n\n  eulerTour<ll, zero, add, inv, ll, zero, add, add> eu(g);\n\n  for(int\
-    \ v = 0; v < n; v++)\n    eu.modify(v, a[v]);\n\n  while(q--) {\n    int t, x,\
-    \ y; cin >> t >> x >> y;\n    if (t == 0)\n      eu.modify(x, y);\n    else\n\
-    \      cout << eu.query(x, y) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ }\n\n  void push(int i) {\n    for(int s = (int)bit_width((unsigned)i) - 1;\
+    \ s > 0; s--) {\n      if (tag[i >> s] != Tid()) {\n        apply(i >> (s - 1),\
+    \ tag[i >> s]);\n        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n        tag[i\
+    \ >> s] = Tid();\n      }\n    }\n  }\n\n  void set(int i, M x) {\n    push(i\
+    \ + size);\n    data[i] = x;\n  }\n\n  M get(int i) {\n    push(i + size);\n \
+    \   return data[i];\n  }\n\n  void modify(int l, int r, T x) {\n    if (l >= r\
+    \ or x == Tid()) return;\n    push(trunc(l + size)), push(trunc(r + size) - 1);\n\
+    \    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) apply(l++,\
+    \ x);\n      if (r & 1) apply(--r, x);\n    }\n  }\n};\n#line 1 \"ds/eulerTour.cpp\"\
+    \n//#include<ds/RMQ.cpp>\n//#include<ds/LCA.cpp>\n//#include<segtree/dualSegmentTree.cpp>\n\
+    \ntemplate<class M, M(*Mid)(), M(*Mop)(const M&, const M&), M(*Minv)(const M&),\
+    \ \nclass T, T(*Tid)(), T(*Top)(const T&, const T&), M(*act)(const M&, const T&)>\n\
+    struct eulerTour {\n  vector<int> tin, tout, p;\n  dualSegmentTree<M, Mid, T,\
+    \ Tid, Top, act> st;\n  LCA lc;\n\n  eulerTour(vector<vector<int>> g, int root\
+    \ = 0) : tin(ssize(g)), tout(ssize(g)), p(ssize(g), -1), st(ssize(g)), lc(g, root)\
+    \ {\n    int t = 0;\n    auto dfs = [&](int v, auto self) -> void {\n      tin[v]\
+    \ = t++;\n      for(int x : g[v]) {\n        if (x == p[v]) continue;\n      \
+    \  p[x] = v;\n        self(x, self);\n      }\n      tout[v] = t;\n    };\n\n\
+    \    dfs(root, dfs);\n  }\n\n  //for point modify, path query, inversion of monoid\
+    \ is needed\n  void modify(int v, T x) { st.modify(tin[v], tout[v], x); }\n  M\
+    \ query(int u, int v) {\n    int Lca = lc.lca(u, v);\n    M res = Mop(st.get(tin[u]),\
+    \ st.get(tin[v]));\n    res = Mop(res, Minv(st.get(tin[Lca])));\n    if (p[Lca]\
+    \ != -1)\n      res = Mop(res, Minv(st.get(tin[p[Lca]])));\n    return res;\n\
+    \  }\n};\n#line 8 \"test/vertex_add_path_sum.test.cpp\"\n\nll add(const ll &a,\
+    \ const ll &b) { return a + b; }\nll zero() { return 0ll; }\nll inv(const ll &x)\
+    \ { return -x; }\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \n  int n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x : a)\n    cin >>\
+    \ x;\n  vector<vector<int>> g(n);\n  for(int i = 1; i < n; i++) {\n    int u,\
+    \ v; cin >> u >> v;\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n  }\n\
+    \n  eulerTour<ll, zero, add, inv, ll, zero, add, add> eu(g);\n\n  for(int v =\
+    \ 0; v < n; v++)\n    eu.modify(v, a[v]);\n\n  while(q--) {\n    int t, x, y;\
+    \ cin >> t >> x >> y;\n    if (t == 0)\n      eu.modify(x, y);\n    else\n   \
+    \   cout << eu.query(x, y) << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\
     \n#include \"../default/t.cpp\"\n#include \"../ds/RMQ.cpp\"\n#include \"../ds/LCA.cpp\"\
     \n#include \"../segtree/dualSegmentTree.cpp\"\n#include \"../ds/eulerTour.cpp\"\
@@ -180,7 +181,7 @@ data:
   isVerificationFile: true
   path: test/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2024-08-31 23:11:05+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_add_path_sum.test.cpp

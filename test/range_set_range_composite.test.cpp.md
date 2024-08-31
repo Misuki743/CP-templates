@@ -123,9 +123,9 @@ data:
     \ init.end(), data.begin() + size);\n    for(int i = size - 1; i > 0; i--)\n \
     \     data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  void apply(int i,\
     \ int tId) {\n    data[i] = pre[tId];\n    if (i < size) tagId[i] = tId;\n  }\n\
-    \n  void push(int i) {\n    for(int s = bit_width((unsigned)i) - 1; s > 0; s--)\
-    \ {\n      if (tagId[i >> s] != -1) {\n        apply(i >> (s - 1), tagId[i >>\
-    \ s] - 1);\n        apply(i >> (s - 1) ^ 1, tagId[i >> s] - 1);\n        tagId[i\
+    \n  void push(int i) {\n    for(int s = (int)bit_width((unsigned)i) - 1; s > 0;\
+    \ s--) {\n      if (tagId[i >> s] != -1) {\n        apply(i >> (s - 1), tagId[i\
+    \ >> s] - 1);\n        apply(i >> (s - 1) ^ 1, tagId[i >> s] - 1);\n        tagId[i\
     \ >> s] = -1;\n      }\n    }\n  }\n\n  void pull(int i) {\n    while(i >>= 1)\
     \ data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  int trunc(unsigned i)\
     \ { return i >> countr_zero(i); }\n\n  void set(int i, M x) {\n    push(i + size);\n\
@@ -137,26 +137,27 @@ data:
     \ - 1);\n          tagId[i] = -1;\n        }\n      }\n      nxt = 0;\n    }\n\
     \    for(int i = 0; i < bit_width((unsigned)size); i++, x = op(x, x))\n      pre[nxt++]\
     \ = x;\n    push(trunc(l += size)), push(trunc(r += size) - 1);\n    int l0 =\
-    \ l, r0 = r;\n    for(int tId = nxt - bit_width((unsigned)size); l < r; l >>=\
-    \ 1, r >>= 1, tId++) {\n      if (l & 1) apply(l++, tId);\n      if (r & 1) apply(--r,\
-    \ tId);\n    }\n    pull(trunc(l0)), pull(trunc(r0) - 1);\n  }\n\n  M query(int\
-    \ l, int r) {\n    if (l >= r) return id();\n    M L = id(), R = id();\n    push(trunc(l\
-    \ += size)), push(trunc(r += size) - 1);\n    for(; l < r; l >>= 1, r >>= 1) {\n\
-    \      if (l & 1) L = op(L, data[l++]);\n      if (r & 1) R = op(data[--r], R);\n\
-    \    }\n    return op(L, R);\n  }\n};\n#line 1 \"actedmonoid/actedMonoid_affineSum.cpp\"\
-    \ntemplate<class U>\nstruct actedMonoid_affineSum {\n  using M = array<U, 2>;\n\
-    \  static M Mid() { return M{0, 0}; }\n  static M Mop(const M &a, const M &b)\
-    \ { return {a[0] + b[0], a[1] + b[1]}; }\n  using T = array<U, 2>;\n  static T\
-    \ Tid() { return T{1, 0}; }\n  static T Top(const T &a, const T &b) { return T{a[0]\
-    \ * b[0], a[1] * b[0] + b[1]}; }\n  static M act(const M &a, const T &b) { return\
-    \ {a[0] * b[0] + a[1] * b[1], a[1]}; }\n};\n#line 7 \"test/range_set_range_composite.test.cpp\"\
-    \n\nusing am = actedMonoid_affineSum<mint>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<am::T> ab(n);\n  for(auto\
-    \ &[a, b] : ab)\n    cin >> a >> b;\n\n  rangeSetSegmentTree<am::T, am::Tid, am::Top>\
-    \ st(ab);\n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int\
-    \ l, r, c, d; cin >> l >> r >> c >> d;\n      st.set(l, r, am::T{c, d});\n   \
-    \ } else {\n      int l, r, x; cin >> l >> r >> x;\n      cout << am::Top(am::T{0,\
-    \ x}, st.query(l, r))[1] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+    \ l, r0 = r;\n    for(int tId = nxt - (int)bit_width((unsigned)size); l < r; l\
+    \ >>= 1, r >>= 1, tId++) {\n      if (l & 1) apply(l++, tId);\n      if (r & 1)\
+    \ apply(--r, tId);\n    }\n    pull(trunc(l0)), pull(trunc(r0) - 1);\n  }\n\n\
+    \  M query(int l, int r) {\n    if (l >= r) return id();\n    M L = id(), R =\
+    \ id();\n    push(trunc(l += size)), push(trunc(r += size) - 1);\n    for(; l\
+    \ < r; l >>= 1, r >>= 1) {\n      if (l & 1) L = op(L, data[l++]);\n      if (r\
+    \ & 1) R = op(data[--r], R);\n    }\n    return op(L, R);\n  }\n};\n#line 1 \"\
+    actedmonoid/actedMonoid_affineSum.cpp\"\ntemplate<class U>\nstruct actedMonoid_affineSum\
+    \ {\n  using M = array<U, 2>;\n  static M Mid() { return M{0, 0}; }\n  static\
+    \ M Mop(const M &a, const M &b) { return {a[0] + b[0], a[1] + b[1]}; }\n  using\
+    \ T = array<U, 2>;\n  static T Tid() { return T{1, 0}; }\n  static T Top(const\
+    \ T &a, const T &b) { return T{a[0] * b[0], a[1] * b[0] + b[1]}; }\n  static M\
+    \ act(const M &a, const T &b) { return {a[0] * b[0] + a[1] * b[1], a[1]}; }\n\
+    };\n#line 7 \"test/range_set_range_composite.test.cpp\"\n\nusing am = actedMonoid_affineSum<mint>;\n\
+    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
+    \ cin >> n >> q;\n  vector<am::T> ab(n);\n  for(auto &[a, b] : ab)\n    cin >>\
+    \ a >> b;\n\n  rangeSetSegmentTree<am::T, am::Tid, am::Top> st(ab);\n  while(q--)\
+    \ {\n    int t; cin >> t;\n    if (t == 0) {\n      int l, r, c, d; cin >> l >>\
+    \ r >> c >> d;\n      st.set(l, r, am::T{c, d});\n    } else {\n      int l, r,\
+    \ x; cin >> l >> r >> x;\n      cout << am::Top(am::T{0, x}, st.query(l, r))[1]\
+    \ << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_set_range_composite\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
     \n#include \"../segtree/rangeSetSegmentTree.cpp\"\n#include \"../actedmonoid/actedMonoid_affineSum.cpp\"\
@@ -175,7 +176,7 @@ data:
   isVerificationFile: true
   path: test/range_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-08-02 21:56:58+08:00'
+  timestamp: '2024-08-31 23:11:05+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/range_set_range_composite.test.cpp

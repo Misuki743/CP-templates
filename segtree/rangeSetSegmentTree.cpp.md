@@ -20,9 +20,9 @@ data:
     \ init.end(), data.begin() + size);\n    for(int i = size - 1; i > 0; i--)\n \
     \     data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  void apply(int i,\
     \ int tId) {\n    data[i] = pre[tId];\n    if (i < size) tagId[i] = tId;\n  }\n\
-    \n  void push(int i) {\n    for(int s = bit_width((unsigned)i) - 1; s > 0; s--)\
-    \ {\n      if (tagId[i >> s] != -1) {\n        apply(i >> (s - 1), tagId[i >>\
-    \ s] - 1);\n        apply(i >> (s - 1) ^ 1, tagId[i >> s] - 1);\n        tagId[i\
+    \n  void push(int i) {\n    for(int s = (int)bit_width((unsigned)i) - 1; s > 0;\
+    \ s--) {\n      if (tagId[i >> s] != -1) {\n        apply(i >> (s - 1), tagId[i\
+    \ >> s] - 1);\n        apply(i >> (s - 1) ^ 1, tagId[i >> s] - 1);\n        tagId[i\
     \ >> s] = -1;\n      }\n    }\n  }\n\n  void pull(int i) {\n    while(i >>= 1)\
     \ data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  int trunc(unsigned i)\
     \ { return i >> countr_zero(i); }\n\n  void set(int i, M x) {\n    push(i + size);\n\
@@ -34,13 +34,13 @@ data:
     \ - 1);\n          tagId[i] = -1;\n        }\n      }\n      nxt = 0;\n    }\n\
     \    for(int i = 0; i < bit_width((unsigned)size); i++, x = op(x, x))\n      pre[nxt++]\
     \ = x;\n    push(trunc(l += size)), push(trunc(r += size) - 1);\n    int l0 =\
-    \ l, r0 = r;\n    for(int tId = nxt - bit_width((unsigned)size); l < r; l >>=\
-    \ 1, r >>= 1, tId++) {\n      if (l & 1) apply(l++, tId);\n      if (r & 1) apply(--r,\
-    \ tId);\n    }\n    pull(trunc(l0)), pull(trunc(r0) - 1);\n  }\n\n  M query(int\
-    \ l, int r) {\n    if (l >= r) return id();\n    M L = id(), R = id();\n    push(trunc(l\
-    \ += size)), push(trunc(r += size) - 1);\n    for(; l < r; l >>= 1, r >>= 1) {\n\
-    \      if (l & 1) L = op(L, data[l++]);\n      if (r & 1) R = op(data[--r], R);\n\
-    \    }\n    return op(L, R);\n  }\n};\n"
+    \ l, r0 = r;\n    for(int tId = nxt - (int)bit_width((unsigned)size); l < r; l\
+    \ >>= 1, r >>= 1, tId++) {\n      if (l & 1) apply(l++, tId);\n      if (r & 1)\
+    \ apply(--r, tId);\n    }\n    pull(trunc(l0)), pull(trunc(r0) - 1);\n  }\n\n\
+    \  M query(int l, int r) {\n    if (l >= r) return id();\n    M L = id(), R =\
+    \ id();\n    push(trunc(l += size)), push(trunc(r += size) - 1);\n    for(; l\
+    \ < r; l >>= 1, r >>= 1) {\n      if (l & 1) L = op(L, data[l++]);\n      if (r\
+    \ & 1) R = op(data[--r], R);\n    }\n    return op(L, R);\n  }\n};\n"
   code: "template<class M, M(*id)(), M(*op)(const M&, const M&)>\nstruct rangeSetSegmentTree\
     \ {\n  vector<M> data, pre;\n  vector<int> tagId;\n  int size, nxt;\n\n  rangeSetSegmentTree(int\
     \ _size) : data(2 * _size, id()), pre(_size), tagId(_size, -1), size(_size), nxt(0)\
@@ -49,9 +49,9 @@ data:
     \ init.end(), data.begin() + size);\n    for(int i = size - 1; i > 0; i--)\n \
     \     data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  void apply(int i,\
     \ int tId) {\n    data[i] = pre[tId];\n    if (i < size) tagId[i] = tId;\n  }\n\
-    \n  void push(int i) {\n    for(int s = bit_width((unsigned)i) - 1; s > 0; s--)\
-    \ {\n      if (tagId[i >> s] != -1) {\n        apply(i >> (s - 1), tagId[i >>\
-    \ s] - 1);\n        apply(i >> (s - 1) ^ 1, tagId[i >> s] - 1);\n        tagId[i\
+    \n  void push(int i) {\n    for(int s = (int)bit_width((unsigned)i) - 1; s > 0;\
+    \ s--) {\n      if (tagId[i >> s] != -1) {\n        apply(i >> (s - 1), tagId[i\
+    \ >> s] - 1);\n        apply(i >> (s - 1) ^ 1, tagId[i >> s] - 1);\n        tagId[i\
     \ >> s] = -1;\n      }\n    }\n  }\n\n  void pull(int i) {\n    while(i >>= 1)\
     \ data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  int trunc(unsigned i)\
     \ { return i >> countr_zero(i); }\n\n  void set(int i, M x) {\n    push(i + size);\n\
@@ -63,18 +63,18 @@ data:
     \ - 1);\n          tagId[i] = -1;\n        }\n      }\n      nxt = 0;\n    }\n\
     \    for(int i = 0; i < bit_width((unsigned)size); i++, x = op(x, x))\n      pre[nxt++]\
     \ = x;\n    push(trunc(l += size)), push(trunc(r += size) - 1);\n    int l0 =\
-    \ l, r0 = r;\n    for(int tId = nxt - bit_width((unsigned)size); l < r; l >>=\
-    \ 1, r >>= 1, tId++) {\n      if (l & 1) apply(l++, tId);\n      if (r & 1) apply(--r,\
-    \ tId);\n    }\n    pull(trunc(l0)), pull(trunc(r0) - 1);\n  }\n\n  M query(int\
-    \ l, int r) {\n    if (l >= r) return id();\n    M L = id(), R = id();\n    push(trunc(l\
-    \ += size)), push(trunc(r += size) - 1);\n    for(; l < r; l >>= 1, r >>= 1) {\n\
-    \      if (l & 1) L = op(L, data[l++]);\n      if (r & 1) R = op(data[--r], R);\n\
-    \    }\n    return op(L, R);\n  }\n};\n"
+    \ l, r0 = r;\n    for(int tId = nxt - (int)bit_width((unsigned)size); l < r; l\
+    \ >>= 1, r >>= 1, tId++) {\n      if (l & 1) apply(l++, tId);\n      if (r & 1)\
+    \ apply(--r, tId);\n    }\n    pull(trunc(l0)), pull(trunc(r0) - 1);\n  }\n\n\
+    \  M query(int l, int r) {\n    if (l >= r) return id();\n    M L = id(), R =\
+    \ id();\n    push(trunc(l += size)), push(trunc(r += size) - 1);\n    for(; l\
+    \ < r; l >>= 1, r >>= 1) {\n      if (l & 1) L = op(L, data[l++]);\n      if (r\
+    \ & 1) R = op(data[--r], R);\n    }\n    return op(L, R);\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: segtree/rangeSetSegmentTree.cpp
   requiredBy: []
-  timestamp: '2024-02-11 15:11:45+08:00'
+  timestamp: '2024-08-31 23:11:05+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/range_set_range_composite.test.cpp
