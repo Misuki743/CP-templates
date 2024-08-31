@@ -18,7 +18,7 @@ struct rangeSetSegmentTree {
   }
 
   void push(int i) {
-    for(int s = bit_width((unsigned)i) - 1; s > 0; s--) {
+    for(int s = (int)bit_width((unsigned)i) - 1; s > 0; s--) {
       if (tagId[i >> s] != -1) {
         apply(i >> (s - 1), tagId[i >> s] - 1);
         apply(i >> (s - 1) ^ 1, tagId[i >> s] - 1);
@@ -60,7 +60,7 @@ struct rangeSetSegmentTree {
       pre[nxt++] = x;
     push(trunc(l += size)), push(trunc(r += size) - 1);
     int l0 = l, r0 = r;
-    for(int tId = nxt - bit_width((unsigned)size); l < r; l >>= 1, r >>= 1, tId++) {
+    for(int tId = nxt - (int)bit_width((unsigned)size); l < r; l >>= 1, r >>= 1, tId++) {
       if (l & 1) apply(l++, tId);
       if (r & 1) apply(--r, tId);
     }

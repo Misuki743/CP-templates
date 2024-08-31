@@ -17,7 +17,7 @@ struct dualSegmentTree {
   int trunc(unsigned i) { return i >> countr_zero(i); }
 
   void push(int i) {
-    for(int s = bit_width((unsigned)i) - 1; s > 0; s--) {
+    for(int s = (int)bit_width((unsigned)i) - 1; s > 0; s--) {
       if (tag[i >> s] != Tid()) {
         apply(i >> (s - 1), tag[i >> s]);
         apply(i >> (s - 1) ^ 1, tag[i >> s]);

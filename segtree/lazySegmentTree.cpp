@@ -18,7 +18,7 @@ struct lazySegmentTree {
   }
 
   void push(unsigned i) {
-    for(int s = bit_width(i) - 1; s > 0; s--) {
+    for(int s = (int)bit_width(i) - 1; s > 0; s--) {
       if (tag[i >> s] != Tid()) {
         apply(i >> (s - 1), tag[i >> s]);
         apply(i >> (s - 1) ^ 1, tag[i >> s]);
