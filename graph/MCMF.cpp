@@ -38,6 +38,32 @@ struct MCMF {
     pot.swap(dis);
   }
 
+  void initPotentialDAG(int s) {
+    fill(dis.begin(), dis.end(), COS_MAX);
+    dis[s] = 0;
+    vector<int> topo = [&]() {
+      vector<int> topo;
+      vector<bool> vis(n, false);
+      auto dfs = [&](int v, auto &&self) -> void {
+        vis[v] = true;
+        for(edge e : g[v])
+          if (e.cap != 0 and !vis[e.to])
+            self(e.to, self);
+        topo.emplace_back(v);
+      };
+      for(int v = 0; v < n; v++)
+        if (!vis[v])
+          dfs(v, dfs);
+      return topo;
+    }();
+    for(int v : topo | views::reverse)
+      if (dis[v] != COS_MAX)
+        for(edge e : g[v])
+          if (e.cap != 0)
+            chmin(dis[e.to], dis[v] + e.cos);
+    pot.swap(dis);
+  }
+
   pair<capT, cosT> runFlow(int s, int t, bool dense = false) {
     cosT cost = 0;
     capT flow = 0;
