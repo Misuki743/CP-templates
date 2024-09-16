@@ -292,6 +292,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/xorBasis.cpp
       title: linalg/xorBasis.cpp
+    - icon: ':warning:'
+      path: linalg/xorBasis2.cpp
+      title: linalg/xorBasis2.cpp
   - name: misc
     pages:
     - icon: ':heavy_check_mark:'

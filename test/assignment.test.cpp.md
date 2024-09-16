@@ -90,40 +90,50 @@ data:
     \ i = 1; i < n; i++) {\n      for(int v = 0; v < n; v++) {\n        if (dis[v]\
     \ == COS_MAX) continue;\n        for(edge e : g[v])\n          if (e.cap != 0\
     \ and dis[v] + e.cos < dis[e.to])\n            dis[e.to] = dis[v] + e.cos;\n \
-    \     }\n    }\n    pot.swap(dis);\n  }\n\n  pair<capT, cosT> runFlow(int s, int\
-    \ t, bool dense = false) {\n    cosT cost = 0;\n    capT flow = 0;\n    while(true)\
-    \ {\n      fill(dis.begin(), dis.end(), COS_MAX);\n      dis[s] = 0, f[s] = CAP_MAX;\n\
-    \      if (dense) {\n        vector<bool> vis(n, false);\n        for(int i =\
-    \ 0; i < n; i++) {\n          int v = -1;\n          for(int j = 0; j < n; j++)\n\
-    \            if (!vis[j] and (v == -1 or dis[j] < dis[v]))\n              v =\
-    \ j;\n          if (v == -1 or dis[v] == COS_MAX) break;\n          vis[v] = true;\n\
-    \          for(edge e : g[v]) {\n            if (e.cap == 0) continue;\n     \
-    \       if (cosT x = dis[v] + e.cos + pot[v] - pot[e.to]; x < dis[e.to]) {\n \
-    \             dis[e.to] = x, f[e.to] = min(f[v], e.cap);\n              par[e.to]\
-    \ = v, idx[e.to] = g[e.to][e.rev].rev;\n            }\n          }\n        }\n\
-    \      } else {\n        using T = pair<cosT, int>;\n        priority_queue<T,\
-    \ vector<T>, greater<T>> pq;\n        pq.push(make_pair(dis[s], s));\n       \
-    \ while(!pq.empty()) {\n          auto [d, v] = pq.top(); pq.pop();\n        \
-    \  if (dis[v] != d) continue;\n          for(edge e : g[v]) {\n            if\
-    \ (e.cap == 0) continue;\n            if (cosT x = dis[v] + e.cos + pot[v] - pot[e.to];\
-    \ x < dis[e.to]) {\n              dis[e.to] = x, f[e.to] = min(f[v], e.cap);\n\
-    \              par[e.to] = v, idx[e.to] = g[e.to][e.rev].rev;\n              pq.push(make_pair(dis[e.to],\
-    \ e.to));\n            }\n          }\n        }\n      }\n\n      if (dis[t]\
-    \ == COS_MAX) break;\n\n      int v = t;\n      while(v != s) {\n        edge\
-    \ &e = g[par[v]][idx[v]];\n        e.cap -= f[t], g[v][e.rev].cap += f[t];\n \
-    \       v = par[v];\n      }\n      flow += f[t], cost += f[t] * (dis[t] - pot[s]\
-    \ + pot[t]);\n      for(int i = 0; i < n; i++)\n        if (dis[i] != COS_MAX)\n\
-    \          dis[i] += pot[i] - pot[s];\n      pot.swap(dis);\n    }\n\n    return\
-    \ {flow, cost};\n  }\n};\n#line 5 \"test/assignment.test.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector\
-    \ a(n, vector<int>(n));\n  for(auto &v : a)\n    for(int &x : v)\n      cin >>\
-    \ x;\n\n  const int s = 2 * n, t = 2 * n + 1;\n  MCMF<int, ll> mcmf(2 * n + 2);\n\
-    \  for(int v = 0; v < n; v++) {\n    mcmf.addEdge(s, v, 1, 0);\n    mcmf.addEdge(v\
-    \ + n, t, 1, 0);\n  }\n  for(int u = 0; u < n; u++)\n    for(int v = 0; v < n;\
-    \ v++)\n      mcmf.addEdge(u, v + n, 1, a[u][v]);\n\n  mcmf.initPotential(s);\n\
-    \  cout << mcmf.runFlow(s, t, true).second << '\\n';\n  for(int v = 0; v < n;\
-    \ v++)\n    for(auto e : mcmf.g[v])\n      if (e.cap == 0 and e.to != s)\n   \
-    \     cout << e.to - n << \" \\n\"[v + 1 == n];\n\n  return 0;\n}\n\n"
+    \     }\n    }\n    pot.swap(dis);\n  }\n\n  void initPotentialDAG(int s) {\n\
+    \    fill(dis.begin(), dis.end(), COS_MAX);\n    dis[s] = 0;\n    vector<int>\
+    \ topo = [&]() {\n      vector<int> topo;\n      vector<bool> vis(n, false);\n\
+    \      auto dfs = [&](int v, auto &&self) -> void {\n        vis[v] = true;\n\
+    \        for(edge e : g[v])\n          if (e.cap != 0 and !vis[e.to])\n      \
+    \      self(e.to, self);\n        topo.emplace_back(v);\n      };\n      for(int\
+    \ v = 0; v < n; v++)\n        if (!vis[v])\n          dfs(v, dfs);\n      return\
+    \ topo;\n    }();\n    for(int v : topo | views::reverse)\n      if (dis[v] !=\
+    \ COS_MAX)\n        for(edge e : g[v])\n          if (e.cap != 0)\n          \
+    \  chmin(dis[e.to], dis[v] + e.cos);\n    pot.swap(dis);\n  }\n\n  pair<capT,\
+    \ cosT> runFlow(int s, int t, bool dense = false) {\n    cosT cost = 0;\n    capT\
+    \ flow = 0;\n    while(true) {\n      fill(dis.begin(), dis.end(), COS_MAX);\n\
+    \      dis[s] = 0, f[s] = CAP_MAX;\n      if (dense) {\n        vector<bool> vis(n,\
+    \ false);\n        for(int i = 0; i < n; i++) {\n          int v = -1;\n     \
+    \     for(int j = 0; j < n; j++)\n            if (!vis[j] and (v == -1 or dis[j]\
+    \ < dis[v]))\n              v = j;\n          if (v == -1 or dis[v] == COS_MAX)\
+    \ break;\n          vis[v] = true;\n          for(edge e : g[v]) {\n         \
+    \   if (e.cap == 0) continue;\n            if (cosT x = dis[v] + e.cos + pot[v]\
+    \ - pot[e.to]; x < dis[e.to]) {\n              dis[e.to] = x, f[e.to] = min(f[v],\
+    \ e.cap);\n              par[e.to] = v, idx[e.to] = g[e.to][e.rev].rev;\n    \
+    \        }\n          }\n        }\n      } else {\n        using T = pair<cosT,\
+    \ int>;\n        priority_queue<T, vector<T>, greater<T>> pq;\n        pq.push(make_pair(dis[s],\
+    \ s));\n        while(!pq.empty()) {\n          auto [d, v] = pq.top(); pq.pop();\n\
+    \          if (dis[v] != d) continue;\n          for(edge e : g[v]) {\n      \
+    \      if (e.cap == 0) continue;\n            if (cosT x = dis[v] + e.cos + pot[v]\
+    \ - pot[e.to]; x < dis[e.to]) {\n              dis[e.to] = x, f[e.to] = min(f[v],\
+    \ e.cap);\n              par[e.to] = v, idx[e.to] = g[e.to][e.rev].rev;\n    \
+    \          pq.push(make_pair(dis[e.to], e.to));\n            }\n          }\n\
+    \        }\n      }\n\n      if (dis[t] == COS_MAX) break;\n\n      int v = t;\n\
+    \      while(v != s) {\n        edge &e = g[par[v]][idx[v]];\n        e.cap -=\
+    \ f[t], g[v][e.rev].cap += f[t];\n        v = par[v];\n      }\n      flow +=\
+    \ f[t], cost += f[t] * (dis[t] - pot[s] + pot[t]);\n      for(int i = 0; i < n;\
+    \ i++)\n        if (dis[i] != COS_MAX)\n          dis[i] += pot[i] - pot[s];\n\
+    \      pot.swap(dis);\n    }\n\n    return {flow, cost};\n  }\n};\n#line 5 \"\
+    test/assignment.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector a(n, vector<int>(n));\n  for(auto\
+    \ &v : a)\n    for(int &x : v)\n      cin >> x;\n\n  const int s = 2 * n, t =\
+    \ 2 * n + 1;\n  MCMF<int, ll> mcmf(2 * n + 2);\n  for(int v = 0; v < n; v++) {\n\
+    \    mcmf.addEdge(s, v, 1, 0);\n    mcmf.addEdge(v + n, t, 1, 0);\n  }\n  for(int\
+    \ u = 0; u < n; u++)\n    for(int v = 0; v < n; v++)\n      mcmf.addEdge(u, v\
+    \ + n, 1, a[u][v]);\n\n  mcmf.initPotential(s);\n  cout << mcmf.runFlow(s, t,\
+    \ true).second << '\\n';\n  for(int v = 0; v < n; v++)\n    for(auto e : mcmf.g[v])\n\
+    \      if (e.cap == 0 and e.to != s)\n        cout << e.to - n << \" \\n\"[v +\
+    \ 1 == n];\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../graph/MCMF.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector a(n, vector<int>(n));\n  for(auto\
@@ -141,7 +151,7 @@ data:
   isVerificationFile: true
   path: test/assignment.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2024-09-15 11:33:45+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/assignment.test.cpp

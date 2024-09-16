@@ -64,10 +64,10 @@ data:
   timestamp: '2024-04-05 18:02:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/static_range_count_distinct.test.cpp
-  - test/range_kth_smallest.test.cpp
   - test/rectangle_add_point_get.test.cpp
+  - test/static_range_count_distinct.test.cpp
   - test/static_range_frequency.test.cpp
+  - test/range_kth_smallest.test.cpp
   - test/point_add_rectangle_sum.test.cpp
   - test/rectangle_sum.test.cpp
   - test/range_kth_smallest2.test.cpp

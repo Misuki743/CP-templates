@@ -54,8 +54,8 @@ data:
   timestamp: '2024-08-31 23:11:05+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/vertex_add_path_sum.test.cpp
   - test/range_affine_point_get.test.cpp
+  - test/vertex_add_path_sum.test.cpp
 documentation_of: segtree/dualSegmentTree.cpp
 layout: document
 redirect_from:

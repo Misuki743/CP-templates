@@ -63,9 +63,9 @@ data:
   timestamp: '2024-01-23 02:14:10+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/primitive_root.test.cpp
   - test/primality_test.test.cpp
   - test/factorize.test.cpp
-  - test/primitive_root.test.cpp
 documentation_of: numtheory/fastFactorize.cpp
 layout: document
 redirect_from:
