@@ -1,5 +1,11 @@
 //source: atcoder library
 
+constexpr long long safe_mod(long long x, long long m) {
+    x %= m;
+    if (x < 0) x += m;
+    return x;
+}
+
 //compute sum_{i = 0}^{n - 1} floor((ai + b) / m)
 unsigned long long floor_sum_unsigned(unsigned long long n,
                                       unsigned long long m,
