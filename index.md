@@ -304,6 +304,9 @@ data:
       path: misc/arrayUtility.cpp
       title: misc/arrayUtility.cpp
     - icon: ':heavy_check_mark:'
+      path: misc/bigint.cpp
+      title: misc/bigint.cpp
+    - icon: ':heavy_check_mark:'
       path: misc/compression.cpp
       title: compression
     - icon: ':heavy_check_mark:'
@@ -478,6 +481,12 @@ data:
       path: test/Z_algorithm.test.cpp
       title: test/Z_algorithm.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/addition_of_big_integers.test.cpp
+      title: test/addition_of_big_integers.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/addition_of_big_integers_2.test.cpp
+      title: test/addition_of_big_integers_2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/area_of_union_of_rectangles.test.cpp
       title: test/area_of_union_of_rectangles.test.cpp
     - icon: ':heavy_check_mark:'
@@ -621,6 +630,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mul_modp_convolution.test.cpp
       title: test/mul_modp_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/multiplication_of_big_intergers.test.cpp
+      title: test/multiplication_of_big_intergers.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/multiplication_of_big_intergers_2.test.cpp
+      title: test/multiplication_of_big_intergers_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/multipoint_evaluation.test.cpp
       title: test/multipoint_evaluation.test.cpp

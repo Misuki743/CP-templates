@@ -4,6 +4,12 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/addition_of_big_integers.test.cpp
+    title: test/addition_of_big_integers.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/addition_of_big_integers_2.test.cpp
+    title: test/addition_of_big_integers_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/bernoulli_number.test.cpp
     title: test/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,6 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mul_modp_convolution.test.cpp
     title: test/mul_modp_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/multiplication_of_big_intergers.test.cpp
+    title: test/multiplication_of_big_intergers.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/multiplication_of_big_intergers_2.test.cpp
+    title: test/multiplication_of_big_intergers_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
@@ -154,6 +166,7 @@ data:
   - test/bernoulli_number.test.cpp
   - test/pow_of_formal_power_series.test.cpp
   - test/compositional_inverse_of_formal_power_series_large.test.cpp
+  - test/multiplication_of_big_intergers.test.cpp
   - test/convolution.test.cpp
   - test/stirling_number_of_the_first_kind.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
@@ -166,8 +179,10 @@ data:
   - test/sharp_p_subset_sum.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/yuki_2613.test.cpp
+  - test/addition_of_big_integers.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/inv_of_formal_power_series.test.cpp
+  - test/addition_of_big_integers_2.test.cpp
   - test/log_of_formal_power_series.test.cpp
   - test/polynomial_interpolation.test.cpp
   - test/subset_convolution.test.cpp
@@ -175,6 +190,7 @@ data:
   - test/sqrt_of_formal_power_series.test.cpp
   - test/yuki_2544.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/multiplication_of_big_intergers_2.test.cpp
   - test/mul_modp_convolution.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
 documentation_of: poly/NTTmint.cpp

@@ -7,6 +7,12 @@ data:
     path: test/Z_algorithm.test.cpp
     title: test/Z_algorithm.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/addition_of_big_integers.test.cpp
+    title: test/addition_of_big_integers.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/addition_of_big_integers_2.test.cpp
+    title: test/addition_of_big_integers_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -150,6 +156,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mul_modp_convolution.test.cpp
     title: test/mul_modp_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/multiplication_of_big_intergers.test.cpp
+    title: test/multiplication_of_big_intergers.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/multiplication_of_big_intergers_2.test.cpp
+    title: test/multiplication_of_big_intergers_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
@@ -470,6 +482,7 @@ data:
   - test/enumerate_palindromes.test.cpp
   - test/static_range_frequency.test.cpp
   - test/area_of_union_of_rectangles.test.cpp
+  - test/multiplication_of_big_intergers.test.cpp
   - test/vertex_add_subtree_sum.test.cpp
   - test/find_linear_recurrence.test.cpp
   - test/point_add_rectangle_sum.test.cpp
@@ -505,6 +518,7 @@ data:
   - test/assignment_problem.test.cpp
   - test/range_affine_range_sum.test.cpp
   - test/yuki_2613.test.cpp
+  - test/addition_of_big_integers.test.cpp
   - test/tree_path_composite_sum.test.cpp
   - test/range_kth_smallest2.test.cpp
   - test/counting_spanning_tree_directed.test.cpp
@@ -513,6 +527,7 @@ data:
   - test/inv_of_formal_power_series.test.cpp
   - test/range_set_range_composite.test.cpp
   - test/queue_operate_all_composite.test.cpp
+  - test/addition_of_big_integers_2.test.cpp
   - test/log_of_formal_power_series.test.cpp
   - test/cycle_detection_undirected.test.cpp
   - test/polynomial_interpolation.test.cpp
@@ -544,6 +559,7 @@ data:
   - test/lowest_common_ancestor.test.cpp
   - test/Z_algorithm.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/multiplication_of_big_intergers_2.test.cpp
   - test/assignment.test.cpp
   - test/mul_modp_convolution.test.cpp
   - test/static_RMQ_2.test.cpp
