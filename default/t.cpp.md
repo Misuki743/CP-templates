@@ -151,6 +151,9 @@ data:
     path: test/maximum_independent_set.test.cpp
     title: test/maximum_independent_set.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/min_plus_convolution_convex_arbitrary.test.cpp
+    title: test/min_plus_convolution_convex_arbitrary.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/minimum_spanning_tree.test.cpp
     title: test/minimum_spanning_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -514,6 +517,7 @@ data:
   - test/incremental_scc.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/minimum_spanning_tree.test.cpp
+  - test/min_plus_convolution_convex_arbitrary.test.cpp
   - test/point_set_range_composite.test.cpp
   - test/assignment_problem.test.cpp
   - test/range_affine_range_sum.test.cpp

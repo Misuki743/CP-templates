@@ -388,6 +388,9 @@ data:
       path: poly/kthTermOfPowers.cpp
       title: poly/kthTermOfPowers.cpp
     - icon: ':heavy_check_mark:'
+      path: poly/min_plus_convolution.cpp
+      title: poly/min_plus_convolution.cpp
+    - icon: ':heavy_check_mark:'
       path: poly/mulConvolution.cpp
       title: mulConvolution
     - icon: ':warning:'
@@ -624,6 +627,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/maximum_independent_set.test.cpp
       title: test/maximum_independent_set.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/min_plus_convolution_convex_arbitrary.test.cpp
+      title: test/min_plus_convolution_convex_arbitrary.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/minimum_spanning_tree.test.cpp
       title: test/minimum_spanning_tree.test.cpp
