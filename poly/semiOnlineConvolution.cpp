@@ -12,7 +12,7 @@ FPS<Mint> semiOnlineConvolution(FPS<Mint> f, FPS<Mint> g) {
       FPS<Mint> ff(f.begin() + l, f.begin() + mid);
       FPS<Mint> gg(g.begin(), g.begin() + min(r - l, (int)g.size()));
       auto h = ff * gg;
-      for(int i = mid - l; i < ssize(h) and i + l < ssize(f); i++)
+      for(int i = mid - l; i < ssize(h) and i + l < r; i++)
         f[i + l] += h[i];
     }
     self(mid, r, self);
