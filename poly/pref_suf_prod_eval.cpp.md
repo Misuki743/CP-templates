@@ -23,12 +23,14 @@ data:
     \n  vector<Mint> ret;\n  ret.reserve(size(L));\n  auto dfs = [&](int i, FPS<Mint>\
     \ G, auto &&self) -> void {\n    if (lc[i] == -1) {\n      ret.emplace_back(G[0]);\n\
     \    } else {\n      {\n        auto H = R.empty() ? G : G * R_prod[rc[i]];\n\
-    \        int b = max(0, (int)(ssize(G) - 1 - dp[lc[i]]));\n        H.erase(H.begin(),\
+    \        if (!R.empty()) H.erase(H.end() - (ssize(R_prod[rc[i]]) - 1), H.end());\n\
+    \        int b = max((int)0, (int)(ssize(G) - 1 - dp[lc[i]]));\n        H.erase(H.begin(),\
     \ H.begin() + b);\n        self(lc[i], H, self);\n      }\n      {\n        auto\
-    \ H = G * L_prod[lc[i]];\n        int b = max(0, (int)(ssize(G) - 1 - dp[rc[i]]));\n\
-    \        H.erase(H.begin(), H.begin() + b);\n        self(rc[i], H, self);\n \
-    \     }\n    }\n  };\n\n  F.resize(k0 + 1);\n  dfs(size(lc) - 1, F, dfs);\n\n\
-    \  return ret;\n}\n"
+    \ H = G * L_prod[lc[i]];\n        H.erase(H.end() - (ssize(L_prod[lc[i]]) - 1),\
+    \ H.end());\n        int b = max((int)0, (int)(ssize(G) - 1 - dp[rc[i]]));\n \
+    \       H.erase(H.begin(), H.begin() + b);\n        self(rc[i], H, self);\n  \
+    \    }\n    }\n  };\n\n  F.resize(k0 + 1);\n  dfs(size(lc) - 1, F, dfs);\n\n \
+    \ return ret;\n}\n"
   code: "template<class Mint>\nvector<Mint> pref_suf_prod_eval(int k0, FPS<Mint> F,\
     \ vector<FPS<Mint>> L, vector<FPS<Mint>> R = {}) {\n  vector<int> lc, rc, dp;\n\
     \  vector<FPS<Mint>> L_prod, R_prod;\n  {\n    auto dfs = [&](int l, int r, auto\
@@ -43,17 +45,19 @@ data:
     \n  vector<Mint> ret;\n  ret.reserve(size(L));\n  auto dfs = [&](int i, FPS<Mint>\
     \ G, auto &&self) -> void {\n    if (lc[i] == -1) {\n      ret.emplace_back(G[0]);\n\
     \    } else {\n      {\n        auto H = R.empty() ? G : G * R_prod[rc[i]];\n\
-    \        int b = max(0, (int)(ssize(G) - 1 - dp[lc[i]]));\n        H.erase(H.begin(),\
+    \        if (!R.empty()) H.erase(H.end() - (ssize(R_prod[rc[i]]) - 1), H.end());\n\
+    \        int b = max((int)0, (int)(ssize(G) - 1 - dp[lc[i]]));\n        H.erase(H.begin(),\
     \ H.begin() + b);\n        self(lc[i], H, self);\n      }\n      {\n        auto\
-    \ H = G * L_prod[lc[i]];\n        int b = max(0, (int)(ssize(G) - 1 - dp[rc[i]]));\n\
-    \        H.erase(H.begin(), H.begin() + b);\n        self(rc[i], H, self);\n \
-    \     }\n    }\n  };\n\n  F.resize(k0 + 1);\n  dfs(size(lc) - 1, F, dfs);\n\n\
-    \  return ret;\n}\n"
+    \ H = G * L_prod[lc[i]];\n        H.erase(H.end() - (ssize(L_prod[lc[i]]) - 1),\
+    \ H.end());\n        int b = max((int)0, (int)(ssize(G) - 1 - dp[rc[i]]));\n \
+    \       H.erase(H.begin(), H.begin() + b);\n        self(rc[i], H, self);\n  \
+    \    }\n    }\n  };\n\n  F.resize(k0 + 1);\n  dfs(size(lc) - 1, F, dfs);\n\n \
+    \ return ret;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: poly/pref_suf_prod_eval.cpp
   requiredBy: []
-  timestamp: '2024-10-20 15:27:14+08:00'
+  timestamp: '2024-10-21 02:46:30+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/pref_suf_prod_eval.cpp
