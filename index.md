@@ -397,6 +397,9 @@ data:
       path: poly/polyope.cpp
       title: poly/polyope.cpp
     - icon: ':warning:'
+      path: poly/pref_suf_prod_eval.cpp
+      title: poly/pref_suf_prod_eval.cpp
+    - icon: ':warning:'
       path: poly/semiOnlineConvolution.cpp
       title: poly/semiOnlineConvolution.cpp
     - icon: ':heavy_check_mark:'
