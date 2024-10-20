@@ -31,13 +31,15 @@ vector<Mint> pref_suf_prod_eval(int k0, FPS<Mint> F, vector<FPS<Mint>> L, vector
     } else {
       {
         auto H = R.empty() ? G : G * R_prod[rc[i]];
-        int b = max(0, (int)(ssize(G) - 1 - dp[lc[i]]));
+        if (!R.empty()) H.erase(H.end() - (ssize(R_prod[rc[i]]) - 1), H.end());
+        int b = max((int)0, (int)(ssize(G) - 1 - dp[lc[i]]));
         H.erase(H.begin(), H.begin() + b);
         self(lc[i], H, self);
       }
       {
         auto H = G * L_prod[lc[i]];
-        int b = max(0, (int)(ssize(G) - 1 - dp[rc[i]]));
+        H.erase(H.end() - (ssize(L_prod[lc[i]]) - 1), H.end());
+        int b = max((int)0, (int)(ssize(G) - 1 - dp[rc[i]]));
         H.erase(H.begin(), H.begin() + b);
         self(rc[i], H, self);
       }
