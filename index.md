@@ -135,6 +135,9 @@ data:
       path: ds/lineContainer.cpp
       title: ds/lineContainer.cpp
     - icon: ':warning:'
+      path: ds/monoidDSU.cpp
+      title: ds/monoidDSU.cpp
+    - icon: ':warning:'
       path: ds/pSum2D.cpp
       title: ds/pSum2D.cpp
     - icon: ':warning:'
@@ -190,6 +193,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds_problem/rectangleSum.cpp
       title: ds_problem/rectangleSum.cpp
+    - icon: ':warning:'
+      path: ds_problem/zero_one_on_tree.cpp
+      title: ds_problem/zero_one_on_tree.cpp
   - name: geometry
     pages:
     - icon: ':warning:'
