@@ -26,7 +26,7 @@ data:
     \    }\n\n    size_t operator()(uint64_t x) const {\n        static const uint64_t\
     \ FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();\n   \
     \     return splitmix64(x + FIXED_RANDOM);\n    }\n};\n\nusing namespace __gnu_pbds;\n\
-    \n//gp_hash_table<ll, int, custom_hash> m;\n"
+    \n//gp_hash_table<ll, int, custom_hash> m({}, {}, {}, {}, {1 << 16});\n"
   code: "//source: https://codeforces.com/blog/entry/62393\n//#include<ext/pb_ds/assoc_container.hpp>\n\
     //#include<ext/pb_ds/tree_policy.hpp>\n\nstruct custom_hash {\n    static uint64_t\
     \ splitmix64(uint64_t x) {\n        x += 0x9e3779b97f4a7c15;\n        x = (x ^\
@@ -34,12 +34,12 @@ data:
     \        return x ^ (x >> 31);\n    }\n\n    size_t operator()(uint64_t x) const\
     \ {\n        static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();\n\
     \        return splitmix64(x + FIXED_RANDOM);\n    }\n};\n\nusing namespace __gnu_pbds;\n\
-    \n//gp_hash_table<ll, int, custom_hash> m;\n"
+    \n//gp_hash_table<ll, int, custom_hash> m({}, {}, {}, {}, {1 << 16});\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/hashTable.cpp
   requiredBy: []
-  timestamp: '2024-05-19 17:15:40+08:00'
+  timestamp: '2024-11-19 21:59:27+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/vertex_get_range_contour_add_on_tree.test.cpp

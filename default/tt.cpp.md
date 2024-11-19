@@ -45,11 +45,11 @@ data:
     //#define double ldb\n\ntemplate<typename T> using min_heap = priority_queue<T,\
     \ vector<T>, greater<T>>;\ntemplate<typename T> using max_heap = priority_queue<T>;\n\
     \ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class\
-    \ OP = plus<T>>\nvoid pSum(rng &v) {\n  if (!v.empty())\n    for(T p = v[0]; T\
-    \ &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
-    \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &v, OP op)\
-    \ {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n     \
-    \ x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng\
+    \ OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
+    \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
+    \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
+    \     x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng\
     \ &v) {\n  ranges::sort(v);\n  v.resize(unique(v.begin(), v.end()) - v.begin());\n\
     }\n\ntemplate<ranges::random_access_range rng>\nrng invPerm(rng p) {\n  rng ret\
     \ = p;\n  for(int i = 0; i < ssize(p); i++)\n    ret[p[i]] = i;\n  return ret;\n\
@@ -106,11 +106,11 @@ data:
     //#define double ldb\n\ntemplate<typename T> using min_heap = priority_queue<T,\
     \ vector<T>, greater<T>>;\ntemplate<typename T> using max_heap = priority_queue<T>;\n\
     \ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class\
-    \ OP = plus<T>>\nvoid pSum(rng &v) {\n  if (!v.empty())\n    for(T p = v[0]; T\
-    \ &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
-    \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &v, OP op)\
-    \ {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n     \
-    \ x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng\
+    \ OP = plus<T>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range\
+    \ rng, class T = ranges::range_value_t<rng>, class OP>\nvoid pSum(rng &&v, OP\
+    \ op) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
+    \     x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng\
     \ &v) {\n  ranges::sort(v);\n  v.resize(unique(v.begin(), v.end()) - v.begin());\n\
     }\n\ntemplate<ranges::random_access_range rng>\nrng invPerm(rng p) {\n  rng ret\
     \ = p;\n  for(int i = 0; i < ssize(p); i++)\n    ret[p[i]] = i;\n  return ret;\n\
@@ -134,7 +134,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2024-11-19 21:59:27+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp
