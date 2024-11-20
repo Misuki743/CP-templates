@@ -8,7 +8,7 @@ struct bigint {
   static constexpr int LOG = fast_mul ? 1 : 9;
   static constexpr int W = fast_mul ? 10 : 1'000'000'000;
 
-  bigint(string s) {
+  bigint(string s = "0") {
     if (!s.empty() and s[0] == '-') {
       sgn = -1;
       s.erase(s.begin());
@@ -23,12 +23,19 @@ struct bigint {
       val[i / LOG] = val[i / LOG] * 10 + (s[i] - '0');
   }
 
+  int log10() {
+    assert(sgn == 1);
+    int x = LOG * (ssize(val) - 1), y = val.back();
+    while(y) x++, y /= 10;
+    return x - 1;
+  }
+
   void norm() {
     if (sgn == -1 and ssize(val) == 1 and val[0] == 0)
       sgn = 1;
   }
 
-  bool abs_less(const bigint &b) {
+  bool abs_less(const bigint &b) const {
     if (size(val) != size(b.val))
       return size(val) < size(b.val);
     for(int i = ssize(val) - 1; i >= 0; i--)
