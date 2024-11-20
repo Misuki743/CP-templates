@@ -144,18 +144,20 @@ data:
     //#include<poly/NTTmint.cpp>\n\ntemplate<bool fast_mul = true>\nstruct bigint\
     \ {\n  int sgn;\n  vector<int> val;\n  static constexpr int LOG = fast_mul ? 1\
     \ : 9;\n  static constexpr int W = fast_mul ? 10 : 1'000'000'000;\n\n  bigint(string\
-    \ s) {\n    if (!s.empty() and s[0] == '-') {\n      sgn = -1;\n      s.erase(s.begin());\n\
-    \    } else {\n      sgn = 1;\n    }\n    s.insert(0, (LOG - ssize(s) % LOG) %\
-    \ LOG, '0');\n    if (s.empty()) s = string(LOG, '0');\n    val.resize(size(s)\
-    \ / LOG);\n    ranges::reverse(s);\n    for(int i = ssize(s) - 1; i >= 0; i--)\n\
-    \      val[i / LOG] = val[i / LOG] * 10 + (s[i] - '0');\n  }\n\n  void norm()\
-    \ {\n    if (sgn == -1 and ssize(val) == 1 and val[0] == 0)\n      sgn = 1;\n\
-    \  }\n\n  bool abs_less(const bigint &b) {\n    if (size(val) != size(b.val))\n\
-    \      return size(val) < size(b.val);\n    for(int i = ssize(val) - 1; i >= 0;\
-    \ i--)\n      if (val[i] != b.val[i])\n        return val[i] < b.val[i];\n   \
-    \ return false;\n  }\n\n  bigint& operator+=(const bigint &b) {\n    if (sgn !=\
-    \ b.sgn) {\n      *this -= -b;\n    } else if (abs_less(b)) {\n      *this = b\
-    \ + *this;\n    } else {\n      for(int i = 0; i < min(ssize(val), ssize(b.val));\
+    \ s = \"0\") {\n    if (!s.empty() and s[0] == '-') {\n      sgn = -1;\n     \
+    \ s.erase(s.begin());\n    } else {\n      sgn = 1;\n    }\n    s.insert(0, (LOG\
+    \ - ssize(s) % LOG) % LOG, '0');\n    if (s.empty()) s = string(LOG, '0');\n \
+    \   val.resize(size(s) / LOG);\n    ranges::reverse(s);\n    for(int i = ssize(s)\
+    \ - 1; i >= 0; i--)\n      val[i / LOG] = val[i / LOG] * 10 + (s[i] - '0');\n\
+    \  }\n\n  int log10() {\n    assert(sgn == 1);\n    int x = LOG * (ssize(val)\
+    \ - 1), y = val.back();\n    while(y) x++, y /= 10;\n    return x - 1;\n  }\n\n\
+    \  void norm() {\n    if (sgn == -1 and ssize(val) == 1 and val[0] == 0)\n   \
+    \   sgn = 1;\n  }\n\n  bool abs_less(const bigint &b) const {\n    if (size(val)\
+    \ != size(b.val))\n      return size(val) < size(b.val);\n    for(int i = ssize(val)\
+    \ - 1; i >= 0; i--)\n      if (val[i] != b.val[i])\n        return val[i] < b.val[i];\n\
+    \    return false;\n  }\n\n  bigint& operator+=(const bigint &b) {\n    if (sgn\
+    \ != b.sgn) {\n      *this -= -b;\n    } else if (abs_less(b)) {\n      *this\
+    \ = b + *this;\n    } else {\n      for(int i = 0; i < min(ssize(val), ssize(b.val));\
     \ i++) {\n        val[i] += b.val[i];\n        if (int q = val[i] / W; q > 0)\
     \ {\n          if (i + 1 == ssize(val)) val.emplace_back();\n          val[i]\
     \ -= q * W, val[i + 1] += q;\n        }\n      }\n      int j = min(ssize(val),\
@@ -217,7 +219,7 @@ data:
   isVerificationFile: true
   path: test/addition_of_big_integers_2.test.cpp
   requiredBy: []
-  timestamp: '2024-09-22 15:08:26+08:00'
+  timestamp: '2024-11-20 19:45:46+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/addition_of_big_integers_2.test.cpp
