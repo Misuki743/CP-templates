@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: combi/binom.cpp
+    title: combi/binom.cpp
+  - icon: ':heavy_check_mark:'
+    path: combi/stirlingSecond.cpp
+    title: combi/stirlingSecond.cpp
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':question:'
@@ -20,26 +26,26 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind
     links:
-    - https://judge.yosupo.jp/problem/exp_of_formal_power_series
-  bundledCode: "#line 1 \"test/exp_of_formal_power_series.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\n\n#line 1 \"\
-    default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include <bitset>\n#include\
-    \ <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
-    \ <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <deque>\n#include\
-    \ <fstream>\n#include <functional>\n#include <initializer_list>\n#include <iomanip>\n\
-    #include <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n\
-    #include <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include\
-    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
-    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
-    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <variant>\n#include\
-    \ <bit>\n#include <compare>\n#include <concepts>\n#include <numbers>\n#include\
-    \ <ranges>\n#include <span>\n\n#define INT128_MAX (__int128)(((unsigned __int128)\
-    \ 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX\
-    \ - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind
+  bundledCode: "#line 1 \"test/stirling_number_of_the_second_kind.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
+    \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
+    \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
+    \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
+    \ <cmath>\n#include <complex>\n#include <cstdarg>\n#include <cstddef>\n#include\
+    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
+    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
+    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
+    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
+    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
+    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
+    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
+    \ <variant>\n#include <bit>\n#include <compare>\n#include <concepts>\n#include\
+    \ <numbers>\n#include <ranges>\n#include <span>\n\n#define INT128_MAX (__int128)(((unsigned\
+    \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
+    \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\ntemplate<class T1, class T2>\nostream& operator<<(ostream&\
     \ os, const pair<T1, T2> pr) {\n  return os << pr.first << ' ' << pr.second;\n\
     }\ntemplate<class T, size_t N>\nostream& operator<<(ostream& os, const array<T,\
@@ -229,31 +235,51 @@ data:
     \ int x) { return a <<= x; }\n  friend FPS operator>>(FPS a, int x) { return a\
     \ >>= x; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
     \ vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\nfunction<void(vector<mint>&,\
-    \ bool)> fps::dft = ntt.ntt;\n#line 7 \"test/exp_of_formal_power_series.test.cpp\"\
+    \ bool)> fps::dft = ntt.ntt;\n#line 1 \"combi/binom.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
+    \ntemplate<class Mint>\nstruct binomial {\n  vector<Mint> _fac, _facInv;\n  binomial(int\
+    \ size) : _fac(size), _facInv(size) {\n    _fac[0] = 1;\n    for(int i = 1; i\
+    \ < size; i++)\n      _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n      _facInv.back()\
+    \ = 1 / _fac.back();\n    for(int i = size - 2; i >= 0; i--)\n      _facInv[i]\
+    \ = _facInv[i + 1] * (i + 1);\n  }\n\n  Mint fac(int i) { return i < 0 ? 0 : _fac[i];\
+    \ }\n  Mint faci(int i) { return i < 0 ? 0 : _facInv[i]; }\n  Mint inv(int i)\
+    \ { return _facInv[i] * _fac[i - 1]; }\n  Mint binom(int n, int r) { return r\
+    \ < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n  Mint catalan(int i)\
+    \ { return binom(2 * i, i) - binom(2 * i, i + 1); }\n  Mint excatalan(int n, int\
+    \ m, int k) { //(+1) * n, (-1) * m, prefix sum > -k\n    if (k > m) return binom(n\
+    \ + m, m);\n    else if (k > m - n) return binom(n + m, m) - binom(n + m, m -\
+    \ k);\n    else return Mint(0);\n  }\n};\n#line 1 \"combi/stirlingSecond.cpp\"\
+    \n//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\n\
+    //#include \"poly/FPS.cpp\"\n//#include \"combi/binom.cpp\"\n\ntemplate<class\
+    \ Mint>\nFPS<Mint> stirling_number_second(int n) {\n  binomial<Mint> bn(n + 1);\n\
+    \  FPS<Mint> f(n + 1), g(n + 1);\n  for(int i = 0; i <= n; i++) {\n    f[i] =\
+    \ bn.faci(i) * (i % 2 == 1 ? -1 : 1);\n    g[i] = bn.faci(i) * mint(i).pow(n);\n\
+    \  }\n  auto h = f * g;\n  h.resize(n + 1);\n  return h;\n}\n#line 9 \"test/stirling_number_of_the_second_kind.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
-    \ cin >> n;\n  fps f(n);\n  for(mint &x : f)\n    cin >> x;\n\n  cout << f.exp(n)\
-    \ << '\\n';\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
+    \ cin >> n;\n  cout << stirling_number_second<mint>(n) << '\\n';\n\n  return 0;\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  fps\
-    \ f(n);\n  for(mint &x : f)\n    cin >> x;\n\n  cout << f.exp(n) << '\\n';\n\n\
-    \  return 0;\n}\n"
+    \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"\
+    ../combi/binom.cpp\"\n#include \"../combi/stirlingSecond.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  cout\
+    \ << stirling_number_second<mint>(n) << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
   - poly/FPS.cpp
+  - combi/binom.cpp
+  - combi/stirlingSecond.cpp
   isVerificationFile: true
-  path: test/exp_of_formal_power_series.test.cpp
+  path: test/stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2024-08-02 21:56:58+08:00'
+  timestamp: '2024-11-24 01:06:04+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/exp_of_formal_power_series.test.cpp
+documentation_of: test/stirling_number_of_the_second_kind.test.cpp
 layout: document
 redirect_from:
-- /verify/test/exp_of_formal_power_series.test.cpp
-- /verify/test/exp_of_formal_power_series.test.cpp.html
-title: test/exp_of_formal_power_series.test.cpp
+- /verify/test/stirling_number_of_the_second_kind.test.cpp
+- /verify/test/stirling_number_of_the_second_kind.test.cpp.html
+title: test/stirling_number_of_the_second_kind.test.cpp
 ---

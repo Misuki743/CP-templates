@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/associative_array.test.cpp
     title: test/associative_array.test.cpp
+  - icon: ':x:'
+    path: test/bell_number.test.cpp
+    title: test/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/bernoulli_number.test.cpp
     title: test/bernoulli_number.test.cpp
@@ -271,6 +274,9 @@ data:
     path: test/stirling_number_of_the_first_kind.test.cpp
     title: test/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/stirling_number_of_the_second_kind.test.cpp
+    title: test/stirling_number_of_the_second_kind.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
@@ -484,10 +490,12 @@ data:
   - test/matrix_product.test.cpp
   - test/Z_algorithm.test.cpp
   - test/enumerate_quotients.test.cpp
+  - test/stirling_number_of_the_second_kind.test.cpp
   - test/multiplication_of_big_intergers.test.cpp
   - test/double_ended_priority_queue.test.cpp
   - test/point_set_range_composite.test.cpp
   - test/log_of_formal_power_series.test.cpp
+  - test/bell_number.test.cpp
   - test/tree_path_composite_sum.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp

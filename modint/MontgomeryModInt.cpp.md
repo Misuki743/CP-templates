@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/addition_of_big_integers_2.test.cpp
     title: test/addition_of_big_integers_2.test.cpp
+  - icon: ':x:'
+    path: test/bell_number.test.cpp
+    title: test/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/bernoulli_number.test.cpp
     title: test/bernoulli_number.test.cpp
@@ -133,6 +136,9 @@ data:
     path: test/stirling_number_of_the_first_kind.test.cpp
     title: test/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/stirling_number_of_the_second_kind.test.cpp
+    title: test/stirling_number_of_the_second_kind.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -240,9 +246,11 @@ data:
   - test/unionfind_with_potential.test.cpp
   - test/vertex_set_path_composite.test.cpp
   - test/matrix_product.test.cpp
+  - test/stirling_number_of_the_second_kind.test.cpp
   - test/multiplication_of_big_intergers.test.cpp
   - test/point_set_range_composite.test.cpp
   - test/log_of_formal_power_series.test.cpp
+  - test/bell_number.test.cpp
   - test/tree_path_composite_sum.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp

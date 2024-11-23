@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/addition_of_big_integers_2.test.cpp
     title: test/addition_of_big_integers_2.test.cpp
+  - icon: ':x:'
+    path: test/bell_number.test.cpp
+    title: test/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/bernoulli_number.test.cpp
     title: test/bernoulli_number.test.cpp
@@ -85,6 +88,9 @@ data:
     path: test/stirling_number_of_the_first_kind.test.cpp
     title: test/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/stirling_number_of_the_second_kind.test.cpp
+    title: test/stirling_number_of_the_second_kind.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -96,9 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/69896
@@ -160,15 +166,17 @@ data:
   path: poly/NTTmint.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/inv_of_formal_power_series.test.cpp
   - test/compositional_inverse_of_formal_power_series_large.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/pow_of_formal_power_series.test.cpp
   - test/addition_of_big_integers.test.cpp
+  - test/stirling_number_of_the_second_kind.test.cpp
   - test/multiplication_of_big_intergers.test.cpp
   - test/log_of_formal_power_series.test.cpp
+  - test/bell_number.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
   - test/multiplication_of_big_intergers_2.test.cpp

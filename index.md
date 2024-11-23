@@ -29,10 +29,13 @@ data:
       title: actedmonoid/actedMonoid_setSum.cpp
   - name: combi
     pages:
+    - icon: ':warning:'
+      path: combi/bell_number.cpp
+      title: combi/bell_number.cpp
     - icon: ':heavy_check_mark:'
       path: combi/bernoulliNumber.cpp
       title: combi/bernoulliNumber.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: combi/binom.cpp
       title: combi/binom.cpp
     - icon: ':heavy_check_mark:'
@@ -47,6 +50,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/stirlingFirst.cpp
       title: combi/stirlingFirst.cpp
+    - icon: ':heavy_check_mark:'
+      path: combi/stirlingSecond.cpp
+      title: combi/stirlingSecond.cpp
   - name: default
     pages:
     - icon: ':question:'
@@ -369,7 +375,7 @@ data:
     - icon: ':warning:'
       path: poly/FFTmod.cpp
       title: poly/FFTmod.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/FPS.cpp
       title: poly/FPS.cpp
     - icon: ':heavy_check_mark:'
@@ -384,7 +390,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/NTTanymod.cpp
       title: poly/NTTanymod.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/NTTmint.cpp
       title: poly/NTTmint.cpp
     - icon: ':heavy_check_mark:'
@@ -510,6 +516,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/associative_array.test.cpp
       title: test/associative_array.test.cpp
+    - icon: ':x:'
+      path: test/bell_number.test.cpp
+      title: test/bell_number.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/bernoulli_number.test.cpp
       title: test/bernoulli_number.test.cpp
@@ -756,6 +765,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/stirling_number_of_the_first_kind.test.cpp
       title: test/stirling_number_of_the_first_kind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/stirling_number_of_the_second_kind.test.cpp
+      title: test/stirling_number_of_the_second_kind.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/strongly_connected_components.test.cpp
       title: test/strongly_connected_components.test.cpp

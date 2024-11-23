@@ -2,28 +2,31 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: combi/binom.cpp
+    title: combi/binom.cpp
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':heavy_check_mark:'
-    path: poly/NTTanymod.cpp
-    title: poly/NTTanymod.cpp
+  - icon: ':question:'
+    path: poly/FPS.cpp
+    title: poly/FPS.cpp
   - icon: ':question:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_1000000007
+    PROBLEM: https://judge.yosupo.jp/problem/bell_number
     links:
-    - https://judge.yosupo.jp/problem/convolution_mod_1000000007
-  bundledCode: "#line 1 \"test/convolution_1e9+7.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
+    - https://judge.yosupo.jp/problem/bell_number
+  bundledCode: "#line 1 \"test/bell_number.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/bell_number\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
     \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
@@ -139,51 +142,131 @@ data:
     \ b) {\n    int sz = ssize(a) + ssize(b) - 1;\n    int n = bit_ceil((u32)sz);\n\
     \n    a.resize(n, 0);\n    ntt(a, false);\n    b.resize(n, 0);\n    ntt(b, false);\n\
     \n    for(int i = 0; i < n; i++)\n      a[i] *= b[i];\n\n    ntt(a, true);\n\n\
-    \    a.resize(sz);\n\n    return a;\n  }\n};\n#line 1 \"poly/NTTanymod.cpp\"\n\
-    //reference: https://math314.hateblo.jp/entry/2015/05/07/014908\n//reference:\
-    \ https://judge.yosupo.jp/submission/15581\n//remark: n * mod^2 < prod of mods(~=\
-    \ 5e26) should be satisfied\n\ntemplate<class Mint>\nvector<Mint> convAnyMod(vector<Mint>\
-    \ a, vector<Mint> b) {\n  using Mint0 = MontgomeryModInt<998244353>;\n  using\
-    \ Mint1 = MontgomeryModInt<469762049>;\n  using Mint2 = MontgomeryModInt<167772161>;\n\
-    \  NTT<23, 119, 3, Mint0> ntt0;\n  NTT<26, 7, 3, Mint1> ntt1;\n  NTT<25, 5, 3,\
-    \ Mint2> ntt2;\n  vector<Mint0> a0(ssize(a)), b0(ssize(b));\n  vector<Mint1> a1(ssize(a)),\
-    \ b1(ssize(b));\n  vector<Mint2> a2(ssize(a)), b2(ssize(b));\n  for(int i = 0;\
-    \ i < ssize(a); i++)\n    a0[i] = a[i].get(), a1[i] = a[i].get(), a2[i] = a[i].get();\n\
-    \  for(int i = 0; i < ssize(b); i++)\n    b0[i] = b[i].get(), b1[i] = b[i].get(),\
-    \ b2[i] = b[i].get();\n  vector<Mint0> x = ntt0.conv(a0, b0);\n  vector<Mint1>\
-    \ y = ntt1.conv(a1, b1);\n  vector<Mint2> z = ntt2.conv(a2, b2);\n  vector<Mint>\
-    \ res(ssize(x));\n  constexpr uint32_t mod0 = ntt0.get_mod(), mod1 = ntt1.get_mod();\n\
-    \  static const Mint1 im0 = 1 / Mint1(mod0);\n  static const Mint2 im1 = 1 / Mint2(mod1),\
-    \ im0m1 = im1 / mod0;\n  static const Mint m0 = mod0, m0m1 = m0 * mod1;\n  for(int\
-    \ i = 0; i < ssize(x); i++) {\n    int y0 = x[i].get();\n    int y1 = (im0 * (y[i]\
-    \ - y0)).get();\n    int y2 = (im0m1 * (z[i] - y0) - im1 * y1).get();\n    res[i]\
-    \ = y0 + m0 * y1 + m0m1 * y2;\n  }\n\n  return res;\n}\n#line 7 \"test/convolution_1e9+7.test.cpp\"\
-    \n\nusing Mint = MontgomeryModInt<1000000007>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<Mint> a(n), b(m);\n \
-    \ for(Mint &x : a)\n    cin >> x;\n  for(Mint &x : b)\n    cin >> x;\n\n  cout\
-    \ << convAnyMod(a, b) << '\\n';\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/NTTanymod.cpp\"\n\nusing\
-    \ Mint = MontgomeryModInt<1000000007>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<Mint> a(n), b(m);\n \
-    \ for(Mint &x : a)\n    cin >> x;\n  for(Mint &x : b)\n    cin >> x;\n\n  cout\
-    \ << convAnyMod(a, b) << '\\n';\n\n  return 0;\n}\n"
+    \    a.resize(sz);\n\n    return a;\n  }\n};\n#line 1 \"poly/FPS.cpp\"\n//#include\
+    \ \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\n\n//lagrange\
+    \ inversion formula:\n//  let f(x) be composition inverse of g(x) (i.e. f(g(x))\
+    \ = x) and [x^0]f(x) = [x^0]g(x) = 0, [x^1]f(x) != 0, [x^1]g(x) != 0, then\n//\
+    \  [x^n]g(x)^k = k/n [x^{n - k}] (x / f(x))^n\n//  [x^n]g(x) = 1/n [x^{n - 1}]\
+    \ (x / f(x))^n (for k = 1)\n\ntemplate<class Mint>\nstruct FPS : vector<Mint>\
+    \ {\n\n  static function<void(vector<Mint>&, bool)> dft;\n  static function<vector<Mint>(vector<Mint>,\
+    \ vector<Mint>)> conv;\n\n  FPS(vector<Mint> v) : vector<Mint>(v) {}\n\n  using\
+    \ vector<Mint>::vector;\n  FPS& operator+=(FPS b) {\n    if (ssize(*this) < ssize(b))\
+    \ this -> resize(ssize(b), 0);\n    for(int i = 0; i < ssize(b); i++)\n      (*this)[i]\
+    \ += b[i];\n    return *this;\n  }\n\n  FPS& operator-=(FPS b) {\n    if (ssize(*this)\
+    \ < ssize(b)) this -> resize(ssize(b), 0);\n    for(int i = 0; i < ssize(b); i++)\n\
+    \      (*this)[i] -= b[i];\n    return *this;\n  }\n\n  FPS& operator*=(FPS b)\
+    \ {\n    auto c = conv(*this, b);\n    this -> resize(ssize(*this) + ssize(b)\
+    \ - 1);\n    copy(c.begin(), c.end(), this -> begin());\n    return *this;\n \
+    \ }\n\n  FPS& operator*=(Mint b) {\n    for(int i = 0; i < ssize(*this); i++)\n\
+    \      (*this)[i] *= b;\n    return *this;\n  }\n\n  FPS& operator/=(Mint b) {\n\
+    \    b = Mint(1) / b;\n    for(int i = 0; i < ssize(*this); i++)\n      (*this)[i]\
+    \ *= b;\n    return *this;\n  }\n\n  FPS& operator<<=(int x) {\n    this -> resize(ssize(*this)\
+    \ + x, Mint(0));\n    ranges::rotate(*this, this -> end() - x);\n    return *this;\n\
+    \  }\n\n  FPS& operator>>=(int x) {\n    if (x >= ssize(*this)) {\n      this\
+    \ -> resize(1);\n      (*this)[0] = 0;\n    } else {\n      ranges::rotate(*this,\
+    \ this -> begin() + x);\n      this -> resize(ssize(*this) - x);\n    }\n    return\
+    \ *this;\n  }\n\n  FPS shrink() {\n    FPS F = *this;\n    int size = ssize(F);\n\
+    \    while(size and F[size - 1] == 0) size -= 1;\n    F.resize(size);\n    return\
+    \ F;\n  }\n\n  FPS integral() {\n    if (this -> empty()) return {0};\n    vector<Mint>\
+    \ Inv(ssize(*this) + 1);\n    Inv[1] = 1;\n    for(int i = 2; i < ssize(Inv);\
+    \ i++)\n      Inv[i] = (Mint::get_mod() - Mint::get_mod() / i) * Inv[Mint::get_mod()\
+    \ % i];\n    FPS Q(ssize(*this) + 1, 0);\n    for(int i = 0; i < ssize(*this);\
+    \ i++)\n      Q[i + 1] = (*this)[i] * Inv[i + 1];\n    return Q;\n  }\n\n  FPS\
+    \ derivative() {\n    assert(!this -> empty());\n    FPS Q(ssize(*this) - 1);\n\
+    \    for(int i = 1; i < ssize(*this); i++)\n      Q[i - 1] = (*this)[i] * i;\n\
+    \    return Q;\n  }\n\n  Mint eval(Mint x) {\n    Mint base = 1, res = 0;\n  \
+    \  for(int i = 0; i < ssize(*this); i++, base *= x)\n      res += (*this)[i] *\
+    \ base;\n    return res;\n  }\n\n  FPS inv(int k) { // 1 / FPS (mod x^k)\n   \
+    \ assert(!this -> empty() and (*this)[0] != 0);\n    FPS Q(1, 1 / (*this)[0]);\n\
+    \    for(int i = 1; (1 << (i - 1)) < k; i++) {\n      FPS P = (*this);\n     \
+    \ P.resize(1 << i, 0);\n      Q = Q * (FPS(1, 2) - P * Q);\n      Q.resize(1 <<\
+    \ i, 0);\n    }\n    Q.resize(k);\n    return Q;\n  }\n\n  array<FPS, 2> div(FPS\
+    \ G) {\n    FPS F = this -> shrink();\n    G = G.shrink();\n    assert(!G.empty());\n\
+    \    if (ssize(G) > ssize(F))\n      return {{{}, F}};\n    int n = ssize(F) -\
+    \ ssize(G) + 1;\n    auto FR = F, GR = G;\n    ranges::reverse(FR);\n    ranges::reverse(GR);\n\
+    \    FPS Q = FR * GR.inv(n);\n    Q.resize(n);\n    ranges::reverse(Q);\n    return\
+    \ {Q, (F - G * Q).shrink()};\n  }\n\n  FPS log(int k) {\n    assert(!this -> empty()\
+    \ and (*this)[0] == 1);\n    FPS Q = *this;\n    Q = (Q.derivative() * Q.inv(k));\n\
+    \    Q.resize(k - 1);\n    return Q.integral();\n  }\n\n  FPS exp(int k) {\n \
+    \   assert(!this -> empty() and (*this)[0] == 0);\n    FPS Q(1, 1);\n    for(int\
+    \ i = 1; (1 << (i - 1)) < k; i++) {\n      FPS P = (*this);\n      P.resize(1\
+    \ << i, 0);\n      Q = Q * (FPS(1, 1) + P - Q.log(1 << i));\n      Q.resize(1\
+    \ << i, 0);\n    }\n    Q.resize(k);\n    return Q;\n  }\n\n  FPS pow(ll idx,\
+    \ int k) {\n    if (idx == 0) {\n      FPS res(k, 0);\n      res[0] = 1;\n   \
+    \   return res;\n    }\n    for(int i = 0; i < ssize(*this) and i * idx < k; i++)\
+    \ {\n      if ((*this)[i] != 0) {\n        Mint Inv = 1 / (*this)[i];\n      \
+    \  FPS Q(ssize(*this) - i);\n        for(int j = i; j < ssize(*this); j++)\n \
+    \         Q[j - i] = (*this)[j] * Inv;\n        Q = (Q.log(k) * idx).exp(k);\n\
+    \        FPS Q2(k, 0);\n        Mint Pow = (*this)[i].pow(idx);\n        for(int\
+    \ j = 0; j + i * idx < k; j++)\n          Q2[j + i * idx] = Q[j] * Pow;\n    \
+    \    return Q2;\n      }\n    } \n    return FPS(k, 0);\n  }\n\n  FPS pow(ll idx)\
+    \ {\n    int mxDeg = (ssize(*this) - 1) * idx;\n    FPS a = (*this);\n    a.resize(bit_ceil((unsigned)(mxDeg\
+    \ + 1)));\n    dft(a, false);\n    for(Mint &x : a) x = x.pow(idx);\n    dft(a,\
+    \ true);\n    return FPS(a.begin(), a.begin() + mxDeg + 1);\n  }\n\n  vector<Mint>\
+    \ multieval(vector<Mint> xs) {\n    int n = ssize(xs);\n    vector<FPS> data(2\
+    \ * n);\n    for(int i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n  \
+    \  for(int i = n - 1; i > 0; i--)\n      data[i] = data[i << 1] * data[i << 1\
+    \ | 1];\n    data[1] = (this -> div(data[1]))[1];\n    for(int i = 1; i < n; i++)\
+    \ {\n      data[i << 1] = data[i].div(data[i << 1])[1];\n      data[i << 1 | 1]\
+    \ = data[i].div(data[i << 1 | 1])[1];\n    }\n    vector<Mint> res(n);\n    for(int\
+    \ i = 0; i < n; i++)\n      res[i] = data[n + i].empty() ? 0 : data[n + i][0];\n\
+    \    return res;\n  }\n\n  static vector<Mint> interpolate(vector<Mint> xs, vector<Mint>\
+    \ ys) {\n    assert(ssize(xs) == ssize(ys));\n    int n = ssize(xs);\n    vector<FPS>\
+    \ data(2 * n), res(2 * n);\n    for(int i = 0; i < n; i++)\n      data[n + i]\
+    \ = {-xs[i], 1};\n    for(int i = n - 1; i > 0; i--)\n      data[i] = data[i <<\
+    \ 1] * data[i << 1 | 1];\n    res[1] = data[1].derivative().div(data[1])[1];\n\
+    \    for(int i = 1; i < n; i++) {\n      res[i << 1] = res[i].div(data[i << 1])[1];\n\
+    \      res[i << 1 | 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int\
+    \ i = 0; i < n; i++)\n      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int\
+    \ i = n - 1; i > 0; i--)\n      res[i] = res[i << 1] * data[i << 1 | 1] + res[i\
+    \ << 1 | 1] * data[i << 1];\n    return res[1];\n  }\n\n  static vector<Mint>\
+    \ allProd(vector<FPS> &fs) {\n    if (fs.empty()) return {1};\n    auto dfs =\
+    \ [&](int l, int r, auto self) -> FPS {\n      if (l + 1 == r)\n        return\
+    \ fs[l];\n      else\n        return self(l, (l + r) / 2, self) * self((l + r)\
+    \ / 2, r, self);\n    };\n    return dfs(0, ssize(fs), dfs);\n  }\n\n  friend\
+    \ FPS operator+(FPS a, FPS b) { return a += b; }\n  friend FPS operator-(FPS a,\
+    \ FPS b) { return a -= b; }\n  friend FPS operator*(FPS a, FPS b) { return a *=\
+    \ b; }\n  friend FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS\
+    \ operator/(FPS a, Mint b) { return a /= b; }\n  friend FPS operator<<(FPS a,\
+    \ int x) { return a <<= x; }\n  friend FPS operator>>(FPS a, int x) { return a\
+    \ >>= x; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
+    \ vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\nfunction<void(vector<mint>&,\
+    \ bool)> fps::dft = ntt.ntt;\n#line 1 \"combi/binom.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
+    \ntemplate<class Mint>\nstruct binomial {\n  vector<Mint> _fac, _facInv;\n  binomial(int\
+    \ size) : _fac(size), _facInv(size) {\n    _fac[0] = 1;\n    for(int i = 1; i\
+    \ < size; i++)\n      _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n      _facInv.back()\
+    \ = 1 / _fac.back();\n    for(int i = size - 2; i >= 0; i--)\n      _facInv[i]\
+    \ = _facInv[i + 1] * (i + 1);\n  }\n\n  Mint fac(int i) { return i < 0 ? 0 : _fac[i];\
+    \ }\n  Mint faci(int i) { return i < 0 ? 0 : _facInv[i]; }\n  Mint inv(int i)\
+    \ { return _facInv[i] * _fac[i - 1]; }\n  Mint binom(int n, int r) { return r\
+    \ < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n  Mint catalan(int i)\
+    \ { return binom(2 * i, i) - binom(2 * i, i + 1); }\n  Mint excatalan(int n, int\
+    \ m, int k) { //(+1) * n, (-1) * m, prefix sum > -k\n    if (k > m) return binom(n\
+    \ + m, m);\n    else if (k > m - n) return binom(n + m, m) - binom(n + m, m -\
+    \ k);\n    else return Mint(0);\n  }\n};\n#line 8 \"test/bell_number.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
+    \ cin >> n;\n  cout << bell_number<mint>(n + 1) << '\\n';\n\n  return 0;\n}\n\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bell_number\"\n\n#include\
+    \ \"../default/t.cpp\"\n#include \"modint/MontgomeryModInt.cpp\"\n#include \"\
+    poly/NTTmint.cpp\"\n#include \"poly/FPS.cpp\"\n#include \"combi/binom.cpp\"\n\n\
+    signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin\
+    \ >> n;\n  cout << bell_number<mint>(n + 1) << '\\n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
-  - poly/NTTanymod.cpp
+  - poly/FPS.cpp
+  - combi/binom.cpp
   isVerificationFile: true
-  path: test/convolution_1e9+7.test.cpp
+  path: test/bell_number.test.cpp
   requiredBy: []
-  timestamp: '2024-08-02 21:56:58+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-24 01:06:04+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/convolution_1e9+7.test.cpp
+documentation_of: test/bell_number.test.cpp
 layout: document
 redirect_from:
-- /verify/test/convolution_1e9+7.test.cpp
-- /verify/test/convolution_1e9+7.test.cpp.html
-title: test/convolution_1e9+7.test.cpp
+- /verify/test/bell_number.test.cpp
+- /verify/test/bell_number.test.cpp.html
+title: test/bell_number.test.cpp
 ---
