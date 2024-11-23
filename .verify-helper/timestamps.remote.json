@@ -87,6 +87,7 @@
 "test/static_range_count_distinct.test.cpp": "2024-08-04 01:36:11 +0800",
 "test/static_range_frequency.test.cpp": "2024-07-28 21:04:51 +0800",
 "test/stirling_number_of_the_first_kind.test.cpp": "2024-08-02 21:56:58 +0800",
+"test/stirling_number_of_the_second_kind.test.cpp": "2024-11-24 01:06:04 +0800",
 "test/strongly_connected_components.test.cpp": "2024-07-28 21:04:51 +0800",
 "test/subset_convolution.test.cpp": "2024-08-02 21:56:58 +0800",
 "test/tree_diameter.test.cpp": "2024-07-28 21:04:51 +0800",
