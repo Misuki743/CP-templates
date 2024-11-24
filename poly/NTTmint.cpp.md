@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/addition_of_big_integers_2.test.cpp
     title: test/addition_of_big_integers_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/bell_number.test.cpp
     title: test/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,9 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/69896
@@ -166,7 +166,7 @@ data:
   path: poly/NTTmint.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/inv_of_formal_power_series.test.cpp
   - test/compositional_inverse_of_formal_power_series_large.test.cpp

@@ -29,13 +29,13 @@ data:
       title: actedmonoid/actedMonoid_setSum.cpp
   - name: combi
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: combi/bell_number.cpp
       title: combi/bell_number.cpp
     - icon: ':heavy_check_mark:'
       path: combi/bernoulliNumber.cpp
       title: combi/bernoulliNumber.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: combi/binom.cpp
       title: combi/binom.cpp
     - icon: ':heavy_check_mark:'
@@ -375,7 +375,7 @@ data:
     - icon: ':warning:'
       path: poly/FFTmod.cpp
       title: poly/FFTmod.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/FPS.cpp
       title: poly/FPS.cpp
     - icon: ':heavy_check_mark:'
@@ -390,7 +390,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/NTTanymod.cpp
       title: poly/NTTanymod.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/NTTmint.cpp
       title: poly/NTTmint.cpp
     - icon: ':heavy_check_mark:'
@@ -516,7 +516,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/associative_array.test.cpp
       title: test/associative_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/bell_number.test.cpp
       title: test/bell_number.test.cpp
     - icon: ':heavy_check_mark:'

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: combi/binom.cpp
     title: combi/binom.cpp
   - icon: ':heavy_check_mark:'

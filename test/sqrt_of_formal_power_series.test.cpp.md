@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: numtheory/sqrtMod.cpp
     title: numtheory/sqrtMod.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
   - icon: ':heavy_check_mark:'
     path: poly/FPSsqrt.cpp
     title: poly/FPSsqrt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
   _extendedRequiredBy: []

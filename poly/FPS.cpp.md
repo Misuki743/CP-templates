@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/bell_number.test.cpp
     title: test/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,9 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/wildcard_pattern_matching.test.cpp
     title: test/wildcard_pattern_matching.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/FPS.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
@@ -262,7 +262,7 @@ data:
   path: poly/FPS.cpp
   requiredBy: []
   timestamp: '2024-05-11 22:13:26+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/inv_of_formal_power_series.test.cpp
   - test/compositional_inverse_of_formal_power_series_large.test.cpp

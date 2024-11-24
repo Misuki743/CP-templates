@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: combi/bell_number.cpp
+    title: combi/bell_number.cpp
+  - icon: ':heavy_check_mark:'
     path: combi/binom.cpp
     title: combi/binom.cpp
   - icon: ':question:'
@@ -10,17 +13,17 @@ data:
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bell_number
@@ -243,25 +246,32 @@ data:
     \ { return binom(2 * i, i) - binom(2 * i, i + 1); }\n  Mint excatalan(int n, int\
     \ m, int k) { //(+1) * n, (-1) * m, prefix sum > -k\n    if (k > m) return binom(n\
     \ + m, m);\n    else if (k > m - n) return binom(n + m, m) - binom(n + m, m -\
-    \ k);\n    else return Mint(0);\n  }\n};\n#line 8 \"test/bell_number.test.cpp\"\
+    \ k);\n    else return Mint(0);\n  }\n};\n#line 1 \"combi/bell_number.cpp\"\n\
+    //#include \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\n\
+    //#include \"poly/FPS.cpp\"\n//#include \"combi/binom.cpp\"\n\ntemplate<class\
+    \ Mint>\nFPS<Mint> bell_number(int n) {\n  binomial<Mint> bn(n);\n  FPS<Mint>\
+    \ f(n);\n  for(int i = 1; i < n; i++) f[i] = bn.faci(i);\n  f = f.exp(n);\n  for(int\
+    \ i = 0; i < n; i++) f[i] *= bn.fac(i);\n  return f;\n}\n#line 9 \"test/bell_number.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
     \ cin >> n;\n  cout << bell_number<mint>(n + 1) << '\\n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bell_number\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"modint/MontgomeryModInt.cpp\"\n#include \"\
-    poly/NTTmint.cpp\"\n#include \"poly/FPS.cpp\"\n#include \"combi/binom.cpp\"\n\n\
-    signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin\
-    \ >> n;\n  cout << bell_number<mint>(n + 1) << '\\n';\n\n  return 0;\n}\n\n"
+    poly/NTTmint.cpp\"\n#include \"poly/FPS.cpp\"\n#include \"combi/binom.cpp\"\n\
+    #include \"combi/bell_number.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  cout << bell_number<mint>(n + 1) <<\
+    \ '\\n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
   - poly/FPS.cpp
   - combi/binom.cpp
+  - combi/bell_number.cpp
   isVerificationFile: true
   path: test/bell_number.test.cpp
   requiredBy: []
-  timestamp: '2024-11-24 01:06:04+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-24 15:17:14+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/bell_number.test.cpp
 layout: document

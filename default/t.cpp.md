@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/associative_array.test.cpp
     title: test/associative_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/bell_number.test.cpp
     title: test/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
