@@ -5,6 +5,7 @@
 #include "poly/NTTmint.cpp"
 #include "poly/FPS.cpp"
 #include "combi/binom.cpp"
+#include "combi/bell_number.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
