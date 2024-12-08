@@ -78,19 +78,19 @@ data:
     \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\
     \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
     \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"misc/LIS.cpp\"\n\
-    template<class T, bool strict = true>\nvector<int> LIS(vector<T> &a) {\n  vector<T>\
-    \ dp(ssize(a), numeric_limits<T>::max());\n  vector<int> id(ssize(a)), pre(ssize(a),\
-    \ -1);\n  for(int i = 0; i < ssize(a); i++) {\n    int j;\n    if constexpr (strict)\n\
-    \      j = ranges::lower_bound(dp, a[i]) - dp.begin();\n    else\n      j = ranges::upper_bound(dp,\
-    \ a[i]) - dp.begin();\n    if (a[i] < dp[j])\n      dp[j] = a[i], id[j] = i;\n\
-    \    if (j >= 1)\n      pre[i] = id[j - 1];\n  }\n\n  vector<T> lis;\n  int i\
-    \ = id[ranges::lower_bound(dp, numeric_limits<T>::max()) - dp.begin() - 1];\n\
-    \  while(i != -1) {\n    lis.emplace_back(i);\n    i = pre[i];\n  }\n  ranges::reverse(lis);\n\
-    \n  return lis;\n}\n#line 5 \"test/longest_increasing_subsequence.test.cpp\"\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin\
-    \ >> n;\n  vector<int> a(n);\n  for(int &x : a)\n    cin >> x;\n\n  auto lis =\
-    \ LIS<int>(a);\n  cout << ssize(lis) << '\\n';\n  cout << lis << '\\n';\n\n  return\
-    \ 0;\n}\n"
+    template<class T, bool strict = true>\nvector<int> LIS(vector<T> &a) {\n  if (a.empty())\
+    \ return {};\n  vector<T> dp(ssize(a), numeric_limits<T>::max());\n  vector<int>\
+    \ id(ssize(a)), pre(ssize(a), -1);\n  for(int i = 0; i < ssize(a); i++) {\n  \
+    \  int j;\n    if constexpr (strict)\n      j = ranges::lower_bound(dp, a[i])\
+    \ - dp.begin();\n    else\n      j = ranges::upper_bound(dp, a[i]) - dp.begin();\n\
+    \    if (a[i] < dp[j])\n      dp[j] = a[i], id[j] = i;\n    if (j >= 1)\n    \
+    \  pre[i] = id[j - 1];\n  }\n\n  vector<T> lis;\n  int i = id[ranges::lower_bound(dp,\
+    \ numeric_limits<T>::max()) - dp.begin() - 1];\n  while(i != -1) {\n    lis.emplace_back(i);\n\
+    \    i = pre[i];\n  }\n  ranges::reverse(lis);\n\n  return lis;\n}\n#line 5 \"\
+    test/longest_increasing_subsequence.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<int> a(n);\n  for(int &x : a)\n\
+    \    cin >> x;\n\n  auto lis = LIS<int>(a);\n  cout << ssize(lis) << '\\n';\n\
+    \  cout << lis << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/longest_increasing_subsequence\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../misc/LIS.cpp\"\n\nsigned main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<int>\
@@ -102,7 +102,7 @@ data:
   isVerificationFile: true
   path: test/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2024-12-08 22:54:18+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/longest_increasing_subsequence.test.cpp
