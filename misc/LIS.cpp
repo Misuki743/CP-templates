@@ -1,5 +1,6 @@
 template<class T, bool strict = true>
 vector<int> LIS(vector<T> &a) {
+  if (a.empty()) return {};
   vector<T> dp(ssize(a), numeric_limits<T>::max());
   vector<int> id(ssize(a)), pre(ssize(a), -1);
   for(int i = 0; i < ssize(a); i++) {
