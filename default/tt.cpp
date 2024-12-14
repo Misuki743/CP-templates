@@ -53,6 +53,8 @@
 #define INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)
 #define INT128_MIN (-INT128_MAX - 1)
 
+#define pb push_back
+#define eb emplace_back
 #define clock chrono::steady_clock::now().time_since_epoch().count()
 
 using namespace std;
