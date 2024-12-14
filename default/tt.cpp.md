@@ -22,7 +22,8 @@ data:
     \ <variant>\n#include <bit>\n#include <compare>\n#include <concepts>\n#include\
     \ <numbers>\n#include <ranges>\n#include <span>\n\n#define int ll\n#define INT128_MAX\
     \ (__int128)(((unsigned __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1))\
-    \ - 1)\n#define INT128_MIN (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
+    \ - 1)\n#define INT128_MIN (-INT128_MAX - 1)\n\n#define pb push_back\n#define\
+    \ eb emplace_back\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\ntemplate<class T1, class T2>\nostream& operator<<(ostream&\
     \ os, const pair<T1, T2> pr) {\n  return os << pr.first << ' ' << pr.second;\n\
     }\ntemplate<class T, size_t N>\nostream& operator<<(ostream& os, const array<T,\
@@ -83,7 +84,7 @@ data:
     \ <compare>\n#include <concepts>\n#include <numbers>\n#include <ranges>\n#include\
     \ <span>\n\n#define int ll\n#define INT128_MAX (__int128)(((unsigned __int128)\
     \ 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX\
-    \ - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
+    \ - 1)\n\n#define pb push_back\n#define eb emplace_back\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\ntemplate<class T1, class T2>\nostream& operator<<(ostream&\
     \ os, const pair<T1, T2> pr) {\n  return os << pr.first << ' ' << pr.second;\n\
     }\ntemplate<class T, size_t N>\nostream& operator<<(ostream& os, const array<T,\
@@ -134,7 +135,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2024-11-19 21:59:27+08:00'
+  timestamp: '2024-12-14 18:41:32+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp
