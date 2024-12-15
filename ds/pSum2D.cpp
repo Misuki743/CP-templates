@@ -30,7 +30,7 @@ struct pSum2D {
     }
   }
   //[x1, x2) x [y1, y2)
-  M query(int x1, int y1, int x2, int y2) {
+  M query(int x1, int x2, int y1, int y2) {
     if constexpr (inv != nullptr)
       return op(op(data[x2 * m + y2], data[x1 * m + y1]),
             inv(op(data[x1 * m + y2], data[x2 * m + y1])));
