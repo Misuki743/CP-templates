@@ -222,13 +222,25 @@ struct FPS : vector<Mint> {
     return res[1];
   }
 
-  static vector<Mint> allProd(vector<FPS> &fs) {
+  static FPS allProd(vector<FPS> &fs) {
     if (fs.empty()) return {1};
-    auto dfs = [&](int l, int r, auto self) -> FPS {
+    auto dfs = [&](int l, int r, auto &self) -> FPS {
       if (l + 1 == r)
         return fs[l];
       else
         return self(l, (l + r) / 2, self) * self((l + r) / 2, r, self);
+    };
+    return dfs(0, ssize(fs), dfs);
+  }
+
+  static array<FPS, 2> fracSum(vector<array<FPS, 2>> &fs) {
+    if (fs.empty()) return {FPS{1}, {1}};
+    auto dfs = [&](int l, int r, auto &self) -> array<FPS, 2> {
+      if (l + 1 == r)
+        return fs[l];
+      int mid = (l + r) / 2;
+      auto L = self(l, mid, self), R = self(mid, r, self);
+      return {FPS{L[0] * R[1] + L[1] * R[0]}, {L[1] * R[1]}};
     };
     return dfs(0, ssize(fs), dfs);
   }
