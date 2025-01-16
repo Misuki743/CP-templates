@@ -1,12 +1,14 @@
 //reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
 //note: mod should be an odd prime less than 2^30.
 
-template<uint32_t mod>
+template<uint32_t ver>
 struct MontgomeryModInt {
   using mint = MontgomeryModInt;
   using i32 = int32_t;
   using u32 = uint32_t;
   using u64 = uint64_t;
+
+  static u32 mod, n2, r;
 
   static constexpr u32 get_r() {
     u32 res = 1, base = mod;
@@ -19,8 +21,11 @@ struct MontgomeryModInt {
     return mod;
   }
 
-  static constexpr u32 n2 = -u64(mod) % mod; //2^64 % mod
-  static constexpr u32 r = get_r(); //-P^{-1} % 2^32
+  static void set_mod(u32 _mod) {
+    mod = _mod;
+    n2 = -u64(mod) % mod;
+    r = get_r();
+  }
 
   u32 a;
 
@@ -97,4 +102,7 @@ struct MontgomeryModInt {
   }
 };
 
-using mint = MontgomeryModInt<998244353>;
+using mint = MontgomeryModInt<0>;
+template<> uint32_t mint::mod = 0;
+template<> uint32_t mint::n2 = 0;
+template<> uint32_t mint::r = 0;
