@@ -1,5 +1,6 @@
 template<uint32_t ver>
-struct mint {
+struct simpleMint {
+  using mint = simpleMint;
   using u32 = uint32_t;
   using u64 = uint64_t;
 
@@ -8,8 +9,8 @@ struct mint {
   static constexpr u32 get_mod() { return mod; }
   static void set_mod(u32 _mod) { mod = _mod; }
 
-  mint() : a(0) {}
-  mint(const int64_t &b) : a((b % mod + mod) % mod) {}
+  simpleMint() : a(0) {}
+  simpleMint(const int64_t &b) : a((b % mod + mod) % mod) {}
 
   u32 a;
 
@@ -67,3 +68,6 @@ struct mint {
     return is;
   }
 };
+
+template<> uint32_t simpleMint<0>::mod = 2;
+using mint = simpleMint<0>;
