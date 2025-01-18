@@ -33,48 +33,48 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/log_of_formal_power_series_sparse.test.cpp
     title: test/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/polynomial_taylor_shift.test.cpp
     title: test/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sharp_p_subset_sum.test.cpp
     title: test/sharp_p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/stirling_number_of_the_first_kind.test.cpp
     title: test/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/stirling_number_of_the_second_kind.test.cpp
     title: test/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/wildcard_pattern_matching.test.cpp
     title: test/wildcard_pattern_matching.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/FPS.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
@@ -154,17 +154,22 @@ data:
     \      res[i << 1 | 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int\
     \ i = 0; i < n; i++)\n      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int\
     \ i = n - 1; i > 0; i--)\n      res[i] = res[i << 1] * data[i << 1 | 1] + res[i\
-    \ << 1 | 1] * data[i << 1];\n    return res[1];\n  }\n\n  static vector<Mint>\
-    \ allProd(vector<FPS> &fs) {\n    if (fs.empty()) return {1};\n    auto dfs =\
-    \ [&](int l, int r, auto self) -> FPS {\n      if (l + 1 == r)\n        return\
-    \ fs[l];\n      else\n        return self(l, (l + r) / 2, self) * self((l + r)\
-    \ / 2, r, self);\n    };\n    return dfs(0, ssize(fs), dfs);\n  }\n\n  friend\
-    \ FPS operator+(FPS a, FPS b) { return a += b; }\n  friend FPS operator-(FPS a,\
-    \ FPS b) { return a -= b; }\n  friend FPS operator*(FPS a, FPS b) { return a *=\
-    \ b; }\n  friend FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS\
-    \ operator/(FPS a, Mint b) { return a /= b; }\n  friend FPS operator<<(FPS a,\
-    \ int x) { return a <<= x; }\n  friend FPS operator>>(FPS a, int x) { return a\
-    \ >>= x; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
+    \ << 1 | 1] * data[i << 1];\n    return res[1];\n  }\n\n  static FPS allProd(vector<FPS>\
+    \ &fs) {\n    if (fs.empty()) return {1};\n    auto dfs = [&](int l, int r, auto\
+    \ &self) -> FPS {\n      if (l + 1 == r)\n        return fs[l];\n      else\n\
+    \        return self(l, (l + r) / 2, self) * self((l + r) / 2, r, self);\n   \
+    \ };\n    return dfs(0, ssize(fs), dfs);\n  }\n\n  static array<FPS, 2> fracSum(vector<array<FPS,\
+    \ 2>> &fs) {\n    if (fs.empty()) return {FPS{1}, {1}};\n    auto dfs = [&](int\
+    \ l, int r, auto &self) -> array<FPS, 2> {\n      if (l + 1 == r)\n        return\
+    \ fs[l];\n      int mid = (l + r) / 2;\n      auto L = self(l, mid, self), R =\
+    \ self(mid, r, self);\n      return {FPS{L[0] * R[1] + L[1] * R[0]}, {L[1] * R[1]}};\n\
+    \    };\n    return dfs(0, ssize(fs), dfs);\n  }\n\n  friend FPS operator+(FPS\
+    \ a, FPS b) { return a += b; }\n  friend FPS operator-(FPS a, FPS b) { return\
+    \ a -= b; }\n  friend FPS operator*(FPS a, FPS b) { return a *= b; }\n  friend\
+    \ FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS operator/(FPS\
+    \ a, Mint b) { return a /= b; }\n  friend FPS operator<<(FPS a, int x) { return\
+    \ a <<= x; }\n  friend FPS operator>>(FPS a, int x) { return a >>= x; }\n};\n\n\
+    NTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
     \ vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\nfunction<void(vector<mint>&,\
     \ bool)> fps::dft = ntt.ntt;\n"
   code: "//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\
@@ -244,49 +249,54 @@ data:
     \      res[i << 1 | 1] = res[i].div(data[i << 1 | 1])[1];\n    }\n    for(int\
     \ i = 0; i < n; i++)\n      res[n + i][0] = ys[i] / res[n + i][0];\n    for(int\
     \ i = n - 1; i > 0; i--)\n      res[i] = res[i << 1] * data[i << 1 | 1] + res[i\
-    \ << 1 | 1] * data[i << 1];\n    return res[1];\n  }\n\n  static vector<Mint>\
-    \ allProd(vector<FPS> &fs) {\n    if (fs.empty()) return {1};\n    auto dfs =\
-    \ [&](int l, int r, auto self) -> FPS {\n      if (l + 1 == r)\n        return\
-    \ fs[l];\n      else\n        return self(l, (l + r) / 2, self) * self((l + r)\
-    \ / 2, r, self);\n    };\n    return dfs(0, ssize(fs), dfs);\n  }\n\n  friend\
-    \ FPS operator+(FPS a, FPS b) { return a += b; }\n  friend FPS operator-(FPS a,\
-    \ FPS b) { return a -= b; }\n  friend FPS operator*(FPS a, FPS b) { return a *=\
-    \ b; }\n  friend FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS\
-    \ operator/(FPS a, Mint b) { return a /= b; }\n  friend FPS operator<<(FPS a,\
-    \ int x) { return a <<= x; }\n  friend FPS operator>>(FPS a, int x) { return a\
-    \ >>= x; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
+    \ << 1 | 1] * data[i << 1];\n    return res[1];\n  }\n\n  static FPS allProd(vector<FPS>\
+    \ &fs) {\n    if (fs.empty()) return {1};\n    auto dfs = [&](int l, int r, auto\
+    \ &self) -> FPS {\n      if (l + 1 == r)\n        return fs[l];\n      else\n\
+    \        return self(l, (l + r) / 2, self) * self((l + r) / 2, r, self);\n   \
+    \ };\n    return dfs(0, ssize(fs), dfs);\n  }\n\n  static array<FPS, 2> fracSum(vector<array<FPS,\
+    \ 2>> &fs) {\n    if (fs.empty()) return {FPS{1}, {1}};\n    auto dfs = [&](int\
+    \ l, int r, auto &self) -> array<FPS, 2> {\n      if (l + 1 == r)\n        return\
+    \ fs[l];\n      int mid = (l + r) / 2;\n      auto L = self(l, mid, self), R =\
+    \ self(mid, r, self);\n      return {FPS{L[0] * R[1] + L[1] * R[0]}, {L[1] * R[1]}};\n\
+    \    };\n    return dfs(0, ssize(fs), dfs);\n  }\n\n  friend FPS operator+(FPS\
+    \ a, FPS b) { return a += b; }\n  friend FPS operator-(FPS a, FPS b) { return\
+    \ a -= b; }\n  friend FPS operator*(FPS a, FPS b) { return a *= b; }\n  friend\
+    \ FPS operator*(FPS a, Mint b) { return a *= b; }\n  friend FPS operator/(FPS\
+    \ a, Mint b) { return a /= b; }\n  friend FPS operator<<(FPS a, int x) { return\
+    \ a <<= x; }\n  friend FPS operator>>(FPS a, int x) { return a >>= x; }\n};\n\n\
+    NTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
     \ vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\nfunction<void(vector<mint>&,\
     \ bool)> fps::dft = ntt.ntt;\n"
   dependsOn: []
   isVerificationFile: false
   path: poly/FPS.cpp
   requiredBy: []
-  timestamp: '2024-05-11 22:13:26+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-04 16:10:13+08:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/inv_of_formal_power_series.test.cpp
-  - test/compositional_inverse_of_formal_power_series_large.test.cpp
-  - test/pow_of_formal_power_series.test.cpp
-  - test/stirling_number_of_the_second_kind.test.cpp
-  - test/log_of_formal_power_series.test.cpp
-  - test/bell_number.test.cpp
-  - test/inv_of_formal_power_series_sparse.test.cpp
-  - test/log_of_formal_power_series_sparse.test.cpp
-  - test/pow_of_formal_power_series_sparse.test.cpp
-  - test/subset_convolution.test.cpp
-  - test/polynomial_interpolation.test.cpp
-  - test/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/multipoint_evaluation.test.cpp
-  - test/wildcard_pattern_matching.test.cpp
-  - test/stirling_number_of_the_first_kind.test.cpp
-  - test/product_of_polynomial_sequence.test.cpp
-  - test/exp_of_formal_power_series.test.cpp
-  - test/exp_of_formal_power_series_sparse.test.cpp
-  - test/division_of_polynomials.test.cpp
-  - test/sharp_p_subset_sum.test.cpp
-  - test/sqrt_of_formal_power_series.test.cpp
   - test/polynomial_taylor_shift.test.cpp
+  - test/stirling_number_of_the_first_kind.test.cpp
+  - test/log_of_formal_power_series.test.cpp
+  - test/pow_of_formal_power_series.test.cpp
+  - test/wildcard_pattern_matching.test.cpp
+  - test/stirling_number_of_the_second_kind.test.cpp
+  - test/sqrt_of_formal_power_series.test.cpp
   - test/bernoulli_number.test.cpp
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/pow_of_formal_power_series_sparse.test.cpp
+  - test/bell_number.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
+  - test/inv_of_formal_power_series.test.cpp
+  - test/product_of_polynomial_sequence.test.cpp
+  - test/polynomial_interpolation.test.cpp
+  - test/multipoint_evaluation.test.cpp
+  - test/log_of_formal_power_series_sparse.test.cpp
+  - test/subset_convolution.test.cpp
+  - test/exp_of_formal_power_series.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/compositional_inverse_of_formal_power_series_large.test.cpp
+  - test/sharp_p_subset_sum.test.cpp
+  - test/division_of_polynomials.test.cpp
 documentation_of: poly/FPS.cpp
 layout: document
 redirect_from:

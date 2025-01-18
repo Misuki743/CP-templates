@@ -22,7 +22,7 @@ data:
     \ j = 0; j < m; j++) {\n        if constexpr (op != nullptr)\n          data[i\
     \ * m + j] = op(data[(i - 1) * m + j], data[i * m + j]);\n        else\n     \
     \     data[i * m + j] += data[(i - 1) * m + j];\n      }\n    }\n  }\n  //[x1,\
-    \ x2) x [y1, y2)\n  M query(int x1, int y1, int x2, int y2) {\n    if constexpr\
+    \ x2) x [y1, y2)\n  M query(int x1, int x2, int y1, int y2) {\n    if constexpr\
     \ (inv != nullptr)\n      return op(op(data[x2 * m + y2], data[x1 * m + y1]),\n\
     \            inv(op(data[x1 * m + y2], data[x2 * m + y1])));\n    else\n     \
     \ return data[x2 * m + y2] + data[x1 * m + y1] -\n             data[x1 * m + y2]\
@@ -41,7 +41,7 @@ data:
     \ j++) {\n        if constexpr (op != nullptr)\n          data[i * m + j] = op(data[(i\
     \ - 1) * m + j], data[i * m + j]);\n        else\n          data[i * m + j] +=\
     \ data[(i - 1) * m + j];\n      }\n    }\n  }\n  //[x1, x2) x [y1, y2)\n  M query(int\
-    \ x1, int y1, int x2, int y2) {\n    if constexpr (inv != nullptr)\n      return\
+    \ x1, int x2, int y1, int y2) {\n    if constexpr (inv != nullptr)\n      return\
     \ op(op(data[x2 * m + y2], data[x1 * m + y1]),\n            inv(op(data[x1 * m\
     \ + y2], data[x2 * m + y1])));\n    else\n      return data[x2 * m + y2] + data[x1\
     \ * m + y1] -\n             data[x1 * m + y2] - data[x2 * m + y1];\n  }\n};\n"
@@ -49,7 +49,7 @@ data:
   isVerificationFile: false
   path: ds/pSum2D.cpp
   requiredBy: []
-  timestamp: '2024-07-15 22:07:26+08:00'
+  timestamp: '2024-12-16 01:53:50+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/pSum2D.cpp

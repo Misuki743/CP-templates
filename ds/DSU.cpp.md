@@ -39,8 +39,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unionfind.test.cpp
-  - test/incremental_scc.test.cpp
   - test/minimum_spanning_tree.test.cpp
+  - test/incremental_scc.test.cpp
 documentation_of: ds/DSU.cpp
 layout: document
 redirect_from:

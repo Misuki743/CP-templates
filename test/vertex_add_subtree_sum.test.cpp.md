@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/eulerTour2.cpp
     title: ds/eulerTour2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segtree/segmentTree.cpp
     title: segtree/segmentTree.cpp
   _extendedRequiredBy: []

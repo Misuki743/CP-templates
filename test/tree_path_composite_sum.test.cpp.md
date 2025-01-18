@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/rerootingDP.cpp
     title: dp/rerootingDP.cpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_path_composite_sum
@@ -82,8 +82,8 @@ data:
     \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
     \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"modint/MontgomeryModInt.cpp\"\
     \n//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
-    //note: mod should be a prime less than 2^30.\n\ntemplate<uint32_t mod>\nstruct\
-    \ MontgomeryModInt {\n  using mint = MontgomeryModInt;\n  using i32 = int32_t;\n\
+    //note: mod should be an odd prime less than 2^30.\n\ntemplate<uint32_t mod>\n\
+    struct MontgomeryModInt {\n  using mint = MontgomeryModInt;\n  using i32 = int32_t;\n\
     \  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static constexpr u32 get_r()\
     \ {\n    u32 res = 1, base = mod;\n    for(i32 i = 0; i < 31; i++)\n      res\
     \ *= base, base *= base;\n    return -res;\n  }\n\n  static constexpr u32 get_mod()\
@@ -166,8 +166,8 @@ data:
   isVerificationFile: true
   path: test/tree_path_composite_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-08-04 01:36:11+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-01-16 19:25:04+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/tree_path_composite_sum.test.cpp
 layout: document
