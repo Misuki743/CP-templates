@@ -14,12 +14,12 @@ struct simpleMint {
 
   u32 a;
 
-  mint pow(u64 k) {
+  mint pow(u64 k) const {
     mint res(1), base(*this);
     while(k) {
       if (k & 1)
         res *= base;
-      base = base * base, k >>= 1;
+      base *= base, k >>= 1;
     }
     return res;
   }
