@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: combi/binom.cpp
     title: combi/binom.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/dynamicSimpleMint.cpp
     title: modint/dynamicSimpleMint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
@@ -85,9 +85,9 @@ data:
     \ u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static u32 mod;\n\n  static constexpr\
     \ u32 get_mod() { return mod; }\n  static void set_mod(u32 _mod) { mod = _mod;\
     \ }\n\n  simpleMint() : a(0) {}\n  simpleMint(const int64_t &b) : a((b % mod +\
-    \ mod) % mod) {}\n\n  u32 a;\n\n  mint pow(u64 k) {\n    mint res(1), base(*this);\n\
-    \    while(k) {\n      if (k & 1)\n        res *= base;\n      base = base * base,\
-    \ k >>= 1;\n    }\n    return res;\n  }\n\n  mint inverse() const { return (*this).pow(mod\
+    \ mod) % mod) {}\n\n  u32 a;\n\n  mint pow(u64 k) const {\n    mint res(1), base(*this);\n\
+    \    while(k) {\n      if (k & 1)\n        res *= base;\n      base *= base, k\
+    \ >>= 1;\n    }\n    return res;\n  }\n\n  mint inverse() const { return (*this).pow(mod\
     \ - 2); }\n  u32 get() const { return a; }\n\n  mint& norm() {\n    a = (a >=\
     \ mod ? a - mod : a < 0 ? a + mod : a);\n    return *this;\n  }\n\n  mint& operator+=(mint\
     \ b) {\n    a += b.a;\n    return (*this).norm();\n  }\n  mint& operator-=(mint\
@@ -133,8 +133,8 @@ data:
   isVerificationFile: true
   path: test/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2025-01-18 19:26:09+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-01-18 19:29:37+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/binomial_coefficient_prime_mod.test.cpp
 layout: document

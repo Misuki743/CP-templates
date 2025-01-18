@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/biconnected_components.test.cpp
     title: test/biconnected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/binomial_coefficient_prime_mod.test.cpp
     title: test/binomial_coefficient_prime_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -342,9 +342,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -471,7 +471,7 @@ data:
   requiredBy:
   - test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
   timestamp: '2024-07-28 21:04:51+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/range_set_range_composite.test.cpp
   - test/unionfind_with_potential_non_commutative_group.test.cpp

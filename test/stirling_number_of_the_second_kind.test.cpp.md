@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: combi/binom.cpp
     title: combi/binom.cpp
   - icon: ':heavy_check_mark:'
     path: combi/stirlingSecond.cpp
     title: combi/stirlingSecond.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'

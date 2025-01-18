@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: combi/bell_number.cpp
     title: combi/bell_number.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: combi/binom.cpp
     title: combi/binom.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
