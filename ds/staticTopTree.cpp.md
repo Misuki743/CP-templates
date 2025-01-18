@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
-    title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  _isVerificationFailed: true
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
+    title: test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/staticTopTree.cpp\"\nstruct staticTopTree {\n  enum type\
@@ -81,11 +81,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/staticTopTree.cpp
-  requiredBy: []
+  requiredBy:
+  - test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
   timestamp: '2024-08-03 02:36:00+08:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/staticTopTree.cpp
 layout: document
 redirect_from:

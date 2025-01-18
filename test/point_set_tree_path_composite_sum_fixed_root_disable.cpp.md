@@ -1,29 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: dp/dynamicTreeDP.cpp
     title: dp/dynamicTreeDP.cpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: ds/staticTopTree.cpp
     title: ds/staticTopTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root
     links:
     - https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root
-  bundledCode: "#line 1 \"test/point_set_tree_path_composite_sum_fixed_root.test.cpp\"\
+  bundledCode: "#line 1 \"test/point_set_tree_path_composite_sum_fixed_root_disable.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
@@ -160,7 +158,7 @@ data:
     \ if (type == 4)\n      dp[v] = addVertex(dp[stt.lc[v]], v);\n  }\n\n  void pull(int\
     \ v) {\n    while(v != -1) {\n      update(v);\n      v = stt.p[v];\n    }\n \
     \ }\n\n  void updateVertex(int v) { pull(v); }\n  void updateEdge(int e) { pull(e\
-    \ + n); }\n  T get() { return dp[stt.stt_rt]; }\n};\n#line 7 \"test/point_set_tree_path_composite_sum_fixed_root.test.cpp\"\
+    \ + n); }\n  T get() { return dp[stt.stt_rt]; }\n};\n#line 7 \"test/point_set_tree_path_composite_sum_fixed_root_disable.cpp\"\
     \n\nusing V = array<mint, 2>;\nusing E = array<mint, 4>;\n\nvector<mint> a, b,\
     \ c;\n\nV base(int i) { return {a[i], 1}; }\nE addEdge(const V &v, int i) { return\
     \ {b[i] * v[0] + c[i] * v[1], v[1], b[i], c[i]}; }\nE op(const E &l, const E &r)\
@@ -211,16 +209,16 @@ data:
   - modint/MontgomeryModInt.cpp
   - ds/staticTopTree.cpp
   - dp/dynamicTreeDP.cpp
-  isVerificationFile: true
-  path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  isVerificationFile: false
+  path: test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
   requiredBy: []
-  timestamp: '2025-01-16 19:25:04+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-01-18 19:20:55+08:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+documentation_of: test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
 layout: document
 redirect_from:
-- /verify/test/point_set_tree_path_composite_sum_fixed_root.test.cpp
-- /verify/test/point_set_tree_path_composite_sum_fixed_root.test.cpp.html
-title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+- /library/test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
+- /library/test/point_set_tree_path_composite_sum_fixed_root_disable.cpp.html
+title: test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
 ---

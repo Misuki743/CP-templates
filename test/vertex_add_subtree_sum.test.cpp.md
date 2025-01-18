@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: ds/eulerTour2.cpp
     title: ds/eulerTour2.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/segmentTree.cpp
     title: segtree/segmentTree.cpp
   _extendedRequiredBy: []
