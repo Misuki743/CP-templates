@@ -8,14 +8,11 @@ https://misuki743.github.io/CP-templates/
 
 - add chmin/chmax to default template
 - chromatic polynomial/number
-- min plus convolution
-- refine arbitrary mod template
 
 # MAYBE, IF I HAVE NOTHING TO DO
 
 - actedMonoid for linear add/sum query
 - lichaoSegmentTree
 - actedmonoid: add addHisMin/addHisMax/addHisSum
-- bigInt(I don't want to write this D:)
 - link-cut tree
 - fix static top tree 1, seems current way to decompose the tree can't handle ABC351G well :/
