@@ -35,7 +35,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/bernoulliNumber.cpp
       title: combi/bernoulliNumber.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: combi/binom.cpp
       title: combi/binom.cpp
     - icon: ':heavy_check_mark:'
@@ -61,7 +61,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -344,7 +344,7 @@ data:
     - icon: ':warning:'
       path: modint/dynamicMontgomeryModInt.cpp
       title: modint/dynamicMontgomeryModInt.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/dynamicSimpleMint.cpp
       title: modint/dynamicSimpleMint.cpp
   - name: numtheory
