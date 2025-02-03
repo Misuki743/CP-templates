@@ -75,8 +75,8 @@ data:
   timestamp: '2024-04-05 18:02:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/point_add_rectangle_sum.test.cpp
   - test/rectangle_add_point_get.test.cpp
+  - test/point_add_rectangle_sum.test.cpp
 documentation_of: ds/fenwickTree2D.cpp
 layout: document
 redirect_from:

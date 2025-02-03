@@ -150,8 +150,8 @@ data:
   timestamp: '2024-11-20 19:45:46+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/multiplication_of_big_intergers.test.cpp
   - test/addition_of_big_integers_2.test.cpp
+  - test/multiplication_of_big_intergers.test.cpp
   - test/addition_of_big_integers.test.cpp
   - test/multiplication_of_big_intergers_2.test.cpp
 documentation_of: misc/bigint.cpp
