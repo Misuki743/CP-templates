@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/chromatic_number.test.cpp
+    title: test/chromatic_number.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
@@ -78,8 +81,9 @@ data:
   path: modint/dynamicMontgomeryModInt.cpp
   requiredBy: []
   timestamp: '2025-01-18 16:37:27+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/chromatic_number.test.cpp
 documentation_of: modint/dynamicMontgomeryModInt.cpp
 layout: document
 redirect_from:

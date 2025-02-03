@@ -4,20 +4,23 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
+  - icon: ':x:'
+    path: modint/dynamicMontgomeryModInt.cpp
+    title: modint/dynamicMontgomeryModInt.cpp
   - icon: ':question:'
     path: numtheory/fastFactorize.cpp
     title: numtheory/fastFactorize.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/factorize
+    PROBLEM: https://judge.yosupo.jp/problem/chromatic_number
     links:
-    - https://judge.yosupo.jp/problem/factorize
-  bundledCode: "#line 1 \"test/factorize.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\
+    - https://judge.yosupo.jp/problem/chromatic_number
+  bundledCode: "#line 1 \"test/chromatic_number.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
     \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
@@ -76,12 +79,44 @@ data:
     \ + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1,\
     \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\
     \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
-    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"numtheory/fastFactorize.cpp\"\
-    \n//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\null\
-    \ modmul(ull a, ull b, ull M) {\n\tll ret = a * b - M * ull(1.L / M * a * b);\n\
-    \treturn ret + M * (ret < 0) - M * (ret >= (ll)M);\n}\n\null modpow(ull b, ull\
-    \ e, ull mod) {\n\tull ans = 1;\n\tfor (; e; b = modmul(b, b, mod), e /= 2)\n\t\
-    \tif (e & 1) ans = modmul(ans, b, mod);\n\treturn ans;\n}\n\nbool isPrime(ull\
+    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"modint/dynamicMontgomeryModInt.cpp\"\
+    \n//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
+    //note: mod should be an odd prime less than 2^30.\n\ntemplate<uint32_t ver>\n\
+    struct MontgomeryModInt {\n  using mint = MontgomeryModInt;\n  using i32 = int32_t;\n\
+    \  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static u32 mod, n2, r;\n\
+    \n  static constexpr u32 get_r() {\n    u32 res = 1, base = mod;\n    for(i32\
+    \ i = 0; i < 31; i++)\n      res *= base, base *= base;\n    return -res;\n  }\n\
+    \n  static constexpr u32 get_mod() {\n    return mod;\n  }\n\n  static void set_mod(u32\
+    \ _mod) {\n    mod = _mod;\n    n2 = -u64(mod) % mod;\n    r = get_r();\n  }\n\
+    \n  u32 a;\n\n  static u32 reduce(const u64 &b) {\n    return (b + u64(u32(b)\
+    \ * r) * mod) >> 32;\n  }\n\n  static u32 transform(const u64 &b) {\n    return\
+    \ reduce(u64(b) * n2);\n  }\n\n  MontgomeryModInt() : a(0) {}\n  MontgomeryModInt(const\
+    \ int64_t &b) \n    : a(transform(b % mod + mod)) {}\n\n  mint pow(u64 k) const\
+    \ {\n    mint res(1), base(*this);\n    while(k) {\n      if (k & 1) \n      \
+    \  res *= base;\n      base *= base, k >>= 1;\n    }\n    return res;\n  }\n\n\
+    \  mint inverse() const { return (*this).pow(mod - 2); }\n\n  u32 get() const\
+    \ {\n    u32 res = reduce(a);\n    return res >= mod ? res - mod : res;\n  }\n\
+    \n  mint& operator+=(const mint &b) {\n    if (i32(a += b.a - 2 * mod) < 0) a\
+    \ += 2 * mod;\n    return *this;\n  }\n\n  mint& operator-=(const mint &b) {\n\
+    \    if (i32(a -= b.a) < 0) a += 2 * mod;\n    return *this;\n  }\n\n  mint& operator*=(const\
+    \ mint &b) {\n    a = reduce(u64(a) * b.a);\n    return *this;\n  }\n\n  mint&\
+    \ operator/=(const mint &b) {\n    a = reduce(u64(a) * b.inverse().a);\n    return\
+    \ *this;\n  }\n\n  mint operator-() { return mint() - mint(*this); }\n  bool operator==(mint\
+    \ b) const {\n    return (a >= mod ? a - mod : a) == (b.a >= mod ? b.a - mod :\
+    \ b.a);\n  }\n  bool operator!=(mint b) const {\n    return (a >= mod ? a - mod\
+    \ : a) != (b.a >= mod ? b.a - mod : b.a);\n  }\n\n  friend mint operator+(mint\
+    \ c, mint d) { return c += d; }\n  friend mint operator-(mint c, mint d) { return\
+    \ c -= d; }\n  friend mint operator*(mint c, mint d) { return c *= d; }\n  friend\
+    \ mint operator/(mint c, mint d) { return c /= d; }\n\n  friend ostream& operator<<(ostream&\
+    \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
+    \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
+    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<0>;\ntemplate<> uint32_t mint::mod\
+    \ = 0;\ntemplate<> uint32_t mint::n2 = 0;\ntemplate<> uint32_t mint::r = 0;\n\
+    #line 1 \"numtheory/fastFactorize.cpp\"\n//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\
+    \null modmul(ull a, ull b, ull M) {\n\tll ret = a * b - M * ull(1.L / M * a *\
+    \ b);\n\treturn ret + M * (ret < 0) - M * (ret >= (ll)M);\n}\n\null modpow(ull\
+    \ b, ull e, ull mod) {\n\tull ans = 1;\n\tfor (; e; b = modmul(b, b, mod), e /=\
+    \ 2)\n\t\tif (e & 1) ans = modmul(ans, b, mod);\n\treturn ans;\n}\n\nbool isPrime(ull\
     \ n) {\n\tif (n < 2 || n % 6 % 4 != 1) return (n | 1) == 3;\n\tull A[] = {2, 325,\
     \ 9375, 28178, 450775, 9780504, 1795265022},\n\t    s = __builtin_ctzll(n-1),\
     \ d = n >> s;\n\tfor (ull a : A) {   // ^ count trailing zeroes\n\t\tull p = modpow(a%n,\
@@ -95,28 +130,32 @@ data:
     \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
     if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
     \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 5 \"test/factorize.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int q; cin >> q;\n  while(q--) {\n    ull x; cin >> x;\n\
-    \    auto ans = factor(x);\n    ranges::sort(ans);\n    cout << ssize(ans) <<\
-    \ ' ' << ans << '\\n';\n  }\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../numtheory/fastFactorize.cpp\"\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin >> q;\n\
-    \  while(q--) {\n    ull x; cin >> x;\n    auto ans = factor(x);\n    ranges::sort(ans);\n\
-    \    cout << ssize(ans) << ' ' << ans << '\\n';\n  }\n\n  return 0;\n}\n"
+    \treturn l;\n}\n#line 6 \"test/chromatic_number.test.cpp\"\n\nsigned main() {\n\
+    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n\
+    \  vector g(n, vector<bool>(n, false));\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    g[u][v] = g[v][u] = true;\n  }\n\n  cout << chromatic_number(g)\
+    \ << '\\n';\n\n  return 0;\n}\n\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n\n\
+    #include \"../default/t.cpp\"\n#include \"modint/dynamicMontgomeryModInt.cpp\"\
+    \n#include \"numtheory/fastFactorize.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector g(n, vector<bool>(n,\
+    \ false));\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n   \
+    \ g[u][v] = g[v][u] = true;\n  }\n\n  cout << chromatic_number(g) << '\\n';\n\n\
+    \  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
+  - modint/dynamicMontgomeryModInt.cpp
   - numtheory/fastFactorize.cpp
   isVerificationFile: true
-  path: test/factorize.test.cpp
+  path: test/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-03 23:28:39+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/factorize.test.cpp
+documentation_of: test/chromatic_number.test.cpp
 layout: document
 redirect_from:
-- /verify/test/factorize.test.cpp
-- /verify/test/factorize.test.cpp.html
-title: test/factorize.test.cpp
+- /verify/test/chromatic_number.test.cpp
+- /verify/test/chromatic_number.test.cpp.html
+title: test/chromatic_number.test.cpp
 ---

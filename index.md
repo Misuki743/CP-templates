@@ -38,6 +38,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/binom.cpp
       title: combi/binom.cpp
+    - icon: ':warning:'
+      path: combi/chromaticNumber.cpp
+      title: combi/chromaticNumber.cpp
     - icon: ':heavy_check_mark:'
       path: combi/countEulerianCircuit.cpp
       title: combi/countEulerianCircuit.cpp
@@ -61,7 +64,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -341,7 +344,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: modint/dynamicMontgomeryModInt.cpp
       title: modint/dynamicMontgomeryModInt.cpp
     - icon: ':heavy_check_mark:'
@@ -355,7 +358,7 @@ data:
     - icon: ':warning:'
       path: numtheory/exgcd.cpp
       title: numtheory/exgcd.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: numtheory/fastFactorize.cpp
       title: numtheory/fastFactorize.cpp
     - icon: ':heavy_check_mark:'
@@ -551,6 +554,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/bipartitematching.test.cpp
       title: test/bipartitematching.test.cpp
+    - icon: ':x:'
+      path: test/chromatic_number.test.cpp
+      title: test/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/compositional_inverse_of_formal_power_series_large.test.cpp
       title: test/compositional_inverse_of_formal_power_series_large.test.cpp

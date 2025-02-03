@@ -42,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/bipartitematching.test.cpp
     title: test/bipartitematching.test.cpp
+  - icon: ':x:'
+    path: test/chromatic_number.test.cpp
+    title: test/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/compositional_inverse_of_formal_power_series_large.test.cpp
     title: test/compositional_inverse_of_formal_power_series_large.test.cpp
@@ -342,9 +345,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -471,7 +474,7 @@ data:
   requiredBy:
   - test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
   timestamp: '2024-07-28 21:04:51+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/minimum_spanning_tree.test.cpp
   - test/tree_diameter.test.cpp
@@ -523,6 +526,7 @@ data:
   - test/cycle_detection_directed.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
   - test/associative_array.test.cpp
+  - test/chromatic_number.test.cpp
   - test/primality_test.test.cpp
   - test/binomial_coefficient_prime_mod.test.cpp
   - test/inverse_matrix.test.cpp

@@ -7,7 +7,6 @@ https://misuki743.github.io/CP-templates/
 # TODO
 
 - add chmin/chmax to default template
-- chromatic polynomial/number
 
 # MAYBE, IF I HAVE NOTHING TO DO
 
