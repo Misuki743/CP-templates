@@ -3,6 +3,7 @@
 #include "../default/t.cpp"
 #include "modint/dynamicMontgomeryModInt.cpp"
 #include "numtheory/fastFactorize.cpp"
+#include "combi/chromaticNumber.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
