@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/chromatic_number.test.cpp
+    title: test/chromatic_number.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"combi/chromaticNumber.cpp\"\n//#include \"modint/dynamicMontgomeryModInt.cpp\"\
@@ -42,8 +45,9 @@ data:
   path: combi/chromaticNumber.cpp
   requiredBy: []
   timestamp: '2025-02-03 23:28:39+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/chromatic_number.test.cpp
 documentation_of: combi/chromaticNumber.cpp
 layout: document
 redirect_from:

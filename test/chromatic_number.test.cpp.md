@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: combi/chromaticNumber.cpp
+    title: combi/chromaticNumber.cpp
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: modint/dynamicMontgomeryModInt.cpp
     title: modint/dynamicMontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/fastFactorize.cpp
     title: numtheory/fastFactorize.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/chromatic_number
@@ -130,27 +133,42 @@ data:
     \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
     if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
     \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 6 \"test/chromatic_number.test.cpp\"\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n\
-    \  vector g(n, vector<bool>(n, false));\n  for(int i = 0; i < m; i++) {\n    int\
-    \ u, v; cin >> u >> v;\n    g[u][v] = g[v][u] = true;\n  }\n\n  cout << chromatic_number(g)\
-    \ << '\\n';\n\n  return 0;\n}\n\n"
+    \treturn l;\n}\n#line 1 \"combi/chromaticNumber.cpp\"\n//#include \"modint/dynamicMontgomeryModInt.cpp\"\
+    \n//#include \"numtheory/fastFactorize.cpp\"\n\ntemplate<> uint32_t MontgomeryModInt<123>::mod\
+    \ = 0;\ntemplate<> uint32_t MontgomeryModInt<123>::n2 = 0;\ntemplate<> uint32_t\
+    \ MontgomeryModInt<123>::r = 0;\nint chromatic_number(vector<vector<bool>> g)\
+    \ {\n  const int n = ssize(g);\n\n  mt19937 rng(clock);\n  uniform_int_distribution<int>\
+    \ unif(1 << 29, 1 << 30);\n  int p = 4;\n  while(!isPrime(p)) p = unif(rng);\n\
+    \  using Mint = MontgomeryModInt<123>;\n  Mint::set_mod(p);\n\n  vector<Mint>\
+    \ I(1 << n);\n  I[0] = 1;\n  for(unsigned msk = 1; msk < (1 << n); msk++) {\n\
+    \    int v = countr_zero(bit_floor(msk));\n    I[msk] = I[msk ^ (1 << v)];\n \
+    \   unsigned msk2 = msk ^ (1 << v);\n    for(int x = 0; x < n; x++)\n      if\
+    \ (g[v][x] and (msk2 >> x & 1))\n        msk2 ^= 1 << x;\n    I[msk] += I[msk2];\n\
+    \  }\n\n  auto check = [&](int c) {\n    if (c == n) return true;\n    Mint cnt\
+    \ = 0;\n    for(unsigned msk = 0; msk < (1 << n); msk++)\n      cnt += I[msk].pow(c)\
+    \ * (popcount(msk ^ ((1 << n) - 1)) % 2 == 1 ? -1 : 1);\n    return cnt != 0;\n\
+    \  };\n\n  int c = 1;\n  while(!check(c)) c++;\n\n  return c;\n}\n#line 7 \"test/chromatic_number.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ m; cin >> n >> m;\n  vector g(n, vector<bool>(n, false));\n  for(int i = 0;\
+    \ i < m; i++) {\n    int u, v; cin >> u >> v;\n    g[u][v] = g[v][u] = true;\n\
+    \  }\n\n  cout << chromatic_number(g) << '\\n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n\n\
     #include \"../default/t.cpp\"\n#include \"modint/dynamicMontgomeryModInt.cpp\"\
-    \n#include \"numtheory/fastFactorize.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector g(n, vector<bool>(n,\
-    \ false));\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n   \
-    \ g[u][v] = g[v][u] = true;\n  }\n\n  cout << chromatic_number(g) << '\\n';\n\n\
-    \  return 0;\n}\n\n"
+    \n#include \"numtheory/fastFactorize.cpp\"\n#include \"combi/chromaticNumber.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ m; cin >> n >> m;\n  vector g(n, vector<bool>(n, false));\n  for(int i = 0;\
+    \ i < m; i++) {\n    int u, v; cin >> u >> v;\n    g[u][v] = g[v][u] = true;\n\
+    \  }\n\n  cout << chromatic_number(g) << '\\n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - modint/dynamicMontgomeryModInt.cpp
   - numtheory/fastFactorize.cpp
+  - combi/chromaticNumber.cpp
   isVerificationFile: true
   path: test/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2025-02-03 23:28:39+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-02-05 18:06:37+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/chromatic_number.test.cpp
 layout: document

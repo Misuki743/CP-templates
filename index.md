@@ -38,7 +38,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/binom.cpp
       title: combi/binom.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: combi/chromaticNumber.cpp
       title: combi/chromaticNumber.cpp
     - icon: ':heavy_check_mark:'
@@ -64,7 +64,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -344,7 +344,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: modint/dynamicMontgomeryModInt.cpp
       title: modint/dynamicMontgomeryModInt.cpp
     - icon: ':heavy_check_mark:'
@@ -358,7 +358,7 @@ data:
     - icon: ':warning:'
       path: numtheory/exgcd.cpp
       title: numtheory/exgcd.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/fastFactorize.cpp
       title: numtheory/fastFactorize.cpp
     - icon: ':heavy_check_mark:'
@@ -554,7 +554,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/bipartitematching.test.cpp
       title: test/bipartitematching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/chromatic_number.test.cpp
       title: test/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
