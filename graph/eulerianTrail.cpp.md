@@ -62,8 +62,8 @@ data:
   timestamp: '2024-04-05 18:02:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/eulerian_trail_directed.test.cpp
   - test/eulerian_trail_undirected.test.cpp
+  - test/eulerian_trail_directed.test.cpp
 documentation_of: graph/eulerianTrail.cpp
 layout: document
 redirect_from:

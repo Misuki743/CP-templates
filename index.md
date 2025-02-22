@@ -170,6 +170,9 @@ data:
     - icon: ':warning:'
       path: ds/slope_trick.cpp
       title: ds/slope_trick.cpp
+    - icon: ':warning:'
+      path: ds/smallToLargeDSU.cpp
+      title: ds/smallToLargeDSU.cpp
     - icon: ':heavy_check_mark:'
       path: ds/sparseTable.cpp
       title: ds/sparseTable.cpp
