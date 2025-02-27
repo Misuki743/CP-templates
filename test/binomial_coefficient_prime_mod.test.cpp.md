@@ -91,35 +91,35 @@ data:
     \ - 2); }\n  u32 get() const { return a; }\n\n  mint& norm() {\n    a = (a >=\
     \ mod ? a - mod : a < 0 ? a + mod : a);\n    return *this;\n  }\n\n  mint& operator+=(mint\
     \ b) {\n    a += b.a;\n    return (*this).norm();\n  }\n  mint& operator-=(mint\
-    \ b) {\n    a -= b.a;\n    return (*this).norm();\n  }\n  mint& operator*=(mint\
-    \ b) {\n    a = (u64(a) * b.a) % mod;\n    return *this;\n  }\n  mint& operator/=(mint\
-    \ b) {\n    a = (u64(a) * b.inverse().a) % mod;\n    return *this;\n  }\n\n  mint\
-    \ operator-() { return mint() - mint(*this); }\n  bool operator==(mint b) { return\
-    \ a == b.a; }\n  bool operator!=(mint b) { return a != b.a; }\n  \n  friend mint\
-    \ operator+(mint c, mint d) { return c += d; }\n  friend mint operator-(mint c,\
-    \ mint d) { return c -= d; }\n  friend mint operator*(mint c, mint d) { return\
-    \ c *= d; }\n  friend mint operator/(mint c, mint d) { return c /= d; }\n\n  friend\
-    \ ostream& operator<<(ostream& os, const mint& b) {\n    return os << b.a;\n \
-    \ }\n  friend istream& operator>>(istream& is, mint& b) {\n    int64_t val;\n\
-    \    is >> val;\n    b = mint(val);\n    return is;\n  }\n};\n\ntemplate<> uint32_t\
-    \ simpleMint<0>::mod = 2;\nusing mint = simpleMint<0>;\n#line 1 \"combi/binom.cpp\"\
-    \n//#include<modint/MontgomeryModInt.cpp>\n\ntemplate<class Mint>\nstruct binomial\
-    \ {\n  vector<Mint> _fac, _facInv;\n  binomial(int size) : _fac(size), _facInv(size)\
-    \ {\n    _fac[0] = 1;\n    for(int i = 1; i < size; i++)\n      _fac[i] = _fac[i\
-    \ - 1] * i;\n    if (size > 0)\n      _facInv.back() = 1 / _fac.back();\n    for(int\
-    \ i = size - 2; i >= 0; i--)\n      _facInv[i] = _facInv[i + 1] * (i + 1);\n \
-    \ }\n\n  Mint fac(int i) { return i < 0 ? 0 : _fac[i]; }\n  Mint faci(int i) {\
-    \ return i < 0 ? 0 : _facInv[i]; }\n  Mint inv(int i) { return _facInv[i] * _fac[i\
-    \ - 1]; }\n  Mint binom(int n, int r) { return r < 0 or n < r ? 0 : fac(n) * faci(r)\
-    \ * faci(n - r); }\n  Mint catalan(int i) { return binom(2 * i, i) - binom(2 *\
-    \ i, i + 1); }\n  Mint excatalan(int n, int m, int k) { //(+1) * n, (-1) * m,\
-    \ prefix sum > -k\n    if (k > m) return binom(n + m, m);\n    else if (k > m\
-    \ - n) return binom(n + m, m) - binom(n + m, m - k);\n    else return Mint(0);\n\
-    \  }\n};\n#line 6 \"test/binomial_coefficient_prime_mod.test.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t, p; cin >> t >>\
-    \ p;\n  mint::set_mod(p);\n  binomial<mint> bn(min(p, 10000000));\n  while(t--)\
-    \ {\n    int n, k; cin >> n >> k;\n    cout << bn.binom(n, k) << '\\n';\n  }\n\
-    \n  return 0;\n}\n"
+    \ b) {\n    if (b.a > a) a = a + mod - b.a;\n    else a -= b.a;\n    return (*this).norm();\n\
+    \  }\n  mint& operator*=(mint b) {\n    a = (u64(a) * b.a) % mod;\n    return\
+    \ *this;\n  }\n  mint& operator/=(mint b) {\n    a = (u64(a) * b.inverse().a)\
+    \ % mod;\n    return *this;\n  }\n\n  mint operator-() { return mint() - mint(*this);\
+    \ }\n  bool operator==(mint b) { return a == b.a; }\n  bool operator!=(mint b)\
+    \ { return a != b.a; }\n  \n  friend mint operator+(mint c, mint d) { return c\
+    \ += d; }\n  friend mint operator-(mint c, mint d) { return c -= d; }\n  friend\
+    \ mint operator*(mint c, mint d) { return c *= d; }\n  friend mint operator/(mint\
+    \ c, mint d) { return c /= d; }\n\n  friend ostream& operator<<(ostream& os, const\
+    \ mint& b) {\n    return os << b.a;\n  }\n  friend istream& operator>>(istream&\
+    \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
+    \ is;\n  }\n};\n\ntemplate<> uint32_t simpleMint<0>::mod = 2;\nusing mint = simpleMint<0>;\n\
+    #line 1 \"combi/binom.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\ntemplate<class\
+    \ Mint>\nstruct binomial {\n  vector<Mint> _fac, _facInv;\n  binomial(int size)\
+    \ : _fac(size), _facInv(size) {\n    _fac[0] = 1;\n    for(int i = 1; i < size;\
+    \ i++)\n      _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n      _facInv.back()\
+    \ = 1 / _fac.back();\n    for(int i = size - 2; i >= 0; i--)\n      _facInv[i]\
+    \ = _facInv[i + 1] * (i + 1);\n  }\n\n  Mint fac(int i) { return i < 0 ? 0 : _fac[i];\
+    \ }\n  Mint faci(int i) { return i < 0 ? 0 : _facInv[i]; }\n  Mint inv(int i)\
+    \ { return _facInv[i] * _fac[i - 1]; }\n  Mint binom(int n, int r) { return r\
+    \ < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n  Mint catalan(int i)\
+    \ { return binom(2 * i, i) - binom(2 * i, i + 1); }\n  Mint excatalan(int n, int\
+    \ m, int k) { //(+1) * n, (-1) * m, prefix sum > -k\n    if (k > m) return binom(n\
+    \ + m, m);\n    else if (k > m - n) return binom(n + m, m) - binom(n + m, m -\
+    \ k);\n    else return Mint(0);\n  }\n};\n#line 6 \"test/binomial_coefficient_prime_mod.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t,\
+    \ p; cin >> t >> p;\n  mint::set_mod(p);\n  binomial<mint> bn(min(p, 10000000));\n\
+    \  while(t--) {\n    int n, k; cin >> n >> k;\n    cout << bn.binom(n, k) << '\\\
+    n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/dynamicSimpleMint.cpp\"\
     \n#include \"../combi/binom.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
@@ -133,7 +133,7 @@ data:
   isVerificationFile: true
   path: test/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2025-01-18 19:29:37+08:00'
+  timestamp: '2025-02-27 21:36:01+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/binomial_coefficient_prime_mod.test.cpp

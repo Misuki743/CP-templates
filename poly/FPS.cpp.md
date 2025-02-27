@@ -274,29 +274,29 @@ data:
   timestamp: '2025-01-04 16:10:13+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/log_of_formal_power_series_sparse.test.cpp
-  - test/wildcard_pattern_matching.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/inv_of_formal_power_series.test.cpp
+  - test/stirling_number_of_the_first_kind.test.cpp
+  - test/sharp_p_subset_sum.test.cpp
+  - test/pow_of_formal_power_series.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
+  - test/log_of_formal_power_series.test.cpp
   - test/bernoulli_number.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/bell_number.test.cpp
-  - test/division_of_polynomials.test.cpp
-  - test/log_of_formal_power_series.test.cpp
-  - test/stirling_number_of_the_second_kind.test.cpp
-  - test/subset_convolution.test.cpp
-  - test/pow_of_formal_power_series.test.cpp
-  - test/sharp_p_subset_sum.test.cpp
-  - test/compositional_inverse_of_formal_power_series_large.test.cpp
-  - test/product_of_polynomial_sequence.test.cpp
-  - test/exp_of_formal_power_series.test.cpp
-  - test/polynomial_interpolation.test.cpp
-  - test/pow_of_formal_power_series_sparse.test.cpp
-  - test/exp_of_formal_power_series_sparse.test.cpp
-  - test/stirling_number_of_the_first_kind.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
+  - test/log_of_formal_power_series_sparse.test.cpp
+  - test/division_of_polynomials.test.cpp
+  - test/pow_of_formal_power_series_sparse.test.cpp
+  - test/bell_number.test.cpp
+  - test/polynomial_interpolation.test.cpp
   - test/polynomial_taylor_shift.test.cpp
-  - test/inv_of_formal_power_series.test.cpp
-  - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/subset_convolution.test.cpp
+  - test/stirling_number_of_the_second_kind.test.cpp
   - test/multipoint_evaluation.test.cpp
+  - test/compositional_inverse_of_formal_power_series_large.test.cpp
+  - test/wildcard_pattern_matching.test.cpp
+  - test/exp_of_formal_power_series.test.cpp
+  - test/product_of_polynomial_sequence.test.cpp
 documentation_of: poly/FPS.cpp
 layout: document
 redirect_from:

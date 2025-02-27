@@ -91,37 +91,37 @@ data:
     \ - 2); }\n  u32 get() const { return a; }\n\n  mint& norm() {\n    a = (a >=\
     \ mod ? a - mod : a < 0 ? a + mod : a);\n    return *this;\n  }\n\n  mint& operator+=(mint\
     \ b) {\n    a += b.a;\n    return (*this).norm();\n  }\n  mint& operator-=(mint\
-    \ b) {\n    a -= b.a;\n    return (*this).norm();\n  }\n  mint& operator*=(mint\
-    \ b) {\n    a = (u64(a) * b.a) % mod;\n    return *this;\n  }\n  mint& operator/=(mint\
-    \ b) {\n    a = (u64(a) * b.inverse().a) % mod;\n    return *this;\n  }\n\n  mint\
-    \ operator-() { return mint() - mint(*this); }\n  bool operator==(mint b) { return\
-    \ a == b.a; }\n  bool operator!=(mint b) { return a != b.a; }\n  \n  friend mint\
-    \ operator+(mint c, mint d) { return c += d; }\n  friend mint operator-(mint c,\
-    \ mint d) { return c -= d; }\n  friend mint operator*(mint c, mint d) { return\
-    \ c *= d; }\n  friend mint operator/(mint c, mint d) { return c /= d; }\n\n  friend\
-    \ ostream& operator<<(ostream& os, const mint& b) {\n    return os << b.a;\n \
-    \ }\n  friend istream& operator>>(istream& is, mint& b) {\n    int64_t val;\n\
-    \    is >> val;\n    b = mint(val);\n    return is;\n  }\n};\n\ntemplate<> uint32_t\
-    \ simpleMint<0>::mod = 2;\nusing mint = simpleMint<0>;\n#line 1 \"combi/stirlingFirstModP.cpp\"\
-    \n//#include<modint/MontgomeryModInt.cpp>\n\ntemplate<class Mint>\nstruct stirlingFirstModP\
-    \ {\n  const int p;\n  vector<vector<Mint>> _s, _c;\n  stirlingFirstModP() : p(Mint::get_mod()),\n\
-    \    _s(p, vector<Mint>(p)), _c(p, vector<Mint>(p)) {\n    for(int i = 0; i <\
-    \ p; i++) {\n      for(int j = 1; j < i; j++)\n        _s[i][j] = _s[i - 1][j\
-    \ - 1] + _s[i - 1][j] * -(i - 1);\n      _s[i][i] = 1;\n    }\n    for(int i =\
-    \ 0; i < p; i++) {\n      _c[i][0] = 1;\n      for(int j = 1; j < i; j++)\n  \
-    \      _c[i][j] = _c[i - 1][j - 1] + _c[i - 1][j];\n      _c[i][i] = 1;\n    }\n\
-    \  }\n\n  Mint binom(int64_t n, int64_t k) {\n    if (k < 0 or n < k) return Mint(0);\n\
-    \    Mint r = 1;\n    while(n)\n      r *= _c[n % p][k % p], n /= p, k /= p;\n\
-    \    return r;\n  }\n\n  Mint s(int64_t n, int64_t k) {\n    int64_t i = n / p,\
-    \ j = n % p;\n    int64_t b = ((k - i) % (p - 1) + (p - 1)) % (p - 1);\n    int64_t\
-    \ a = (k - i - b) / (p - 1);\n    mint r = binom(i, a) * ((i - a) % 2 == 1 ? -1\
-    \ : 1) * _s[j][b];\n    if (b == 0 and a > 0)\n      r += binom(i, a - 1) * ((i\
-    \ - a + 1) % 2 == 1 ? -1 : 1) * _s[j][p - 1];\n    return r;\n  }\n};\n#line 6\
-    \ \"test/stirling_number_of_first_kind_small_p_large_n.test.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t, p; cin >> t >>\
-    \ p;\n  mint::set_mod(p);\n  stirlingFirstModP<mint> stir;\n  while(t--) {\n \
-    \   ll n, k; cin >> n >> k;\n    cout << stir.s(n, k) << '\\n';\n  }\n\n  return\
-    \ 0;\n}\n"
+    \ b) {\n    if (b.a > a) a = a + mod - b.a;\n    else a -= b.a;\n    return (*this).norm();\n\
+    \  }\n  mint& operator*=(mint b) {\n    a = (u64(a) * b.a) % mod;\n    return\
+    \ *this;\n  }\n  mint& operator/=(mint b) {\n    a = (u64(a) * b.inverse().a)\
+    \ % mod;\n    return *this;\n  }\n\n  mint operator-() { return mint() - mint(*this);\
+    \ }\n  bool operator==(mint b) { return a == b.a; }\n  bool operator!=(mint b)\
+    \ { return a != b.a; }\n  \n  friend mint operator+(mint c, mint d) { return c\
+    \ += d; }\n  friend mint operator-(mint c, mint d) { return c -= d; }\n  friend\
+    \ mint operator*(mint c, mint d) { return c *= d; }\n  friend mint operator/(mint\
+    \ c, mint d) { return c /= d; }\n\n  friend ostream& operator<<(ostream& os, const\
+    \ mint& b) {\n    return os << b.a;\n  }\n  friend istream& operator>>(istream&\
+    \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
+    \ is;\n  }\n};\n\ntemplate<> uint32_t simpleMint<0>::mod = 2;\nusing mint = simpleMint<0>;\n\
+    #line 1 \"combi/stirlingFirstModP.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
+    \ntemplate<class Mint>\nstruct stirlingFirstModP {\n  const int p;\n  vector<vector<Mint>>\
+    \ _s, _c;\n  stirlingFirstModP() : p(Mint::get_mod()),\n    _s(p, vector<Mint>(p)),\
+    \ _c(p, vector<Mint>(p)) {\n    for(int i = 0; i < p; i++) {\n      for(int j\
+    \ = 1; j < i; j++)\n        _s[i][j] = _s[i - 1][j - 1] + _s[i - 1][j] * -(i -\
+    \ 1);\n      _s[i][i] = 1;\n    }\n    for(int i = 0; i < p; i++) {\n      _c[i][0]\
+    \ = 1;\n      for(int j = 1; j < i; j++)\n        _c[i][j] = _c[i - 1][j - 1]\
+    \ + _c[i - 1][j];\n      _c[i][i] = 1;\n    }\n  }\n\n  Mint binom(int64_t n,\
+    \ int64_t k) {\n    if (k < 0 or n < k) return Mint(0);\n    Mint r = 1;\n   \
+    \ while(n)\n      r *= _c[n % p][k % p], n /= p, k /= p;\n    return r;\n  }\n\
+    \n  Mint s(int64_t n, int64_t k) {\n    int64_t i = n / p, j = n % p;\n    int64_t\
+    \ b = ((k - i) % (p - 1) + (p - 1)) % (p - 1);\n    int64_t a = (k - i - b) /\
+    \ (p - 1);\n    mint r = binom(i, a) * ((i - a) % 2 == 1 ? -1 : 1) * _s[j][b];\n\
+    \    if (b == 0 and a > 0)\n      r += binom(i, a - 1) * ((i - a + 1) % 2 == 1\
+    \ ? -1 : 1) * _s[j][p - 1];\n    return r;\n  }\n};\n#line 6 \"test/stirling_number_of_first_kind_small_p_large_n.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t,\
+    \ p; cin >> t >> p;\n  mint::set_mod(p);\n  stirlingFirstModP<mint> stir;\n  while(t--)\
+    \ {\n    ll n, k; cin >> n >> k;\n    cout << stir.s(n, k) << '\\n';\n  }\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/dynamicSimpleMint.cpp\"\
     \n#include \"../combi/stirlingFirstModP.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
@@ -135,7 +135,7 @@ data:
   isVerificationFile: true
   path: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
   requiredBy: []
-  timestamp: '2025-01-18 19:29:37+08:00'
+  timestamp: '2025-02-27 21:36:01+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/stirling_number_of_first_kind_small_p_large_n.test.cpp

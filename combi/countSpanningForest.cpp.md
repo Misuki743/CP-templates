@@ -42,9 +42,9 @@ data:
   timestamp: '2024-06-29 17:34:40+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/counting_eulerian_circuits.test.cpp
   - test/counting_spanning_tree_directed.test.cpp
   - test/counting_spanning_tree_undirected.test.cpp
+  - test/counting_eulerian_circuits.test.cpp
 documentation_of: combi/countSpanningForest.cpp
 layout: document
 redirect_from:
