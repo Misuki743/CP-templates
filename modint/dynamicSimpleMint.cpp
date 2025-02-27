@@ -37,7 +37,8 @@ struct simpleMint {
     return (*this).norm();
   }
   mint& operator-=(mint b) {
-    a -= b.a;
+    if (b.a > a) a = a + mod - b.a;
+    else a -= b.a;
     return (*this).norm();
   }
   mint& operator*=(mint b) {
