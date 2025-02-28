@@ -60,6 +60,9 @@ data:
       path: combi/stirlingSecond.cpp
       title: combi/stirlingSecond.cpp
     - icon: ':heavy_check_mark:'
+      path: combi/stirlingSecondCol.cpp
+      title: combi/stirlingSecondCol.cpp
+    - icon: ':heavy_check_mark:'
       path: combi/stirlingSecondModP.cpp
       title: combi/stirlingSecondModP.cpp
   - name: default
@@ -800,6 +803,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/stirling_number_of_the_second_kind.test.cpp
       title: test/stirling_number_of_the_second_kind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+      title: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/strongly_connected_components.test.cpp
       title: test/strongly_connected_components.test.cpp

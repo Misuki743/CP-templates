@@ -286,6 +286,9 @@ data:
     path: test/stirling_number_of_the_second_kind.test.cpp
     title: test/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+    title: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
@@ -554,6 +557,7 @@ data:
   - test/counting_spanning_tree_undirected.test.cpp
   - test/counting_eulerian_circuits.test.cpp
   - test/incremental_scc.test.cpp
+  - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/vertex_add_path_sum.test.cpp
   - test/min_plus_convolution_convex_arbitrary.test.cpp
   - test/vertex_add_range_contour_sum_on_tree.test.cpp

@@ -91,6 +91,9 @@ data:
     path: test/stirling_number_of_the_second_kind.test.cpp
     title: test/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+    title: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -191,6 +194,7 @@ data:
   - test/subset_convolution.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
   - test/yuki_2544.test.cpp
+  - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/multiplication_of_big_intergers_2.test.cpp
   - test/compositional_inverse_of_formal_power_series_large.test.cpp

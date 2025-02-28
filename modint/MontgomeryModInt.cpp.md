@@ -139,6 +139,9 @@ data:
     path: test/stirling_number_of_the_second_kind.test.cpp
     title: test/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+    title: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -275,6 +278,7 @@ data:
   - test/counting_spanning_tree_undirected.test.cpp
   - test/counting_eulerian_circuits.test.cpp
   - test/incremental_scc.test.cpp
+  - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/find_linear_recurrence.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/multiplication_of_big_intergers_2.test.cpp

@@ -67,6 +67,9 @@ data:
     path: test/stirling_number_of_the_second_kind.test.cpp
     title: test/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+    title: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -292,6 +295,7 @@ data:
   - test/polynomial_taylor_shift.test.cpp
   - test/subset_convolution.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
+  - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/compositional_inverse_of_formal_power_series_large.test.cpp
   - test/wildcard_pattern_matching.test.cpp
