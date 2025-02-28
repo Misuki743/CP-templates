@@ -92,6 +92,7 @@
 "test/stirling_number_of_second_kind_small_p_large_n.test.cpp": "2025-02-27 21:36:01 +0800",
 "test/stirling_number_of_the_first_kind.test.cpp": "2025-01-16 19:25:04 +0800",
 "test/stirling_number_of_the_second_kind.test.cpp": "2025-01-16 19:25:04 +0800",
+"test/stirling_number_of_the_second_kind_fixed_k.test.cpp": "2025-03-01 02:24:43 +0800",
 "test/strongly_connected_components.test.cpp": "2024-07-28 21:04:51 +0800",
 "test/subset_convolution.test.cpp": "2025-01-16 19:25:04 +0800",
 "test/tree_diameter.test.cpp": "2024-07-28 21:04:51 +0800",
