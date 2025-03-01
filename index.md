@@ -309,6 +309,9 @@ data:
       path: graph/minimumVertexCover.cpp
       title: graph/minimumVertexCover.cpp
     - icon: ':warning:'
+      path: graph/steinerTree.cpp
+      title: graph/steinerTree.cpp
+    - icon: ':warning:'
       path: graph/topoSort.cpp
       title: graph/topoSort.cpp
     - icon: ':heavy_check_mark:'
