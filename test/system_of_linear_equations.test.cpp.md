@@ -1,45 +1,45 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: combi/countSpanningForest.cpp
-    title: combi/countSpanningForest.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':question:'
     path: linalg/matrixMint.cpp
     title: linalg/matrixMint.cpp
+  - icon: ':x:'
+    path: linalg/solveLinear.cpp
+    title: linalg/solveLinear.cpp
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/counting_spanning_tree_undirected
+    PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
     links:
-    - https://judge.yosupo.jp/problem/counting_spanning_tree_undirected
-  bundledCode: "#line 1 \"test/counting_spanning_tree_undirected.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/counting_spanning_tree_undirected\"\
-    \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
-    \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
-    \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
-    \ <cmath>\n#include <complex>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <variant>\n#include <bit>\n#include <compare>\n#include <concepts>\n#include\
-    \ <numbers>\n#include <ranges>\n#include <span>\n\n#define INT128_MAX (__int128)(((unsigned\
-    \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
-    \ (-INT128_MAX - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
+    - https://judge.yosupo.jp/problem/system_of_linear_equations
+  bundledCode: "#line 1 \"test/system_of_linear_equations.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\n\n#line 1 \"\
+    default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include <bitset>\n#include\
+    \ <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
+    \ <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <deque>\n#include\
+    \ <fstream>\n#include <functional>\n#include <initializer_list>\n#include <iomanip>\n\
+    #include <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n\
+    #include <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include\
+    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <variant>\n#include\
+    \ <bit>\n#include <compare>\n#include <concepts>\n#include <numbers>\n#include\
+    \ <ranges>\n#include <span>\n\n#define INT128_MAX (__int128)(((unsigned __int128)\
+    \ 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX\
+    \ - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\ntemplate<class T1, class T2>\nostream& operator<<(ostream&\
     \ os, const pair<T1, T2> pr) {\n  return os << pr.first << ' ' << pr.second;\n\
     }\ntemplate<class T, size_t N>\nostream& operator<<(ostream& os, const array<T,\
@@ -165,42 +165,59 @@ data:
     \ j < b.m(); j++)\n        os << b[i][j] << ' ';\n    }\n    return os;\n  }\n\
     \  friend istream& operator>>(istream& is, matrix& b) {\n    for(int i = 0; i\
     \ < b.n(); i++)\n      for(int j = 0; j < b.m(); j++)\n        is >> b[i][j];\n\
-    \    return is;\n  }\n};\n#line 1 \"combi/countSpanningForest.cpp\"\n//#include\
-    \ \"modint/MontgomeryModInt.cpp\"\n//#include \"linalg/matrixMint.cpp\"\n\ntemplate<class\
-    \ Mint, bool directed = false>\nMint countSpanningForest(vector<tuple<int, int,\
-    \ Mint>> e, int n, vector<int> r = vector(1, 0)) {\n  vector<int> id(n, 1);\n\
-    \  for(int x : r) id[x] = 0;\n  id[0] -= 1;\n  pSum(id);\n  for(int x : r) id[x]\
-    \ = -1;\n\n  matrix<Mint> M(n - ssize(r));\n  for(auto [u, v, w] : e) {\n    u\
-    \ = id[u], v = id[v];\n    if (u != -1 and v != -1) {\n      M[u][v] -= w;\n \
-    \     if constexpr (!directed) M[v][u] -= w;\n    }\n    if constexpr (!directed)\
-    \ if (u != -1) M[u][u] += w;\n    if (v != -1) M[v][v] += w;\n  }\n  return M.det();\n\
-    }\n#line 7 \"test/counting_spanning_tree_undirected.test.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >> n >>\
-    \ m;\n  vector<tuple<int, int, mint>> e(m);\n  for(auto &[u, v, w] : e) {\n  \
-    \  cin >> u >> v;\n    w = 1;\n  }\n\n  cout << countSpanningForest(e, n) << '\\\
-    n';\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_spanning_tree_undirected\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../linalg/matrixMint.cpp\"\n#include \"../combi/countSpanningForest.cpp\"\
+    \    return is;\n  }\n};\n#line 1 \"linalg/solveLinear.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
+    //#include<linalg/matrixMint.cpp>\n\ntemplate<class Mint>\npair<vector<Mint>,\
+    \ vector<vector<Mint>>> solve_linear(matrix<Mint> A, vector<Mint> b) {\n  const\
+    \ int n = A.n(), m = A.m();\n  assert(n == ssize(b));\n\n  {\n    matrix<Mint>\
+    \ tmp(n, m + 1);\n    for(int i = 0; i < n; i++) {\n      for(int j = 0; j < m;\
+    \ j++)\n        tmp[i][j] = A[i][j];\n      tmp[i][m] = b[i];\n    }\n    A.swap(tmp);\n\
+    \  }\n\n  vector<int> where(m, -1), inv_where(n, -1);\n  for(int row = 0, col\
+    \ = 0; row < n and col < m; col++) {\n    int p_row = -1;\n    for(int i = row;\
+    \ i < n and p_row == -1; i++)\n      if (A[i][col] != 0) \n        p_row = i;\n\
+    \    if (p_row == -1) continue;\n    where[col] = row, inv_where[row] = col;\n\
+    \    for(int j = col; j <= m; j++)\n      swap(A[row][j], A[p_row][j]);\n    Mint\
+    \ r = 1 / Mint(A[row][col]);\n    for(int j = col; j <= m; j++)\n      A[row][j]\
+    \ *= r;\n    for(int i = 0; i < n; i++) {\n      if (i == row or A[i][col] ==\
+    \ 0) continue;\n      Mint s = A[i][col];\n      for(int j = col; j <= m; j++)\n\
+    \        A[i][j] -= A[row][j] * s;\n    }\n    row++;\n  }\n\n  vector<Mint> ans(m);\n\
+    \  for(int i = 0; i < m; i++)\n    if (where[i] != -1)\n      ans[i] = A[where[i]][m];\n\
+    \n  for(int i = 0; i < n; i++) {\n    Mint s = -A[i][m];\n    for(int j = 0; j\
+    \ < m; j++)\n      s += ans[j] * A[i][j];\n    if (s != 0)\n      return {};\n\
+    \  }\n\n  vector<vector<Mint>> basis;\n  for(int col = 0, last_row = 0; col <\
+    \ m; col++) {\n    if (where[col] != -1) {\n      last_row = where[col];\n   \
+    \ } else {\n      basis.eb(m);\n      basis.back()[col] = 1;\n      for(int i\
+    \ = 0; i <= last_row; i++)\n        basis.back()[inv_where[i]] = -A[i][col];\n\
+    \    }\n  }\n\n  return make_pair(ans, basis);\n}\n#line 7 \"test/system_of_linear_equations.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ m; cin >> n >> m;\n  vector<tuple<int, int, mint>> e(m);\n  for(auto &[u, v,\
-    \ w] : e) {\n    cin >> u >> v;\n    w = 1;\n  }\n\n  cout << countSpanningForest(e,\
-    \ n) << '\\n';\n\n  return 0;\n}\n"
+    \ m; cin >> n >> m;\n  matrix<mint> A(n, m);\n  cin >> A;\n  vector<mint> b(n);\n\
+    \  for(mint &x : b) cin >> x;\n\n  auto [ans, basis] = solve_linear(A, b);\n \
+    \ if (ans.empty()) {\n    cout << -1 << '\\n';\n  } else {\n    cout << ssize(basis)\
+    \ << '\\n';\n    cout << ans << '\\n';\n    for(auto &v : basis)\n      cout <<\
+    \ v << '\\n';\n  }\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
+    \n#include \"../linalg/matrixMint.cpp\"\n#include \"../linalg/solveLinear.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ m; cin >> n >> m;\n  matrix<mint> A(n, m);\n  cin >> A;\n  vector<mint> b(n);\n\
+    \  for(mint &x : b) cin >> x;\n\n  auto [ans, basis] = solve_linear(A, b);\n \
+    \ if (ans.empty()) {\n    cout << -1 << '\\n';\n  } else {\n    cout << ssize(basis)\
+    \ << '\\n';\n    cout << ans << '\\n';\n    for(auto &v : basis)\n      cout <<\
+    \ v << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - linalg/matrixMint.cpp
-  - combi/countSpanningForest.cpp
+  - linalg/solveLinear.cpp
   isVerificationFile: true
-  path: test/counting_spanning_tree_undirected.test.cpp
+  path: test/system_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 19:25:04+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-09 01:30:49+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/counting_spanning_tree_undirected.test.cpp
+documentation_of: test/system_of_linear_equations.test.cpp
 layout: document
 redirect_from:
-- /verify/test/counting_spanning_tree_undirected.test.cpp
-- /verify/test/counting_spanning_tree_undirected.test.cpp.html
-title: test/counting_spanning_tree_undirected.test.cpp
+- /verify/test/system_of_linear_equations.test.cpp
+- /verify/test/system_of_linear_equations.test.cpp.html
+title: test/system_of_linear_equations.test.cpp
 ---

@@ -144,6 +144,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
+  - icon: ':x:'
+    path: test/system_of_linear_equations.test.cpp
+    title: test/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/tree_path_composite_sum.test.cpp
     title: test/tree_path_composite_sum.test.cpp
@@ -165,9 +168,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
@@ -239,7 +242,7 @@ data:
   requiredBy:
   - test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
   timestamp: '2025-01-16 19:25:04+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/addition_of_big_integers_2.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
@@ -260,6 +263,7 @@ data:
   - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
+  - test/system_of_linear_equations.test.cpp
   - test/unionfind_with_potential.test.cpp
   - test/queue_operate_all_composite.test.cpp
   - test/division_of_polynomials.test.cpp

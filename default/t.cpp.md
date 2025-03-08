@@ -294,6 +294,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
+  - icon: ':x:'
+    path: test/system_of_linear_equations.test.cpp
+    title: test/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/tree_diameter.test.cpp
     title: test/tree_diameter.test.cpp
@@ -348,9 +351,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -477,7 +480,7 @@ data:
   requiredBy:
   - test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
   timestamp: '2024-07-28 21:04:51+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/addition_of_big_integers_2.test.cpp
   - test/associative_array.test.cpp
@@ -520,6 +523,7 @@ data:
   - test/chromatic_number.test.cpp
   - test/stirling_number_of_second_kind_small_p_large_n.test.cpp
   - test/enumerate_quotients.test.cpp
+  - test/system_of_linear_equations.test.cpp
   - test/maximum_independent_set.test.cpp
   - test/rooted_tree_isomorphism_classification.test.cpp
   - test/lowest_common_ancestor.test.cpp
