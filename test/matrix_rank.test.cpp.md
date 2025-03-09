@@ -4,26 +4,23 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
+  - icon: ':x:'
+    path: linalg/matrixMint.cpp
+    title: linalg/matrixMint.cpp
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':heavy_check_mark:'
-    path: poly/NTTanymod.cpp
-    title: poly/NTTanymod.cpp
-  - icon: ':heavy_check_mark:'
-    path: poly/NTTmint.cpp
-    title: poly/NTTmint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_1000000007
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_rank
     links:
-    - https://judge.yosupo.jp/problem/convolution_mod_1000000007
-  bundledCode: "#line 1 \"test/convolution_1e9+7.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
+    - https://judge.yosupo.jp/problem/matrix_rank
+  bundledCode: "#line 1 \"test/matrix_rank.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_rank\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
     \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
@@ -113,77 +110,92 @@ data:
     \ mint operator/(mint c, mint d) { return c /= d; }\n\n  friend ostream& operator<<(ostream&\
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
-    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"poly/NTTmint.cpp\"\
-    \n//reference: https://judge.yosupo.jp/submission/69896\n//remark: MOD = 2^K *\
-    \ C + 1, R is a primitive root modulo MOD\n//remark: a.size() <= 2^K must be satisfied\n\
-    //some common modulo: 998244353  = 2^23 * 119 + 1, R = 3\n//                 \
-    \   469762049  = 2^26 * 7   + 1, R = 3\n//                    1224736769 = 2^24\
-    \ * 73  + 1, R = 3\n\ntemplate<int32_t k = 23, int32_t c = 119, int32_t r = 3,\
-    \ class Mint = MontgomeryModInt<998244353>>\nstruct NTT {\n\n  using u32 = uint32_t;\n\
-    \  static constexpr u32 mod = (1 << k) * c + 1;\n  static constexpr u32 get_mod()\
-    \ { return mod; }\n\n  static void ntt(vector<Mint> &a, bool inverse) {\n    static\
-    \ array<Mint, 30> w, w_inv;\n    if (w[0] == 0) {\n      Mint root = 2;\n    \
-    \  while(root.pow((mod - 1) / 2) == 1) root += 1;\n      for(int i = 0; i < 30;\
-    \ i++)\n        w[i] = -(root.pow((mod - 1) >> (i + 2))), w_inv[i] = 1 / w[i];\n\
-    \    }\n    int n = ssize(a);\n    if (not inverse) {\n      for(int m = n; m\
-    \ >>= 1; ) {\n        Mint ww = 1;\n        for(int s = 0, l = 0; s < n; s +=\
-    \ 2 * m) {\n          for(int i = s, j = s + m; i < s + m; i++, j++) {\n     \
-    \       Mint x = a[i], y = a[j] * ww;\n            a[i] = x + y, a[j] = x - y;\n\
-    \          }\n          ww *= w[__builtin_ctz(++l)];\n        }\n      }\n   \
-    \ } else {\n      for(int m = 1; m < n; m *= 2) {\n        Mint ww = 1;\n    \
-    \    for(int s = 0, l = 0; s < n; s += 2 * m) {\n          for(int i = s, j =\
-    \ s + m; i < s + m; i++, j++) {\n            Mint x = a[i], y = a[j];\n      \
-    \      a[i] = x + y, a[j] = (x - y) * ww;\n          }\n          ww *= w_inv[__builtin_ctz(++l)];\n\
-    \        }\n      }\n      Mint inv = 1 / Mint(n);\n      for(Mint &x : a) x *=\
-    \ inv;\n    }\n  }\n\n  static vector<Mint> conv(vector<Mint> a, vector<Mint>\
-    \ b) {\n    int sz = ssize(a) + ssize(b) - 1;\n    int n = bit_ceil((u32)sz);\n\
-    \n    a.resize(n, 0);\n    ntt(a, false);\n    b.resize(n, 0);\n    ntt(b, false);\n\
-    \n    for(int i = 0; i < n; i++)\n      a[i] *= b[i];\n\n    ntt(a, true);\n\n\
-    \    a.resize(sz);\n\n    return a;\n  }\n};\n#line 1 \"poly/NTTanymod.cpp\"\n\
-    //reference: https://math314.hateblo.jp/entry/2015/05/07/014908\n//reference:\
-    \ https://judge.yosupo.jp/submission/15581\n//remark: n * mod^2 < prod of mods(~=\
-    \ 5e26) should be satisfied\n\ntemplate<class Mint>\nvector<Mint> convAnyMod(vector<Mint>\
-    \ a, vector<Mint> b) {\n  using Mint0 = MontgomeryModInt<998244353>;\n  using\
-    \ Mint1 = MontgomeryModInt<469762049>;\n  using Mint2 = MontgomeryModInt<167772161>;\n\
-    \  NTT<23, 119, 3, Mint0> ntt0;\n  NTT<26, 7, 3, Mint1> ntt1;\n  NTT<25, 5, 3,\
-    \ Mint2> ntt2;\n  vector<Mint0> a0(ssize(a)), b0(ssize(b));\n  vector<Mint1> a1(ssize(a)),\
-    \ b1(ssize(b));\n  vector<Mint2> a2(ssize(a)), b2(ssize(b));\n  for(int i = 0;\
-    \ i < ssize(a); i++)\n    a0[i] = a[i].get(), a1[i] = a[i].get(), a2[i] = a[i].get();\n\
-    \  for(int i = 0; i < ssize(b); i++)\n    b0[i] = b[i].get(), b1[i] = b[i].get(),\
-    \ b2[i] = b[i].get();\n  vector<Mint0> x = ntt0.conv(a0, b0);\n  vector<Mint1>\
-    \ y = ntt1.conv(a1, b1);\n  vector<Mint2> z = ntt2.conv(a2, b2);\n  vector<Mint>\
-    \ res(ssize(x));\n  constexpr uint32_t mod0 = ntt0.get_mod(), mod1 = ntt1.get_mod();\n\
-    \  static const Mint1 im0 = 1 / Mint1(mod0);\n  static const Mint2 im1 = 1 / Mint2(mod1),\
-    \ im0m1 = im1 / mod0;\n  static const Mint m0 = mod0, m0m1 = m0 * mod1;\n  for(int\
-    \ i = 0; i < ssize(x); i++) {\n    int y0 = x[i].get();\n    int y1 = (im0 * (y[i]\
-    \ - y0)).get();\n    int y2 = (im0m1 * (z[i] - y0) - im1 * y1).get();\n    res[i]\
-    \ = y0 + m0 * y1 + m0m1 * y2;\n  }\n\n  return res;\n}\n#line 7 \"test/convolution_1e9+7.test.cpp\"\
-    \n\nusing Mint = MontgomeryModInt<1000000007>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<Mint> a(n), b(m);\n \
-    \ for(Mint &x : a)\n    cin >> x;\n  for(Mint &x : b)\n    cin >> x;\n\n  cout\
-    \ << convAnyMod(a, b) << '\\n';\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/NTTanymod.cpp\"\n\nusing\
-    \ Mint = MontgomeryModInt<1000000007>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<Mint> a(n), b(m);\n \
-    \ for(Mint &x : a)\n    cin >> x;\n  for(Mint &x : b)\n    cin >> x;\n\n  cout\
-    \ << convAnyMod(a, b) << '\\n';\n\n  return 0;\n}\n"
+    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"linalg/matrixMint.cpp\"\
+    \ntemplate<class Mint>\nstruct matrix : vector<vector<Mint>> {\n  matrix(int n,\
+    \ int m) : vector<vector<Mint>>(n, vector<Mint>(m, 0)) {}\n  matrix(int n) : vector<vector<Mint>>(n,\
+    \ vector<Mint>(n, 0)) {}\n\n  int n() const { return ssize(*this); }\n  int m()\
+    \ const { return ssize((*this)[0]); }\n\n  static matrix I(int n) {\n    auto\
+    \ res = matrix(n, n);\n    for(int i = 0; i < n; i++)\n      res[i][i] = 1;\n\
+    \    return res;\n  }\n\n  matrix& operator+=(const matrix &b) {\n    assert(n()\
+    \ == b.n());\n    assert(m() == b.m());\n    for(int i = 0; i < n(); i++)\n  \
+    \    for(int j = 0; j < m(); j++)\n        (*this)[i][j] += b[i][j];\n    return\
+    \ *this;\n  }\n\n  matrix& operator-=(const matrix &b) {\n    assert(n() == b.n());\n\
+    \    assert(m() == b.m());\n    for(int i = 0; i < n(); i++)\n      for(int j\
+    \ = 0; j < m(); j++)\n        (*this)[i][j] -= b[i][j];\n    return *this;\n \
+    \ }\n\n  matrix& operator*=(const matrix &b) {\n    assert(m() == b.n());\n  \
+    \  auto res = matrix(n(), b.m());\n    for(int i = 0; i < n(); i++)\n      for(int\
+    \ k = 0; k < m(); k++)\n        for(int j = 0; j < b.m(); j++)\n          res[i][j]\
+    \ += (*this)[i][k] * b[k][j];\n    this -> swap(res);\n    return *this;\n  }\n\
+    \n  matrix pow(ll k) const {\n    assert(n() == m());\n    auto res = I(n()),\
+    \ base = *this;\n    while(k) {\n      if (k & 1) res *= base;\n      base *=\
+    \ base, k >>= 1;\n    }\n    return res;\n  }\n\n  tuple<matrix, vector<int>,\
+    \ int> eliminate() {\n    int sgn = 1;\n    matrix M = *this;\n    vector<int>\
+    \ pivot_row;\n    for(int row = 0, col = 0; row < n() and col < m(); col++) {\n\
+    \      int p_row = -1;\n      for(int i = row; i < n() and p_row == -1; i++)\n\
+    \        if (M[i][col] != 0) \n          p_row = i;\n      if (p_row == -1) continue;\n\
+    \      pivot_row.eb(row);\n      if (row != p_row) {\n        for(int j = col;\
+    \ j < m(); j++)\n          swap(M[row][j], M[p_row][j]);\n        sgn *= -1;\n\
+    \      }\n      for(int i = 0; i < n(); i++) {\n        if (i == row or M[i][col]\
+    \ == 0) continue;\n        Mint s = M[i][col] / M[row][col];\n        for(int\
+    \ j = col; j < m(); j++)\n          M[i][j] -= M[row][j] * s;\n      }\n     \
+    \ row++;\n    }\n    return {M, pivot_row, sgn};\n  }\n\n  Mint det() {\n    assert(n()\
+    \ == m());\n    auto [M, pr, sgn] = eliminate();\n    if (ssize(pr) != n()) {\n\
+    \      return Mint(0);\n    } else {\n      Mint d = sgn;\n      for(int i = 0;\
+    \ i < n(); i++)\n        d *= M[i][i];\n      return d;\n    }\n  }\n\n  int rank()\
+    \ {\n    return get<1>(eliminate()).size();\n  }\n\n  pair<bool, matrix> inv()\
+    \ {\n    assert(n() == m());\n    matrix M(n(), 2 * n());\n    for(int i = 0;\
+    \ i < n(); i++) {\n      for(int j = 0; j < n(); j++)\n        M[i][j] = (*this)[i][j];\n\
+    \      M[i][n() + i] = 1;\n    }\n    matrix tmp = get<0>(M.eliminate());\n  \
+    \  matrix MI(n(), n());\n    for(int i = 0; i < n(); i++) {\n      if (tmp[i][i]\
+    \ == 0) return {false, matrix(0, 0)};\n      Mint r = tmp[i][i].inverse();\n \
+    \     for(int j = 0; j < n(); j++)\n        MI[i][j] = tmp[i][j + n()] * r;\n\
+    \    }\n    return {true, MI};\n  }\n\n  pair<vector<Mint>, matrix> solve_linear(vector<Mint>\
+    \ b) {\n    assert(n() == ssize(b));\n\n    matrix M(n(), m() + 1);\n    for(int\
+    \ i = 0; i < n(); i++) {\n      for(int j = 0; j < m(); j++)\n        M[i][j]\
+    \ = (*this)[i][j];\n      M[i][m()] = b[i];\n    }\n\n    auto [N, pr, _] = M.eliminate();\n\
+    \    vector<Mint> x(m());\n    vector<int> where(m(), -1), inv_where(m(), -1);\n\
+    \    for(int row : pr) {\n      int col = 0;\n      while(N[row][col] == 0) col++;\n\
+    \      if (col < m())\n        where[col] = row, inv_where[row] = col;\n    }\n\
+    \n    for(int i = 0; i < m(); i++)\n      if (where[i] != -1)\n        x[i] =\
+    \ N[where[i]][m()] / N[where[i]][i];\n\n    for(int i = 0; i < n(); i++) {\n \
+    \     Mint s = -N[i][m()];\n      for(int j = 0; j < m(); j++)\n        s += x[j]\
+    \ * N[i][j];\n      if (s != Mint(0))\n        return {vector<Mint>(), matrix(0)};\n\
+    \    }\n\n    matrix basis(m() - ssize(pr), m());\n    for(int col = 0, last_row\
+    \ = 0, k = 0; col < m(); col++) {\n      if (where[col] != -1) {\n        last_row\
+    \ = where[col];\n      } else {\n        basis[k][col] = 1;\n        for(int i\
+    \ = 0; i <= last_row; i++)\n          basis[k][inv_where[i]] = -N[i][col] / N[i][inv_where[i]];\n\
+    \        k++;\n      }\n    }\n\n    return {x, basis};\n  }\n\n  matrix operator-()\
+    \ { return matrix(n(), m()) - (*this); }\n  \n  friend matrix operator+(matrix\
+    \ a, matrix b) { return a += b; }\n  friend matrix operator-(matrix a, matrix\
+    \ b) { return a -= b; }\n  friend matrix operator*(matrix a, matrix b) { return\
+    \ a *= b; }\n  \n  friend ostream& operator<<(ostream& os, const matrix& b) {\n\
+    \    for(int i = 0; i < b.n(); i++) {\n      os << '\\n';\n      for(int j = 0;\
+    \ j < b.m(); j++)\n        os << b[i][j] << ' ';\n    }\n    return os;\n  }\n\
+    \  friend istream& operator>>(istream& is, matrix& b) {\n    for(int i = 0; i\
+    \ < b.n(); i++)\n      for(int j = 0; j < b.m(); j++)\n        is >> b[i][j];\n\
+    \    return is;\n  }\n};\n#line 6 \"test/matrix_rank.test.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >> n >>\
+    \ m;\n  matrix<mint> M(n, m);\n  cin >> M;\n  cout << M.rank() << '\\n';\n\n \
+    \ return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_rank\"\n\n#include\
+    \ \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\n#include\
+    \ \"../linalg/matrixMint.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  matrix<mint> M(n, m);\n  cin\
+    \ >> M;\n  cout << M.rank() << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
-  - poly/NTTmint.cpp
-  - poly/NTTanymod.cpp
+  - linalg/matrixMint.cpp
   isVerificationFile: true
-  path: test/convolution_1e9+7.test.cpp
+  path: test/matrix_rank.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 19:25:04+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-10 03:40:00+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/convolution_1e9+7.test.cpp
+documentation_of: test/matrix_rank.test.cpp
 layout: document
 redirect_from:
-- /verify/test/convolution_1e9+7.test.cpp
-- /verify/test/convolution_1e9+7.test.cpp.html
-title: test/convolution_1e9+7.test.cpp
+- /verify/test/matrix_rank.test.cpp
+- /verify/test/matrix_rank.test.cpp.html
+title: test/matrix_rank.test.cpp
 ---

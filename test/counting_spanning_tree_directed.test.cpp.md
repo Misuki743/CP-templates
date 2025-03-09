@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: combi/countSpanningForest.cpp
     title: combi/countSpanningForest.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/matrixMint.cpp
     title: linalg/matrixMint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/counting_spanning_tree_directed
@@ -115,48 +115,60 @@ data:
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"linalg/matrixMint.cpp\"\
-    \n//source: KACTL(for det() and inv())\n\ntemplate<class Mint>\nstruct matrix\
-    \ : vector<vector<Mint>> {\n  matrix(int n, int m) : vector<vector<Mint>>(n, vector<Mint>(m,\
-    \ 0)) {}\n  matrix(int n) : vector<vector<Mint>>(n, vector<Mint>(n, 0)) {}\n\n\
-    \  int n() const { return ssize(*this); }\n  int m() const { return ssize((*this)[0]);\
-    \ }\n\n  static matrix I(int n) {\n    auto res = matrix(n, n);\n    for(int i\
-    \ = 0; i < n; i++)\n      res[i][i] = 1;\n    return res;\n  }\n\n  matrix& operator+=(const\
-    \ matrix &b) {\n    assert(n() == b.n());\n    assert(m() == b.m());\n    for(int\
-    \ i = 0; i < n(); i++)\n      for(int j = 0; j < m(); j++)\n        (*this)[i][j]\
-    \ += b[i][j];\n    return *this;\n  }\n\n  matrix& operator-=(const matrix &b)\
-    \ {\n    assert(n() == b.n());\n    assert(m() == b.m());\n    for(int i = 0;\
-    \ i < n(); i++)\n      for(int j = 0; j < m(); j++)\n        (*this)[i][j] -=\
-    \ b[i][j];\n    return *this;\n  }\n\n  matrix& operator*=(const matrix &b) {\n\
-    \    assert(m() == b.n());\n    auto res = matrix(n(), b.m());\n    for(int i\
-    \ = 0; i < n(); i++)\n      for(int k = 0; k < m(); k++)\n        for(int j =\
-    \ 0; j < b.m(); j++)\n          res[i][j] += (*this)[i][k] * b[k][j];\n    this\
-    \ -> swap(res);\n    return *this;\n  }\n\n  matrix pow(ll k) const {\n    assert(n()\
-    \ == m());\n    auto res = I(n()), base = *this;\n    while(k) {\n      if (k\
-    \ & 1) res *= base;\n      base *= base, k >>= 1;\n    }\n    return res;\n  }\n\
-    \n  Mint det() const {\n    Mint res = 1;\n    auto a = *this;\n    for(int i\
-    \ = 0; i < n(); i++) {\n      for(int j = i + 1; j < m(); j++) {\n        while(a[j][i]\
-    \ != 0) {\n          Mint t = a[i][i] / a[j][i];\n          if (t != 0)\n    \
-    \        for(int k = i; k < n(); k++)\n              a[i][k] -= a[j][k] * t;\n\
-    \          swap(a[i], a[j]);\n          res = -res;\n        }\n      }\n    \
-    \  res *= a[i][i];\n      if (res == 0) return 0;\n    }\n    return res;\n  }\n\
-    \n  matrix inv() const {\n    assert(n() == m());\n    matrix a = *this, tmp =\
-    \ I(n());\n    vector<int> col(n());\n    for(int i = 0; i < n(); i++) col[i]\
-    \ = i;\n\n    for(int i = 0; i < n(); i++) {\n      int r = i, c = i;\n      for(int\
-    \ j = i; j < n(); j++) {\n        for(int k = i; k < n(); k++) {\n          if\
-    \ (a[j][k] != 0) {\n            r = j, c = k;\n            goto found;\n     \
-    \     }\n        }\n      }\n      return matrix(0);\n      found:\n      a[i].swap(a[r]),\
-    \ tmp[i].swap(tmp[r]);\n      for(int j = 0; j < n(); j++)\n        swap(a[j][i],\
-    \ a[j][c]), swap(tmp[j][i], tmp[j][c]);\n      swap(col[i], col[c]);\n      Mint\
-    \ v = 1 / a[i][i];\n      for(int j = i + 1; j < n(); j++) {\n        Mint f =\
-    \ a[j][i] * v;\n        a[j][i] = 0;\n        for(int k = i + 1; k < n(); k++)\n\
-    \          a[j][k] -= f * a[i][k];\n        for(int k = 0; k < n(); k++)\n   \
-    \       tmp[j][k] -= f * tmp[i][k];\n      }\n      for(int j = i + 1; j < n();\
-    \ j++) \n        a[i][j] *= v;\n      for(int j = 0; j < n(); j++) \n        tmp[i][j]\
-    \ *= v;\n      a[i][i] = 1;\n    }\n\n    for(int i = n() - 1; i > 0; i--) {\n\
-    \      for(int j = 0; j < i; j++) {\n        Mint v = a[j][i];\n        for(int\
-    \ k = 0; k < n(); k++)\n          tmp[j][k] -= v * tmp[i][k];\n      }\n    }\n\
-    \n    for(int i = 0; i < n(); i++)\n      for(int j = 0; j < n(); j++)\n     \
-    \   a[col[i]][col[j]] = tmp[i][j];\n    return a;\n  }\n\n  matrix operator-()\
+    \ntemplate<class Mint>\nstruct matrix : vector<vector<Mint>> {\n  matrix(int n,\
+    \ int m) : vector<vector<Mint>>(n, vector<Mint>(m, 0)) {}\n  matrix(int n) : vector<vector<Mint>>(n,\
+    \ vector<Mint>(n, 0)) {}\n\n  int n() const { return ssize(*this); }\n  int m()\
+    \ const { return ssize((*this)[0]); }\n\n  static matrix I(int n) {\n    auto\
+    \ res = matrix(n, n);\n    for(int i = 0; i < n; i++)\n      res[i][i] = 1;\n\
+    \    return res;\n  }\n\n  matrix& operator+=(const matrix &b) {\n    assert(n()\
+    \ == b.n());\n    assert(m() == b.m());\n    for(int i = 0; i < n(); i++)\n  \
+    \    for(int j = 0; j < m(); j++)\n        (*this)[i][j] += b[i][j];\n    return\
+    \ *this;\n  }\n\n  matrix& operator-=(const matrix &b) {\n    assert(n() == b.n());\n\
+    \    assert(m() == b.m());\n    for(int i = 0; i < n(); i++)\n      for(int j\
+    \ = 0; j < m(); j++)\n        (*this)[i][j] -= b[i][j];\n    return *this;\n \
+    \ }\n\n  matrix& operator*=(const matrix &b) {\n    assert(m() == b.n());\n  \
+    \  auto res = matrix(n(), b.m());\n    for(int i = 0; i < n(); i++)\n      for(int\
+    \ k = 0; k < m(); k++)\n        for(int j = 0; j < b.m(); j++)\n          res[i][j]\
+    \ += (*this)[i][k] * b[k][j];\n    this -> swap(res);\n    return *this;\n  }\n\
+    \n  matrix pow(ll k) const {\n    assert(n() == m());\n    auto res = I(n()),\
+    \ base = *this;\n    while(k) {\n      if (k & 1) res *= base;\n      base *=\
+    \ base, k >>= 1;\n    }\n    return res;\n  }\n\n  tuple<matrix, vector<int>,\
+    \ int> eliminate() {\n    int sgn = 1;\n    matrix M = *this;\n    vector<int>\
+    \ pivot_row;\n    for(int row = 0, col = 0; row < n() and col < m(); col++) {\n\
+    \      int p_row = -1;\n      for(int i = row; i < n() and p_row == -1; i++)\n\
+    \        if (M[i][col] != 0) \n          p_row = i;\n      if (p_row == -1) continue;\n\
+    \      pivot_row.eb(row);\n      if (row != p_row) {\n        for(int j = col;\
+    \ j < m(); j++)\n          swap(M[row][j], M[p_row][j]);\n        sgn *= -1;\n\
+    \      }\n      for(int i = 0; i < n(); i++) {\n        if (i == row or M[i][col]\
+    \ == 0) continue;\n        Mint s = M[i][col] / M[row][col];\n        for(int\
+    \ j = col; j < m(); j++)\n          M[i][j] -= M[row][j] * s;\n      }\n     \
+    \ row++;\n    }\n    return {M, pivot_row, sgn};\n  }\n\n  Mint det() {\n    assert(n()\
+    \ == m());\n    auto [M, pr, sgn] = eliminate();\n    if (ssize(pr) != n()) {\n\
+    \      return Mint(0);\n    } else {\n      Mint d = sgn;\n      for(int i = 0;\
+    \ i < n(); i++)\n        d *= M[i][i];\n      return d;\n    }\n  }\n\n  int rank()\
+    \ {\n    return get<1>(eliminate()).size();\n  }\n\n  pair<bool, matrix> inv()\
+    \ {\n    assert(n() == m());\n    matrix M(n(), 2 * n());\n    for(int i = 0;\
+    \ i < n(); i++) {\n      for(int j = 0; j < n(); j++)\n        M[i][j] = (*this)[i][j];\n\
+    \      M[i][n() + i] = 1;\n    }\n    matrix tmp = get<0>(M.eliminate());\n  \
+    \  matrix MI(n(), n());\n    for(int i = 0; i < n(); i++) {\n      if (tmp[i][i]\
+    \ == 0) return {false, matrix(0, 0)};\n      Mint r = tmp[i][i].inverse();\n \
+    \     for(int j = 0; j < n(); j++)\n        MI[i][j] = tmp[i][j + n()] * r;\n\
+    \    }\n    return {true, MI};\n  }\n\n  pair<vector<Mint>, matrix> solve_linear(vector<Mint>\
+    \ b) {\n    assert(n() == ssize(b));\n\n    matrix M(n(), m() + 1);\n    for(int\
+    \ i = 0; i < n(); i++) {\n      for(int j = 0; j < m(); j++)\n        M[i][j]\
+    \ = (*this)[i][j];\n      M[i][m()] = b[i];\n    }\n\n    auto [N, pr, _] = M.eliminate();\n\
+    \    vector<Mint> x(m());\n    vector<int> where(m(), -1), inv_where(m(), -1);\n\
+    \    for(int row : pr) {\n      int col = 0;\n      while(N[row][col] == 0) col++;\n\
+    \      if (col < m())\n        where[col] = row, inv_where[row] = col;\n    }\n\
+    \n    for(int i = 0; i < m(); i++)\n      if (where[i] != -1)\n        x[i] =\
+    \ N[where[i]][m()] / N[where[i]][i];\n\n    for(int i = 0; i < n(); i++) {\n \
+    \     Mint s = -N[i][m()];\n      for(int j = 0; j < m(); j++)\n        s += x[j]\
+    \ * N[i][j];\n      if (s != Mint(0))\n        return {vector<Mint>(), matrix(0)};\n\
+    \    }\n\n    matrix basis(m() - ssize(pr), m());\n    for(int col = 0, last_row\
+    \ = 0, k = 0; col < m(); col++) {\n      if (where[col] != -1) {\n        last_row\
+    \ = where[col];\n      } else {\n        basis[k][col] = 1;\n        for(int i\
+    \ = 0; i <= last_row; i++)\n          basis[k][inv_where[i]] = -N[i][col] / N[i][inv_where[i]];\n\
+    \        k++;\n      }\n    }\n\n    return {x, basis};\n  }\n\n  matrix operator-()\
     \ { return matrix(n(), m()) - (*this); }\n  \n  friend matrix operator+(matrix\
     \ a, matrix b) { return a += b; }\n  friend matrix operator-(matrix a, matrix\
     \ b) { return a -= b; }\n  friend matrix operator*(matrix a, matrix b) { return\
@@ -194,8 +206,8 @@ data:
   isVerificationFile: true
   path: test/counting_spanning_tree_directed.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 19:25:04+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-10 03:40:00+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/counting_spanning_tree_directed.test.cpp
 layout: document

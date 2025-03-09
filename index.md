@@ -35,16 +35,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/bernoulliNumber.cpp
       title: combi/bernoulliNumber.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: combi/binom.cpp
       title: combi/binom.cpp
     - icon: ':heavy_check_mark:'
       path: combi/chromaticNumber.cpp
       title: combi/chromaticNumber.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: combi/countEulerianCircuit.cpp
       title: combi/countEulerianCircuit.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: combi/countSpanningForest.cpp
       title: combi/countSpanningForest.cpp
     - icon: ':warning:'
@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -322,12 +322,9 @@ data:
       title: graph/treeHash.cpp
   - name: linalg
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: linalg/matrixMint.cpp
       title: linalg/matrixMint.cpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/solveLinear.cpp
-      title: linalg/solveLinear.cpp
     - icon: ':heavy_check_mark:'
       path: linalg/xorBasis.cpp
       title: linalg/xorBasis.cpp
@@ -353,7 +350,7 @@ data:
       title: misc/sharpPSubsetSum.cpp
   - name: modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':heavy_check_mark:'
@@ -581,13 +578,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/convolution_1e9+7.test.cpp
       title: test/convolution_1e9+7.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/counting_eulerian_circuits.test.cpp
       title: test/counting_eulerian_circuits.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/counting_spanning_tree_directed.test.cpp
       title: test/counting_spanning_tree_directed.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/counting_spanning_tree_undirected.test.cpp
       title: test/counting_spanning_tree_undirected.test.cpp
     - icon: ':heavy_check_mark:'
@@ -596,7 +593,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/cycle_detection_undirected.test.cpp
       title: test/cycle_detection_undirected.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/determinant_of_matrix.test.cpp
       title: test/determinant_of_matrix.test.cpp
     - icon: ':heavy_check_mark:'
@@ -641,7 +638,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/inv_of_formal_power_series_sparse.test.cpp
       title: test/inv_of_formal_power_series_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/inverse_matrix.test.cpp
       title: test/inverse_matrix.test.cpp
     - icon: ':heavy_check_mark:'
@@ -674,9 +671,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/matching_on_bipartite_graph.test.cpp
       title: test/matching_on_bipartite_graph.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/matrix_product.test.cpp
       title: test/matrix_product.test.cpp
+    - icon: ':x:'
+      path: test/matrix_rank.test.cpp
+      title: test/matrix_rank.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/matrix_rank_mod_2.test.cpp
       title: test/matrix_rank_mod_2.test.cpp
@@ -725,7 +725,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/pow_of_formal_power_series_sparse.test.cpp
       title: test/pow_of_formal_power_series_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/pow_of_matrix.test.cpp
       title: test/pow_of_matrix.test.cpp
     - icon: ':heavy_check_mark:'
@@ -818,7 +818,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/subset_convolution.test.cpp
       title: test/subset_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/system_of_linear_equations.test.cpp
       title: test/system_of_linear_equations.test.cpp
     - icon: ':heavy_check_mark:'
