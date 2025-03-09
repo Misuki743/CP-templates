@@ -1,5 +1,3 @@
-//source: KACTL(for det() and inv())
-
 template<class Mint>
 struct matrix : vector<vector<Mint>> {
   matrix(int n, int m) : vector<vector<Mint>>(n, vector<Mint>(m, 0)) {}
@@ -54,76 +52,114 @@ struct matrix : vector<vector<Mint>> {
     return res;
   }
 
-  Mint det() const {
-    Mint res = 1;
-    auto a = *this;
-    for(int i = 0; i < n(); i++) {
-      for(int j = i + 1; j < m(); j++) {
-        while(a[j][i] != 0) {
-          Mint t = a[i][i] / a[j][i];
-          if (t != 0)
-            for(int k = i; k < n(); k++)
-              a[i][k] -= a[j][k] * t;
-          swap(a[i], a[j]);
-          res = -res;
-        }
+  tuple<matrix, vector<int>, int> eliminate() {
+    int sgn = 1;
+    matrix M = *this;
+    vector<int> pivot_row;
+    for(int row = 0, col = 0; row < n() and col < m(); col++) {
+      int p_row = -1;
+      for(int i = row; i < n() and p_row == -1; i++)
+        if (M[i][col] != 0) 
+          p_row = i;
+      if (p_row == -1) continue;
+      pivot_row.eb(row);
+      if (row != p_row) {
+        for(int j = col; j < m(); j++)
+          swap(M[row][j], M[p_row][j]);
+        sgn *= -1;
       }
-      res *= a[i][i];
-      if (res == 0) return 0;
+      for(int i = 0; i < n(); i++) {
+        if (i == row or M[i][col] == 0) continue;
+        Mint s = M[i][col] / M[row][col];
+        for(int j = col; j < m(); j++)
+          M[i][j] -= M[row][j] * s;
+      }
+      row++;
     }
-    return res;
+    return {M, pivot_row, sgn};
   }
 
-  matrix inv() const {
+  Mint det() {
     assert(n() == m());
-    matrix a = *this, tmp = I(n());
-    vector<int> col(n());
-    for(int i = 0; i < n(); i++) col[i] = i;
+    auto [M, pr, sgn] = eliminate();
+    if (ssize(pr) != n()) {
+      return Mint(0);
+    } else {
+      Mint d = sgn;
+      for(int i = 0; i < n(); i++)
+        d *= M[i][i];
+      return d;
+    }
+  }
+
+  int rank() {
+    return get<1>(eliminate()).size();
+  }
+
+  pair<bool, matrix> inv() {
+    assert(n() == m());
+    matrix M(n(), 2 * n());
+    for(int i = 0; i < n(); i++) {
+      for(int j = 0; j < n(); j++)
+        M[i][j] = (*this)[i][j];
+      M[i][n() + i] = 1;
+    }
+    matrix tmp = get<0>(M.eliminate());
+    matrix MI(n(), n());
+    for(int i = 0; i < n(); i++) {
+      if (tmp[i][i] == 0) return {false, matrix(0, 0)};
+      Mint r = tmp[i][i].inverse();
+      for(int j = 0; j < n(); j++)
+        MI[i][j] = tmp[i][j + n()] * r;
+    }
+    return {true, MI};
+  }
+
+  pair<vector<Mint>, matrix> solve_linear(vector<Mint> b) {
+    assert(n() == ssize(b));
+
+    matrix M(n(), m() + 1);
+    for(int i = 0; i < n(); i++) {
+      for(int j = 0; j < m(); j++)
+        M[i][j] = (*this)[i][j];
+      M[i][m()] = b[i];
+    }
+
+    auto [N, pr, _] = M.eliminate();
+    vector<Mint> x(m());
+    vector<int> where(m(), -1), inv_where(m(), -1);
+    for(int row : pr) {
+      int col = 0;
+      while(N[row][col] == 0) col++;
+      if (col < m())
+        where[col] = row, inv_where[row] = col;
+    }
+
+    for(int i = 0; i < m(); i++)
+      if (where[i] != -1)
+        x[i] = N[where[i]][m()] / N[where[i]][i];
 
     for(int i = 0; i < n(); i++) {
-      int r = i, c = i;
-      for(int j = i; j < n(); j++) {
-        for(int k = i; k < n(); k++) {
-          if (a[j][k] != 0) {
-            r = j, c = k;
-            goto found;
-          }
-        }
-      }
-      return matrix(0);
-      found:
-      a[i].swap(a[r]), tmp[i].swap(tmp[r]);
-      for(int j = 0; j < n(); j++)
-        swap(a[j][i], a[j][c]), swap(tmp[j][i], tmp[j][c]);
-      swap(col[i], col[c]);
-      Mint v = 1 / a[i][i];
-      for(int j = i + 1; j < n(); j++) {
-        Mint f = a[j][i] * v;
-        a[j][i] = 0;
-        for(int k = i + 1; k < n(); k++)
-          a[j][k] -= f * a[i][k];
-        for(int k = 0; k < n(); k++)
-          tmp[j][k] -= f * tmp[i][k];
-      }
-      for(int j = i + 1; j < n(); j++) 
-        a[i][j] *= v;
-      for(int j = 0; j < n(); j++) 
-        tmp[i][j] *= v;
-      a[i][i] = 1;
+      Mint s = -N[i][m()];
+      for(int j = 0; j < m(); j++)
+        s += x[j] * N[i][j];
+      if (s != Mint(0))
+        return {vector<Mint>(), matrix(0)};
     }
 
-    for(int i = n() - 1; i > 0; i--) {
-      for(int j = 0; j < i; j++) {
-        Mint v = a[j][i];
-        for(int k = 0; k < n(); k++)
-          tmp[j][k] -= v * tmp[i][k];
+    matrix basis(m() - ssize(pr), m());
+    for(int col = 0, last_row = 0, k = 0; col < m(); col++) {
+      if (where[col] != -1) {
+        last_row = where[col];
+      } else {
+        basis[k][col] = 1;
+        for(int i = 0; i <= last_row; i++)
+          basis[k][inv_where[i]] = -N[i][col] / N[i][inv_where[i]];
+        k++;
       }
     }
 
-    for(int i = 0; i < n(); i++)
-      for(int j = 0; j < n(); j++)
-        a[col[i]][col[j]] = tmp[i][j];
-    return a;
+    return {x, basis};
   }
 
   matrix operator-() { return matrix(n(), m()) - (*this); }

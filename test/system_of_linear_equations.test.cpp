@@ -3,7 +3,6 @@
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
 #include "../linalg/matrixMint.cpp"
-#include "../linalg/solveLinear.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
@@ -14,7 +13,7 @@ signed main() {
   vector<mint> b(n);
   for(mint &x : b) cin >> x;
 
-  auto [ans, basis] = solve_linear(A, b);
+  auto [ans, basis] = A.solve_linear(b);
   if (ans.empty()) {
     cout << -1 << '\n';
   } else {

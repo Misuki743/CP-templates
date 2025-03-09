@@ -8,14 +8,11 @@ signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n; cin >> n;
-  matrix<mint> a(n);
-  cin >> a;
-
-  auto b = a.inv();
-  if (b.n() == 0)
-    cout << -1 << '\n';
-  else
-    cout << b << '\n';
+  matrix<mint> M(n, n);
+  cin >> M;
+  auto [ok, MI] = M.inverse();
+  if (ok) cout << MI << '\n';
+  else cout << -1 << '\n';
 
   return 0;
 }
