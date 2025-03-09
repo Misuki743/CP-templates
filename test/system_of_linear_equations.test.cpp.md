@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrixMint.cpp
     title: linalg/matrixMint.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/solveLinear.cpp
     title: linalg/solveLinear.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
@@ -185,8 +185,8 @@ data:
     \ < m; j++)\n      s += ans[j] * A[i][j];\n    if (s != 0)\n      return {};\n\
     \  }\n\n  vector<vector<Mint>> basis;\n  for(int col = 0, last_row = 0; col <\
     \ m; col++) {\n    if (where[col] != -1) {\n      last_row = where[col];\n   \
-    \ } else {\n      basis.eb(m);\n      basis.back()[col] = 1;\n      for(int i\
-    \ = 0; i <= last_row; i++)\n        basis.back()[inv_where[i]] = -A[i][col];\n\
+    \ } else {\n      basis.emplace_back(m);\n      basis.back()[col] = 1;\n     \
+    \ for(int i = 0; i <= last_row; i++)\n        basis.back()[inv_where[i]] = -A[i][col];\n\
     \    }\n  }\n\n  return make_pair(ans, basis);\n}\n#line 7 \"test/system_of_linear_equations.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
     \ m; cin >> n >> m;\n  matrix<mint> A(n, m);\n  cin >> A;\n  vector<mint> b(n);\n\
@@ -211,8 +211,8 @@ data:
   isVerificationFile: true
   path: test/system_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2025-03-09 01:30:49+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-03-09 17:24:59+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/system_of_linear_equations.test.cpp
 layout: document

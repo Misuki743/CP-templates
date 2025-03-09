@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/system_of_linear_equations.test.cpp
     title: test/system_of_linear_equations.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/solveLinear.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
@@ -31,8 +31,8 @@ data:
     \ < m; j++)\n      s += ans[j] * A[i][j];\n    if (s != 0)\n      return {};\n\
     \  }\n\n  vector<vector<Mint>> basis;\n  for(int col = 0, last_row = 0; col <\
     \ m; col++) {\n    if (where[col] != -1) {\n      last_row = where[col];\n   \
-    \ } else {\n      basis.eb(m);\n      basis.back()[col] = 1;\n      for(int i\
-    \ = 0; i <= last_row; i++)\n        basis.back()[inv_where[i]] = -A[i][col];\n\
+    \ } else {\n      basis.emplace_back(m);\n      basis.back()[col] = 1;\n     \
+    \ for(int i = 0; i <= last_row; i++)\n        basis.back()[inv_where[i]] = -A[i][col];\n\
     \    }\n  }\n\n  return make_pair(ans, basis);\n}\n"
   code: "//#include<modint/MontgomeryModInt.cpp>\n//#include<linalg/matrixMint.cpp>\n\
     \ntemplate<class Mint>\npair<vector<Mint>, vector<vector<Mint>>> solve_linear(matrix<Mint>\
@@ -53,15 +53,15 @@ data:
     \   Mint s = -A[i][m];\n    for(int j = 0; j < m; j++)\n      s += ans[j] * A[i][j];\n\
     \    if (s != 0)\n      return {};\n  }\n\n  vector<vector<Mint>> basis;\n  for(int\
     \ col = 0, last_row = 0; col < m; col++) {\n    if (where[col] != -1) {\n    \
-    \  last_row = where[col];\n    } else {\n      basis.eb(m);\n      basis.back()[col]\
+    \  last_row = where[col];\n    } else {\n      basis.emplace_back(m);\n      basis.back()[col]\
     \ = 1;\n      for(int i = 0; i <= last_row; i++)\n        basis.back()[inv_where[i]]\
     \ = -A[i][col];\n    }\n  }\n\n  return make_pair(ans, basis);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: linalg/solveLinear.cpp
   requiredBy: []
-  timestamp: '2025-03-09 01:30:49+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-03-09 17:24:59+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/system_of_linear_equations.test.cpp
 documentation_of: linalg/solveLinear.cpp

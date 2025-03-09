@@ -24,12 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/system_of_linear_equations.test.cpp
     title: test/system_of_linear_equations.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/matrixMint.cpp\"\n//source: KACTL(for det() and inv())\n\
@@ -139,7 +139,7 @@ data:
   path: linalg/matrixMint.cpp
   requiredBy: []
   timestamp: '2024-03-16 14:38:00+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/determinant_of_matrix.test.cpp
   - test/matrix_product.test.cpp
