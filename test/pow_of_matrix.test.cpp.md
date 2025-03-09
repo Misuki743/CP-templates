@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrixMint.cpp
     title: linalg/matrixMint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
@@ -114,9 +114,9 @@ data:
     \ntemplate<class Mint>\nstruct matrix : vector<vector<Mint>> {\n  matrix(int n,\
     \ int m) : vector<vector<Mint>>(n, vector<Mint>(m, 0)) {}\n  matrix(int n) : vector<vector<Mint>>(n,\
     \ vector<Mint>(n, 0)) {}\n\n  int n() const { return ssize(*this); }\n  int m()\
-    \ const { return ssize((*this)[0]); }\n\n  static matrix I(int n) {\n    auto\
-    \ res = matrix(n, n);\n    for(int i = 0; i < n; i++)\n      res[i][i] = 1;\n\
-    \    return res;\n  }\n\n  matrix& operator+=(const matrix &b) {\n    assert(n()\
+    \ const { return n() == 0 ? 0 : ssize((*this)[0]); }\n\n  static matrix I(int\
+    \ n) {\n    auto res = matrix(n, n);\n    for(int i = 0; i < n; i++)\n      res[i][i]\
+    \ = 1;\n    return res;\n  }\n\n  matrix& operator+=(const matrix &b) {\n    assert(n()\
     \ == b.n());\n    assert(m() == b.m());\n    for(int i = 0; i < n(); i++)\n  \
     \    for(int j = 0; j < m(); j++)\n        (*this)[i][j] += b[i][j];\n    return\
     \ *this;\n  }\n\n  matrix& operator-=(const matrix &b) {\n    assert(n() == b.n());\n\
@@ -189,7 +189,7 @@ data:
   isVerificationFile: true
   path: test/pow_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2025-03-10 03:52:29+08:00'
+  timestamp: '2025-03-10 04:06:44+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/pow_of_matrix.test.cpp
