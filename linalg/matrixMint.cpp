@@ -4,7 +4,7 @@ struct matrix : vector<vector<Mint>> {
   matrix(int n) : vector<vector<Mint>>(n, vector<Mint>(n, 0)) {}
 
   int n() const { return ssize(*this); }
-  int m() const { return ssize((*this)[0]); }
+  int m() const { return n() == 0 ? 0 : ssize((*this)[0]); }
 
   static matrix I(int n) {
     auto res = matrix(n, n);

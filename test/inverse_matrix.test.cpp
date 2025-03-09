@@ -10,7 +10,7 @@ signed main() {
   int n; cin >> n;
   matrix<mint> M(n, n);
   cin >> M;
-  auto [ok, MI] = M.inverse();
+  auto [ok, MI] = M.inv();
   if (ok) cout << MI << '\n';
   else cout << -1 << '\n';
 
