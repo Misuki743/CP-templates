@@ -56,7 +56,7 @@ pair<vector<Mint>, vector<vector<Mint>>> solve_linear(matrix<Mint> A, vector<Min
     if (where[col] != -1) {
       last_row = where[col];
     } else {
-      basis.eb(m);
+      basis.emplace_back(m);
       basis.back()[col] = 1;
       for(int i = 0; i <= last_row; i++)
         basis.back()[inv_where[i]] = -A[i][col];
