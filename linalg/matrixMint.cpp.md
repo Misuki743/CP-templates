@@ -12,27 +12,27 @@ data:
   - icon: ':x:'
     path: test/counting_spanning_tree_undirected.test.cpp
     title: test/counting_spanning_tree_undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/determinant_of_matrix.test.cpp
     title: test/determinant_of_matrix.test.cpp
   - icon: ':x:'
     path: test/inverse_matrix.test.cpp
     title: test/inverse_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/matrix_product.test.cpp
     title: test/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/matrix_rank.test.cpp
     title: test/matrix_rank.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/system_of_linear_equations.test.cpp
     title: test/system_of_linear_equations.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/matrixMint.cpp\"\ntemplate<class Mint>\nstruct matrix\
@@ -57,8 +57,8 @@ data:
     \ M = *this;\n    vector<int> pivot_row;\n    for(int row = 0, col = 0; row <\
     \ n() and col < m(); col++) {\n      int p_row = -1;\n      for(int i = row; i\
     \ < n() and p_row == -1; i++)\n        if (M[i][col] != 0) \n          p_row =\
-    \ i;\n      if (p_row == -1) continue;\n      pivot_row.eb(row);\n      if (row\
-    \ != p_row) {\n        for(int j = col; j < m(); j++)\n          swap(M[row][j],\
+    \ i;\n      if (p_row == -1) continue;\n      pivot_row.emplace_back(row);\n \
+    \     if (row != p_row) {\n        for(int j = col; j < m(); j++)\n          swap(M[row][j],\
     \ M[p_row][j]);\n        sgn *= -1;\n      }\n      for(int i = 0; i < n(); i++)\
     \ {\n        if (i == row or M[i][col] == 0) continue;\n        Mint s = M[i][col]\
     \ / M[row][col];\n        for(int j = col; j < m(); j++)\n          M[i][j] -=\
@@ -121,8 +121,8 @@ data:
     \ M = *this;\n    vector<int> pivot_row;\n    for(int row = 0, col = 0; row <\
     \ n() and col < m(); col++) {\n      int p_row = -1;\n      for(int i = row; i\
     \ < n() and p_row == -1; i++)\n        if (M[i][col] != 0) \n          p_row =\
-    \ i;\n      if (p_row == -1) continue;\n      pivot_row.eb(row);\n      if (row\
-    \ != p_row) {\n        for(int j = col; j < m(); j++)\n          swap(M[row][j],\
+    \ i;\n      if (p_row == -1) continue;\n      pivot_row.emplace_back(row);\n \
+    \     if (row != p_row) {\n        for(int j = col; j < m(); j++)\n          swap(M[row][j],\
     \ M[p_row][j]);\n        sgn *= -1;\n      }\n      for(int i = 0; i < n(); i++)\
     \ {\n        if (i == row or M[i][col] == 0) continue;\n        Mint s = M[i][col]\
     \ / M[row][col];\n        for(int j = col; j < m(); j++)\n          M[i][j] -=\
@@ -167,8 +167,8 @@ data:
   isVerificationFile: false
   path: linalg/matrixMint.cpp
   requiredBy: []
-  timestamp: '2025-03-10 03:40:00+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-03-10 03:52:29+08:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/determinant_of_matrix.test.cpp
   - test/matrix_product.test.cpp

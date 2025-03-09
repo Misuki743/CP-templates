@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/matrixMint.cpp
     title: linalg/matrixMint.cpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_matrix
@@ -133,20 +133,20 @@ data:
     \ pivot_row;\n    for(int row = 0, col = 0; row < n() and col < m(); col++) {\n\
     \      int p_row = -1;\n      for(int i = row; i < n() and p_row == -1; i++)\n\
     \        if (M[i][col] != 0) \n          p_row = i;\n      if (p_row == -1) continue;\n\
-    \      pivot_row.eb(row);\n      if (row != p_row) {\n        for(int j = col;\
-    \ j < m(); j++)\n          swap(M[row][j], M[p_row][j]);\n        sgn *= -1;\n\
-    \      }\n      for(int i = 0; i < n(); i++) {\n        if (i == row or M[i][col]\
-    \ == 0) continue;\n        Mint s = M[i][col] / M[row][col];\n        for(int\
-    \ j = col; j < m(); j++)\n          M[i][j] -= M[row][j] * s;\n      }\n     \
-    \ row++;\n    }\n    return {M, pivot_row, sgn};\n  }\n\n  Mint det() {\n    assert(n()\
-    \ == m());\n    auto [M, pr, sgn] = eliminate();\n    if (ssize(pr) != n()) {\n\
-    \      return Mint(0);\n    } else {\n      Mint d = sgn;\n      for(int i = 0;\
-    \ i < n(); i++)\n        d *= M[i][i];\n      return d;\n    }\n  }\n\n  int rank()\
-    \ {\n    return get<1>(eliminate()).size();\n  }\n\n  pair<bool, matrix> inv()\
-    \ {\n    assert(n() == m());\n    matrix M(n(), 2 * n());\n    for(int i = 0;\
-    \ i < n(); i++) {\n      for(int j = 0; j < n(); j++)\n        M[i][j] = (*this)[i][j];\n\
-    \      M[i][n() + i] = 1;\n    }\n    matrix tmp = get<0>(M.eliminate());\n  \
-    \  matrix MI(n(), n());\n    for(int i = 0; i < n(); i++) {\n      if (tmp[i][i]\
+    \      pivot_row.emplace_back(row);\n      if (row != p_row) {\n        for(int\
+    \ j = col; j < m(); j++)\n          swap(M[row][j], M[p_row][j]);\n        sgn\
+    \ *= -1;\n      }\n      for(int i = 0; i < n(); i++) {\n        if (i == row\
+    \ or M[i][col] == 0) continue;\n        Mint s = M[i][col] / M[row][col];\n  \
+    \      for(int j = col; j < m(); j++)\n          M[i][j] -= M[row][j] * s;\n \
+    \     }\n      row++;\n    }\n    return {M, pivot_row, sgn};\n  }\n\n  Mint det()\
+    \ {\n    assert(n() == m());\n    auto [M, pr, sgn] = eliminate();\n    if (ssize(pr)\
+    \ != n()) {\n      return Mint(0);\n    } else {\n      Mint d = sgn;\n      for(int\
+    \ i = 0; i < n(); i++)\n        d *= M[i][i];\n      return d;\n    }\n  }\n\n\
+    \  int rank() {\n    return get<1>(eliminate()).size();\n  }\n\n  pair<bool, matrix>\
+    \ inv() {\n    assert(n() == m());\n    matrix M(n(), 2 * n());\n    for(int i\
+    \ = 0; i < n(); i++) {\n      for(int j = 0; j < n(); j++)\n        M[i][j] =\
+    \ (*this)[i][j];\n      M[i][n() + i] = 1;\n    }\n    matrix tmp = get<0>(M.eliminate());\n\
+    \    matrix MI(n(), n());\n    for(int i = 0; i < n(); i++) {\n      if (tmp[i][i]\
     \ == 0) return {false, matrix(0, 0)};\n      Mint r = tmp[i][i].inverse();\n \
     \     for(int j = 0; j < n(); j++)\n        MI[i][j] = tmp[i][j + n()] * r;\n\
     \    }\n    return {true, MI};\n  }\n\n  pair<vector<Mint>, matrix> solve_linear(vector<Mint>\
@@ -189,8 +189,8 @@ data:
   isVerificationFile: true
   path: test/pow_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2025-03-10 03:40:00+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-03-10 03:52:29+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/pow_of_matrix.test.cpp
 layout: document
