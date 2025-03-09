@@ -62,7 +62,7 @@ struct matrix : vector<vector<Mint>> {
         if (M[i][col] != 0) 
           p_row = i;
       if (p_row == -1) continue;
-      pivot_row.eb(row);
+      pivot_row.emplace_back(row);
       if (row != p_row) {
         for(int j = col; j < m(); j++)
           swap(M[row][j], M[p_row][j]);
