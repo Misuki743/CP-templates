@@ -73,7 +73,7 @@ data:
     - icon: ':warning:'
       path: default/tt.cpp
       title: default/tt.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: default/ttt.cpp
       title: default/ttt.cpp
   - name: dp
@@ -219,21 +219,24 @@ data:
       title: ds_problem/zero_one_on_tree.cpp
   - name: geometry
     pages:
+    - icon: ':heavy_check_mark:'
+      path: geometry/closest_pair.cpp
+      title: geometry/closest_pair.cpp
+    - icon: ':heavy_check_mark:'
+      path: geometry/convex_hull.cpp
+      title: geometry/convex_hull.cpp
     - icon: ':warning:'
-      path: geometry/geometryBasic.cpp
-      title: geometry/geometryBasic.cpp
+      path: geometry/line.cpp
+      title: geometry/line.cpp
     - icon: ':warning:'
-      path: geometry/geometryCircle.cpp
-      title: geometry/geometryCircle.cpp
-    - icon: ':warning:'
-      path: geometry/geometryLine.cpp
-      title: geometry/geometryLine.cpp
-    - icon: ':warning:'
-      path: geometry/geometryPolygon.cpp
-      title: geometry/geometryPolygon.cpp
+      path: geometry/manhattanMST.cpp
+      title: geometry/manhattanMST.cpp
     - icon: ':warning:'
       path: geometry/minkowski.cpp
       title: geometry/minkowski.cpp
+    - icon: ':heavy_check_mark:'
+      path: geometry/point.cpp
+      title: geometry/point.cpp
   - name: graph
     pages:
     - icon: ':warning:'
@@ -578,6 +581,9 @@ data:
       path: test/chromatic_number.test.cpp
       title: test/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/closest_pair.test.cpp
+      title: test/closest_pair.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/compositional_inverse_of_formal_power_series_large.test.cpp
       title: test/compositional_inverse_of_formal_power_series_large.test.cpp
     - icon: ':heavy_check_mark:'
@@ -802,6 +808,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/static_RMQ_2.test.cpp
       title: test/static_RMQ_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/static_convex_hull.test.cpp
+      title: test/static_convex_hull.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/static_range_count_distinct.test.cpp
       title: test/static_range_count_distinct.test.cpp

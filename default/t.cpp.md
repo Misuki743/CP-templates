@@ -49,6 +49,9 @@ data:
     path: test/chromatic_number.test.cpp
     title: test/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/closest_pair.test.cpp
+    title: test/closest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/compositional_inverse_of_formal_power_series_large.test.cpp
     title: test/compositional_inverse_of_formal_power_series_large.test.cpp
   - icon: ':heavy_check_mark:'
@@ -273,6 +276,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/static_RMQ_2.test.cpp
     title: test/static_RMQ_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/static_convex_hull.test.cpp
+    title: test/static_convex_hull.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/static_range_count_distinct.test.cpp
     title: test/static_range_count_distinct.test.cpp
@@ -501,6 +507,7 @@ data:
   - test/stirling_number_of_the_first_kind.test.cpp
   - test/static_range_frequency.test.cpp
   - test/yuki_2654.test.cpp
+  - test/static_convex_hull.test.cpp
   - test/range_affine_point_get.test.cpp
   - test/enumerate_palindromes.test.cpp
   - test/sharp_p_subset_sum.test.cpp
@@ -554,6 +561,7 @@ data:
   - test/static_RMQ.test.cpp
   - test/assignment.test.cpp
   - test/matrix_rank.test.cpp
+  - test/closest_pair.test.cpp
   - test/unionfind.test.cpp
   - test/polynomial_taylor_shift.test.cpp
   - test/subset_convolution.test.cpp
