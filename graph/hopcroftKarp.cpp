@@ -15,6 +15,11 @@
  * Status: stress-tested by MinimumVertexCover, and tested on oldkattis.adkbipmatch and SPOJ:MATCHING
  */
 
+#define rep(i, a, b) for(int i = a; i < (b); ++i)
+#define all(x) begin(x), end(x)
+#define sz(x) (int)(x).size()
+typedef vector<int> vi;
+
 bool dfs(int a, int L, vector<vi>& g, vi& btoa, vi& A, vi& B) {
 	if (A[a] != L) return 0;
 	A[a] = -1;
@@ -60,4 +65,3 @@ int hopcroftKarp(vector<vi>& g, vi& btoa) {
 			res += dfs(a, 0, g, btoa, A, B);
 	}
 }
-

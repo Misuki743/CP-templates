@@ -12,6 +12,10 @@
  * Status: stress-tested
  */
 
+#define rep(i, a, b) for(int i = a; i < (b); ++i)
+#define sz(x) (int)(x).size()
+typedef pair<int, int> pii;
+
 template<class T>
 void FST(vector<T>& a, bool inv) {
 	for (int n = sz(a), step = 1; step < n; step *= 2) {
