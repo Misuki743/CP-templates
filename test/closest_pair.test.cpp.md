@@ -52,7 +52,7 @@ data:
   isVerificationFile: true
   path: test/closest_pair.test.cpp
   requiredBy: []
-  timestamp: '2025-03-16 20:32:54+08:00'
+  timestamp: '2025-03-16 20:37:06+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/closest_pair.test.cpp
