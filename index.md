@@ -296,7 +296,7 @@ data:
     - icon: ':warning:'
       path: graph/gridBFS.cpp
       title: graph/gridBFS.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/hopcroftKarp.cpp
       title: graph/hopcroftKarp.cpp
     - icon: ':heavy_check_mark:'
@@ -320,6 +320,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/treeHash.cpp
       title: graph/treeHash.cpp
+  - name: icpc
+    pages:
+    - icon: ':warning:'
+      path: icpc/lazySegtree.cpp
+      title: icpc/lazySegtree.cpp
+    - icon: ':warning:'
+      path: icpc/zkwBinarySearch.cpp
+      title: icpc/zkwBinarySearch.cpp
   - name: linalg
     pages:
     - icon: ':heavy_check_mark:'
@@ -563,6 +571,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/bipartitematching.test.cpp
       title: test/bipartitematching.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/bipartitematching_2.test.cpp
+      title: test/bipartitematching_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/chromatic_number.test.cpp
       title: test/chromatic_number.test.cpp

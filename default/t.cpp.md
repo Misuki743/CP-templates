@@ -43,6 +43,9 @@ data:
     path: test/bipartitematching.test.cpp
     title: test/bipartitematching.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/bipartitematching_2.test.cpp
+    title: test/bipartitematching_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/chromatic_number.test.cpp
     title: test/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -522,6 +525,7 @@ data:
   - test/binomial_coefficient_prime_mod.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
+  - test/bipartitematching_2.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
   - test/chromatic_number.test.cpp
   - test/stirling_number_of_second_kind_small_p_large_n.test.cpp
