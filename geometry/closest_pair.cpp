@@ -1,3 +1,5 @@
+//source: KACTL
+
 typedef Point<ll> P;
 pair<P, P> closest(vector<P> v) {
   assert(sz(v) > 1);
