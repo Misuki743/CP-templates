@@ -35,7 +35,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.13.2/x64/lib/python3.13/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ geometry/point.cpp: line 10: #pragma once found in a non-first line\n"
+    \ geometry/point.cpp: line 11: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_convex_hull\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../default/ttt.cpp\"\n#include \"../geometry/point.cpp\"\
     \n#include \"../geometry/convex_hull.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
@@ -51,7 +51,7 @@ data:
   isVerificationFile: true
   path: test/static_convex_hull.test.cpp
   requiredBy: []
-  timestamp: '2025-03-16 20:37:06+08:00'
+  timestamp: '2025-03-17 19:48:27+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/static_convex_hull.test.cpp
