@@ -89,6 +89,9 @@ data:
       title: dp/rerootingDP.cpp
   - name: ds
     pages:
+    - icon: ':warning:'
+      path: ds/CHT.cpp
+      title: ds/CHT.cpp
     - icon: ':heavy_check_mark:'
       path: ds/DSU.cpp
       title: ds/DSU.cpp
