@@ -226,6 +226,9 @@ data:
       path: geometry/convex_hull.cpp
       title: geometry/convex_hull.cpp
     - icon: ':warning:'
+      path: geometry/in_hull.cpp
+      title: geometry/in_hull.cpp
+    - icon: ':warning:'
       path: geometry/line.cpp
       title: geometry/line.cpp
     - icon: ':warning:'
@@ -326,8 +329,14 @@ data:
   - name: icpc
     pages:
     - icon: ':warning:'
+      path: icpc/aux_tree.cpp
+      title: icpc/aux_tree.cpp
+    - icon: ':warning:'
       path: icpc/lazySegtree.cpp
       title: icpc/lazySegtree.cpp
+    - icon: ':warning:'
+      path: icpc/short_lca.cpp
+      title: icpc/short_lca.cpp
     - icon: ':warning:'
       path: icpc/zkwBinarySearch.cpp
       title: icpc/zkwBinarySearch.cpp
