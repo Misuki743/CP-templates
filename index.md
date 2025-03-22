@@ -335,6 +335,15 @@ data:
       path: icpc/aux_tree.cpp
       title: icpc/aux_tree.cpp
     - icon: ':warning:'
+      path: icpc/eliminate_double.cpp
+      title: icpc/eliminate_double.cpp
+    - icon: ':warning:'
+      path: icpc/eliminate_mod.cpp
+      title: icpc/eliminate_mod.cpp
+    - icon: ':warning:'
+      path: icpc/eliminate_mod2.cpp
+      title: icpc/eliminate_mod2.cpp
+    - icon: ':warning:'
       path: icpc/lazySegtree.cpp
       title: icpc/lazySegtree.cpp
     - icon: ':warning:'
