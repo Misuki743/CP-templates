@@ -317,7 +317,7 @@ data:
     - icon: ':warning:'
       path: graph/minimumVertexCover.cpp
       title: graph/minimumVertexCover.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/steinerTree.cpp
       title: graph/steinerTree.cpp
     - icon: ':warning:'
@@ -727,6 +727,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/minimum_spanning_tree.test.cpp
       title: test/minimum_spanning_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/minimum_steiner_tree.test.cpp
+      title: test/minimum_steiner_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mul_modp_convolution.test.cpp
       title: test/mul_modp_convolution.test.cpp

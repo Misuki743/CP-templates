@@ -175,6 +175,9 @@ data:
     path: test/minimum_spanning_tree.test.cpp
     title: test/minimum_spanning_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/minimum_steiner_tree.test.cpp
+    title: test/minimum_steiner_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mul_modp_convolution.test.cpp
     title: test/mul_modp_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -547,6 +550,7 @@ data:
   - test/queue_operate_all_composite.test.cpp
   - test/division_of_polynomials.test.cpp
   - test/primitive_root.test.cpp
+  - test/minimum_steiner_tree.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/cycle_detection_undirected.test.cpp
   - test/shortest_path.test.cpp
