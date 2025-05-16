@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/NTTanymod.cpp
     title: poly/NTTanymod.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
   _extendedRequiredBy: []

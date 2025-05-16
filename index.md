@@ -446,10 +446,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/NTTanymod.cpp
       title: poly/NTTanymod.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/NTTmint.cpp
       title: poly/NTTmint.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/chirp_Z_transform.cpp
       title: poly/chirp_Z_transform.cpp
     - icon: ':heavy_check_mark:'
@@ -737,7 +737,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/multipoint_evaluation.test.cpp
       title: test/multipoint_evaluation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
       title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
     - icon: ':heavy_check_mark:'
@@ -890,9 +890,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
-      path: test/vertex_add_path_sum_2.test.cpp
-      title: test/vertex_add_path_sum_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/vertex_add_range_contour_sum_on_tree.test.cpp

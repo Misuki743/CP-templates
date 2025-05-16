@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/chirp_Z_transform.cpp
     title: poly/chirp_Z_transform.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence
@@ -156,17 +156,17 @@ data:
     \ i = 0; i < sz; i++)\n    F[i] *= G[i];\n  Ntt.ntt(F, true);\n\n  vector<Mint>\
     \ Q(m);\n  mint prod_ri = 1;\n  for(int i = 0; i < m; prod_ri *= pw_ri[i++])\n\
     \    Q[i] = F[i] * prod_ri;\n\n  return Q;\n}\n#line 7 \"test/multipoint_evaluation_on_geometric_sequence.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ m, a, r; cin >> n >> m >> a >> r;\n  vector<mint> c(n);\n  for(mint &x : c)\
-    \ cin >> x;\n\n  cout << chirp_Z_transform<ntt, mint>(c, a, r, m) << '\\n';\n\n\
-    \  return 0;\n}\n\n"
+    \n\nNTT ntt;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \n  int n, m, a, r; cin >> n >> m >> a >> r;\n  vector<mint> c(n);\n  for(mint\
+    \ &x : c) cin >> x;\n\n  cout << chirp_Z_transform<ntt, mint>(c, a, r, m) << '\\\
+    n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence\"\
     \n\n#include \"../default/t.cpp\"\n#include \"modint/MontgomeryModInt.cpp\"\n\
-    #include \"poly/NTTmint.cpp\"\n#include \"poly/chirp_Z_transform.cpp\"\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m, a, r;\
-    \ cin >> n >> m >> a >> r;\n  vector<mint> c(n);\n  for(mint &x : c) cin >> x;\n\
-    \n  cout << chirp_Z_transform<ntt, mint>(c, a, r, m) << '\\n';\n\n  return 0;\n\
-    }\n\n"
+    #include \"poly/NTTmint.cpp\"\n#include \"poly/chirp_Z_transform.cpp\"\n\nNTT\
+    \ ntt;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n \
+    \ int n, m, a, r; cin >> n >> m >> a >> r;\n  vector<mint> c(n);\n  for(mint &x\
+    \ : c) cin >> x;\n\n  cout << chirp_Z_transform<ntt, mint>(c, a, r, m) << '\\\
+    n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
@@ -175,8 +175,8 @@ data:
   isVerificationFile: true
   path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
   requiredBy: []
-  timestamp: '2025-05-10 02:31:09+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-05-16 22:23:10+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/multipoint_evaluation_on_geometric_sequence.test.cpp
 layout: document
