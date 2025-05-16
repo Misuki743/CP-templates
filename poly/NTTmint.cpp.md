@@ -60,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
+  - icon: ':x:'
+    path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
+    title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
@@ -105,9 +108,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/69896
@@ -169,42 +172,43 @@ data:
   path: poly/NTTmint.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/addition_of_big_integers_2.test.cpp
-  - test/inv_of_formal_power_series_sparse.test.cpp
-  - test/inv_of_formal_power_series.test.cpp
-  - test/stirling_number_of_the_first_kind.test.cpp
-  - test/sharp_p_subset_sum.test.cpp
-  - test/pow_of_formal_power_series.test.cpp
-  - test/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/exp_of_formal_power_series_sparse.test.cpp
-  - test/log_of_formal_power_series.test.cpp
-  - test/multiplication_of_big_intergers.test.cpp
-  - test/bernoulli_number.test.cpp
-  - test/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/sqrt_of_formal_power_series.test.cpp
-  - test/log_of_formal_power_series_sparse.test.cpp
-  - test/division_of_polynomials.test.cpp
-  - test/pow_of_formal_power_series_sparse.test.cpp
-  - test/bell_number.test.cpp
-  - test/addition_of_big_integers.test.cpp
-  - test/polynomial_interpolation.test.cpp
-  - test/polynomial_taylor_shift.test.cpp
-  - test/subset_convolution.test.cpp
-  - test/stirling_number_of_the_second_kind.test.cpp
-  - test/yuki_2544.test.cpp
-  - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - test/multipoint_evaluation.test.cpp
-  - test/multiplication_of_big_intergers_2.test.cpp
-  - test/compositional_inverse_of_formal_power_series_large.test.cpp
-  - test/yuki_2613.test.cpp
   - test/wildcard_pattern_matching.test.cpp
-  - test/exp_of_formal_power_series.test.cpp
-  - test/convolution.test.cpp
-  - test/product_of_polynomial_sequence.test.cpp
   - test/mul_modp_convolution.test.cpp
+  - test/compositional_inverse_of_formal_power_series_large.test.cpp
+  - test/stirling_number_of_the_first_kind.test.cpp
+  - test/multiplication_of_big_intergers.test.cpp
+  - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - test/polynomial_taylor_shift.test.cpp
+  - test/stirling_number_of_the_second_kind.test.cpp
+  - test/pow_of_formal_power_series_sparse.test.cpp
+  - test/log_of_formal_power_series.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
   - test/convolution_1e9+7.test.cpp
+  - test/multipoint_evaluation_on_geometric_sequence.test.cpp
+  - test/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/bell_number.test.cpp
+  - test/convolution.test.cpp
+  - test/addition_of_big_integers.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/yuki_2613.test.cpp
+  - test/sharp_p_subset_sum.test.cpp
+  - test/yuki_2544.test.cpp
+  - test/exp_of_formal_power_series.test.cpp
+  - test/log_of_formal_power_series_sparse.test.cpp
+  - test/multiplication_of_big_intergers_2.test.cpp
+  - test/polynomial_interpolation.test.cpp
+  - test/pow_of_formal_power_series.test.cpp
+  - test/inv_of_formal_power_series.test.cpp
+  - test/sqrt_of_formal_power_series.test.cpp
+  - test/division_of_polynomials.test.cpp
+  - test/multipoint_evaluation.test.cpp
+  - test/product_of_polynomial_sequence.test.cpp
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/addition_of_big_integers_2.test.cpp
+  - test/bernoulli_number.test.cpp
+  - test/subset_convolution.test.cpp
 documentation_of: poly/NTTmint.cpp
 layout: document
 redirect_from:

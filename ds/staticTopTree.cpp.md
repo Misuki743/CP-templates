@@ -1,91 +1,79 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
-    title: test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+    title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/staticTopTree.cpp\"\nstruct staticTopTree {\n  enum type\
-    \ { Vertex, Rake, Compress, AddEdge, AddVertex};\n\n  vector<vector<int>> g;\n\
-    \  int stt_rt, n;\n  vector<int> lc, rc, p, ord;\n  vector<type> vt;\n  int nxt;\n\
-    \n  staticTopTree(vector<vector<int>> _g, int root = 0) : n(size(_g)),\n  lc(4\
-    \ * n, -1), rc(4 * n, -1), p(4 * n, -1), vt(4 * n, type::Vertex), nxt(2 * n) {\n\
-    \    g.swap(_g);\n    dfs(root, -1);\n    stt_rt = compress(root).first;\n   \
-    \ g.swap(_g);\n  }\n\n  int dfs(int v, int pa) {\n    int sz = 1, pid = -1;\n\
-    \    pii heavy(-1, -1);\n    for(int i = -1; int x : g[v]) {\n      i++;\n   \
-    \   if (x == pa) {\n        pid = i;\n        continue;\n      }\n      int tmp\
-    \ = dfs(x, v);\n      chmax(heavy, pii(tmp, i));\n      sz += tmp;\n    }\n  \
-    \  if (heavy.second != -1) swap(g[v][heavy.second], g[v][0]);\n    if (pid !=\
-    \ -1) g[v].erase(g[v].begin() + (pid == 0 and heavy.second != -1 ? heavy.second\
-    \ : pid));\n    return sz;\n  }\n\n  void newVertex(int l, int r, type t) {\n\
-    \    if (l != -1) p[l] = nxt, lc[nxt] = l;\n    if (r != -1) p[r] = nxt, rc[nxt]\
-    \ = r;\n    ord.emplace_back(nxt);\n    vt[nxt++] = t;\n  }\n\n  void setVertex(int\
-    \ l, int r, int v, type t) {\n    if (l != -1) p[l] = v, lc[v] = l;\n    if (r\
-    \ != -1) p[r] = v, rc[v] = r;\n    ord.emplace_back(v);\n    vt[v] = t;\n  }\n\
-    \n  pii merge(vector<pii> &vs, type t, int v = -1) {\n    if (size(vs) == 1) return\
-    \ vs[0];\n    int szSum = 0;\n    for(auto [_, sz] : vs) szSum += sz;\n    int\
-    \ i = 0, pre = 0;\n    while(i + 1 < ssize(vs) and 2 * pre <= szSum) pre += vs[i++].second;\n\
-    \    vector<pii> lv(vs.begin(), vs.begin() + i), rv(vs.begin() + i, vs.end());\n\
-    \    auto [l, lsz] = merge(lv, t);\n    auto [r, rsz] = merge(rv, t);\n    if\
-    \ (v == -1) {\n      newVertex(l, r, t);\n      return {nxt - 1, lsz + rsz + 1};\n\
-    \    } else {\n      setVertex(l, r, v, t);\n      return {v, lsz + rsz + 1};\n\
-    \    }\n  }\n\n  pii compress(int v) {\n    vector<pii> vs(1, addEdge(v));\n \
-    \   while(!g[v].empty()) \n      vs.emplace_back(addEdge(v = g[v][0]));\n    return\
-    \ merge(vs, type::Compress);\n  }\n\n  pii addEdge(int v) {\n    auto [l, lsz]\
-    \ = addVertex(v);\n    setVertex(l, -1, v + n, type::AddEdge);\n    return {v\
-    \ + n, lsz + 1};\n  }\n\n  pii addVertex(int v) {\n    if (ssize(g[v]) <= 1) {\n\
-    \      setVertex(-1, -1, v, type::Vertex);\n      return {v, 1};\n    } else {\n\
-    \      auto [l, lsz] = rake(v);\n      setVertex(l, -1, v, type::AddVertex);\n\
-    \      return {v, lsz + 1};\n    }\n  }\n\n  pii rake(int v) {\n    vector<pii>\
-    \ vs;\n    for(int x : g[v] | views::drop(1))\n      vs.emplace_back(compress(x));\n\
-    \    return merge(vs, type::Rake);\n  }\n};\n"
-  code: "struct staticTopTree {\n  enum type { Vertex, Rake, Compress, AddEdge, AddVertex};\n\
-    \n  vector<vector<int>> g;\n  int stt_rt, n;\n  vector<int> lc, rc, p, ord;\n\
-    \  vector<type> vt;\n  int nxt;\n\n  staticTopTree(vector<vector<int>> _g, int\
-    \ root = 0) : n(size(_g)),\n  lc(4 * n, -1), rc(4 * n, -1), p(4 * n, -1), vt(4\
-    \ * n, type::Vertex), nxt(2 * n) {\n    g.swap(_g);\n    dfs(root, -1);\n    stt_rt\
-    \ = compress(root).first;\n    g.swap(_g);\n  }\n\n  int dfs(int v, int pa) {\n\
-    \    int sz = 1, pid = -1;\n    pii heavy(-1, -1);\n    for(int i = -1; int x\
-    \ : g[v]) {\n      i++;\n      if (x == pa) {\n        pid = i;\n        continue;\n\
-    \      }\n      int tmp = dfs(x, v);\n      chmax(heavy, pii(tmp, i));\n     \
-    \ sz += tmp;\n    }\n    if (heavy.second != -1) swap(g[v][heavy.second], g[v][0]);\n\
-    \    if (pid != -1) g[v].erase(g[v].begin() + (pid == 0 and heavy.second != -1\
-    \ ? heavy.second : pid));\n    return sz;\n  }\n\n  void newVertex(int l, int\
-    \ r, type t) {\n    if (l != -1) p[l] = nxt, lc[nxt] = l;\n    if (r != -1) p[r]\
-    \ = nxt, rc[nxt] = r;\n    ord.emplace_back(nxt);\n    vt[nxt++] = t;\n  }\n\n\
-    \  void setVertex(int l, int r, int v, type t) {\n    if (l != -1) p[l] = v, lc[v]\
-    \ = l;\n    if (r != -1) p[r] = v, rc[v] = r;\n    ord.emplace_back(v);\n    vt[v]\
-    \ = t;\n  }\n\n  pii merge(vector<pii> &vs, type t, int v = -1) {\n    if (size(vs)\
-    \ == 1) return vs[0];\n    int szSum = 0;\n    for(auto [_, sz] : vs) szSum +=\
-    \ sz;\n    int i = 0, pre = 0;\n    while(i + 1 < ssize(vs) and 2 * pre <= szSum)\
-    \ pre += vs[i++].second;\n    vector<pii> lv(vs.begin(), vs.begin() + i), rv(vs.begin()\
-    \ + i, vs.end());\n    auto [l, lsz] = merge(lv, t);\n    auto [r, rsz] = merge(rv,\
-    \ t);\n    if (v == -1) {\n      newVertex(l, r, t);\n      return {nxt - 1, lsz\
-    \ + rsz + 1};\n    } else {\n      setVertex(l, r, v, t);\n      return {v, lsz\
-    \ + rsz + 1};\n    }\n  }\n\n  pii compress(int v) {\n    vector<pii> vs(1, addEdge(v));\n\
-    \    while(!g[v].empty()) \n      vs.emplace_back(addEdge(v = g[v][0]));\n   \
-    \ return merge(vs, type::Compress);\n  }\n\n  pii addEdge(int v) {\n    auto [l,\
-    \ lsz] = addVertex(v);\n    setVertex(l, -1, v + n, type::AddEdge);\n    return\
-    \ {v + n, lsz + 1};\n  }\n\n  pii addVertex(int v) {\n    if (ssize(g[v]) <= 1)\
-    \ {\n      setVertex(-1, -1, v, type::Vertex);\n      return {v, 1};\n    } else\
-    \ {\n      auto [l, lsz] = rake(v);\n      setVertex(l, -1, v, type::AddVertex);\n\
-    \      return {v, lsz + 1};\n    }\n  }\n\n  pii rake(int v) {\n    vector<pii>\
-    \ vs;\n    for(int x : g[v] | views::drop(1))\n      vs.emplace_back(compress(x));\n\
-    \    return merge(vs, type::Rake);\n  }\n};\n"
+  bundledCode: "#line 1 \"ds/staticTopTree.cpp\"\n//rake keep left child as exposed\
+    \ path\n//compress keep left child as higher path\nstruct static_top_tree {\n\
+    \  vector<vector<int>> g;\n  int n;\n  vector<int> l, r, lc, rc, pa;\n  vector<bool>\
+    \ rake;\n\n  using a2 = array<int, 2>;\n\n  static_top_tree(vector<vector<int>>\
+    \ &_g, int R = 0)\n    : g(_g), n(size(g)), l(n, -1), r(l), lc(l), rc(l), pa(l),\
+    \ rake(n) {\n    vector<int> sz(n, 1);\n    auto dfs = [&](int v, int p, auto\
+    \ &self) -> void {\n      l[v] = v, r[v] = p;\n      int mx_c = -1;\n      for(int\
+    \ x : g[v]) {\n        if (x == p) continue;\n        self(x, v, self);\n    \
+    \    sz[v] += sz[x];\n        if (mx_c == -1 or sz[x] > sz[mx_c])\n          mx_c\
+    \ = x;\n      }\n      if (auto ite = ranges::find(g[v], p); ite != g[v].end())\n\
+    \        g[v].erase(ite);\n      if (mx_c != -1)\n        swap(g[v][0], *ranges::find(g[v],\
+    \ mx_c));\n    };\n\n    dfs(R, -1, dfs);\n    build(R);\n  }\n\n  int new_node(int\
+    \ _lc, int _rc, int _l, int _r, bool _rake) {\n    lc.eb(_lc), rc.eb(_rc), l.eb(_l),\
+    \ r.eb(_r), pa.eb(-1), rake.eb(_rake);\n    return pa[_lc] = pa[_rc] = ssize(lc)\
+    \ - 1;\n  }\n\n  a2 build(int s) {\n    vector<int> path = {s};\n    while(!g[path.back()].empty())\n\
+    \      path.eb(g[path.back()][0]);\n    vector<a2> exposed = {{0, s}};\n    for(int\
+    \ i = 0; int v : path | views::drop(1)) {\n      priority_queue<a2, vector<a2>,\
+    \ greater<a2>> pq;\n      pq.push({0, v});\n      for(int x : g[path[i++]] | views::drop(1))\n\
+    \        pq.push(build(x));\n      while(ssize(pq) > 1) {\n        auto [h1, v1]\
+    \ = pq.top(); pq.pop();\n        auto [h2, v2] = pq.top(); pq.pop();\n       \
+    \ if (v2 == v) swap(v1, v2);\n        int v3 = new_node(v1, v2, l[v1], r[v1],\
+    \ true);\n        pq.push({max(h1, h2) + 1, v3});\n        if (v1 == v) v = v3;\n\
+    \      }\n      exposed.eb(pq.top());\n    }\n    auto dc = [&](int ql, int qr,\
+    \ auto &self) -> a2 {\n      if (ql + 1 == qr) return exposed[ql];\n      int\
+    \ mid = (ql + qr) / 2;\n      auto [hl, vl] = self(ql, mid, self);\n      auto\
+    \ [hr, vr] = self(mid, qr, self);\n      int v = new_node(vl, vr, l[vr], r[vl],\
+    \ false);\n      return {max(hl, hr) + 1, v};\n    };\n    return dc(0, ssize(exposed),\
+    \ dc);\n  }\n};\n"
+  code: "//rake keep left child as exposed path\n//compress keep left child as higher\
+    \ path\nstruct static_top_tree {\n  vector<vector<int>> g;\n  int n;\n  vector<int>\
+    \ l, r, lc, rc, pa;\n  vector<bool> rake;\n\n  using a2 = array<int, 2>;\n\n \
+    \ static_top_tree(vector<vector<int>> &_g, int R = 0)\n    : g(_g), n(size(g)),\
+    \ l(n, -1), r(l), lc(l), rc(l), pa(l), rake(n) {\n    vector<int> sz(n, 1);\n\
+    \    auto dfs = [&](int v, int p, auto &self) -> void {\n      l[v] = v, r[v]\
+    \ = p;\n      int mx_c = -1;\n      for(int x : g[v]) {\n        if (x == p) continue;\n\
+    \        self(x, v, self);\n        sz[v] += sz[x];\n        if (mx_c == -1 or\
+    \ sz[x] > sz[mx_c])\n          mx_c = x;\n      }\n      if (auto ite = ranges::find(g[v],\
+    \ p); ite != g[v].end())\n        g[v].erase(ite);\n      if (mx_c != -1)\n  \
+    \      swap(g[v][0], *ranges::find(g[v], mx_c));\n    };\n\n    dfs(R, -1, dfs);\n\
+    \    build(R);\n  }\n\n  int new_node(int _lc, int _rc, int _l, int _r, bool _rake)\
+    \ {\n    lc.eb(_lc), rc.eb(_rc), l.eb(_l), r.eb(_r), pa.eb(-1), rake.eb(_rake);\n\
+    \    return pa[_lc] = pa[_rc] = ssize(lc) - 1;\n  }\n\n  a2 build(int s) {\n \
+    \   vector<int> path = {s};\n    while(!g[path.back()].empty())\n      path.eb(g[path.back()][0]);\n\
+    \    vector<a2> exposed = {{0, s}};\n    for(int i = 0; int v : path | views::drop(1))\
+    \ {\n      priority_queue<a2, vector<a2>, greater<a2>> pq;\n      pq.push({0,\
+    \ v});\n      for(int x : g[path[i++]] | views::drop(1))\n        pq.push(build(x));\n\
+    \      while(ssize(pq) > 1) {\n        auto [h1, v1] = pq.top(); pq.pop();\n \
+    \       auto [h2, v2] = pq.top(); pq.pop();\n        if (v2 == v) swap(v1, v2);\n\
+    \        int v3 = new_node(v1, v2, l[v1], r[v1], true);\n        pq.push({max(h1,\
+    \ h2) + 1, v3});\n        if (v1 == v) v = v3;\n      }\n      exposed.eb(pq.top());\n\
+    \    }\n    auto dc = [&](int ql, int qr, auto &self) -> a2 {\n      if (ql +\
+    \ 1 == qr) return exposed[ql];\n      int mid = (ql + qr) / 2;\n      auto [hl,\
+    \ vl] = self(ql, mid, self);\n      auto [hr, vr] = self(mid, qr, self);\n   \
+    \   int v = new_node(vl, vr, l[vr], r[vl], false);\n      return {max(hl, hr)\
+    \ + 1, v};\n    };\n    return dc(0, ssize(exposed), dc);\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/staticTopTree.cpp
-  requiredBy:
-  - test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
-  timestamp: '2024-08-03 02:36:00+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy: []
+  timestamp: '2025-05-16 21:27:50+08:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
 documentation_of: ds/staticTopTree.cpp
 layout: document
 redirect_from:

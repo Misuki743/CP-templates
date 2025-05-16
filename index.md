@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -81,7 +81,7 @@ data:
     - icon: ':warning:'
       path: dp/alienDP.cpp
       title: dp/alienDP.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: dp/dynamicTreeDP.cpp
       title: dp/dynamicTreeDP.cpp
     - icon: ':heavy_check_mark:'
@@ -104,7 +104,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/RMQ.cpp
       title: ds/RMQ.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: ds/STT_pathAggregate.cpp
       title: ds/STT_pathAggregate.cpp
     - icon: ':warning:'
@@ -185,12 +185,9 @@ data:
     - icon: ':warning:'
       path: ds/sparseTable2D.cpp
       title: ds/sparseTable2D.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/staticTopTree.cpp
       title: ds/staticTopTree.cpp
-    - icon: ':heavy_check_mark:'
-      path: ds/staticTopTree2.cpp
-      title: ds/staticTopTree2.cpp
     - icon: ':heavy_check_mark:'
       path: ds/treap.cpp
       title: treap
@@ -382,7 +379,7 @@ data:
       title: misc/sharpPSubsetSum.cpp
   - name: modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':heavy_check_mark:'
@@ -449,9 +446,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/NTTanymod.cpp
       title: poly/NTTanymod.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/NTTmint.cpp
       title: poly/NTTmint.cpp
+    - icon: ':x:'
+      path: poly/chirp_Z_transform.cpp
+      title: poly/chirp_Z_transform.cpp
     - icon: ':heavy_check_mark:'
       path: poly/compositionalInverse.cpp
       title: poly/compositionalInverse.cpp
@@ -551,11 +551,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/zFunc.cpp
       title: string/zFunc.cpp
-  - name: test
-    pages:
-    - icon: ':warning:'
-      path: test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
-      title: test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
   verificationCategories:
   - name: test
     pages:
@@ -742,6 +737,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/multipoint_evaluation.test.cpp
       title: test/multipoint_evaluation.test.cpp
+    - icon: ':x:'
+      path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
+      title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/persistent_unionfind.test.cpp
       title: test/persistent_unionfind.test.cpp
@@ -754,6 +752,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/point_set_range_composite.test.cpp
       title: test/point_set_range_composite.test.cpp
+    - icon: ':x:'
+      path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+      title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/polynomial_interpolation.test.cpp
       title: test/polynomial_interpolation.test.cpp
@@ -889,7 +890,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/vertex_add_path_sum_2.test.cpp
       title: test/vertex_add_path_sum_2.test.cpp
     - icon: ':heavy_check_mark:'

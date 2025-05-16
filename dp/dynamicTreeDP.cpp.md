@@ -1,51 +1,43 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
-    title: test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+    title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"dp/dynamicTreeDP.cpp\"\n//#include \"ds/staticTopTree.cpp\"\
-    \n\ntemplate<class T, T(*vertex)(int), T(*addEdge)(const T&, int eid),\nT(*rake)(const\
-    \ T&, const T&), T(*addVertex)(const T&, int vid), T(*compress)(const T&, const\
-    \ T&)>\nstruct dynamicTreeDP {\n  int n;\n  staticTopTree stt;\n  vector<T> dp;\n\
-    \n  dynamicTreeDP(vector<vector<int>> &g)\n  : n(size(g)),stt(g), dp(4 * n) {\n\
-    \    for(int v : stt.ord)\n      update(v);\n  }\n\n  void update(int v) {\n \
-    \   if (auto type = stt.vt[v]; type == 0)\n      dp[v] = vertex(v);\n    else\
-    \ if (type == 1)\n      dp[v] = rake(dp[stt.lc[v]], dp[stt.rc[v]]);\n    else\
-    \ if (type == 2)\n      dp[v] = compress(dp[stt.rc[v]], dp[stt.lc[v]]);\n    else\
-    \ if (type == 3)\n      dp[v] = addEdge(dp[stt.lc[v]], v - n);\n    else if (type\
-    \ == 4)\n      dp[v] = addVertex(dp[stt.lc[v]], v);\n  }\n\n  void pull(int v)\
-    \ {\n    while(v != -1) {\n      update(v);\n      v = stt.p[v];\n    }\n  }\n\
-    \n  void updateVertex(int v) { pull(v); }\n  void updateEdge(int e) { pull(e +\
-    \ n); }\n  T get() { return dp[stt.stt_rt]; }\n};\n"
-  code: "//#include \"ds/staticTopTree.cpp\"\n\ntemplate<class T, T(*vertex)(int),\
-    \ T(*addEdge)(const T&, int eid),\nT(*rake)(const T&, const T&), T(*addVertex)(const\
-    \ T&, int vid), T(*compress)(const T&, const T&)>\nstruct dynamicTreeDP {\n  int\
-    \ n;\n  staticTopTree stt;\n  vector<T> dp;\n\n  dynamicTreeDP(vector<vector<int>>\
-    \ &g)\n  : n(size(g)),stt(g), dp(4 * n) {\n    for(int v : stt.ord)\n      update(v);\n\
-    \  }\n\n  void update(int v) {\n    if (auto type = stt.vt[v]; type == 0)\n  \
-    \    dp[v] = vertex(v);\n    else if (type == 1)\n      dp[v] = rake(dp[stt.lc[v]],\
-    \ dp[stt.rc[v]]);\n    else if (type == 2)\n      dp[v] = compress(dp[stt.rc[v]],\
-    \ dp[stt.lc[v]]);\n    else if (type == 3)\n      dp[v] = addEdge(dp[stt.lc[v]],\
-    \ v - n);\n    else if (type == 4)\n      dp[v] = addVertex(dp[stt.lc[v]], v);\n\
-    \  }\n\n  void pull(int v) {\n    while(v != -1) {\n      update(v);\n      v\
-    \ = stt.p[v];\n    }\n  }\n\n  void updateVertex(int v) { pull(v); }\n  void updateEdge(int\
-    \ e) { pull(e + n); }\n  T get() { return dp[stt.stt_rt]; }\n};\n"
+    \ntemplate<class M, M(*rake)(const M&, const M&), M(*compress)(const M&, const\
+    \ M&)>\nstruct dynamic_tree_dp {\n  vector<M> dp;\n  static_top_tree stt;\n\n\
+    \  void pull(int v) {\n    if (stt.rake[v]) dp[v] = rake(dp[stt.lc[v]], dp[stt.rc[v]]);\n\
+    \    else dp[v] = compress(dp[stt.lc[v]], dp[stt.rc[v]]);\n  }\n\n  dynamic_tree_dp(vector<vector<int>>\
+    \ &g, vector<M> &init)\n    : dp(2 * ssize(g) - 1), stt(g) {\n    for(int i =\
+    \ 0; i < ssize(g); i++)\n      dp[i] = init[i];\n    for(int i = ssize(g); i <\
+    \ 2 * ssize(g) - 1; i++)\n      pull(i);\n  }\n\n  void set(int v, M x) {\n  \
+    \  dp[v] = x;\n    while((v = stt.pa[v]) != -1) pull(v);\n  }\n\n  M query() {\
+    \ return dp.back(); }\n};\n"
+  code: "//#include \"ds/staticTopTree.cpp\"\ntemplate<class M, M(*rake)(const M&,\
+    \ const M&), M(*compress)(const M&, const M&)>\nstruct dynamic_tree_dp {\n  vector<M>\
+    \ dp;\n  static_top_tree stt;\n\n  void pull(int v) {\n    if (stt.rake[v]) dp[v]\
+    \ = rake(dp[stt.lc[v]], dp[stt.rc[v]]);\n    else dp[v] = compress(dp[stt.lc[v]],\
+    \ dp[stt.rc[v]]);\n  }\n\n  dynamic_tree_dp(vector<vector<int>> &g, vector<M>\
+    \ &init)\n    : dp(2 * ssize(g) - 1), stt(g) {\n    for(int i = 0; i < ssize(g);\
+    \ i++)\n      dp[i] = init[i];\n    for(int i = ssize(g); i < 2 * ssize(g) - 1;\
+    \ i++)\n      pull(i);\n  }\n\n  void set(int v, M x) {\n    dp[v] = x;\n    while((v\
+    \ = stt.pa[v]) != -1) pull(v);\n  }\n\n  M query() { return dp.back(); }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: dp/dynamicTreeDP.cpp
-  requiredBy:
-  - test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
-  timestamp: '2024-08-04 01:36:11+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy: []
+  timestamp: '2025-05-16 21:27:50+08:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
 documentation_of: dp/dynamicTreeDP.cpp
 layout: document
 redirect_from:

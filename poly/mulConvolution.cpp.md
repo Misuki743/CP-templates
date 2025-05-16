@@ -74,8 +74,8 @@ data:
   timestamp: '2024-02-06 18:26:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yuki_2613.test.cpp
   - test/mul_modp_convolution.test.cpp
+  - test/yuki_2613.test.cpp
 documentation_of: poly/mulConvolution.cpp
 layout: document
 title: mulConvolution

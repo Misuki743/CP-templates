@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
-    title: test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/addition_of_big_integers.test.cpp
@@ -93,9 +90,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
+  - icon: ':x:'
+    path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
+    title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/point_set_range_composite.test.cpp
     title: test/point_set_range_composite.test.cpp
+  - icon: ':x:'
+    path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+    title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
@@ -171,9 +174,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
@@ -242,66 +245,67 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: modint/MontgomeryModInt.cpp
-  requiredBy:
-  - test/point_set_tree_path_composite_sum_fixed_root_disable.cpp
+  requiredBy: []
   timestamp: '2025-01-16 19:25:04+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/addition_of_big_integers_2.test.cpp
-  - test/inv_of_formal_power_series_sparse.test.cpp
-  - test/inv_of_formal_power_series.test.cpp
-  - test/determinant_of_matrix.test.cpp
-  - test/stirling_number_of_the_first_kind.test.cpp
-  - test/range_affine_point_get.test.cpp
-  - test/sharp_p_subset_sum.test.cpp
-  - test/pow_of_formal_power_series.test.cpp
-  - test/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/matrix_product.test.cpp
-  - test/exp_of_formal_power_series_sparse.test.cpp
-  - test/log_of_formal_power_series.test.cpp
-  - test/counting_spanning_tree_directed.test.cpp
-  - test/multiplication_of_big_intergers.test.cpp
-  - test/range_set_range_composite.test.cpp
-  - test/bernoulli_number.test.cpp
-  - test/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/sqrt_of_formal_power_series.test.cpp
-  - test/log_of_formal_power_series_sparse.test.cpp
-  - test/system_of_linear_equations.test.cpp
-  - test/unionfind_with_potential.test.cpp
-  - test/queue_operate_all_composite.test.cpp
-  - test/division_of_polynomials.test.cpp
-  - test/pow_of_formal_power_series_sparse.test.cpp
-  - test/bell_number.test.cpp
-  - test/addition_of_big_integers.test.cpp
-  - test/vertex_set_path_composite.test.cpp
-  - test/polynomial_interpolation.test.cpp
+  - test/wildcard_pattern_matching.test.cpp
+  - test/mul_modp_convolution.test.cpp
   - test/unionfind_with_potential_non_commutative_group.test.cpp
+  - test/counting_spanning_tree_undirected.test.cpp
+  - test/compositional_inverse_of_formal_power_series_large.test.cpp
+  - test/stirling_number_of_the_first_kind.test.cpp
+  - test/multiplication_of_big_intergers.test.cpp
+  - test/determinant_of_matrix.test.cpp
+  - test/range_affine_point_get.test.cpp
+  - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - test/system_of_linear_equations.test.cpp
+  - test/range_affine_range_sum.test.cpp
+  - test/counting_spanning_tree_directed.test.cpp
+  - test/pow_of_matrix.test.cpp
   - test/matrix_rank.test.cpp
   - test/polynomial_taylor_shift.test.cpp
-  - test/subset_convolution.test.cpp
-  - test/inverse_matrix.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
-  - test/yuki_2544.test.cpp
-  - test/pow_of_matrix.test.cpp
-  - test/counting_spanning_tree_undirected.test.cpp
-  - test/counting_eulerian_circuits.test.cpp
-  - test/incremental_scc.test.cpp
-  - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - test/find_linear_recurrence.test.cpp
-  - test/multipoint_evaluation.test.cpp
-  - test/multiplication_of_big_intergers_2.test.cpp
-  - test/range_affine_range_sum.test.cpp
-  - test/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/compositional_inverse_of_formal_power_series_large.test.cpp
-  - test/yuki_2613.test.cpp
-  - test/wildcard_pattern_matching.test.cpp
-  - test/tree_path_composite_sum.test.cpp
-  - test/exp_of_formal_power_series.test.cpp
-  - test/convolution.test.cpp
-  - test/product_of_polynomial_sequence.test.cpp
-  - test/point_set_range_composite.test.cpp
-  - test/mul_modp_convolution.test.cpp
+  - test/pow_of_formal_power_series_sparse.test.cpp
+  - test/log_of_formal_power_series.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
+  - test/inverse_matrix.test.cpp
   - test/convolution_1e9+7.test.cpp
+  - test/incremental_scc.test.cpp
+  - test/find_linear_recurrence.test.cpp
+  - test/vertex_set_path_composite.test.cpp
+  - test/multipoint_evaluation_on_geometric_sequence.test.cpp
+  - test/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/bell_number.test.cpp
+  - test/convolution.test.cpp
+  - test/addition_of_big_integers.test.cpp
+  - test/matrix_product.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  - test/unionfind_with_potential.test.cpp
+  - test/counting_eulerian_circuits.test.cpp
+  - test/yuki_2613.test.cpp
+  - test/sharp_p_subset_sum.test.cpp
+  - test/yuki_2544.test.cpp
+  - test/exp_of_formal_power_series.test.cpp
+  - test/log_of_formal_power_series_sparse.test.cpp
+  - test/multiplication_of_big_intergers_2.test.cpp
+  - test/polynomial_interpolation.test.cpp
+  - test/pow_of_formal_power_series.test.cpp
+  - test/inv_of_formal_power_series.test.cpp
+  - test/tree_path_composite_sum.test.cpp
+  - test/sqrt_of_formal_power_series.test.cpp
+  - test/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/division_of_polynomials.test.cpp
+  - test/range_set_range_composite.test.cpp
+  - test/multipoint_evaluation.test.cpp
+  - test/product_of_polynomial_sequence.test.cpp
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/point_set_range_composite.test.cpp
+  - test/queue_operate_all_composite.test.cpp
+  - test/addition_of_big_integers_2.test.cpp
+  - test/bernoulli_number.test.cpp
+  - test/subset_convolution.test.cpp
 documentation_of: modint/MontgomeryModInt.cpp
 layout: document
 redirect_from:

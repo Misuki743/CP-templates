@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/vertex_add_path_sum_2.test.cpp
-    title: test/vertex_add_path_sum_2.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/STT_pathAggregate.cpp\"\n//#include \"ds/staticTopTree2.cpp\"\
@@ -70,9 +67,8 @@ data:
   path: ds/STT_pathAggregate.cpp
   requiredBy: []
   timestamp: '2024-07-30 15:37:30+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/vertex_add_path_sum_2.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/STT_pathAggregate.cpp
 layout: document
 redirect_from:

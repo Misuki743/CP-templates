@@ -70,8 +70,8 @@ data:
   timestamp: '2025-02-27 21:36:01+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/binomial_coefficient_prime_mod.test.cpp
   - test/stirling_number_of_second_kind_small_p_large_n.test.cpp
+  - test/binomial_coefficient_prime_mod.test.cpp
   - test/stirling_number_of_first_kind_small_p_large_n.test.cpp
 documentation_of: modint/dynamicSimpleMint.cpp
 layout: document

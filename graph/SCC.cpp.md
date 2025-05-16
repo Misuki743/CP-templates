@@ -55,8 +55,8 @@ data:
   timestamp: '2024-06-29 17:34:40+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/incremental_scc.test.cpp
   - test/strongly_connected_components.test.cpp
+  - test/incremental_scc.test.cpp
 documentation_of: graph/SCC.cpp
 layout: document
 redirect_from:
