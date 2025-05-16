@@ -5,6 +5,8 @@
 #include "poly/NTTmint.cpp"
 #include "poly/chirp_Z_transform.cpp"
 
+NTT ntt;
+
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 

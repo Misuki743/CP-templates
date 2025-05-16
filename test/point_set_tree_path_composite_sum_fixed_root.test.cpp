@@ -1,6 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root"
 
 #include "../default/t.cpp"
+#define eb emplace_back
+#define pb push_back
 #include "../modint/MontgomeryModInt.cpp"
 #include "../ds/staticTopTree.cpp"
 #include "../dp/dynamicTreeDP.cpp"
