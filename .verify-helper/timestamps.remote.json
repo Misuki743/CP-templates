@@ -65,6 +65,7 @@
 "test/point_add_range_sum.test.cpp": "2024-07-28 21:04:51 +0800",
 "test/point_add_rectangle_sum.test.cpp": "2024-08-04 01:36:11 +0800",
 "test/point_set_range_composite.test.cpp": "2025-01-16 19:25:04 +0800",
+"test/point_set_tree_path_composite_sum_fixed_root.test.cpp": "2025-05-18 02:48:12 +0800",
 "test/polynomial_interpolation.test.cpp": "2025-01-16 19:25:04 +0800",
 "test/polynomial_taylor_shift.test.cpp": "2025-01-16 19:25:04 +0800",
 "test/pow_of_formal_power_series.test.cpp": "2025-01-16 19:25:04 +0800",
