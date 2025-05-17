@@ -7,6 +7,10 @@
 #include "../ds/staticTopTree.cpp"
 #include "../dp/dynamicTreeDP.cpp"
 
+struct M {
+  mint a, b, ans, sz;
+};
+
 M rake(const M &a, const M &b) {
   return M{a.a, a.b, a.ans + b.ans, a.sz + b.sz};
 }
