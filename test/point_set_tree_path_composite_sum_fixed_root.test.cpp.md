@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/dynamicTreeDP.cpp
     title: dp/dynamicTreeDP.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/staticTopTree.cpp
     title: ds/staticTopTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root
@@ -152,31 +152,11 @@ data:
     \ i++)\n      dp[i] = init[i];\n    for(int i = ssize(g); i < 2 * ssize(g) - 1;\
     \ i++)\n      pull(i);\n  }\n\n  void set(int v, M x) {\n    dp[v] = x;\n    while((v\
     \ = stt.pa[v]) != -1) pull(v);\n  }\n\n  M query() { return dp.back(); }\n};\n\
-    #line 9 \"test/point_set_tree_path_composite_sum_fixed_root.test.cpp\"\n\nM rake(const\
-    \ M &a, const M &b) {\n  return M{a.a, a.b, a.ans + b.ans, a.sz + b.sz};\n}\n\
-    M compress(const M &a, const M &b) {\n  return M{a.a * b.a, a.a * b.b + a.b, a.ans\
-    \ + b.ans * a.a + a.b * b.sz, a.sz + b.sz};\n}\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<mint> a(n);\n  for(mint\
-    \ &x : a) cin >> x;\n\n  vector<array<int, 4>> uvbc(n - 1);\n  for(auto &[u, v,\
-    \ b, c] : uvbc)\n    cin >> u >> v >> b >> c;\n\n  vector<vector<int>> g(n);\n\
-    \  for(auto [u, v, _, __] : uvbc)\n    g[u].eb(v), g[v].eb(u);\n  uvbc.pb({-1,\
-    \ 0, 1, 0});\n\n  static_top_tree stt(g);\n\n  vector<int> eid(n);\n  for(int\
-    \ i = 0; auto &[u, v, _, __] : uvbc) {\n    if (stt.r[v] == u) swap(u, v);\n \
-    \   eid[u] = i++;\n  }\n\n  auto get = [&](int v) {\n    auto [_, __, b, c] =\
-    \ uvbc[eid[v]];\n    return M{b, c, a[v] * b + c, 1};\n  };\n\n  vector<M> init(n);\n\
-    \  for(int i = 0; i < n; i++)\n    init[i] = get(i);\n\n  dynamic_tree_dp<M, rake,\
-    \ compress> ddp(g, init);\n\n  while(q--) {\n    int op; cin >> op;\n    if (op\
-    \ == 0) {\n      int w, x; cin >> w >> x;\n      a[w] = x;\n      ddp.set(w, get(w));\n\
-    \    } else {\n      int e, y, z; cin >> e >> y >> z;\n      auto &[u, _, b, c]\
-    \ = uvbc[e];\n      b = y, c = z;\n      ddp.set(u, get(u));\n    }\n    cout\
-    \ << ddp.query().ans << '\\n';\n  }\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root\"\
-    \n\n#include \"../default/t.cpp\"\n#define eb emplace_back\n#define pb push_back\n\
-    #include \"../modint/MontgomeryModInt.cpp\"\n#include \"../ds/staticTopTree.cpp\"\
-    \n#include \"../dp/dynamicTreeDP.cpp\"\n\nM rake(const M &a, const M &b) {\n \
-    \ return M{a.a, a.b, a.ans + b.ans, a.sz + b.sz};\n}\nM compress(const M &a, const\
-    \ M &b) {\n  return M{a.a * b.a, a.a * b.b + a.b, a.ans + b.ans * a.a + a.b *\
-    \ b.sz, a.sz + b.sz};\n}\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    #line 9 \"test/point_set_tree_path_composite_sum_fixed_root.test.cpp\"\n\nstruct\
+    \ M {\n  mint a, b, ans, sz;\n};\n\nM rake(const M &a, const M &b) {\n  return\
+    \ M{a.a, a.b, a.ans + b.ans, a.sz + b.sz};\n}\nM compress(const M &a, const M\
+    \ &b) {\n  return M{a.a * b.a, a.a * b.b + a.b, a.ans + b.ans * a.a + a.b * b.sz,\
+    \ a.sz + b.sz};\n}\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
     \n  int n, q; cin >> n >> q;\n  vector<mint> a(n);\n  for(mint &x : a) cin >>\
     \ x;\n\n  vector<array<int, 4>> uvbc(n - 1);\n  for(auto &[u, v, b, c] : uvbc)\n\
     \    cin >> u >> v >> b >> c;\n\n  vector<vector<int>> g(n);\n  for(auto [u, v,\
@@ -191,6 +171,28 @@ data:
     \    } else {\n      int e, y, z; cin >> e >> y >> z;\n      auto &[u, _, b, c]\
     \ = uvbc[e];\n      b = y, c = z;\n      ddp.set(u, get(u));\n    }\n    cout\
     \ << ddp.query().ans << '\\n';\n  }\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root\"\
+    \n\n#include \"../default/t.cpp\"\n#define eb emplace_back\n#define pb push_back\n\
+    #include \"../modint/MontgomeryModInt.cpp\"\n#include \"../ds/staticTopTree.cpp\"\
+    \n#include \"../dp/dynamicTreeDP.cpp\"\n\nstruct M {\n  mint a, b, ans, sz;\n\
+    };\n\nM rake(const M &a, const M &b) {\n  return M{a.a, a.b, a.ans + b.ans, a.sz\
+    \ + b.sz};\n}\nM compress(const M &a, const M &b) {\n  return M{a.a * b.a, a.a\
+    \ * b.b + a.b, a.ans + b.ans * a.a + a.b * b.sz, a.sz + b.sz};\n}\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
+    \ q;\n  vector<mint> a(n);\n  for(mint &x : a) cin >> x;\n\n  vector<array<int,\
+    \ 4>> uvbc(n - 1);\n  for(auto &[u, v, b, c] : uvbc)\n    cin >> u >> v >> b >>\
+    \ c;\n\n  vector<vector<int>> g(n);\n  for(auto [u, v, _, __] : uvbc)\n    g[u].eb(v),\
+    \ g[v].eb(u);\n  uvbc.pb({-1, 0, 1, 0});\n\n  static_top_tree stt(g);\n\n  vector<int>\
+    \ eid(n);\n  for(int i = 0; auto &[u, v, _, __] : uvbc) {\n    if (stt.r[v] ==\
+    \ u) swap(u, v);\n    eid[u] = i++;\n  }\n\n  auto get = [&](int v) {\n    auto\
+    \ [_, __, b, c] = uvbc[eid[v]];\n    return M{b, c, a[v] * b + c, 1};\n  };\n\n\
+    \  vector<M> init(n);\n  for(int i = 0; i < n; i++)\n    init[i] = get(i);\n\n\
+    \  dynamic_tree_dp<M, rake, compress> ddp(g, init);\n\n  while(q--) {\n    int\
+    \ op; cin >> op;\n    if (op == 0) {\n      int w, x; cin >> w >> x;\n      a[w]\
+    \ = x;\n      ddp.set(w, get(w));\n    } else {\n      int e, y, z; cin >> e >>\
+    \ y >> z;\n      auto &[u, _, b, c] = uvbc[e];\n      b = y, c = z;\n      ddp.set(u,\
+    \ get(u));\n    }\n    cout << ddp.query().ans << '\\n';\n  }\n\n  return 0;\n\
+    }\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
@@ -199,8 +201,8 @@ data:
   isVerificationFile: true
   path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
   requiredBy: []
-  timestamp: '2025-05-16 22:23:10+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-05-18 02:48:12+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
 layout: document
