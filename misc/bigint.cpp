@@ -125,15 +125,15 @@ struct bigint {
     return *this;
   }
 
-  bool operator<(const bigint &b) {
+  bool operator<(const bigint &b) const {
     if (sgn != b.sgn) return sgn == -1;
     else if (sgn == 1) return abs_less(b);
     else return b.abs_less(*this);
   }
-  bool operator>(const bigint &b) { return b < *this; }
-  bool operator<=(const bigint &b) { return !(*this > b); }
-  bool operator>=(const bigint &b) { return !(*this < b); }
-  bool operator==(const bigint &b) { return sgn == b.sgn and val == b.val; }
+  bool operator>(const bigint &b) const { return b < *this; }
+  bool operator<=(const bigint &b) const { return !(*this > b); }
+  bool operator>=(const bigint &b) const { return !(*this < b); }
+  bool operator==(const bigint &b) const { return sgn == b.sgn and val == b.val; }
   friend bigint operator+(bigint a, bigint b) { return a += b; }
   friend bigint operator-(bigint a, bigint b) { return a -= b; }
   friend bigint operator*(bigint a, bigint b) { return a *= b; }
