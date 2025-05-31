@@ -187,21 +187,22 @@ data:
     \     if (int q = tmp[i + j] / W; q > 0)\n            tmp[i + j] -= q * W, tmp[i\
     \ + j + 1] += q;\n        }\n      }\n      val.swap(tmp);\n    }\n    while(ssize(val)\
     \ > 1 and val.back() == 0) val.pop_back();\n    sgn *= b.sgn;\n    norm();\n \
-    \   return *this;\n  }\n\n  bool operator<(const bigint &b) {\n    if (sgn !=\
-    \ b.sgn) return sgn == -1;\n    else if (sgn == 1) return abs_less(b);\n    else\
-    \ return b.abs_less(*this);\n  }\n  bool operator>(const bigint &b) { return b\
-    \ < *this; }\n  bool operator<=(const bigint &b) { return !(*this > b); }\n  bool\
-    \ operator>=(const bigint &b) { return !(*this < b); }\n  bool operator==(const\
-    \ bigint &b) { return sgn == b.sgn and val == b.val; }\n  friend bigint operator+(bigint\
-    \ a, bigint b) { return a += b; }\n  friend bigint operator-(bigint a, bigint\
-    \ b) { return a -= b; }\n  friend bigint operator*(bigint a, bigint b) { return\
-    \ a *= b; }\n\n  bigint operator-() const {\n    bigint b = *this;\n    b.sgn\
-    \ = -b.sgn;\n    return b;\n  }\n\n  string to_string() const {\n    string s;\n\
-    \    for(int i = 0; i < ssize(val); i++) {\n      int x = val[i];\n      for(int\
-    \ j = 0; j < LOG; j++)\n        s += '0' + (x % 10), x /= 10;\n    }\n    while(ssize(s)\
-    \ > 1 and s.back() == '0') s.pop_back();\n    if (sgn == -1) s += '-';\n    ranges::reverse(s);\n\
-    \    return s;\n  }\n\n  friend ostream& operator<<(ostream& os, const bigint&\
-    \ b) {\n    return os << b.to_string();\n  }\n};\n#line 7 \"test/multiplication_of_big_intergers_2.test.cpp\"\
+    \   return *this;\n  }\n\n  bool operator<(const bigint &b) const {\n    if (sgn\
+    \ != b.sgn) return sgn == -1;\n    else if (sgn == 1) return abs_less(b);\n  \
+    \  else return b.abs_less(*this);\n  }\n  bool operator>(const bigint &b) const\
+    \ { return b < *this; }\n  bool operator<=(const bigint &b) const { return !(*this\
+    \ > b); }\n  bool operator>=(const bigint &b) const { return !(*this < b); }\n\
+    \  bool operator==(const bigint &b) const { return sgn == b.sgn and val == b.val;\
+    \ }\n  friend bigint operator+(bigint a, bigint b) { return a += b; }\n  friend\
+    \ bigint operator-(bigint a, bigint b) { return a -= b; }\n  friend bigint operator*(bigint\
+    \ a, bigint b) { return a *= b; }\n\n  bigint operator-() const {\n    bigint\
+    \ b = *this;\n    b.sgn = -b.sgn;\n    return b;\n  }\n\n  string to_string()\
+    \ const {\n    string s;\n    for(int i = 0; i < ssize(val); i++) {\n      int\
+    \ x = val[i];\n      for(int j = 0; j < LOG; j++)\n        s += '0' + (x % 10),\
+    \ x /= 10;\n    }\n    while(ssize(s) > 1 and s.back() == '0') s.pop_back();\n\
+    \    if (sgn == -1) s += '-';\n    ranges::reverse(s);\n    return s;\n  }\n\n\
+    \  friend ostream& operator<<(ostream& os, const bigint& b) {\n    return os <<\
+    \ b.to_string();\n  }\n};\n#line 7 \"test/multiplication_of_big_intergers_2.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t;\
     \ cin >> t;\n  while(t--) {\n    string a, b; cin >> a >> b;\n    if (ssize(a)\
     \ * ssize(b) < 1'000'000) {\n      bigint<false> A(a), B(b);\n      cout << A\
@@ -223,7 +224,7 @@ data:
   isVerificationFile: true
   path: test/multiplication_of_big_intergers_2.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 19:25:04+08:00'
+  timestamp: '2025-05-31 21:52:56+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/multiplication_of_big_intergers_2.test.cpp

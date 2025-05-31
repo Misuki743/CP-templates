@@ -75,16 +75,16 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/polynomial_taylor_shift.test.cpp
+  - test/log_of_formal_power_series_sparse.test.cpp
+  - test/yuki_2544.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/counting_eulerian_circuits.test.cpp
+  - test/binomial_coefficient_prime_mod.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/bell_number.test.cpp
-  - test/inv_of_formal_power_series_sparse.test.cpp
-  - test/binomial_coefficient_prime_mod.test.cpp
-  - test/counting_eulerian_circuits.test.cpp
-  - test/yuki_2544.test.cpp
-  - test/log_of_formal_power_series_sparse.test.cpp
-  - test/sqrt_of_formal_power_series_sparse.test.cpp
 documentation_of: combi/binom.cpp
 layout: document
 redirect_from:
