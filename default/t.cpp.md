@@ -202,6 +202,9 @@ data:
     path: test/point_set_range_composite.test.cpp
     title: test/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/point_set_range_frequency.test.cpp
+    title: test/point_set_range_frequency.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - icon: ':heavy_check_mark:'
@@ -562,6 +565,7 @@ data:
   - test/rectangle_sum.test.cpp
   - test/static_RMQ_2.test.cpp
   - test/bipartitematching.test.cpp
+  - test/point_set_range_frequency.test.cpp
   - test/compositional_inverse_of_formal_power_series_large.test.cpp
   - test/matrix_rank_mod_2.test.cpp
   - test/persistent_unionfind.test.cpp

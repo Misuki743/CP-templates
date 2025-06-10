@@ -206,6 +206,9 @@ data:
       path: ds_problem/pointAddRectangleSum.cpp
       title: ds_problem/pointAddRectangleSum.cpp
     - icon: ':heavy_check_mark:'
+      path: ds_problem/point_set_range_frequency.cpp
+      title: ds_problem/point_set_range_frequency.cpp
+    - icon: ':heavy_check_mark:'
       path: ds_problem/rangeCountDistinct.cpp
       title: ds_problem/rangeCountDistinct.cpp
     - icon: ':heavy_check_mark:'
@@ -752,6 +755,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/point_set_range_composite.test.cpp
       title: test/point_set_range_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/point_set_range_frequency.test.cpp
+      title: test/point_set_range_frequency.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
       title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
