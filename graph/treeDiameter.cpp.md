@@ -22,8 +22,8 @@ data:
     \  int u = ranges::max_element(dis0) - dis0.begin();\n  auto [dis1, pre1] = bfs(u);\n\
     \  int v = ranges::max_element(dis1) - dis1.begin();\n  T d = dis1[v];\n\n  vector<int>\
     \ diameter(1, v);\n  while(pre1[v] != -1)\n    diameter.emplace_back(v = pre1[v]);\n\
-    \n  int radius = inf, center = -1;\n  for(int v : diameter)\n    if (int x = max(dis1[v],\
-    \ d - dis1[v]); x < radius)\n      radius = x, center = v;\n\n  return make_tuple(d,\
+    \n  int radius = inf, center = -1;\n  for(int y : diameter)\n    if (int x = max(dis1[y],\
+    \ d - dis1[y]); x < radius)\n      radius = x, center = y;\n\n  return make_tuple(d,\
     \ radius, center, diameter);\n}\n"
   code: "template<class T>\ntuple<T, T, T, vector<int>> treeDiameter(vector<vector<pair<int,\
     \ T>>> &g) {\n  const T inf = numeric_limits<T>::max();\n  const int n = ssize(g);\n\
@@ -36,14 +36,14 @@ data:
     \  auto [dis1, pre1] = bfs(u);\n  int v = ranges::max_element(dis1) - dis1.begin();\n\
     \  T d = dis1[v];\n\n  vector<int> diameter(1, v);\n  while(pre1[v] != -1)\n \
     \   diameter.emplace_back(v = pre1[v]);\n\n  int radius = inf, center = -1;\n\
-    \  for(int v : diameter)\n    if (int x = max(dis1[v], d - dis1[v]); x < radius)\n\
-    \      radius = x, center = v;\n\n  return make_tuple(d, radius, center, diameter);\n\
+    \  for(int y : diameter)\n    if (int x = max(dis1[y], d - dis1[y]); x < radius)\n\
+    \      radius = x, center = y;\n\n  return make_tuple(d, radius, center, diameter);\n\
     }\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/treeDiameter.cpp
   requiredBy: []
-  timestamp: '2024-05-04 14:16:48+08:00'
+  timestamp: '2025-08-05 20:50:02+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/tree_diameter.test.cpp

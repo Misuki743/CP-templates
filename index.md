@@ -287,6 +287,9 @@ data:
     - icon: ':warning:'
       path: graph/centroid.cpp
       title: graph/centroid.cpp
+    - icon: ':warning:'
+      path: graph/commutativePathComposition.cpp
+      title: graph/commutativePathComposition.cpp
     - icon: ':heavy_check_mark:'
       path: graph/complementConnectivity.cpp
       title: graph/complementConnectivity.cpp

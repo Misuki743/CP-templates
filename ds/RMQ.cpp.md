@@ -63,8 +63,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lowest_common_ancestor_2.test.cpp
-  - test/static_RMQ_2.test.cpp
   - test/vertex_add_path_sum.test.cpp
+  - test/static_RMQ_2.test.cpp
 documentation_of: ds/RMQ.cpp
 layout: document
 redirect_from:

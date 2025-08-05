@@ -88,8 +88,8 @@ data:
     \  auto [dis1, pre1] = bfs(u);\n  int v = ranges::max_element(dis1) - dis1.begin();\n\
     \  T d = dis1[v];\n\n  vector<int> diameter(1, v);\n  while(pre1[v] != -1)\n \
     \   diameter.emplace_back(v = pre1[v]);\n\n  int radius = inf, center = -1;\n\
-    \  for(int v : diameter)\n    if (int x = max(dis1[v], d - dis1[v]); x < radius)\n\
-    \      radius = x, center = v;\n\n  return make_tuple(d, radius, center, diameter);\n\
+    \  for(int y : diameter)\n    if (int x = max(dis1[y], d - dis1[y]); x < radius)\n\
+    \      radius = x, center = y;\n\n  return make_tuple(d, radius, center, diameter);\n\
     }\n#line 5 \"test/tree_diameter.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<vector<pair<int, ll>>> g(n);\n\
     \  for(int i = 1; i < n; i++) {\n    int u, v, w; cin >> u >> v >> w;\n    g[u].emplace_back(v,\
@@ -109,7 +109,7 @@ data:
   isVerificationFile: true
   path: test/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2025-08-05 20:50:02+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree_diameter.test.cpp
