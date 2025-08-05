@@ -30,9 +30,9 @@ tuple<T, T, T, vector<int>> treeDiameter(vector<vector<pair<int, T>>> &g) {
     diameter.emplace_back(v = pre1[v]);
 
   int radius = inf, center = -1;
-  for(int v : diameter)
-    if (int x = max(dis1[v], d - dis1[v]); x < radius)
-      radius = x, center = v;
+  for(int y : diameter)
+    if (int x = max(dis1[y], d - dis1[y]); x < radius)
+      radius = x, center = y;
 
   return make_tuple(d, radius, center, diameter);
 }
