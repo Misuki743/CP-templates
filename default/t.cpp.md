@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/addition_of_big_integers_2.test.cpp
     title: test/addition_of_big_integers_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aho_corasick.test.cpp
     title: test/aho_corasick.test.cpp
   - icon: ':heavy_check_mark:'
@@ -372,9 +372,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -500,7 +500,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2024-07-28 21:04:51+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/inverse_matrix.test.cpp
   - test/vertex_set_path_composite.test.cpp

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/AhoCorasick.cpp
     title: string/AhoCorasick.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aho_corasick
@@ -97,25 +97,26 @@ data:
     \    }\n    return q;\n  }\n};\n#line 5 \"test/aho_corasick.test.cpp\"\n\nsigned\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n\
     \  AhoCorasick ac(1 << 20);\n  vector<int> vs;\n  for(int i = 0; i < n; i++) {\n\
-    \    string s; cin >> s;\n    vs.eb(ac.insert(s));\n  }\n\n  ac.build();\n\n \
-    \ cout << ssize(ac.v) << '\\n';\n  for(auto &node : ac.v | views::drop(1))\n \
-    \   cout << node.p << ' ' << node.link << '\\n';\n  cout << vs << '\\n';\n\n \
-    \ return 0;\n}\n\n"
+    \    string s; cin >> s;\n    vs.emplace_back(ac.insert(s));\n  }\n\n  ac.build();\n\
+    \n  cout << ssize(ac.v) << '\\n';\n  for(auto &node : ac.v | views::drop(1))\n\
+    \    cout << node.p << ' ' << node.link << '\\n';\n  cout << vs << '\\n';\n\n\
+    \  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aho_corasick\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../string/AhoCorasick.cpp\"\n\nsigned main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  AhoCorasick\
     \ ac(1 << 20);\n  vector<int> vs;\n  for(int i = 0; i < n; i++) {\n    string\
-    \ s; cin >> s;\n    vs.eb(ac.insert(s));\n  }\n\n  ac.build();\n\n  cout << ssize(ac.v)\
-    \ << '\\n';\n  for(auto &node : ac.v | views::drop(1))\n    cout << node.p <<\
-    \ ' ' << node.link << '\\n';\n  cout << vs << '\\n';\n\n  return 0;\n}\n\n"
+    \ s; cin >> s;\n    vs.emplace_back(ac.insert(s));\n  }\n\n  ac.build();\n\n \
+    \ cout << ssize(ac.v) << '\\n';\n  for(auto &node : ac.v | views::drop(1))\n \
+    \   cout << node.p << ' ' << node.link << '\\n';\n  cout << vs << '\\n';\n\n \
+    \ return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - string/AhoCorasick.cpp
   isVerificationFile: true
   path: test/aho_corasick.test.cpp
   requiredBy: []
-  timestamp: '2025-08-23 17:38:12+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-08-23 18:02:03+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aho_corasick.test.cpp
 layout: document
