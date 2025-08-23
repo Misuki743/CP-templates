@@ -14,7 +14,7 @@
  */
 #pragma once
 
-#include "homemade/segmentTreeLazy.h"
+//#include "homemade/segmentTreeLazy.h"
 
 int first(int i, M x) {
   M y = Mid();
