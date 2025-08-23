@@ -11,7 +11,7 @@ signed main() {
   vector<int> vs;
   for(int i = 0; i < n; i++) {
     string s; cin >> s;
-    vs.eb(ac.insert(s));
+    vs.emplace_back(ac.insert(s));
   }
 
   ac.build();
