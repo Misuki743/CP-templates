@@ -1,28 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: combi/binom.cpp
-    title: combi/binom.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
-    path: modint/dynamicSimpleMint.cpp
-    title: modint/dynamicSimpleMint.cpp
+  - icon: ':x:'
+    path: string/AhoCorasick.cpp
+    title: string/AhoCorasick.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
+    PROBLEM: https://judge.yosupo.jp/problem/aho_corasick
     links:
-    - https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
-  bundledCode: "#line 1 \"test/binomial_coefficient_prime_mod.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\n\
-    \n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
+    - https://judge.yosupo.jp/problem/aho_corasick
+  bundledCode: "#line 1 \"test/aho_corasick.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aho_corasick\"\
+    \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
     \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
     \ <cmath>\n#include <complex>\n#include <cstdarg>\n#include <cstddef>\n#include\
@@ -80,66 +76,51 @@ data:
     \ + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1,\
     \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\
     \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
-    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"modint/dynamicSimpleMint.cpp\"\
-    \ntemplate<uint32_t ver>\nstruct simpleMint {\n  using mint = simpleMint;\n  using\
-    \ u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static u32 mod;\n\n  static constexpr\
-    \ u32 get_mod() { return mod; }\n  static void set_mod(u32 _mod) { mod = _mod;\
-    \ }\n\n  simpleMint() : a(0) {}\n  simpleMint(const int64_t &b) : a((b % mod +\
-    \ mod) % mod) {}\n\n  u32 a;\n\n  mint pow(u64 k) const {\n    mint res(1), base(*this);\n\
-    \    while(k) {\n      if (k & 1)\n        res *= base;\n      base *= base, k\
-    \ >>= 1;\n    }\n    return res;\n  }\n\n  mint inverse() const { return (*this).pow(mod\
-    \ - 2); }\n  u32 get() const { return a; }\n\n  mint& norm() {\n    a = (a >=\
-    \ mod ? a - mod : a < 0 ? a + mod : a);\n    return *this;\n  }\n\n  mint& operator+=(mint\
-    \ b) {\n    a += b.a;\n    return (*this).norm();\n  }\n  mint& operator-=(mint\
-    \ b) {\n    if (b.a > a) a = a + mod - b.a;\n    else a -= b.a;\n    return (*this).norm();\n\
-    \  }\n  mint& operator*=(mint b) {\n    a = (u64(a) * b.a) % mod;\n    return\
-    \ *this;\n  }\n  mint& operator/=(mint b) {\n    a = (u64(a) * b.inverse().a)\
-    \ % mod;\n    return *this;\n  }\n\n  mint operator-() { return mint() - mint(*this);\
-    \ }\n  bool operator==(mint b) { return a == b.a; }\n  bool operator!=(mint b)\
-    \ { return a != b.a; }\n  \n  friend mint operator+(mint c, mint d) { return c\
-    \ += d; }\n  friend mint operator-(mint c, mint d) { return c -= d; }\n  friend\
-    \ mint operator*(mint c, mint d) { return c *= d; }\n  friend mint operator/(mint\
-    \ c, mint d) { return c /= d; }\n\n  friend ostream& operator<<(ostream& os, const\
-    \ mint& b) {\n    return os << b.a;\n  }\n  friend istream& operator>>(istream&\
-    \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
-    \ is;\n  }\n};\n\ntemplate<> uint32_t simpleMint<0>::mod = 2;\nusing mint = simpleMint<0>;\n\
-    #line 1 \"combi/binom.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\ntemplate<class\
-    \ Mint>\nstruct binomial {\n  vector<Mint> _fac, _facInv;\n  binomial(int size)\
-    \ : _fac(size), _facInv(size) {\n    _fac[0] = 1;\n    for(int i = 1; i < size;\
-    \ i++)\n      _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n      _facInv.back()\
-    \ = 1 / _fac.back();\n    for(int i = size - 2; i >= 0; i--)\n      _facInv[i]\
-    \ = _facInv[i + 1] * (i + 1);\n  }\n\n  Mint fac(int i) { return i < 0 ? 0 : _fac[i];\
-    \ }\n  Mint faci(int i) { return i < 0 ? 0 : _facInv[i]; }\n  Mint inv(int i)\
-    \ { return _facInv[i] * _fac[i - 1]; }\n  Mint binom(int n, int r) { return r\
-    \ < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n  Mint catalan(int i)\
-    \ { return binom(2 * i, i) - binom(2 * i, i + 1); }\n  Mint excatalan(int n, int\
-    \ m, int k) { //(+1) * n, (-1) * m, prefix sum > -k\n    if (k > m) return binom(n\
-    \ + m, m);\n    else if (k > m - n) return binom(n + m, m) - binom(n + m, m -\
-    \ k);\n    else return Mint(0);\n  }\n};\n#line 6 \"test/binomial_coefficient_prime_mod.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t,\
-    \ p; cin >> t >> p;\n  mint::set_mod(p);\n  binomial<mint> bn(min(p, 10000000));\n\
-    \  while(t--) {\n    int n, k; cin >> n >> k;\n    cout << bn.binom(n, k) << '\\\
-    n';\n  }\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/dynamicSimpleMint.cpp\"\
-    \n#include \"../combi/binom.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int t, p; cin >> t >> p;\n  mint::set_mod(p);\n  binomial<mint>\
-    \ bn(min(p, 10000000));\n  while(t--) {\n    int n, k; cin >> n >> k;\n    cout\
-    \ << bn.binom(n, k) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"string/AhoCorasick.cpp\"\
+    \nstruct AhoCorasick {\n  struct node {\n    static const int size = 26;\n   \
+    \ int nxt[size], p, link = -1, ex = -1, leaf = 0;\n    char ch;\n\n    node(int\
+    \ _p = -1, char _ch = ' ') : p(_p), ch(_ch) {\n      fill(nxt, nxt + size, -1);\n\
+    \    }\n  };\n\n  vector<node> v;\n  AhoCorasick(int sz) : v(1) {\n    v.reserve(sz);\n\
+    \  }\n\n  int insert(string s) {\n    int now = 0;\n    for(char x : s) {\n  \
+    \    int id = x - 'a';\n      if (v[now].nxt[id] == -1) {\n        v[now].nxt[id]\
+    \ = v.size();\n        v.emplace_back(now, x);\n      }\n      now = v[now].nxt[id];\n\
+    \    }\n    v[now].leaf = 1;\n    return now;\n  }\n\n  int go(int now, char ch)\
+    \ {\n    int id = ch - 'a';\n    if (v[now].nxt[id] != -1) return v[now].nxt[id];\n\
+    \    else if (now == 0) return 0;\n    else return go(v[now].link, ch);\n  }\n\
+    \n  int calcLink(int now) {\n    if (now == 0 or v[now].p == 0) return 0;\n  \
+    \  else return go(v[v[now].p].link, v[now].ch);\n  }\n\n  int calcExit(int now)\
+    \ {\n    if (now == 0) return -1;\n    else if (v[v[now].link].leaf) return v[now].link;\n\
+    \    else return v[v[now].link].ex;\n  }\n\n  vector<int> build() {\n    vector<int>\
+    \ q(1, 0);\n    for(int i = 0; i < ssize(q); i++) {\n      int now = q[i];\n \
+    \     v[now].link = calcLink(now);\n      v[now].ex = calcExit(now);\n      for(int\
+    \ j = 0; j < node::size; j++)\n        if (v[now].nxt[j] != -1)\n          q.emplace_back(v[now].nxt[j]);\n\
+    \    }\n    return q;\n  }\n};\n#line 5 \"test/aho_corasick.test.cpp\"\n\nsigned\
+    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n\
+    \  AhoCorasick ac(1 << 20);\n  vector<int> vs;\n  for(int i = 0; i < n; i++) {\n\
+    \    string s; cin >> s;\n    vs.eb(ac.insert(s));\n  }\n\n  ac.build();\n\n \
+    \ cout << ssize(ac.v) << '\\n';\n  for(auto &node : ac.v | views::drop(1))\n \
+    \   cout << node.p << ' ' << node.link << '\\n';\n  cout << vs << '\\n';\n\n \
+    \ return 0;\n}\n\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aho_corasick\"\n\n#include\
+    \ \"../default/t.cpp\"\n#include \"../string/AhoCorasick.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  AhoCorasick\
+    \ ac(1 << 20);\n  vector<int> vs;\n  for(int i = 0; i < n; i++) {\n    string\
+    \ s; cin >> s;\n    vs.eb(ac.insert(s));\n  }\n\n  ac.build();\n\n  cout << ssize(ac.v)\
+    \ << '\\n';\n  for(auto &node : ac.v | views::drop(1))\n    cout << node.p <<\
+    \ ' ' << node.link << '\\n';\n  cout << vs << '\\n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
-  - modint/dynamicSimpleMint.cpp
-  - combi/binom.cpp
+  - string/AhoCorasick.cpp
   isVerificationFile: true
-  path: test/binomial_coefficient_prime_mod.test.cpp
+  path: test/aho_corasick.test.cpp
   requiredBy: []
-  timestamp: '2025-02-27 21:36:01+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-08-23 17:38:12+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/binomial_coefficient_prime_mod.test.cpp
+documentation_of: test/aho_corasick.test.cpp
 layout: document
 redirect_from:
-- /verify/test/binomial_coefficient_prime_mod.test.cpp
-- /verify/test/binomial_coefficient_prime_mod.test.cpp.html
-title: test/binomial_coefficient_prime_mod.test.cpp
+- /verify/test/aho_corasick.test.cpp
+- /verify/test/aho_corasick.test.cpp.html
+title: test/aho_corasick.test.cpp
 ---

@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -527,7 +527,7 @@ data:
       title: setfunc/fastZetaTransform.cpp
   - name: string
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: string/AhoCorasick.cpp
       title: string/AhoCorasick.cpp
     - icon: ':warning:'
@@ -569,6 +569,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/addition_of_big_integers_2.test.cpp
       title: test/addition_of_big_integers_2.test.cpp
+    - icon: ':x:'
+      path: test/aho_corasick.test.cpp
+      title: test/aho_corasick.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/area_of_union_of_rectangles.test.cpp
       title: test/area_of_union_of_rectangles.test.cpp

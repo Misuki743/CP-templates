@@ -38,8 +38,8 @@ data:
   timestamp: '2024-01-24 20:41:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unionfind.test.cpp
   - test/minimum_spanning_tree.test.cpp
+  - test/unionfind.test.cpp
   - test/incremental_scc.test.cpp
 documentation_of: ds/DSU.cpp
 layout: document

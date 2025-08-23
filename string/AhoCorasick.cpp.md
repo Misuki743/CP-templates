@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aho_corasick.test.cpp
+    title: test/aho_corasick.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/AhoCorasick.cpp\"\nstruct AhoCorasick {\n  struct\
@@ -24,8 +27,8 @@ data:
     \    else if (v[v[now].link].leaf) return v[now].link;\n    else return v[v[now].link].ex;\n\
     \  }\n\n  vector<int> build() {\n    vector<int> q(1, 0);\n    for(int i = 0;\
     \ i < ssize(q); i++) {\n      int now = q[i];\n      v[now].link = calcLink(now);\n\
-    \      v[now].ex = calcExit(now);\n      for(int i = 0; i < node::size; i++)\n\
-    \        if (v[now].nxt[i] != -1)\n          q.emplace_back(v[now].nxt[i]);\n\
+    \      v[now].ex = calcExit(now);\n      for(int j = 0; j < node::size; j++)\n\
+    \        if (v[now].nxt[j] != -1)\n          q.emplace_back(v[now].nxt[j]);\n\
     \    }\n    return q;\n  }\n};\n"
   code: "struct AhoCorasick {\n  struct node {\n    static const int size = 26;\n\
     \    int nxt[size], p, link = -1, ex = -1, leaf = 0;\n    char ch;\n\n    node(int\
@@ -43,15 +46,16 @@ data:
     \    else return v[v[now].link].ex;\n  }\n\n  vector<int> build() {\n    vector<int>\
     \ q(1, 0);\n    for(int i = 0; i < ssize(q); i++) {\n      int now = q[i];\n \
     \     v[now].link = calcLink(now);\n      v[now].ex = calcExit(now);\n      for(int\
-    \ i = 0; i < node::size; i++)\n        if (v[now].nxt[i] != -1)\n          q.emplace_back(v[now].nxt[i]);\n\
+    \ j = 0; j < node::size; j++)\n        if (v[now].nxt[j] != -1)\n          q.emplace_back(v[now].nxt[j]);\n\
     \    }\n    return q;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: string/AhoCorasick.cpp
   requiredBy: []
-  timestamp: '2024-07-13 22:34:20+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2025-08-23 17:38:12+08:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aho_corasick.test.cpp
 documentation_of: string/AhoCorasick.cpp
 layout: document
 redirect_from:

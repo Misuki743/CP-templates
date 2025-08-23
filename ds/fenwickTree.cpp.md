@@ -52,12 +52,12 @@ data:
   timestamp: '2024-04-04 16:33:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/vertex_get_range_contour_add_on_tree.test.cpp
-  - test/point_add_range_sum.test.cpp
-  - test/point_set_range_frequency.test.cpp
-  - test/static_range_count_distinct.test.cpp
   - test/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/point_add_range_sum.test.cpp
+  - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/rectangle_sum.test.cpp
+  - test/static_range_count_distinct.test.cpp
+  - test/point_set_range_frequency.test.cpp
 documentation_of: ds/fenwickTree.cpp
 layout: document
 redirect_from:

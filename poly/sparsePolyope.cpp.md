@@ -134,9 +134,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/log_of_formal_power_series_sparse.test.cpp
-  - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
 documentation_of: poly/sparsePolyope.cpp
 layout: document
