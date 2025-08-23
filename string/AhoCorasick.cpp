@@ -52,9 +52,9 @@ struct AhoCorasick {
       int now = q[i];
       v[now].link = calcLink(now);
       v[now].ex = calcExit(now);
-      for(int i = 0; i < node::size; i++)
-        if (v[now].nxt[i] != -1)
-          q.emplace_back(v[now].nxt[i]);
+      for(int j = 0; j < node::size; j++)
+        if (v[now].nxt[j] != -1)
+          q.emplace_back(v[now].nxt[j]);
     }
     return q;
   }

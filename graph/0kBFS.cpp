@@ -1,9 +1,6 @@
-template<class T>
-pair<vector<T>, vector<int>> BFS0k(vector<vector<pair<int, bool>>> &g, T k, int s) {
+pair<vector<int>, vector<int>> BFS01(vector<vector<pair<int, bool>>> &g, int s) {
   int n = ssize(g);
-  vector<T> dis(n, -1);
-  vector<int> pre(n, -1);
-  vector<bool> vis(n, false);
+  vector<int> dis(n, INT_MAX), pre(n, -1);
   deque<int> dq;
 
   dis[s] = 0;
@@ -11,11 +8,9 @@ pair<vector<T>, vector<int>> BFS0k(vector<vector<pair<int, bool>>> &g, T k, int 
 
   while(!dq.empty()) {
     int v = dq.front(); dq.pop_front();
-    if (vis[v]) continue;
-    vis[v] = true;
     for(auto [x, w] : g[v]) {
-      if (dis[x] == -1 or dis[v] + (w ? k : T(0)) < dis[x]) {
-        dis[x] = dis[v] + (w ? k : T(0)), pre[x] = v;
+      if (dis[v] + w < dis[x]) {
+        dis[x] = dis[v] + w, pre[x] = v;
         if (w) dq.push_back(x);
         else dq.push_front(x);
       }
