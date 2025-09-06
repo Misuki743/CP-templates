@@ -62,8 +62,8 @@ data:
   timestamp: '2025-03-21 23:27:46+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/closest_pair.test.cpp
   - test/static_convex_hull.test.cpp
+  - test/closest_pair.test.cpp
 documentation_of: geometry/point.cpp
 layout: document
 redirect_from:
