@@ -17,7 +17,7 @@ signed main() {
     g[v].emplace_back(u);
   }
 
-  dynamicMedian<int, ll> s;
+  dynamic_median<int, ll> s;
   vector<ll> ans(n + 1, LLONG_MAX);
   auto dfs = [&](int v, int p, auto self) -> void {
     s.insert(a[v]);
@@ -27,7 +27,7 @@ signed main() {
       int med = s.median();
       if (med == mn)
         med++;
-      ans[v] = min(ans[v], (ssize(s.left) - ssize(s.right)) * med - s.lsum + s.rsum);
+      ans[v] = min(ans[v], (ssize(s.D) - ssize(s.U)) * med - s.Dsum + s.Usum);
       s.insert(mn);
     }
     if (s.size() > 2 and s.min() != s.max()) {
@@ -36,7 +36,7 @@ signed main() {
       int med = s.median();
       if (med == mx)
         med--;
-      ans[v] = min(ans[v], (ssize(s.left) - ssize(s.right)) * med - s.lsum + s.rsum);
+      ans[v] = min(ans[v], (ssize(s.D) - ssize(s.U)) * med - s.Dsum + s.Usum);
       s.insert(mx);
     }
     if (s.size() > 2 and s.min() == s.max())
