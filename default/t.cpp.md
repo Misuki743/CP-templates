@@ -79,6 +79,9 @@ data:
     path: test/cycle_detection_undirected.test.cpp
     title: test/cycle_detection_undirected.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/deque_operate_all_composite.test.cpp
+    title: test/deque_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/determinant_of_matrix.test.cpp
     title: test/determinant_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -614,6 +617,7 @@ data:
   - test/product_of_polynomial_sequence.test.cpp
   - test/range_kth_smallest2.test.cpp
   - test/unionfind.test.cpp
+  - test/deque_operate_all_composite.test.cpp
   - test/bernoulli_number.test.cpp
   - test/tree_diameter.test.cpp
   - test/pow_of_formal_power_series.test.cpp

@@ -120,6 +120,9 @@ data:
       path: ds/centroidTree.cpp
       title: ds/centroidTree.cpp
     - icon: ':heavy_check_mark:'
+      path: ds/deque_aggregation.cpp
+      title: ds/deque_aggregation.cpp
+    - icon: ':heavy_check_mark:'
       path: ds/doubleEndedPQ.cpp
       title: ds/doubleEndedPQ.cpp
     - icon: ':warning:'
@@ -635,6 +638,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/cycle_detection_undirected.test.cpp
       title: test/cycle_detection_undirected.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/deque_operate_all_composite.test.cpp
+      title: test/deque_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/determinant_of_matrix.test.cpp
       title: test/determinant_of_matrix.test.cpp
