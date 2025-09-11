@@ -24,6 +24,7 @@
 "test/counting_spanning_tree_undirected.test.cpp": "2025-03-10 04:06:44 +0800",
 "test/cycle_detection_directed.test.cpp": "2024-07-28 21:04:51 +0800",
 "test/cycle_detection_undirected.test.cpp": "2024-07-28 21:04:51 +0800",
+"test/deque_operate_all_composite.test.cpp": "2025-09-11 20:23:07 +0800",
 "test/determinant_of_matrix.test.cpp": "2025-03-10 04:06:44 +0800",
 "test/division_of_polynomials.test.cpp": "2025-01-16 19:25:04 +0800",
 "test/double_ended_priority_queue.test.cpp": "2024-07-28 21:04:51 +0800",
