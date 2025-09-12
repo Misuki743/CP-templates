@@ -79,8 +79,8 @@ data:
     \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
     \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"graph/BCC.cpp\"\
     \nstruct BCC {\n  vector<int> f, vb, eb, gv, ge, eid, vid;\n  int size = -1;\n\
-    \n  BCC(vector<array<int, 2>> &e, int n)\n  : f(n), eid(ssize(e)), vid(n) {\n\n\
-    \    auto newComp = [&]() {\n      vb.emplace_back(ssize(gv));\n      eb.emplace_back(ssize(ge));\n\
+    \n  BCC(vector<array<int, 2>> &e, int n)\n  : f(n), eid(ssize(e)), vid(n, -1)\
+    \ {\n\n    auto newComp = [&]() {\n      vb.emplace_back(ssize(gv));\n      eb.emplace_back(ssize(ge));\n\
     \      size++;\n    };\n\n    vector<vector<int>> g(n);\n    for(int i = 0; auto\
     \ [u, v] : e) {\n      g[u].emplace_back(i);\n      g[v].emplace_back(i++);\n\
     \    }\n\n    int t = 0;\n    vector<int> tin(n, -1), low(n), cnt(n), s;\n   \
@@ -95,23 +95,23 @@ data:
     \             eid[j] = size;\n              ge.emplace_back(j);\n            }\
     \ while(ge.back() != i);\n            for(int u : gv | views::drop(vb.back()))\n\
     \              cnt[u] = 0, f[u]++, vid[u] = size;\n          }\n        }\n  \
-    \    }\n      if (g[v].empty()) newComp(), gv.emplace_back(v);\n    };\n\n   \
-    \ for(int v = 0; v < n; v++)\n      if (tin[v] == -1)\n        dfs(v, dfs);\n\
-    \    newComp();\n  }\n\n  vector<int> vertexGroup(int id) {\n    return {gv.begin()\
-    \ + vb[id], gv.begin() + vb[id + 1]};\n  }\n  vector<int> edgeGroup(int id) {\n\
-    \    return {ge.begin() + eb[id], ge.begin() + eb[id + 1]};\n  }\n  bool isCutVertex(int\
-    \ v) { return f[v] > 1; }\n  pair<vector<vector<int>>, vector<int>> blockCutTree()\
-    \ {\n    int n = ssize(f);\n    vector<vector<int>> g(n + size);\n    vector<int>\
-    \ mp = vid;\n    for(int &x : mp) x += n;\n    for(int i = 0; i < size; i++)\n\
-    \      for(int v : vertexGroup(i))\n        if (isCutVertex(v)) {\n          g[i\
-    \ + n].emplace_back(v);\n          g[v].emplace_back(i + n);\n          mp[v]\
-    \ = v;\n        }\n    return make_pair(g, mp);\n  }\n};\n#line 5 \"test/biconnected_components.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ m; cin >> n >> m;\n  vector<array<int, 2>> e(m);\n  for(auto &[u, v] : e) cin\
-    \ >> u >> v;\n\n  BCC bcc(e, n);\n\n  cout << bcc.size << '\\n';\n  for(int g\
-    \ = 0; g < bcc.size; g++) {\n    auto gv = bcc.vertexGroup(g);\n    cout << ssize(gv);\n\
-    \    for(int v : gv)\n      cout << ' ' << v;\n    cout << '\\n';\n  }\n\n  return\
-    \ 0;\n}\n\n"
+    \    }\n      if (g[v].empty()) newComp(), gv.emplace_back(v), vid[v] = size;\n\
+    \    };\n\n    for(int v = 0; v < n; v++)\n      if (tin[v] == -1)\n        dfs(v,\
+    \ dfs);\n    newComp();\n  }\n\n  vector<int> vertexGroup(int id) {\n    return\
+    \ {gv.begin() + vb[id], gv.begin() + vb[id + 1]};\n  }\n  vector<int> edgeGroup(int\
+    \ id) {\n    return {ge.begin() + eb[id], ge.begin() + eb[id + 1]};\n  }\n  bool\
+    \ isCutVertex(int v) { return f[v] > 1; }\n  pair<vector<vector<int>>, vector<int>>\
+    \ blockCutTree() {\n    int n = ssize(f);\n    vector<vector<int>> g(n + size);\n\
+    \    vector<int> mp = vid;\n    for(int &x : mp) x += n;\n    for(int i = 0; i\
+    \ < size; i++)\n      for(int v : vertexGroup(i))\n        if (isCutVertex(v))\
+    \ {\n          g[i + n].emplace_back(v);\n          g[v].emplace_back(i + n);\n\
+    \          mp[v] = v;\n        }\n    return make_pair(g, mp);\n  }\n};\n#line\
+    \ 5 \"test/biconnected_components.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<array<int, 2>> e(m);\n\
+    \  for(auto &[u, v] : e) cin >> u >> v;\n\n  BCC bcc(e, n);\n\n  cout << bcc.size\
+    \ << '\\n';\n  for(int g = 0; g < bcc.size; g++) {\n    auto gv = bcc.vertexGroup(g);\n\
+    \    cout << ssize(gv);\n    for(int v : gv)\n      cout << ' ' << v;\n    cout\
+    \ << '\\n';\n  }\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../graph/BCC.cpp\"\n\nsigned main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >> n >>\
@@ -126,7 +126,7 @@ data:
   isVerificationFile: true
   path: test/biconnected_components.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2025-09-12 22:22:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/biconnected_components.test.cpp
