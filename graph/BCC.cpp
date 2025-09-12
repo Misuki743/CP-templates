@@ -3,7 +3,7 @@ struct BCC {
   int size = -1;
 
   BCC(vector<array<int, 2>> &e, int n)
-  : f(n), eid(ssize(e)), vid(n) {
+  : f(n), eid(ssize(e)), vid(n, -1) {
 
     auto newComp = [&]() {
       vb.emplace_back(ssize(gv));
@@ -45,7 +45,7 @@ struct BCC {
           }
         }
       }
-      if (g[v].empty()) newComp(), gv.emplace_back(v);
+      if (g[v].empty()) newComp(), gv.emplace_back(v), vid[v] = size;
     };
 
     for(int v = 0; v < n; v++)
