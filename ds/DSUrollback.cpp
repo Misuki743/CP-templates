@@ -37,4 +37,6 @@ struct DSU {
       bos[arr[0]] = arr[1], sz[arr[2]] = arr[3];
     }
   }
+
+  int cc() { return size - ssize(his); }
 };
