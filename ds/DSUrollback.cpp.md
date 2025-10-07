@@ -21,7 +21,8 @@ data:
     \    bos[b1] = b2, sz[b2] += sz[b1];\n\n    return true;\n  }\n\n  int time()\
     \ { return ssize(his); }\n\n  void rollback(int t) {\n    while(ssize(his) > t)\
     \ {\n      auto arr = his.back(); his.pop_back();\n      bos[arr[0]] = arr[1],\
-    \ sz[arr[2]] = arr[3];\n    }\n  }\n};\n"
+    \ sz[arr[2]] = arr[3];\n    }\n  }\n\n  int cc() { return size - ssize(his); }\n\
+    };\n"
   code: "struct DSU {\n  vector<array<int, 4>> his;\n  vector<int> bos, sz;\n  int\
     \ size;\n\n  DSU(int _size) : bos(_size), sz(_size, 1), size(_size) {\n    iota(bos.begin(),\
     \ bos.end(), 0);\n  }\n\n  int query(int v) {\n    if (bos[v] == v)\n      return\
@@ -31,12 +32,13 @@ data:
     \ bos[b1], b2, sz[b2]});\n    bos[b1] = b2, sz[b2] += sz[b1];\n\n    return true;\n\
     \  }\n\n  int time() { return ssize(his); }\n\n  void rollback(int t) {\n    while(ssize(his)\
     \ > t) {\n      auto arr = his.back(); his.pop_back();\n      bos[arr[0]] = arr[1],\
-    \ sz[arr[2]] = arr[3];\n    }\n  }\n};\n"
+    \ sz[arr[2]] = arr[3];\n    }\n  }\n\n  int cc() { return size - ssize(his); }\n\
+    };\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/DSUrollback.cpp
   requiredBy: []
-  timestamp: '2024-01-24 20:41:29+08:00'
+  timestamp: '2025-09-26 19:01:21+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/persistent_unionfind.test.cpp

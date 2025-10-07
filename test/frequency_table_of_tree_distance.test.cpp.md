@@ -5,25 +5,29 @@ data:
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':question:'
+    path: ds/centroidTree.cpp
+    title: ds/centroidTree.cpp
+  - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':heavy_check_mark:'
-    path: poly/NTTanymod.cpp
-    title: poly/NTTanymod.cpp
+  - icon: ':x:'
+    path: numtheory/crt.cpp
+    title: numtheory/crt.cpp
   - icon: ':question:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_1000000007
+    PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
     links:
-    - https://judge.yosupo.jp/problem/convolution_mod_1000000007
-  bundledCode: "#line 1 \"test/convolution_1e9+7.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
+    - https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
+  bundledCode: "#line 1 \"test/frequency_table_of_tree_distance.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
     \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
@@ -139,51 +143,90 @@ data:
     \ b) {\n    int sz = ssize(a) + ssize(b) - 1;\n    int n = bit_ceil((u32)sz);\n\
     \n    a.resize(n, 0);\n    ntt(a, false);\n    b.resize(n, 0);\n    ntt(b, false);\n\
     \n    for(int i = 0; i < n; i++)\n      a[i] *= b[i];\n\n    ntt(a, true);\n\n\
-    \    a.resize(sz);\n\n    return a;\n  }\n};\n#line 1 \"poly/NTTanymod.cpp\"\n\
-    //reference: https://math314.hateblo.jp/entry/2015/05/07/014908\n//reference:\
-    \ https://judge.yosupo.jp/submission/15581\n//remark: n * mod^2 < prod of mods(~=\
-    \ 5e26) should be satisfied\n\ntemplate<class Mint>\nvector<Mint> convAnyMod(vector<Mint>\
-    \ a, vector<Mint> b) {\n  using Mint0 = MontgomeryModInt<998244353>;\n  using\
-    \ Mint1 = MontgomeryModInt<469762049>;\n  using Mint2 = MontgomeryModInt<167772161>;\n\
-    \  NTT<23, 119, 3, Mint0> ntt0;\n  NTT<26, 7, 3, Mint1> ntt1;\n  NTT<25, 5, 3,\
-    \ Mint2> ntt2;\n  vector<Mint0> a0(ssize(a)), b0(ssize(b));\n  vector<Mint1> a1(ssize(a)),\
-    \ b1(ssize(b));\n  vector<Mint2> a2(ssize(a)), b2(ssize(b));\n  for(int i = 0;\
-    \ i < ssize(a); i++)\n    a0[i] = a[i].get(), a1[i] = a[i].get(), a2[i] = a[i].get();\n\
-    \  for(int i = 0; i < ssize(b); i++)\n    b0[i] = b[i].get(), b1[i] = b[i].get(),\
-    \ b2[i] = b[i].get();\n  vector<Mint0> x = ntt0.conv(a0, b0);\n  vector<Mint1>\
-    \ y = ntt1.conv(a1, b1);\n  vector<Mint2> z = ntt2.conv(a2, b2);\n  vector<Mint>\
-    \ res(ssize(x));\n  constexpr uint32_t mod0 = ntt0.get_mod(), mod1 = ntt1.get_mod();\n\
-    \  static const Mint1 im0 = 1 / Mint1(mod0);\n  static const Mint2 im1 = 1 / Mint2(mod1),\
-    \ im0m1 = im1 / mod0;\n  static const Mint m0 = mod0, m0m1 = m0 * mod1;\n  for(int\
-    \ i = 0; i < ssize(x); i++) {\n    int y0 = x[i].get();\n    int y1 = (im0 * (y[i]\
-    \ - y0)).get();\n    int y2 = (im0m1 * (z[i] - y0) - im1 * y1).get();\n    res[i]\
-    \ = y0 + m0 * y1 + m0m1 * y2;\n  }\n\n  return res;\n}\n#line 7 \"test/convolution_1e9+7.test.cpp\"\
-    \n\nusing Mint = MontgomeryModInt<1000000007>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<Mint> a(n), b(m);\n \
-    \ for(Mint &x : a)\n    cin >> x;\n  for(Mint &x : b)\n    cin >> x;\n\n  cout\
-    \ << convAnyMod(a, b) << '\\n';\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
+    \    a.resize(sz);\n\n    return a;\n  }\n};\n#line 1 \"ds/centroidTree.cpp\"\n\
+    pair<vector<vector<int>>, int> centroidTree(vector<vector<int>> &g) {\n  int n\
+    \ = ssize(g);\n  vector<vector<int>> g2(n);\n  vector<int> sz(n);\n  vector<bool>\
+    \ block(n, false);\n\n  auto calc = [&](int v, int p, auto self) -> void {\n \
+    \   sz[v] = 1;\n    for(int x : g[v]) {\n      if (x == p or block[x]) continue;\n\
+    \      self(x, v, self);\n      sz[v] += sz[x];\n    }\n  };\n\n  auto dfs = [&](int\
+    \ v, auto self) -> int {\n    calc(v, -1, calc);\n\n    int c = v, p = -1;\n \
+    \   bool move;\n    do {\n      move = false;\n      for(int x : g[c]) {\n   \
+    \     if (x == p or block[x] or 2 * sz[x] <= sz[v]) continue;\n        move =\
+    \ true, p = c, c = x;\n        break;\n      }\n    } while(move);\n\n    block[c]\
+    \ = true;\n    for(int x : g[c]) {\n      if (block[x]) continue;\n      x = self(x,\
+    \ self);\n      g2[c].emplace_back(x);\n      g2[x].emplace_back(c);\n    }\n\n\
+    \    return c;\n  };\n\n  int root = dfs(0, dfs);\n\n  return make_pair(g2, root);\n\
+    }\n#line 1 \"numtheory/crt.cpp\"\n//source: AtCoder Library (https://github.com/atcoder/ac-library)\n\
+    \n#include <utility>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\n// @param\
+    \ m `1 <= m`\n// @return x mod m\nconstexpr long long safe_mod(long long x, long\
+    \ long m) {\n    x %= m;\n    if (x < 0) x += m;\n    return x;\n}\n\n// @param\
+    \ b `1 <= b`\n// @return pair(g, x) s.t. g = gcd(a, b), xa = g (mod b), 0 <= x\
+    \ < b/g\nconstexpr std::pair<long long, long long> inv_gcd(long long a, long long\
+    \ b) {\n    a = safe_mod(a, b);\n    if (a == 0) return {b, 0};\n\n    // Contracts:\n\
+    \    // [1] s - m0 * a = 0 (mod b)\n    // [2] t - m1 * a = 0 (mod b)\n    //\
+    \ [3] s * |m1| + t * |m0| <= b\n    long long s = b, t = a;\n    long long m0\
+    \ = 0, m1 = 1;\n\n    while (t) {\n        long long u = s / t;\n        s -=\
+    \ t * u;\n        m0 -= m1 * u;  // |m1 * u| <= |m1| * s <= b\n\n        // [3]:\n\
+    \        // (s - t * u) * |m1| + t * |m0 - m1 * u|\n        // <= s * |m1| - t\
+    \ * u * |m1| + t * (|m0| + |m1| * u)\n        // = s * |m1| + t * |m0| <= b\n\n\
+    \        auto tmp = s;\n        s = t;\n        t = tmp;\n        tmp = m0;\n\
+    \        m0 = m1;\n        m1 = tmp;\n    }\n    // by [3]: |m0| <= b/g\n    //\
+    \ by g != b: |m0| < b/g\n    if (m0 < 0) m0 += b / s;\n    return {s, m0};\n}\n\
+    \n// (rem, mod)\nstd::pair<long long, long long> crt(const std::vector<long long>&\
+    \ r,\n                                    const std::vector<long long>& m) {\n\
+    \    assert(r.size() == m.size());\n    int n = int(r.size());\n    // Contracts:\
+    \ 0 <= r0 < m0\n    long long r0 = 0, m0 = 1;\n    for (int i = 0; i < n; i++)\
+    \ {\n        assert(1 <= m[i]);\n        long long r1 = safe_mod(r[i], m[i]),\
+    \ m1 = m[i];\n        if (m0 < m1) {\n            std::swap(r0, r1);\n       \
+    \     std::swap(m0, m1);\n        }\n        if (m0 % m1 == 0) {\n           \
+    \ if (r0 % m1 != r1) return {0, 0};\n            continue;\n        }\n      \
+    \  // assume: m0 > m1, lcm(m0, m1) >= 2 * max(m0, m1)\n\n        // (r0, m0),\
+    \ (r1, m1) -> (r2, m2 = lcm(m0, m1));\n        // r2 % m0 = r0\n        // r2\
+    \ % m1 = r1\n        // -> (r0 + x*m0) % m1 = r1\n        // -> x*u0*g = r1-r0\
+    \ (mod u1*g) (u0*g = m0, u1*g = m1)\n        // -> x = (r1 - r0) / g * inv(u0)\
+    \ (mod u1)\n\n        // im = inv(u0) (mod u1) (0 <= im < u1)\n        long long\
+    \ g, im;\n        std::tie(g, im) = inv_gcd(m0, m1);\n\n        long long u1 =\
+    \ (m1 / g);\n        // |r1 - r0| < (m0 + m1) <= lcm(m0, m1)\n        if ((r1\
+    \ - r0) % g) return {0, 0};\n\n        // u1 * u1 <= m1 * m1 / g / g <= m0 * m1\
+    \ / g = lcm(m0, m1)\n        long long x = (r1 - r0) / g % u1 * im % u1;\n\n \
+    \       // |r0| + |m0 * x|\n        // < m0 + m0 * (u1 - 1)\n        // = m0 +\
+    \ m0 * m1 / g - m0\n        // = lcm(m0, m1)\n        r0 += x * m0;\n        m0\
+    \ *= u1;  // -> lcm(m0, m1)\n        if (r0 < 0) r0 += m0;\n    }\n    return\
+    \ {r0, m0};\n}\n#line 8 \"test/frequency_table_of_tree_distance.test.cpp\"\n\n\
+    signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin\
+    \ >> n;\n  vector<vector<int>> g(n);\n  for(int i = 1; i < n; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    g[u].eb(v), g[v].eb(u);\n  }\n\n  auto ans1 = frequency_of_tree_distance(g);\n\
+    \  auto ans2 = frequency_of_tree_distance<26, 7, 3, MontgomeryModInt<(7 << 26)\
+    \ | 1>>(g);\n  for(int i = 0; i < n - 1; i++) {\n    vector<ll> r = {ans1[i].get(),\
+    \ ans2[i].get()};\n    vector<ll> m = {998244353, (7 << 26) | 1};\n    cout <<\
+    \ crt(r, m).first << \" \\n\"[i + 1 == n - 1];\n  }\n\n  return 0;\n}\n\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/NTTanymod.cpp\"\n\nusing\
-    \ Mint = MontgomeryModInt<1000000007>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<Mint> a(n), b(m);\n \
-    \ for(Mint &x : a)\n    cin >> x;\n  for(Mint &x : b)\n    cin >> x;\n\n  cout\
-    \ << convAnyMod(a, b) << '\\n';\n\n  return 0;\n}\n"
+    \n#include \"../poly/NTTmint.cpp\"\n#include \"../ds/centroidTree.cpp\"\n#include\
+    \ \"../numtheory/crt.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<vector<int>> g(n);\n  for(int\
+    \ i = 1; i < n; i++) {\n    int u, v; cin >> u >> v;\n    g[u].eb(v), g[v].eb(u);\n\
+    \  }\n\n  auto ans1 = frequency_of_tree_distance(g);\n  auto ans2 = frequency_of_tree_distance<26,\
+    \ 7, 3, MontgomeryModInt<(7 << 26) | 1>>(g);\n  for(int i = 0; i < n - 1; i++)\
+    \ {\n    vector<ll> r = {ans1[i].get(), ans2[i].get()};\n    vector<ll> m = {998244353,\
+    \ (7 << 26) | 1};\n    cout << crt(r, m).first << \" \\n\"[i + 1 == n - 1];\n\
+    \  }\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
-  - poly/NTTanymod.cpp
+  - ds/centroidTree.cpp
+  - numtheory/crt.cpp
   isVerificationFile: true
-  path: test/convolution_1e9+7.test.cpp
+  path: test/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 19:25:04+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-10-07 20:13:58+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/convolution_1e9+7.test.cpp
+documentation_of: test/frequency_table_of_tree_distance.test.cpp
 layout: document
 redirect_from:
-- /verify/test/convolution_1e9+7.test.cpp
-- /verify/test/convolution_1e9+7.test.cpp.html
-title: test/convolution_1e9+7.test.cpp
+- /verify/test/frequency_table_of_tree_distance.test.cpp
+- /verify/test/frequency_table_of_tree_distance.test.cpp.html
+title: test/frequency_table_of_tree_distance.test.cpp
 ---

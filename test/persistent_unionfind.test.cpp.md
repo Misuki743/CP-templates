@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -87,19 +87,19 @@ data:
     \ bos[b1], b2, sz[b2]});\n    bos[b1] = b2, sz[b2] += sz[b1];\n\n    return true;\n\
     \  }\n\n  int time() { return ssize(his); }\n\n  void rollback(int t) {\n    while(ssize(his)\
     \ > t) {\n      auto arr = his.back(); his.pop_back();\n      bos[arr[0]] = arr[1],\
-    \ sz[arr[2]] = arr[3];\n    }\n  }\n};\n#line 5 \"test/persistent_unionfind.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vector<array<int, 4>> query(q);\n  for(auto &[t, k, u,\
-    \ v] : query) {\n    cin >> t >> k >> u >> v;\n    k += 1;\n  }\n\n  vector<vector<array<int,\
-    \ 3>>> g(q + 1);\n  vector<vector<array<int, 3>>> qry(q + 1);\n  for(int i = 1;\
-    \ auto &[t, k, u, v] : query) {\n    if (t == 0)\n      g[k].push_back({i, u,\
-    \ v});\n    else\n      qry[k].push_back({i, u, v});\n    i++;\n  }\n\n  DSU dsu(n);\n\
-    \  vector<int> ans(q + 1, -1);\n  auto dfs = [&](int v, auto self) -> void {\n\
-    \    int t = dsu.time();\n    for(auto [i, a, b] : qry[v])\n      ans[i] = dsu.query(a)\
-    \ == dsu.query(b);\n    for(auto [x, a, b] : g[v]) {\n      dsu.merge(a, b);\n\
-    \      self(x, self);\n      dsu.rollback(t);\n    }\n  };\n\n  dfs(0, dfs);\n\
-    \n  for(int i = 0; i <= q; i++)\n    if (ans[i] != -1)\n      cout << ans[i] <<\
-    \ '\\n';\n\n  return 0;\n}\n"
+    \ sz[arr[2]] = arr[3];\n    }\n  }\n\n  int cc() { return size - ssize(his); }\n\
+    };\n#line 5 \"test/persistent_unionfind.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<array<int, 4>> query(q);\n\
+    \  for(auto &[t, k, u, v] : query) {\n    cin >> t >> k >> u >> v;\n    k += 1;\n\
+    \  }\n\n  vector<vector<array<int, 3>>> g(q + 1);\n  vector<vector<array<int,\
+    \ 3>>> qry(q + 1);\n  for(int i = 1; auto &[t, k, u, v] : query) {\n    if (t\
+    \ == 0)\n      g[k].push_back({i, u, v});\n    else\n      qry[k].push_back({i,\
+    \ u, v});\n    i++;\n  }\n\n  DSU dsu(n);\n  vector<int> ans(q + 1, -1);\n  auto\
+    \ dfs = [&](int v, auto self) -> void {\n    int t = dsu.time();\n    for(auto\
+    \ [i, a, b] : qry[v])\n      ans[i] = dsu.query(a) == dsu.query(b);\n    for(auto\
+    \ [x, a, b] : g[v]) {\n      dsu.merge(a, b);\n      self(x, self);\n      dsu.rollback(t);\n\
+    \    }\n  };\n\n  dfs(0, dfs);\n\n  for(int i = 0; i <= q; i++)\n    if (ans[i]\
+    \ != -1)\n      cout << ans[i] << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n\
     \n#include \"../default/t.cpp\"\n#include \"../ds/DSUrollback.cpp\"\n\nsigned\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
@@ -120,7 +120,7 @@ data:
   isVerificationFile: true
   path: test/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2025-09-26 19:01:21+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/persistent_unionfind.test.cpp

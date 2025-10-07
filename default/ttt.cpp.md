@@ -49,8 +49,8 @@ data:
   timestamp: '2024-01-20 02:52:24+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/static_convex_hull.test.cpp
   - test/closest_pair.test.cpp
+  - test/static_convex_hull.test.cpp
 documentation_of: default/ttt.cpp
 layout: document
 redirect_from:
