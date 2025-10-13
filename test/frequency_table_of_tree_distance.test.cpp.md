@@ -195,22 +195,23 @@ data:
     \ {r0, m0};\n}\n#line 8 \"test/frequency_table_of_tree_distance.test.cpp\"\n\n\
     signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin\
     \ >> n;\n  vector<vector<int>> g(n);\n  for(int i = 1; i < n; i++) {\n    int\
-    \ u, v; cin >> u >> v;\n    g[u].eb(v), g[v].eb(u);\n  }\n\n  auto ans1 = frequency_of_tree_distance(g);\n\
-    \  auto ans2 = frequency_of_tree_distance<26, 7, 3, MontgomeryModInt<(7 << 26)\
-    \ | 1>>(g);\n  for(int i = 0; i < n - 1; i++) {\n    vector<ll> r = {ans1[i].get(),\
-    \ ans2[i].get()};\n    vector<ll> m = {998244353, (7 << 26) | 1};\n    cout <<\
-    \ crt(r, m).first << \" \\n\"[i + 1 == n - 1];\n  }\n\n  return 0;\n}\n\n"
+    \ u, v; cin >> u >> v;\n    g[u].emplace_back(v), g[v].emplace_back(u);\n  }\n\
+    \n  auto ans1 = frequency_of_tree_distance(g);\n  auto ans2 = frequency_of_tree_distance<26,\
+    \ 7, 3, MontgomeryModInt<(7 << 26) | 1>>(g);\n  for(int i = 0; i < n - 1; i++)\
+    \ {\n    vector<ll> r = {ans1[i].get(), ans2[i].get()};\n    vector<ll> m = {998244353,\
+    \ (7 << 26) | 1};\n    cout << crt(r, m).first << \" \\n\"[i + 1 == n - 1];\n\
+    \  }\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
     \n#include \"../poly/NTTmint.cpp\"\n#include \"../ds/centroidTree.cpp\"\n#include\
     \ \"../numtheory/crt.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<vector<int>> g(n);\n  for(int\
-    \ i = 1; i < n; i++) {\n    int u, v; cin >> u >> v;\n    g[u].eb(v), g[v].eb(u);\n\
-    \  }\n\n  auto ans1 = frequency_of_tree_distance(g);\n  auto ans2 = frequency_of_tree_distance<26,\
-    \ 7, 3, MontgomeryModInt<(7 << 26) | 1>>(g);\n  for(int i = 0; i < n - 1; i++)\
-    \ {\n    vector<ll> r = {ans1[i].get(), ans2[i].get()};\n    vector<ll> m = {998244353,\
-    \ (7 << 26) | 1};\n    cout << crt(r, m).first << \" \\n\"[i + 1 == n - 1];\n\
-    \  }\n\n  return 0;\n}\n\n"
+    \ i = 1; i < n; i++) {\n    int u, v; cin >> u >> v;\n    g[u].emplace_back(v),\
+    \ g[v].emplace_back(u);\n  }\n\n  auto ans1 = frequency_of_tree_distance(g);\n\
+    \  auto ans2 = frequency_of_tree_distance<26, 7, 3, MontgomeryModInt<(7 << 26)\
+    \ | 1>>(g);\n  for(int i = 0; i < n - 1; i++) {\n    vector<ll> r = {ans1[i].get(),\
+    \ ans2[i].get()};\n    vector<ll> m = {998244353, (7 << 26) | 1};\n    cout <<\
+    \ crt(r, m).first << \" \\n\"[i + 1 == n - 1];\n  }\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
@@ -220,7 +221,7 @@ data:
   isVerificationFile: true
   path: test/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2025-10-07 20:13:58+08:00'
+  timestamp: '2025-10-14 02:18:42+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/frequency_table_of_tree_distance.test.cpp
