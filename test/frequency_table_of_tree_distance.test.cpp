@@ -13,7 +13,7 @@ signed main() {
   vector<vector<int>> g(n);
   for(int i = 1; i < n; i++) {
     int u, v; cin >> u >> v;
-    g[u].eb(v), g[v].eb(u);
+    g[u].emplace_back(v), g[v].emplace_back(u);
   }
 
   auto ans1 = frequency_of_tree_distance(g);
