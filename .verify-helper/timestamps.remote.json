@@ -37,6 +37,7 @@
 "test/exp_of_formal_power_series_sparse.test.cpp": "2025-01-16 19:25:04 +0800",
 "test/factorize.test.cpp": "2024-07-28 21:04:51 +0800",
 "test/find_linear_recurrence.test.cpp": "2025-01-16 19:25:04 +0800",
+"test/frequency_table_of_tree_distance.test.cpp": "2025-10-14 02:26:13 +0800",
 "test/incremental_scc.test.cpp": "2025-01-16 19:25:04 +0800",
 "test/inv_of_formal_power_series.test.cpp": "2025-01-16 19:25:04 +0800",
 "test/inv_of_formal_power_series_sparse.test.cpp": "2025-01-16 19:25:04 +0800",
