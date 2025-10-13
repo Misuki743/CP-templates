@@ -5,6 +5,7 @@
 #include "../poly/NTTmint.cpp"
 #include "../ds/centroidTree.cpp"
 #include "../numtheory/crt.cpp"
+#include "../ds_problem/frequency_of_tree_distance.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
