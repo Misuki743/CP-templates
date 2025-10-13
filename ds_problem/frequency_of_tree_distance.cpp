@@ -8,7 +8,7 @@ vector<Mint> frequency_of_tree_distance(vector<vector<int>> g) {
   auto calc = [&](int s, int d0) {
     vector<Mint> freq(1);
     auto dfs = [&](int v, int p, int d, auto &self) -> void {
-      if (ssize(freq) <= d) freq.eb(0);
+      if (ssize(freq) <= d) freq.emplace_back(0);
       if (d > 0) freq[d] += 1;
       for(int x : g[v])
         if (x != p and !vis[x])
@@ -29,7 +29,6 @@ vector<Mint> frequency_of_tree_distance(vector<vector<int>> g) {
 
   vector<Mint> ans(n);
   auto dfs = [&](int v, int p, auto &self) -> void {
-    dbg(v);
     {
       auto freq_all = calc(v, 0);
       freq_all[0] = 1;
