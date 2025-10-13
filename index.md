@@ -208,7 +208,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds_problem/area_of_union_of_rectangles.cpp
       title: ds_problem/area_of_union_of_rectangles.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds_problem/frequency_of_tree_distance.cpp
       title: ds_problem/frequency_of_tree_distance.cpp
     - icon: ':heavy_check_mark:'

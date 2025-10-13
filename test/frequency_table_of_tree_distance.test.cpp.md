@@ -7,6 +7,9 @@ data:
   - icon: ':question:'
     path: ds/centroidTree.cpp
     title: ds/centroidTree.cpp
+  - icon: ':x:'
+    path: ds_problem/frequency_of_tree_distance.cpp
+    title: ds_problem/frequency_of_tree_distance.cpp
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
@@ -192,19 +195,27 @@ data:
     \       // |r0| + |m0 * x|\n        // < m0 + m0 * (u1 - 1)\n        // = m0 +\
     \ m0 * m1 / g - m0\n        // = lcm(m0, m1)\n        r0 += x * m0;\n        m0\
     \ *= u1;  // -> lcm(m0, m1)\n        if (r0 < 0) r0 += m0;\n    }\n    return\
-    \ {r0, m0};\n}\n#line 8 \"test/frequency_table_of_tree_distance.test.cpp\"\n\n\
-    signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin\
-    \ >> n;\n  vector<vector<int>> g(n);\n  for(int i = 1; i < n; i++) {\n    int\
-    \ u, v; cin >> u >> v;\n    g[u].emplace_back(v), g[v].emplace_back(u);\n  }\n\
-    \n  auto ans1 = frequency_of_tree_distance(g);\n  auto ans2 = frequency_of_tree_distance<26,\
-    \ 7, 3, MontgomeryModInt<(7 << 26) | 1>>(g);\n  for(int i = 0; i < n - 1; i++)\
-    \ {\n    vector<ll> r = {ans1[i].get(), ans2[i].get()};\n    vector<ll> m = {998244353,\
-    \ (7 << 26) | 1};\n    cout << crt(r, m).first << \" \\n\"[i + 1 == n - 1];\n\
-    \  }\n\n  return 0;\n}\n\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../poly/NTTmint.cpp\"\n#include \"../ds/centroidTree.cpp\"\n#include\
-    \ \"../numtheory/crt.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ {r0, m0};\n}\n#line 1 \"ds_problem/frequency_of_tree_distance.cpp\"\ntemplate<int32_t\
+    \ k = 23, int32_t c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>\n\
+    vector<Mint> frequency_of_tree_distance(vector<vector<int>> g) {\n  const int\
+    \ n = ssize(g);\n  NTT<k, c, r, Mint> Ntt;\n\n  auto [T, R] = centroidTree(g);\n\
+    \  vector<bool> vis(n, false);\n  auto calc = [&](int s, int d0) {\n    vector<Mint>\
+    \ freq(1);\n    auto dfs = [&](int v, int p, int d, auto &self) -> void {\n  \
+    \    if (ssize(freq) <= d) freq.eb(0);\n      if (d > 0) freq[d] += 1;\n     \
+    \ for(int x : g[v])\n        if (x != p and !vis[x])\n          self(x, v, d +\
+    \ 1, self);\n    };\n    dfs(s, -1, d0, dfs);\n    return freq;\n  };\n\n  auto\
+    \ self_conv = [&](vector<Mint> f) {\n    int sz = bit_ceil(2 * f.size());\n  \
+    \  f.resize(sz);\n    Ntt.ntt(f, false);\n    for(Mint &x : f) x *= x;\n    Ntt.ntt(f,\
+    \ true);\n    return f;\n  };\n\n  vector<Mint> ans(n);\n  auto dfs = [&](int\
+    \ v, int p, auto &self) -> void {\n    dbg(v);\n    {\n      auto freq_all = calc(v,\
+    \ 0);\n      freq_all[0] = 1;\n      auto F = self_conv(freq_all);\n      for(int\
+    \ i = 0; i < n and i < ssize(F); i++)\n        ans[i] += F[i];\n      vis[v] =\
+    \ true;\n      for(int x : g[v]) {\n        if (vis[x]) continue;\n        auto\
+    \ G = self_conv(calc(x, 1));\n        for(int i = 0; i < n and i < ssize(G); i++)\n\
+    \          ans[i] -= G[i];\n      }\n    }\n    for(int x : T[v])\n      if (x\
+    \ != p)\n        self(x, v, self);\n  };\n  dfs(R, -1, dfs);\n\n  ans.erase(ans.begin());\n\
+    \  for(Mint &x : ans) x *= (Mint::get_mod() + 1) / 2;\n  return ans;\n}\n#line\
+    \ 9 \"test/frequency_table_of_tree_distance.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<vector<int>> g(n);\n  for(int\
     \ i = 1; i < n; i++) {\n    int u, v; cin >> u >> v;\n    g[u].emplace_back(v),\
     \ g[v].emplace_back(u);\n  }\n\n  auto ans1 = frequency_of_tree_distance(g);\n\
@@ -212,16 +223,29 @@ data:
     \ | 1>>(g);\n  for(int i = 0; i < n - 1; i++) {\n    vector<ll> r = {ans1[i].get(),\
     \ ans2[i].get()};\n    vector<ll> m = {998244353, (7 << 26) | 1};\n    cout <<\
     \ crt(r, m).first << \" \\n\"[i + 1 == n - 1];\n  }\n\n  return 0;\n}\n\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
+    \n#include \"../poly/NTTmint.cpp\"\n#include \"../ds/centroidTree.cpp\"\n#include\
+    \ \"../numtheory/crt.cpp\"\n#include \"../ds_problem/frequency_of_tree_distance.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
+    \ cin >> n;\n  vector<vector<int>> g(n);\n  for(int i = 1; i < n; i++) {\n   \
+    \ int u, v; cin >> u >> v;\n    g[u].emplace_back(v), g[v].emplace_back(u);\n\
+    \  }\n\n  auto ans1 = frequency_of_tree_distance(g);\n  auto ans2 = frequency_of_tree_distance<26,\
+    \ 7, 3, MontgomeryModInt<(7 << 26) | 1>>(g);\n  for(int i = 0; i < n - 1; i++)\
+    \ {\n    vector<ll> r = {ans1[i].get(), ans2[i].get()};\n    vector<ll> m = {998244353,\
+    \ (7 << 26) | 1};\n    cout << crt(r, m).first << \" \\n\"[i + 1 == n - 1];\n\
+    \  }\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
   - ds/centroidTree.cpp
   - numtheory/crt.cpp
+  - ds_problem/frequency_of_tree_distance.cpp
   isVerificationFile: true
   path: test/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2025-10-14 02:18:42+08:00'
+  timestamp: '2025-10-14 02:24:23+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/frequency_table_of_tree_distance.test.cpp
