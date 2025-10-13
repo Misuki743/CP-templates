@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -116,7 +116,7 @@ data:
     - icon: ':warning:'
       path: ds/bipartiteDSU.cpp
       title: ds/bipartiteDSU.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/centroidTree.cpp
       title: ds/centroidTree.cpp
     - icon: ':heavy_check_mark:'
@@ -208,7 +208,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds_problem/area_of_union_of_rectangles.cpp
       title: ds_problem/area_of_union_of_rectangles.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds_problem/frequency_of_tree_distance.cpp
       title: ds_problem/frequency_of_tree_distance.cpp
     - icon: ':heavy_check_mark:'
@@ -394,7 +394,7 @@ data:
       title: misc/sharpPSubsetSum.cpp
   - name: modint
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':heavy_check_mark:'
@@ -405,7 +405,7 @@ data:
       title: modint/dynamicSimpleMint.cpp
   - name: numtheory
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/crt.cpp
       title: numtheory/crt.cpp
     - icon: ':warning:'
@@ -461,7 +461,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/NTTanymod.cpp
       title: poly/NTTanymod.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/NTTmint.cpp
       title: poly/NTTmint.cpp
     - icon: ':heavy_check_mark:'
@@ -683,7 +683,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/find_linear_recurrence.test.cpp
       title: test/find_linear_recurrence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/frequency_table_of_tree_distance.test.cpp
       title: test/frequency_table_of_tree_distance.test.cpp
     - icon: ':heavy_check_mark:'
