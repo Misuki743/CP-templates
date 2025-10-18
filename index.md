@@ -6,7 +6,7 @@ data:
     - icon: ':warning:'
       path: actedmonoid/actedMonoid_addMax.cpp
       title: actedmonoid/actedMonoid_addMax.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: actedmonoid/actedMonoid_addMin.cpp
       title: actedmonoid/actedMonoid_addMin.cpp
     - icon: ':heavy_check_mark:'
@@ -809,6 +809,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/queue_operate_all_composite.test.cpp
       title: test/queue_operate_all_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/range_add_range_min.test.cpp
+      title: test/range_add_range_min.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/range_affine_point_get.test.cpp
       title: test/range_affine_point_get.test.cpp

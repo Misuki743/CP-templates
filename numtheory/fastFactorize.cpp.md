@@ -67,9 +67,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/chromatic_number.test.cpp
-  - test/primality_test.test.cpp
-  - test/primitive_root.test.cpp
   - test/factorize.test.cpp
+  - test/primitive_root.test.cpp
+  - test/primality_test.test.cpp
 documentation_of: numtheory/fastFactorize.cpp
 layout: document
 redirect_from:

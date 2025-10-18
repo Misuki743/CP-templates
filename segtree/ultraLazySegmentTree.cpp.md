@@ -7,6 +7,9 @@ data:
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/range_add_range_min.test.cpp
+    title: test/range_add_range_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
   _isVerificationFailed: false
@@ -35,6 +38,7 @@ data:
   verifiedWith:
   - test/area_of_union_of_rectangles.test.cpp
   - test/range_affine_range_sum.test.cpp
+  - test/range_add_range_min.test.cpp
 documentation_of: segtree/ultraLazySegmentTree.cpp
 layout: document
 redirect_from:
