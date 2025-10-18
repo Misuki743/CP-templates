@@ -79,6 +79,7 @@
 "test/primitive_root.test.cpp": "2024-07-28 21:04:51 +0800",
 "test/product_of_polynomial_sequence.test.cpp": "2025-01-16 19:25:04 +0800",
 "test/queue_operate_all_composite.test.cpp": "2025-01-16 19:25:04 +0800",
+"test/range_add_range_min.test.cpp": "2025-10-18 17:53:25 +0800",
 "test/range_affine_point_get.test.cpp": "2025-01-16 19:25:04 +0800",
 "test/range_affine_range_sum.test.cpp": "2025-01-16 19:25:04 +0800",
 "test/range_kth_smallest.test.cpp": "2024-07-28 21:04:51 +0800",
