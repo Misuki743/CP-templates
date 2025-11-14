@@ -84,32 +84,31 @@ data:
     \ f(n);\n    int nxt = 0;\n    for(bool x : {true, false})\n      for(int v =\
     \ 0; v < n; v++)\n        if (in_s[v] == x)\n          f[v] = nxt++;\n    for(auto\
     \ &[u, v, _] : e)\n      u = f[u], v = f[v];\n  }\n\n  vector<vector<tuple<int,\
-    \ int, T>>> g(n);\n  for(int i = -1; auto [u, v, w] : e) {\n    i++;\n    g[u].emplace_back(v,\
-    \ i, w);\n    g[v].emplace_back(u, i, w);\n  }\n\n  vector dp(1 << k, vector<T>(n,\
+    \ int, T>>> g(n);\n  for(int i = 0; auto [u, v, w] : e) {\n    g[u].emplace_back(v,\
+    \ i, w);\n    g[v].emplace_back(u, i++, w);\n  }\n\n  vector dp(1 << k, vector<T>(n,\
     \ numeric_limits<T>::max()));\n  vector pre(1 << k, vector<array<int, 2>>(n, {-1,\
     \ -1}));\n\n  for(unsigned x = 1; x < (1 << k); x++) {\n    if (popcount(x) ==\
     \ 1) {\n      dp[x][countr_zero(x)] = 0;\n    } else {\n      for(int r = 0; r\
     \ < n; r++)\n        for(int y = (x - 1) & x; y > 0; y = (y - 1) & x)\n      \
     \    if (T tmp = dp[y][r] + dp[x^y][r]; tmp < dp[x][r])\n            dp[x][r]\
     \ = tmp, pre[x][r] = {y, -1};\n    }\n    priority_queue<pair<T, int>, vector<pair<T,\
-    \ int>>, greater<pair<T, int>>> pq;\n    for(int r = 0; r < n; r++)\n      pq.push(make_pair(dp[x][r],\
-    \ r));\n    while(!pq.empty()) {\n      auto [d, v] = pq.top(); pq.pop();\n  \
-    \    if (d != dp[x][v]) continue;\n      for(auto [to, i, w] : g[v]) {\n     \
-    \   if (d + w < dp[x][to]) {\n          dp[x][to] = d + w, pre[x][to] = {v, i};\n\
-    \          pq.push(make_pair(d + w, to));\n        }\n      }\n    }\n  }\n\n\
-    \  vector<bool> in_t(size(e));\n  auto dfs = [&](int x, int r, auto &&self) ->\
-    \ void {\n    auto [a, b] = pre[x][r];\n    if (a == -1) return;\n    if (b ==\
-    \ -1) {\n      self(a, r, self);\n      self(x ^ a, r, self);\n    } else {\n\
-    \      in_t[b] = true;\n      self(x, a, self);\n    }\n  };\n\n  int best_r =\
-    \ min_element(dp.back().begin(), dp.back().end()) - dp.back().begin();\n  dfs((1\
-    \ << k) - 1, best_r, dfs);\n\n  vector<int> t;\n  for(int i = 0; i < ssize(e);\
-    \ i++)\n    if (in_t[i])\n      t.emplace_back(i);\n\n  return make_pair(dp.back()[best_r],\
-    \ t);\n}\n#line 5 \"test/minimum_steiner_tree.test.cpp\"\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n\
-    \  vector<tuple<int, int, ll>> e(m);\n  for(auto &[u, v, w] : e) cin >> u >> v\
-    \ >> w;\n  int k; cin >> k;\n  vector<int> s(k);\n  for(int &x : s) cin >> x;\n\
-    \n  auto [cost, t] = steiner_tree(n, s, e);\n  cout << cost << ' ' << ssize(t)\
-    \ << '\\n';\n  cout << t << '\\n';\n\n  return 0;\n}\n\n"
+    \ int>>, greater<pair<T, int>>> pq;\n    for(int r = 0; r < n; r++)\n      pq.emplace(dp[x][r],\
+    \ r);\n    while(!pq.empty()) {\n      auto [d, v] = pq.top(); pq.pop();\n   \
+    \   if (d != dp[x][v]) continue;\n      for(auto [to, i, w] : g[v]) {\n      \
+    \  if (d + w < dp[x][to]) {\n          dp[x][to] = d + w, pre[x][to] = {v, i};\n\
+    \          pq.emplace(d + w, to);\n        }\n      }\n    }\n  }\n\n  vector<bool>\
+    \ in_t(size(e));\n  auto dfs = [&](int x, int r, auto &&self) -> void {\n    auto\
+    \ [a, b] = pre[x][r];\n    if (a == -1) return;\n    if (b == -1) {\n      self(a,\
+    \ r, self);\n      self(x ^ a, r, self);\n    } else {\n      in_t[b] = true;\n\
+    \      self(x, a, self);\n    }\n  };\n\n  int r = ranges::min_element(dp.back())\
+    \ - dp.back().begin();\n  dfs((1 << k) - 1, r, dfs);\n\n  vector<int> t;\n  for(int\
+    \ i = 0; i < ssize(e); i++)\n    if (in_t[i])\n      t.emplace_back(i);\n\n  return\
+    \ make_pair(dp.back()[r], t);\n}\n#line 5 \"test/minimum_steiner_tree.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ m; cin >> n >> m;\n  vector<tuple<int, int, ll>> e(m);\n  for(auto &[u, v, w]\
+    \ : e) cin >> u >> v >> w;\n  int k; cin >> k;\n  vector<int> s(k);\n  for(int\
+    \ &x : s) cin >> x;\n\n  auto [cost, t] = steiner_tree(n, s, e);\n  cout << cost\
+    \ << ' ' << ssize(t) << '\\n';\n  cout << t << '\\n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/minimum_steiner_tree\"\n\
     \n#include \"../default/t.cpp\"\n#include \"../graph/steinerTree.cpp\"\n\nsigned\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >>\
@@ -123,7 +122,7 @@ data:
   isVerificationFile: true
   path: test/minimum_steiner_tree.test.cpp
   requiredBy: []
-  timestamp: '2025-04-05 23:26:39+08:00'
+  timestamp: '2025-11-14 17:40:41+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/minimum_steiner_tree.test.cpp

@@ -71,6 +71,9 @@ data:
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
+      path: default/t_icpc.cpp
+      title: default/t_icpc.cpp
+    - icon: ':warning:'
       path: default/tt.cpp
       title: default/tt.cpp
     - icon: ':heavy_check_mark:'
@@ -344,6 +347,12 @@ data:
   - name: icpc
     pages:
     - icon: ':warning:'
+      path: icpc/BerlekampMassey.cpp
+      title: icpc/BerlekampMassey.cpp
+    - icon: ':warning:'
+      path: icpc/Bostan_Mori.cpp
+      title: icpc/Bostan_Mori.cpp
+    - icon: ':warning:'
       path: icpc/aux_tree.cpp
       title: icpc/aux_tree.cpp
     - icon: ':warning:'
@@ -358,6 +367,9 @@ data:
     - icon: ':warning:'
       path: icpc/lazySegtree.cpp
       title: icpc/lazySegtree.cpp
+    - icon: ':warning:'
+      path: icpc/multieval_and_interpolate.cpp
+      title: icpc/multieval_and_interpolate.cpp
     - icon: ':warning:'
       path: icpc/short_lca.cpp
       title: icpc/short_lca.cpp

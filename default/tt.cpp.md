@@ -68,7 +68,7 @@ data:
     \ + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1,\
     \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\
     \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
-    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
   code: "#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
     #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
@@ -129,13 +129,13 @@ data:
     \ + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1,\
     \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\
     \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
-    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2024-12-14 18:41:32+08:00'
+  timestamp: '2025-11-14 17:40:41+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp
