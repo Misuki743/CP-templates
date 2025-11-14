@@ -185,6 +185,7 @@ T ceilDiv(T a, T b) {
 template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }
 template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }
 
+
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 

@@ -16,10 +16,9 @@ pair<T, vector<int>> steiner_tree(int n, vector<int> s, vector<tuple<int, int, T
   }
 
   vector<vector<tuple<int, int, T>>> g(n);
-  for(int i = -1; auto [u, v, w] : e) {
-    i++;
+  for(int i = 0; auto [u, v, w] : e) {
     g[u].emplace_back(v, i, w);
-    g[v].emplace_back(u, i, w);
+    g[v].emplace_back(u, i++, w);
   }
 
   vector dp(1 << k, vector<T>(n, numeric_limits<T>::max()));
@@ -36,14 +35,14 @@ pair<T, vector<int>> steiner_tree(int n, vector<int> s, vector<tuple<int, int, T
     }
     priority_queue<pair<T, int>, vector<pair<T, int>>, greater<pair<T, int>>> pq;
     for(int r = 0; r < n; r++)
-      pq.push(make_pair(dp[x][r], r));
+      pq.emplace(dp[x][r], r);
     while(!pq.empty()) {
       auto [d, v] = pq.top(); pq.pop();
       if (d != dp[x][v]) continue;
       for(auto [to, i, w] : g[v]) {
         if (d + w < dp[x][to]) {
           dp[x][to] = d + w, pre[x][to] = {v, i};
-          pq.push(make_pair(d + w, to));
+          pq.emplace(d + w, to);
         }
       }
     }
@@ -62,13 +61,13 @@ pair<T, vector<int>> steiner_tree(int n, vector<int> s, vector<tuple<int, int, T
     }
   };
 
-  int best_r = min_element(dp.back().begin(), dp.back().end()) - dp.back().begin();
-  dfs((1 << k) - 1, best_r, dfs);
+  int r = ranges::min_element(dp.back()) - dp.back().begin();
+  dfs((1 << k) - 1, r, dfs);
 
   vector<int> t;
   for(int i = 0; i < ssize(e); i++)
     if (in_t[i])
       t.emplace_back(i);
 
-  return make_pair(dp.back()[best_r], t);
+  return make_pair(dp.back()[r], t);
 }
