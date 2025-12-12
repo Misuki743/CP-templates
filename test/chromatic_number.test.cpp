@@ -2,7 +2,7 @@
 
 #include "../default/t.cpp"
 #include "modint/dynamicMontgomeryModInt.cpp"
-#include "numtheory/fastFactorize.cpp"
+#include "numtheory/factorize_pollard_rho.cpp"
 #include "combi/chromaticNumber.cpp"
 
 signed main() {

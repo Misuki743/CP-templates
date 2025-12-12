@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/primitive_root"
 
 #include "../default/t.cpp"
-#include "../numtheory/fastFactorize.cpp"
-#include "../numtheory/primitiveRoot.cpp"
+#include "../numtheory/factorize_pollard_rho.cpp"
+#include "../numtheory/primitive_root.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

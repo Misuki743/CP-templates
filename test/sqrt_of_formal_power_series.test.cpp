@@ -4,7 +4,7 @@
 #include "../modint/MontgomeryModInt.cpp"
 #include "../poly/NTTmint.cpp"
 #include "../poly/FPS.cpp"
-#include "../numtheory/sqrtMod.cpp"
+#include "../numtheory/sqrt_mod.cpp"
 #include "../poly/FPSsqrt.cpp"
 
 signed main() {
