@@ -9,17 +9,17 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/divisor_enumeration.cpp\"\ntemplate<int32_t C>\n\
-    struct divisor_enumeration {\n  using i32 = int32_t;\n  array<i32, C + 1> s;\n\
-    \  vector<i32> d;\n  divisor_enumeration() {\n    for(int i = 1; i < C; i++)\n\
-    \      for(int j = i; j < C; j += i)\n        s[j]++;\n    for(int i = 1; i <=\
-    \ C; i++)\n      s[i] += s[i - 1];\n    d.resize(s[C]);\n    for(int i = C - 1;\
-    \ i >= 1; i--)\n      for(int j = i; j < C; j += i)\n        d[--s[j]] = i;\n\
-    \  }\n  vector<int> divisor(int x) {\n    return vector<int>(d.begin() + s[x],\
-    \ d.begin() + s[x + 1]);\n  }\n};\n"
+    struct divisor_enumeration {\n  using i32 = int32_t;\n  array<i32, C + 1> s =\
+    \ {};\n  vector<i32> d;\n  divisor_enumeration() {\n    for(int i = 1; i < C;\
+    \ i++)\n      for(int j = i; j < C; j += i)\n        s[j]++;\n    for(int i =\
+    \ 1; i <= C; i++)\n      s[i] += s[i - 1];\n    d.resize(s[C]);\n    for(int i\
+    \ = C - 1; i >= 1; i--)\n      for(int j = i; j < C; j += i)\n        d[--s[j]]\
+    \ = i;\n  }\n  vector<int> divisor(int x) {\n    return vector<int>(d.begin()\
+    \ + s[x], d.begin() + s[x + 1]);\n  }\n};\n"
   code: "template<int32_t C>\nstruct divisor_enumeration {\n  using i32 = int32_t;\n\
-    \  array<i32, C + 1> s;\n  vector<i32> d;\n  divisor_enumeration() {\n    for(int\
-    \ i = 1; i < C; i++)\n      for(int j = i; j < C; j += i)\n        s[j]++;\n \
-    \   for(int i = 1; i <= C; i++)\n      s[i] += s[i - 1];\n    d.resize(s[C]);\n\
+    \  array<i32, C + 1> s = {};\n  vector<i32> d;\n  divisor_enumeration() {\n  \
+    \  for(int i = 1; i < C; i++)\n      for(int j = i; j < C; j += i)\n        s[j]++;\n\
+    \    for(int i = 1; i <= C; i++)\n      s[i] += s[i - 1];\n    d.resize(s[C]);\n\
     \    for(int i = C - 1; i >= 1; i--)\n      for(int j = i; j < C; j += i)\n  \
     \      d[--s[j]] = i;\n  }\n  vector<int> divisor(int x) {\n    return vector<int>(d.begin()\
     \ + s[x], d.begin() + s[x + 1]);\n  }\n};\n"
@@ -27,7 +27,7 @@ data:
   isVerificationFile: false
   path: numtheory/divisor_enumeration.cpp
   requiredBy: []
-  timestamp: '2025-12-12 18:41:06+08:00'
+  timestamp: '2025-12-12 21:00:17+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: numtheory/divisor_enumeration.cpp
