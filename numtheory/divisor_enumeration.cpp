@@ -14,7 +14,7 @@ struct divisor_enumeration {
       for(int j = i; j < C; j += i)
         d[--s[j]] = i;
   }
-  vector<i32> divisor(i32 x) {
-    return vector(d.begin() + s[x], d.begin() + s[x + 1]);
+  vector<int> divisor(int x) {
+    return vector<int>(d.begin() + s[x], d.begin() + s[x + 1]);
   }
 };
