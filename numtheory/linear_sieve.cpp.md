@@ -22,7 +22,7 @@ data:
     \ /= r.back();\n    }\n    return r;\n  }\n\n  vector<int> divisor_enumerate(int\
     \ x, bool sorted = true) {\n    vector<int> divisor = {1};\n    for(auto [p, f]\
     \ : prime_factorize(x)) {\n      vector<int> nxt;\n      nxt.reserve(ssize(divisor)\
-    \ * (f + 1));\n      for(int i = 0, q = 1; i <= f; i++, q *= p)\n        for(int\
+    \ * (f + 1));\n      for(int64_t i = 0, q = 1; i <= f; i++, q *= p)\n        for(int\
     \ d : divisor)\n          nxt.emplace_back(d * q);\n      divisor.swap(nxt);\n\
     \    }\n    if (sorted)\n      ranges::sort(divisor);\n    return divisor;\n \
     \ }\n};\n"
@@ -39,7 +39,7 @@ data:
     \ /= r.back();\n    }\n    return r;\n  }\n\n  vector<int> divisor_enumerate(int\
     \ x, bool sorted = true) {\n    vector<int> divisor = {1};\n    for(auto [p, f]\
     \ : prime_factorize(x)) {\n      vector<int> nxt;\n      nxt.reserve(ssize(divisor)\
-    \ * (f + 1));\n      for(int i = 0, q = 1; i <= f; i++, q *= p)\n        for(int\
+    \ * (f + 1));\n      for(int64_t i = 0, q = 1; i <= f; i++, q *= p)\n        for(int\
     \ d : divisor)\n          nxt.emplace_back(d * q);\n      divisor.swap(nxt);\n\
     \    }\n    if (sorted)\n      ranges::sort(divisor);\n    return divisor;\n \
     \ }\n};\n"
@@ -47,7 +47,7 @@ data:
   isVerificationFile: false
   path: numtheory/linear_sieve.cpp
   requiredBy: []
-  timestamp: '2025-12-12 18:41:06+08:00'
+  timestamp: '2025-12-12 20:17:08+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: numtheory/linear_sieve.cpp
