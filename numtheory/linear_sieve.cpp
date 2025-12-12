@@ -41,7 +41,7 @@ struct linear_sieve {
     for(auto [p, f] : prime_factorize(x)) {
       vector<int> nxt;
       nxt.reserve(ssize(divisor) * (f + 1));
-      for(int i = 0, q = 1; i <= f; i++, q *= p)
+      for(int64_t i = 0, q = 1; i <= f; i++, q *= p)
         for(int d : divisor)
           nxt.emplace_back(d * q);
       divisor.swap(nxt);
