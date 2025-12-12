@@ -1,6 +1,6 @@
 template<int32_t C>
 struct linear_sieve {
-  array<int, C> mpf;
+  array<int, C> mpf = {};
   vector<int> prime;
   linear_sieve() {
     if (C > 2)

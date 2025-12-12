@@ -1,7 +1,7 @@
 template<int32_t C>
 struct divisor_enumeration {
   using i32 = int32_t;
-  array<i32, C + 1> s;
+  array<i32, C + 1> s = {};
   vector<i32> d;
   divisor_enumeration() {
     for(int i = 1; i < C; i++)
