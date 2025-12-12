@@ -421,6 +421,9 @@ data:
       path: numtheory/crt.cpp
       title: numtheory/crt.cpp
     - icon: ':warning:'
+      path: numtheory/divisor_enumeration.cpp
+      title: numtheory/divisor_enumeration.cpp
+    - icon: ':warning:'
       path: numtheory/exgcd.cpp
       title: numtheory/exgcd.cpp
     - icon: ':heavy_check_mark:'
