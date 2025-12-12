@@ -8,8 +8,8 @@ data:
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   - icon: ':heavy_check_mark:'
-    path: numtheory/sqrtMod.cpp
-    title: numtheory/sqrtMod.cpp
+    path: numtheory/sqrt_mod.cpp
+    title: numtheory/sqrt_mod.cpp
   - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
@@ -240,7 +240,7 @@ data:
     \ a <<= x; }\n  friend FPS operator>>(FPS a, int x) { return a >>= x; }\n};\n\n\
     NTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\nfunction<vector<mint>(vector<mint>,\
     \ vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\nfunction<void(vector<mint>&,\
-    \ bool)> fps::dft = ntt.ntt;\n#line 1 \"numtheory/sqrtMod.cpp\"\n//source: KACTL\n\
+    \ bool)> fps::dft = ntt.ntt;\n#line 1 \"numtheory/sqrt_mod.cpp\"\n//source: KACTL\n\
     \nll modpow(ll b, ll e, ll p) {\n  ll ans = 1;\n  for(; e; b = b * b % p, e /=\
     \ 2)\n    if (e & 1) ans = ans * b % p;\n  return ans;\n}\n\nll sqrt(ll a, ll\
     \ p) {\n\ta %= p; if (a < 0) a += p;\n\tif (a == 0) return 0;\n\t//assert(modpow(a,\
@@ -274,7 +274,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_of_formal_power_series\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
     \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"\
-    ../numtheory/sqrtMod.cpp\"\n#include \"../poly/FPSsqrt.cpp\"\n\nsigned main()\
+    ../numtheory/sqrt_mod.cpp\"\n#include \"../poly/FPSsqrt.cpp\"\n\nsigned main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  fps\
     \ f(n);\n  for(mint &x : f)\n    cin >> x;\n\n  auto g = FPSsqrt(f, n);\n  if\
     \ (g.empty())\n    cout << -1 << '\\n';\n  else\n    cout << g << '\\n';\n\n \
@@ -284,12 +284,12 @@ data:
   - modint/MontgomeryModInt.cpp
   - poly/NTTmint.cpp
   - poly/FPS.cpp
-  - numtheory/sqrtMod.cpp
+  - numtheory/sqrt_mod.cpp
   - poly/FPSsqrt.cpp
   isVerificationFile: true
   path: test/sqrt_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 19:25:04+08:00'
+  timestamp: '2025-12-12 18:46:30+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sqrt_of_formal_power_series.test.cpp

@@ -26,7 +26,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"numtheory/sqrtMod.cpp\"\n//source: KACTL\n\nll modpow(ll\
+  bundledCode: "#line 1 \"numtheory/sqrt_mod.cpp\"\n//source: KACTL\n\nll modpow(ll\
     \ b, ll e, ll p) {\n  ll ans = 1;\n  for(; e; b = b * b % p, e /= 2)\n    if (e\
     \ & 1) ans = ans * b % p;\n  return ans;\n}\n\nll sqrt(ll a, ll p) {\n\ta %= p;\
     \ if (a < 0) a += p;\n\tif (a == 0) return 0;\n\t//assert(modpow(a, (p-1)/2, p)\
@@ -54,9 +54,9 @@ data:
     \t}\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: numtheory/sqrtMod.cpp
+  path: numtheory/sqrt_mod.cpp
   requiredBy: []
-  timestamp: '2024-01-24 20:41:29+08:00'
+  timestamp: '2025-12-12 18:41:06+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/exp_of_formal_power_series_sparse.test.cpp
@@ -65,10 +65,10 @@ data:
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
-documentation_of: numtheory/sqrtMod.cpp
+documentation_of: numtheory/sqrt_mod.cpp
 layout: document
 redirect_from:
-- /library/numtheory/sqrtMod.cpp
-- /library/numtheory/sqrtMod.cpp.html
-title: numtheory/sqrtMod.cpp
+- /library/numtheory/sqrt_mod.cpp
+- /library/numtheory/sqrt_mod.cpp.html
+title: numtheory/sqrt_mod.cpp
 ---

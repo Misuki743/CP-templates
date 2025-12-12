@@ -5,11 +5,11 @@ data:
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
-    path: numtheory/fastFactorize.cpp
-    title: numtheory/fastFactorize.cpp
+    path: numtheory/factorize_pollard_rho.cpp
+    title: numtheory/factorize_pollard_rho.cpp
   - icon: ':heavy_check_mark:'
-    path: numtheory/primitiveRoot.cpp
-    title: numtheory/primitiveRoot.cpp
+    path: numtheory/primitive_root.cpp
+    title: numtheory/primitive_root.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -79,7 +79,7 @@ data:
     \ + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1,\
     \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\
     \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
-    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"numtheory/fastFactorize.cpp\"\
+    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"numtheory/factorize_pollard_rho.cpp\"\
     \n//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\null\
     \ modmul(ull a, ull b, ull M) {\n\tll ret = a * b - M * ull(1.L / M * a * b);\n\
     \treturn ret + M * (ret < 0) - M * (ret >= (ll)M);\n}\n\null modpow(ull b, ull\
@@ -98,7 +98,7 @@ data:
     \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
     if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
     \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 1 \"numtheory/primitiveRoot.cpp\"\n//#include \"numtheory/fastFactorize.cpp\"\
+    \treturn l;\n}\n#line 1 \"numtheory/primitive_root.cpp\"\n//#include \"numtheory/fastFactorize.cpp\"\
     \n\null primitiveRoot(ull p) {\n  auto fac = factor(p - 1);\n  ranges::sort(fac);\n\
     \  fac.resize(unique(fac.begin(), fac.end()) - fac.begin());\n  auto test = [p,\
     \ fac](ull x) {\n    for(ull d : fac)\n      if (modpow(x, (p - 1) / d, p) ==\
@@ -109,18 +109,18 @@ data:
     \ >> q;\n  while(q--) {\n    ull x; cin >> x;\n    cout << primitiveRoot(x) <<\
     \ '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../numtheory/fastFactorize.cpp\"\n#include\
-    \ \"../numtheory/primitiveRoot.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ \"../default/t.cpp\"\n#include \"../numtheory/factorize_pollard_rho.cpp\"\n\
+    #include \"../numtheory/primitive_root.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int q; cin >> q;\n  while(q--) {\n    ull x; cin >> x;\n\
     \    cout << primitiveRoot(x) << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - numtheory/fastFactorize.cpp
-  - numtheory/primitiveRoot.cpp
+  - numtheory/factorize_pollard_rho.cpp
+  - numtheory/primitive_root.cpp
   isVerificationFile: true
   path: test/primitive_root.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2025-12-12 18:46:30+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/primitive_root.test.cpp

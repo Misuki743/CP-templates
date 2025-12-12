@@ -11,8 +11,8 @@ data:
     path: modint/dynamicMontgomeryModInt.cpp
     title: modint/dynamicMontgomeryModInt.cpp
   - icon: ':heavy_check_mark:'
-    path: numtheory/fastFactorize.cpp
-    title: numtheory/fastFactorize.cpp
+    path: numtheory/factorize_pollard_rho.cpp
+    title: numtheory/factorize_pollard_rho.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -115,7 +115,7 @@ data:
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<0>;\ntemplate<> uint32_t mint::mod\
     \ = 0;\ntemplate<> uint32_t mint::n2 = 0;\ntemplate<> uint32_t mint::r = 0;\n\
-    #line 1 \"numtheory/fastFactorize.cpp\"\n//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\
+    #line 1 \"numtheory/factorize_pollard_rho.cpp\"\n//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\
     \null modmul(ull a, ull b, ull M) {\n\tll ret = a * b - M * ull(1.L / M * a *\
     \ b);\n\treturn ret + M * (ret < 0) - M * (ret >= (ll)M);\n}\n\null modpow(ull\
     \ b, ull e, ull mod) {\n\tull ans = 1;\n\tfor (; e; b = modmul(b, b, mod), e /=\
@@ -154,7 +154,7 @@ data:
     \  }\n\n  cout << chromatic_number(g) << '\\n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n\n\
     #include \"../default/t.cpp\"\n#include \"modint/dynamicMontgomeryModInt.cpp\"\
-    \n#include \"numtheory/fastFactorize.cpp\"\n#include \"combi/chromaticNumber.cpp\"\
+    \n#include \"numtheory/factorize_pollard_rho.cpp\"\n#include \"combi/chromaticNumber.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
     \ m; cin >> n >> m;\n  vector g(n, vector<bool>(n, false));\n  for(int i = 0;\
     \ i < m; i++) {\n    int u, v; cin >> u >> v;\n    g[u][v] = g[v][u] = true;\n\
@@ -162,12 +162,12 @@ data:
   dependsOn:
   - default/t.cpp
   - modint/dynamicMontgomeryModInt.cpp
-  - numtheory/fastFactorize.cpp
+  - numtheory/factorize_pollard_rho.cpp
   - combi/chromaticNumber.cpp
   isVerificationFile: true
   path: test/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2025-02-05 18:06:37+08:00'
+  timestamp: '2025-12-12 18:46:30+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/chromatic_number.test.cpp

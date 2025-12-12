@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"numtheory/primitiveRoot.cpp\"\n//#include \"numtheory/fastFactorize.cpp\"\
+  bundledCode: "#line 1 \"numtheory/primitive_root.cpp\"\n//#include \"numtheory/fastFactorize.cpp\"\
     \n\null primitiveRoot(ull p) {\n  auto fac = factor(p - 1);\n  ranges::sort(fac);\n\
     \  fac.resize(unique(fac.begin(), fac.end()) - fac.begin());\n  auto test = [p,\
     \ fac](ull x) {\n    for(ull d : fac)\n      if (modpow(x, (p - 1) / d, p) ==\
@@ -27,16 +27,16 @@ data:
     }\n"
   dependsOn: []
   isVerificationFile: false
-  path: numtheory/primitiveRoot.cpp
+  path: numtheory/primitive_root.cpp
   requiredBy: []
-  timestamp: '2024-04-05 18:02:52+08:00'
+  timestamp: '2025-12-12 18:41:06+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/primitive_root.test.cpp
-documentation_of: numtheory/primitiveRoot.cpp
+documentation_of: numtheory/primitive_root.cpp
 layout: document
 redirect_from:
-- /library/numtheory/primitiveRoot.cpp
-- /library/numtheory/primitiveRoot.cpp.html
-title: numtheory/primitiveRoot.cpp
+- /library/numtheory/primitive_root.cpp
+- /library/numtheory/primitive_root.cpp.html
+title: numtheory/primitive_root.cpp
 ---

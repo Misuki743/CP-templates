@@ -11,8 +11,8 @@ data:
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   - icon: ':heavy_check_mark:'
-    path: numtheory/sqrtMod.cpp
-    title: numtheory/sqrtMod.cpp
+    path: numtheory/sqrt_mod.cpp
+    title: numtheory/sqrt_mod.cpp
   - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
@@ -255,7 +255,7 @@ data:
     \ { return binom(2 * i, i) - binom(2 * i, i + 1); }\n  Mint excatalan(int n, int\
     \ m, int k) { //(+1) * n, (-1) * m, prefix sum > -k\n    if (k > m) return binom(n\
     \ + m, m);\n    else if (k > m - n) return binom(n + m, m) - binom(n + m, m -\
-    \ k);\n    else return Mint(0);\n  }\n};\n#line 1 \"numtheory/sqrtMod.cpp\"\n\
+    \ k);\n    else return Mint(0);\n  }\n};\n#line 1 \"numtheory/sqrt_mod.cpp\"\n\
     //source: KACTL\n\nll modpow(ll b, ll e, ll p) {\n  ll ans = 1;\n  for(; e; b\
     \ = b * b % p, e /= 2)\n    if (e & 1) ans = ans * b % p;\n  return ans;\n}\n\n\
     ll sqrt(ll a, ll p) {\n\ta %= p; if (a < 0) a += p;\n\tif (a == 0) return 0;\n\
@@ -327,7 +327,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
     \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"\
-    ../combi/binom.cpp\"\n#include \"../numtheory/sqrtMod.cpp\"\n#include \"../poly/sparsePolyope.cpp\"\
+    ../combi/binom.cpp\"\n#include \"../numtheory/sqrt_mod.cpp\"\n#include \"../poly/sparsePolyope.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
     \ k; cin >> n >> k;\n  fps f(n);\n  for(int i = 0; i < k; i++) {\n    int j, val;\
     \ cin >> j >> val;\n    f[j] = val;\n  }\n\n  cout << sparseInv(f, n) << '\\n';\n\
@@ -338,12 +338,12 @@ data:
   - poly/NTTmint.cpp
   - poly/FPS.cpp
   - combi/binom.cpp
-  - numtheory/sqrtMod.cpp
+  - numtheory/sqrt_mod.cpp
   - poly/sparsePolyope.cpp
   isVerificationFile: true
   path: test/inv_of_formal_power_series_sparse.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 19:25:04+08:00'
+  timestamp: '2025-12-12 18:46:30+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/inv_of_formal_power_series_sparse.test.cpp

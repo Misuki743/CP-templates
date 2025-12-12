@@ -5,8 +5,8 @@ data:
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
-    path: numtheory/fastFactorize.cpp
-    title: numtheory/fastFactorize.cpp
+    path: numtheory/factorize_pollard_rho.cpp
+    title: numtheory/factorize_pollard_rho.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -76,7 +76,7 @@ data:
     \ + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1,\
     \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\
     \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
-    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"numtheory/fastFactorize.cpp\"\
+    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"numtheory/factorize_pollard_rho.cpp\"\
     \n//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\null\
     \ modmul(ull a, ull b, ull M) {\n\tll ret = a * b - M * ull(1.L / M * a * b);\n\
     \treturn ret + M * (ret < 0) - M * (ret >= (ll)M);\n}\n\null modpow(ull b, ull\
@@ -100,17 +100,18 @@ data:
     \    auto ans = factor(x);\n    ranges::sort(ans);\n    cout << ssize(ans) <<\
     \ ' ' << ans << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../numtheory/fastFactorize.cpp\"\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin >> q;\n\
-    \  while(q--) {\n    ull x; cin >> x;\n    auto ans = factor(x);\n    ranges::sort(ans);\n\
-    \    cout << ssize(ans) << ' ' << ans << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ \"../default/t.cpp\"\n#include \"../numtheory/factorize_pollard_rho.cpp\"\n\n\
+    signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin\
+    \ >> q;\n  while(q--) {\n    ull x; cin >> x;\n    auto ans = factor(x);\n   \
+    \ ranges::sort(ans);\n    cout << ssize(ans) << ' ' << ans << '\\n';\n  }\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - numtheory/fastFactorize.cpp
+  - numtheory/factorize_pollard_rho.cpp
   isVerificationFile: true
   path: test/factorize.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2025-12-12 18:46:30+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/factorize.test.cpp

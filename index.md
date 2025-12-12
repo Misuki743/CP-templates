@@ -421,32 +421,47 @@ data:
       path: numtheory/crt.cpp
       title: numtheory/crt.cpp
     - icon: ':warning:'
+      path: numtheory/dirichlet_convolution.cpp
+      title: numtheory/dirichlet_convolution.cpp
+    - icon: ':warning:'
       path: numtheory/divisor_enumeration.cpp
       title: numtheory/divisor_enumeration.cpp
     - icon: ':warning:'
       path: numtheory/exgcd.cpp
       title: numtheory/exgcd.cpp
     - icon: ':heavy_check_mark:'
-      path: numtheory/fastFactorize.cpp
-      title: numtheory/fastFactorize.cpp
-    - icon: ':heavy_check_mark:'
-      path: numtheory/floorCeilSum.cpp
-      title: numtheory/floorCeilSum.cpp
+      path: numtheory/factorize_pollard_rho.cpp
+      title: numtheory/factorize_pollard_rho.cpp
     - icon: ':warning:'
-      path: numtheory/linearSieve.cpp
-      title: numtheory/linearSieve.cpp
-    - icon: ':heavy_check_mark:'
-      path: numtheory/primitiveRoot.cpp
-      title: numtheory/primitiveRoot.cpp
+      path: numtheory/factorize_sqrt.cpp
+      title: numtheory/factorize_sqrt.cpp
     - icon: ':warning:'
-      path: numtheory/slowFactorize.cpp
-      title: numtheory/slowFactorize.cpp
-    - icon: ':heavy_check_mark:'
-      path: numtheory/sqrtMod.cpp
-      title: numtheory/sqrtMod.cpp
+      path: numtheory/linear_sieve.cpp
+      title: numtheory/linear_sieve.cpp
     - icon: ':warning:'
-      path: numtheory/sumOfFloorOfLinear.cpp
-      title: numtheory/sumOfFloorOfLinear.cpp
+      path: numtheory/mu_array.cpp
+      title: numtheory/mu_array.cpp
+    - icon: ':warning:'
+      path: numtheory/phi_array.cpp
+      title: numtheory/phi_array.cpp
+    - icon: ':warning:'
+      path: numtheory/primality_array.cpp
+      title: numtheory/primality_array.cpp
+    - icon: ':heavy_check_mark:'
+      path: numtheory/primitive_root.cpp
+      title: numtheory/primitive_root.cpp
+    - icon: ':heavy_check_mark:'
+      path: numtheory/quotient_enumerate.cpp
+      title: numtheory/quotient_enumerate.cpp
+    - icon: ':heavy_check_mark:'
+      path: numtheory/sqrt_mod.cpp
+      title: numtheory/sqrt_mod.cpp
+    - icon: ':warning:'
+      path: numtheory/sum_of_floor_of_linear.cpp
+      title: numtheory/sum_of_floor_of_linear.cpp
+    - icon: ':warning:'
+      path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
+      title: numtheory/zeta_mobius_on_divisibility_lattice.cpp
   - name: poly
     pages:
     - icon: ':heavy_check_mark:'

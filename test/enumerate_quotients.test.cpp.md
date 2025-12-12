@@ -5,8 +5,8 @@ data:
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
-    path: numtheory/floorCeilSum.cpp
-    title: numtheory/floorCeilSum.cpp
+    path: numtheory/quotient_enumerate.cpp
+    title: numtheory/quotient_enumerate.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -77,37 +77,37 @@ data:
     \ + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1,\
     \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\
     \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
-    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"numtheory/floorCeilSum.cpp\"\
-    \n// note: g = floor(x / val) is the greatest value s.t. floor(x / g) = val for\
-    \ floor sum, \n//       g = ceil(x / val) is the least value s.t. ceil(x / g)\
-    \ = val for ceil sum. \n//\ntemplate<class T>\nvector<array<T, 3>> calc_floor(T\
-    \ x) {\n  vector<T> v, rng;\n  for(T i = x; i; ) {\n    T val = x / i;\n    v.emplace_back(val);\n\
-    \    rng.emplace_back(x / val);\n    i = x / (val + 1);\n  }\n  rng.emplace_back(0);\n\
-    \n  vector<array<T, 3>> res;\n  for(int i = 0; i < ssize(v); i++)\n    res.push_back({v[i],\
-    \ rng[i + 1] + 1, rng[i]}); //{q, [l, r]}\n\n  return res;\n}\n\ntemplate<class\
-    \ T>\nvector<array<T, 3>> calc_ceil(T x) {\n  vector<T> v, rng;\n  for(T i = 1;\
-    \ ; ) {\n    T val = (x + i - 1) / i;\n    v.emplace_back(val);\n    rng.emplace_back((x\
-    \ + val - 1) / val);\n    if (val == 1)\n      break;\n    i = (x + val - 2) /\
-    \ (val - 1);\n  }\n  rng.emplace_back(x + 1);\n\n  vector<array<T, 3>> res;\n\
-    \  for(int i = 0; i < ssize(v); i++)\n    res.push_back({v[i], rng[i], rng[i +\
-    \ 1] - 1}); //{q, [l, r]}\n\n  return res;\n}\n#line 5 \"test/enumerate_quotients.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  ll n;\
-    \ cin >> n;\n  auto tmp = calc_floor(n);\n  cout << ssize(tmp) << '\\n';\n  for(auto\
-    \ [x, _, __] : tmp)\n    cout << x << ' ';\n  cout << '\\n';\n\n  return 0;\n\
-    }\n"
+    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"numtheory/quotient_enumerate.cpp\"\
+    \nauto quotient_floor_enumerate(int64_t x) {\n  using i64 = int64_t;\n  vector<i64>\
+    \ v, s;\n  v.reserve(2 * (sqrt(x) + 32));\n  s.reserve(2 * (sqrt(x) + 32));\n\
+    \  for(i64 i = x; i; ) {\n    v.emplace_back(x / i);\n    s.emplace_back(x / v.back()\
+    \ + 1);\n    i = x / (v.back() + 1);\n  }\n  s.emplace_back(1);\n\n  struct Data\
+    \ { int64_t quotient, l, r; };\n  vector<Data> res(size(v));\n  for(int i = 0;\
+    \ i < ssize(v); i++)\n    res[i] = Data{v[i], s[i + 1], s[i]};\n\n  return res;\n\
+    }\n\nauto quotient_ceil_enumerate(int64_t x) {\n  using i64 = int64_t;\n  vector<i64>\
+    \ v, s;\n  v.reserve(2 * (sqrt(x) + 32));\n  s.reserve(2 * (sqrt(x) + 32));\n\
+    \  for(i64 i = 1; ;) {\n    v.emplace_back((x + i - 1) / i);\n    s.emplace_back((x\
+    \ + v.back() - 1) / v.back());\n    if (v.back() == 1) break;\n    i = (x + v.back()\
+    \ - 2) / (v.back() - 1);\n  }\n  s.emplace_back(x + 1);\n\n  struct Data { int64_t\
+    \ quotient, l, r; };\n  vector<Data> res(size(v));\n  for(int i = 0; i < ssize(v);\
+    \ i++)\n    res[i] = Data{v[i], s[i], s[i + 1]};\n\n  return res;\n}\n#line 5\
+    \ \"test/enumerate_quotients.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  ll n; cin >> n;\n  auto tmp = quotient_floor_enumerate(n);\n\
+    \  cout << ssize(tmp) << '\\n';\n  for(auto [x, _, __] : tmp)\n    cout << x <<\
+    \ ' ';\n  cout << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
-    \n#include \"../default/t.cpp\"\n#include \"../numtheory/floorCeilSum.cpp\"\n\n\
-    signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  ll n; cin\
-    \ >> n;\n  auto tmp = calc_floor(n);\n  cout << ssize(tmp) << '\\n';\n  for(auto\
-    \ [x, _, __] : tmp)\n    cout << x << ' ';\n  cout << '\\n';\n\n  return 0;\n\
-    }\n"
+    \n#include \"../default/t.cpp\"\n#include \"../numtheory/quotient_enumerate.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  ll n;\
+    \ cin >> n;\n  auto tmp = quotient_floor_enumerate(n);\n  cout << ssize(tmp) <<\
+    \ '\\n';\n  for(auto [x, _, __] : tmp)\n    cout << x << ' ';\n  cout << '\\n';\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - numtheory/floorCeilSum.cpp
+  - numtheory/quotient_enumerate.cpp
   isVerificationFile: true
   path: test/enumerate_quotients.test.cpp
   requiredBy: []
-  timestamp: '2024-07-28 21:04:51+08:00'
+  timestamp: '2025-12-12 18:46:30+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/enumerate_quotients.test.cpp

@@ -21,7 +21,7 @@ data:
   attributes:
     links:
     - https://github.com/kth-competitive-programming/kactl)
-  bundledCode: "#line 1 \"numtheory/fastFactorize.cpp\"\n//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\
+  bundledCode: "#line 1 \"numtheory/factorize_pollard_rho.cpp\"\n//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\
     \null modmul(ull a, ull b, ull M) {\n\tll ret = a * b - M * ull(1.L / M * a *\
     \ b);\n\treturn ret + M * (ret < 0) - M * (ret >= (ll)M);\n}\n\null modpow(ull\
     \ b, ull e, ull mod) {\n\tull ans = 1;\n\tfor (; e; b = modmul(b, b, mod), e /=\
@@ -61,19 +61,19 @@ data:
     \treturn l;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: numtheory/fastFactorize.cpp
+  path: numtheory/factorize_pollard_rho.cpp
   requiredBy: []
-  timestamp: '2024-01-23 02:14:10+08:00'
+  timestamp: '2025-12-12 18:41:06+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/chromatic_number.test.cpp
   - test/primality_test.test.cpp
   - test/primitive_root.test.cpp
   - test/factorize.test.cpp
-documentation_of: numtheory/fastFactorize.cpp
+documentation_of: numtheory/factorize_pollard_rho.cpp
 layout: document
 redirect_from:
-- /library/numtheory/fastFactorize.cpp
-- /library/numtheory/fastFactorize.cpp.html
-title: numtheory/fastFactorize.cpp
+- /library/numtheory/factorize_pollard_rho.cpp
+- /library/numtheory/factorize_pollard_rho.cpp.html
+title: numtheory/factorize_pollard_rho.cpp
 ---
