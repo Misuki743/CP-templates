@@ -6,5 +6,5 @@ struct actedMonoid_addMin {
   using T = U;
   static T Tid() { return T(0); }
   static T Top(const T &a, const T &b) { return a + b; }
-  static M act(const M &a, const T &b) { return a + b; }
+  static M act(const M &a, const T &b) { return a == Mid() ? Mid() : a + b; }
 };
