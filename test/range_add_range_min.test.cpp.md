@@ -139,7 +139,7 @@ data:
     \ { return numeric_limits<T>::max(); }\n  static M Mop(const M &a, const M &b)\
     \ { return min(a, b); }\n  using T = U;\n  static T Tid() { return T(0); }\n \
     \ static T Top(const T &a, const T &b) { return a + b; }\n  static M act(const\
-    \ M &a, const T &b) { return a + b; }\n};\n#line 7 \"test/range_add_range_min.test.cpp\"\
+    \ M &a, const T &b) { return a == Mid() ? Mid() : a + b; }\n};\n#line 7 \"test/range_add_range_min.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
     \ q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x : a) cin >> x;\n  ultraLazySegmentTree<actedMonoid_addMin<ll>>\
     \ st(a);\n\n  while(q--) {\n    int op, l, r; cin >> op >> l >> r;\n    if (op\
@@ -161,7 +161,7 @@ data:
   isVerificationFile: true
   path: test/range_add_range_min.test.cpp
   requiredBy: []
-  timestamp: '2025-10-18 17:53:25+08:00'
+  timestamp: '2025-12-26 22:59:41+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/range_add_range_min.test.cpp
