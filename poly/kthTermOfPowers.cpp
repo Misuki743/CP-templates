@@ -2,7 +2,7 @@
 //#include "poly/NTTmint.cpp"
 //#include "poly/FPS.cpp"
 
-//compute [x^k]f(x)^i for all i in [0, n) in O(klg^2k)
+//compute [x^k]f(x)g(x)^i for all i in [0, n) in O(klg^2k)
 //reference: https://noshi91.hatenablog.com/entry/2024/03/16/224034
 template<class Mint>
 FPS<Mint> kthTermOfPowers(int k, int n, FPS<Mint> g, FPS<Mint> f = FPS<Mint>(1, 1)) {

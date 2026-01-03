@@ -1,15 +1,7 @@
 //source: KACTL
+//#include<ttt.cpp>
 
-#define rep(i, a, b) for(int i = a; i < (b); ++i)
-#define all(x) begin(x), end(x)
-#define sz(x) (int)(x).size()
-typedef vector<int> vi;
-using vl = vector<ll>;
-
-const ll mod = (119 << 23) + 1, root = 62; // = 998244353
-// For p < 2^30 there is also e.g. 5 << 25, 7 << 26, 479 << 21
-// and 483 << 21 (same root). The last two are > 10^9.
-
+template<ll mod = 998'244'353>
 ll modpow(ll b, ll e) {
 	ll ans = 1;
 	for (; e; b = b * b % mod, e /= 2)
@@ -52,12 +44,13 @@ ll sqrt(ll a, ll p) {
 }
 
 typedef vector<ll> vl;
+template<ll mod = 998'244'353, ll root = 3>
 void ntt(vl &a) {
 	int n = sz(a), L = 31 - __builtin_clz(n);
 	static vl rt(2, 1);
 	for (static int k = 2, s = 2; k < n; k *= 2, s++) {
 		rt.resize(n);
-		ll z[] = {1, modpow(root, mod >> s)};
+		ll z[] = {1, modpow<mod>(root, mod >> s)};
 		rep(i,k,2*k) rt[i] = rt[i / 2] * z[i & 1] % mod;
 	}
 	vi rev(n);
@@ -70,17 +63,47 @@ void ntt(vl &a) {
 			ai += (ai + z >= mod ? z - mod : z);
 		}
 }
+template<ll mod = 998'244'353, ll root = 3>
 vl conv(const vl &a, const vl &b) {
 	if (a.empty() || b.empty()) return {};
 	int s = sz(a) + sz(b) - 1, B = 32 - __builtin_clz(s), n = 1 << B;
-	int inv = modpow(n, mod - 2);
+	int inv = modpow<mod>(n, mod - 2);
 	vl L(a), R(b), out(n);
 	L.resize(n), R.resize(n);
-	ntt(L), ntt(R);
+	ntt<mod, root>(L), ntt<mod, root>(R);
 	rep(i,0,n) out[-i & (n - 1)] = (ll)L[i] * R[i] % mod * inv % mod;
-	ntt(out);
+	ntt<mod, root>(out);
 	return {out.begin(), out.begin() + s};
 }
+
+vl conv_any_mod(const vl &a, const vl &b, const ll MOD) {
+  constexpr ll mod[3] = {998'244'353, 469'762'049, 167'772'161};
+  vector A(3, a), B(3, b);
+  for(int i = 0; i < 3; i++) {
+    for(ll &x : A[i]) x %= mod[i];
+    for(ll &x : B[i]) x %= mod[i];
+  }
+  A[0] = conv<mod[0], 3>(A[0], B[0]);
+  A[1] = conv<mod[1], 3>(A[1], B[1]);
+  A[2] = conv<mod[2], 3>(A[2], B[2]);
+  vl res(ssize(A[0]));
+  const ll im0 = modpow<mod[1]>(mod[0] % mod[1], mod[1] - 2);
+  const ll im1 = modpow<mod[2]>(mod[1] % mod[2], mod[2] - 2);
+  const ll im0m1 = im1 * modpow<mod[2]>(mod[0] % mod[2], mod[2] - 2) % mod[2];
+  const ll m0 = mod[0] % MOD, m0m1 = m0 * mod[1] % MOD;
+  for(int i = 0; i < ssize(res); i++) {
+    ll y0 = A[0][i];
+    ll y1 = ((A[1][i] - y0) % mod[1] + mod[1]) % mod[1] * im0 % mod[1];
+    ll y2 = ((A[2][i] - y0) % mod[2] + mod[2]) % mod[2] * im0m1 % mod[2] - im1 * y1 % mod[2];
+    y2 = (y2 + mod[2]) % mod[2];
+    res[i] = y0 + m0 * y1 % MOD + m0m1 * y2 % MOD;
+    res[i] %= MOD;
+  }
+
+  return res;
+}
+
+const ll mod = 998'244'353;
 
 vl inv(vl v, int k) {
   assert(!v.empty() and v[0] != 0);
