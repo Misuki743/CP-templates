@@ -242,7 +242,7 @@ data:
     \ vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\nfunction<void(vector<mint>&,\
     \ bool)> fps::dft = ntt.ntt;\n#line 1 \"poly/kthTermOfPowers.cpp\"\n//#include\
     \ \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\n//#include\
-    \ \"poly/FPS.cpp\"\n\n//compute [x^k]f(x)^i for all i in [0, n) in O(klg^2k)\n\
+    \ \"poly/FPS.cpp\"\n\n//compute [x^k]f(x)g(x)^i for all i in [0, n) in O(klg^2k)\n\
     //reference: https://noshi91.hatenablog.com/entry/2024/03/16/224034\ntemplate<class\
     \ Mint>\nFPS<Mint> kthTermOfPowers(int k, int n, FPS<Mint> g, FPS<Mint> f = FPS<Mint>(1,\
     \ 1)) {\n  assert(g[0] == 0);\n  auto remap = [](FPS<Mint> f, int x0, int x1)\
@@ -295,7 +295,7 @@ data:
   isVerificationFile: true
   path: test/compositional_inverse_of_formal_power_series_large.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 19:25:04+08:00'
+  timestamp: '2026-01-03 23:17:25+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/compositional_inverse_of_formal_power_series_large.test.cpp

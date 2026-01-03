@@ -13,7 +13,7 @@ data:
     links:
     - https://noshi91.hatenablog.com/entry/2024/03/16/224034
   bundledCode: "#line 1 \"poly/kthTermOfPowers.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
-    \n//#include \"poly/NTTmint.cpp\"\n//#include \"poly/FPS.cpp\"\n\n//compute [x^k]f(x)^i\
+    \n//#include \"poly/NTTmint.cpp\"\n//#include \"poly/FPS.cpp\"\n\n//compute [x^k]f(x)g(x)^i\
     \ for all i in [0, n) in O(klg^2k)\n//reference: https://noshi91.hatenablog.com/entry/2024/03/16/224034\n\
     template<class Mint>\nFPS<Mint> kthTermOfPowers(int k, int n, FPS<Mint> g, FPS<Mint>\
     \ f = FPS<Mint>(1, 1)) {\n  assert(g[0] == 0);\n  auto remap = [](FPS<Mint> f,\
@@ -38,8 +38,8 @@ data:
     \ = V[y * x0 + x];\n    P.swap(UU), Q.swap(VV);\n    k /= 2;\n  }\n\n  FPS<Mint>\
     \ res = P * Q.inv(n);\n  res.resize(n);\n\n  return res;\n}\n"
   code: "//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\
-    \n//#include \"poly/FPS.cpp\"\n\n//compute [x^k]f(x)^i for all i in [0, n) in\
-    \ O(klg^2k)\n//reference: https://noshi91.hatenablog.com/entry/2024/03/16/224034\n\
+    \n//#include \"poly/FPS.cpp\"\n\n//compute [x^k]f(x)g(x)^i for all i in [0, n)\
+    \ in O(klg^2k)\n//reference: https://noshi91.hatenablog.com/entry/2024/03/16/224034\n\
     template<class Mint>\nFPS<Mint> kthTermOfPowers(int k, int n, FPS<Mint> g, FPS<Mint>\
     \ f = FPS<Mint>(1, 1)) {\n  assert(g[0] == 0);\n  auto remap = [](FPS<Mint> f,\
     \ int x0, int x1) -> FPS<Mint> {\n    int y0 = (ssize(f) + x0 - 1) / x0;\n   \
@@ -66,7 +66,7 @@ data:
   isVerificationFile: false
   path: poly/kthTermOfPowers.cpp
   requiredBy: []
-  timestamp: '2024-03-22 01:43:37+08:00'
+  timestamp: '2026-01-03 23:17:25+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/compositional_inverse_of_formal_power_series_large.test.cpp

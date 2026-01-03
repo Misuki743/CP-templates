@@ -371,6 +371,9 @@ data:
       path: icpc/multieval_and_interpolate.cpp
       title: icpc/multieval_and_interpolate.cpp
     - icon: ':warning:'
+      path: icpc/polyope.cpp
+      title: icpc/polyope.cpp
+    - icon: ':warning:'
       path: icpc/short_lca.cpp
       title: icpc/short_lca.cpp
     - icon: ':warning:'
@@ -509,9 +512,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/mulConvolution.cpp
       title: mulConvolution
-    - icon: ':warning:'
-      path: poly/polyope.cpp
-      title: poly/polyope.cpp
     - icon: ':warning:'
       path: poly/pref_suf_prod_eval.cpp
       title: poly/pref_suf_prod_eval.cpp
