@@ -7,19 +7,19 @@ struct fast_set {
 
   fast_set(u64 _sz) : sz(_sz) {
     do {
-      data.pb(vector<u64>(ceilDiv(_sz, B)));
+      data.push_back(vector<u64>(ceilDiv(_sz, B)));
       _sz = ceilDiv(_sz, B);
     } while(_sz > 1);
   }
 
   fast_set(string s) : sz(ssize(s)) {
     u64 _sz = sz;
-    data.pb(vector<u64>(ceilDiv(_sz, B)));
+    data.push_back(vector<u64>(ceilDiv(_sz, B)));
     for(i64 i = 0; i < ssize(s); i++)
       data[0][i / B] |= u64(s[i] - '0') << (i % B);
-    _sz /= B;
+    _sz = ceilDiv(_sz, B);
     while(_sz > 1) {
-      data.pb(vector<u64>(ceilDiv(_sz, B)));
+      data.push_back(vector<u64>(ceilDiv(_sz, B)));
       for(u64 i = 0; i < _sz; i++)
         data.back()[i / B] |= u64(!!end(data)[-2][i]) << (i % B);
       _sz = ceilDiv(_sz, B);
