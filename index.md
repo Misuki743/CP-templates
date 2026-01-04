@@ -146,7 +146,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastJump.cpp
       title: ds/fastJump.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/fast_set.cpp
       title: ds/fast_set.cpp
     - icon: ':heavy_check_mark:'
@@ -830,6 +830,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/pow_of_matrix.test.cpp
       title: test/pow_of_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/predecessor_problem.test.cpp
+      title: test/predecessor_problem.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/primality_test.test.cpp
       title: test/primality_test.test.cpp

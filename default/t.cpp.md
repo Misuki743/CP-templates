@@ -232,6 +232,9 @@ data:
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/predecessor_problem.test.cpp
+    title: test/predecessor_problem.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/primality_test.test.cpp
     title: test/primality_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -606,6 +609,7 @@ data:
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/bipartitematching.test.cpp
   - test/two_sat.test.cpp
+  - test/predecessor_problem.test.cpp
   - test/minimum_spanning_tree.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
   - test/longest_common_substring.test.cpp
