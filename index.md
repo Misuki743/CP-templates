@@ -146,6 +146,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastJump.cpp
       title: ds/fastJump.cpp
+    - icon: ':warning:'
+      path: ds/fast_set.cpp
+      title: ds/fast_set.cpp
     - icon: ':heavy_check_mark:'
       path: ds/fenwickTree.cpp
       title: ds/fenwickTree.cpp
