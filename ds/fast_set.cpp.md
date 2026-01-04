@@ -31,9 +31,8 @@ data:
     \ x) {\n    if (x < 0) return -1;\n    chmin(x, sz - 1);\n    for(int i = 0; i\
     \ < ssize(data) and x >= 0; i++, x = x / (int)B - 1) {\n      if (data[i][x /\
     \ B] << (B - 1 - x % B)) {\n        int y = x;\n        for(int j = i; j >= 0;\
-    \ j--) {\n          y = (y - countl_zero(data[j][y / B] << (B - 1 - y % B))) *\
-    \ B + (B - 1);\n          dbg(y);\n        }\n        return y / B;\n      }\n\
-    \    }\n    return -1;\n  }\n};\n"
+    \ j--)\n          y = (y - countl_zero(data[j][y / B] << (B - 1 - y % B))) * B\
+    \ + (B - 1);\n        return y / B;\n      }\n    }\n    return -1;\n  }\n};\n"
   code: "struct fast_set {\n  using u64 = uint64_t;\n  static constexpr u64 B = 64;\n\
     \  int sz;\n  vector<vector<u64>> data;\n\n  fast_set(u64 _sz) : sz(_sz) {\n \
     \   do {\n      data.pb(vector<u64>(ceilDiv(_sz, B)));\n      _sz = ceilDiv(_sz,\
@@ -57,14 +56,13 @@ data:
     \ x) {\n    if (x < 0) return -1;\n    chmin(x, sz - 1);\n    for(int i = 0; i\
     \ < ssize(data) and x >= 0; i++, x = x / (int)B - 1) {\n      if (data[i][x /\
     \ B] << (B - 1 - x % B)) {\n        int y = x;\n        for(int j = i; j >= 0;\
-    \ j--) {\n          y = (y - countl_zero(data[j][y / B] << (B - 1 - y % B))) *\
-    \ B + (B - 1);\n          dbg(y);\n        }\n        return y / B;\n      }\n\
-    \    }\n    return -1;\n  }\n};\n"
+    \ j--)\n          y = (y - countl_zero(data[j][y / B] << (B - 1 - y % B))) * B\
+    \ + (B - 1);\n        return y / B;\n      }\n    }\n    return -1;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/fast_set.cpp
   requiredBy: []
-  timestamp: '2026-01-05 01:21:46+08:00'
+  timestamp: '2026-01-05 01:33:59+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/fast_set.cpp
