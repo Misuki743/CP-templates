@@ -63,10 +63,8 @@ struct fast_set {
     for(int i = 0; i < ssize(data) and x >= 0; i++, x = x / (int)B - 1) {
       if (data[i][x / B] << (B - 1 - x % B)) {
         int y = x;
-        for(int j = i; j >= 0; j--) {
+        for(int j = i; j >= 0; j--)
           y = (y - countl_zero(data[j][y / B] << (B - 1 - y % B))) * B + (B - 1);
-          dbg(y);
-        }
         return y / B;
       }
     }
