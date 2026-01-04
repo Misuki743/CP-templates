@@ -75,6 +75,7 @@
 "test/pow_of_formal_power_series.test.cpp": "2025-01-16 19:25:04 +0800",
 "test/pow_of_formal_power_series_sparse.test.cpp": "2025-12-12 18:46:30 +0800",
 "test/pow_of_matrix.test.cpp": "2025-03-10 04:06:44 +0800",
+"test/predecessor_problem.test.cpp": "2026-01-05 02:29:00 +0800",
 "test/primality_test.test.cpp": "2025-12-12 18:46:30 +0800",
 "test/primitive_root.test.cpp": "2025-12-12 18:46:30 +0800",
 "test/product_of_polynomial_sequence.test.cpp": "2025-01-16 19:25:04 +0800",
