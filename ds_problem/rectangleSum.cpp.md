@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/rectangle_sum.test.cpp
     title: test/rectangle_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds_problem/rectangleSum.cpp\"\n//#include<ds/fenwickTree.cpp>\n\
@@ -46,7 +46,7 @@ data:
   path: ds_problem/rectangleSum.cpp
   requiredBy: []
   timestamp: '2024-08-04 01:36:11+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/rectangle_sum.test.cpp
 documentation_of: ds_problem/rectangleSum.cpp

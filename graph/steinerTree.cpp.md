@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/minimum_steiner_tree.test.cpp
     title: test/minimum_steiner_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/steinerTree.cpp\"\ntemplate<class T>\npair<T, vector<int>>\
@@ -70,7 +70,7 @@ data:
   path: graph/steinerTree.cpp
   requiredBy: []
   timestamp: '2025-11-14 17:40:41+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/minimum_steiner_tree.test.cpp
 documentation_of: graph/steinerTree.cpp

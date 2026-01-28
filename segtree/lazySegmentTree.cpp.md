@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_add_range_min.test.cpp
     title: test/range_add_range_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segtree/lazySegmentTree.cpp\"\ntemplate<class M, M(*Mid)(),\
@@ -115,7 +115,7 @@ data:
   path: segtree/lazySegmentTree.cpp
   requiredBy: []
   timestamp: '2024-08-31 23:11:05+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/area_of_union_of_rectangles.test.cpp
   - test/range_affine_range_sum.test.cpp

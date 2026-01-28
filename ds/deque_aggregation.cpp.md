@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/deque_operate_all_composite.test.cpp
     title: test/deque_operate_all_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/deque_aggregation.cpp\"\ntemplate<class M, M(*id)(),\
@@ -52,7 +52,7 @@ data:
   path: ds/deque_aggregation.cpp
   requiredBy: []
   timestamp: '2025-09-11 20:23:07+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/deque_operate_all_composite.test.cpp
 documentation_of: ds/deque_aggregation.cpp

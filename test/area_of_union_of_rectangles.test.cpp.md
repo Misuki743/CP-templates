@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: actedmonoid/actedMonoid_addMinCnt.cpp
     title: actedmonoid/actedMonoid_addMinCnt.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: ds_problem/area_of_union_of_rectangles.cpp
     title: ds_problem/area_of_union_of_rectangles.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segtree/ultraLazySegmentTree.cpp
     title: segtree/ultraLazySegmentTree.cpp
   _extendedRequiredBy: []
@@ -42,7 +42,7 @@ data:
     \ <bit>\n#include <compare>\n#include <concepts>\n#include <numbers>\n#include\
     \ <ranges>\n#include <span>\n\n#define INT128_MAX (__int128)(((unsigned __int128)\
     \ 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX\
-    \ - 1)\n\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
+    \ - 1)\n\n#define pb push_back\n#define eb emplace_back\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\ntemplate<class T1, class T2>\nostream& operator<<(ostream&\
     \ os, const pair<T1, T2> pr) {\n  return os << pr.first << ' ' << pr.second;\n\
     }\ntemplate<class T, size_t N>\nostream& operator<<(ostream& os, const array<T,\
@@ -65,9 +65,9 @@ data:
     \ntemplate<typename T> using min_heap = priority_queue<T, vector<T>, greater<T>>;\n\
     template<typename T> using max_heap = priority_queue<T>;\n\ntemplate<ranges::forward_range\
     \ rng, class T = ranges::range_value_t<rng>, class OP = plus<T>>\nvoid pSum(rng\
-    \ &v) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n \
-    \     x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>,\
-    \ class OP>\nvoid pSum(rng &v, OP op) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ &&v) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n\
+    \      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>,\
+    \ class OP>\nvoid pSum(rng &&v, OP op) {\n  if (!v.empty())\n    for(T p = v[0];\
     \ T &x : v | views::drop(1))\n      x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range\
     \ rng>\nvoid Unique(rng &v) {\n  ranges::sort(v);\n  v.resize(unique(v.begin(),\
     \ v.end()) - v.begin());\n}\n\ntemplate<ranges::random_access_range rng>\nrng\
@@ -75,22 +75,26 @@ data:
     \ = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range rng, ranges::random_access_range\
     \ rng2>\nrng Permute(rng v, rng2 p) {\n  rng ret = v;\n  for(int i = 0; i < ssize(p);\
     \ i++)\n    ret[p[i]] = v[i];\n  return ret;\n}\n\ntemplate<bool directed>\nvector<vector<int>>\
-    \ readGraph(int n, int m, int base) {\n  vector<vector<int>> g(n);\n  for(int\
+    \ read_graph(int n, int m, int base) {\n  vector<vector<int>> g(n);\n  for(int\
     \ i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -= base, v -= base;\n\
     \    g[u].emplace_back(v);\n    if constexpr (!directed)\n      g[v].emplace_back(u);\n\
-    \  }\n  return g;\n}\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x)\
-    \ {\n  msk = (msk & ~(T(1) << bit)) | (T(x) << bit);\n}\ntemplate<class T> void\
-    \ flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T\
-    \ msk, int bit) { return msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T\
-    \ a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b\
-    \ + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1,\
-    \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\
-    \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
-    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"segtree/lazySegmentTree.cpp\"\
-    \ntemplate<class M, M(*Mid)(), M(*Mop)(const M&, const M&), class T, T(*Tid)(),\
-    \ T(*Top)(const T&, const T&), M(*act)(const M&, const T&)>\nstruct lazySegmentTree\
-    \ {\n  int size;\n  vector<M> data;\n  vector<T> tag;\n\n  lazySegmentTree(int\
-    \ _size) : size(_size), data(2 * size, Mid()), tag(size, Tid()) {}\n\n  lazySegmentTree(vector<M>\
+    \  }\n  return g;\n}\n\ntemplate<bool directed>\nvector<vector<int>> adjacency_list(int\
+    \ n, vector<pii> e, int base) {\n  vector<vector<int>> g(n);\n  for(auto [u, v]\
+    \ : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
+    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
+    \ T>\nvoid setBit(T &msk, int bit, bool x) {\n  msk = (msk & ~(T(1) << bit)) |\
+    \ (T(x) << bit);\n}\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^=\
+    \ T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return msk >>\
+    \ bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *=\
+    \ -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"segtree/lazySegmentTree.cpp\"\ntemplate<class\
+    \ M, M(*Mid)(), M(*Mop)(const M&, const M&), class T, T(*Tid)(), T(*Top)(const\
+    \ T&, const T&), M(*act)(const M&, const T&)>\nstruct lazySegmentTree {\n  int\
+    \ size;\n  vector<M> data;\n  vector<T> tag;\n\n  lazySegmentTree(int _size) :\
+    \ size(_size), data(2 * size, Mid()), tag(size, Tid()) {}\n\n  lazySegmentTree(vector<M>\
     \ init) : size(ssize(init)), data(2 * size, Mid()), tag(size, Tid()) {\n    ranges::copy(init,\
     \ data.begin() + size);\n    for(int i = size - 1; i > 0; i--)\n      data[i]\
     \ = Mop(data[i << 1], data[i << 1 | 1]);\n  }\n\n  void apply(int i, T x) {\n\
@@ -185,7 +189,7 @@ data:
   isVerificationFile: true
   path: test/area_of_union_of_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2024-08-31 23:11:05+08:00'
+  timestamp: '2026-01-29 02:59:39+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/area_of_union_of_rectangles.test.cpp

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fenwickTree2D.cpp
     title: ds/fenwickTree2D.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds_problem/rectangleAddPointGet.cpp
     title: ds_problem/rectangleAddPointGet.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: misc/compression.cpp
     title: compression
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_add_point_get
@@ -39,32 +39,32 @@ data:
     \ <compare>\n#include <concepts>\n#include <numbers>\n#include <ranges>\n#include\
     \ <span>\n\n#define INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128)\
     \ * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX - 1)\n\n#define\
-    \ clock chrono::steady_clock::now().time_since_epoch().count()\n\nusing namespace\
-    \ std;\n\ntemplate<class T1, class T2>\nostream& operator<<(ostream& os, const\
-    \ pair<T1, T2> pr) {\n  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class\
-    \ T, size_t N>\nostream& operator<<(ostream& os, const array<T, N> &arr) {\n \
-    \ for(size_t i = 0; T x : arr) {\n    os << x;\n    if (++i != N) os << ' ';\n\
-    \  }\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const\
-    \ vector<T> &vec) {\n  for(size_t i = 0; T x : vec) {\n    os << x;\n    if (++i\
-    \ != size(vec)) os << ' ';\n  }\n  return os;\n}\ntemplate<class T>\nostream&\
-    \ operator<<(ostream& os, const set<T> &s) {\n  for(size_t i = 0; T x : s) {\n\
-    \    os << x;\n    if (++i != size(s)) os << ' ';\n  }\n  return os;\n}\ntemplate<class\
-    \ T1, class T2>\nostream& operator<<(ostream& os, const map<T1, T2> &m) {\n  for(size_t\
-    \ i = 0; pair<T1, T2> x : m) {\n    os << x;\n    if (++i != size(m)) os << '\
-    \ ';\n  }\n  return os;\n}\n\n#ifdef DEBUG\n#define dbg(...) cerr << '(', _do(#__VA_ARGS__),\
-    \ cerr << \") = \", _do2(__VA_ARGS__)\ntemplate<typename T> void _do(T &&x) {\
-    \ cerr << x; }\ntemplate<typename T, typename ...S> void _do(T &&x, S&&...y) {\
-    \ cerr << x << \", \"; _do(y...); }\ntemplate<typename T> void _do2(T &&x) { cerr\
-    \ << x << endl; }\ntemplate<typename T, typename ...S> void _do2(T &&x, S&&...y)\
-    \ { cerr << x << \", \"; _do2(y...); }\n#else\n#define dbg(...)\n#endif\n\nusing\
-    \ ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
-    using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\ntemplate<typename T>\
-    \ using min_heap = priority_queue<T, vector<T>, greater<T>>;\ntemplate<typename\
-    \ T> using max_heap = priority_queue<T>;\n\ntemplate<ranges::forward_range rng,\
-    \ class T = ranges::range_value_t<rng>, class OP = plus<T>>\nvoid pSum(rng &v)\
-    \ {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n     \
-    \ x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>,\
-    \ class OP>\nvoid pSum(rng &v, OP op) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ pb push_back\n#define eb emplace_back\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
+    \nusing namespace std;\n\ntemplate<class T1, class T2>\nostream& operator<<(ostream&\
+    \ os, const pair<T1, T2> pr) {\n  return os << pr.first << ' ' << pr.second;\n\
+    }\ntemplate<class T, size_t N>\nostream& operator<<(ostream& os, const array<T,\
+    \ N> &arr) {\n  for(size_t i = 0; T x : arr) {\n    os << x;\n    if (++i != N)\
+    \ os << ' ';\n  }\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
+    \ os, const vector<T> &vec) {\n  for(size_t i = 0; T x : vec) {\n    os << x;\n\
+    \    if (++i != size(vec)) os << ' ';\n  }\n  return os;\n}\ntemplate<class T>\n\
+    ostream& operator<<(ostream& os, const set<T> &s) {\n  for(size_t i = 0; T x :\
+    \ s) {\n    os << x;\n    if (++i != size(s)) os << ' ';\n  }\n  return os;\n\
+    }\ntemplate<class T1, class T2>\nostream& operator<<(ostream& os, const map<T1,\
+    \ T2> &m) {\n  for(size_t i = 0; pair<T1, T2> x : m) {\n    os << x;\n    if (++i\
+    \ != size(m)) os << ' ';\n  }\n  return os;\n}\n\n#ifdef DEBUG\n#define dbg(...)\
+    \ cerr << '(', _do(#__VA_ARGS__), cerr << \") = \", _do2(__VA_ARGS__)\ntemplate<typename\
+    \ T> void _do(T &&x) { cerr << x; }\ntemplate<typename T, typename ...S> void\
+    \ _do(T &&x, S&&...y) { cerr << x << \", \"; _do(y...); }\ntemplate<typename T>\
+    \ void _do2(T &&x) { cerr << x << endl; }\ntemplate<typename T, typename ...S>\
+    \ void _do2(T &&x, S&&...y) { cerr << x << \", \"; _do2(y...); }\n#else\n#define\
+    \ dbg(...)\n#endif\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
+    using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
+    \ntemplate<typename T> using min_heap = priority_queue<T, vector<T>, greater<T>>;\n\
+    template<typename T> using max_heap = priority_queue<T>;\n\ntemplate<ranges::forward_range\
+    \ rng, class T = ranges::range_value_t<rng>, class OP = plus<T>>\nvoid pSum(rng\
+    \ &&v) {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n\
+    \      x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>,\
+    \ class OP>\nvoid pSum(rng &&v, OP op) {\n  if (!v.empty())\n    for(T p = v[0];\
     \ T &x : v | views::drop(1))\n      x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range\
     \ rng>\nvoid Unique(rng &v) {\n  ranges::sort(v);\n  v.resize(unique(v.begin(),\
     \ v.end()) - v.begin());\n}\n\ntemplate<ranges::random_access_range rng>\nrng\
@@ -72,47 +72,51 @@ data:
     \ = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range rng, ranges::random_access_range\
     \ rng2>\nrng Permute(rng v, rng2 p) {\n  rng ret = v;\n  for(int i = 0; i < ssize(p);\
     \ i++)\n    ret[p[i]] = v[i];\n  return ret;\n}\n\ntemplate<bool directed>\nvector<vector<int>>\
-    \ readGraph(int n, int m, int base) {\n  vector<vector<int>> g(n);\n  for(int\
+    \ read_graph(int n, int m, int base) {\n  vector<vector<int>> g(n);\n  for(int\
     \ i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -= base, v -= base;\n\
     \    g[u].emplace_back(v);\n    if constexpr (!directed)\n      g[v].emplace_back(u);\n\
-    \  }\n  return g;\n}\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x)\
-    \ {\n  msk = (msk & ~(T(1) << bit)) | (T(x) << bit);\n}\ntemplate<class T> void\
-    \ flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T\
-    \ msk, int bit) { return msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T\
-    \ a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b\
-    \ + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1,\
-    \ b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T>\
-    \ bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool\
-    \ chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n#line 1 \"ds/fenwickTree2D.cpp\"\
-    \n//source: KACTL\n\n/**\n * Author: Lukas Polacek\n * Date: 2009-10-30\n * License:\
-    \ CC0\n * Source: folklore/TopCoder\n * Description: Computes partial sums a[0]\
-    \ + a[1] + ... + a[pos - 1], and updates single elements a[i],\n * taking the\
-    \ difference between the old and new value.\n * Time: Both operations are $O(\\\
-    log N)$.\n * Status: Stress-tested\n */\ntemplate<class T>\nstruct FT {\n\tvector<T>\
-    \ s;\n\tFT(int n) : s(n) {}\n\tvoid update(int pos, T dif) { // a[pos] += dif\n\
-    \t\tfor (; pos < ssize(s); pos |= pos + 1) s[pos] += dif;\n\t}\n\tT query(int\
-    \ pos) { // sum of values in [0, pos)\n\t\tT res = 0;\n\t\tfor (; pos > 0; pos\
-    \ &= pos - 1) res += s[pos-1];\n\t\treturn res;\n\t}\n\tint lower_bound(T sum)\
-    \ {// min pos st sum of [0, pos] >= sum\n\t\t// Returns n if no sum is >= sum,\
-    \ or -1 if empty sum is.\n\t\tif (sum <= 0) return -1;\n\t\tint pos = 0;\n\t\t\
-    for (int pw = 1 << 25; pw; pw >>= 1) {\n\t\t\tif (pos + pw <= ssize(s) && s[pos\
-    \ + pw-1] < sum)\n\t\t\t\tpos += pw, sum -= s[pos-1];\n\t\t}\n\t\treturn pos;\n\
-    \t}\n};\n\n/**\n * Author: Simon Lindholm\n * Date: 2017-05-11\n * License: CC0\n\
-    \ * Source: folklore\n * Description: Computes sums a[i,j] for all i<I, j<J, and\
-    \ increases single elements a[i,j].\n *  Requires that the elements to be updated\
-    \ are known in advance (call fakeUpdate() before init()).\n * Time: $O(\\log^2\
-    \ N)$. (Use persistent segment trees for $O(\\log N)$.)\n * Status: stress-tested\n\
-    \ */\ntemplate<class T1, class T2>\nstruct FT2 {\n\tvector<vector<T1>> ys; vector<FT<T2>>\
-    \ ft;\n\tFT2(int limx) : ys(limx) {}\n\tvoid fakeUpdate(int x, T1 y) {\n\t\tfor\
-    \ (; x < ssize(ys); x |= x + 1) ys[x].push_back(y);\n\t}\n\tvoid init() {\n\t\t\
-    for (vector<T1>& v : ys) ranges::sort(v), ft.emplace_back(ssize(v));\n\t}\n\t\
-    int ind(int x, T1 y) {\n\t\treturn (int)(ranges::lower_bound(ys[x], y) - ys[x].begin());\
-    \ }\n\tvoid update(int x, T1 y, T2 dif) {\n\t\tfor (; x < ssize(ys); x |= x +\
-    \ 1)\n\t\t\tft[x].update(ind(x, y), dif);\n\t}\n\tT2 query(int x, T1 y) {\n\t\t\
-    T2 sum = 0;\n\t\tfor (; x; x &= x - 1)\n\t\t\tsum += ft[x-1].query(ind(x-1, y));\n\
-    \t\treturn sum;\n\t}\n};\n#line 1 \"misc/compression.cpp\"\ntemplate<class T,\
-    \ bool duplicate = false>\nstruct compression {\n  vector<int> ord;\n  vector<T>\
-    \ val;\n\n  compression(vector<T> &init) : val(init) { precompute(); }\n  compression(int\
+    \  }\n  return g;\n}\n\ntemplate<bool directed>\nvector<vector<int>> adjacency_list(int\
+    \ n, vector<pii> e, int base) {\n  vector<vector<int>> g(n);\n  for(auto [u, v]\
+    \ : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
+    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
+    \ T>\nvoid setBit(T &msk, int bit, bool x) {\n  msk = (msk & ~(T(1) << bit)) |\
+    \ (T(x) << bit);\n}\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^=\
+    \ T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return msk >>\
+    \ bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *=\
+    \ -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/fenwickTree2D.cpp\"\n//source: KACTL\n\
+    \n/**\n * Author: Lukas Polacek\n * Date: 2009-10-30\n * License: CC0\n * Source:\
+    \ folklore/TopCoder\n * Description: Computes partial sums a[0] + a[1] + ... +\
+    \ a[pos - 1], and updates single elements a[i],\n * taking the difference between\
+    \ the old and new value.\n * Time: Both operations are $O(\\log N)$.\n * Status:\
+    \ Stress-tested\n */\ntemplate<class T>\nstruct FT {\n\tvector<T> s;\n\tFT(int\
+    \ n) : s(n) {}\n\tvoid update(int pos, T dif) { // a[pos] += dif\n\t\tfor (; pos\
+    \ < ssize(s); pos |= pos + 1) s[pos] += dif;\n\t}\n\tT query(int pos) { // sum\
+    \ of values in [0, pos)\n\t\tT res = 0;\n\t\tfor (; pos > 0; pos &= pos - 1) res\
+    \ += s[pos-1];\n\t\treturn res;\n\t}\n\tint lower_bound(T sum) {// min pos st\
+    \ sum of [0, pos] >= sum\n\t\t// Returns n if no sum is >= sum, or -1 if empty\
+    \ sum is.\n\t\tif (sum <= 0) return -1;\n\t\tint pos = 0;\n\t\tfor (int pw = 1\
+    \ << 25; pw; pw >>= 1) {\n\t\t\tif (pos + pw <= ssize(s) && s[pos + pw-1] < sum)\n\
+    \t\t\t\tpos += pw, sum -= s[pos-1];\n\t\t}\n\t\treturn pos;\n\t}\n};\n\n/**\n\
+    \ * Author: Simon Lindholm\n * Date: 2017-05-11\n * License: CC0\n * Source: folklore\n\
+    \ * Description: Computes sums a[i,j] for all i<I, j<J, and increases single elements\
+    \ a[i,j].\n *  Requires that the elements to be updated are known in advance (call\
+    \ fakeUpdate() before init()).\n * Time: $O(\\log^2 N)$. (Use persistent segment\
+    \ trees for $O(\\log N)$.)\n * Status: stress-tested\n */\ntemplate<class T1,\
+    \ class T2>\nstruct FT2 {\n\tvector<vector<T1>> ys; vector<FT<T2>> ft;\n\tFT2(int\
+    \ limx) : ys(limx) {}\n\tvoid fakeUpdate(int x, T1 y) {\n\t\tfor (; x < ssize(ys);\
+    \ x |= x + 1) ys[x].push_back(y);\n\t}\n\tvoid init() {\n\t\tfor (vector<T1>&\
+    \ v : ys) ranges::sort(v), ft.emplace_back(ssize(v));\n\t}\n\tint ind(int x, T1\
+    \ y) {\n\t\treturn (int)(ranges::lower_bound(ys[x], y) - ys[x].begin()); }\n\t\
+    void update(int x, T1 y, T2 dif) {\n\t\tfor (; x < ssize(ys); x |= x + 1)\n\t\t\
+    \tft[x].update(ind(x, y), dif);\n\t}\n\tT2 query(int x, T1 y) {\n\t\tT2 sum =\
+    \ 0;\n\t\tfor (; x; x &= x - 1)\n\t\t\tsum += ft[x-1].query(ind(x-1, y));\n\t\t\
+    return sum;\n\t}\n};\n#line 1 \"misc/compression.cpp\"\ntemplate<class T, bool\
+    \ duplicate = false>\nstruct compression {\n  vector<int> ord;\n  vector<T> val;\n\
+    \n  compression(vector<T> &init) : val(init) { precompute(); }\n  compression(int\
     \ size = 0) { val.reserve(size); }\n\n  void precompute() {\n    vector<T> init\
     \ = val;\n    ord.resize(ssize(val));\n    ranges::sort(val);\n    if constexpr\
     \ (duplicate) {\n      vector<int> cnt(ssize(init));\n      iota(cnt.begin(),\
@@ -168,8 +172,8 @@ data:
   isVerificationFile: true
   path: test/rectangle_add_point_get.test.cpp
   requiredBy: []
-  timestamp: '2024-08-04 01:36:11+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-01-29 02:59:39+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/rectangle_add_point_get.test.cpp
 layout: document

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/stirling_number_of_the_second_kind.test.cpp
     title: test/stirling_number_of_the_second_kind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"combi/stirlingSecond.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
@@ -29,7 +29,7 @@ data:
   path: combi/stirlingSecond.cpp
   requiredBy: []
   timestamp: '2024-11-24 01:06:04+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/stirling_number_of_the_second_kind.test.cpp
 documentation_of: combi/stirlingSecond.cpp

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_add_range_min.test.cpp
     title: test/range_add_range_min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"actedmonoid/actedMonoid_addMin.cpp\"\ntemplate<class U>\n\
@@ -27,7 +27,7 @@ data:
   path: actedmonoid/actedMonoid_addMin.cpp
   requiredBy: []
   timestamp: '2025-12-26 22:59:41+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/range_add_range_min.test.cpp
 documentation_of: actedmonoid/actedMonoid_addMin.cpp
