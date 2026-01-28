@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwickTree2D.cpp
     title: ds/fenwickTree2D.cpp
   - icon: ':x:'
     path: ds_problem/rectangleAddPointGet.cpp
     title: ds_problem/rectangleAddPointGet.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: misc/compression.cpp
     title: compression
   _extendedRequiredBy: []

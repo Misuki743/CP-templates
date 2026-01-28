@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/lowest_common_ancestor_2.test.cpp
     title: test/lowest_common_ancestor_2.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/vertex_add_path_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/LCA.cpp\"\n//#include \"ds/RMQ.cpp\"\n\nstruct LCA {\n\
@@ -49,7 +49,7 @@ data:
   path: ds/LCA.cpp
   requiredBy: []
   timestamp: '2024-07-24 13:33:23+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/lowest_common_ancestor_2.test.cpp
   - test/vertex_add_path_sum.test.cpp

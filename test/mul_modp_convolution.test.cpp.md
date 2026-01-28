@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/mulConvolution.cpp
     title: mulConvolution
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/mul_modp_convolution
@@ -191,7 +191,7 @@ data:
   path: test/mul_modp_convolution.test.cpp
   requiredBy: []
   timestamp: '2026-01-29 02:59:39+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mul_modp_convolution.test.cpp
 layout: document
