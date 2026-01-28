@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/SCC.cpp
     title: graph/SCC.cpp
   _extendedRequiredBy: []

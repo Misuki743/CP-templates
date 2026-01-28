@@ -15,7 +15,7 @@ data:
     - icon: ':warning:'
       path: actedmonoid/actedMonoid_addSum.cpp
       title: actedmonoid/actedMonoid_addSum.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: actedmonoid/actedMonoid_affineSum.cpp
       title: actedmonoid/actedMonoid_affineSum.cpp
     - icon: ':warning:'
@@ -41,10 +41,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/chromaticNumber.cpp
       title: combi/chromaticNumber.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: combi/countEulerianCircuit.cpp
       title: combi/countEulerianCircuit.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: combi/countSpanningForest.cpp
       title: combi/countSpanningForest.cpp
     - icon: ':warning:'
@@ -95,7 +95,7 @@ data:
     - icon: ':warning:'
       path: ds/CHT.cpp
       title: ds/CHT.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/DSU.cpp
       title: ds/DSU.cpp
     - icon: ':x:'
@@ -119,13 +119,13 @@ data:
     - icon: ':warning:'
       path: ds/bipartiteDSU.cpp
       title: ds/bipartiteDSU.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/centroidTree.cpp
       title: ds/centroidTree.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/deque_aggregation.cpp
       title: ds/deque_aggregation.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/doubleEndedPQ.cpp
       title: ds/doubleEndedPQ.cpp
     - icon: ':warning:'
@@ -143,7 +143,7 @@ data:
     - icon: ':x:'
       path: ds/eulerTour2.cpp
       title: ds/eulerTour2.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/fastJump.cpp
       title: ds/fastJump.cpp
     - icon: ':x:'
@@ -200,7 +200,7 @@ data:
     - icon: ':x:'
       path: ds/staticTopTree.cpp
       title: ds/staticTopTree.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/treap.cpp
       title: treap
     - icon: ':x:'
@@ -214,7 +214,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds_problem/area_of_union_of_rectangles.cpp
       title: ds_problem/area_of_union_of_rectangles.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds_problem/frequency_of_tree_distance.cpp
       title: ds_problem/frequency_of_tree_distance.cpp
     - icon: ':x:'
@@ -307,7 +307,7 @@ data:
     - icon: ':x:'
       path: graph/Prim.cpp
       title: graph/Prim.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/SCC.cpp
       title: graph/SCC.cpp
     - icon: ':warning:'
@@ -319,10 +319,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/complementConnectivity.cpp
       title: graph/complementConnectivity.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/cycleDetection.cpp
       title: graph/cycleDetection.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/eulerianTrail.cpp
       title: graph/eulerianTrail.cpp
     - icon: ':warning:'
@@ -340,7 +340,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/hungarian.cpp
       title: graph/hungarian.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/incrementalSCC.cpp
       title: graph/incrementalSCC.cpp
     - icon: ':warning:'
@@ -398,7 +398,7 @@ data:
       title: icpc/zkwBinarySearch.cpp
   - name: linalg
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/matrixMint.cpp
       title: linalg/matrixMint.cpp
     - icon: ':x:'
@@ -437,7 +437,7 @@ data:
       title: modint/dynamicSimpleMint.cpp
   - name: numtheory
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/crt.cpp
       title: numtheory/crt.cpp
     - icon: ':warning:'
@@ -470,10 +470,10 @@ data:
     - icon: ':x:'
       path: numtheory/primitive_root.cpp
       title: numtheory/primitive_root.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/quotient_enumerate.cpp
       title: numtheory/quotient_enumerate.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: numtheory/sqrt_mod.cpp
       title: numtheory/sqrt_mod.cpp
     - icon: ':warning:'
@@ -484,10 +484,10 @@ data:
       title: numtheory/zeta_mobius_on_divisibility_lattice.cpp
   - name: poly
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/BerlekampMassey.cpp
       title: poly/BerlekampMassey.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/BostanMori.cpp
       title: poly/BostanMori.cpp
     - icon: ':warning:'
@@ -535,7 +535,7 @@ data:
     - icon: ':warning:'
       path: poly/semiOnlineConvolution.cpp
       title: poly/semiOnlineConvolution.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/sparsePolyope.cpp
       title: poly/sparsePolyope.cpp
     - icon: ':x:'
@@ -549,7 +549,7 @@ data:
     - icon: ':question:'
       path: segtree/lazySegmentTree.cpp
       title: segtree/lazySegmentTree.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: segtree/lichaoSegmentTree.cpp
       title: segtree/lichaoSegmentTree.cpp
     - icon: ':x:'
@@ -592,7 +592,7 @@ data:
     - icon: ':warning:'
       path: string/KMPA.cpp
       title: string/KMPA.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/Manacher.cpp
       title: string/Manacher.cpp
     - icon: ':x:'
@@ -676,82 +676,82 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/convolution_1e9+7.test.cpp
       title: test/convolution_1e9+7.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/counting_eulerian_circuits.test.cpp
       title: test/counting_eulerian_circuits.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/counting_spanning_tree_directed.test.cpp
       title: test/counting_spanning_tree_directed.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/counting_spanning_tree_undirected.test.cpp
       title: test/counting_spanning_tree_undirected.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/cycle_detection_directed.test.cpp
       title: test/cycle_detection_directed.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/cycle_detection_undirected.test.cpp
       title: test/cycle_detection_undirected.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/deque_operate_all_composite.test.cpp
       title: test/deque_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/determinant_of_matrix.test.cpp
       title: test/determinant_of_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/division_of_polynomials.test.cpp
       title: test/division_of_polynomials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/double_ended_priority_queue.test.cpp
       title: test/double_ended_priority_queue.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/dynamic_sequence_range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/enumerate_palindromes.test.cpp
       title: test/enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/enumerate_quotients.test.cpp
       title: test/enumerate_quotients.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/eulerian_trail_directed.test.cpp
       title: test/eulerian_trail_directed.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/eulerian_trail_undirected.test.cpp
       title: test/eulerian_trail_undirected.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/exp_of_formal_power_series.test.cpp
       title: test/exp_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/exp_of_formal_power_series_sparse.test.cpp
       title: test/exp_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/factorize.test.cpp
       title: test/factorize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/find_linear_recurrence.test.cpp
       title: test/find_linear_recurrence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/frequency_table_of_tree_distance.test.cpp
       title: test/frequency_table_of_tree_distance.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/incremental_scc.test.cpp
       title: test/incremental_scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/inv_of_formal_power_series.test.cpp
       title: test/inv_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/inv_of_formal_power_series_sparse.test.cpp
       title: test/inv_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/inverse_matrix.test.cpp
       title: test/inverse_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/jump_on_tree.test.cpp
       title: test/jump_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/line_add_get_min.test.cpp
       title: test/line_add_get_min.test.cpp
     - icon: ':x:'

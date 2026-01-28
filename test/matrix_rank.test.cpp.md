@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/matrixMint.cpp
     title: linalg/matrixMint.cpp
   - icon: ':question:'

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/incremental_scc.test.cpp
     title: test/incremental_scc.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/strongly_connected_components.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/SCC.cpp\"\nstruct SCC {\n  vector<int> groupId;\n\
@@ -53,7 +53,7 @@ data:
   path: graph/SCC.cpp
   requiredBy: []
   timestamp: '2024-06-29 17:34:40+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/incremental_scc.test.cpp
   - test/strongly_connected_components.test.cpp

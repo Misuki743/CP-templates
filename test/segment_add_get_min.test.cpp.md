@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: segtree/lichaoSegmentTree.cpp
     title: segtree/lichaoSegmentTree.cpp
   _extendedRequiredBy: []

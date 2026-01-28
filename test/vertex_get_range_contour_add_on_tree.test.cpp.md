@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/centroidTree.cpp
     title: ds/centroidTree.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fastJump.cpp
     title: ds/fastJump.cpp
   - icon: ':x:'
