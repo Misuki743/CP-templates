@@ -152,10 +152,22 @@ rng Permute(rng v, rng2 p) {
 }
 
 template<bool directed>
-vector<vector<int>> readGraph(int n, int m, int base) {
+vector<vector<int>> read_graph(int n, int m, int base) {
   vector<vector<int>> g(n);
   for(int i = 0; i < m; i++) {
     int u, v; cin >> u >> v;
+    u -= base, v -= base;
+    g[u].emplace_back(v);
+    if constexpr (!directed)
+      g[v].emplace_back(u);
+  }
+  return g;
+}
+
+template<bool directed>
+vector<vector<int>> adjacency_list(int n, vector<pii> e, int base) {
+  vector<vector<int>> g(n);
+  for(auto [u, v] : e) {
     u -= base, v -= base;
     g[u].emplace_back(v);
     if constexpr (!directed)

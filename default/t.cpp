@@ -52,6 +52,8 @@
 #define INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)
 #define INT128_MIN (-INT128_MAX - 1)
 
+#define pb push_back
+#define eb emplace_back
 #define clock chrono::steady_clock::now().time_since_epoch().count()
 
 using namespace std;
@@ -113,13 +115,13 @@ template<typename T> using min_heap = priority_queue<T, vector<T>, greater<T>>;
 template<typename T> using max_heap = priority_queue<T>;
 
 template<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class OP = plus<T>>
-void pSum(rng &v) {
+void pSum(rng &&v) {
   if (!v.empty())
     for(T p = v[0]; T &x : v | views::drop(1))
       x = p = OP()(p, x);
 }
 template<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class OP>
-void pSum(rng &v, OP op) {
+void pSum(rng &&v, OP op) {
   if (!v.empty())
     for(T p = v[0]; T &x : v | views::drop(1))
       x = p = op(p, x);
@@ -148,10 +150,22 @@ rng Permute(rng v, rng2 p) {
 }
 
 template<bool directed>
-vector<vector<int>> readGraph(int n, int m, int base) {
+vector<vector<int>> read_graph(int n, int m, int base) {
   vector<vector<int>> g(n);
   for(int i = 0; i < m; i++) {
     int u, v; cin >> u >> v;
+    u -= base, v -= base;
+    g[u].emplace_back(v);
+    if constexpr (!directed)
+      g[v].emplace_back(u);
+  }
+  return g;
+}
+
+template<bool directed>
+vector<vector<int>> adjacency_list(int n, vector<pii> e, int base) {
+  vector<vector<int>> g(n);
+  for(auto [u, v] : e) {
     u -= base, v -= base;
     g[u].emplace_back(v);
     if constexpr (!directed)
@@ -180,3 +194,4 @@ T ceilDiv(T a, T b) {
 
 template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }
 template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }
+
