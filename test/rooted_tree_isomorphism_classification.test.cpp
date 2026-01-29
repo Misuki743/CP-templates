@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification"
 
 #include "../default/t.cpp"
-#include "../graph/treeHash.cpp"
+#include "../graph/tree_hash.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
@@ -14,7 +14,7 @@ signed main() {
     g[v].emplace_back(u);
   }
 
-  auto [cnt, id] = treeHash(g);
+  auto [cnt, id] = tree_hash(g);
   cout << cnt << '\n';
   cout << id << '\n';
 

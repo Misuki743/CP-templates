@@ -1,5 +1,5 @@
 template<bool ordered = false>
-pair<int, vector<int>> treeHash(vector<vector<int>> &g, int root = 0) {
+pair<int, vector<int>> tree_hash(vector<vector<int>> &g, int root = 0) {
   int nxt = 0;
   static map<vector<int>, int> toId;
   vector<int> id(ssize(g));
