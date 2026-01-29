@@ -4,23 +4,23 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/centroidTree.cpp
     title: ds/centroidTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastJump.cpp
     title: ds/fastJump.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashTable.cpp
     title: ds/hashTable.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_get_range_contour_add_on_tree
@@ -202,7 +202,7 @@ data:
   path: test/vertex_get_range_contour_add_on_tree.test.cpp
   requiredBy: []
   timestamp: '2026-01-29 02:59:39+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_get_range_contour_add_on_tree.test.cpp
 layout: document

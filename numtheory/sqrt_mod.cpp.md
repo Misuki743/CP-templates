@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/sqrt_of_formal_power_series_sparse.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/sqrt_mod.cpp\"\n//source: KACTL\n\nll modpow(ll\
@@ -57,7 +57,7 @@ data:
   path: numtheory/sqrt_mod.cpp
   requiredBy: []
   timestamp: '2025-12-12 18:41:06+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp

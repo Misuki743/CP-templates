@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrixMint.cpp
     title: linalg/matrixMint.cpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
@@ -201,7 +201,7 @@ data:
   path: test/system_of_linear_equations.test.cpp
   requiredBy: []
   timestamp: '2026-01-29 02:59:39+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/system_of_linear_equations.test.cpp
 layout: document

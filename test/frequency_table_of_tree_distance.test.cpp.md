@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/centroidTree.cpp
     title: ds/centroidTree.cpp
   - icon: ':heavy_check_mark:'

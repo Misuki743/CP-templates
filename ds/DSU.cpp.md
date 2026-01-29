@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/minimum_spanning_tree.test.cpp
     title: test/minimum_spanning_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unionfind.test.cpp
     title: test/unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/DSU.cpp\"\nstruct DSU {\n  vector<int> bos, sz;\n  int\
@@ -36,7 +36,7 @@ data:
   path: ds/DSU.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unionfind.test.cpp
   - test/incremental_scc.test.cpp

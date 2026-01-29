@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/DSU.cpp
     title: ds/DSU.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/SCC.cpp
     title: graph/SCC.cpp
   - icon: ':heavy_check_mark:'

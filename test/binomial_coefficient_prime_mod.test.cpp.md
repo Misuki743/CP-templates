@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/dynamicSimpleMint.cpp
     title: modint/dynamicSimpleMint.cpp
   _extendedRequiredBy: []

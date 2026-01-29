@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
   - icon: ':heavy_check_mark:'
     path: ds_problem/rectangleSum.cpp
     title: ds_problem/rectangleSum.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression
   _extendedRequiredBy: []

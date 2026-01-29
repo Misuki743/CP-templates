@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
-    path: graph/treeDiameter.cpp
-    title: graph/treeDiameter.cpp
+  - icon: ':heavy_check_mark:'
+    path: graph/weighted_tree_diameter.cpp
+    title: graph/weighted_tree_diameter.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
@@ -81,15 +81,15 @@ data:
     \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
     \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
-    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"graph/treeDiameter.cpp\"\ntemplate<class\
-    \ T>\ntuple<T, T, T, vector<int>> treeDiameter(vector<vector<pair<int, T>>> &g)\
-    \ {\n  const T inf = numeric_limits<T>::max();\n  const int n = ssize(g);\n  auto\
-    \ bfs = [&](int s) {\n    vector<T> dis(n, inf);\n    vector<int> pre(n, -1);\n\
-    \    queue<int> q;\n    dis[s] = 0;\n    q.push(s);\n    while(!q.empty()) {\n\
-    \      int v = q.front(); q.pop();\n      for(auto [x, w] : g[v]) {\n        if\
-    \ (dis[x] != inf) continue;\n        pre[x] = v, dis[x] = dis[v] + w;\n      \
-    \  q.push(x);\n      }\n    }\n    return make_pair(dis, pre);\n  };\n\n  auto\
-    \ dis0 = bfs(0).first;\n  int u = ranges::max_element(dis0) - dis0.begin();\n\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"graph/weighted_tree_diameter.cpp\"\ntemplate<class\
+    \ T>\ntuple<T, T, T, vector<int>> weighted_tree_diameter(vector<vector<pair<int,\
+    \ T>>> &g) {\n  const T inf = numeric_limits<T>::max();\n  const int n = ssize(g);\n\
+    \  auto bfs = [&](int s) {\n    vector<T> dis(n, inf);\n    vector<int> pre(n,\
+    \ -1);\n    queue<int> q;\n    dis[s] = 0;\n    q.push(s);\n    while(!q.empty())\
+    \ {\n      int v = q.front(); q.pop();\n      for(auto [x, w] : g[v]) {\n    \
+    \    if (dis[x] != inf) continue;\n        pre[x] = v, dis[x] = dis[v] + w;\n\
+    \        q.push(x);\n      }\n    }\n    return make_pair(dis, pre);\n  };\n\n\
+    \  auto dis0 = bfs(0).first;\n  int u = ranges::max_element(dis0) - dis0.begin();\n\
     \  auto [dis1, pre1] = bfs(u);\n  int v = ranges::max_element(dis1) - dis1.begin();\n\
     \  T d = dis1[v];\n\n  vector<int> diameter(1, v);\n  while(pre1[v] != -1)\n \
     \   diameter.emplace_back(v = pre1[v]);\n\n  int radius = inf, center = -1;\n\
@@ -98,24 +98,24 @@ data:
     }\n#line 5 \"test/tree_diameter.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<vector<pair<int, ll>>> g(n);\n\
     \  for(int i = 1; i < n; i++) {\n    int u, v, w; cin >> u >> v >> w;\n    g[u].emplace_back(v,\
-    \ w);\n    g[v].emplace_back(u, w);\n  }\n\n  auto [d, _, __, vs] = treeDiameter<ll>(g);\n\
+    \ w);\n    g[v].emplace_back(u, w);\n  }\n\n  auto [d, _, __, vs] = weighted_tree_diameter<ll>(g);\n\
     \  cout << d << ' ' << ssize(vs) << '\\n';\n  cout << vs << '\\n';\n\n  return\
     \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../graph/treeDiameter.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<vector<pair<int,\
-    \ ll>>> g(n);\n  for(int i = 1; i < n; i++) {\n    int u, v, w; cin >> u >> v\
-    \ >> w;\n    g[u].emplace_back(v, w);\n    g[v].emplace_back(u, w);\n  }\n\n \
-    \ auto [d, _, __, vs] = treeDiameter<ll>(g);\n  cout << d << ' ' << ssize(vs)\
-    \ << '\\n';\n  cout << vs << '\\n';\n\n  return 0;\n}\n"
+    \ \"../default/t.cpp\"\n#include \"../graph/weighted_tree_diameter.cpp\"\n\nsigned\
+    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n\
+    \  vector<vector<pair<int, ll>>> g(n);\n  for(int i = 1; i < n; i++) {\n    int\
+    \ u, v, w; cin >> u >> v >> w;\n    g[u].emplace_back(v, w);\n    g[v].emplace_back(u,\
+    \ w);\n  }\n\n  auto [d, _, __, vs] = weighted_tree_diameter<ll>(g);\n  cout <<\
+    \ d << ' ' << ssize(vs) << '\\n';\n  cout << vs << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - graph/treeDiameter.cpp
+  - graph/weighted_tree_diameter.cpp
   isVerificationFile: true
   path: test/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2026-01-29 02:59:39+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-01-29 18:06:00+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree_diameter.test.cpp
 layout: document
