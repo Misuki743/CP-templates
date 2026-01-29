@@ -143,7 +143,7 @@ using vll = vc<ll>;
 using vvi = vvc<int>;
 using vvll = vvc<ll>;
 
-template<typename T> using min_heap = priority_queue<T, vector<T>, greater<T>>;
+template<typename T> using min_heap = priority_queue<T, vc<T>, greater<T>>;
 template<typename T> using max_heap = priority_queue<T>;
 
 template<typename R, typename F, typename... Args>
@@ -178,9 +178,17 @@ rng invPerm(rng p) {
   return ret;
 }
 
+template<ranges::random_access_range rng>
+vi argSort(rng p) {
+  vi id(size(p));
+  iota(id.begin(), id.end(), 0);
+  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });
+  return id;
+}
+
 template<bool directed>
-vector<vector<int>> read_graph(int n, int m, int base) {
-  vector<vector<int>> g(n);
+vvi read_graph(int n, int m, int base) {
+  vvi g(n);
   for(int i = 0; i < m; i++) {
     int u, v; cin >> u >> v;
     u -= base, v -= base;
@@ -192,8 +200,8 @@ vector<vector<int>> read_graph(int n, int m, int base) {
 }
 
 template<bool directed>
-vector<vector<int>> adjacency_list(int n, vector<pii> e, int base) {
-  vector<vector<int>> g(n);
+vvi adjacency_list(int n, vc<pii> e, int base) {
+  vvi g(n);
   for(auto [u, v] : e) {
     u -= base, v -= base;
     g[u].emplace_back(v);
