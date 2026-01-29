@@ -88,8 +88,8 @@ data:
       path: dp/dynamicTreeDP.cpp
       title: dp/dynamicTreeDP.cpp
     - icon: ':heavy_check_mark:'
-      path: dp/rerootingDP.cpp
-      title: dp/rerootingDP.cpp
+      path: dp/rerooting_DP.cpp
+      title: dp/rerooting_DP.cpp
   - name: ds
     pages:
     - icon: ':warning:'

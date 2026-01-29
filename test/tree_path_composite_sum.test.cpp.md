@@ -5,8 +5,8 @@ data:
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
-    path: dp/rerootingDP.cpp
-    title: dp/rerootingDP.cpp
+    path: dp/rerooting_DP.cpp
+    title: dp/rerooting_DP.cpp
   - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
@@ -115,62 +115,68 @@ data:
     \ mint operator/(mint c, mint d) { return c /= d; }\n\n  friend ostream& operator<<(ostream&\
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
-    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"dp/rerootingDP.cpp\"\
-    \ntemplate<class V, V(*base)(int), class E, E(*addEdge)(const V&, int eid),\n\
-    E(*op)(const E&, const E&), V(*addVertex)(const E&, int vid)>\nvector<V> rerootingDP(vector<array<int,\
-    \ 2>> e) {\n  int n = ssize(e) + 1;\n  vector<vector<int>> g(n);\n  for(int i\
-    \ = 0; auto [u, v] : e)\n    g[u].emplace_back(i), g[v].emplace_back(i++);\n\n\
-    \  vector<V> data(n);\n  for(int v = 0; v < n; v++) data[v] = base(v);\n  auto\
-    \ precalc = [&](int v, int p, auto &&self) -> void {\n    bool leaf = true;\n\
-    \    E prod;\n    for(int eid : g[v]) {\n      int x = e[eid][0] ^ e[eid][1] ^\
-    \ v;\n      if (x == p) continue;\n      self(x, v, self);\n      if (leaf)\n\
-    \        prod = addEdge(data[x], eid), leaf = false;\n      else\n        prod\
-    \ = op(prod, addEdge(data[x], eid));\n    }\n    if (!leaf) data[v] = addVertex(prod,\
-    \ v);\n  };\n\n  precalc(0, -1, precalc);\n\n  vector<V> ret(n);\n  auto reroot\
-    \ = [&](int v, int p, auto &&self) -> void {\n    int deg = ssize(g[v]);\n   \
-    \ vector<E> pre(deg), suf(deg);\n    for(int i = 0; int eid : g[v]) {\n      int\
-    \ x = e[eid][0] ^ e[eid][1] ^ v;\n      pre[i] = suf[i] = addEdge(data[x], eid),\
-    \ i++;\n    }\n    for(int i = 1; i < deg; i++) pre[i] = op(pre[i - 1], pre[i]);\n\
-    \    for(int i = deg - 2; i >= 0; i--) suf[i] = op(suf[i], suf[i + 1]);\n    V\
-    \ tmp = data[v];\n    ret[v] = data[v] = (deg ? addVertex(suf[0], v) : base(v));\n\
-    \    for(int i = 0; int eid : g[v]) {\n      int x = e[eid][0] ^ e[eid][1] ^ v;\n\
-    \      if (x != p) {\n        bool leaf = true;\n        E prod;\n        if (i\
-    \ > 0) prod = pre[i - 1], leaf = false;\n        if (i + 1 < deg) prod = (leaf\
-    \ ? suf[i + 1] : op(prod, suf[i + 1])), leaf = false;\n        V tmp2 = data[v];\n\
-    \        data[v] = (leaf ? base(v) : addVertex(prod, v));\n        self(x, v,\
-    \ self);\n        data[v] = tmp2;\n      }\n      i++;\n    }\n    data[v] = tmp;\n\
-    \  };\n\n  reroot(0, -1, reroot);\n\n  return ret;\n}\n#line 6 \"test/tree_path_composite_sum.test.cpp\"\
-    \n\nusing V = array<mint, 2>;\nusing E = array<mint, 2>;\n\nvector<mint> a, b,\
-    \ c;\n\nV base(int i) { return {a[i], 1}; }\nE addEdge(const V &v, int i) { return\
-    \ {b[i] * v[0] + c[i] * v[1], v[1]}; }\nE op(const E &l, const E &r) { return\
-    \ {l[0] + r[0], l[1] + r[1]}; }\nV addVertex(const E &e, int i) { return {e[0]\
-    \ + a[i], e[1] + 1}; }\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
-    \n  int n; cin >> n;\n  a.resize(n);\n  for(mint &x : a) cin >> x;\n  vector<array<int,\
-    \ 2>> e(n - 1);\n  b.resize(n - 1), c.resize(n - 1);\n  for(int i = 0; i < n -\
-    \ 1; i++)\n    cin >> e[i][0] >> e[i][1] >> b[i] >> c[i];\n\n  auto ans = rerootingDP<V,\
-    \ base, E, addEdge, op, addVertex>(e);\n  for(int i = 0; i < n; i++)\n    cout\
-    \ << ans[i][0] << \" \\n\"[i + 1 == n];\n\n  return 0;\n}\n"
+    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"dp/rerooting_DP.cpp\"\
+    \ntemplate<typename R, typename F, typename... Args>\nconcept R_invocable = requires(F&&\
+    \ f, Args&&... args) {\n  { std::invoke(std::forward<F>(f), std::forward<Args>(args)...)\
+    \ } -> std::same_as<R>;\n};\n\ntemplate<class V, class E, typename BASE, typename\
+    \ ADD_EDGE, typename OP, typename ADD_VERTEX>\nrequires\n  R_invocable<V, BASE,\
+    \ int> &&\n  R_invocable<E, ADD_EDGE, const V, int> &&\n  R_invocable<E, OP, const\
+    \ E, const E> &&\n  R_invocable<V, ADD_VERTEX, const E, int>\nvector<V> rerooting_DP(vector<array<int,\
+    \ 2>> e, BASE base, ADD_EDGE add_edge, OP op, ADD_VERTEX add_vertex) {\n  int\
+    \ n = ssize(e) + 1;\n  vector<vector<int>> g(n);\n  for(int i = 0; auto [u, v]\
+    \ : e)\n    g[u].emplace_back(i), g[v].emplace_back(i++);\n\n  vector<V> data(n);\n\
+    \  for(int v = 0; v < n; v++) data[v] = base(v);\n  auto precalc = [&](int v,\
+    \ int p, auto &&self) -> void {\n    bool leaf = true;\n    E prod;\n    for(int\
+    \ eid : g[v]) {\n      int x = e[eid][0] ^ e[eid][1] ^ v;\n      if (x == p) continue;\n\
+    \      self(x, v, self);\n      if (leaf)\n        prod = add_edge(data[x], eid),\
+    \ leaf = false;\n      else\n        prod = op(prod, add_edge(data[x], eid));\n\
+    \    }\n    if (!leaf) data[v] = add_vertex(prod, v);\n  };\n\n  precalc(0, -1,\
+    \ precalc);\n\n  vector<V> ret(n);\n  auto reroot = [&](int v, int p, auto &&self)\
+    \ -> void {\n    int deg = ssize(g[v]);\n    vector<E> pre(deg), suf(deg);\n \
+    \   for(int i = 0; int eid : g[v]) {\n      int x = e[eid][0] ^ e[eid][1] ^ v;\n\
+    \      pre[i] = suf[i] = add_edge(data[x], eid), i++;\n    }\n    for(int i =\
+    \ 1; i < deg; i++) pre[i] = op(pre[i - 1], pre[i]);\n    for(int i = deg - 2;\
+    \ i >= 0; i--) suf[i] = op(suf[i], suf[i + 1]);\n    V tmp = data[v];\n    ret[v]\
+    \ = data[v] = (deg ? add_vertex(suf[0], v) : base(v));\n    for(int i = 0; int\
+    \ eid : g[v]) {\n      int x = e[eid][0] ^ e[eid][1] ^ v;\n      if (x != p) {\n\
+    \        bool leaf = true;\n        E prod;\n        if (i > 0) prod = pre[i -\
+    \ 1], leaf = false;\n        if (i + 1 < deg) prod = (leaf ? suf[i + 1] : op(prod,\
+    \ suf[i + 1])), leaf = false;\n        V tmp2 = data[v];\n        data[v] = (leaf\
+    \ ? base(v) : add_vertex(prod, v));\n        self(x, v, self);\n        data[v]\
+    \ = tmp2;\n      }\n      i++;\n    }\n    data[v] = tmp;\n  };\n\n  reroot(0,\
+    \ -1, reroot);\n\n  return ret;\n}\n#line 6 \"test/tree_path_composite_sum.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
+    \ cin >> n;\n  vector<mint> a(n), b(n - 1), c(n - 1);\n  for(mint &x : a) cin\
+    \ >> x;\n  vector<array<int, 2>> e(n - 1);\n  for(int i = 0; i < n - 1; i++)\n\
+    \    cin >> e[i][0] >> e[i][1] >> b[i] >> c[i];\n\n  using V = array<mint, 2>;\n\
+    \  using E = array<mint, 2>;\n  auto base = [&](int i) { return V{a[i], 1}; };\n\
+    \  auto add_edge = [&](const V &v, int i) { return E{b[i] * v[0] + c[i] * v[1],\
+    \ v[1]}; };\n  auto op = [&](const E &l, const E &r) { return E{l[0] + r[0], l[1]\
+    \ + r[1]}; };\n  auto add_vertex = [&](const E &e, int i) { return V{e[0] + a[i],\
+    \ e[1] + 1}; };\n\n  auto ans = rerooting_DP<V, E>(e, base, add_edge, op, add_vertex);\n\
+    \  for(int i = 0; i < n; i++)\n    cout << ans[i][0] << \" \\n\"[i + 1 == n];\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_path_composite_sum\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../dp/rerootingDP.cpp\"\n\nusing V = array<mint, 2>;\nusing E = array<mint,\
-    \ 2>;\n\nvector<mint> a, b, c;\n\nV base(int i) { return {a[i], 1}; }\nE addEdge(const\
-    \ V &v, int i) { return {b[i] * v[0] + c[i] * v[1], v[1]}; }\nE op(const E &l,\
-    \ const E &r) { return {l[0] + r[0], l[1] + r[1]}; }\nV addVertex(const E &e,\
-    \ int i) { return {e[0] + a[i], e[1] + 1}; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  a.resize(n);\n  for(mint &x : a) cin\
-    \ >> x;\n  vector<array<int, 2>> e(n - 1);\n  b.resize(n - 1), c.resize(n - 1);\n\
-    \  for(int i = 0; i < n - 1; i++)\n    cin >> e[i][0] >> e[i][1] >> b[i] >> c[i];\n\
-    \n  auto ans = rerootingDP<V, base, E, addEdge, op, addVertex>(e);\n  for(int\
-    \ i = 0; i < n; i++)\n    cout << ans[i][0] << \" \\n\"[i + 1 == n];\n\n  return\
-    \ 0;\n}\n"
+    \n#include \"../dp/rerooting_DP.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<mint> a(n), b(n - 1), c(n - 1);\n\
+    \  for(mint &x : a) cin >> x;\n  vector<array<int, 2>> e(n - 1);\n  for(int i\
+    \ = 0; i < n - 1; i++)\n    cin >> e[i][0] >> e[i][1] >> b[i] >> c[i];\n\n  using\
+    \ V = array<mint, 2>;\n  using E = array<mint, 2>;\n  auto base = [&](int i) {\
+    \ return V{a[i], 1}; };\n  auto add_edge = [&](const V &v, int i) { return E{b[i]\
+    \ * v[0] + c[i] * v[1], v[1]}; };\n  auto op = [&](const E &l, const E &r) { return\
+    \ E{l[0] + r[0], l[1] + r[1]}; };\n  auto add_vertex = [&](const E &e, int i)\
+    \ { return V{e[0] + a[i], e[1] + 1}; };\n\n  auto ans = rerooting_DP<V, E>(e,\
+    \ base, add_edge, op, add_vertex);\n  for(int i = 0; i < n; i++)\n    cout <<\
+    \ ans[i][0] << \" \\n\"[i + 1 == n];\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
-  - dp/rerootingDP.cpp
+  - dp/rerooting_DP.cpp
   isVerificationFile: true
   path: test/tree_path_composite_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-01-29 02:59:39+08:00'
+  timestamp: '2026-01-29 21:59:03+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree_path_composite_sum.test.cpp
