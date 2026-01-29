@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds_problem/frequency_of_tree_distance.cpp
     title: ds_problem/frequency_of_tree_distance.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   - icon: ':heavy_check_mark:'
     path: numtheory/crt.cpp
     title: numtheory/crt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
   _extendedRequiredBy: []

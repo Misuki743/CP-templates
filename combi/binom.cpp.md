@@ -33,12 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_second_kind.test.cpp
     title: test/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2544.test.cpp
     title: test/yuki_2544.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"combi/binom.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
@@ -72,7 +72,7 @@ data:
   path: combi/binom.cpp
   requiredBy: []
   timestamp: '2024-04-05 17:40:38+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/counting_eulerian_circuits.test.cpp
   - test/bell_number.test.cpp
