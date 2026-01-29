@@ -464,7 +464,13 @@ data:
     - icon: ':warning:'
       path: numtheory/factorize_sqrt.cpp
       title: numtheory/factorize_sqrt.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: numtheory/gcd_convolution.cpp
+      title: numtheory/gcd_convolution.cpp
+    - icon: ':heavy_check_mark:'
+      path: numtheory/lcm_convolution.cpp
+      title: numtheory/lcm_convolution.cpp
+    - icon: ':heavy_check_mark:'
       path: numtheory/linear_sieve.cpp
       title: numtheory/linear_sieve.cpp
     - icon: ':warning:'
@@ -488,7 +494,7 @@ data:
     - icon: ':warning:'
       path: numtheory/sum_of_floor_of_linear.cpp
       title: numtheory/sum_of_floor_of_linear.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
       title: numtheory/zeta_mobius_on_divisibility_lattice.cpp
   - name: poly
@@ -743,6 +749,9 @@ data:
       path: test/frequency_table_of_tree_distance.test.cpp
       title: test/frequency_table_of_tree_distance.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/gcd_convolution.test.cpp
+      title: test/gcd_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/incremental_scc.test.cpp
       title: test/incremental_scc.test.cpp
     - icon: ':heavy_check_mark:'
@@ -766,6 +775,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lca.test.cpp
       title: test/lca.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/lcm_convolution.test.cpp
+      title: test/lcm_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/line_add_get_min.test.cpp
       title: test/line_add_get_min.test.cpp

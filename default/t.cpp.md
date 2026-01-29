@@ -121,6 +121,9 @@ data:
     path: test/frequency_table_of_tree_distance.test.cpp
     title: test/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/gcd_convolution.test.cpp
+    title: test/gcd_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/incremental_scc.test.cpp
     title: test/incremental_scc.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,6 +147,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lca.test.cpp
     title: test/lca.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/lcm_convolution.test.cpp
+    title: test/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/line_add_get_min.test.cpp
     title: test/line_add_get_min.test.cpp
@@ -611,6 +617,7 @@ data:
   - test/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/point_add_rectangle_sum.test.cpp
   - test/assignment_problem.test.cpp
+  - test/lcm_convolution.test.cpp
   - test/inverse_matrix.test.cpp
   - test/stirling_number_of_second_kind_small_p_large_n.test.cpp
   - test/inv_of_formal_power_series.test.cpp
@@ -664,6 +671,7 @@ data:
   - test/polynomial_taylor_shift.test.cpp
   - test/enumerate_palindromes.test.cpp
   - test/vertex_set_path_composite.test.cpp
+  - test/gcd_convolution.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/convolution_1e9+7.test.cpp
 documentation_of: default/t.cpp

@@ -1,0 +1,193 @@
+---
+data:
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: default/t.cpp
+    title: default/t.cpp
+  - icon: ':heavy_check_mark:'
+    path: modint/MontgomeryModInt.cpp
+    title: modint/MontgomeryModInt.cpp
+  - icon: ':heavy_check_mark:'
+    path: numtheory/lcm_convolution.cpp
+    title: numtheory/lcm_convolution.cpp
+  - icon: ':heavy_check_mark:'
+    path: numtheory/linear_sieve.cpp
+    title: numtheory/linear_sieve.cpp
+  - icon: ':heavy_check_mark:'
+    path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
+    title: numtheory/zeta_mobius_on_divisibility_lattice.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/lcm_convolution
+    links:
+    - https://judge.yosupo.jp/problem/lcm_convolution
+  bundledCode: "#line 1 \"test/lcm_convolution.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/lcm_convolution\"\
+    \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
+    \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
+    \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
+    \ <cmath>\n#include <complex>\n#include <cstdarg>\n#include <cstddef>\n#include\
+    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
+    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
+    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
+    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
+    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
+    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
+    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
+    \ <variant>\n#include <bit>\n#include <compare>\n#include <concepts>\n#include\
+    \ <numbers>\n#include <ranges>\n#include <span>\n\n#define INT128_MAX (__int128)(((unsigned\
+    \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
+    \ (-INT128_MAX - 1)\n\n#define pb push_back\n#define eb emplace_back\n#define\
+    \ clock chrono::steady_clock::now().time_since_epoch().count()\n\nusing namespace\
+    \ std;\n\ntemplate<class T1, class T2>\nostream& operator<<(ostream& os, const\
+    \ pair<T1, T2> pr) {\n  return os << pr.first << ' ' << pr.second;\n}\ntemplate<class\
+    \ T, size_t N>\nostream& operator<<(ostream& os, const array<T, N> &arr) {\n \
+    \ for(size_t i = 0; T x : arr) {\n    os << x;\n    if (++i != N) os << ' ';\n\
+    \  }\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream& os, const\
+    \ vector<T> &vec) {\n  for(size_t i = 0; T x : vec) {\n    os << x;\n    if (++i\
+    \ != size(vec)) os << ' ';\n  }\n  return os;\n}\ntemplate<class T>\nostream&\
+    \ operator<<(ostream& os, const set<T> &s) {\n  for(size_t i = 0; T x : s) {\n\
+    \    os << x;\n    if (++i != size(s)) os << ' ';\n  }\n  return os;\n}\ntemplate<class\
+    \ T1, class T2>\nostream& operator<<(ostream& os, const map<T1, T2> &m) {\n  for(size_t\
+    \ i = 0; pair<T1, T2> x : m) {\n    os << x;\n    if (++i != size(m)) os << '\
+    \ ';\n  }\n  return os;\n}\n\n#ifdef DEBUG\n#define dbg(...) cerr << '(', _do(#__VA_ARGS__),\
+    \ cerr << \") = \", _do2(__VA_ARGS__)\ntemplate<typename T> void _do(T &&x) {\
+    \ cerr << x; }\ntemplate<typename T, typename ...S> void _do(T &&x, S&&...y) {\
+    \ cerr << x << \", \"; _do(y...); }\ntemplate<typename T> void _do2(T &&x) { cerr\
+    \ << x << endl; }\ntemplate<typename T, typename ...S> void _do2(T &&x, S&&...y)\
+    \ { cerr << x << \", \"; _do2(y...); }\n#else\n#define dbg(...)\n#endif\n\nusing\
+    \ ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
+    using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\ntemplate<typename T>\
+    \ using min_heap = priority_queue<T, vector<T>, greater<T>>;\ntemplate<typename\
+    \ T> using max_heap = priority_queue<T>;\n\ntemplate<ranges::forward_range rng,\
+    \ class T = ranges::range_value_t<rng>, class OP = plus<T>>\nvoid pSum(rng &&v)\
+    \ {\n  if (!v.empty())\n    for(T p = v[0]; T &x : v | views::drop(1))\n     \
+    \ x = p = OP()(p, x);\n}\ntemplate<ranges::forward_range rng, class T = ranges::range_value_t<rng>,\
+    \ class OP>\nvoid pSum(rng &&v, OP op) {\n  if (!v.empty())\n    for(T p = v[0];\
+    \ T &x : v | views::drop(1))\n      x = p = op(p, x);\n}\n\ntemplate<ranges::forward_range\
+    \ rng>\nvoid Unique(rng &v) {\n  ranges::sort(v);\n  v.resize(unique(v.begin(),\
+    \ v.end()) - v.begin());\n}\n\ntemplate<ranges::random_access_range rng>\nrng\
+    \ invPerm(rng p) {\n  rng ret = p;\n  for(int i = 0; i < ssize(p); i++)\n    ret[p[i]]\
+    \ = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range rng, ranges::random_access_range\
+    \ rng2>\nrng Permute(rng v, rng2 p) {\n  rng ret = v;\n  for(int i = 0; i < ssize(p);\
+    \ i++)\n    ret[p[i]] = v[i];\n  return ret;\n}\n\ntemplate<bool directed>\nvector<vector<int>>\
+    \ read_graph(int n, int m, int base) {\n  vector<vector<int>> g(n);\n  for(int\
+    \ i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -= base, v -= base;\n\
+    \    g[u].emplace_back(v);\n    if constexpr (!directed)\n      g[v].emplace_back(u);\n\
+    \  }\n  return g;\n}\n\ntemplate<bool directed>\nvector<vector<int>> adjacency_list(int\
+    \ n, vector<pii> e, int base) {\n  vector<vector<int>> g(n);\n  for(auto [u, v]\
+    \ : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
+    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
+    \ T>\nvoid setBit(T &msk, int bit, bool x) {\n  msk = (msk & ~(T(1) << bit)) |\
+    \ (T(x) << bit);\n}\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^=\
+    \ T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return msk >>\
+    \ bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *=\
+    \ -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"modint/MontgomeryModInt.cpp\"\n//reference:\
+    \ https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
+    //note: mod should be an odd prime less than 2^30.\n\ntemplate<uint32_t mod>\n\
+    struct MontgomeryModInt {\n  using mint = MontgomeryModInt;\n  using i32 = int32_t;\n\
+    \  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static constexpr u32 get_r()\
+    \ {\n    u32 res = 1, base = mod;\n    for(i32 i = 0; i < 31; i++)\n      res\
+    \ *= base, base *= base;\n    return -res;\n  }\n\n  static constexpr u32 get_mod()\
+    \ {\n    return mod;\n  }\n\n  static constexpr u32 n2 = -u64(mod) % mod; //2^64\
+    \ % mod\n  static constexpr u32 r = get_r(); //-P^{-1} % 2^32\n\n  u32 a;\n\n\
+    \  static u32 reduce(const u64 &b) {\n    return (b + u64(u32(b) * r) * mod) >>\
+    \ 32;\n  }\n\n  static u32 transform(const u64 &b) {\n    return reduce(u64(b)\
+    \ * n2);\n  }\n\n  MontgomeryModInt() : a(0) {}\n  MontgomeryModInt(const int64_t\
+    \ &b) \n    : a(transform(b % mod + mod)) {}\n\n  mint pow(u64 k) const {\n  \
+    \  mint res(1), base(*this);\n    while(k) {\n      if (k & 1) \n        res *=\
+    \ base;\n      base *= base, k >>= 1;\n    }\n    return res;\n  }\n\n  mint inverse()\
+    \ const { return (*this).pow(mod - 2); }\n\n  u32 get() const {\n    u32 res =\
+    \ reduce(a);\n    return res >= mod ? res - mod : res;\n  }\n\n  mint& operator+=(const\
+    \ mint &b) {\n    if (i32(a += b.a - 2 * mod) < 0) a += 2 * mod;\n    return *this;\n\
+    \  }\n\n  mint& operator-=(const mint &b) {\n    if (i32(a -= b.a) < 0) a += 2\
+    \ * mod;\n    return *this;\n  }\n\n  mint& operator*=(const mint &b) {\n    a\
+    \ = reduce(u64(a) * b.a);\n    return *this;\n  }\n\n  mint& operator/=(const\
+    \ mint &b) {\n    a = reduce(u64(a) * b.inverse().a);\n    return *this;\n  }\n\
+    \n  mint operator-() { return mint() - mint(*this); }\n  bool operator==(mint\
+    \ b) const {\n    return (a >= mod ? a - mod : a) == (b.a >= mod ? b.a - mod :\
+    \ b.a);\n  }\n  bool operator!=(mint b) const {\n    return (a >= mod ? a - mod\
+    \ : a) != (b.a >= mod ? b.a - mod : b.a);\n  }\n\n  friend mint operator+(mint\
+    \ c, mint d) { return c += d; }\n  friend mint operator-(mint c, mint d) { return\
+    \ c -= d; }\n  friend mint operator*(mint c, mint d) { return c *= d; }\n  friend\
+    \ mint operator/(mint c, mint d) { return c /= d; }\n\n  friend ostream& operator<<(ostream&\
+    \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
+    \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
+    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"numtheory/linear_sieve.cpp\"\
+    \ntemplate<int32_t C>\nstruct linear_sieve {\n  array<int, C> mpf = {};\n  vector<int>\
+    \ prime;\n  linear_sieve() {\n    if (C > 2)\n      iota(mpf.begin() + 2, mpf.end(),\
+    \ 2);\n    for(int i = 2; i < C; i++) {\n      if (mpf[i] == i)\n        prime.emplace_back(i);\n\
+    \      for(int64_t p : prime) {\n        if (p > mpf[i] or p * i >= C)\n     \
+    \     break;\n        mpf[p * i] = p;\n      }\n    }\n  }\n\n  vector<pair<int,\
+    \ int>> prime_factorize(int x) {\n    vector<pair<int, int>> r;\n    while(mpf[x])\
+    \ {\n      r.emplace_back(mpf[x], 0);\n      while(x % r.back().first == 0)\n\
+    \        x /= r.back().first, r.back().second++;\n    }\n    return r;\n  }\n\n\
+    \  vector<int> prime_factor_enumerate(int x) {\n    vector<int> r;\n    while(mpf[x])\
+    \ {\n      r.emplace_back(mpf[x]);\n      while(x % r.back() == 0)\n        x\
+    \ /= r.back();\n    }\n    return r;\n  }\n\n  vector<int> divisor_enumerate(int\
+    \ x, bool sorted = true) {\n    vector<int> divisor = {1};\n    for(auto [p, f]\
+    \ : prime_factorize(x)) {\n      vector<int> nxt;\n      nxt.reserve(ssize(divisor)\
+    \ * (f + 1));\n      for(int64_t i = 0, q = 1; i <= f; i++, q *= p)\n        for(int\
+    \ d : divisor)\n          nxt.emplace_back(d * q);\n      divisor.swap(nxt);\n\
+    \    }\n    if (sorted)\n      ranges::sort(divisor);\n    return divisor;\n \
+    \ }\n};\n#line 1 \"numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\n//#include\
+    \ \"numtheory/linear_sieve\"\n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_divisor(linear_sieve<C>\
+    \ &ls, vector<T> f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n\
+    \    if (p >= ssize(f)) break;\n    for(int i = 1; i * p < ssize(f); i++)\n  \
+    \    f[i * p] += f[i];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\n\
+    vector<T> mobius_transform_on_divisor(linear_sieve<C> &ls, vector<T> f) {\n  assert(ssize(f)\
+    \ <= C);\n  for(int64_t p : ls.prime) {\n    if (p >= ssize(f)) break;\n    for(int\
+    \ i = (ssize(f) - 1) / p; i > 0; i--)\n      f[i * p] -= f[i];\n  }\n  return\
+    \ f;\n}\n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_multiple(linear_sieve<C>\
+    \ &ls, vector<T> f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n\
+    \    if (p >= ssize(f)) break;\n    for(int i = (ssize(f) - 1) / p; i > 0; i--)\n\
+    \      f[i] += f[i * p];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\n\
+    vector<T> mobius_transform_on_multiple(linear_sieve<C> &ls, vector<T> f) {\n \
+    \ assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n    if (p >= ssize(f))\
+    \ break;\n    for(int i = 1; i * p < ssize(f); i++)\n      f[i] -= f[i * p];\n\
+    \  }\n  return f;\n}\n#line 1 \"numtheory/lcm_convolution.cpp\"\n//#include \"\
+    numtheory/linear_sieve.cpp\"\n//#include \"numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\
+    \n\ntemplate<class T, int32_t C>\nvector<T> lcm_convolution(linear_sieve<C> &ls,\
+    \ vector<T> a, vector<T> b) {\n  assert(ssize(a) == ssize(b));\n  a = zeta_transform_on_divisor(ls,\
+    \ a);\n  b = zeta_transform_on_divisor(ls, b);\n  for(int i = 0; i < ssize(a);\
+    \ i++)\n    a[i] *= b[i];\n  return mobius_transform_on_divisor(ls, a);\n}\n#line\
+    \ 8 \"test/lcm_convolution.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  linear_sieve<1'000'001> ls;\n\n  int n; cin >> n;\n  vector<mint>\
+    \ a(n), b(n);\n  for(mint &x : a) cin >> x;\n  for(mint &x : b) cin >> x;\n  a.insert(a.begin(),\
+    \ mint(0));\n  b.insert(b.begin(), mint(0));\n  auto c = lcm_convolution(ls, a,\
+    \ b);\n  c.erase(c.begin());\n  cout << c << '\\n';\n\n  return 0;\n}\n\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lcm_convolution\"\n\n#include\
+    \ \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\n#include\
+    \ \"../numtheory/linear_sieve.cpp\"\n#include \"../numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\
+    \n#include \"../numtheory/lcm_convolution.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  linear_sieve<1'000'001> ls;\n\n  int n; cin >> n;\n  vector<mint>\
+    \ a(n), b(n);\n  for(mint &x : a) cin >> x;\n  for(mint &x : b) cin >> x;\n  a.insert(a.begin(),\
+    \ mint(0));\n  b.insert(b.begin(), mint(0));\n  auto c = lcm_convolution(ls, a,\
+    \ b);\n  c.erase(c.begin());\n  cout << c << '\\n';\n\n  return 0;\n}\n\n"
+  dependsOn:
+  - default/t.cpp
+  - modint/MontgomeryModInt.cpp
+  - numtheory/linear_sieve.cpp
+  - numtheory/zeta_mobius_on_divisibility_lattice.cpp
+  - numtheory/lcm_convolution.cpp
+  isVerificationFile: true
+  path: test/lcm_convolution.test.cpp
+  requiredBy: []
+  timestamp: '2026-01-29 23:44:49+08:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/lcm_convolution.test.cpp
+layout: document
+redirect_from:
+- /verify/test/lcm_convolution.test.cpp
+- /verify/test/lcm_convolution.test.cpp.html
+title: test/lcm_convolution.test.cpp
+---

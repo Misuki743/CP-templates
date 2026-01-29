@@ -58,6 +58,9 @@ data:
     path: test/frequency_table_of_tree_distance.test.cpp
     title: test/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/gcd_convolution.test.cpp
+    title: test/gcd_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/incremental_scc.test.cpp
     title: test/incremental_scc.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,6 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/lcm_convolution.test.cpp
+    title: test/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/log_of_formal_power_series.test.cpp
     title: test/log_of_formal_power_series.test.cpp
@@ -289,6 +295,7 @@ data:
   - test/multiplication_of_big_intergers.test.cpp
   - test/find_linear_recurrence.test.cpp
   - test/counting_spanning_tree_undirected.test.cpp
+  - test/lcm_convolution.test.cpp
   - test/inverse_matrix.test.cpp
   - test/inv_of_formal_power_series.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
@@ -312,6 +319,7 @@ data:
   - test/product_of_polynomial_sequence.test.cpp
   - test/polynomial_taylor_shift.test.cpp
   - test/vertex_set_path_composite.test.cpp
+  - test/gcd_convolution.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/convolution_1e9+7.test.cpp
 documentation_of: modint/MontgomeryModInt.cpp
