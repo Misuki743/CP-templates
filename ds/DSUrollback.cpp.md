@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/persistent_unionfind.test.cpp
     title: test/persistent_unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/DSUrollback.cpp\"\nstruct DSU {\n  vector<array<int,\
@@ -39,7 +39,7 @@ data:
   path: ds/DSUrollback.cpp
   requiredBy: []
   timestamp: '2025-09-26 19:01:21+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/persistent_unionfind.test.cpp
 documentation_of: ds/DSUrollback.cpp

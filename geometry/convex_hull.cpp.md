@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/static_convex_hull.test.cpp
     title: test/static_convex_hull.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"geometry/convex_hull.cpp\"\n//soucre: KACTL\n//Returns a\
@@ -30,7 +30,7 @@ data:
   path: geometry/convex_hull.cpp
   requiredBy: []
   timestamp: '2025-03-17 19:48:27+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/static_convex_hull.test.cpp
 documentation_of: geometry/convex_hull.cpp

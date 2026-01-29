@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/min_plus_convolution_convex_arbitrary.test.cpp
     title: test/min_plus_convolution_convex_arbitrary.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/min_plus_convolution.cpp\"\ntemplate<class T>\nvector<T>\
@@ -33,7 +33,7 @@ data:
   path: poly/min_plus_convolution.cpp
   requiredBy: []
   timestamp: '2024-09-29 01:28:13+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/min_plus_convolution_convex_arbitrary.test.cpp
 documentation_of: poly/min_plus_convolution.cpp

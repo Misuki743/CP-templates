@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/staticTopTree.cpp\"\n//rake keep left child as exposed\
@@ -71,7 +71,7 @@ data:
   path: ds/staticTopTree.cpp
   requiredBy: []
   timestamp: '2025-05-16 21:27:50+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
 documentation_of: ds/staticTopTree.cpp

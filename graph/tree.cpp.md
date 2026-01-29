@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/jump_on_tree_2.test.cpp
     title: test/jump_on_tree_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca.test.cpp
     title: test/lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_tree.test.cpp
     title: test/mytest_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree.cpp\"\nclass tree {\n  using i32 = int32_t;\n\
@@ -88,7 +88,7 @@ data:
   path: graph/tree.cpp
   requiredBy: []
   timestamp: '2026-01-29 18:06:00+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/lca.test.cpp
   - test/jump_on_tree_2.test.cpp

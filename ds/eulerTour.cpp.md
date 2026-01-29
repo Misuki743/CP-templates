@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/vertex_add_path_sum.test.cpp
     title: test/vertex_add_path_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/eulerTour.cpp\"\n//#include<ds/RMQ.cpp>\n//#include<ds/LCA.cpp>\n\
@@ -46,7 +46,7 @@ data:
   path: ds/eulerTour.cpp
   requiredBy: []
   timestamp: '2024-07-24 13:33:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/vertex_add_path_sum.test.cpp
 documentation_of: ds/eulerTour.cpp
