@@ -240,7 +240,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: enumerate/enumerate_bit.cpp
       title: enumerate/enumerate_bit.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: enumerate/enumerate_cartesian_product.cpp
       title: enumerate/enumerate_cartesian_product.cpp
     - icon: ':heavy_check_mark:'

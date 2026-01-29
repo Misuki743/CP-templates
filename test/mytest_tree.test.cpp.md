@@ -5,11 +5,14 @@ data:
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
-    path: enumerate/enumerate_cartesian_product.cpp
-    title: enumerate/enumerate_cartesian_product.cpp
+    path: enumerate/enumerate_bit.cpp
+    title: enumerate/enumerate_bit.cpp
   - icon: ':heavy_check_mark:'
     path: enumerate/enumerate_label_tree.cpp
     title: enumerate/enumerate_label_tree.cpp
+  - icon: ':heavy_check_mark:'
+    path: enumerate/enumerate_twelvefold.cpp
+    title: enumerate/enumerate_twelvefold.cpp
   - icon: ':heavy_check_mark:'
     path: enumerate/enumerate_unlabel_rooted_tree.cpp
     title: enumerate/enumerate_unlabel_rooted_tree.cpp
@@ -102,30 +105,58 @@ data:
     \ edges;\n  for(int x : prufer_code) {\n    int v = leaf.top(); leaf.pop();\n\
     \    edges.emplace_back(v, x);\n    if (--d[x] == 1)\n      leaf.emplace(x);\n\
     \  }\n  int v = leaf.top(); leaf.pop();\n  edges.emplace_back(v, leaf.top());\n\
-    \  return edges;\n}\n#line 1 \"enumerate/enumerate_cartesian_product.cpp\"\n//enumerate\
-    \ product of [0, rs_i)\ntemplate<typename F>\nrequires invocable<F, vector<int>>\n\
-    void enumerate_cartesian_product(vector<int> rs, F f) {\n  vector<int> a(size(rs));\n\
-    \  auto dfs = [&](int i, auto &self) -> void {\n    if (i == ssize(rs)) {\n  \
-    \    f(a);\n    } else {\n      for(int j = 0; j < rs[i]; j++) {\n        a[i]\
-    \ = j;\n        self(i + 1, self);\n      }\n    }\n  };\n  dfs(0, dfs);\n}\n\
-    #line 1 \"enumerate/enumerate_label_tree.cpp\"\n//#include \"graph/prufer_recover.cpp\"\
-    \n//#include \"enumerate/enumerate_cartesian_product.cpp\"\n\ntemplate<typename\
-    \ F>\nrequires invocable<F, vector<vector<int>>>\nvoid enumerate_label_tree(int\
+    \  return edges;\n}\n#line 1 \"enumerate/enumerate_bit.cpp\"\n\ntemplate<typename\
+    \ F, typename INT>\nrequires invocable<F, INT>\nvoid enumerate_subset(INT msk,\
+    \ F f) {\n  for(INT x = msk; x > 0; x = (x - 1) & msk)\n    f(x);\n  f(0);\n}\n\
+    #line 1 \"enumerate/enumerate_twelvefold.cpp\"\n//#include \"enumerate/bit.cpp\"\
+    \n\ntemplate<typename F>\nrequires invocable<F, vector<int>>\nvoid enumerate_cartesian_power(int\
+    \ n, int k, F f) {\n  assert(min(n, k) >= 0);\n  vector<int> p(k);\n  auto dfs\
+    \ = [&](int i, auto &self) -> void {\n    if (i == k) {\n      f(p);\n    } else\
+    \ {\n      for(int x = 0; x < n; x++) {\n        p[i] = x;\n        self(i + 1,\
+    \ self);\n      }\n    }\n  };\n  dfs(0, dfs);\n}\n\ntemplate<typename F>\nrequires\
+    \ invocable<F, vector<int>>\nvoid enumerate_permutation(int n, F f) {\n  assert(n\
+    \ >= 0);\n  vector<int> p(n);\n  iota(p.begin(), p.end(), 0);\n  do { f(p); }\
+    \ while(next_permutation(p.begin(), p.end()));\n}\n\ntemplate<typename F>\nrequires\
+    \ invocable<F, vector<int>>\nvoid enumerate_combination(int n, int k, F f) {\n\
+    \  assert(min(n, k) >= 0);\n  vector<int> p;\n  auto dfs = [&](auto &self) ->\
+    \ void {\n    if (ssize(p) == k) {\n      f(p);\n    } else {\n      for(int x\
+    \ = (p.empty() ? 0 : p.back() + 1); x + k - ssize(p) <= n; x++) {\n        p.emplace_back(x);\n\
+    \        self(self);\n        p.pop_back();\n      }\n    }\n  };\n  dfs(dfs);\n\
+    }\n\ntemplate<typename F>\nrequires invocable<F, vector<int>>\nvoid enumerate_set_partition(int\
+    \ n, F f) {\n  assert(n >= 0);\n  vector<int> p;\n  int msk = (1 << n) - 1;\n\
+    \  auto dfs = [&](auto &self) -> void {\n    if (msk == 0) {\n      f(p);\n  \
+    \  } else {\n      int x = msk & (-msk);\n      msk ^= x;\n      enumerate_subset(msk,\
+    \ [&](int sub) {\n        p.emplace_back(sub | x);\n        msk ^= sub;\n    \
+    \    self(self);\n        msk ^= sub;\n        p.pop_back();\n      });\n    \
+    \  msk ^= x;\n    }\n  };\n  dfs(dfs);\n}\n\ntemplate<typename F>\nrequires invocable<F,\
+    \ vector<int>>\nvoid enumerate_multisubset(int n, int sum, F f) {\n  assert(min(n,\
+    \ sum) >= 0);\n  vector<int> p(n);\n  auto dfs = [&](int i, auto &self) -> void\
+    \ {\n    if (i == n) {\n      if (sum == 0) f(p);\n    } else {\n      for(int\
+    \ x = sum; x >= 0; x--) {\n        p[i] = x, sum -= x;\n        self(i + 1, self);\n\
+    \        sum += x;\n      }\n    }\n  };\n  dfs(0, dfs);\n}\n\ntemplate<typename\
+    \ F>\nrequires invocable<F, vector<int>>\nvoid enumerate_integer_partition(int\
+    \ n, F f) {\n  assert(n >= 0);\n  vector<int> p;\n  auto dfs = [&](int s, auto\
+    \ &self) -> void {\n    if (s == 0) {\n      f(p);\n    } else {\n      for(int\
+    \ x = (p.empty() ? s : min(p.back(), s)); x > 0; x--) {\n        p.emplace_back(x);\n\
+    \        self(s - x, self);\n        p.pop_back();\n      }\n    }\n  };\n  dfs(n,\
+    \ dfs);\n}\n#line 1 \"enumerate/enumerate_label_tree.cpp\"\n//#include \"graph/prufer_recover.cpp\"\
+    \n//#include \"enumerate/enumerate_bit.cpp\"\n//#include \"enumerate/enumerate_twelvefold.cpp\"\
+    \n\ntemplate<typename F>\nrequires invocable<F, vector<vector<int>>>\nvoid enumerate_label_tree(int\
     \ n, F f) {\n  assert(n > 0);\n  if (n == 1) {\n    f(vector<vector<int>>(1));\n\
-    \  } else {\n    enumerate_cartesian_product(vector<int>(n - 2, n), [n, f](vector<int>\
-    \ a) {\n      f(adjacency_list<false>(n, prufer_recover(a), 0));\n    });\n  }\n\
-    }\n#line 1 \"enumerate/enumerate_unlabel_rooted_tree.cpp\"\n//number of unlabel\
-    \ rooted tree (1-based)\n//1, 1, 2, 4, 9,\n//20, 48, 115, 286, 719,\n//1842, 4766,\
-    \ 12486, 32973, 87811,\n//235381, 634847, 1721159, 4688676, 12826228,\n//35221832,\
-    \ 97055181, 268282855, 743724984, 2067174645\n\n//root is 0\ntemplate<typename\
-    \ F>\nrequires invocable<F, vector<vector<int>>>\nvoid enumerate_unlabel_rooted_tree(int\
-    \ n, F f) {\n  const int LIM = 25;\n  assert(0 < n and n <= LIM);\n\n  vector\
-    \ hash(1, array<int, LIM>{-1});\n  array<int, LIM + 2> st;\n  fill(st.begin(),\
-    \ st.end(), INT_MAX);\n  st[0] = -1, st[1] = 0;\n\n  auto size = [&](int id) {\n\
-    \    int r = 1;\n    while(st[r] <= id) r++;\n    return r - 1;\n  };\n\n  for(int\
-    \ m = 2; m <= n; m++) {\n    st[m] = ssize(hash);\n    array<int, LIM> h;\n  \
-    \  int nxt = 0;\n    auto dfs = [&](int pre_id, int sum, auto &self) -> void {\n\
-    \      if (sum == 0) {\n        h[nxt++] = -1;\n        hash.emplace_back(h);\n\
+    \  } else {\n    enumerate_cartesian_power(n, n - 2, [n, f](vector<int> a) {\n\
+    \      f(adjacency_list<false>(n, prufer_recover(a), 0));\n    });\n  }\n}\n#line\
+    \ 1 \"enumerate/enumerate_unlabel_rooted_tree.cpp\"\n//number of unlabel rooted\
+    \ tree (1-based)\n//1, 1, 2, 4, 9,\n//20, 48, 115, 286, 719,\n//1842, 4766, 12486,\
+    \ 32973, 87811,\n//235381, 634847, 1721159, 4688676, 12826228,\n//35221832, 97055181,\
+    \ 268282855, 743724984, 2067174645\n\n//root is 0\ntemplate<typename F>\nrequires\
+    \ invocable<F, vector<vector<int>>>\nvoid enumerate_unlabel_rooted_tree(int n,\
+    \ F f) {\n  const int LIM = 25;\n  assert(0 < n and n <= LIM);\n\n  vector hash(1,\
+    \ array<int, LIM>{-1});\n  array<int, LIM + 2> st;\n  fill(st.begin(), st.end(),\
+    \ INT_MAX);\n  st[0] = -1, st[1] = 0;\n\n  auto size = [&](int id) {\n    int\
+    \ r = 1;\n    while(st[r] <= id) r++;\n    return r - 1;\n  };\n\n  for(int m\
+    \ = 2; m <= n; m++) {\n    st[m] = ssize(hash);\n    array<int, LIM> h;\n    int\
+    \ nxt = 0;\n    auto dfs = [&](int pre_id, int sum, auto &self) -> void {\n  \
+    \    if (sum == 0) {\n        h[nxt++] = -1;\n        hash.emplace_back(h);\n\
     \        nxt--;\n      } else {\n        for(int x = min(pre_id, st[sum + 1] -\
     \ 1); x >= 0; x--) {\n          h[nxt++] = x;\n          self(x, sum - size(x),\
     \ self);\n          nxt--;\n        }\n      }\n    };\n    dfs(INT_MAX, m - 1,\
@@ -166,7 +197,7 @@ data:
     \ ok(n, true);\n    for(int v = 0; v < n; v++) {\n      if (2 * (n - sz[v]) >\
     \ n)\n        ok[v] = false;\n      if (v != root and 2 * sz[v] > n)\n       \
     \ ok[p[v]] = false;\n    }\n    for(int v = 0; v < n; v++)\n      if (ok[v])\n\
-    \        r[1] = v, swap(r[0], r[1]);\n    return r;\n  }\n};\n#line 9 \"test/mytest_tree.test.cpp\"\
+    \        r[1] = v, swap(r[0], r[1]);\n    return r;\n  }\n};\n#line 10 \"test/mytest_tree.test.cpp\"\
     \n\nvoid check(vector<vector<int>> g, int root) {\n  const int n = ssize(g);\n\
     \  vector<int> p(n, root), sz(n, 1), dep(n);\n  auto dfs = [&](int v, auto &self)\
     \ -> void {\n    for(int x : g[v]) {\n      if (x == p[v]) continue;\n      p[x]\
@@ -198,49 +229,51 @@ data:
     \    auto [gp, root] = random_relabel(g);\n    check(gp, root);\n  }\n\n  a_plus_b();\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    ../default/t.cpp\"\n#include \"../graph/prufer_recover.cpp\"\n#include \"../enumerate/enumerate_cartesian_product.cpp\"\
-    \n#include \"../enumerate/enumerate_label_tree.cpp\"\n#include \"../enumerate/enumerate_unlabel_rooted_tree.cpp\"\
-    \n#include \"../graph/tree.cpp\"\n\nvoid check(vector<vector<int>> g, int root)\
-    \ {\n  const int n = ssize(g);\n  vector<int> p(n, root), sz(n, 1), dep(n);\n\
-    \  auto dfs = [&](int v, auto &self) -> void {\n    for(int x : g[v]) {\n    \
-    \  if (x == p[v]) continue;\n      p[x] = v, dep[x] = dep[v] + 1;\n      self(x,\
-    \ self);\n      sz[v] += sz[x];\n    }\n  };\n  dfs(root, dfs);\n\n  vector<pii>\
-    \ e;\n  for(int u = 0; u < n; u++)\n    for(int v : g[u])\n      if (u < v)\n\
-    \        e.emplace_back(u, v);\n\n  tree T(e, root);\n  assert(tie(T.p, T.sz,\
-    \ T.dep) == tie(p, sz, dep));\n}\n\nauto random_relabel(vector<vector<int>> g)\
-    \ {\n  mt19937 rng(clock);\n  const int n = ssize(g);\n  vector<int> p(n);\n \
-    \ iota(p.begin(), p.end(), 0);\n  shuffle(p.begin(), p.end(), rng);\n  vector<vector<int>>\
-    \ g2(n);\n  for(int u = 0; u < n; u++)\n    for(int v : g[u])\n      g2[p[u]].eb(p[v]);\n\
-    \  return pair(g2, p[0]);\n}\n\nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n\
-    \  cout << a + b << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  mt19937 rng(clock);\n\n  for(int n = 1; n <= 7; n++) {\n\
-    \    enumerate_label_tree(n, [&](vector<vector<int>> g) {\n      for(int root\
-    \ = 0; root < n; root++)\n        check(g, root);\n    });\n  }\n\n  for(int n\
-    \ = 1; n <= 15; n++) {\n    enumerate_unlabel_rooted_tree(n, [&](vector<vector<int>>\
-    \ g) {\n      check(g, 0);\n      auto [gp, root] = random_relabel(g);\n     \
-    \ check(gp, root);\n    });\n  }\n\n  //path\n  for(int n = 1; n <= 100; n++)\
-    \ {\n    vector<vector<int>> g(n);\n    for(int i = 1; i < n; i++)\n      g[i].emplace_back(i\
-    \ - 1), g[i - 1].emplace_back(i);\n    check(g, 0);\n    check(g, n / 2);\n  \
-    \  check(g, n - 1);\n    auto [gp, root] = random_relabel(g);\n    check(gp, root);\n\
-    \  }\n\n  //star\n  for(int n = 2; n <= 100; n++) {\n    for(int root : {0, n\
-    \ / 2, n - 1}) {\n      vector<vector<int>> g(n);\n      for(int i = 0; i < n;\
-    \ i++)\n        if (i != root)\n          g[root].emplace_back(i), g[i].emplace_back(root);\n\
-    \      check(g, root);\n    }\n  }\n\n  //almost path\n  for(int tc = 0; tc <\
-    \ 30; tc++) {\n    int n = 500;\n    vector<vector<int>> g(n);\n    for(int v\
-    \ = 1; v < n; v++) {\n      int x = rng() % min(v, 5);\n      g[v].emplace_back(x),\
-    \ g[x].emplace_back(v);\n    }\n    check(g, 0);\n    auto [gp, root] = random_relabel(g);\n\
-    \    check(gp, root);\n  }\n\n  a_plus_b();\n\n  return 0;\n}\n"
+    ../default/t.cpp\"\n#include \"../graph/prufer_recover.cpp\"\n#include \"../enumerate/enumerate_bit.cpp\"\
+    \n#include \"../enumerate/enumerate_twelvefold.cpp\"\n#include \"../enumerate/enumerate_label_tree.cpp\"\
+    \n#include \"../enumerate/enumerate_unlabel_rooted_tree.cpp\"\n#include \"../graph/tree.cpp\"\
+    \n\nvoid check(vector<vector<int>> g, int root) {\n  const int n = ssize(g);\n\
+    \  vector<int> p(n, root), sz(n, 1), dep(n);\n  auto dfs = [&](int v, auto &self)\
+    \ -> void {\n    for(int x : g[v]) {\n      if (x == p[v]) continue;\n      p[x]\
+    \ = v, dep[x] = dep[v] + 1;\n      self(x, self);\n      sz[v] += sz[x];\n   \
+    \ }\n  };\n  dfs(root, dfs);\n\n  vector<pii> e;\n  for(int u = 0; u < n; u++)\n\
+    \    for(int v : g[u])\n      if (u < v)\n        e.emplace_back(u, v);\n\n  tree\
+    \ T(e, root);\n  assert(tie(T.p, T.sz, T.dep) == tie(p, sz, dep));\n}\n\nauto\
+    \ random_relabel(vector<vector<int>> g) {\n  mt19937 rng(clock);\n  const int\
+    \ n = ssize(g);\n  vector<int> p(n);\n  iota(p.begin(), p.end(), 0);\n  shuffle(p.begin(),\
+    \ p.end(), rng);\n  vector<vector<int>> g2(n);\n  for(int u = 0; u < n; u++)\n\
+    \    for(int v : g[u])\n      g2[p[u]].eb(p[v]);\n  return pair(g2, p[0]);\n}\n\
+    \nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\
+    \nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  mt19937 rng(clock);\n\
+    \n  for(int n = 1; n <= 7; n++) {\n    enumerate_label_tree(n, [&](vector<vector<int>>\
+    \ g) {\n      for(int root = 0; root < n; root++)\n        check(g, root);\n \
+    \   });\n  }\n\n  for(int n = 1; n <= 15; n++) {\n    enumerate_unlabel_rooted_tree(n,\
+    \ [&](vector<vector<int>> g) {\n      check(g, 0);\n      auto [gp, root] = random_relabel(g);\n\
+    \      check(gp, root);\n    });\n  }\n\n  //path\n  for(int n = 1; n <= 100;\
+    \ n++) {\n    vector<vector<int>> g(n);\n    for(int i = 1; i < n; i++)\n    \
+    \  g[i].emplace_back(i - 1), g[i - 1].emplace_back(i);\n    check(g, 0);\n   \
+    \ check(g, n / 2);\n    check(g, n - 1);\n    auto [gp, root] = random_relabel(g);\n\
+    \    check(gp, root);\n  }\n\n  //star\n  for(int n = 2; n <= 100; n++) {\n  \
+    \  for(int root : {0, n / 2, n - 1}) {\n      vector<vector<int>> g(n);\n    \
+    \  for(int i = 0; i < n; i++)\n        if (i != root)\n          g[root].emplace_back(i),\
+    \ g[i].emplace_back(root);\n      check(g, root);\n    }\n  }\n\n  //almost path\n\
+    \  for(int tc = 0; tc < 30; tc++) {\n    int n = 500;\n    vector<vector<int>>\
+    \ g(n);\n    for(int v = 1; v < n; v++) {\n      int x = rng() % min(v, 5);\n\
+    \      g[v].emplace_back(x), g[x].emplace_back(v);\n    }\n    check(g, 0);\n\
+    \    auto [gp, root] = random_relabel(g);\n    check(gp, root);\n  }\n\n  a_plus_b();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - graph/prufer_recover.cpp
-  - enumerate/enumerate_cartesian_product.cpp
+  - enumerate/enumerate_bit.cpp
+  - enumerate/enumerate_twelvefold.cpp
   - enumerate/enumerate_label_tree.cpp
   - enumerate/enumerate_unlabel_rooted_tree.cpp
   - graph/tree.cpp
   isVerificationFile: true
   path: test/mytest_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-01-29 18:06:00+08:00'
+  timestamp: '2026-01-29 19:35:43+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest_tree.test.cpp

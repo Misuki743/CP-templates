@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest_enumerate_twelvefold.test.cpp
     title: test/mytest_enumerate_twelvefold.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest_tree.test.cpp
+    title: test/mytest_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -83,6 +86,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest_enumerate_twelvefold.test.cpp
+  - test/mytest_tree.test.cpp
 documentation_of: enumerate/enumerate_twelvefold.cpp
 layout: document
 redirect_from:
