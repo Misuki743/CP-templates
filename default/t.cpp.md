@@ -205,6 +205,9 @@ data:
     path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
     title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest_enumerate_twelvefold.test.cpp
+    title: test/mytest_enumerate_twelvefold.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest_tree.test.cpp
     title: test/mytest_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -565,6 +568,7 @@ data:
   - test/addition_of_big_integers.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
   - test/lowest_common_ancestor_2.test.cpp
+  - test/mytest_enumerate_twelvefold.test.cpp
   - test/frequency_table_of_tree_distance.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/range_set_range_composite.test.cpp

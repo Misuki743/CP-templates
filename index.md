@@ -237,19 +237,16 @@ data:
       title: ds_problem/zero_one_on_tree.cpp
   - name: enumerate
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/enumerate_bit.cpp
       title: enumerate/enumerate_bit.cpp
     - icon: ':heavy_check_mark:'
       path: enumerate/enumerate_cartesian_product.cpp
       title: enumerate/enumerate_cartesian_product.cpp
-    - icon: ':warning:'
-      path: enumerate/enumerate_integer_partition.cpp
-      title: enumerate/enumerate_integer_partition.cpp
     - icon: ':heavy_check_mark:'
       path: enumerate/enumerate_label_tree.cpp
       title: enumerate/enumerate_label_tree.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/enumerate_twelvefold.cpp
       title: enumerate/enumerate_twelvefold.cpp
     - icon: ':heavy_check_mark:'
@@ -829,6 +826,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
       title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest_enumerate_twelvefold.test.cpp
+      title: test/mytest_enumerate_twelvefold.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest_tree.test.cpp
       title: test/mytest_tree.test.cpp
