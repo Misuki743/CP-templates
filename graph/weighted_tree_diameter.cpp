@@ -1,5 +1,5 @@
 template<class T>
-tuple<T, T, T, vector<int>> treeDiameter(vector<vector<pair<int, T>>> &g) {
+tuple<T, T, T, vector<int>> weighted_tree_diameter(vector<vector<pair<int, T>>> &g) {
   const T inf = numeric_limits<T>::max();
   const int n = ssize(g);
   auto bfs = [&](int s) {

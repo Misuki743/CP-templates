@@ -1,16 +1,18 @@
-struct tree {
-  int n;
-  vector<int> p, sz, dep, jp;
-
+class tree {
   using i32 = int32_t;
 
-  void calc(vector<i32> d, vector<i32> adj, int root) {
+  vector<i32> ord;
+
+  public:
+
+  int n, root;
+  vector<int> p, sz, dep, jp;
+
+  void calc(vector<i32> d, vector<i32> adj) {
     sz = vector<int>(n, 1);
     p = dep = jp = vector<int>(n);
 
-    vector<i32> ord;
     ord.reserve(n - 1);
-
     for(int i = 0; i < n; i++) {
       int v = i;
       while(d[v] == 1) {
@@ -33,22 +35,22 @@ struct tree {
     }
   }
 
-  tree(vector<pii> e, int root = 0) : n(size(e) + 1) {
+  tree(vector<pii> e, int _root = 0) : n(size(e) + 1), root(_root) {
     vector<i32> d(n), adj(n);
     for(auto [u, v] : e)
       d[u]++, d[v]++, adj[u] ^= v, adj[v] ^= u;
     d[root] = 0;
-    calc(d, adj, root);
+    calc(d, adj);
   }
 
   tree(vector<int> pa) : n(size(pa)) {
-    int root = ranges::find(pa, -1) - pa.begin();
+    root = ranges::find(pa, -1) - pa.begin();
     vector<i32> d(n), adj(n);
     for(int v = 0; v < n; v++)
       if (pa[v] != -1)
         d[v]++, d[pa[v]]++, adj[v] ^= pa[v], adj[pa[v]] ^= v;
     d[root] = 0;
-    calc(d, adj, root);
+    calc(d, adj);
   }
 
   int jump(int v, int k) {
@@ -90,5 +92,20 @@ struct tree {
 
   int median(int u, int v, int w) {
     return lca(u, v) ^ lca(u, w) ^ lca(v, w);
+  }
+
+  auto centroid() {
+    array<int, 2> r = {-1, -1};
+    vector<bool> ok(n, true);
+    for(int v = 0; v < n; v++) {
+      if (2 * (n - sz[v]) > n)
+        ok[v] = false;
+      if (v != root and 2 * sz[v] > n)
+        ok[p[v]] = false;
+    }
+    for(int v = 0; v < n; v++)
+      if (ok[v])
+        r[1] = v, swap(r[0], r[1]);
+    return r;
   }
 };

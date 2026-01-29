@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tree_diameter"
 
 #include "../default/t.cpp"
-#include "../graph/treeDiameter.cpp"
+#include "../graph/weighted_tree_diameter.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
@@ -14,7 +14,7 @@ signed main() {
     g[v].emplace_back(u, w);
   }
 
-  auto [d, _, __, vs] = treeDiameter<ll>(g);
+  auto [d, _, __, vs] = weighted_tree_diameter<ll>(g);
   cout << d << ' ' << ssize(vs) << '\n';
   cout << vs << '\n';
 

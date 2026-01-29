@@ -48,7 +48,7 @@ void a_plus_b() {
   cout << a + b << '\n';
 }
 
-void main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   mt19937 rng(clock);
