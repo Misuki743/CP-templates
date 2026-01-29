@@ -136,8 +136,14 @@ data:
     path: test/jump_on_tree.test.cpp
     title: test/jump_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/jump_on_tree_2.test.cpp
+    title: test/jump_on_tree_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/lca.test.cpp
+    title: test/lca.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/line_add_get_min.test.cpp
     title: test/line_add_get_min.test.cpp
@@ -198,6 +204,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
     title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
+  - icon: ':x:'
+    path: test/mytest_tree.test.cpp
+    title: test/mytest_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/persistent_unionfind.test.cpp
     title: test/persistent_unionfind.test.cpp
@@ -225,70 +234,70 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/predecessor_problem.test.cpp
     title: test/predecessor_problem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/primality_test.test.cpp
     title: test/primality_test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/queue_operate_all_composite.test.cpp
     title: test/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_add_range_min.test.cpp
     title: test/range_add_range_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_kth_smallest2.test.cpp
     title: test/range_kth_smallest2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_reverse_range_sum.test.cpp
     title: test/range_reverse_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_set_range_composite.test.cpp
     title: test/range_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/rectangle_add_point_get.test.cpp
     title: test/rectangle_add_point_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/rectangle_sum.test.cpp
     title: test/rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/rooted_tree_isomorphism_classification.test.cpp
     title: test/rooted_tree_isomorphism_classification.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/segment_add_get_min.test.cpp
     title: test/segment_add_get_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/set_xor_min.test.cpp
     title: test/set_xor_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sharp_p_subset_sum.test.cpp
     title: test/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/shortest_path.test.cpp
     title: test/shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -543,6 +552,7 @@ data:
   - test/wildcard_pattern_matching.test.cpp
   - test/range_affine_range_sum.test.cpp
   - test/tree_path_composite_sum.test.cpp
+  - test/lca.test.cpp
   - test/deque_operate_all_composite.test.cpp
   - test/static_range_frequency.test.cpp
   - test/primitive_root.test.cpp
@@ -618,6 +628,7 @@ data:
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/bipartitematching.test.cpp
   - test/two_sat.test.cpp
+  - test/jump_on_tree_2.test.cpp
   - test/predecessor_problem.test.cpp
   - test/minimum_spanning_tree.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
@@ -627,6 +638,7 @@ data:
   - test/range_affine_point_get.test.cpp
   - test/determinant_of_matrix.test.cpp
   - test/strongly_connected_components.test.cpp
+  - test/mytest_tree.test.cpp
   - test/binomial_coefficient_prime_mod.test.cpp
   - test/Z_algorithm.test.cpp
   - test/polynomial_interpolation.test.cpp

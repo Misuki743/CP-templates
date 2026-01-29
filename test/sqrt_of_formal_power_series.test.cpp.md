@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPSsqrt.cpp
     title: poly/FPSsqrt.cpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: poly/NTTmint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
@@ -294,7 +294,7 @@ data:
   path: test/sqrt_of_formal_power_series.test.cpp
   requiredBy: []
   timestamp: '2026-01-29 02:59:39+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sqrt_of_formal_power_series.test.cpp
 layout: document

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest_tree.test.cpp
+    title: test/mytest_tree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/enumerate_cartesian_product.cpp\"\n//enumerate\
@@ -25,8 +28,9 @@ data:
   path: enumerate/enumerate_cartesian_product.cpp
   requiredBy: []
   timestamp: '2026-01-29 02:59:39+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/mytest_tree.test.cpp
 documentation_of: enumerate/enumerate_cartesian_product.cpp
 layout: document
 redirect_from:

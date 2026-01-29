@@ -1,0 +1,93 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/jump_on_tree_2.test.cpp
+    title: test/jump_on_tree_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/lca.test.cpp
+    title: test/lca.test.cpp
+  - icon: ':x:'
+    path: test/mytest_tree.test.cpp
+    title: test/mytest_tree.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':question:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"graph/tree.cpp\"\nstruct tree {\n  int n;\n  vector<int>\
+    \ p, sz, dep, jp;\n\n  using i32 = int32_t;\n\n  void calc(vector<i32> d, vector<i32>\
+    \ adj, int root) {\n    sz = vector<int>(n, 1);\n    p = dep = jp = vector<int>(n);\n\
+    \n    vector<i32> ord;\n    ord.reserve(n - 1);\n\n    for(int i = 0; i < n; i++)\
+    \ {\n      int v = i;\n      while(d[v] == 1) {\n        ord.emplace_back(v);\n\
+    \        p[v] = adj[v], sz[p[v]] += sz[v];\n        d[v] = 0, d[p[v]]--, adj[p[v]]\
+    \ ^= v;\n        v = p[v];\n      }\n    }\n\n    assert(ssize(ord) == n - 1);\n\
+    \n    p[root] = jp[root] = root;\n    for(i32 v : ord | views::reverse) {\n  \
+    \    dep[v] = dep[p[v]] + 1;\n      if (dep[p[v]] + dep[jp[jp[p[v]]]] == 2 * dep[jp[p[v]]])\n\
+    \        jp[v] = jp[jp[p[v]]];\n      else\n        jp[v] = p[v];\n    }\n  }\n\
+    \n  tree(vector<pii> e, int root = 0) : n(size(e) + 1) {\n    vector<i32> d(n),\
+    \ adj(n);\n    for(auto [u, v] : e)\n      d[u]++, d[v]++, adj[u] ^= v, adj[v]\
+    \ ^= u;\n    d[root] = 0;\n    calc(d, adj, root);\n  }\n\n  tree(vector<int>\
+    \ pa) : n(size(pa)) {\n    int root = ranges::find(pa, -1) - pa.begin();\n   \
+    \ vector<i32> d(n), adj(n);\n    for(int v = 0; v < n; v++)\n      if (pa[v] !=\
+    \ -1)\n        d[v]++, d[pa[v]]++, adj[v] ^= pa[v], adj[pa[v]] ^= v;\n    d[root]\
+    \ = 0;\n    calc(d, adj, root);\n  }\n\n  int jump(int v, int k) {\n    k = min(k,\
+    \ dep[v]);\n    while(k) {\n      if (int d = dep[v] - dep[jp[v]]; d <= k)\n \
+    \       v = jp[v], k -= d;\n      else\n        v = p[v], k -= 1;\n    }\n   \
+    \ return v;\n  }\n\n  int lca(int u, int v) {\n    if (dep[u] < dep[v])\n    \
+    \  swap(u, v);\n    u = jump(u, dep[u] - dep[v]);\n    if (u == v) return u;\n\
+    \    while(p[u] != p[v]) {\n      if (jp[u] != jp[v]) u = jp[u], v = jp[v];\n\
+    \      else u = p[u], v = p[v];\n    }\n    return p[u];\n  }\n\n  int kth(int\
+    \ s, int t, int k) {\n    int m = lca(s, t);\n    if (dep[s] + dep[t] - 2 * dep[m]\
+    \ < k)\n      return -1;\n    else if (dep[s] - dep[m] >= k)\n      return jump(s,\
+    \ k);\n    else\n      return jump(t, dep[s] + dep[t] - 2 * dep[m] - k);\n  }\n\
+    \n  int dis(int u, int v) {\n    return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n\
+    \  }\n\n  int median(int u, int v, int w) {\n    return lca(u, v) ^ lca(u, w)\
+    \ ^ lca(v, w);\n  }\n};\n"
+  code: "struct tree {\n  int n;\n  vector<int> p, sz, dep, jp;\n\n  using i32 = int32_t;\n\
+    \n  void calc(vector<i32> d, vector<i32> adj, int root) {\n    sz = vector<int>(n,\
+    \ 1);\n    p = dep = jp = vector<int>(n);\n\n    vector<i32> ord;\n    ord.reserve(n\
+    \ - 1);\n\n    for(int i = 0; i < n; i++) {\n      int v = i;\n      while(d[v]\
+    \ == 1) {\n        ord.emplace_back(v);\n        p[v] = adj[v], sz[p[v]] += sz[v];\n\
+    \        d[v] = 0, d[p[v]]--, adj[p[v]] ^= v;\n        v = p[v];\n      }\n  \
+    \  }\n\n    assert(ssize(ord) == n - 1);\n\n    p[root] = jp[root] = root;\n \
+    \   for(i32 v : ord | views::reverse) {\n      dep[v] = dep[p[v]] + 1;\n     \
+    \ if (dep[p[v]] + dep[jp[jp[p[v]]]] == 2 * dep[jp[p[v]]])\n        jp[v] = jp[jp[p[v]]];\n\
+    \      else\n        jp[v] = p[v];\n    }\n  }\n\n  tree(vector<pii> e, int root\
+    \ = 0) : n(size(e) + 1) {\n    vector<i32> d(n), adj(n);\n    for(auto [u, v]\
+    \ : e)\n      d[u]++, d[v]++, adj[u] ^= v, adj[v] ^= u;\n    d[root] = 0;\n  \
+    \  calc(d, adj, root);\n  }\n\n  tree(vector<int> pa) : n(size(pa)) {\n    int\
+    \ root = ranges::find(pa, -1) - pa.begin();\n    vector<i32> d(n), adj(n);\n \
+    \   for(int v = 0; v < n; v++)\n      if (pa[v] != -1)\n        d[v]++, d[pa[v]]++,\
+    \ adj[v] ^= pa[v], adj[pa[v]] ^= v;\n    d[root] = 0;\n    calc(d, adj, root);\n\
+    \  }\n\n  int jump(int v, int k) {\n    k = min(k, dep[v]);\n    while(k) {\n\
+    \      if (int d = dep[v] - dep[jp[v]]; d <= k)\n        v = jp[v], k -= d;\n\
+    \      else\n        v = p[v], k -= 1;\n    }\n    return v;\n  }\n\n  int lca(int\
+    \ u, int v) {\n    if (dep[u] < dep[v])\n      swap(u, v);\n    u = jump(u, dep[u]\
+    \ - dep[v]);\n    if (u == v) return u;\n    while(p[u] != p[v]) {\n      if (jp[u]\
+    \ != jp[v]) u = jp[u], v = jp[v];\n      else u = p[u], v = p[v];\n    }\n   \
+    \ return p[u];\n  }\n\n  int kth(int s, int t, int k) {\n    int m = lca(s, t);\n\
+    \    if (dep[s] + dep[t] - 2 * dep[m] < k)\n      return -1;\n    else if (dep[s]\
+    \ - dep[m] >= k)\n      return jump(s, k);\n    else\n      return jump(t, dep[s]\
+    \ + dep[t] - 2 * dep[m] - k);\n  }\n\n  int dis(int u, int v) {\n    return dep[u]\
+    \ + dep[v] - 2 * dep[lca(u, v)];\n  }\n\n  int median(int u, int v, int w) {\n\
+    \    return lca(u, v) ^ lca(u, w) ^ lca(v, w);\n  }\n};\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: graph/tree.cpp
+  requiredBy: []
+  timestamp: '2026-01-29 17:21:40+08:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/lca.test.cpp
+  - test/jump_on_tree_2.test.cpp
+  - test/mytest_tree.test.cpp
+documentation_of: graph/tree.cpp
+layout: document
+redirect_from:
+- /library/graph/tree.cpp
+- /library/graph/tree.cpp.html
+title: graph/tree.cpp
+---

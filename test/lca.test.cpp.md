@@ -4,12 +4,9 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
-    path: numtheory/factorize_pollard_rho.cpp
-    title: numtheory/factorize_pollard_rho.cpp
-  - icon: ':heavy_check_mark:'
-    path: numtheory/primitive_root.cpp
-    title: numtheory/primitive_root.cpp
+  - icon: ':question:'
+    path: graph/tree.cpp
+    title: graph/tree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -17,10 +14,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/primitive_root
+    PROBLEM: https://judge.yosupo.jp/problem/lca
     links:
-    - https://judge.yosupo.jp/problem/primitive_root
-  bundledCode: "#line 1 \"test/primitive_root.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\
+    - https://judge.yosupo.jp/problem/lca
+  bundledCode: "#line 1 \"test/lca.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
     \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
@@ -84,54 +81,58 @@ data:
     \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
     \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
-    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/factorize_pollard_rho.cpp\"\n//source:\
-    \ KACTL(https://github.com/kth-competitive-programming/kactl)\n\null modmul(ull\
-    \ a, ull b, ull M) {\n\tll ret = a * b - M * ull(1.L / M * a * b);\n\treturn ret\
-    \ + M * (ret < 0) - M * (ret >= (ll)M);\n}\n\null modpow(ull b, ull e, ull mod)\
-    \ {\n\tull ans = 1;\n\tfor (; e; b = modmul(b, b, mod), e /= 2)\n\t\tif (e & 1)\
-    \ ans = modmul(ans, b, mod);\n\treturn ans;\n}\n\nbool isPrime(ull n) {\n\tif\
-    \ (n < 2 || n % 6 % 4 != 1) return (n | 1) == 3;\n\tull A[] = {2, 325, 9375, 28178,\
-    \ 450775, 9780504, 1795265022},\n\t    s = __builtin_ctzll(n-1), d = n >> s;\n\
-    \tfor (ull a : A) {   // ^ count trailing zeroes\n\t\tull p = modpow(a%n, d, n),\
-    \ i = s;\n\t\twhile (p != 1 && p != n - 1 && a % n && i--)\n\t\t\tp = modmul(p,\
-    \ p, n);\n\t\tif (p != n-1 && i != s) return 0;\n\t}\n\treturn 1;\n}\n\null pollard(ull\
-    \ n) {\n  static mt19937_64 rng(clock);\n  uniform_int_distribution<ull> unif(0,\
-    \ n - 1);\n  ull c = 1;\n\tauto f = [n, &c](ull x) { return modmul(x, x, n) +\
-    \ c % n; };\n\tull x = 0, y = 0, t = 30, prd = 2, i = 1, q;\n\twhile (t++ % 40\
-    \ || __gcd(prd, n) == 1) {\n\t\tif (x == y) c = unif(rng), x = ++i, y = f(x);\n\
-    \t\tif ((q = modmul(prd, max(x,y) - min(x,y), n))) prd = q;\n\t\tx = f(x), y =\
-    \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
-    if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
-    \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 1 \"numtheory/primitive_root.cpp\"\n//#include \"numtheory/fastFactorize.cpp\"\
-    \n\null primitiveRoot(ull p) {\n  auto fac = factor(p - 1);\n  ranges::sort(fac);\n\
-    \  fac.resize(unique(fac.begin(), fac.end()) - fac.begin());\n  auto test = [p,\
-    \ fac](ull x) {\n    for(ull d : fac)\n      if (modpow(x, (p - 1) / d, p) ==\
-    \ 1)\n        return false;\n    return true;\n  };\n  static mt19937_64 rng(clock);\n\
-    \  uniform_int_distribution<ull> unif(1, p - 1);\n  ull root;\n  while(!test(root\
-    \ = unif(rng)));\n  return root;\n}\n#line 6 \"test/primitive_root.test.cpp\"\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin\
-    \ >> q;\n  while(q--) {\n    ull x; cin >> x;\n    cout << primitiveRoot(x) <<\
-    \ '\\n';\n  }\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../numtheory/factorize_pollard_rho.cpp\"\n\
-    #include \"../numtheory/primitive_root.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int q; cin >> q;\n  while(q--) {\n    ull x; cin >> x;\n\
-    \    cout << primitiveRoot(x) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"graph/tree.cpp\"\nstruct tree {\n  int n;\n\
+    \  vector<int> p, sz, dep, jp;\n\n  using i32 = int32_t;\n\n  void calc(vector<i32>\
+    \ d, vector<i32> adj, int root) {\n    sz = vector<int>(n, 1);\n    p = dep =\
+    \ jp = vector<int>(n);\n\n    vector<i32> ord;\n    ord.reserve(n - 1);\n\n  \
+    \  for(int i = 0; i < n; i++) {\n      int v = i;\n      while(d[v] == 1) {\n\
+    \        ord.emplace_back(v);\n        p[v] = adj[v], sz[p[v]] += sz[v];\n   \
+    \     d[v] = 0, d[p[v]]--, adj[p[v]] ^= v;\n        v = p[v];\n      }\n    }\n\
+    \n    assert(ssize(ord) == n - 1);\n\n    p[root] = jp[root] = root;\n    for(i32\
+    \ v : ord | views::reverse) {\n      dep[v] = dep[p[v]] + 1;\n      if (dep[p[v]]\
+    \ + dep[jp[jp[p[v]]]] == 2 * dep[jp[p[v]]])\n        jp[v] = jp[jp[p[v]]];\n \
+    \     else\n        jp[v] = p[v];\n    }\n  }\n\n  tree(vector<pii> e, int root\
+    \ = 0) : n(size(e) + 1) {\n    vector<i32> d(n), adj(n);\n    for(auto [u, v]\
+    \ : e)\n      d[u]++, d[v]++, adj[u] ^= v, adj[v] ^= u;\n    d[root] = 0;\n  \
+    \  calc(d, adj, root);\n  }\n\n  tree(vector<int> pa) : n(size(pa)) {\n    int\
+    \ root = ranges::find(pa, -1) - pa.begin();\n    vector<i32> d(n), adj(n);\n \
+    \   for(int v = 0; v < n; v++)\n      if (pa[v] != -1)\n        d[v]++, d[pa[v]]++,\
+    \ adj[v] ^= pa[v], adj[pa[v]] ^= v;\n    d[root] = 0;\n    calc(d, adj, root);\n\
+    \  }\n\n  int jump(int v, int k) {\n    k = min(k, dep[v]);\n    while(k) {\n\
+    \      if (int d = dep[v] - dep[jp[v]]; d <= k)\n        v = jp[v], k -= d;\n\
+    \      else\n        v = p[v], k -= 1;\n    }\n    return v;\n  }\n\n  int lca(int\
+    \ u, int v) {\n    if (dep[u] < dep[v])\n      swap(u, v);\n    u = jump(u, dep[u]\
+    \ - dep[v]);\n    if (u == v) return u;\n    while(p[u] != p[v]) {\n      if (jp[u]\
+    \ != jp[v]) u = jp[u], v = jp[v];\n      else u = p[u], v = p[v];\n    }\n   \
+    \ return p[u];\n  }\n\n  int kth(int s, int t, int k) {\n    int m = lca(s, t);\n\
+    \    if (dep[s] + dep[t] - 2 * dep[m] < k)\n      return -1;\n    else if (dep[s]\
+    \ - dep[m] >= k)\n      return jump(s, k);\n    else\n      return jump(t, dep[s]\
+    \ + dep[t] - 2 * dep[m] - k);\n  }\n\n  int dis(int u, int v) {\n    return dep[u]\
+    \ + dep[v] - 2 * dep[lca(u, v)];\n  }\n\n  int median(int u, int v, int w) {\n\
+    \    return lca(u, v) ^ lca(u, w) ^ lca(v, w);\n  }\n};\n#line 5 \"test/lca.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vector<int> p(n - 1);\n  for(int &x : p) cin >> x;\n  p.insert(p.begin(),\
+    \ -1);\n  tree T(std::move(p));\n  while(q--) {\n    int u, v; cin >> u >> v;\n\
+    \    cout << T.lca(u, v) << '\\n';\n  }\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include \"../default/t.cpp\"\
+    \n#include \"../graph/tree.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> p(n - 1);\n  for(int\
+    \ &x : p) cin >> x;\n  p.insert(p.begin(), -1);\n  tree T(std::move(p));\n  while(q--)\
+    \ {\n    int u, v; cin >> u >> v;\n    cout << T.lca(u, v) << '\\n';\n  }\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - numtheory/factorize_pollard_rho.cpp
-  - numtheory/primitive_root.cpp
+  - graph/tree.cpp
   isVerificationFile: true
-  path: test/primitive_root.test.cpp
+  path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2026-01-29 02:59:39+08:00'
+  timestamp: '2026-01-29 17:21:40+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/primitive_root.test.cpp
+documentation_of: test/lca.test.cpp
 layout: document
 redirect_from:
-- /verify/test/primitive_root.test.cpp
-- /verify/test/primitive_root.test.cpp.html
-title: test/primitive_root.test.cpp
+- /verify/test/lca.test.cpp
+- /verify/test/lca.test.cpp.html
+title: test/lca.test.cpp
 ---

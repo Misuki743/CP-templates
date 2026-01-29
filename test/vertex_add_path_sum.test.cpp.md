@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: ds/eulerTour.cpp
     title: ds/eulerTour.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: segtree/dualSegmentTree.cpp
     title: segtree/dualSegmentTree.cpp
   _extendedRequiredBy: []

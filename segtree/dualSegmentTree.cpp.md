@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/vertex_add_path_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segtree/dualSegmentTree.cpp\"\ntemplate<class M, M(*Mid)(),\
@@ -52,7 +52,7 @@ data:
   path: segtree/dualSegmentTree.cpp
   requiredBy: []
   timestamp: '2024-08-31 23:11:05+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/vertex_add_path_sum.test.cpp
   - test/range_affine_point_get.test.cpp
