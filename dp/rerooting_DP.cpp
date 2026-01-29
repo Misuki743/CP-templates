@@ -1,8 +1,3 @@
-template<typename R, typename F, typename... Args>
-concept R_invocable = requires(F&& f, Args&&... args) {
-  { std::invoke(std::forward<F>(f), std::forward<Args>(args)...) } -> std::same_as<R>;
-};
-
 template<class V, class E, typename BASE, typename ADD_EDGE, typename OP, typename ADD_VERTEX>
 requires
   R_invocable<V, BASE, int> &&

@@ -59,6 +59,19 @@
 
 using namespace std;
 
+template<size_t I = 0, typename... args>
+ostream& print_tuple(ostream& os, const tuple<args...> tu) {
+  os << get<I>(tu);
+  if constexpr (I + 1 != sizeof...(args)) {
+    os << ' ';
+    print_tuple<I + 1>(os, tu);
+  }
+  return os;
+}
+template<typename... args>
+ostream& operator<<(ostream& os, const tuple<args...> tu) {
+  return print_tuple(os, tu);
+}
 template<class T1, class T2>
 ostream& operator<<(ostream& os, const pair<T1, T2> pr) {
   return os << pr.first << ' ' << pr.second;
@@ -87,11 +100,19 @@ ostream& operator<<(ostream& os, const set<T> &s) {
   }
   return os;
 }
+template<class T>
+ostream& operator<<(ostream& os, const multiset<T> &s) {
+  for(size_t i = 0; T x : s) {
+    os << x;
+    if (++i != size(s)) os << ' ';
+  }
+  return os;
+}
 template<class T1, class T2>
 ostream& operator<<(ostream& os, const map<T1, T2> &m) {
   for(size_t i = 0; pair<T1, T2> x : m) {
-    os << x;
-    if (++i != size(m)) os << ' ';
+    os << x.first << " : " << x.second;
+    if (++i != size(m)) os << ", ";
   }
   return os;
 }
@@ -113,20 +134,34 @@ using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 //#define double ldb
 
+template<typename T> using vc = vector<T>;
+template<typename T> using vvc = vc<vc<T>>;
+template<typename T> using vvvc = vc<vvc<T>>;
+
+using vi = vc<int>;
+using vll = vc<ll>;
+using vvi = vvc<int>;
+using vvll = vvc<ll>;
+
 template<typename T> using min_heap = priority_queue<T, vector<T>, greater<T>>;
 template<typename T> using max_heap = priority_queue<T>;
 
-template<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class OP = plus<T>>
+template<typename R, typename F, typename... Args>
+concept R_invocable = requires(F&& f, Args&&... args) {
+  { std::invoke(std::forward<F>(f), std::forward<Args>(args)...) } -> std::same_as<R>;
+};
+template<ranges::forward_range rng, class T = ranges::range_value_t<rng>, typename F>
+requires R_invocable<T, F, T, T>
+void pSum(rng &&v, F f) {
+  if (!v.empty())
+    for(T p = *v.begin(); T &x : v | views::drop(1))
+      x = p = f(p, x);
+}
+template<ranges::forward_range rng, class T = ranges::range_value_t<rng>>
 void pSum(rng &&v) {
   if (!v.empty())
-    for(T p = v[0]; T &x : v | views::drop(1))
-      x = p = OP()(p, x);
-}
-template<ranges::forward_range rng, class T = ranges::range_value_t<rng>, class OP>
-void pSum(rng &&v, OP op) {
-  if (!v.empty())
-    for(T p = v[0]; T &x : v | views::drop(1))
-      x = p = op(p, x);
+    for(T p = *v.begin(); T &x : v | views::drop(1))
+      x = p = p + x;
 }
 
 template<ranges::forward_range rng>
@@ -140,14 +175,6 @@ rng invPerm(rng p) {
   rng ret = p;
   for(int i = 0; i < ssize(p); i++)
     ret[p[i]] = i;
-  return ret;
-}
-
-template<ranges::random_access_range rng, ranges::random_access_range rng2>
-rng Permute(rng v, rng2 p) {
-  rng ret = v;
-  for(int i = 0; i < ssize(p); i++)
-    ret[p[i]] = v[i];
   return ret;
 }
 
@@ -177,9 +204,9 @@ vector<vector<int>> adjacency_list(int n, vector<pii> e, int base) {
 }
 
 template<class T>
-void setBit(T &msk, int bit, bool x) {
-  msk = (msk & ~(T(1) << bit)) | (T(x) << bit);
-}
+void setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) << bit; }
+template<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true); }
+template<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false); }
 template<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }
 template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }
 
