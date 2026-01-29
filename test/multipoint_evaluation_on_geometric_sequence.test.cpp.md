@@ -71,7 +71,7 @@ data:
     \ = vector<T>;\ntemplate<typename T> using vvc = vc<vc<T>>;\ntemplate<typename\
     \ T> using vvvc = vc<vvc<T>>;\n\nusing vi = vc<int>;\nusing vll = vc<ll>;\nusing\
     \ vvi = vvc<int>;\nusing vvll = vvc<ll>;\n\ntemplate<typename T> using min_heap\
-    \ = priority_queue<T, vector<T>, greater<T>>;\ntemplate<typename T> using max_heap\
+    \ = priority_queue<T, vc<T>, greater<T>>;\ntemplate<typename T> using max_heap\
     \ = priority_queue<T>;\n\ntemplate<typename R, typename F, typename... Args>\n\
     concept R_invocable = requires(F&& f, Args&&... args) {\n  { std::invoke(std::forward<F>(f),\
     \ std::forward<Args>(args)...) } -> std::same_as<R>;\n};\ntemplate<ranges::forward_range\
@@ -83,13 +83,15 @@ data:
     }\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng &v) {\n  ranges::sort(v);\n\
     \  v.resize(unique(v.begin(), v.end()) - v.begin());\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nrng invPerm(rng p) {\n  rng ret = p;\n  for(int i = 0; i < ssize(p); i++)\n\
-    \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<bool directed>\nvector<vector<int>>\
-    \ read_graph(int n, int m, int base) {\n  vector<vector<int>> g(n);\n  for(int\
-    \ i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -= base, v -= base;\n\
-    \    g[u].emplace_back(v);\n    if constexpr (!directed)\n      g[v].emplace_back(u);\n\
-    \  }\n  return g;\n}\n\ntemplate<bool directed>\nvector<vector<int>> adjacency_list(int\
-    \ n, vector<pii> e, int base) {\n  vector<vector<int>> g(n);\n  for(auto [u, v]\
-    \ : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
+    \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
+    \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
+    \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
+    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
+    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
+    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
+    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
+    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
+    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
     \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
     \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
     \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
@@ -192,7 +194,7 @@ data:
   isVerificationFile: true
   path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 01:25:42+08:00'
+  timestamp: '2026-01-30 02:53:01+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/multipoint_evaluation_on_geometric_sequence.test.cpp
