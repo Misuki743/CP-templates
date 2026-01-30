@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/maximum_independent_set"
 
 #include "../default/t.cpp"
-#include "../graph/MIS.cpp"
+#include "../graph/misc/MIS.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

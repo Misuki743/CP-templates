@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/biconnected_components"
 
 #include "../default/t.cpp"
-#include "../graph/BCC.cpp"
+#include "../graph/connectivity/BCC.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

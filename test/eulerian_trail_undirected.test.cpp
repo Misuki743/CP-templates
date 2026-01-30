@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/eulerian_trail_undirected"
 
 #include "../default/t.cpp"
-#include "../graph/eulerianTrail.cpp"
+#include "../graph/misc/eulerianTrail.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

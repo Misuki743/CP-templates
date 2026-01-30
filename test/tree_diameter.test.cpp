@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tree_diameter"
 
 #include "../default/t.cpp"
-#include "../graph/weighted_tree_diameter.cpp"
+#include "../tree/weighted_tree_diameter.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

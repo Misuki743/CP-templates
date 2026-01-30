@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bipartitematching"
 
 #include "../default/t.cpp"
-#include "../graph/Dinic.cpp"
+#include "../graph/flow/Dinic.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

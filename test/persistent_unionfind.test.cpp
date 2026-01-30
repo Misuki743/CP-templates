@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/persistent_unionfind"
 
 #include "../default/t.cpp"
-#include "../ds/DSUrollback.cpp"
+#include "../ds/DSU/DSUrollback.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

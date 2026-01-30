@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification"
 
 #include "../default/t.cpp"
-#include "../graph/tree_hash.cpp"
+#include "../tree/tree_hash.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

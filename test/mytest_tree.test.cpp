@@ -1,12 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../default/t.cpp"
-#include "../graph/prufer_recover.cpp"
+#include "../tree/prufer_recover.cpp"
 #include "../enumerate/enumerate_bit.cpp"
 #include "../enumerate/enumerate_twelvefold.cpp"
 #include "../enumerate/enumerate_label_tree.cpp"
 #include "../enumerate/enumerate_unlabel_rooted_tree.cpp"
-#include "../graph/tree.cpp"
+#include "../tree/tree.cpp"
 
 void check(vector<vector<int>> g, int root) {
   const int n = ssize(g);

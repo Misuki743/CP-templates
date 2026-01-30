@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
 #include "../default/t.cpp"
-#include "../ds/DSU.cpp"
+#include "../ds/DSU/DSU.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

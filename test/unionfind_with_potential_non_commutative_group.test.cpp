@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group"
 
 #include "../default/t.cpp"
-#include "../ds/potentialDSU.cpp"
+#include "../ds/DSU/potentialDSU.cpp"
 #include "../modint/MontgomeryModInt.cpp"
 
 using matrix = array<array<mint, 2>, 2>;

@@ -4,7 +4,7 @@
 #include "../modint/MontgomeryModInt.cpp"
 #include "../segtree/segmentTree.cpp"
 #include "../actedmonoid/actedMonoid_affineSum.cpp"
-#include "../ds/heavyLightDecomposition.cpp"
+#include "../tree/heavyLightDecomposition.cpp"
 
 using am = actedMonoid_affineSum<mint>;
 

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/cycle_detection_undirected"
 
 #include "../default/t.cpp"
-#include "../graph/cycleDetection.cpp"
+#include "../graph/misc/cycleDetection.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

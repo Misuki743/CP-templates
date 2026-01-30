@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential"
 
 #include "../default/t.cpp"
-#include "../ds/potentialDSU.cpp"
+#include "../ds/DSU/potentialDSU.cpp"
 #include "../modint/MontgomeryModInt.cpp"
 
 mint id() { return 0; }

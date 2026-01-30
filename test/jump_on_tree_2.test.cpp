@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/jump_on_tree"
 
 #include "../default/t.cpp"
-#include "../graph/tree.cpp"
+#include "../tree/tree.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

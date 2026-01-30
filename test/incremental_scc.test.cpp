@@ -2,9 +2,9 @@
 
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
-#include "../ds/DSU.cpp"
-#include "../graph/SCC.cpp"
-#include "../graph/incrementalSCC.cpp"
+#include "../ds/DSU/DSU.cpp"
+#include "../graph/connectivity/SCC.cpp"
+#include "../graph/connectivity/incrementalSCC.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

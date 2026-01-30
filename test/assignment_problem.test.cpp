@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/assignment"
 
 #include "../default/t.cpp"
-#include "../graph/hungarian.cpp"
+#include "../graph/matching/hungarian.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

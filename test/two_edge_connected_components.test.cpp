@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/two_edge_connected_components"
 
 #include "../default/t.cpp"
-#include "../graph/ECC.cpp"
+#include "../graph/connectivity/ECC.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

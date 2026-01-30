@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
 
 #include "../default/t.cpp"
-#include "../graph/2sat.cpp"
+#include "../graph/misc/2sat.cpp"
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(0);
