@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/min_plus_convolution.cpp
     title: poly/min_plus_convolution.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary
@@ -80,30 +80,34 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n#line\
-    \ 1 \"poly/min_plus_convolution.cpp\"\ntemplate<class T>\nvector<T> min_plus_convolution(vector<T>\
-    \ convex, vector<T> b) {\n  vector<T> c(ssize(convex) + ssize(b) - 1, numeric_limits<T>::max());\n\
-    \  auto dc = [&](int l, int r, int ql, int qr, auto &&self) -> void {\n    int\
-    \ mid = (l + r) / 2;\n    int best = -1;\n    for(int j = max(ql, mid - (int)size(convex)\
-    \ + 1); j <= min(qr, mid); j++)\n      if (chmin(c[mid], convex[mid - j] + b[j]))\n\
-    \        best = j;\n    if (l + 1 != r) {\n      self(l, mid, ql, best, self);\n\
-    \      self(mid, r, best, qr, self);\n    }\n  };\n  dc(0, ssize(c), 0, ssize(b)\
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"poly/min_plus_convolution.cpp\"\ntemplate<class\
+    \ T>\nvector<T> min_plus_convolution(vector<T> convex, vector<T> b) {\n  vector<T>\
+    \ c(ssize(convex) + ssize(b) - 1, numeric_limits<T>::max());\n  auto dc = [&](int\
+    \ l, int r, int ql, int qr, auto &&self) -> void {\n    int mid = (l + r) / 2;\n\
+    \    int best = -1;\n    for(int j = max(ql, mid - (int)size(convex) + 1); j <=\
+    \ min(qr, mid); j++)\n      if (chmin(c[mid], convex[mid - j] + b[j]))\n     \
+    \   best = j;\n    if (l + 1 != r) {\n      self(l, mid, ql, best, self);\n  \
+    \    self(mid, r, best, qr, self);\n    }\n  };\n  dc(0, ssize(c), 0, ssize(b)\
     \ - 1, dc);\n  return c;\n}\n#line 5 \"test/min_plus_convolution_convex_arbitrary.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
     \ m; cin >> n >> m;\n  vector<int> a(n), b(m);\n  for(int &x : a) cin >> x;\n\
@@ -121,8 +125,8 @@ data:
   isVerificationFile: true
   path: test/min_plus_convolution_convex_arbitrary.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 02:53:01+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-01-31 03:10:37+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/min_plus_convolution_convex_arbitrary.test.cpp
 layout: document

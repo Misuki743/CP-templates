@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwickTree2D.cpp
     title: ds/fenwickTree2D.cpp
   - icon: ':x:'
     path: ds_problem/rectangleAddPointGet.cpp
     title: ds_problem/rectangleAddPointGet.cpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: misc/compression.cpp
     title: compression
   _extendedRequiredBy: []
@@ -85,52 +85,56 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n#line\
-    \ 1 \"ds/fenwickTree2D.cpp\"\n//source: KACTL\n\n/**\n * Author: Lukas Polacek\n\
-    \ * Date: 2009-10-30\n * License: CC0\n * Source: folklore/TopCoder\n * Description:\
-    \ Computes partial sums a[0] + a[1] + ... + a[pos - 1], and updates single elements\
-    \ a[i],\n * taking the difference between the old and new value.\n * Time: Both\
-    \ operations are $O(\\log N)$.\n * Status: Stress-tested\n */\ntemplate<class\
-    \ T>\nstruct FT {\n\tvector<T> s;\n\tFT(int n) : s(n) {}\n\tvoid update(int pos,\
-    \ T dif) { // a[pos] += dif\n\t\tfor (; pos < ssize(s); pos |= pos + 1) s[pos]\
-    \ += dif;\n\t}\n\tT query(int pos) { // sum of values in [0, pos)\n\t\tT res =\
-    \ 0;\n\t\tfor (; pos > 0; pos &= pos - 1) res += s[pos-1];\n\t\treturn res;\n\t\
-    }\n\tint lower_bound(T sum) {// min pos st sum of [0, pos] >= sum\n\t\t// Returns\
-    \ n if no sum is >= sum, or -1 if empty sum is.\n\t\tif (sum <= 0) return -1;\n\
-    \t\tint pos = 0;\n\t\tfor (int pw = 1 << 25; pw; pw >>= 1) {\n\t\t\tif (pos +\
-    \ pw <= ssize(s) && s[pos + pw-1] < sum)\n\t\t\t\tpos += pw, sum -= s[pos-1];\n\
-    \t\t}\n\t\treturn pos;\n\t}\n};\n\n/**\n * Author: Simon Lindholm\n * Date: 2017-05-11\n\
-    \ * License: CC0\n * Source: folklore\n * Description: Computes sums a[i,j] for\
-    \ all i<I, j<J, and increases single elements a[i,j].\n *  Requires that the elements\
-    \ to be updated are known in advance (call fakeUpdate() before init()).\n * Time:\
-    \ $O(\\log^2 N)$. (Use persistent segment trees for $O(\\log N)$.)\n * Status:\
-    \ stress-tested\n */\ntemplate<class T1, class T2>\nstruct FT2 {\n\tvector<vector<T1>>\
-    \ ys; vector<FT<T2>> ft;\n\tFT2(int limx) : ys(limx) {}\n\tvoid fakeUpdate(int\
-    \ x, T1 y) {\n\t\tfor (; x < ssize(ys); x |= x + 1) ys[x].push_back(y);\n\t}\n\
-    \tvoid init() {\n\t\tfor (vector<T1>& v : ys) ranges::sort(v), ft.emplace_back(ssize(v));\n\
-    \t}\n\tint ind(int x, T1 y) {\n\t\treturn (int)(ranges::lower_bound(ys[x], y)\
-    \ - ys[x].begin()); }\n\tvoid update(int x, T1 y, T2 dif) {\n\t\tfor (; x < ssize(ys);\
-    \ x |= x + 1)\n\t\t\tft[x].update(ind(x, y), dif);\n\t}\n\tT2 query(int x, T1\
-    \ y) {\n\t\tT2 sum = 0;\n\t\tfor (; x; x &= x - 1)\n\t\t\tsum += ft[x-1].query(ind(x-1,\
-    \ y));\n\t\treturn sum;\n\t}\n};\n#line 1 \"misc/compression.cpp\"\ntemplate<class\
-    \ T, bool duplicate = false>\nstruct compression {\n  vector<int> ord;\n  vector<T>\
-    \ val;\n\n  compression(vector<T> &init) : val(init) { precompute(); }\n  compression(int\
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/fenwickTree2D.cpp\"\n//source: KACTL\n\
+    \n/**\n * Author: Lukas Polacek\n * Date: 2009-10-30\n * License: CC0\n * Source:\
+    \ folklore/TopCoder\n * Description: Computes partial sums a[0] + a[1] + ... +\
+    \ a[pos - 1], and updates single elements a[i],\n * taking the difference between\
+    \ the old and new value.\n * Time: Both operations are $O(\\log N)$.\n * Status:\
+    \ Stress-tested\n */\ntemplate<class T>\nstruct FT {\n\tvector<T> s;\n\tFT(int\
+    \ n) : s(n) {}\n\tvoid update(int pos, T dif) { // a[pos] += dif\n\t\tfor (; pos\
+    \ < ssize(s); pos |= pos + 1) s[pos] += dif;\n\t}\n\tT query(int pos) { // sum\
+    \ of values in [0, pos)\n\t\tT res = 0;\n\t\tfor (; pos > 0; pos &= pos - 1) res\
+    \ += s[pos-1];\n\t\treturn res;\n\t}\n\tint lower_bound(T sum) {// min pos st\
+    \ sum of [0, pos] >= sum\n\t\t// Returns n if no sum is >= sum, or -1 if empty\
+    \ sum is.\n\t\tif (sum <= 0) return -1;\n\t\tint pos = 0;\n\t\tfor (int pw = 1\
+    \ << 25; pw; pw >>= 1) {\n\t\t\tif (pos + pw <= ssize(s) && s[pos + pw-1] < sum)\n\
+    \t\t\t\tpos += pw, sum -= s[pos-1];\n\t\t}\n\t\treturn pos;\n\t}\n};\n\n/**\n\
+    \ * Author: Simon Lindholm\n * Date: 2017-05-11\n * License: CC0\n * Source: folklore\n\
+    \ * Description: Computes sums a[i,j] for all i<I, j<J, and increases single elements\
+    \ a[i,j].\n *  Requires that the elements to be updated are known in advance (call\
+    \ fakeUpdate() before init()).\n * Time: $O(\\log^2 N)$. (Use persistent segment\
+    \ trees for $O(\\log N)$.)\n * Status: stress-tested\n */\ntemplate<class T1,\
+    \ class T2>\nstruct FT2 {\n\tvector<vector<T1>> ys; vector<FT<T2>> ft;\n\tFT2(int\
+    \ limx) : ys(limx) {}\n\tvoid fakeUpdate(int x, T1 y) {\n\t\tfor (; x < ssize(ys);\
+    \ x |= x + 1) ys[x].push_back(y);\n\t}\n\tvoid init() {\n\t\tfor (vector<T1>&\
+    \ v : ys) ranges::sort(v), ft.emplace_back(ssize(v));\n\t}\n\tint ind(int x, T1\
+    \ y) {\n\t\treturn (int)(ranges::lower_bound(ys[x], y) - ys[x].begin()); }\n\t\
+    void update(int x, T1 y, T2 dif) {\n\t\tfor (; x < ssize(ys); x |= x + 1)\n\t\t\
+    \tft[x].update(ind(x, y), dif);\n\t}\n\tT2 query(int x, T1 y) {\n\t\tT2 sum =\
+    \ 0;\n\t\tfor (; x; x &= x - 1)\n\t\t\tsum += ft[x-1].query(ind(x-1, y));\n\t\t\
+    return sum;\n\t}\n};\n#line 1 \"misc/compression.cpp\"\ntemplate<class T, bool\
+    \ duplicate = false>\nstruct compression {\n  vector<int> ord;\n  vector<T> val;\n\
+    \n  compression(vector<T> &init) : val(init) { precompute(); }\n  compression(int\
     \ size = 0) { val.reserve(size); }\n\n  void precompute() {\n    vector<T> init\
     \ = val;\n    ord.resize(ssize(val));\n    ranges::sort(val);\n    if constexpr\
     \ (duplicate) {\n      vector<int> cnt(ssize(init));\n      iota(cnt.begin(),\
@@ -186,7 +190,7 @@ data:
   isVerificationFile: true
   path: test/rectangle_add_point_get.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 02:53:01+08:00'
+  timestamp: '2026-01-31 03:10:37+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/rectangle_add_point_get.test.cpp

@@ -15,16 +15,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/determinant_of_matrix.test.cpp
     title: test/determinant_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/inverse_matrix.test.cpp
     title: test/inverse_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/matrix_product.test.cpp
     title: test/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/matrix_rank.test.cpp
     title: test/matrix_rank.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
   - icon: ':x:'

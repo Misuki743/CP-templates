@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: actedmonoid/actedMonoid_addMin.cpp
     title: actedmonoid/actedMonoid_addMin.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segtree/ultraLazySegmentTree.cpp
     title: segtree/ultraLazySegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_add_range_min
@@ -85,51 +85,54 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n#line\
-    \ 1 \"segtree/lazySegmentTree.cpp\"\ntemplate<class M, M(*Mid)(), M(*Mop)(const\
-    \ M&, const M&), class T, T(*Tid)(), T(*Top)(const T&, const T&), M(*act)(const\
-    \ M&, const T&)>\nstruct lazySegmentTree {\n  int size;\n  vector<M> data;\n \
-    \ vector<T> tag;\n\n  lazySegmentTree(int _size) : size(_size), data(2 * size,\
-    \ Mid()), tag(size, Tid()) {}\n\n  lazySegmentTree(vector<M> init) : size(ssize(init)),\
-    \ data(2 * size, Mid()), tag(size, Tid()) {\n    ranges::copy(init, data.begin()\
-    \ + size);\n    for(int i = size - 1; i > 0; i--)\n      data[i] = Mop(data[i\
-    \ << 1], data[i << 1 | 1]);\n  }\n\n  void apply(int i, T x) {\n    data[i] =\
-    \ act(data[i], x);\n    if (i < size) tag[i] = Top(tag[i], x);\n  }\n\n  void\
-    \ push(unsigned i) {\n    for(int s = (int)bit_width(i) - 1; s > 0; s--) {\n \
-    \     if (tag[i >> s] != Tid()) {\n        apply(i >> (s - 1), tag[i >> s]);\n\
-    \        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n        tag[i >> s] = Tid();\n\
-    \      }\n    }\n  }\n\n  void pull(int i) {\n    while(i >>= 1) data[i] = Mop(data[i\
-    \ << 1], data[i << 1 | 1]);\n  }\n\n  int trunc(unsigned i) { return i >> countr_zero(i);\
-    \ }\n\n  void set(int i, M x) {\n    push(i += size);\n    data[i] = x;\n    pull(i);\n\
-    \  }\n\n  M get(int i) { push(i += size); return data[i]; }\n\n  void modify(int\
-    \ l, int r, T x) {\n    if (l >= r or x == Tid()) return;\n    push(trunc(l +=\
-    \ size)), push(trunc(r += size) - 1);\n    int l0 = l, r0 = r;\n    for(; l <\
-    \ r; l >>= 1, r >>= 1) {\n      if (l & 1) apply(l++, x);\n      if (r & 1) apply(--r,\
-    \ x);\n    }\n    pull(trunc(l0)), pull(trunc(r0) - 1);\n  }\n\n  M query(int\
-    \ l, int r) {\n    if (l >= r) return Mid();\n    M L = Mid(), R = Mid();\n  \
-    \  push(trunc(l += size)), push(trunc(r += size) - 1);\n    for(; l < r; l >>=\
-    \ 1, r >>= 1) {\n      if (l & 1) L = Mop(L, data[l++]);\n      if (r & 1) R =\
-    \ Mop(data[--r], R);\n    }\n    return Mop(L, R);\n  }\n\n  int firstTrue(int\
-    \ i, function<bool(const M&)> f) {\n    vector<int> idL, idR;\n    push(trunc(i\
-    \ + size)), push(trunc(size << 1) - 1);\n    for(int l = i + size, r = size <<\
-    \ 1; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n   \
-    \   if (r & 1) idR.emplace_back(--r);\n    }\n    idL.insert(idL.end(), idR.rbegin(),\
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"segtree/lazySegmentTree.cpp\"\ntemplate<class\
+    \ M, M(*Mid)(), M(*Mop)(const M&, const M&), class T, T(*Tid)(), T(*Top)(const\
+    \ T&, const T&), M(*act)(const M&, const T&)>\nstruct lazySegmentTree {\n  int\
+    \ size;\n  vector<M> data;\n  vector<T> tag;\n\n  lazySegmentTree(int _size) :\
+    \ size(_size), data(2 * size, Mid()), tag(size, Tid()) {}\n\n  lazySegmentTree(vector<M>\
+    \ init) : size(ssize(init)), data(2 * size, Mid()), tag(size, Tid()) {\n    ranges::copy(init,\
+    \ data.begin() + size);\n    for(int i = size - 1; i > 0; i--)\n      data[i]\
+    \ = Mop(data[i << 1], data[i << 1 | 1]);\n  }\n\n  void apply(int i, T x) {\n\
+    \    data[i] = act(data[i], x);\n    if (i < size) tag[i] = Top(tag[i], x);\n\
+    \  }\n\n  void push(unsigned i) {\n    for(int s = (int)bit_width(i) - 1; s >\
+    \ 0; s--) {\n      if (tag[i >> s] != Tid()) {\n        apply(i >> (s - 1), tag[i\
+    \ >> s]);\n        apply(i >> (s - 1) ^ 1, tag[i >> s]);\n        tag[i >> s]\
+    \ = Tid();\n      }\n    }\n  }\n\n  void pull(int i) {\n    while(i >>= 1) data[i]\
+    \ = Mop(data[i << 1], data[i << 1 | 1]);\n  }\n\n  int trunc(unsigned i) { return\
+    \ i >> countr_zero(i); }\n\n  void set(int i, M x) {\n    push(i += size);\n \
+    \   data[i] = x;\n    pull(i);\n  }\n\n  M get(int i) { push(i += size); return\
+    \ data[i]; }\n\n  void modify(int l, int r, T x) {\n    if (l >= r or x == Tid())\
+    \ return;\n    push(trunc(l += size)), push(trunc(r += size) - 1);\n    int l0\
+    \ = l, r0 = r;\n    for(; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) apply(l++,\
+    \ x);\n      if (r & 1) apply(--r, x);\n    }\n    pull(trunc(l0)), pull(trunc(r0)\
+    \ - 1);\n  }\n\n  M query(int l, int r) {\n    if (l >= r) return Mid();\n   \
+    \ M L = Mid(), R = Mid();\n    push(trunc(l += size)), push(trunc(r += size) -\
+    \ 1);\n    for(; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) L = Mop(L, data[l++]);\n\
+    \      if (r & 1) R = Mop(data[--r], R);\n    }\n    return Mop(L, R);\n  }\n\n\
+    \  int firstTrue(int i, function<bool(const M&)> f) {\n    vector<int> idL, idR;\n\
+    \    push(trunc(i + size)), push(trunc(size << 1) - 1);\n    for(int l = i + size,\
+    \ r = size << 1; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n\
+    \      if (r & 1) idR.emplace_back(--r);\n    }\n    idL.insert(idL.end(), idR.rbegin(),\
     \ idR.rend());\n    M pre = Mid();\n    int v = -1;\n    for(int j : idL) {\n\
     \      if (f(Mop(pre, data[j]))) {\n        v = j;\n        break;\n      } else\
     \ {\n        pre = Mop(pre, data[j]);\n      }\n    }\n    if (v == -1) return\
@@ -180,8 +183,8 @@ data:
   isVerificationFile: true
   path: test/range_add_range_min.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 02:53:01+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-01-31 03:10:37+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/range_add_range_min.test.cpp
 layout: document

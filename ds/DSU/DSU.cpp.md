@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/minimum_spanning_tree_Kruskal.test.cpp
+    title: test/minimum_spanning_tree_Kruskal.test.cpp
+  - icon: ':x:'
+    path: test/minimum_spanning_tree_Prim.test.cpp
+    title: test/minimum_spanning_tree_Prim.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/DSU/DSU.cpp\"\nstruct DSU {\n  vector<int> bos, sz;\n\
@@ -27,8 +33,10 @@ data:
   path: ds/DSU/DSU.cpp
   requiredBy: []
   timestamp: '2026-01-30 20:10:19+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/minimum_spanning_tree_Prim.test.cpp
+  - test/minimum_spanning_tree_Kruskal.test.cpp
 documentation_of: ds/DSU/DSU.cpp
 layout: document
 redirect_from:

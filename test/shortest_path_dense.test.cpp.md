@@ -82,42 +82,45 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n#line\
-    \ 1 \"graph/shortest_path/Dijkstra.cpp\"\ntemplate<integral T>\nauto Dijkstra_sparse(vvc<pair<int,\
-    \ T>> &g, vi s) {\n  constexpr T INF = numeric_limits<T>::max();\n  const int\
-    \ n = ssize(g);\n\n  vc<T> dis(n, INF);\n  vi pre(n, -1);\n  auto cmp = [](pair<T,\
-    \ int> &a, pair<T, int> &b) { return a.first > b.first; };\n  priority_queue<pair<T,\
-    \ int>, vc<pair<T, int>>, decltype(cmp)> pq(cmp, [&]() {\n    vc<pair<T, int>>\
-    \ init(size(s));\n    for(int i = 0; int v : s) {\n      dis[v] = 0, pre[v] =\
-    \ v;\n      init[i++] = pair(T(0), v);\n    }\n    return init;\n  }());\n\n \
-    \ while(!pq.empty()) {\n    auto [d, v] = pq.top(); pq.pop();\n    if (dis[v]\
-    \ != d) continue;\n    for(auto [x, w] : g[v]) {\n      if (chmin(dis[x], d +\
-    \ w)) {\n        pre[x] = v;\n        pq.emplace(dis[x], x);\n      }\n    }\n\
-    \  }\n\n  return pair(dis, pre);\n}\n\ntemplate<integral T>\nauto Dijkstra_dense(vvc<T>\
-    \ &adj, vi s) {\n  constexpr T INF = numeric_limits<T>::max();\n  const int n\
-    \ = ssize(adj);\n\n  vc<T> dis(n, INF);\n  vi pre(n, -1);\n  for(int v : s)\n\
-    \    dis[v] = 0, pre[v] = v;\n\n  vc<bool> vis(n, false);\n  for(int iter = 0;\
-    \ iter < n; iter++) {\n    T d = INF;\n    int v = -1;\n    for(int u = 0; u <\
-    \ n; u++)\n      if (!vis[u] and chmin(d, dis[u]))\n        v = u;\n    if (v\
-    \ == -1) break;\n    vis[v] = true;\n    for(int x = 0; x < n; x++)\n      if\
-    \ (adj[v][x] != INF and chmin(dis[x], dis[v] + adj[v][x]))\n        pre[x] = v;\n\
-    \  }\n\n  return pair(dis, pre);\n}\n#line 1 \"graph/shortest_path/path_recover.cpp\"\
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"graph/shortest_path/Dijkstra.cpp\"\ntemplate<integral\
+    \ T>\nauto Dijkstra_sparse(vvc<pair<int, T>> &g, vi s) {\n  constexpr T INF =\
+    \ numeric_limits<T>::max();\n  const int n = ssize(g);\n\n  vc<T> dis(n, INF);\n\
+    \  vi pre(n, -1);\n  auto cmp = [](pair<T, int> &a, pair<T, int> &b) { return\
+    \ a.first > b.first; };\n  priority_queue<pair<T, int>, vc<pair<T, int>>, decltype(cmp)>\
+    \ pq(cmp, [&]() {\n    vc<pair<T, int>> init(size(s));\n    for(int i = 0; int\
+    \ v : s) {\n      dis[v] = 0, pre[v] = v;\n      init[i++] = pair(T(0), v);\n\
+    \    }\n    return init;\n  }());\n\n  while(!pq.empty()) {\n    auto [d, v] =\
+    \ pq.top(); pq.pop();\n    if (dis[v] != d) continue;\n    for(auto [x, w] : g[v])\
+    \ {\n      if (chmin(dis[x], d + w)) {\n        pre[x] = v;\n        pq.emplace(dis[x],\
+    \ x);\n      }\n    }\n  }\n\n  return pair(dis, pre);\n}\n\ntemplate<integral\
+    \ T>\nauto Dijkstra_dense(vvc<T> &adj, vi s) {\n  constexpr T INF = numeric_limits<T>::max();\n\
+    \  const int n = ssize(adj);\n\n  vc<T> dis(n, INF);\n  vi pre(n, -1);\n  for(int\
+    \ v : s)\n    dis[v] = 0, pre[v] = v;\n\n  vc<bool> vis(n, false);\n  for(int\
+    \ iter = 0; iter < n; iter++) {\n    T d = INF;\n    int v = -1;\n    for(int\
+    \ u = 0; u < n; u++)\n      if (!vis[u] and chmin(d, dis[u]))\n        v = u;\n\
+    \    if (v == -1) break;\n    vis[v] = true;\n    for(int x = 0; x < n; x++)\n\
+    \      if (adj[v][x] != INF and chmin(dis[x], dis[v] + adj[v][x]))\n        pre[x]\
+    \ = v;\n  }\n\n  return pair(dis, pre);\n}\n#line 1 \"graph/shortest_path/path_recover.cpp\"\
     \nvi recover(vi &pre, int t) {\n  if (pre[t] == -1) return {};\n  vi path = {t};\n\
     \  while(pre[path.back()] != path.back())\n    path.emplace_back(pre[path.back()]);\n\
     \  ranges::reverse(path);\n  return path;\n}\n#line 6 \"test/shortest_path_dense.test.cpp\"\
@@ -159,7 +162,7 @@ data:
   isVerificationFile: true
   path: test/shortest_path_dense.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 00:52:12+08:00'
+  timestamp: '2026-01-31 03:10:37+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/shortest_path_dense.test.cpp

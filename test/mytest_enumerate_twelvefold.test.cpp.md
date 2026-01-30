@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/enumerate_bit.cpp
     title: enumerate/enumerate_bit.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/enumerate_twelvefold.cpp
     title: enumerate/enumerate_twelvefold.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -82,44 +82,47 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n#line\
-    \ 1 \"enumerate/enumerate_bit.cpp\"\n\ntemplate<typename F, typename INT>\nrequires\
-    \ invocable<F, INT>\nvoid enumerate_subset(INT msk, F f) {\n  for(INT x = msk;\
-    \ x > 0; x = (x - 1) & msk)\n    f(x);\n  f(0);\n}\n#line 1 \"enumerate/enumerate_twelvefold.cpp\"\
-    \n//#include \"enumerate/bit.cpp\"\n\ntemplate<typename F>\nrequires invocable<F,\
-    \ vector<int>>\nvoid enumerate_cartesian_power(int n, int k, F f) {\n  assert(min(n,\
-    \ k) >= 0);\n  vector<int> p(k);\n  auto dfs = [&](int i, auto &self) -> void\
-    \ {\n    if (i == k) {\n      f(p);\n    } else {\n      for(int x = 0; x < n;\
-    \ x++) {\n        p[i] = x;\n        self(i + 1, self);\n      }\n    }\n  };\n\
-    \  dfs(0, dfs);\n}\n\ntemplate<typename F>\nrequires invocable<F, vector<int>>\n\
-    void enumerate_permutation(int n, F f) {\n  assert(n >= 0);\n  vector<int> p(n);\n\
-    \  iota(p.begin(), p.end(), 0);\n  do { f(p); } while(next_permutation(p.begin(),\
-    \ p.end()));\n}\n\ntemplate<typename F>\nrequires invocable<F, vector<int>>\n\
-    void enumerate_combination(int n, int k, F f) {\n  assert(min(n, k) >= 0);\n \
-    \ vector<int> p;\n  auto dfs = [&](auto &self) -> void {\n    if (ssize(p) ==\
-    \ k) {\n      f(p);\n    } else {\n      for(int x = (p.empty() ? 0 : p.back()\
-    \ + 1); x + k - ssize(p) <= n; x++) {\n        p.emplace_back(x);\n        self(self);\n\
-    \        p.pop_back();\n      }\n    }\n  };\n  dfs(dfs);\n}\n\ntemplate<typename\
-    \ F>\nrequires invocable<F, vector<int>>\nvoid enumerate_set_partition(int n,\
-    \ F f) {\n  assert(n >= 0);\n  vector<int> p;\n  int msk = (1 << n) - 1;\n  auto\
-    \ dfs = [&](auto &self) -> void {\n    if (msk == 0) {\n      f(p);\n    } else\
-    \ {\n      int x = msk & (-msk);\n      msk ^= x;\n      enumerate_subset(msk,\
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"enumerate/enumerate_bit.cpp\"\n\ntemplate<typename\
+    \ F, typename INT>\nrequires invocable<F, INT>\nvoid enumerate_subset(INT msk,\
+    \ F f) {\n  for(INT x = msk; x > 0; x = (x - 1) & msk)\n    f(x);\n  f(0);\n}\n\
+    #line 1 \"enumerate/enumerate_twelvefold.cpp\"\n//#include \"enumerate/bit.cpp\"\
+    \n\ntemplate<typename F>\nrequires invocable<F, vector<int>>\nvoid enumerate_cartesian_power(int\
+    \ n, int k, F f) {\n  assert(min(n, k) >= 0);\n  vector<int> p(k);\n  auto dfs\
+    \ = [&](int i, auto &self) -> void {\n    if (i == k) {\n      f(p);\n    } else\
+    \ {\n      for(int x = 0; x < n; x++) {\n        p[i] = x;\n        self(i + 1,\
+    \ self);\n      }\n    }\n  };\n  dfs(0, dfs);\n}\n\ntemplate<typename F>\nrequires\
+    \ invocable<F, vector<int>>\nvoid enumerate_permutation(int n, F f) {\n  assert(n\
+    \ >= 0);\n  vector<int> p(n);\n  iota(p.begin(), p.end(), 0);\n  do { f(p); }\
+    \ while(next_permutation(p.begin(), p.end()));\n}\n\ntemplate<typename F>\nrequires\
+    \ invocable<F, vector<int>>\nvoid enumerate_combination(int n, int k, F f) {\n\
+    \  assert(min(n, k) >= 0);\n  vector<int> p;\n  auto dfs = [&](auto &self) ->\
+    \ void {\n    if (ssize(p) == k) {\n      f(p);\n    } else {\n      for(int x\
+    \ = (p.empty() ? 0 : p.back() + 1); x + k - ssize(p) <= n; x++) {\n        p.emplace_back(x);\n\
+    \        self(self);\n        p.pop_back();\n      }\n    }\n  };\n  dfs(dfs);\n\
+    }\n\ntemplate<typename F>\nrequires invocable<F, vector<int>>\nvoid enumerate_set_partition(int\
+    \ n, F f) {\n  assert(n >= 0);\n  vector<int> p;\n  int msk = (1 << n) - 1;\n\
+    \  auto dfs = [&](auto &self) -> void {\n    if (msk == 0) {\n      f(p);\n  \
+    \  } else {\n      int x = msk & (-msk);\n      msk ^= x;\n      enumerate_subset(msk,\
     \ [&](int sub) {\n        p.emplace_back(sub | x);\n        msk ^= sub;\n    \
     \    self(self);\n        msk ^= sub;\n        p.pop_back();\n      });\n    \
     \  msk ^= x;\n    }\n  };\n  dfs(dfs);\n}\n\ntemplate<typename F>\nrequires invocable<F,\
@@ -247,8 +250,8 @@ data:
   isVerificationFile: true
   path: test/mytest_enumerate_twelvefold.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 02:53:01+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-01-31 03:10:37+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_enumerate_twelvefold.test.cpp
 layout: document

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/matrix_rank_mod_2.test.cpp
     title: test/matrix_rank_mod_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/xorBasis.cpp\"\n// note: querying whether x can be\
@@ -41,7 +41,7 @@ data:
   path: linalg/xorBasis.cpp
   requiredBy: []
   timestamp: '2024-07-30 05:00:40+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/matrix_rank_mod_2.test.cpp
 documentation_of: linalg/xorBasis.cpp

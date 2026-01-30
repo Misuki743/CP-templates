@@ -79,71 +79,75 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n#line\
-    \ 1 \"ds/treap.cpp\"\nmt19937 rng(clock);\n\ntemplate<class M, M(*Mid)(), M(*Mop)(const\
-    \ M&, const M&), class T, T(*Tid)(), T(*Top)(const T&, const T&), M(*act)(const\
-    \ M&, const T&)>\nstruct treap {\n  struct node {\n    int pri, size = 1;\n  \
-    \  bool rev = false;\n    node *l = nullptr, *r = nullptr;\n    M data, prod;\n\
-    \    T tag;\n    node(M init = M()) : pri(rng()), data(init), prod(init), tag(Tid())\
-    \ {}\n  };\n\n  static int size(node *v) { return v ? v -> size : 0; }\n  static\
-    \ M get(node *v) { return v ? v -> prod : Mid(); }\n\n  static node* build(vector<M>\
-    \ init) {\n    node* r = nullptr;\n    for(M &x : init) r = merge(r, new node(x));\n\
-    \    return r;\n  }\n\n  static void apply(node *v, T x, bool rev) {\n    if (!v)\
-    \ return;\n    if (x != Tid()) {\n      v -> data = act(v -> data, x);\n     \
-    \ v -> prod = act(v -> prod, x);\n      v -> tag = Top(v -> tag, x);\n    }\n\
-    \    if (rev) {\n      v -> rev ^= 1;\n      swap(v -> l, v -> r);\n    }\n  }\n\
-    \n  static void push(node *v) {\n    if (!v) return;\n    for(node* c : {v ->\
-    \ l, v -> r})\n      apply(c, v -> tag, v -> rev);\n    v -> tag = Tid(), v ->\
-    \ rev = false;\n  }\n\n  static void pull(node *v) {\n    if (!v) return;\n  \
-    \  v -> size = 1, v -> prod = v -> data;\n    if (node* lc = v -> l; lc) {\n \
-    \     v -> size += lc -> size;\n      v -> prod = Mop(lc -> prod, v -> prod);\n\
-    \    }\n    if (node* rc = v -> r; rc) {\n      v -> size += rc -> size;\n   \
-    \   v -> prod = Mop(v -> prod, rc -> prod);\n    }\n  }\n\n  static void split(node\
-    \ *v, int x, node *&l, node *&r, int add = 0) {\n    if (!v) {\n      l = r =\
-    \ nullptr;\n      return;\n    }\n    push(v);\n    if (int key = add + size(v\
-    \ -> l); key < x)\n      split(v -> r, x, v -> r, r, add + size(v -> l) + 1),\
-    \ l = v;\n    else\n      split(v -> l, x, l, v -> l, add), r = v;\n    pull(v);\n\
-    \  }\n\n  static node* merge(node *l, node *r) {\n    if (!l or !r) return l ?\
-    \ l : r;\n    push(l), push(r);\n    if (l -> pri < r -> pri) {\n      l -> r\
-    \ = merge(l -> r, r);\n      pull(l);\n      return l;\n    } else {\n      r\
-    \ -> l = merge(l, r -> l);\n      pull(r);\n      return r;\n    }\n  }\n\n  static\
-    \ array<node*, 3> cut(node *root, int l, int r) {\n    array<node*, 3> tmp = {};\n\
-    \    split(root, l, tmp[0], tmp[1]);\n    split(tmp[1], r - l, tmp[1], tmp[2]);\n\
-    \    return tmp;\n  }\n\n  static node* uncut(array<node*, 3> roots) {\n    return\
-    \ merge(roots[0], merge(roots[1], roots[2]));\n  }\n\n  static void modify(node\
-    \ *root, int l, int r, T x, bool rev = false) {\n    auto tmp = cut(root, l, r);\n\
-    \    apply(tmp[1], x, rev);\n    uncut(tmp);\n  }\n\n  static M query(node *root,\
-    \ int l, int r) {\n    auto tmp = cut(root, l, r);\n    M res = get(tmp[1]);\n\
-    \    uncut(tmp);\n    return res;\n  }\n\n  static void insert(node *&root, int\
-    \ i, M x) {\n    array<node*, 3> tmp = {};\n    tmp[1] = new node(x);\n    split(root,\
-    \ i, tmp[0], tmp[2]);\n    root = uncut(tmp);\n  }\n\n  static void erase(node\
-    \ *&root, int i) {\n    auto tmp = cut(root, i, i + 1);\n    delete tmp[1];\n\
-    \    tmp[1] = nullptr;\n    root = uncut(tmp);\n  }\n};\n#line 5 \"test/range_reverse_range_sum.test.cpp\"\
-    \n\nll Mid() { return 0ll; }\nbool Tid() { return true; }\nll Mop(const ll &a,\
-    \ const ll &b) { return a + b; }\nbool Top(const bool&, const bool&) { return\
-    \ true; }\nll act(const ll &a, const bool&) { return a; }\n\nusing Treap = treap<ll,\
-    \ Mid, Mop, bool, Tid, Top, act>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x\
-    \ : a)\n    cin >> x;\n\n  Treap::node* tr = Treap::build(a);\n\n  while(q--)\
-    \ {\n    int t, l, r; cin >> t >> l >> r;\n    if (t == 0)\n      Treap::modify(tr,\
-    \ l, r, Tid(), true);\n    else\n      cout << Treap::query(tr, l, r) << '\\n';\n\
-    \  }\n\n  return 0;\n}\n"
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/treap.cpp\"\nmt19937 rng(clock);\n\ntemplate<class\
+    \ M, M(*Mid)(), M(*Mop)(const M&, const M&), class T, T(*Tid)(), T(*Top)(const\
+    \ T&, const T&), M(*act)(const M&, const T&)>\nstruct treap {\n  struct node {\n\
+    \    int pri, size = 1;\n    bool rev = false;\n    node *l = nullptr, *r = nullptr;\n\
+    \    M data, prod;\n    T tag;\n    node(M init = M()) : pri(rng()), data(init),\
+    \ prod(init), tag(Tid()) {}\n  };\n\n  static int size(node *v) { return v ? v\
+    \ -> size : 0; }\n  static M get(node *v) { return v ? v -> prod : Mid(); }\n\n\
+    \  static node* build(vector<M> init) {\n    node* r = nullptr;\n    for(M &x\
+    \ : init) r = merge(r, new node(x));\n    return r;\n  }\n\n  static void apply(node\
+    \ *v, T x, bool rev) {\n    if (!v) return;\n    if (x != Tid()) {\n      v ->\
+    \ data = act(v -> data, x);\n      v -> prod = act(v -> prod, x);\n      v ->\
+    \ tag = Top(v -> tag, x);\n    }\n    if (rev) {\n      v -> rev ^= 1;\n     \
+    \ swap(v -> l, v -> r);\n    }\n  }\n\n  static void push(node *v) {\n    if (!v)\
+    \ return;\n    for(node* c : {v -> l, v -> r})\n      apply(c, v -> tag, v ->\
+    \ rev);\n    v -> tag = Tid(), v -> rev = false;\n  }\n\n  static void pull(node\
+    \ *v) {\n    if (!v) return;\n    v -> size = 1, v -> prod = v -> data;\n    if\
+    \ (node* lc = v -> l; lc) {\n      v -> size += lc -> size;\n      v -> prod =\
+    \ Mop(lc -> prod, v -> prod);\n    }\n    if (node* rc = v -> r; rc) {\n     \
+    \ v -> size += rc -> size;\n      v -> prod = Mop(v -> prod, rc -> prod);\n  \
+    \  }\n  }\n\n  static void split(node *v, int x, node *&l, node *&r, int add =\
+    \ 0) {\n    if (!v) {\n      l = r = nullptr;\n      return;\n    }\n    push(v);\n\
+    \    if (int key = add + size(v -> l); key < x)\n      split(v -> r, x, v -> r,\
+    \ r, add + size(v -> l) + 1), l = v;\n    else\n      split(v -> l, x, l, v ->\
+    \ l, add), r = v;\n    pull(v);\n  }\n\n  static node* merge(node *l, node *r)\
+    \ {\n    if (!l or !r) return l ? l : r;\n    push(l), push(r);\n    if (l ->\
+    \ pri < r -> pri) {\n      l -> r = merge(l -> r, r);\n      pull(l);\n      return\
+    \ l;\n    } else {\n      r -> l = merge(l, r -> l);\n      pull(r);\n      return\
+    \ r;\n    }\n  }\n\n  static array<node*, 3> cut(node *root, int l, int r) {\n\
+    \    array<node*, 3> tmp = {};\n    split(root, l, tmp[0], tmp[1]);\n    split(tmp[1],\
+    \ r - l, tmp[1], tmp[2]);\n    return tmp;\n  }\n\n  static node* uncut(array<node*,\
+    \ 3> roots) {\n    return merge(roots[0], merge(roots[1], roots[2]));\n  }\n\n\
+    \  static void modify(node *root, int l, int r, T x, bool rev = false) {\n   \
+    \ auto tmp = cut(root, l, r);\n    apply(tmp[1], x, rev);\n    uncut(tmp);\n \
+    \ }\n\n  static M query(node *root, int l, int r) {\n    auto tmp = cut(root,\
+    \ l, r);\n    M res = get(tmp[1]);\n    uncut(tmp);\n    return res;\n  }\n\n\
+    \  static void insert(node *&root, int i, M x) {\n    array<node*, 3> tmp = {};\n\
+    \    tmp[1] = new node(x);\n    split(root, i, tmp[0], tmp[2]);\n    root = uncut(tmp);\n\
+    \  }\n\n  static void erase(node *&root, int i) {\n    auto tmp = cut(root, i,\
+    \ i + 1);\n    delete tmp[1];\n    tmp[1] = nullptr;\n    root = uncut(tmp);\n\
+    \  }\n};\n#line 5 \"test/range_reverse_range_sum.test.cpp\"\n\nll Mid() { return\
+    \ 0ll; }\nbool Tid() { return true; }\nll Mop(const ll &a, const ll &b) { return\
+    \ a + b; }\nbool Top(const bool&, const bool&) { return true; }\nll act(const\
+    \ ll &a, const bool&) { return a; }\n\nusing Treap = treap<ll, Mid, Mop, bool,\
+    \ Tid, Top, act>;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \n  int n, q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x : a)\n    cin >>\
+    \ x;\n\n  Treap::node* tr = Treap::build(a);\n\n  while(q--) {\n    int t, l,\
+    \ r; cin >> t >> l >> r;\n    if (t == 0)\n      Treap::modify(tr, l, r, Tid(),\
+    \ true);\n    else\n      cout << Treap::query(tr, l, r) << '\\n';\n  }\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_reverse_range_sum\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../ds/treap.cpp\"\n\nll Mid() {\
     \ return 0ll; }\nbool Tid() { return true; }\nll Mop(const ll &a, const ll &b)\
@@ -161,7 +165,7 @@ data:
   isVerificationFile: true
   path: test/range_reverse_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 02:53:01+08:00'
+  timestamp: '2026-01-31 03:10:37+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/range_reverse_range_sum.test.cpp

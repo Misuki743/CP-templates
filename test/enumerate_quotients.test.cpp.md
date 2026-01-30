@@ -79,41 +79,44 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n#line\
-    \ 1 \"numtheory/quotient_enumerate.cpp\"\nauto quotient_floor_enumerate(int64_t\
-    \ x) {\n  using i64 = int64_t;\n  vector<i64> v, s;\n  v.reserve(2 * (sqrt(x)\
-    \ + 32));\n  s.reserve(2 * (sqrt(x) + 32));\n  for(i64 i = x; i; ) {\n    v.emplace_back(x\
-    \ / i);\n    s.emplace_back(x / v.back() + 1);\n    i = x / (v.back() + 1);\n\
-    \  }\n  s.emplace_back(1);\n\n  struct Data { int64_t quotient, l, r; };\n  vector<Data>\
-    \ res(size(v));\n  for(int i = 0; i < ssize(v); i++)\n    res[i] = Data{v[i],\
-    \ s[i + 1], s[i]};\n\n  return res;\n}\n\nauto quotient_ceil_enumerate(int64_t\
-    \ x) {\n  using i64 = int64_t;\n  vector<i64> v, s;\n  v.reserve(2 * (sqrt(x)\
-    \ + 32));\n  s.reserve(2 * (sqrt(x) + 32));\n  for(i64 i = 1; ;) {\n    v.emplace_back((x\
-    \ + i - 1) / i);\n    s.emplace_back((x + v.back() - 1) / v.back());\n    if (v.back()\
-    \ == 1) break;\n    i = (x + v.back() - 2) / (v.back() - 1);\n  }\n  s.emplace_back(x\
-    \ + 1);\n\n  struct Data { int64_t quotient, l, r; };\n  vector<Data> res(size(v));\n\
-    \  for(int i = 0; i < ssize(v); i++)\n    res[i] = Data{v[i], s[i], s[i + 1]};\n\
-    \n  return res;\n}\n#line 5 \"test/enumerate_quotients.test.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  ll n; cin >> n;\n  auto\
-    \ tmp = quotient_floor_enumerate(n);\n  cout << ssize(tmp) << '\\n';\n  for(auto\
-    \ [x, _, __] : tmp)\n    cout << x << ' ';\n  cout << '\\n';\n\n  return 0;\n\
-    }\n"
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/quotient_enumerate.cpp\"\nauto\
+    \ quotient_floor_enumerate(int64_t x) {\n  using i64 = int64_t;\n  vector<i64>\
+    \ v, s;\n  v.reserve(2 * (sqrt(x) + 32));\n  s.reserve(2 * (sqrt(x) + 32));\n\
+    \  for(i64 i = x; i; ) {\n    v.emplace_back(x / i);\n    s.emplace_back(x / v.back()\
+    \ + 1);\n    i = x / (v.back() + 1);\n  }\n  s.emplace_back(1);\n\n  struct Data\
+    \ { int64_t quotient, l, r; };\n  vector<Data> res(size(v));\n  for(int i = 0;\
+    \ i < ssize(v); i++)\n    res[i] = Data{v[i], s[i + 1], s[i]};\n\n  return res;\n\
+    }\n\nauto quotient_ceil_enumerate(int64_t x) {\n  using i64 = int64_t;\n  vector<i64>\
+    \ v, s;\n  v.reserve(2 * (sqrt(x) + 32));\n  s.reserve(2 * (sqrt(x) + 32));\n\
+    \  for(i64 i = 1; ;) {\n    v.emplace_back((x + i - 1) / i);\n    s.emplace_back((x\
+    \ + v.back() - 1) / v.back());\n    if (v.back() == 1) break;\n    i = (x + v.back()\
+    \ - 2) / (v.back() - 1);\n  }\n  s.emplace_back(x + 1);\n\n  struct Data { int64_t\
+    \ quotient, l, r; };\n  vector<Data> res(size(v));\n  for(int i = 0; i < ssize(v);\
+    \ i++)\n    res[i] = Data{v[i], s[i], s[i + 1]};\n\n  return res;\n}\n#line 5\
+    \ \"test/enumerate_quotients.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  ll n; cin >> n;\n  auto tmp = quotient_floor_enumerate(n);\n\
+    \  cout << ssize(tmp) << '\\n';\n  for(auto [x, _, __] : tmp)\n    cout << x <<\
+    \ ' ';\n  cout << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
     \n#include \"../default/t.cpp\"\n#include \"../numtheory/quotient_enumerate.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  ll n;\
@@ -126,7 +129,7 @@ data:
   isVerificationFile: true
   path: test/enumerate_quotients.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 02:53:01+08:00'
+  timestamp: '2026-01-31 03:10:37+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/enumerate_quotients.test.cpp

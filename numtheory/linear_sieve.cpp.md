@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lcm_convolution.test.cpp
     title: test/lcm_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/linear_sieve.cpp\"\ntemplate<int32_t C>\nstruct\
@@ -54,7 +54,7 @@ data:
   path: numtheory/linear_sieve.cpp
   requiredBy: []
   timestamp: '2025-12-12 21:00:17+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/lcm_convolution.test.cpp
   - test/gcd_convolution.test.cpp

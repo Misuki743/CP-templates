@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/primitive_root.cpp\"\n//#include \"numtheory/fastFactorize.cpp\"\
@@ -30,7 +30,7 @@ data:
   path: numtheory/primitive_root.cpp
   requiredBy: []
   timestamp: '2025-12-12 18:41:06+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/primitive_root.test.cpp
 documentation_of: numtheory/primitive_root.cpp

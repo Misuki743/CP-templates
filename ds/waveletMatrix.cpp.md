@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/static_range_frequency.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/waveletMatrix.cpp\"\ntemplate<class T, int H>\nstruct\
@@ -70,7 +70,7 @@ data:
   path: ds/waveletMatrix.cpp
   requiredBy: []
   timestamp: '2024-03-07 00:40:25+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/static_range_frequency.test.cpp
   - test/range_kth_smallest.test.cpp

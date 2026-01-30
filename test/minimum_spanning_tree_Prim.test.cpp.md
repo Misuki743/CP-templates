@@ -4,9 +4,15 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
-    path: numtheory/factorize_pollard_rho.cpp
-    title: numtheory/factorize_pollard_rho.cpp
+  - icon: ':x:'
+    path: ds/DSU/DSU.cpp
+    title: ds/DSU/DSU.cpp
+  - icon: ':x:'
+    path: graph/minimum_spanning_tree/Kruskal.cpp
+    title: graph/minimum_spanning_tree/Kruskal.cpp
+  - icon: ':x:'
+    path: graph/minimum_spanning_tree/Prim.cpp
+    title: graph/minimum_spanning_tree/Prim.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -14,27 +20,27 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/primality_test
+    PROBLEM: https://judge.yosupo.jp/problem/minimum_spanning_tree
     links:
-    - https://judge.yosupo.jp/problem/primality_test
-  bundledCode: "#line 1 \"test/primality_test.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\
-    \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
-    \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
-    \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
-    \ <cmath>\n#include <complex>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <variant>\n#include <bit>\n#include <compare>\n#include <concepts>\n#include\
-    \ <numbers>\n#include <ranges>\n#include <span>\n\n#define INT128_MAX (__int128)(((unsigned\
-    \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
-    \ (-INT128_MAX - 1)\n\n#define pb push_back\n#define eb emplace_back\n#define\
-    \ clock chrono::steady_clock::now().time_since_epoch().count()\n\nusing namespace\
-    \ std;\n\ntemplate<size_t I = 0, typename... args>\nostream& print_tuple(ostream&\
+    - https://judge.yosupo.jp/problem/minimum_spanning_tree
+  bundledCode: "#line 1 \"test/minimum_spanning_tree_Prim.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/minimum_spanning_tree\"\n\n#line 1 \"default/t.cpp\"\
+    \n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
+    #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
+    \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
+    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
+    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
+    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
+    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
+    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n\
+    #include <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include\
+    \ <sstream>\n#include <stack>\n#include <streambuf>\n#include <string>\n#include\
+    \ <tuple>\n#include <type_traits>\n#include <variant>\n#include <bit>\n#include\
+    \ <compare>\n#include <concepts>\n#include <numbers>\n#include <ranges>\n#include\
+    \ <span>\n\n#define INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128)\
+    \ * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX - 1)\n\n#define\
+    \ pb push_back\n#define eb emplace_back\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
+    \nusing namespace std;\n\ntemplate<size_t I = 0, typename... args>\nostream& print_tuple(ostream&\
     \ os, const tuple<args...> tu) {\n  os << get<I>(tu);\n  if constexpr (I + 1 !=\
     \ sizeof...(args)) {\n    os << ' ';\n    print_tuple<I + 1>(os, tu);\n  }\n \
     \ return os;\n}\ntemplate<typename... args>\nostream& operator<<(ostream& os,\
@@ -99,47 +105,62 @@ data:
     \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
     \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
-    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/factorize_pollard_rho.cpp\"\n//source:\
-    \ KACTL(https://github.com/kth-competitive-programming/kactl)\n\null modmul(ull\
-    \ a, ull b, ull M) {\n\tll ret = a * b - M * ull(1.L / M * a * b);\n\treturn ret\
-    \ + M * (ret < 0) - M * (ret >= (ll)M);\n}\n\null modpow(ull b, ull e, ull mod)\
-    \ {\n\tull ans = 1;\n\tfor (; e; b = modmul(b, b, mod), e /= 2)\n\t\tif (e & 1)\
-    \ ans = modmul(ans, b, mod);\n\treturn ans;\n}\n\nbool isPrime(ull n) {\n\tif\
-    \ (n < 2 || n % 6 % 4 != 1) return (n | 1) == 3;\n\tull A[] = {2, 325, 9375, 28178,\
-    \ 450775, 9780504, 1795265022},\n\t    s = __builtin_ctzll(n-1), d = n >> s;\n\
-    \tfor (ull a : A) {   // ^ count trailing zeroes\n\t\tull p = modpow(a%n, d, n),\
-    \ i = s;\n\t\twhile (p != 1 && p != n - 1 && a % n && i--)\n\t\t\tp = modmul(p,\
-    \ p, n);\n\t\tif (p != n-1 && i != s) return 0;\n\t}\n\treturn 1;\n}\n\null pollard(ull\
-    \ n) {\n  static mt19937_64 rng(clock);\n  uniform_int_distribution<ull> unif(0,\
-    \ n - 1);\n  ull c = 1;\n\tauto f = [n, &c](ull x) { return modmul(x, x, n) +\
-    \ c % n; };\n\tull x = 0, y = 0, t = 30, prd = 2, i = 1, q;\n\twhile (t++ % 40\
-    \ || __gcd(prd, n) == 1) {\n\t\tif (x == y) c = unif(rng), x = ++i, y = f(x);\n\
-    \t\tif ((q = modmul(prd, max(x,y) - min(x,y), n))) prd = q;\n\t\tx = f(x), y =\
-    \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
-    if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
-    \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 5 \"test/primality_test.test.cpp\"\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin >> q;\n  while(q--)\
-    \ {\n    ull x; cin >> x;\n    cout << (isPrime(x) ? \"Yes\\n\" : \"No\\n\");\n\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/DSU/DSU.cpp\"\nstruct DSU {\n  vector<int>\
+    \ bos, sz;\n  int size;\n\n  DSU(int _size) : bos(_size), sz(_size, 1), size(_size)\
+    \ {\n    iota(bos.begin(), bos.end(), 0);\n  }\n\n  int query(int v) {\n    if\
+    \ (bos[v] == v)\n      return v;\n    else\n      return bos[v] = query(bos[v]);\n\
+    \  }\n\n  bool merge(int v1, int v2) {\n    int b1 = query(v1), b2 = query(v2);\n\
+    \n    if (b1 == b2)\n      return false;\n\n    if (sz[b1] > sz[b2])\n      swap(b1,\
+    \ b2);\n    bos[b1] = b2, sz[b2] += sz[b1];\n\n    return true;\n  }\n};\n#line\
+    \ 1 \"graph/minimum_spanning_tree/Kruskal.cpp\"\n//#include \"ds/DSU/DSU.cpp\"\
+    \n\ntemplate<bool sorted, integral T>\nauto Kruskal(int n, vector<tuple<int, int,\
+    \ T>> &e) {\n  vi ord;\n  if constexpr (sorted) {\n    ord.resize(n);\n    iota(ord.begin(),\
+    \ ord.end(), 0ll);\n  } else {\n    ord = argSort(e, [](tuple<int, int, T> &t)\
+    \ { return get<2>(t); });\n  }\n\n  T cost = 0;\n  vi eid;\n  DSU dsu(n);\n  for(int\
+    \ i : ord) {\n    auto [u, v, w] = e[i];\n    if (dsu.merge(u, v))\n      cost\
+    \ += w, eid.emplace_back(i);\n  }\n\n  return pair(cost, eid);\n}\n#line 1 \"\
+    graph/minimum_spanning_tree/Prim.cpp\"\ntemplate<integral T>\nauto Prim(int n,\
+    \ vector<tuple<int, int, T>> e, int s = 0) {\n  constexpr T INF = numeric_limits<T>::max();\n\
+    \  auto weight = [&](int id) { return get<2>(e[id]); };\n\n  e.emplace_back(0,\
+    \ 0, INF);\n\n  vvi id(n, vi(n, ssize(e) - 1));\n  for(int i = -1; auto [u, v,\
+    \ w] : e) {\n    i++;\n    if (w < weight(id[u][v]))\n      id[u][v] = id[v][u]\
+    \ = i;\n  }\n\n  T cost = 0;\n  vc<bool> vis(n, false);\n  vi eid, mn_id = id[s];\n\
+    \  vis[s] = true;\n  for(int i = 0; i < n - 1; i++) {\n    int v = -1;\n    T\
+    \ mn = INF;\n    for(int x = 0; x < n; x++)\n      if (!vis[x] and chmin(mn, weight(mn_id[x])))\n\
+    \        v = x;\n    if (v == -1) break;\n    vis[v] = true, cost += weight(mn_id[v]);\n\
+    \    eid.emplace_back(mn_id[v]);\n    for(int x = 0; x < n; x++)\n      if (weight(id[v][x])\
+    \ < weight(mn_id[x]))\n        mn_id[x] = id[v][x];\n  }\n\n  return pair(cost,\
+    \ eid);\n}\n#line 7 \"test/minimum_spanning_tree_Prim.test.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >> n >>\
+    \ m;\n  vector<tuple<int, int, ll>> e(m);\n  for(auto &[u, v, w] : e)\n    cin\
+    \ >> u >> v >> w;\n\n  if (n < (1 << 13)) {\n    auto [cost, eid] = Prim(n, e);\n\
+    \    cout << cost << '\\n';\n    cout << eid << '\\n';\n  } else {\n    auto [cost,\
+    \ eid] = Kruskal(n, e);\n    cout << cost << '\\n';\n    cout << eid << '\\n';\n\
     \  }\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../numtheory/factorize_pollard_rho.cpp\"\n\n\
-    signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin\
-    \ >> q;\n  while(q--) {\n    ull x; cin >> x;\n    cout << (isPrime(x) ? \"Yes\\\
-    n\" : \"No\\n\");\n  }\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/minimum_spanning_tree\"\
+    \n\n#include \"../default/t.cpp\"\n#include \"../ds/DSU/DSU.cpp\"\n#include \"\
+    ../graph/minimum_spanning_tree/Kruskal.cpp\"\n#include \"../graph/minimum_spanning_tree/Prim.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ m; cin >> n >> m;\n  vector<tuple<int, int, ll>> e(m);\n  for(auto &[u, v, w]\
+    \ : e)\n    cin >> u >> v >> w;\n\n  if (n < (1 << 13)) {\n    auto [cost, eid]\
+    \ = Prim(n, e);\n    cout << cost << '\\n';\n    cout << eid << '\\n';\n  } else\
+    \ {\n    auto [cost, eid] = Kruskal(n, e);\n    cout << cost << '\\n';\n    cout\
+    \ << eid << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - numtheory/factorize_pollard_rho.cpp
+  - ds/DSU/DSU.cpp
+  - graph/minimum_spanning_tree/Kruskal.cpp
+  - graph/minimum_spanning_tree/Prim.cpp
   isVerificationFile: true
-  path: test/primality_test.test.cpp
+  path: test/minimum_spanning_tree_Prim.test.cpp
   requiredBy: []
   timestamp: '2026-01-31 03:10:37+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/primality_test.test.cpp
+documentation_of: test/minimum_spanning_tree_Prim.test.cpp
 layout: document
 redirect_from:
-- /verify/test/primality_test.test.cpp
-- /verify/test/primality_test.test.cpp.html
-title: test/primality_test.test.cpp
+- /verify/test/minimum_spanning_tree_Prim.test.cpp
+- /verify/test/minimum_spanning_tree_Prim.test.cpp.html
+title: test/minimum_spanning_tree_Prim.test.cpp
 ---

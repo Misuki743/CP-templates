@@ -79,47 +79,51 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n#line\
-    \ 1 \"string/AhoCorasick.cpp\"\nstruct AhoCorasick {\n  struct node {\n    static\
-    \ const int size = 26;\n    int nxt[size], p, link = -1, ex = -1, leaf = 0;\n\
-    \    char ch;\n\n    node(int _p = -1, char _ch = ' ') : p(_p), ch(_ch) {\n  \
-    \    fill(nxt, nxt + size, -1);\n    }\n  };\n\n  vector<node> v;\n  AhoCorasick(int\
-    \ sz) : v(1) {\n    v.reserve(sz);\n  }\n\n  int insert(string s) {\n    int now\
-    \ = 0;\n    for(char x : s) {\n      int id = x - 'a';\n      if (v[now].nxt[id]\
-    \ == -1) {\n        v[now].nxt[id] = v.size();\n        v.emplace_back(now, x);\n\
-    \      }\n      now = v[now].nxt[id];\n    }\n    v[now].leaf = 1;\n    return\
-    \ now;\n  }\n\n  int go(int now, char ch) {\n    int id = ch - 'a';\n    if (v[now].nxt[id]\
-    \ != -1) return v[now].nxt[id];\n    else if (now == 0) return 0;\n    else return\
-    \ go(v[now].link, ch);\n  }\n\n  int calcLink(int now) {\n    if (now == 0 or\
-    \ v[now].p == 0) return 0;\n    else return go(v[v[now].p].link, v[now].ch);\n\
-    \  }\n\n  int calcExit(int now) {\n    if (now == 0) return -1;\n    else if (v[v[now].link].leaf)\
-    \ return v[now].link;\n    else return v[v[now].link].ex;\n  }\n\n  vector<int>\
-    \ build() {\n    vector<int> q(1, 0);\n    for(int i = 0; i < ssize(q); i++) {\n\
-    \      int now = q[i];\n      v[now].link = calcLink(now);\n      v[now].ex =\
-    \ calcExit(now);\n      for(int j = 0; j < node::size; j++)\n        if (v[now].nxt[j]\
-    \ != -1)\n          q.emplace_back(v[now].nxt[j]);\n    }\n    return q;\n  }\n\
-    };\n#line 5 \"test/aho_corasick.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  AhoCorasick ac(1 << 20);\n  vector<int>\
-    \ vs;\n  for(int i = 0; i < n; i++) {\n    string s; cin >> s;\n    vs.emplace_back(ac.insert(s));\n\
-    \  }\n\n  ac.build();\n\n  cout << ssize(ac.v) << '\\n';\n  for(auto &node : ac.v\
-    \ | views::drop(1))\n    cout << node.p << ' ' << node.link << '\\n';\n  cout\
-    \ << vs << '\\n';\n\n  return 0;\n}\n\n"
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"string/AhoCorasick.cpp\"\nstruct AhoCorasick\
+    \ {\n  struct node {\n    static const int size = 26;\n    int nxt[size], p, link\
+    \ = -1, ex = -1, leaf = 0;\n    char ch;\n\n    node(int _p = -1, char _ch = '\
+    \ ') : p(_p), ch(_ch) {\n      fill(nxt, nxt + size, -1);\n    }\n  };\n\n  vector<node>\
+    \ v;\n  AhoCorasick(int sz) : v(1) {\n    v.reserve(sz);\n  }\n\n  int insert(string\
+    \ s) {\n    int now = 0;\n    for(char x : s) {\n      int id = x - 'a';\n   \
+    \   if (v[now].nxt[id] == -1) {\n        v[now].nxt[id] = v.size();\n        v.emplace_back(now,\
+    \ x);\n      }\n      now = v[now].nxt[id];\n    }\n    v[now].leaf = 1;\n   \
+    \ return now;\n  }\n\n  int go(int now, char ch) {\n    int id = ch - 'a';\n \
+    \   if (v[now].nxt[id] != -1) return v[now].nxt[id];\n    else if (now == 0) return\
+    \ 0;\n    else return go(v[now].link, ch);\n  }\n\n  int calcLink(int now) {\n\
+    \    if (now == 0 or v[now].p == 0) return 0;\n    else return go(v[v[now].p].link,\
+    \ v[now].ch);\n  }\n\n  int calcExit(int now) {\n    if (now == 0) return -1;\n\
+    \    else if (v[v[now].link].leaf) return v[now].link;\n    else return v[v[now].link].ex;\n\
+    \  }\n\n  vector<int> build() {\n    vector<int> q(1, 0);\n    for(int i = 0;\
+    \ i < ssize(q); i++) {\n      int now = q[i];\n      v[now].link = calcLink(now);\n\
+    \      v[now].ex = calcExit(now);\n      for(int j = 0; j < node::size; j++)\n\
+    \        if (v[now].nxt[j] != -1)\n          q.emplace_back(v[now].nxt[j]);\n\
+    \    }\n    return q;\n  }\n};\n#line 5 \"test/aho_corasick.test.cpp\"\n\nsigned\
+    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n\
+    \  AhoCorasick ac(1 << 20);\n  vector<int> vs;\n  for(int i = 0; i < n; i++) {\n\
+    \    string s; cin >> s;\n    vs.emplace_back(ac.insert(s));\n  }\n\n  ac.build();\n\
+    \n  cout << ssize(ac.v) << '\\n';\n  for(auto &node : ac.v | views::drop(1))\n\
+    \    cout << node.p << ' ' << node.link << '\\n';\n  cout << vs << '\\n';\n\n\
+    \  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aho_corasick\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../string/AhoCorasick.cpp\"\n\nsigned main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  AhoCorasick\
@@ -134,7 +138,7 @@ data:
   isVerificationFile: true
   path: test/aho_corasick.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 02:53:01+08:00'
+  timestamp: '2026-01-31 03:10:37+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aho_corasick.test.cpp

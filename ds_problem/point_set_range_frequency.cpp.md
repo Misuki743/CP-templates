@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_set_range_frequency.test.cpp
     title: test/point_set_range_frequency.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds_problem/point_set_range_frequency.cpp\"\n//#include<ds/fenwickTree.cpp>\n\
@@ -47,7 +47,7 @@ data:
   path: ds_problem/point_set_range_frequency.cpp
   requiredBy: []
   timestamp: '2025-06-10 23:00:40+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/point_set_range_frequency.test.cpp
 documentation_of: ds_problem/point_set_range_frequency.cpp

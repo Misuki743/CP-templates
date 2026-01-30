@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/gcd_convolution.cpp\"\n//#include \"numtheory/linear_sieve.cpp\"\
@@ -27,7 +27,7 @@ data:
   path: numtheory/gcd_convolution.cpp
   requiredBy: []
   timestamp: '2026-01-29 23:44:49+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/gcd_convolution.test.cpp
 documentation_of: numtheory/gcd_convolution.cpp

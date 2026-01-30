@@ -83,46 +83,49 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n#line\
-    \ 1 \"modint/dynamicSimpleMint.cpp\"\ntemplate<uint32_t ver>\nstruct simpleMint\
-    \ {\n  using mint = simpleMint;\n  using u32 = uint32_t;\n  using u64 = uint64_t;\n\
-    \n  static u32 mod;\n\n  static constexpr u32 get_mod() { return mod; }\n  static\
-    \ void set_mod(u32 _mod) { mod = _mod; }\n\n  simpleMint() : a(0) {}\n  simpleMint(const\
-    \ int64_t &b) : a((b % mod + mod) % mod) {}\n\n  u32 a;\n\n  mint pow(u64 k) const\
-    \ {\n    mint res(1), base(*this);\n    while(k) {\n      if (k & 1)\n       \
-    \ res *= base;\n      base *= base, k >>= 1;\n    }\n    return res;\n  }\n\n\
-    \  mint inverse() const { return (*this).pow(mod - 2); }\n  u32 get() const {\
-    \ return a; }\n\n  mint& norm() {\n    a = (a >= mod ? a - mod : a < 0 ? a + mod\
-    \ : a);\n    return *this;\n  }\n\n  mint& operator+=(mint b) {\n    a += b.a;\n\
-    \    return (*this).norm();\n  }\n  mint& operator-=(mint b) {\n    if (b.a >\
-    \ a) a = a + mod - b.a;\n    else a -= b.a;\n    return (*this).norm();\n  }\n\
-    \  mint& operator*=(mint b) {\n    a = (u64(a) * b.a) % mod;\n    return *this;\n\
-    \  }\n  mint& operator/=(mint b) {\n    a = (u64(a) * b.inverse().a) % mod;\n\
-    \    return *this;\n  }\n\n  mint operator-() { return mint() - mint(*this); }\n\
-    \  bool operator==(mint b) { return a == b.a; }\n  bool operator!=(mint b) { return\
-    \ a != b.a; }\n  \n  friend mint operator+(mint c, mint d) { return c += d; }\n\
-    \  friend mint operator-(mint c, mint d) { return c -= d; }\n  friend mint operator*(mint\
-    \ c, mint d) { return c *= d; }\n  friend mint operator/(mint c, mint d) { return\
-    \ c /= d; }\n\n  friend ostream& operator<<(ostream& os, const mint& b) {\n  \
-    \  return os << b.a;\n  }\n  friend istream& operator>>(istream& is, mint& b)\
-    \ {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return is;\n  }\n\
-    };\n\ntemplate<> uint32_t simpleMint<0>::mod = 2;\nusing mint = simpleMint<0>;\n\
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"modint/dynamicSimpleMint.cpp\"\ntemplate<uint32_t\
+    \ ver>\nstruct simpleMint {\n  using mint = simpleMint;\n  using u32 = uint32_t;\n\
+    \  using u64 = uint64_t;\n\n  static u32 mod;\n\n  static constexpr u32 get_mod()\
+    \ { return mod; }\n  static void set_mod(u32 _mod) { mod = _mod; }\n\n  simpleMint()\
+    \ : a(0) {}\n  simpleMint(const int64_t &b) : a((b % mod + mod) % mod) {}\n\n\
+    \  u32 a;\n\n  mint pow(u64 k) const {\n    mint res(1), base(*this);\n    while(k)\
+    \ {\n      if (k & 1)\n        res *= base;\n      base *= base, k >>= 1;\n  \
+    \  }\n    return res;\n  }\n\n  mint inverse() const { return (*this).pow(mod\
+    \ - 2); }\n  u32 get() const { return a; }\n\n  mint& norm() {\n    a = (a >=\
+    \ mod ? a - mod : a < 0 ? a + mod : a);\n    return *this;\n  }\n\n  mint& operator+=(mint\
+    \ b) {\n    a += b.a;\n    return (*this).norm();\n  }\n  mint& operator-=(mint\
+    \ b) {\n    if (b.a > a) a = a + mod - b.a;\n    else a -= b.a;\n    return (*this).norm();\n\
+    \  }\n  mint& operator*=(mint b) {\n    a = (u64(a) * b.a) % mod;\n    return\
+    \ *this;\n  }\n  mint& operator/=(mint b) {\n    a = (u64(a) * b.inverse().a)\
+    \ % mod;\n    return *this;\n  }\n\n  mint operator-() { return mint() - mint(*this);\
+    \ }\n  bool operator==(mint b) { return a == b.a; }\n  bool operator!=(mint b)\
+    \ { return a != b.a; }\n  \n  friend mint operator+(mint c, mint d) { return c\
+    \ += d; }\n  friend mint operator-(mint c, mint d) { return c -= d; }\n  friend\
+    \ mint operator*(mint c, mint d) { return c *= d; }\n  friend mint operator/(mint\
+    \ c, mint d) { return c /= d; }\n\n  friend ostream& operator<<(ostream& os, const\
+    \ mint& b) {\n    return os << b.a;\n  }\n  friend istream& operator>>(istream&\
+    \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
+    \ is;\n  }\n};\n\ntemplate<> uint32_t simpleMint<0>::mod = 2;\nusing mint = simpleMint<0>;\n\
     #line 1 \"combi/binom.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\ntemplate<class\
     \ Mint>\nstruct binomial {\n  vector<Mint> _fac, _facInv;\n  binomial(int size)\
     \ : _fac(size), _facInv(size) {\n    _fac[0] = 1;\n    for(int i = 1; i < size;\
@@ -153,7 +156,7 @@ data:
   isVerificationFile: true
   path: test/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 02:53:01+08:00'
+  timestamp: '2026-01-31 03:10:37+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/binomial_coefficient_prime_mod.test.cpp

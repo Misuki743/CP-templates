@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/xorBasis.cpp
     title: linalg/xorBasis.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_rank_mod_2
@@ -79,42 +79,46 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n#line\
-    \ 1 \"linalg/xorBasis.cpp\"\n// note: querying whether x can be represented as\
-    \ linear combination of some\n//       vector with label >= lb\n\ntemplate<int\
-    \ size>\nstruct xorBasis {\n  bitset<size> *basis[size] = {};\n  int mxIdx[size]\
-    \ = {};\n  void insert(bitset<size> x, int idx) {\n    for(int i = 0; i < size;\
-    \ i++) {\n      if (x[i]) {\n        if (!basis[i]) {\n          basis[i] = new\
-    \ bitset<size>(x);\n          mxIdx[i] = idx;\n          return;\n        }\n\
-    \        if (mxIdx[i] < idx) {\n          swap(*basis[i], x);\n          swap(mxIdx[i],\
-    \ idx);\n        }\n        x ^= *basis[i];\n      }\n    }\n  }\n  bool query(bitset<size>\
-    \ x, int lb = -1) {\n    int mn = INT_MAX;\n    for(int i = 0; i < size; i++)\n\
-    \      if (basis[i] and x[i])\n        x ^= *basis[i], mn = min(mn, mxIdx[i]);\n\
-    \    return x.none() and mn >= lb;\n  }\n  ~xorBasis() {\n    for(int i = 0; i\
-    \ < size; i++)\n      if (basis[i])\n        delete basis[i];\n  }\n};\n#line\
-    \ 5 \"test/matrix_rank_mod_2.test.cpp\"\n\ntemplate<int size = 1>\nvoid solve(int\
-    \ n, int m) {\n  if (size < m) {\n    solve<min(2 * size, 1 << 24)>(n, m);\n \
-    \   return;\n  }\n  xorBasis<size> b;\n  while(n--) {\n    string s; cin >> s;\n\
-    \    b.insert(bitset<size>(s), 0);\n  }\n  int rank = 0;\n  for(int i = 0; i <\
-    \ size; i++)\n    rank += b.basis[i] != nullptr;\n  cout << rank << '\\n';\n}\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m;\
-    \ cin >> n >> m;\n  solve(n, m);\n\n  return 0;\n}\n"
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"linalg/xorBasis.cpp\"\n// note: querying\
+    \ whether x can be represented as linear combination of some\n//       vector\
+    \ with label >= lb\n\ntemplate<int size>\nstruct xorBasis {\n  bitset<size> *basis[size]\
+    \ = {};\n  int mxIdx[size] = {};\n  void insert(bitset<size> x, int idx) {\n \
+    \   for(int i = 0; i < size; i++) {\n      if (x[i]) {\n        if (!basis[i])\
+    \ {\n          basis[i] = new bitset<size>(x);\n          mxIdx[i] = idx;\n  \
+    \        return;\n        }\n        if (mxIdx[i] < idx) {\n          swap(*basis[i],\
+    \ x);\n          swap(mxIdx[i], idx);\n        }\n        x ^= *basis[i];\n  \
+    \    }\n    }\n  }\n  bool query(bitset<size> x, int lb = -1) {\n    int mn =\
+    \ INT_MAX;\n    for(int i = 0; i < size; i++)\n      if (basis[i] and x[i])\n\
+    \        x ^= *basis[i], mn = min(mn, mxIdx[i]);\n    return x.none() and mn >=\
+    \ lb;\n  }\n  ~xorBasis() {\n    for(int i = 0; i < size; i++)\n      if (basis[i])\n\
+    \        delete basis[i];\n  }\n};\n#line 5 \"test/matrix_rank_mod_2.test.cpp\"\
+    \n\ntemplate<int size = 1>\nvoid solve(int n, int m) {\n  if (size < m) {\n  \
+    \  solve<min(2 * size, 1 << 24)>(n, m);\n    return;\n  }\n  xorBasis<size> b;\n\
+    \  while(n--) {\n    string s; cin >> s;\n    b.insert(bitset<size>(s), 0);\n\
+    \  }\n  int rank = 0;\n  for(int i = 0; i < size; i++)\n    rank += b.basis[i]\
+    \ != nullptr;\n  cout << rank << '\\n';\n}\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  solve(n, m);\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_rank_mod_2\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../linalg/xorBasis.cpp\"\n\ntemplate<int\
     \ size = 1>\nvoid solve(int n, int m) {\n  if (size < m) {\n    solve<min(2 *\
@@ -130,8 +134,8 @@ data:
   isVerificationFile: true
   path: test/matrix_rank_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 02:53:01+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-01-31 03:10:37+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/matrix_rank_mod_2.test.cpp
 layout: document

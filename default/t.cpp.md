@@ -75,133 +75,139 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/enumerate_quotients.test.cpp
     title: test/enumerate_quotients.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/exp_of_formal_power_series_sparse.test.cpp
     title: test/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/inv_of_formal_power_series.test.cpp
     title: test/inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/inverse_matrix.test.cpp
     title: test/inverse_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lcm_convolution.test.cpp
     title: test/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/line_add_get_min.test.cpp
     title: test/line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/log_of_formal_power_series.test.cpp
     title: test/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/log_of_formal_power_series_sparse.test.cpp
     title: test/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/longest_common_substring.test.cpp
     title: test/longest_common_substring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/longest_increasing_subsequence.test.cpp
     title: test/longest_increasing_subsequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/matrix_product.test.cpp
     title: test/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/matrix_rank.test.cpp
     title: test/matrix_rank.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/matrix_rank_mod_2.test.cpp
     title: test/matrix_rank_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/min_plus_convolution_convex_arbitrary.test.cpp
     title: test/min_plus_convolution_convex_arbitrary.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/minimum_spanning_tree_Kruskal.test.cpp
+    title: test/minimum_spanning_tree_Kruskal.test.cpp
+  - icon: ':x:'
+    path: test/minimum_spanning_tree_Prim.test.cpp
+    title: test/minimum_spanning_tree_Prim.test.cpp
+  - icon: ':x:'
     path: test/mul_modp_convolution.test.cpp
     title: test/mul_modp_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/multiplication_of_big_intergers.test.cpp
     title: test/multiplication_of_big_intergers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/multiplication_of_big_intergers_2.test.cpp
     title: test/multiplication_of_big_intergers_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
     title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_enumerate_twelvefold.test.cpp
     title: test/mytest_enumerate_twelvefold.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_add_range_sum.test.cpp
     title: test/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_add_rectangle_sum.test.cpp
     title: test/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_set_range_composite.test.cpp
     title: test/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_set_range_frequency.test.cpp
     title: test/point_set_range_frequency.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/polynomial_taylor_shift.test.cpp
     title: test/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/predecessor_problem.test.cpp
     title: test/predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/primality_test.test.cpp
     title: test/primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/queue_operate_all_composite.test.cpp
     title: test/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_add_range_min.test.cpp
     title: test/range_add_range_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
   - icon: ':x:'
@@ -366,23 +372,27 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n"
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n"
   code: "#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
     #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
     \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
@@ -443,28 +453,32 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n"
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n"
   dependsOn: []
   isVerificationFile: false
   path: default/t.cpp
   requiredBy: []
-  timestamp: '2026-01-30 02:53:01+08:00'
+  timestamp: '2026-01-31 03:10:37+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/chromatic_number.test.cpp
@@ -523,6 +537,7 @@ data:
   - test/min_plus_convolution_convex_arbitrary.test.cpp
   - test/find_linear_recurrence.test.cpp
   - test/counting_spanning_tree_undirected.test.cpp
+  - test/minimum_spanning_tree_Prim.test.cpp
   - test/point_add_rectangle_sum.test.cpp
   - test/yuki_1344.test.cpp
   - test/lcm_convolution.test.cpp
@@ -533,6 +548,7 @@ data:
   - test/sqrt_of_formal_power_series.test.cpp
   - test/static_RMQ_2.test.cpp
   - test/matrix_product.test.cpp
+  - test/minimum_spanning_tree_Kruskal.test.cpp
   - test/addition_of_big_integers_2.test.cpp
   - test/yuki_2654.test.cpp
   - test/shortest_path_sparse.test.cpp

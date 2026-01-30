@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds_problem/point_set_range_frequency.cpp
     title: ds_problem/point_set_range_frequency.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_frequency
@@ -82,42 +82,45 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n#line\
-    \ 1 \"ds/fenwickTree.cpp\"\ntemplate<class T>\nstruct fenwickTree {\n  const int\
-    \ size;\n  vector<T> data;\n\n  fenwickTree(int _size) : size(_size + 1), data(_size\
-    \ + 1) {}\n  fenwickTree(vector<T> &init) : size(ssize(init) + 1), data(ssize(init)\
-    \ + 1) {\n    partial_sum(init.begin(), init.end(), data.begin() + 1);\n    for(int\
-    \ i = size - 1; i > 0; i--)\n      data[i] -= data[i - (i & (-i))];\n  }\n\n \
-    \ void add(int i, T d) {\n    for(i += 1; i < size; i += i & (-i))\n      data[i]\
-    \ += d;\n  }\n\n  T query(int i) {\n    T res = T(0);\n    for(i += 1; i > 0;\
-    \ i -= i & (-i))\n      res += data[i];\n    return res;\n  }\n\n  T query(int\
-    \ l, int r) { //query [l, r)\n    return query(r - 1) - query(l - 1);\n  }\n};\n\
-    #line 1 \"ds_problem/point_set_range_frequency.cpp\"\n//#include<ds/fenwickTree.cpp>\n\
-    \ntemplate<class T>\nstruct point_set_range_frequency {\n  vector<T> a;\n  int\
-    \ n, now = 0;\n  struct Query {\n    T x;\n    int t, l, r, id;\n  };\n  vector<Query>\
-    \ q;\n  struct Modification {\n    T x;\n    int t, i;\n    bool add;\n  };\n\
-    \  vector<Modification> m;\n\n  point_set_range_frequency(vector<T> &_a)\n   \
-    \ : a(_a), n(ssize(a)), m(n) {\n    for(int i = 0; i < n; i++)\n      m[i] = {a[i],\
-    \ 0, i, true};\n  };\n\n  void modify(int i, T x) {\n    m.push_back({a[i], now,\
-    \ i, false});\n    m.push_back({a[i] = x, now, i, true});\n  }\n\n  void query(int\
-    \ l, int r, T x) {\n    q.push_back({x, now++, l, r, (int)size(q)});\n  }\n\n\
-    \  vector<int> solve() {\n    for(int i = 0; i < n; i++)\n      m.push_back({a[i],\
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/fenwickTree.cpp\"\ntemplate<class T>\n\
+    struct fenwickTree {\n  const int size;\n  vector<T> data;\n\n  fenwickTree(int\
+    \ _size) : size(_size + 1), data(_size + 1) {}\n  fenwickTree(vector<T> &init)\
+    \ : size(ssize(init) + 1), data(ssize(init) + 1) {\n    partial_sum(init.begin(),\
+    \ init.end(), data.begin() + 1);\n    for(int i = size - 1; i > 0; i--)\n    \
+    \  data[i] -= data[i - (i & (-i))];\n  }\n\n  void add(int i, T d) {\n    for(i\
+    \ += 1; i < size; i += i & (-i))\n      data[i] += d;\n  }\n\n  T query(int i)\
+    \ {\n    T res = T(0);\n    for(i += 1; i > 0; i -= i & (-i))\n      res += data[i];\n\
+    \    return res;\n  }\n\n  T query(int l, int r) { //query [l, r)\n    return\
+    \ query(r - 1) - query(l - 1);\n  }\n};\n#line 1 \"ds_problem/point_set_range_frequency.cpp\"\
+    \n//#include<ds/fenwickTree.cpp>\n\ntemplate<class T>\nstruct point_set_range_frequency\
+    \ {\n  vector<T> a;\n  int n, now = 0;\n  struct Query {\n    T x;\n    int t,\
+    \ l, r, id;\n  };\n  vector<Query> q;\n  struct Modification {\n    T x;\n   \
+    \ int t, i;\n    bool add;\n  };\n  vector<Modification> m;\n\n  point_set_range_frequency(vector<T>\
+    \ &_a)\n    : a(_a), n(ssize(a)), m(n) {\n    for(int i = 0; i < n; i++)\n   \
+    \   m[i] = {a[i], 0, i, true};\n  };\n\n  void modify(int i, T x) {\n    m.push_back({a[i],\
+    \ now, i, false});\n    m.push_back({a[i] = x, now, i, true});\n  }\n\n  void\
+    \ query(int l, int r, T x) {\n    q.push_back({x, now++, l, r, (int)size(q)});\n\
+    \  }\n\n  vector<int> solve() {\n    for(int i = 0; i < n; i++)\n      m.push_back({a[i],\
     \ now, i, false});\n    ranges::sort(q, {}, [&](auto &e) { return pair(e.x, e.t);\
     \ });\n    ranges::sort(m, {}, [&](auto &e) { return pair(e.x, e.t); });\n   \
     \ vector<int> ans(ssize(q));\n    fenwickTree<int> ft(n);\n    for(int i = 0;\
@@ -146,8 +149,8 @@ data:
   isVerificationFile: true
   path: test/point_set_range_frequency.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 02:53:01+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-01-31 03:10:37+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/point_set_range_frequency.test.cpp
 layout: document

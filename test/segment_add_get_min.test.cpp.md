@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: segtree/lichaoSegmentTree.cpp
     title: segtree/lichaoSegmentTree.cpp
   _extendedRequiredBy: []
@@ -79,55 +79,59 @@ data:
     \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
     \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
     \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<bool directed>\nvvi read_graph(int n, int m, int base) {\n  vvi\
-    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v; cin >> u >> v;\n    u -=\
-    \ base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr (!directed)\n\
-    \      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<bool directed>\n\
-    vvi adjacency_list(int n, vc<pii> e, int base) {\n  vvi g(n);\n  for(auto [u,\
-    \ v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n    if constexpr\
-    \ (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n}\n\ntemplate<class\
-    \ T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) <<\
-    \ bit; }\ntemplate<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true);\
-    \ }\ntemplate<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false);\
-    \ }\ntemplate<class T> void flipBit(T &msk, int bit) { msk ^= T(1) << bit; }\n\
-    template<class T> bool getBit(T msk, int bit) { return msk >> bit & T(1); }\n\n\
-    template<class T>\nT floorDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return\
-    \ a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class T>\nT ceilDiv(T a, T b)\
-    \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
-    }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
-    template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n#line\
-    \ 1 \"segtree/lichaoSegmentTree.cpp\"\n//note: size should be power of 2, finding\
-    \ min line in default\n\ntemplate<class M, M unit>\nstruct lichaoSegmentTree {\n\
-    \  vector<array<M, 2>> data;\n  vector<M> xMid;\n  unsigned size;\n\n  lichaoSegmentTree(unsigned\
-    \ _size, vector<M> x = vector<M>()) : data(2 * _size, {0, unit}), xMid(2 * _size),\
-    \ size(_size) {\n    assert(popcount(size) == 1);\n    if (x.empty()) {\n    \
-    \  iota(xMid.begin() + size, xMid.end(), 0);\n    } else {\n      copy(x.begin(),\
-    \ x.end(), xMid.begin() + size);\n      fill(xMid.begin() + size + ssize(x), xMid.end(),\
-    \ x.back());\n    }\n    vector<int> r(2 * size);\n    iota(r.begin() + size,\
-    \ r.end(), size);\n    for(int i = size - 1; i > 0; i--)\n      r[i] = r[i <<\
-    \ 1 | 1];\n    for(int i = size - 1; i > 0; i--)\n      xMid[i] = (xMid[r[i <<\
-    \ 1]] + xMid[r[i << 1] + 1]) / 2;\n  }\n\n  M eval(M a, M b, M x) { return a *\
-    \ x + b; }\n\n  void insert(int v, M a, M b) {\n    if (a > data[v][0]) {\n  \
-    \    swap(a, data[v][0]);\n      swap(b, data[v][1]);\n    }\n\n    if (v >= size)\
-    \ {\n      if (eval(a, b, xMid[v]) < eval(data[v][0], data[v][1], xMid[v])) {\n\
-    \        swap(a, data[v][0]);\n        swap(b, data[v][1]);\n      }\n      return;\n\
-    \    }\n\n    if (eval(a, b, xMid[v]) > eval(data[v][0], data[v][1], xMid[v]))\
-    \ {\n      insert(v << 1 | 1, a, b);\n    } else {\n      swap(a, data[v][0]);\n\
-    \      swap(b, data[v][1]);\n      insert(v << 1, a, b);\n    }\n  }\n\n  M query(int\
-    \ v) {\n    v += size;\n    M ans = unit;\n    int x = xMid[v];\n    while(v >=\
-    \ 1)\n      ans = min(ans, eval(data[v][0], data[v][1], x)), v >>= 1;\n    return\
-    \ ans;\n  }\n\n  void insertRange(int l, int r, M a, M b) {\n    for(l += size,\
-    \ r += size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) insert(l++, a, b);\n\
-    \      if (r & 1) insert(--r, a, b);\n    }\n  }\n};\n#line 5 \"test/segment_add_get_min.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vector<array<ll, 4>> c(n);\n  for(auto &[l, r, a, b] :\
-    \ c)\n    cin >> l >> r >> a >> b;\n  vector<array<ll, 5>> query(q);\n  for(auto\
-    \ &[t, x, y, z, w] : query) {\n    cin >> t;\n    if (t == 0)\n      cin >> x\
-    \ >> y >> z >> w;\n    else\n      cin >> x;\n  }\n\n  vector<ll> xs;\n  for(auto\
-    \ &[l, r, a, b] : c) {\n    xs.emplace_back(l);\n    xs.emplace_back(r);\n  }\n\
-    \  for(auto &[t, x, y, z, w] : query) {\n    if (t == 0) {\n      xs.emplace_back(x);\n\
-    \      xs.emplace_back(y);\n    } else {\n      xs.emplace_back(x);\n    }\n \
-    \ }\n  ranges::sort(xs);\n  xs.resize(unique(xs.begin(), xs.end()) - xs.begin());\n\
+    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
+    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
+    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
+    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
+    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
+    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
+    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
+    }\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &= ~(T(1)\
+    \ << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int bit) {\
+    \ setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int bit) {\
+    \ setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int bit)\
+    \ { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit) { return\
+    \ msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n  if (b <\
+    \ 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n}\ntemplate<class\
+    \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
+    \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
+    \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"segtree/lichaoSegmentTree.cpp\"\n//note:\
+    \ size should be power of 2, finding min line in default\n\ntemplate<class M,\
+    \ M unit>\nstruct lichaoSegmentTree {\n  vector<array<M, 2>> data;\n  vector<M>\
+    \ xMid;\n  unsigned size;\n\n  lichaoSegmentTree(unsigned _size, vector<M> x =\
+    \ vector<M>()) : data(2 * _size, {0, unit}), xMid(2 * _size), size(_size) {\n\
+    \    assert(popcount(size) == 1);\n    if (x.empty()) {\n      iota(xMid.begin()\
+    \ + size, xMid.end(), 0);\n    } else {\n      copy(x.begin(), x.end(), xMid.begin()\
+    \ + size);\n      fill(xMid.begin() + size + ssize(x), xMid.end(), x.back());\n\
+    \    }\n    vector<int> r(2 * size);\n    iota(r.begin() + size, r.end(), size);\n\
+    \    for(int i = size - 1; i > 0; i--)\n      r[i] = r[i << 1 | 1];\n    for(int\
+    \ i = size - 1; i > 0; i--)\n      xMid[i] = (xMid[r[i << 1]] + xMid[r[i << 1]\
+    \ + 1]) / 2;\n  }\n\n  M eval(M a, M b, M x) { return a * x + b; }\n\n  void insert(int\
+    \ v, M a, M b) {\n    if (a > data[v][0]) {\n      swap(a, data[v][0]);\n    \
+    \  swap(b, data[v][1]);\n    }\n\n    if (v >= size) {\n      if (eval(a, b, xMid[v])\
+    \ < eval(data[v][0], data[v][1], xMid[v])) {\n        swap(a, data[v][0]);\n \
+    \       swap(b, data[v][1]);\n      }\n      return;\n    }\n\n    if (eval(a,\
+    \ b, xMid[v]) > eval(data[v][0], data[v][1], xMid[v])) {\n      insert(v << 1\
+    \ | 1, a, b);\n    } else {\n      swap(a, data[v][0]);\n      swap(b, data[v][1]);\n\
+    \      insert(v << 1, a, b);\n    }\n  }\n\n  M query(int v) {\n    v += size;\n\
+    \    M ans = unit;\n    int x = xMid[v];\n    while(v >= 1)\n      ans = min(ans,\
+    \ eval(data[v][0], data[v][1], x)), v >>= 1;\n    return ans;\n  }\n\n  void insertRange(int\
+    \ l, int r, M a, M b) {\n    for(l += size, r += size; l < r; l >>= 1, r >>= 1)\
+    \ {\n      if (l & 1) insert(l++, a, b);\n      if (r & 1) insert(--r, a, b);\n\
+    \    }\n  }\n};\n#line 5 \"test/segment_add_get_min.test.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
+    \ q;\n  vector<array<ll, 4>> c(n);\n  for(auto &[l, r, a, b] : c)\n    cin >>\
+    \ l >> r >> a >> b;\n  vector<array<ll, 5>> query(q);\n  for(auto &[t, x, y, z,\
+    \ w] : query) {\n    cin >> t;\n    if (t == 0)\n      cin >> x >> y >> z >> w;\n\
+    \    else\n      cin >> x;\n  }\n\n  vector<ll> xs;\n  for(auto &[l, r, a, b]\
+    \ : c) {\n    xs.emplace_back(l);\n    xs.emplace_back(r);\n  }\n  for(auto &[t,\
+    \ x, y, z, w] : query) {\n    if (t == 0) {\n      xs.emplace_back(x);\n     \
+    \ xs.emplace_back(y);\n    } else {\n      xs.emplace_back(x);\n    }\n  }\n \
+    \ ranges::sort(xs);\n  xs.resize(unique(xs.begin(), xs.end()) - xs.begin());\n\
     \  for(auto &[l, r, a, b] : c) {\n    l = ranges::lower_bound(xs, l) - xs.begin();\n\
     \    r = ranges::lower_bound(xs, r) - xs.begin();\n  }\n  for(auto &[t, x, y,\
     \ z, w] : query) {\n    if (t == 0) {\n      x = ranges::lower_bound(xs, x) -\
@@ -165,7 +169,7 @@ data:
   isVerificationFile: true
   path: test/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 02:53:01+08:00'
+  timestamp: '2026-01-31 03:10:37+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/segment_add_get_min.test.cpp
