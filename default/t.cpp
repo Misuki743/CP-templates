@@ -184,6 +184,15 @@ vi argSort(rng p) {
   return id;
 }
 
+template<ranges::random_access_range rng, class T = ranges::range_value_t<rng>, typename F>
+requires invocable<F, T&>
+vi argSort(rng p, F proj) {
+  vi id(size(p));
+  iota(id.begin(), id.end(), 0);
+  ranges::sort(id, {}, [&](int i) { return pair(proj(p[i]), i); });
+  return id;
+}
+
 template<bool directed>
 vvi read_graph(int n, int m, int base) {
   vvi g(n);
