@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/tree_diameter.test.cpp
+    title: test/tree_diameter.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/weighted_tree_diameter.cpp\"\ntemplate<class T>\ntuple<T,\
@@ -42,8 +45,9 @@ data:
   path: tree/weighted_tree_diameter.cpp
   requiredBy: []
   timestamp: '2026-01-30 20:10:19+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/tree_diameter.test.cpp
 documentation_of: tree/weighted_tree_diameter.cpp
 layout: document
 redirect_from:

@@ -6,6 +6,9 @@ data:
   - icon: ':x:'
     path: test/mytest_enumerate_twelvefold.test.cpp
     title: test/mytest_enumerate_twelvefold.test.cpp
+  - icon: ':x:'
+    path: test/mytest_tree.test.cpp
+    title: test/mytest_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
@@ -25,6 +28,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest_enumerate_twelvefold.test.cpp
+  - test/mytest_tree.test.cpp
 documentation_of: enumerate/enumerate_bit.cpp
 layout: document
 redirect_from:

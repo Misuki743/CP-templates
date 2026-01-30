@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/unionfind_with_potential.test.cpp
+    title: test/unionfind_with_potential.test.cpp
+  - icon: ':x:'
+    path: test/unionfind_with_potential_non_commutative_group.test.cpp
+    title: test/unionfind_with_potential_non_commutative_group.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/DSU/potentialDSU.cpp\"\ntemplate<class G, G(*id)(), G(*op)(const\
@@ -38,8 +44,10 @@ data:
   path: ds/DSU/potentialDSU.cpp
   requiredBy: []
   timestamp: '2026-01-30 20:10:19+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/unionfind_with_potential.test.cpp
+  - test/unionfind_with_potential_non_commutative_group.test.cpp
 documentation_of: ds/DSU/potentialDSU.cpp
 layout: document
 redirect_from:

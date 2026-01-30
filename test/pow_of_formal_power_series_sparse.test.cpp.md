@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/sqrt_mod.cpp
     title: numtheory/sqrt_mod.cpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sparsePolyope.cpp
     title: poly/sparsePolyope.cpp
   _extendedRequiredBy: []

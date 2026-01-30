@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/bipartitematching.test.cpp
+    title: test/bipartitematching.test.cpp
+  - icon: ':x:'
+    path: test/matching_on_bipartite_graph.test.cpp
+    title: test/matching_on_bipartite_graph.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/flow/Dinic.cpp\"\ntemplate<class T>\nstruct Dinic\
@@ -55,8 +61,10 @@ data:
   path: graph/flow/Dinic.cpp
   requiredBy: []
   timestamp: '2026-01-30 20:10:19+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/bipartitematching.test.cpp
+  - test/matching_on_bipartite_graph.test.cpp
 documentation_of: graph/flow/Dinic.cpp
 layout: document
 redirect_from:

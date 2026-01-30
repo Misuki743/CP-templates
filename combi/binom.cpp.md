@@ -12,10 +12,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/counting_eulerian_circuits.test.cpp
     title: test/counting_eulerian_circuits.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/exp_of_formal_power_series_sparse.test.cpp
     title: test/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
   - icon: ':x:'

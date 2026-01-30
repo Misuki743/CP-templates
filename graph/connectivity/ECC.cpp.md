@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/two_edge_connected_components.test.cpp
+    title: test/two_edge_connected_components.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/connectivity/ECC.cpp\"\nstruct ECC {\n  vector<int>\
@@ -56,8 +59,9 @@ data:
   path: graph/connectivity/ECC.cpp
   requiredBy: []
   timestamp: '2026-01-30 20:10:19+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/two_edge_connected_components.test.cpp
 documentation_of: graph/connectivity/ECC.cpp
 layout: document
 redirect_from:

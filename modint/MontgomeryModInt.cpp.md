@@ -45,34 +45,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/exp_of_formal_power_series_sparse.test.cpp
     title: test/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/incremental_scc.test.cpp
+    title: test/incremental_scc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series.test.cpp
     title: test/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inverse_matrix.test.cpp
     title: test/inverse_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/lcm_convolution.test.cpp
     title: test/lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/log_of_formal_power_series.test.cpp
     title: test/log_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -159,6 +162,15 @@ data:
   - icon: ':x:'
     path: test/tree_path_composite_sum.test.cpp
     title: test/tree_path_composite_sum.test.cpp
+  - icon: ':x:'
+    path: test/unionfind_with_potential.test.cpp
+    title: test/unionfind_with_potential.test.cpp
+  - icon: ':x:'
+    path: test/unionfind_with_potential_non_commutative_group.test.cpp
+    title: test/unionfind_with_potential_non_commutative_group.test.cpp
+  - icon: ':x:'
+    path: test/vertex_set_path_composite.test.cpp
+    title: test/vertex_set_path_composite.test.cpp
   - icon: ':x:'
     path: test/wildcard_pattern_matching.test.cpp
     title: test/wildcard_pattern_matching.test.cpp
@@ -266,6 +278,7 @@ data:
   - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/queue_operate_all_composite.test.cpp
   - test/compositional_inverse_of_formal_power_series_large.test.cpp
+  - test/incremental_scc.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/system_of_linear_equations.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -280,6 +293,7 @@ data:
   - test/sqrt_of_formal_power_series.test.cpp
   - test/matrix_product.test.cpp
   - test/addition_of_big_integers_2.test.cpp
+  - test/unionfind_with_potential.test.cpp
   - test/bernoulli_number.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
@@ -292,9 +306,11 @@ data:
   - test/inv_of_formal_power_series_sparse.test.cpp
   - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/multipoint_evaluation_on_geometric_sequence.test.cpp
+  - test/unionfind_with_potential_non_commutative_group.test.cpp
   - test/sharp_p_subset_sum.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
   - test/polynomial_taylor_shift.test.cpp
+  - test/vertex_set_path_composite.test.cpp
   - test/gcd_convolution.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/convolution_1e9+7.test.cpp

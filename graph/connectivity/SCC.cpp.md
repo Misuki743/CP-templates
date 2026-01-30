@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/incremental_scc.test.cpp
+    title: test/incremental_scc.test.cpp
+  - icon: ':x:'
+    path: test/strongly_connected_components.test.cpp
+    title: test/strongly_connected_components.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/connectivity/SCC.cpp\"\nstruct SCC {\n  vector<int>\
@@ -47,8 +53,10 @@ data:
   path: graph/connectivity/SCC.cpp
   requiredBy: []
   timestamp: '2026-01-30 20:10:19+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/incremental_scc.test.cpp
+  - test/strongly_connected_components.test.cpp
 documentation_of: graph/connectivity/SCC.cpp
 layout: document
 redirect_from:

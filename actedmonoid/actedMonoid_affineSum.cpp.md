@@ -15,6 +15,9 @@ data:
   - icon: ':x:'
     path: test/range_set_range_composite.test.cpp
     title: test/range_set_range_composite.test.cpp
+  - icon: ':x:'
+    path: test/vertex_set_path_composite.test.cpp
+    title: test/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':question:'
@@ -43,6 +46,7 @@ data:
   - test/range_affine_range_sum.test.cpp
   - test/range_set_range_composite.test.cpp
   - test/queue_operate_all_composite.test.cpp
+  - test/vertex_set_path_composite.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: actedmonoid/actedMonoid_affineSum.cpp
 layout: document

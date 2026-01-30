@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/bipartitematching_2.test.cpp
+    title: test/bipartitematching_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/matching/hopcroftKarp.cpp\"\n//source: KACTL\n\n/**\n\
@@ -66,8 +69,9 @@ data:
   path: graph/matching/hopcroftKarp.cpp
   requiredBy: []
   timestamp: '2026-01-30 20:10:19+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/bipartitematching_2.test.cpp
 documentation_of: graph/matching/hopcroftKarp.cpp
 layout: document
 redirect_from:

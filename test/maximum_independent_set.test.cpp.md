@@ -18,14 +18,14 @@ data:
     \                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.14.2/x64/lib/python3.14/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../graph/MIS.cpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../graph/misc/MIS.cpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/maximum_independent_set\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../graph/MIS.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >> n >>\
-    \ m;\n  vector<ull> g(n);\n  while(m--) {\n    int u, v; cin >> u >> v;\n    g[u]\
-    \ |= 1LL << v, g[v] |= 1LL << u;\n  }\n\n  auto mis = MIS(g, n);\n  cout << ssize(mis)\
-    \ << '\\n';\n  cout << mis << '\\n';\n\n  return 0;\n}\n"
+    \n\n#include \"../default/t.cpp\"\n#include \"../graph/misc/MIS.cpp\"\n\nsigned\
+    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >>\
+    \ n >> m;\n  vector<ull> g(n);\n  while(m--) {\n    int u, v; cin >> u >> v;\n\
+    \    g[u] |= 1LL << v, g[v] |= 1LL << u;\n  }\n\n  auto mis = MIS(g, n);\n  cout\
+    \ << ssize(mis) << '\\n';\n  cout << mis << '\\n';\n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: true
   path: test/maximum_independent_set.test.cpp
