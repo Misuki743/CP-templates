@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
-    title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"dp/dynamicTreeDP.cpp\"\n//#include \"ds/staticTopTree.cpp\"\
@@ -35,9 +32,8 @@ data:
   path: dp/dynamicTreeDP.cpp
   requiredBy: []
   timestamp: '2025-05-16 21:27:50+08:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: dp/dynamicTreeDP.cpp
 layout: document
 redirect_from:

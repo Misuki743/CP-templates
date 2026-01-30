@@ -6,12 +6,6 @@ data:
   - icon: ':x:'
     path: test/point_set_range_composite.test.cpp
     title: test/point_set_range_composite.test.cpp
-  - icon: ':x:'
-    path: test/vertex_add_subtree_sum.test.cpp
-    title: test/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
-    path: test/vertex_set_path_composite.test.cpp
-    title: test/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
@@ -85,8 +79,6 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/point_set_range_composite.test.cpp
-  - test/vertex_add_subtree_sum.test.cpp
-  - test/vertex_set_path_composite.test.cpp
 documentation_of: segtree/segmentTree.cpp
 layout: document
 redirect_from:

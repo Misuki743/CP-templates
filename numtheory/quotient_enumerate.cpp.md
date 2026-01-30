@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/enumerate_quotients.test.cpp
     title: test/enumerate_quotients.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/quotient_enumerate.cpp\"\nauto quotient_floor_enumerate(int64_t\
@@ -43,7 +43,7 @@ data:
   path: numtheory/quotient_enumerate.cpp
   requiredBy: []
   timestamp: '2025-12-12 18:41:06+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/enumerate_quotients.test.cpp
 documentation_of: numtheory/quotient_enumerate.cpp

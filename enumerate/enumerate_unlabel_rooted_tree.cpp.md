@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/mytest_tree.test.cpp
-    title: test/mytest_tree.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/enumerate_unlabel_rooted_tree.cpp\"\n//number\
@@ -57,9 +54,8 @@ data:
   path: enumerate/enumerate_unlabel_rooted_tree.cpp
   requiredBy: []
   timestamp: '2026-01-29 17:21:40+08:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/mytest_tree.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: enumerate/enumerate_unlabel_rooted_tree.cpp
 layout: document
 redirect_from:

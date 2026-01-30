@@ -4,14 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/lowest_common_ancestor_2.test.cpp
-    title: test/lowest_common_ancestor_2.test.cpp
-  - icon: ':x:'
     path: test/static_RMQ_2.test.cpp
     title: test/static_RMQ_2.test.cpp
-  - icon: ':x:'
-    path: test/vertex_add_path_sum.test.cpp
-    title: test/vertex_add_path_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
@@ -62,8 +56,6 @@ data:
   timestamp: '2024-07-24 13:33:23+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/lowest_common_ancestor_2.test.cpp
-  - test/vertex_add_path_sum.test.cpp
   - test/static_RMQ_2.test.cpp
 documentation_of: ds/RMQ.cpp
 layout: document

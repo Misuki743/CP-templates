@@ -7,20 +7,20 @@ data:
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/lcm_convolution.cpp
     title: numtheory/lcm_convolution.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/linear_sieve.cpp
     title: numtheory/linear_sieve.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
     title: numtheory/zeta_mobius_on_divisibility_lattice.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lcm_convolution
@@ -196,7 +196,7 @@ data:
   path: test/lcm_convolution.test.cpp
   requiredBy: []
   timestamp: '2026-01-30 02:53:01+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lcm_convolution.test.cpp
 layout: document
