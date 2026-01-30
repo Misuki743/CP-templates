@@ -4,12 +4,12 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
-    path: ds/waveletMatrix.cpp
-    title: waveletMatrix
-  - icon: ':question:'
-    path: misc/compression.cpp
-    title: compression
+  - icon: ':x:'
+    path: graph/shortest_path/Dijkstra.cpp
+    title: graph/shortest_path/Dijkstra.cpp
+  - icon: ':x:'
+    path: graph/shortest_path/path_recover.cpp
+    title: graph/shortest_path/path_recover.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -17,12 +17,12 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/static_range_frequency
+    PROBLEM: https://judge.yosupo.jp/problem/shortest_path
     links:
-    - https://judge.yosupo.jp/problem/static_range_frequency
-  bundledCode: "#line 1 \"test/static_range_frequency.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/static_range_frequency\"\n\n#line 1 \"default/t.cpp\"\
-    \n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
+    - https://judge.yosupo.jp/problem/shortest_path
+  bundledCode: "#line 1 \"test/shortest_path_sparse.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/shortest_path\"\n\n#line 1 \"default/t.cpp\"\n\
+    #include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
     #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
     \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
     \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
@@ -99,75 +99,60 @@ data:
     \ {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? (a + b - 1) / b : a / b;\n\
     }\n\ntemplate<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\n\
     template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\n#line\
-    \ 1 \"misc/compression.cpp\"\ntemplate<class T, bool duplicate = false>\nstruct\
-    \ compression {\n  vector<int> ord;\n  vector<T> val;\n\n  compression(vector<T>\
-    \ &init) : val(init) { precompute(); }\n  compression(int size = 0) { val.reserve(size);\
-    \ }\n\n  void precompute() {\n    vector<T> init = val;\n    ord.resize(ssize(val));\n\
-    \    ranges::sort(val);\n    if constexpr (duplicate) {\n      vector<int> cnt(ssize(init));\n\
-    \      iota(cnt.begin(), cnt.end(), 0);\n      for(int i = 0; i < ssize(ord);\
-    \ i++)\n        ord[i] = cnt[lower_bound(init[i])]++;\n    } else {\n      val.resize(unique(val.begin(),\
-    \ val.end()) - val.begin());\n      for(int i = 0; i < ssize(ord); i++)\n    \
-    \    ord[i] = lower_bound(init[i]);\n    }\n  }\n\n  int lower_bound(T x) { return\
-    \ ranges::lower_bound(val, x) - val.begin(); }\n  int size() { return ssize(val);\
-    \ }\n  template<ranges::range rng, class proj = identity>\n  void mapping(rng\
-    \ &v, proj p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }\n  template<ranges::range\
-    \ rng, class proj = identity>\n  void insert(rng &v, proj p = {}) { for(auto &x\
-    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"ds/waveletMatrix.cpp\"\ntemplate<class\
-    \ T, int H>\nstruct waveletMatrix {\n  using uint = uint32_t;\n  struct bitvec\
-    \ {\n    static constexpr uint W = 64;\n    int cnt0 = 0, size;\n    vector<ull>\
-    \ bv;\n    vector<int> pre;\n\n    bitvec(uint _size) : size(_size), bv(size /\
-    \ W + 1), pre(size / W + 1) {};\n    void set(uint i) { bv[i / W] |= 1LL << (i\
-    \ % W); }\n    uint get(uint i) { return bv[i / W] >> (i % W) & 1; }\n    void\
-    \ build() {\n      for(int i = 1; i < ssize(pre); i++)\n        pre[i] = pre[i\
-    \ - 1] + popcount(bv[i - 1]);\n      cnt0 = rank0(size);\n    }\n    int rank1(uint\
-    \ i) { return pre[i / W] + popcount(bv[i / W] & ((1LL << i) - 1)); }\n    int\
-    \ rank0(uint i) { return i - rank1(i); }\n  };\n\n  vector<bitvec> data;\n  waveletMatrix(vector<T>\
-    \ init) : data(H + 1, bitvec(init.size())) {\n    for(int bit = H; auto &v : data)\
-    \ {\n      for(int i = 0; i < ssize(init); i++)\n        if (init[i] >> bit &\
-    \ 1)\n          v.set(i);\n      v.build();\n      vector<T> tmp(ssize(init));\n\
-    \      int ptr[2] = {0, v.cnt0};\n      for(int i = 0; i < ssize(init); i++)\n\
-    \        tmp[ptr[v.get(i)]++] = init[i];\n      init.swap(tmp);\n      bit--;\n\
-    \    }\n  }\n\n  T kth(int l, int r, int k) {\n    T res = 0;\n    for(int bit\
-    \ = H; auto &v : data) {\n      if (int l0 = v.rank0(l), r0 = v.rank0(r); r0 -\
-    \ l0 <= k) {\n        res |= T(1) << bit, k -= r0 - l0;\n        l = v.cnt0 +\
-    \ v.rank1(l), r = v.cnt0 + v.rank1(r);\n      } else {\n        l = l0, r = r0;\n\
-    \      }\n      bit--;\n    }\n    return res;\n  }\n\n  int less(int l, int r,\
-    \ T u) {\n    if (u >= (T(2) << H)) return r - l;\n    int cnt = 0;\n    for(int\
-    \ bit = H; auto &v : data) {\n      if (u >> bit & 1) {\n        cnt += v.rank0(r)\
-    \ - v.rank0(l);\n        l = v.cnt0 + v.rank1(l), r = v.cnt0 + v.rank1(r);\n \
-    \     } else {\n        l = v.rank0(l), r = v.rank0(r);\n      }\n      bit--;\n\
-    \    }\n    return cnt;\n  }\n\n  int rectQuery(int l, int r, T d, T u) {\n  \
-    \  return less(l, r, u) - less(l, r, d);\n  }\n};\n#line 6 \"test/static_range_frequency.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vector<int> a(n);\n  for(int &x : a)\n    cin >> x;\n\n\
-    \  a.emplace_back(INT_MAX);\n  compression<int> xs(a);\n  waveletMatrix<int, 18>\
-    \ wv(xs.ord);\n\n  while(q--) {\n    int l, r, x; cin >> l >> r >> x;\n    int\
-    \ y = xs.lower_bound(x);\n    if (xs.val[y] != x)\n      cout << 0 << '\\n';\n\
-    \    else\n      cout << wv.rectQuery(l, r, y, y + 1) << '\\n';\n  }\n\n  return\
+    \ 1 \"graph/shortest_path/Dijkstra.cpp\"\ntemplate<integral T>\nauto Dijkstra_sparse(vvc<pair<int,\
+    \ T>> &g, vi s) {\n  constexpr T INF = numeric_limits<T>::max();\n  const int\
+    \ n = ssize(g);\n\n  vc<T> dis(n, INF);\n  vi pre(n, -1);\n  auto cmp = [](pair<T,\
+    \ int> &a, pair<T, int> &b) { return a.first > b.first; };\n  priority_queue<pair<T,\
+    \ int>, vc<pair<T, int>>, decltype(cmp)> pq(cmp, [&]() {\n    vc<pair<T, int>>\
+    \ init(size(s));\n    for(int i = 0; int v : s) {\n      dis[v] = 0, pre[v] =\
+    \ v;\n      init[i++] = pair(T(0), v);\n    }\n    return init;\n  }());\n\n \
+    \ while(!pq.empty()) {\n    auto [d, v] = pq.top(); pq.pop();\n    if (dis[v]\
+    \ != d) continue;\n    for(auto [x, w] : g[v]) {\n      if (chmin(dis[x], d +\
+    \ w)) {\n        pre[x] = v;\n        pq.emplace(dis[x], x);\n      }\n    }\n\
+    \  }\n\n  return pair(dis, pre);\n}\n\ntemplate<integral T>\nauto Dijkstra_dense(vvc<T>\
+    \ &adj, vi s) {\n  constexpr T INF = numeric_limits<T>::max();\n  const int n\
+    \ = ssize(adj);\n\n  vc<T> dis(n, INF);\n  vi pre(n, -1);\n  for(int v : s)\n\
+    \    dis[v] = 0, pre[v] = v;\n\n  vc<bool> vis(n, false);\n  for(int iter = 0;\
+    \ iter < n; iter++) {\n    T d = INF;\n    int v = -1;\n    for(int u = 0; u <\
+    \ n; u++)\n      if (!vis[u] and chmin(d, dis[u]))\n        v = u;\n    if (v\
+    \ == -1) break;\n    vis[v] = true;\n    for(int x = 0; x < n; x++)\n      if\
+    \ (adj[v][x] != INF and chmin(dis[x], dis[v] + adj[v][x]))\n        pre[x] = v;\n\
+    \  }\n\n  return pair(dis, pre);\n}\n#line 1 \"graph/shortest_path/path_recover.cpp\"\
+    \nvi recover(vi &pre, int t) {\n  if (pre[t] == -1) return {};\n  vi path = {t};\n\
+    \  while(pre[path.back()] != path.back())\n    path.emplace_back(pre[path.back()]);\n\
+    \  ranges::reverse(path);\n  return path;\n}\n#line 6 \"test/shortest_path_sparse.test.cpp\"\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(0);\n\n  int n, m, s,\
+    \ t; cin >> n >> m >> s >> t;\n  vvc<pair<int, ll>> g(n);\n  for(int i = 0; i\
+    \ < m; i++) {\n    int u, v, w; cin >> u >> v >> w;\n    g[u].emplace_back(v,\
+    \ w);\n  }\n\n  auto [dis, pre] = Dijkstra_sparse(g, {s});\n  vi path = recover(pre,\
+    \ t);\n\n  if (path.empty()) {\n    cout << -1 << '\\n';\n  } else {\n    cout\
+    \ << dis[t] << ' ' << ssize(path) - 1 << '\\n';\n    for(int i = 1; i < ssize(path);\
+    \ i++)\n      cout << path[i - 1] << ' ' << path[i] << '\\n';\n  }\n\n  return\
     \ 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_frequency\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../misc/compression.cpp\"\n#include\
-    \ \"../ds/waveletMatrix.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> a(n);\n  for(int\
-    \ &x : a)\n    cin >> x;\n\n  a.emplace_back(INT_MAX);\n  compression<int> xs(a);\n\
-    \  waveletMatrix<int, 18> wv(xs.ord);\n\n  while(q--) {\n    int l, r, x; cin\
-    \ >> l >> r >> x;\n    int y = xs.lower_bound(x);\n    if (xs.val[y] != x)\n \
-    \     cout << 0 << '\\n';\n    else\n      cout << wv.rectQuery(l, r, y, y + 1)\
-    \ << '\\n';\n  }\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n\n#include\
+    \ \"../default/t.cpp\"\n#include \"../graph/shortest_path/Dijkstra.cpp\"\n#include\
+    \ \"../graph/shortest_path/path_recover.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(0);\n\n  int n, m, s, t; cin >> n >> m >> s >> t;\n  vvc<pair<int, ll>>\
+    \ g(n);\n  for(int i = 0; i < m; i++) {\n    int u, v, w; cin >> u >> v >> w;\n\
+    \    g[u].emplace_back(v, w);\n  }\n\n  auto [dis, pre] = Dijkstra_sparse(g, {s});\n\
+    \  vi path = recover(pre, t);\n\n  if (path.empty()) {\n    cout << -1 << '\\\
+    n';\n  } else {\n    cout << dis[t] << ' ' << ssize(path) - 1 << '\\n';\n    for(int\
+    \ i = 1; i < ssize(path); i++)\n      cout << path[i - 1] << ' ' << path[i] <<\
+    \ '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - misc/compression.cpp
-  - ds/waveletMatrix.cpp
+  - graph/shortest_path/Dijkstra.cpp
+  - graph/shortest_path/path_recover.cpp
   isVerificationFile: true
-  path: test/static_range_frequency.test.cpp
+  path: test/shortest_path_sparse.test.cpp
   requiredBy: []
-  timestamp: '2026-01-30 02:53:01+08:00'
+  timestamp: '2026-01-31 00:52:12+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/static_range_frequency.test.cpp
+documentation_of: test/shortest_path_sparse.test.cpp
 layout: document
 redirect_from:
-- /verify/test/static_range_frequency.test.cpp
-- /verify/test/static_range_frequency.test.cpp.html
-title: test/static_range_frequency.test.cpp
+- /verify/test/shortest_path_sparse.test.cpp
+- /verify/test/shortest_path_sparse.test.cpp.html
+title: test/shortest_path_sparse.test.cpp
 ---

@@ -9,15 +9,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/addition_of_big_integers_2.test.cpp
     title: test/addition_of_big_integers_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multiplication_of_big_intergers.test.cpp
     title: test/multiplication_of_big_intergers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multiplication_of_big_intergers_2.test.cpp
     title: test/multiplication_of_big_intergers_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/bigint.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
@@ -150,7 +150,7 @@ data:
   path: misc/bigint.cpp
   requiredBy: []
   timestamp: '2025-05-31 21:52:56+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/addition_of_big_integers.test.cpp
   - test/multiplication_of_big_intergers_2.test.cpp

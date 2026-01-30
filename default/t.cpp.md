@@ -135,73 +135,73 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mul_modp_convolution.test.cpp
     title: test/mul_modp_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multiplication_of_big_intergers.test.cpp
     title: test/multiplication_of_big_intergers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multiplication_of_big_intergers_2.test.cpp
     title: test/multiplication_of_big_intergers_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
     title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest_enumerate_twelvefold.test.cpp
     title: test/mytest_enumerate_twelvefold.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_add_range_sum.test.cpp
     title: test/point_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_add_rectangle_sum.test.cpp
     title: test/point_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_set_range_composite.test.cpp
     title: test/point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_set_range_frequency.test.cpp
     title: test/point_set_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/polynomial_taylor_shift.test.cpp
     title: test/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/predecessor_problem.test.cpp
     title: test/predecessor_problem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/primality_test.test.cpp
     title: test/primality_test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/queue_operate_all_composite.test.cpp
     title: test/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_add_range_min.test.cpp
     title: test/range_add_range_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
   - icon: ':x:'
@@ -228,6 +228,12 @@ data:
   - icon: ':x:'
     path: test/sharp_p_subset_sum.test.cpp
     title: test/sharp_p_subset_sum.test.cpp
+  - icon: ':x:'
+    path: test/shortest_path_dense.test.cpp
+    title: test/shortest_path_dense.test.cpp
+  - icon: ':x:'
+    path: test/shortest_path_sparse.test.cpp
+    title: test/shortest_path_sparse.test.cpp
   - icon: ':x:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
@@ -276,6 +282,12 @@ data:
   - icon: ':x:'
     path: test/wildcard_pattern_matching.test.cpp
     title: test/wildcard_pattern_matching.test.cpp
+  - icon: ':x:'
+    path: test/yuki_1344.test.cpp
+    title: test/yuki_1344.test.cpp
+  - icon: ':x:'
+    path: test/yuki_1868.test.cpp
+    title: test/yuki_1868.test.cpp
   - icon: ':x:'
     path: test/yuki_2544.test.cpp
     title: test/yuki_2544.test.cpp
@@ -466,6 +478,7 @@ data:
   - test/point_set_range_composite.test.cpp
   - test/log_of_formal_power_series.test.cpp
   - test/wildcard_pattern_matching.test.cpp
+  - test/yuki_1868.test.cpp
   - test/range_affine_range_sum.test.cpp
   - test/tree_path_composite_sum.test.cpp
   - test/deque_operate_all_composite.test.cpp
@@ -511,6 +524,7 @@ data:
   - test/find_linear_recurrence.test.cpp
   - test/counting_spanning_tree_undirected.test.cpp
   - test/point_add_rectangle_sum.test.cpp
+  - test/yuki_1344.test.cpp
   - test/lcm_convolution.test.cpp
   - test/inverse_matrix.test.cpp
   - test/stirling_number_of_second_kind_small_p_large_n.test.cpp
@@ -521,6 +535,7 @@ data:
   - test/matrix_product.test.cpp
   - test/addition_of_big_integers_2.test.cpp
   - test/yuki_2654.test.cpp
+  - test/shortest_path_sparse.test.cpp
   - test/bernoulli_number.test.cpp
   - test/double_ended_priority_queue.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
@@ -530,6 +545,7 @@ data:
   - test/counting_spanning_tree_directed.test.cpp
   - test/range_affine_point_get.test.cpp
   - test/determinant_of_matrix.test.cpp
+  - test/shortest_path_dense.test.cpp
   - test/binomial_coefficient_prime_mod.test.cpp
   - test/Z_algorithm.test.cpp
   - test/polynomial_interpolation.test.cpp

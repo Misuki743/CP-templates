@@ -87,46 +87,46 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mul_modp_convolution.test.cpp
     title: test/mul_modp_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multiplication_of_big_intergers.test.cpp
     title: test/multiplication_of_big_intergers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multiplication_of_big_intergers_2.test.cpp
     title: test/multiplication_of_big_intergers_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
     title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_set_range_composite.test.cpp
     title: test/point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/polynomial_taylor_shift.test.cpp
     title: test/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/queue_operate_all_composite.test.cpp
     title: test/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
   - icon: ':x:'

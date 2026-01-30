@@ -6,10 +6,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/queue_operate_all_composite.test.cpp
     title: test/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
   - icon: ':x:'
