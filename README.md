@@ -6,6 +6,5 @@ https://misuki743.github.io/CP-templates/
 
 # TODO
 
-- add chmin/chmax to default template
 - compressed suffix tree
 - rewrite rollback DSU to make it more memory efficient
