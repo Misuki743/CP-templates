@@ -53,6 +53,7 @@
 "test/longest_common_substring.test.cpp": "2026-01-31 03:10:37 +0800",
 "test/longest_increasing_subsequence.test.cpp": "2026-01-31 03:10:37 +0800",
 "test/lowest_common_ancestor.test.cpp": "2026-01-31 20:47:40 +0800",
+"test/lowest_common_ancestor_2.test.cpp": "2026-01-31 23:27:26 +0800",
 "test/matching_on_bipartite_graph.test.cpp": "2026-01-31 03:47:42 +0800",
 "test/matrix_product.test.cpp": "2026-01-31 03:10:37 +0800",
 "test/matrix_rank.test.cpp": "2026-01-31 03:10:37 +0800",
