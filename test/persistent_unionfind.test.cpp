@@ -1,46 +1,43 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/persistent_unionfind"
 
 #include "../default/t.cpp"
-#include "../ds/DSU/DSUrollback.cpp"
+#include "../ds/DSU/rollback_DSU.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
-  vector<array<int, 4>> query(q);
-  for(auto &[t, k, u, v] : query) {
+  vector<array<int, 4>> qry(q);
+  for(auto &[t, k, u, v] : qry) {
     cin >> t >> k >> u >> v;
-    k += 1;
+    k++;
   }
 
-  vector<vector<array<int, 3>>> g(q + 1);
-  vector<vector<array<int, 3>>> qry(q + 1);
-  for(int i = 1; auto &[t, k, u, v] : query) {
-    if (t == 0)
-      g[k].push_back({i, u, v});
-    else
-      qry[k].push_back({i, u, v});
+  vvc<tuple<int, int, int>> g(q + 1), event(q + 1);
+  for(int i = 0; auto [t, k, u, v] : qry) {
     i++;
+    if (t == 0) g[k].eb(i, u, v);
+    else event[k].eb(i, u, v);
   }
 
-  DSU dsu(n);
-  vector<int> ans(q + 1, -1);
-  auto dfs = [&](int v, auto self) -> void {
+  rollback_DSU dsu(n);
+  vi sol(q + 1, -1);
+  auto dfs = [&](int v, auto &self) -> void {
     int t = dsu.time();
-    for(auto [i, a, b] : qry[v])
-      ans[i] = dsu.query(a) == dsu.query(b);
-    for(auto [x, a, b] : g[v]) {
-      dsu.merge(a, b);
-      self(x, self);
+    for(auto [i, x, y] : event[v])
+      sol[i] = (dsu.query(x) == dsu.query(y));
+    for(auto [to, x, y] : g[v]) {
+      dsu.merge(x, y);
+      self(to, self);
       dsu.rollback(t);
     }
   };
 
   dfs(0, dfs);
 
-  for(int i = 0; i <= q; i++)
-    if (ans[i] != -1)
-      cout << ans[i] << '\n';
+  for(int x : sol)
+    if (x != -1)
+      cout << x << '\n';
 
   return 0;
 }

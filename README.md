@@ -7,4 +7,3 @@ https://misuki743.github.io/CP-templates/
 # TODO
 
 - compressed suffix tree
-- rewrite rollback DSU to make it more memory efficient

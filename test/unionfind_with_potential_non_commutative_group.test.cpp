@@ -1,47 +1,33 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group"
 
 #include "../default/t.cpp"
-#include "../ds/DSU/potentialDSU.cpp"
 #include "../modint/MontgomeryModInt.cpp"
+#include "../ds/DSU/potential_DSU.cpp"
 
-using matrix = array<array<mint, 2>, 2>;
-matrix id() {
-  matrix m;
-  m[0][0] = m[1][1] = 1;
-  return m;
-}
-matrix op(const matrix &m1, const matrix &m2) {
-  matrix m;
-  for(int i : {0, 1})
-    for(int k : {0, 1})
-      for(int j : {0, 1})
-        m[i][j] += m1[i][k] * m2[k][j];
-  return m;
-}
-matrix inv(const matrix &m) {
-  matrix a = m;
-  swap(a[0][0], a[1][1]);
-  a[0][1] = -a[0][1], a[1][0] = -a[1][0];
-  return a;
-}
-
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
-  DSU<matrix, id, op, inv> dsu(n);
+  using M = array<mint, 4>;
+  potential_DSU dsu(n, M{1, 0, 0, 1},
+    [](M a, M b) { return M{a[0] * b[0] + a[1] * b[2], a[0] * b[1] + a[1] * b[3],
+                            a[2] * b[0] + a[3] * b[2], a[2] * b[1] + a[3] * b[3]}; },
+    [](M &a) { return M{a[3], -a[1], -a[2], a[0]}; }
+  );
+
   while(q--) {
-    int t, u, v; cin >> t >> u >> v;
-    swap(u, v);
-    if (t == 0) {
-      matrix m;
-      for(auto &v : m) for(mint &x : v) cin >> x;
-      cout << dsu.merge(u, v, m) << '\n';
+    int op; cin >> op;
+    if (op == 0) {
+      int u, v; cin >> u >> v;
+      M m;
+      for(mint &x : m) cin >> x;
+      cout << dsu.merge(v, u, m) << '\n';
     } else {
+      int u, v; cin >> u >> v;
       if (dsu.query(u) != dsu.query(v))
         cout << -1 << '\n';
       else
-        cout << dsu.query(u, v) << '\n';
+        cout << dsu.query(v, u) << '\n';
     }
   }
 

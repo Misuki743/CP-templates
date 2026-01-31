@@ -1,30 +1,32 @@
+//#include "ds/DSU/rollback_DSU.cpp"
+
 struct queue_DSU {
-  int size, fa = 0, fb = 0;
-  DSU dsu;
+  int fa = 0, fb = 0;
+  rollback_DSU dsu;
   string s;
   vector<int> ts;
   vector<pii> op;
 
-  queue_DSU(int _size) : size(_size), dsu(size) {}
+  queue_DSU(int size) : dsu(size) {}
 
   bool merge(int u, int v) {
-    op.eb(u, v);
+    op.emplace_back(u, v);
     s += 'B', fb++;
-    ts.eb(dsu.time());
+    ts.emplace_back(dsu.time());
     return dsu.merge(u, v);
   }
   
   void undo(bool fake = false) {
     if (s.back() == 'B') {
       int ga = 0, gb = 0;
-      vector<int> ta, tb;
-      vector<pii> opa, opb;
+      vi ta, tb;
+      vc<pii> opa, opb;
       int i = ssize(s) - 1;
       while(i + 1 == ssize(s) or (gb > ga and ga != fa)) {
         if (s[i] == 'A')
-          ga++, ta.eb(ts[i]), opa.eb(op[i--]);
+          ga++, ta.emplace_back(ts[i]), opa.emplace_back(op[i--]);
         else
-          gb++, tb.eb(ts[i]), opb.eb(op[i--]);
+          gb++, tb.emplace_back(ts[i]), opb.emplace_back(op[i--]);
       }
       i++;
       if (ga == 0) {
@@ -32,7 +34,7 @@ struct queue_DSU {
         vector<int>().swap(ts);
         ranges::reverse(op);
         for(auto [u, v] : op) {
-          ts.eb(dsu.time());
+          ts.emplace_back(dsu.time());
           dsu.merge(u, v);
         }
         fill(s.begin(), s.end(), 'A');
@@ -61,5 +63,5 @@ struct queue_DSU {
     op.pop_back();
   }
 
-  int cc() { return dsu.cc(); }
+  int cc() { return (ssize(dsu.his) - dsu.nxt) / 2; }
 };
