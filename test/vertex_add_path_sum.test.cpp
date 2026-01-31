@@ -1,40 +1,32 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_path_sum"
 
 #include "../default/t.cpp"
-#include "../ds/RMQ.cpp"
-#include "../ds/LCA.cpp"
-#include "../segtree/dualSegmentTree.cpp"
-#include "../ds/eulerTour.cpp"
+#include "../tree/HLD.cpp"
+#include "../ds/fenwickTree.cpp"
 
-ll add(const ll &a, const ll &b) { return a + b; }
-ll zero() { return 0ll; }
-ll inv(const ll &x) { return -x; }
-
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
-  vector<ll> a(n);
-  for(ll &x : a)
-    cin >> x;
-  vector<vector<int>> g(n);
-  for(int i = 1; i < n; i++) {
-    int u, v; cin >> u >> v;
-    g[u].emplace_back(v);
-    g[v].emplace_back(u);
-  }
+  vll a(n);
+  for(ll &x : a) cin >> x;
+  auto g = read_graph<false>(n, n - 1, 0);
 
-  eulerTour<ll, zero, add, inv, ll, zero, add, add> eu(g);
-
-  for(int v = 0; v < n; v++)
-    eu.modify(v, a[v]);
-
+  HLD hld(g);
+  fenwickTree ft(hld.reorder_init(a));
   while(q--) {
-    int t, x, y; cin >> t >> x >> y;
-    if (t == 0)
-      eu.modify(x, y);
-    else
-      cout << eu.query(x, y) << '\n';
+    int op; cin >> op;
+    if (op == 0) {
+      int p, x; cin >> p >> x;
+      ft.add(hld.query_point(p), x);
+    } else {
+      int u, v; cin >> u >> v;
+      ll sum = 0;
+      assert(hld.query_path(u, v).size() <= 100);
+      for(auto [l, r] : hld.query_path(u, v))
+        sum += ft.query(l, r);
+      cout << sum << '\n';
+    }
   }
 
   return 0;

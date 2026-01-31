@@ -1,39 +1,32 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
 
 #include "../default/t.cpp"
-#include "../segtree/segmentTree.cpp"
-#include "../ds/eulerTour2.cpp"
+#include "../tree/HLD.cpp"
+#include "../ds/fenwickTree.cpp"
 
-ll unit() { return 0ll; }
-ll add(const ll &a, const ll &b) { return a + b; }
-
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
-  vector<ll> a(n);
-  for(ll &x : a)
-    cin >> x;
-  vector<vector<int>> g(n);
-  for(int u = 1; u < n; u++) {
-    int v; cin >> v;
-    g[u].emplace_back(v);
-    g[v].emplace_back(u);
+  vll a(n);
+  for(ll &x : a) cin >> x;
+  vvi g(n);
+  for(int v = 1; v < n; v++) {
+    int p; cin >> p;
+    g[v].eb(p), g[p].eb(v);
   }
 
-  eulerTour2<ll, unit, add> eu(g);
-
-  for(int v = 0; v < n; v++)
-    eu.set(v, a[v]);
-
+  HLD hld(g);
+  fenwickTree ft(hld.reorder_init(a));
   while(q--) {
-    int t; cin >> t;
-    if (t == 0) {
-      int x, y; cin >> x >> y;
-      eu.set(x, eu.get(x) + y);
+    int op; cin >> op;
+    if (op == 0) {
+      int p, x; cin >> p >> x;
+      ft.add(hld.query_point(p), x);
     } else {
-      int x; cin >> x;
-      cout << eu.query(x) << '\n';
+      int v; cin >> v;
+      auto [l, r] = hld.query_subtree(v);
+      cout << ft.query(l, r) << '\n';
     }
   }
 
