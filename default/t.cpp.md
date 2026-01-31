@@ -373,6 +373,12 @@ data:
     path: test/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/unionfind_with_potential_non_commutative_group.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/vertex_add_path_sum.test.cpp
+    title: test/vertex_add_path_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/vertex_add_subtree_sum.test.cpp
+    title: test/vertex_add_subtree_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -396,12 +402,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -572,7 +578,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2026-01-31 03:10:37+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/chromatic_number.test.cpp
   - test/static_range_count_distinct.test.cpp
@@ -657,6 +663,7 @@ data:
   - test/inv_of_formal_power_series.test.cpp
   - test/tree_diameter.test.cpp
   - test/range_reverse_range_sum.test.cpp
+  - test/vertex_add_path_sum.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
   - test/static_RMQ_2.test.cpp
   - test/matrix_product.test.cpp
@@ -664,6 +671,7 @@ data:
   - test/biconnected_components.test.cpp
   - test/addition_of_big_integers_2.test.cpp
   - test/unionfind_with_potential.test.cpp
+  - test/vertex_add_subtree_sum.test.cpp
   - test/yuki_2654.test.cpp
   - test/shortest_path_sparse.test.cpp
   - test/bernoulli_number.test.cpp

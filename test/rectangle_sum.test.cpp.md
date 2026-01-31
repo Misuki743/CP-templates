@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -107,7 +107,7 @@ data:
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
     \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/fenwickTree.cpp\"\ntemplate<class T>\n\
     struct fenwickTree {\n  const int size;\n  vector<T> data;\n\n  fenwickTree(int\
-    \ _size) : size(_size + 1), data(_size + 1) {}\n  fenwickTree(vector<T> &init)\
+    \ _size) : size(_size + 1), data(_size + 1) {}\n  fenwickTree(vector<T> init)\
     \ : size(ssize(init) + 1), data(ssize(init) + 1) {\n    partial_sum(init.begin(),\
     \ init.end(), data.begin() + 1);\n    for(int i = size - 1; i > 0; i--)\n    \
     \  data[i] -= data[i - (i & (-i))];\n  }\n\n  void add(int i, T d) {\n    for(i\
@@ -165,7 +165,7 @@ data:
   isVerificationFile: true
   path: test/rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 03:10:37+08:00'
+  timestamp: '2026-01-31 22:11:43+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rectangle_sum.test.cpp

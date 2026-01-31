@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -124,7 +124,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/doubling.cpp
       title: ds/doubling.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/dynamicMedian.cpp
       title: ds/dynamicMedian.cpp
     - icon: ':heavy_check_mark:'
@@ -593,6 +593,9 @@ data:
       title: string/zFunc.cpp
   - name: tree
     pages:
+    - icon: ':heavy_check_mark:'
+      path: tree/HLD.cpp
+      title: tree/HLD.cpp
     - icon: ':warning:'
       path: tree/LCA.cpp
       title: tree/LCA.cpp
@@ -605,15 +608,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/centroidTree.cpp
       title: tree/centroidTree.cpp
-    - icon: ':warning:'
-      path: tree/eulerTour.cpp
-      title: tree/eulerTour.cpp
-    - icon: ':warning:'
-      path: tree/eulerTour2.cpp
-      title: tree/eulerTour2.cpp
-    - icon: ':heavy_check_mark:'
-      path: tree/heavyLightDecomposition.cpp
-      title: tree/heavyLightDecomposition.cpp
     - icon: ':heavy_check_mark:'
       path: tree/prufer_recover.cpp
       title: tree/prufer_recover.cpp
@@ -1007,13 +1001,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unionfind_with_potential_non_commutative_group.test.cpp
       title: test/unionfind_with_potential_non_commutative_group.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
     - icon: ':x:'
       path: test/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/vertex_add_range_contour_sum_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_add_subtree_sum.test.cpp
       title: test/vertex_add_subtree_sum.test.cpp
     - icon: ':x:'
@@ -1043,7 +1037,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yuki_2613.test.cpp
       title: test/yuki_2613.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2654.test.cpp
       title: test/yuki_2654.test.cpp
 layout: toppage

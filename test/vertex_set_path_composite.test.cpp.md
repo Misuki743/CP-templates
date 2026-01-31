@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: actedmonoid/actedMonoid_affineSum.cpp
     title: actedmonoid/actedMonoid_affineSum.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -14,8 +14,8 @@ data:
     path: segtree/segmentTree.cpp
     title: segtree/segmentTree.cpp
   - icon: ':heavy_check_mark:'
-    path: tree/heavyLightDecomposition.cpp
-    title: tree/heavyLightDecomposition.cpp
+    path: tree/HLD.cpp
+    title: tree/HLD.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -175,70 +175,87 @@ data:
     \ { return {a[0] + b[0], a[1] + b[1]}; }\n  using T = array<U, 2>;\n  static T\
     \ Tid() { return T{1, 0}; }\n  static T Top(const T &a, const T &b) { return T{a[0]\
     \ * b[0], a[1] * b[0] + b[1]}; }\n  static M act(const M &a, const T &b) { return\
-    \ {a[0] * b[0] + a[1] * b[1], a[1]}; }\n};\n#line 1 \"tree/heavyLightDecomposition.cpp\"\
-    \nstruct HLD {\n  int n;\n  vector<int> dep, p, head, id;\n\n  HLD(vector<vector<int>>\
-    \ &g, vector<int> root = vector<int>(1, 0))\n  : n(ssize(g)), dep(n), p(n, -1),\
-    \ head(n), id(n) {\n    vector<int> sz(n, 1);\n\n    auto dfs = [&](int v, auto\
-    \ self) -> void {\n      int mx = -1;\n      for(int i = -1; int x : g[v]) {\n\
-    \        i++;\n        if (x == p[v]) continue;\n        p[x] = v, dep[x] = dep[v]\
-    \ + 1;\n        self(x, self);\n        sz[v] += sz[x];\n        if (mx == -1\
-    \ or sz[x] > sz[g[v][mx]]) mx = i;\n      }\n      if (mx != -1) swap(g[v][0],\
-    \ g[v][mx]);\n    };\n\n    int nxt = 0;\n    auto cut = [&](int v, int h, auto\
-    \ self) -> void {\n      id[v] = nxt++, head[v] = h;\n      if (!g[v].empty()\
-    \ and g[v][0] != p[v])\n        self(g[v][0], h, self);\n      for(int x : g[v]\
-    \ | views::drop(1)) if (x != p[v])\n          self(x, x, self);\n    };\n\n  \
-    \  for(int x : root) {\n      dfs(x, dfs);\n      cut(x, x, cut);\n    }\n  }\n\
-    \n  //(l, r, rev)\n  vector<tuple<int, int, bool>> query(int u, int v, bool edge\
-    \ = false) {\n    vector<array<int, 2>> resL, resR;\n    while(head[u] != head[v])\
-    \ {\n      if (dep[head[u]] >= dep[head[v]]) {\n        resL.push_back({id[head[u]],\
-    \ id[u] + 1});\n        u = p[head[u]];\n      } else {\n        resR.push_back({id[head[v]],\
-    \ id[v] + 1});\n        v = p[head[v]];\n      }\n    }\n    if (id[v] + edge\
-    \ <= id[u])\n      resL.push_back({id[v] + edge, id[u] + 1});\n    else if (id[u]\
-    \ + edge <= id[v])\n      resR.push_back({id[u] + edge, id[v] + 1});\n    vector<tuple<int,\
-    \ int, bool>> res;\n    for(auto [l, r] : resL)\n      res.push_back({l, r, true});\n\
-    \    for(auto [l, r] : resR | views::reverse)\n      res.push_back({l, r, false});\n\
-    \    return res;\n  }\n};\n#line 8 \"test/vertex_set_path_composite.test.cpp\"\
-    \n\nusing am = actedMonoid_affineSum<mint>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<am::T> ab(n);\n  for(auto\
-    \ &[a, b] : ab)\n    cin >> a >> b;\n  vector<vector<int>> g(n);\n  for(int i\
-    \ = 1; i < n; i++) {\n    int u, v; cin >> u >> v;\n    g[u].emplace_back(v);\n\
-    \    g[v].emplace_back(u);\n  }\n\n  HLD hld(g);\n  vector<am::T> init(n);\n \
-    \ for(int i = 0; i < n; i++)\n    init[hld.id[i]] = ab[i];\n  segmentTree<am::T,\
-    \ am::Tid, am::Top> st(init);\n  ranges::reverse(init);\n  segmentTree<am::T,\
-    \ am::Tid, am::Top> str(init);\n\n  while(q--) {\n    int t, a, b, c; cin >> t\
-    \ >> a >> b >> c;\n    if (t == 0) {\n      st.set(hld.id[a], am::T{b, c});\n\
-    \      str.set((n - 1) - hld.id[a], am::T{b, c});\n    } else {\n      auto res\
-    \ = am::T{0, c};\n      for(auto [l, r, rev] : hld.query(a, b)) {\n        if\
-    \ (rev)\n          res = am::Top(res, str.query(n - r, n - l));\n        else\n\
-    \          res = am::Top(res, st.query(l, r));\n      }\n      cout << res[1]\
-    \ << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+    \ {a[0] * b[0] + a[1] * b[1], a[1]}; }\n};\n#line 1 \"tree/HLD.cpp\"\nstruct HLD\
+    \ {\n  static const int MSK = (1 << 30);\n  vi dep, p_head, tin, tout;\n\n  HLD(vvi\
+    \ g, int root = 0) {\n    dep = p_head = tin = tout = vi(size(g));\n\n    vi sz(size(g),\
+    \ 1);\n    auto dfs = [&](int v, auto &self) -> void {\n      int mx_id = -1,\
+    \ p_id = -1;\n      for(int i = -1; int x : g[v]) {\n        i++;\n        if\
+    \ ((x | MSK) == p_head[v]) {\n          p_id = i;\n        } else {\n        \
+    \  p_head[x] = (v | MSK), dep[x] = dep[v] + 1;\n          self(x, self);\n   \
+    \       sz[v] += sz[x];\n          if (mx_id == -1 or sz[x] > sz[g[v][mx_id]])\n\
+    \            mx_id = i;\n        }\n      }\n      if (mx_id != -1) swap(g[v][p_id\
+    \ == 0], g[v][mx_id]);\n      if (p_id != -1) g[v].erase(g[v].begin() + p_id);\n\
+    \    };\n\n    p_head[root] = (root | MSK);\n    dfs(root, dfs);\n\n    int nxt\
+    \ = 0;\n    auto dfs2 = [&](int v, auto &self) -> void {\n      tin[v] = nxt++;\n\
+    \      if (!g[v].empty())\n        p_head[g[v][0]] = ((p_head[v] & MSK) ? v :\
+    \ p_head[v]);\n      if (!g[v].empty()) {\n        vi sz_seq;\n        for(int\
+    \ x : g[v]) sz_seq.eb(sz[x]);\n        assert(ranges::max(sz_seq) == sz_seq[0]);\n\
+    \      }\n      for(int x : g[v])\n        self(x, self);\n      tout[v] = nxt;\n\
+    \    };\n\n    dfs2(root, dfs2);\n  }\n\n  auto query_path(int u, int v, bool\
+    \ edge = false) {\n    vc<pii> lr;\n    int head_u = ((p_head[u] & MSK) ? u :\
+    \ p_head[u]);\n    int head_v = ((p_head[v] & MSK) ? v : p_head[v]);\n    while(head_u\
+    \ != head_v) {\n      if (dep[head_u] > dep[head_v])\n        swap(u, v), swap(head_u,\
+    \ head_v);\n      lr.emplace_back(tin[head_v], tin[v] + 1);\n      v = (p_head[head_v]\
+    \ & (MSK - 1));\n      head_v = ((p_head[v] & MSK) ? v : p_head[v]);\n    }\n\n\
+    \    if (tin[u] > tin[v]) swap(u, v);\n    if (tin[u] + edge <= tin[v])\n    \
+    \  lr.emplace_back(tin[u] + edge, tin[v] + 1);\n\n    return lr;\n  }\n\n  //l\
+    \ < r: op(l, op(l + 1, ...))\n  //l > r: op(r - 1, op(r - 2, ...))\n  auto query_path_non_commutative(int\
+    \ u, int v, bool edge = false) {\n    vc<pii> lr1, lr2;\n    int head_u = ((p_head[u]\
+    \ & MSK) ? u : p_head[u]);\n    int head_v = ((p_head[v] & MSK) ? v : p_head[v]);\n\
+    \    while(head_u != head_v) {\n      if (dep[head_u] > dep[head_v]) {\n     \
+    \   lr1.emplace_back(tin[u] + 1, tin[head_u]);\n        u = (p_head[head_u] &\
+    \ (MSK - 1));\n        head_u = ((p_head[u] & MSK) ? u : p_head[u]);\n      }\
+    \ else {\n        lr2.emplace_back(tin[head_v], tin[v] + 1);\n        v = (p_head[head_v]\
+    \ & (MSK - 1));\n        head_v = ((p_head[v] & MSK) ? v : p_head[v]);\n     \
+    \ }\n    }\n\n    if (tin[u] + edge <= tin[v])\n      lr2.emplace_back(tin[u]\
+    \ + edge, tin[v] + 1);\n    else if (tin[v] + edge <= tin[u])\n      lr1.emplace_back(tin[u]\
+    \ + 1, tin[v] + edge);\n\n    lr1.insert(end(lr1), lr2.rbegin(), lr2.rend());\n\
+    \n    return lr1;\n  }\n\n  auto query_subtree(int v) { return pii(tin[v], tout[v]);\
+    \ }\n\n  int query_point(int v) { return tin[v]; }\n\n  template<class M>\n  vc<M>\
+    \ reorder_init(vc<M> init) {\n    assert(ssize(init) == ssize(dep));\n    auto\
+    \ r = init;\n    for(int i = 0; i < ssize(init); i++)\n      r[tin[i]] = init[i];\n\
+    \    return r;\n  }\n};\n#line 8 \"test/vertex_set_path_composite.test.cpp\"\n\
+    \nusing am = actedMonoid_affineSum<mint>;\n\nam::T R_Top(const am::T &a, const\
+    \ am::T &b) { return am::T{a[0] * b[0], b[1] * a[0] + a[1]}; }\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
+    \ q;\n  vc<array<mint, 2>> init(n);\n  for(auto &[a, b] : init)\n    cin >> a\
+    \ >> b;\n  auto g = read_graph<false>(n, n - 1, 0);\n\n  HLD hld(g);\n  init =\
+    \ hld.reorder_init(std::move(init));\n  segmentTree<am::T, am::Tid, R_Top> st_rev(init);\n\
+    \  segmentTree<am::T, am::Tid, am::Top> st(init);\n  while(q--) {\n    int op;\
+    \ cin >> op;\n    if (op == 0) {\n      int p, c, d; cin >> p >> c >> d;\n   \
+    \   st.set(hld.query_point(p), am::M{c, d});\n      st_rev.set(hld.query_point(p),\
+    \ am::M{c, d});\n    } else {\n      int u, v, x; cin >> u >> v >> x;\n      am::T\
+    \ prod = am::T{1, 0};\n      for(auto [l, r] : hld.query_path_non_commutative(u,\
+    \ v)) {\n        if (l < r) prod = am::Top(prod, st.query(l, r));\n        else\
+    \ prod = am::Top(prod, st_rev.query(r, l));\n      }\n      cout << prod[0] *\
+    \ x + prod[1] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
     \n#include \"../segtree/segmentTree.cpp\"\n#include \"../actedmonoid/actedMonoid_affineSum.cpp\"\
-    \n#include \"../tree/heavyLightDecomposition.cpp\"\n\nusing am = actedMonoid_affineSum<mint>;\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
-    \ cin >> n >> q;\n  vector<am::T> ab(n);\n  for(auto &[a, b] : ab)\n    cin >>\
-    \ a >> b;\n  vector<vector<int>> g(n);\n  for(int i = 1; i < n; i++) {\n    int\
-    \ u, v; cin >> u >> v;\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n\
-    \  }\n\n  HLD hld(g);\n  vector<am::T> init(n);\n  for(int i = 0; i < n; i++)\n\
-    \    init[hld.id[i]] = ab[i];\n  segmentTree<am::T, am::Tid, am::Top> st(init);\n\
-    \  ranges::reverse(init);\n  segmentTree<am::T, am::Tid, am::Top> str(init);\n\
-    \n  while(q--) {\n    int t, a, b, c; cin >> t >> a >> b >> c;\n    if (t == 0)\
-    \ {\n      st.set(hld.id[a], am::T{b, c});\n      str.set((n - 1) - hld.id[a],\
-    \ am::T{b, c});\n    } else {\n      auto res = am::T{0, c};\n      for(auto [l,\
-    \ r, rev] : hld.query(a, b)) {\n        if (rev)\n          res = am::Top(res,\
-    \ str.query(n - r, n - l));\n        else\n          res = am::Top(res, st.query(l,\
-    \ r));\n      }\n      cout << res[1] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+    \n#include \"../tree/HLD.cpp\"\n\nusing am = actedMonoid_affineSum<mint>;\n\n\
+    am::T R_Top(const am::T &a, const am::T &b) { return am::T{a[0] * b[0], b[1] *\
+    \ a[0] + a[1]}; }\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \n  int n, q; cin >> n >> q;\n  vc<array<mint, 2>> init(n);\n  for(auto &[a, b]\
+    \ : init)\n    cin >> a >> b;\n  auto g = read_graph<false>(n, n - 1, 0);\n\n\
+    \  HLD hld(g);\n  init = hld.reorder_init(std::move(init));\n  segmentTree<am::T,\
+    \ am::Tid, R_Top> st_rev(init);\n  segmentTree<am::T, am::Tid, am::Top> st(init);\n\
+    \  while(q--) {\n    int op; cin >> op;\n    if (op == 0) {\n      int p, c, d;\
+    \ cin >> p >> c >> d;\n      st.set(hld.query_point(p), am::M{c, d});\n      st_rev.set(hld.query_point(p),\
+    \ am::M{c, d});\n    } else {\n      int u, v, x; cin >> u >> v >> x;\n      am::T\
+    \ prod = am::T{1, 0};\n      for(auto [l, r] : hld.query_path_non_commutative(u,\
+    \ v)) {\n        if (l < r) prod = am::Top(prod, st.query(l, r));\n        else\
+    \ prod = am::Top(prod, st_rev.query(r, l));\n      }\n      cout << prod[0] *\
+    \ x + prod[1] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
   - segtree/segmentTree.cpp
   - actedmonoid/actedMonoid_affineSum.cpp
-  - tree/heavyLightDecomposition.cpp
+  - tree/HLD.cpp
   isVerificationFile: true
   path: test/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 03:47:42+08:00'
+  timestamp: '2026-01-31 23:21:40+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_set_path_composite.test.cpp
