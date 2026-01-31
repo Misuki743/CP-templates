@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
-    path: ds/DSU/DSUrollback.cpp
-    title: ds/DSU/DSUrollback.cpp
+  - icon: ':heavy_check_mark:'
+    path: ds/DSU/rollback_DSU.cpp
+    title: ds/DSU/rollback_DSU.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
@@ -99,51 +99,50 @@ data:
     \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
     \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
-    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/DSU/DSUrollback.cpp\"\nstruct DSU {\n\
-    \  vector<array<int, 4>> his;\n  vector<int> bos, sz;\n  int size;\n\n  DSU(int\
-    \ _size) : bos(_size), sz(_size, 1), size(_size) {\n    iota(bos.begin(), bos.end(),\
-    \ 0);\n  }\n\n  int query(int v) {\n    if (bos[v] == v)\n      return v;\n  \
-    \  else\n      return query(bos[v]);\n  }\n\n  bool merge(int v1, int v2) {\n\
-    \    int b1 = query(v1), b2 = query(v2);\n\n    if (b1 == b2)\n      return false;\n\
-    \n    if (sz[b1] > sz[b2])\n      swap(b1, b2);\n\n    his.push_back({b1, bos[b1],\
-    \ b2, sz[b2]});\n    bos[b1] = b2, sz[b2] += sz[b1];\n\n    return true;\n  }\n\
-    \n  int time() { return ssize(his); }\n\n  void rollback(int t) {\n    while(ssize(his)\
-    \ > t) {\n      auto arr = his.back(); his.pop_back();\n      bos[arr[0]] = arr[1],\
-    \ sz[arr[2]] = arr[3];\n    }\n  }\n\n  int cc() { return size - ssize(his); }\n\
-    };\n#line 5 \"test/persistent_unionfind.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<array<int, 4>> query(q);\n\
-    \  for(auto &[t, k, u, v] : query) {\n    cin >> t >> k >> u >> v;\n    k += 1;\n\
-    \  }\n\n  vector<vector<array<int, 3>>> g(q + 1);\n  vector<vector<array<int,\
-    \ 3>>> qry(q + 1);\n  for(int i = 1; auto &[t, k, u, v] : query) {\n    if (t\
-    \ == 0)\n      g[k].push_back({i, u, v});\n    else\n      qry[k].push_back({i,\
-    \ u, v});\n    i++;\n  }\n\n  DSU dsu(n);\n  vector<int> ans(q + 1, -1);\n  auto\
-    \ dfs = [&](int v, auto self) -> void {\n    int t = dsu.time();\n    for(auto\
-    \ [i, a, b] : qry[v])\n      ans[i] = dsu.query(a) == dsu.query(b);\n    for(auto\
-    \ [x, a, b] : g[v]) {\n      dsu.merge(a, b);\n      self(x, self);\n      dsu.rollback(t);\n\
-    \    }\n  };\n\n  dfs(0, dfs);\n\n  for(int i = 0; i <= q; i++)\n    if (ans[i]\
-    \ != -1)\n      cout << ans[i] << '\\n';\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n\
-    \n#include \"../default/t.cpp\"\n#include \"../ds/DSU/DSUrollback.cpp\"\n\nsigned\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/DSU/rollback_DSU.cpp\"\nstruct rollback_DSU\
+    \ {\n  vi sz_par;\n  vc<pii> his;\n  int nxt;\n\n  rollback_DSU(int n) : sz_par(n,\
+    \ -1), his(2 * (n - 1)), nxt(0) {}\n\n  int query(int v) {\n    int r = v;\n \
+    \   while(sz_par[r] >= 0) r = sz_par[r];\n    return r;\n  }\n\n  bool merge(int\
+    \ v1, int v2) {\n    int b1 = query(v1), b2 = query(v2);\n\n    if (b1 == b2)\n\
+    \      return false;\n\n    if (-sz_par[b1] > -sz_par[b2])\n      swap(b1, b2);\n\
+    \n    his[nxt++] = pair(b2, sz_par[b2]);\n    his[nxt++] = pair(b1, sz_par[b1]);\n\
+    \    sz_par[b2] += sz_par[b1];\n    sz_par[b1] = b2;\n\n    return true;\n  }\n\
+    \n  int time() { return nxt; }\n  int size(int v) { return -sz_par[query(v)];\
+    \ }\n\n  void rollback(int t) {\n    chmin(t, nxt);\n    for(auto [i, x] : views::counted(his.begin()\
+    \ + t, nxt - t)\n                    | views::reverse)\n      sz_par[i] = x;\n\
+    \    nxt = t;\n  }\n};\n#line 5 \"test/persistent_unionfind.test.cpp\"\n\nint\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
-    \ n >> q;\n  vector<array<int, 4>> query(q);\n  for(auto &[t, k, u, v] : query)\
-    \ {\n    cin >> t >> k >> u >> v;\n    k += 1;\n  }\n\n  vector<vector<array<int,\
-    \ 3>>> g(q + 1);\n  vector<vector<array<int, 3>>> qry(q + 1);\n  for(int i = 1;\
-    \ auto &[t, k, u, v] : query) {\n    if (t == 0)\n      g[k].push_back({i, u,\
-    \ v});\n    else\n      qry[k].push_back({i, u, v});\n    i++;\n  }\n\n  DSU dsu(n);\n\
-    \  vector<int> ans(q + 1, -1);\n  auto dfs = [&](int v, auto self) -> void {\n\
-    \    int t = dsu.time();\n    for(auto [i, a, b] : qry[v])\n      ans[i] = dsu.query(a)\
-    \ == dsu.query(b);\n    for(auto [x, a, b] : g[v]) {\n      dsu.merge(a, b);\n\
-    \      self(x, self);\n      dsu.rollback(t);\n    }\n  };\n\n  dfs(0, dfs);\n\
-    \n  for(int i = 0; i <= q; i++)\n    if (ans[i] != -1)\n      cout << ans[i] <<\
-    \ '\\n';\n\n  return 0;\n}\n"
+    \ n >> q;\n  vector<array<int, 4>> qry(q);\n  for(auto &[t, k, u, v] : qry) {\n\
+    \    cin >> t >> k >> u >> v;\n    k++;\n  }\n\n  vvc<tuple<int, int, int>> g(q\
+    \ + 1), event(q + 1);\n  for(int i = 0; auto [t, k, u, v] : qry) {\n    i++;\n\
+    \    if (t == 0) g[k].eb(i, u, v);\n    else event[k].eb(i, u, v);\n  }\n\n  rollback_DSU\
+    \ dsu(n);\n  vi sol(q + 1, -1);\n  auto dfs = [&](int v, auto &self) -> void {\n\
+    \    int t = dsu.time();\n    for(auto [i, x, y] : event[v])\n      sol[i] = (dsu.query(x)\
+    \ == dsu.query(y));\n    for(auto [to, x, y] : g[v]) {\n      dsu.merge(x, y);\n\
+    \      self(to, self);\n      dsu.rollback(t);\n    }\n  };\n\n  dfs(0, dfs);\n\
+    \n  for(int x : sol)\n    if (x != -1)\n      cout << x << '\\n';\n\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n\
+    \n#include \"../default/t.cpp\"\n#include \"../ds/DSU/rollback_DSU.cpp\"\n\nint\
+    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
+    \ n >> q;\n  vector<array<int, 4>> qry(q);\n  for(auto &[t, k, u, v] : qry) {\n\
+    \    cin >> t >> k >> u >> v;\n    k++;\n  }\n\n  vvc<tuple<int, int, int>> g(q\
+    \ + 1), event(q + 1);\n  for(int i = 0; auto [t, k, u, v] : qry) {\n    i++;\n\
+    \    if (t == 0) g[k].eb(i, u, v);\n    else event[k].eb(i, u, v);\n  }\n\n  rollback_DSU\
+    \ dsu(n);\n  vi sol(q + 1, -1);\n  auto dfs = [&](int v, auto &self) -> void {\n\
+    \    int t = dsu.time();\n    for(auto [i, x, y] : event[v])\n      sol[i] = (dsu.query(x)\
+    \ == dsu.query(y));\n    for(auto [to, x, y] : g[v]) {\n      dsu.merge(x, y);\n\
+    \      self(to, self);\n      dsu.rollback(t);\n    }\n  };\n\n  dfs(0, dfs);\n\
+    \n  for(int x : sol)\n    if (x != -1)\n      cout << x << '\\n';\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - ds/DSU/DSUrollback.cpp
+  - ds/DSU/rollback_DSU.cpp
   isVerificationFile: true
   path: test/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 03:47:42+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-01-31 18:57:43+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/persistent_unionfind.test.cpp
 layout: document

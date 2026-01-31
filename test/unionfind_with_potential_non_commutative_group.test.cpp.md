@@ -5,8 +5,8 @@ data:
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':x:'
-    path: ds/DSU/potentialDSU.cpp
-    title: ds/DSU/potentialDSU.cpp
+    path: ds/DSU/potential_DSU.cpp
+    title: ds/DSU/potential_DSU.cpp
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
@@ -103,20 +103,8 @@ data:
     \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
     \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
-    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/DSU/potentialDSU.cpp\"\ntemplate<class\
-    \ G, G(*id)(), G(*op)(const G&, const G&), G(*inv)(const G&)>\nstruct DSU {\n\
-    \  vector<int> bos, sz;\n  vector<G> _pot;\n  int size;\n\n  DSU(int _size) :\
-    \ bos(_size), sz(_size, 1), _pot(_size, id()), size(_size) {\n    iota(bos.begin(),\
-    \ bos.end(), 0);\n  }\n\n  int query(int v) {\n    if (bos[v] == v) {\n      return\
-    \ v;\n    } else {\n      int tmp = query(bos[v]);\n      _pot[v] = op(_pot[bos[v]],\
-    \ _pot[v]);\n      return bos[v] = tmp;\n    }\n  }\n\n  //op(v1, d) = v2\n  bool\
-    \ merge(int v1, int v2, G d) {\n    int b1 = query(v1), b2 = query(v2);\n\n  \
-    \  if (b1 == b2)\n      return op(inv(_pot[v1]), _pot[v2]) == d;\n\n    if (sz[b1]\
-    \ > sz[b2]) {\n      swap(b1, b2), swap(v1, v2);\n      d = inv(d);\n    }\n \
-    \   bos[b1] = b2, sz[b2] += sz[b1], _pot[b1] = op(op(_pot[v2], inv(d)), inv(_pot[v1]));\n\
-    \n    return true;\n  }\n\n  //op(inv(v1), v2)\n  G query(int v1, int v2) {\n\
-    \    query(v1), query(v2);\n    return op(inv(_pot[v1]), _pot[v2]);\n  }\n};\n\
-    #line 1 \"modint/MontgomeryModInt.cpp\"\n//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"modint/MontgomeryModInt.cpp\"\n//reference:\
+    \ https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
     //note: mod should be an odd prime less than 2^30.\n\ntemplate<uint32_t mod>\n\
     struct MontgomeryModInt {\n  using mint = MontgomeryModInt;\n  using i32 = int32_t;\n\
     \  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static constexpr u32 get_r()\
@@ -146,42 +134,53 @@ data:
     \ mint operator/(mint c, mint d) { return c /= d; }\n\n  friend ostream& operator<<(ostream&\
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
-    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 6 \"test/unionfind_with_potential_non_commutative_group.test.cpp\"\
-    \n\nusing matrix = array<array<mint, 2>, 2>;\nmatrix id() {\n  matrix m;\n  m[0][0]\
-    \ = m[1][1] = 1;\n  return m;\n}\nmatrix op(const matrix &m1, const matrix &m2)\
-    \ {\n  matrix m;\n  for(int i : {0, 1})\n    for(int k : {0, 1})\n      for(int\
-    \ j : {0, 1})\n        m[i][j] += m1[i][k] * m2[k][j];\n  return m;\n}\nmatrix\
-    \ inv(const matrix &m) {\n  matrix a = m;\n  swap(a[0][0], a[1][1]);\n  a[0][1]\
-    \ = -a[0][1], a[1][0] = -a[1][0];\n  return a;\n}\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  DSU<matrix, id, op, inv> dsu(n);\n\
-    \  while(q--) {\n    int t, u, v; cin >> t >> u >> v;\n    swap(u, v);\n    if\
-    \ (t == 0) {\n      matrix m;\n      for(auto &v : m) for(mint &x : v) cin >>\
-    \ x;\n      cout << dsu.merge(u, v, m) << '\\n';\n    } else {\n      if (dsu.query(u)\
-    \ != dsu.query(v))\n        cout << -1 << '\\n';\n      else\n        cout <<\
-    \ dsu.query(u, v) << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"ds/DSU/potential_DSU.cpp\"\
+    \ntemplate<class T, typename OP, typename INV>\nrequires R_invocable<T, OP, T,\
+    \ T> && R_invocable<T, INV, T&>\nstruct potential_DSU {\n  vi sz_par;\n  vc<T>\
+    \ pot;\n  OP op;\n  INV inv;\n\n  potential_DSU(int n, T id, OP _op, INV _inv)\
+    \ : sz_par(n, -1),\n    pot(n, id), op(_op), inv(_inv) {}\n\n  int query(int v)\
+    \ {\n    if (sz_par[v] < 0) {\n      return v;\n    } else {\n      int r = query(sz_par[v]);\n\
+    \      pot[v] = op(pot[v], pot[sz_par[v]]);\n      return sz_par[v] = r;\n   \
+    \ }\n  }\n\n  bool merge(int v1, int v2, T prod) {\n    int b1 = query(v1), b2\
+    \ = query(v2);\n\n    if (b1 == b2)\n      return op(pot[v1], inv(pot[v2])) ==\
+    \ prod;\n\n    if (-sz_par[b1] > -sz_par[b2])\n      swap(b1, b2), swap(v1, v2),\
+    \ prod = inv(prod);\n\n    sz_par[b2] += sz_par[b1];\n    sz_par[b1] = b2;\n \
+    \   pot[b1] = op(op(inv(pot[v1]), prod), pot[v2]);\n\n    return true;\n  }\n\n\
+    \  int size(int v) { return v = query(v), -sz_par[v]; }\n  T query(int v1, int\
+    \ v2) {\n    assert(query(v1) == query(v2));\n    return op(pot[v1], inv(pot[v2]));\n\
+    \  }\n};\n#line 6 \"test/unionfind_with_potential_non_commutative_group.test.cpp\"\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
+    \ cin >> n >> q;\n  using M = array<mint, 4>;\n  potential_DSU dsu(n, M{1, 0,\
+    \ 0, 1},\n    [](M a, M b) { return M{a[0] * b[0] + a[1] * b[2], a[0] * b[1] +\
+    \ a[1] * b[3],\n                            a[2] * b[0] + a[3] * b[2], a[2] *\
+    \ b[1] + a[3] * b[3]}; },\n    [](M &a) { return M{a[3], -a[1], -a[2], a[0]};\
+    \ }\n  );\n\n  while(q--) {\n    int op; cin >> op;\n    if (op == 0) {\n    \
+    \  int u, v; cin >> u >> v;\n      M m;\n      for(mint &x : m) cin >> x;\n  \
+    \    cout << dsu.merge(v, u, m) << '\\n';\n    } else {\n      int u, v; cin >>\
+    \ u >> v;\n      if (dsu.query(u) != dsu.query(v))\n        cout << -1 << '\\\
+    n';\n      else\n        cout << dsu.query(v, u) << '\\n';\n    }\n  }\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../ds/DSU/potentialDSU.cpp\"\n#include\
-    \ \"../modint/MontgomeryModInt.cpp\"\n\nusing matrix = array<array<mint, 2>, 2>;\n\
-    matrix id() {\n  matrix m;\n  m[0][0] = m[1][1] = 1;\n  return m;\n}\nmatrix op(const\
-    \ matrix &m1, const matrix &m2) {\n  matrix m;\n  for(int i : {0, 1})\n    for(int\
-    \ k : {0, 1})\n      for(int j : {0, 1})\n        m[i][j] += m1[i][k] * m2[k][j];\n\
-    \  return m;\n}\nmatrix inv(const matrix &m) {\n  matrix a = m;\n  swap(a[0][0],\
-    \ a[1][1]);\n  a[0][1] = -a[0][1], a[1][0] = -a[1][0];\n  return a;\n}\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
-    \ n >> q;\n  DSU<matrix, id, op, inv> dsu(n);\n  while(q--) {\n    int t, u, v;\
-    \ cin >> t >> u >> v;\n    swap(u, v);\n    if (t == 0) {\n      matrix m;\n \
-    \     for(auto &v : m) for(mint &x : v) cin >> x;\n      cout << dsu.merge(u,\
-    \ v, m) << '\\n';\n    } else {\n      if (dsu.query(u) != dsu.query(v))\n   \
-    \     cout << -1 << '\\n';\n      else\n        cout << dsu.query(u, v) << '\\\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
+    \n#include \"../ds/DSU/potential_DSU.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  using M = array<mint, 4>;\n\
+    \  potential_DSU dsu(n, M{1, 0, 0, 1},\n    [](M a, M b) { return M{a[0] * b[0]\
+    \ + a[1] * b[2], a[0] * b[1] + a[1] * b[3],\n                            a[2]\
+    \ * b[0] + a[3] * b[2], a[2] * b[1] + a[3] * b[3]}; },\n    [](M &a) { return\
+    \ M{a[3], -a[1], -a[2], a[0]}; }\n  );\n\n  while(q--) {\n    int op; cin >> op;\n\
+    \    if (op == 0) {\n      int u, v; cin >> u >> v;\n      M m;\n      for(mint\
+    \ &x : m) cin >> x;\n      cout << dsu.merge(v, u, m) << '\\n';\n    } else {\n\
+    \      int u, v; cin >> u >> v;\n      if (dsu.query(u) != dsu.query(v))\n   \
+    \     cout << -1 << '\\n';\n      else\n        cout << dsu.query(v, u) << '\\\
     n';\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - ds/DSU/potentialDSU.cpp
   - modint/MontgomeryModInt.cpp
+  - ds/DSU/potential_DSU.cpp
   isVerificationFile: true
   path: test/unionfind_with_potential_non_commutative_group.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 03:47:42+08:00'
+  timestamp: '2026-01-31 18:57:43+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/unionfind_with_potential_non_commutative_group.test.cpp

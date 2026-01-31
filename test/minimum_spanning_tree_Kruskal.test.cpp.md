@@ -102,25 +102,31 @@ data:
     \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
     \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
-    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/DSU/DSU.cpp\"\nstruct DSU {\n  vector<int>\
-    \ bos, sz;\n  int size;\n\n  DSU(int _size) : bos(_size), sz(_size, 1), size(_size)\
-    \ {\n    iota(bos.begin(), bos.end(), 0);\n  }\n\n  int query(int v) {\n    if\
-    \ (bos[v] == v)\n      return v;\n    else\n      return bos[v] = query(bos[v]);\n\
-    \  }\n\n  bool merge(int v1, int v2) {\n    int b1 = query(v1), b2 = query(v2);\n\
-    \n    if (b1 == b2)\n      return false;\n\n    if (sz[b1] > sz[b2])\n      swap(b1,\
-    \ b2);\n    bos[b1] = b2, sz[b2] += sz[b1];\n\n    return true;\n  }\n};\n#line\
-    \ 1 \"graph/minimum_spanning_tree/Kruskal.cpp\"\n//#include \"ds/DSU/DSU.cpp\"\
-    \n\ntemplate<bool sorted, integral T>\nauto Kruskal(int n, vector<tuple<int, int,\
-    \ T>> &e) {\n  vi ord;\n  if constexpr (sorted) {\n    ord.resize(n);\n    iota(ord.begin(),\
-    \ ord.end(), 0ll);\n  } else {\n    ord = argSort(e, [](tuple<int, int, T> &t)\
-    \ { return get<2>(t); });\n  }\n\n  T cost = 0;\n  vi eid;\n  DSU dsu(n);\n  for(int\
-    \ i : ord) {\n    auto [u, v, w] = e[i];\n    if (dsu.merge(u, v))\n      cost\
-    \ += w, eid.emplace_back(i);\n  }\n\n  return pair(cost, eid);\n}\n#line 6 \"\
-    test/minimum_spanning_tree_Kruskal.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<tuple<int, int, ll>>\
-    \ e(m);\n  for(auto &[u, v, w] : e)\n    cin >> u >> v >> w;\n\n  auto [cost,\
-    \ eid] = Kruskal(n, e);\n  cout << cost << '\\n';\n  cout << eid << '\\n';\n\n\
-    \  return 0;\n}\n"
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/DSU/DSU.cpp\"\ntemplate<class T = int,\
+    \ typename F = void*>\nstruct DSU {\n  vi sz_par;\n  vc<T> data;\n  F op;\n\n\
+    \  DSU(int n) requires same_as<F, void*> : sz_par(n, -1), op(nullptr) {}\n\n \
+    \ DSU(vc<T> init, F f) requires invocable<F, T&, T&> &&\n    (!invocable<F, T,\
+    \ T&>) && (!invocable<F, T&, T>)\n    : sz_par(std::size(init), -1), data(std::move(init)),\
+    \ op(f) {}\n\n  int query(int v) {\n    int r = v;\n    while(sz_par[r] >= 0)\
+    \ r = sz_par[r];\n    while(v != r) {\n      int nxt = sz_par[v];\n      sz_par[v]\
+    \ = r, v = nxt;\n    }\n    return r;\n  }\n\n  bool merge(int v1, int v2) {\n\
+    \    int b1 = query(v1), b2 = query(v2);\n\n    if (b1 == b2)\n      return false;\n\
+    \n    if (-sz_par[b1] > -sz_par[b2])\n      swap(b1, b2);\n\n    sz_par[b2] +=\
+    \ sz_par[b1];\n    sz_par[b1] = b2;\n    if constexpr (!same_as<F, void*>)\n \
+    \     op(data[b2], data[b1]);\n\n    return true;\n  }\n\n  int size(int v) {\
+    \ return v = query(v), -sz_par[v]; }\n  const T& get(int v) requires (!same_as<F,\
+    \ void*>) {\n    return data[query(v)];\n  }\n};\n#line 1 \"graph/minimum_spanning_tree/Kruskal.cpp\"\
+    \n//#include \"ds/DSU/DSU.cpp\"\n\ntemplate<bool sorted, integral T>\nauto Kruskal(int\
+    \ n, vector<tuple<int, int, T>> &e) {\n  vi ord;\n  if constexpr (sorted) {\n\
+    \    ord.resize(n);\n    iota(ord.begin(), ord.end(), 0ll);\n  } else {\n    ord\
+    \ = argSort(e, [](tuple<int, int, T> &t) { return get<2>(t); });\n  }\n\n  T cost\
+    \ = 0;\n  vi eid;\n  DSU dsu(n);\n  for(int i : ord) {\n    auto [u, v, w] = e[i];\n\
+    \    if (dsu.merge(u, v))\n      cost += w, eid.emplace_back(i);\n  }\n\n  return\
+    \ pair(cost, eid);\n}\n#line 6 \"test/minimum_spanning_tree_Kruskal.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ m; cin >> n >> m;\n  vector<tuple<int, int, ll>> e(m);\n  for(auto &[u, v, w]\
+    \ : e)\n    cin >> u >> v >> w;\n\n  auto [cost, eid] = Kruskal(n, e);\n  cout\
+    \ << cost << '\\n';\n  cout << eid << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/minimum_spanning_tree\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../ds/DSU/DSU.cpp\"\n#include \"\
     ../graph/minimum_spanning_tree/Kruskal.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
@@ -135,7 +141,7 @@ data:
   isVerificationFile: true
   path: test/minimum_spanning_tree_Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 03:10:37+08:00'
+  timestamp: '2026-01-31 18:57:43+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/minimum_spanning_tree_Kruskal.test.cpp

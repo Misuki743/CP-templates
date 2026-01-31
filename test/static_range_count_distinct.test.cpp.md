@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
   - icon: ':x:'
     path: ds_problem/rangeCountDistinct.cpp
     title: ds_problem/rangeCountDistinct.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: misc/compression.cpp
     title: compression
   _extendedRequiredBy: []
