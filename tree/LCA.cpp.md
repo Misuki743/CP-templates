@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/lowest_common_ancestor_2.test.cpp
+    title: test/lowest_common_ancestor_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/LCA.cpp\"\n//#include \"ds/RMQ.cpp\"\n\nstruct LCA\
@@ -43,8 +46,9 @@ data:
   path: tree/LCA.cpp
   requiredBy: []
   timestamp: '2026-01-30 20:10:19+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/lowest_common_ancestor_2.test.cpp
 documentation_of: tree/LCA.cpp
 layout: document
 redirect_from:

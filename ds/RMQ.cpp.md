@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/lowest_common_ancestor_2.test.cpp
+    title: test/lowest_common_ancestor_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/static_RMQ_2.test.cpp
     title: test/static_RMQ_2.test.cpp
   _isVerificationFailed: false
@@ -56,6 +59,7 @@ data:
   timestamp: '2024-07-24 13:33:23+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/lowest_common_ancestor_2.test.cpp
   - test/static_RMQ_2.test.cpp
 documentation_of: ds/RMQ.cpp
 layout: document

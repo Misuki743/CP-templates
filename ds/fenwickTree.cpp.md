@@ -18,12 +18,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/vertex_add_path_sum.test.cpp
     title: test/vertex_add_path_sum.test.cpp
+  - icon: ':x:'
+    path: test/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/vertex_add_subtree_sum.test.cpp
     title: test/vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/vertex_get_range_contour_add_on_tree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fenwickTree.cpp\"\ntemplate<class T>\nstruct fenwickTree\
@@ -50,13 +56,15 @@ data:
   path: ds/fenwickTree.cpp
   requiredBy: []
   timestamp: '2026-01-31 22:11:43+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/static_range_count_distinct.test.cpp
   - test/point_set_range_frequency.test.cpp
   - test/point_add_range_sum.test.cpp
   - test/rectangle_sum.test.cpp
+  - test/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/vertex_add_path_sum.test.cpp
+  - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/vertex_add_subtree_sum.test.cpp
 documentation_of: ds/fenwickTree.cpp
 layout: document

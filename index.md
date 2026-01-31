@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -130,13 +130,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fast_set.cpp
       title: ds/fast_set.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fenwickTree.cpp
       title: ds/fenwickTree.cpp
     - icon: ':heavy_check_mark:'
       path: ds/fenwickTree2D.cpp
       title: ds/fenwickTree2D.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/hashTable.cpp
       title: ds/hashTable.cpp
     - icon: ':warning:'
@@ -596,7 +596,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/HLD.cpp
       title: tree/HLD.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: tree/LCA.cpp
       title: tree/LCA.cpp
     - icon: ':warning:'
@@ -605,7 +605,7 @@ data:
     - icon: ':warning:'
       path: tree/auxiliaryTree.cpp
       title: auxiliaryTree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: tree/centroidTree.cpp
       title: tree/centroidTree.cpp
     - icon: ':heavy_check_mark:'
@@ -614,7 +614,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/staticTopTree.cpp
       title: tree/staticTopTree.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: tree/tree.cpp
       title: tree/tree.cpp
     - icon: ':warning:'
@@ -791,7 +791,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lowest_common_ancestor.test.cpp
       title: test/lowest_common_ancestor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/lowest_common_ancestor_2.test.cpp
       title: test/lowest_common_ancestor_2.test.cpp
     - icon: ':heavy_check_mark:'

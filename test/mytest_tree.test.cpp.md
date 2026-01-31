@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: tree/prufer_recover.cpp
     title: tree/prufer_recover.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/tree.cpp
     title: tree/tree.cpp
   _extendedRequiredBy: []
