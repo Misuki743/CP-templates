@@ -4,8 +4,8 @@
 #include "../default/t.cpp"
 #include "../ds/hashTable.cpp"
 #include "../ds/fenwickTree.cpp"
-#include "../ds/fastJump.cpp"
-#include "../ds/centroidTree.cpp"
+#include "../tree/tree.cpp"
+#include "../tree/centroidTree.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
@@ -38,12 +38,12 @@ signed main() {
   vector<int> base(2 * n);
   vector<ll> init;
   init.reserve(1 << 19);
-  fastJump fj(g);
+  tree tr(g);
   for(int s = 0; s < n; s++) {
     auto dfs = [&](int v, auto self) -> void {
-      cand[s].push_back({fj.dis(s, v), v});
+      cand[s].push_back({tr.dis(s, v), v});
       if (p[s] != -1)
-        cand[s + n].push_back({fj.dis(p[s], v), v});
+        cand[s + n].push_back({tr.dis(p[s], v), v});
       for(int x : g2[v]) {
         if (x == p[v]) continue;
         self(x, self);
@@ -74,7 +74,7 @@ signed main() {
       int x, l, r, d; cin >> x >> l >> r >> d;
       int v = x, pv = -1;
       while(v != -1) {
-        int di = fj.dis(v, x);
+        int di = tr.dis(v, x);
         modify(v, l - di, r - di, d);
         if (pv != -1) {
           modify(pv + n, l - di, r - di, d);

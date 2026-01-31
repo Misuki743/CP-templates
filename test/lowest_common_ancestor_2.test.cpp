@@ -2,7 +2,7 @@
 
 #include "../default/t.cpp"
 #include "../ds/RMQ.cpp"
-#include "../ds/LCA.cpp"
+#include "../tree/LCA.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
