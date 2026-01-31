@@ -4,46 +4,39 @@
 #include "../modint/MontgomeryModInt.cpp"
 #include "../segtree/segmentTree.cpp"
 #include "../actedmonoid/actedMonoid_affineSum.cpp"
-#include "../tree/heavyLightDecomposition.cpp"
+#include "../tree/HLD.cpp"
 
 using am = actedMonoid_affineSum<mint>;
+
+am::T R_Top(const am::T &a, const am::T &b) { return am::T{a[0] * b[0], b[1] * a[0] + a[1]}; }
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
-  vector<am::T> ab(n);
-  for(auto &[a, b] : ab)
+  vc<array<mint, 2>> init(n);
+  for(auto &[a, b] : init)
     cin >> a >> b;
-  vector<vector<int>> g(n);
-  for(int i = 1; i < n; i++) {
-    int u, v; cin >> u >> v;
-    g[u].emplace_back(v);
-    g[v].emplace_back(u);
-  }
+  auto g = read_graph<false>(n, n - 1, 0);
 
   HLD hld(g);
-  vector<am::T> init(n);
-  for(int i = 0; i < n; i++)
-    init[hld.id[i]] = ab[i];
+  init = hld.reorder_init(std::move(init));
+  segmentTree<am::T, am::Tid, R_Top> st_rev(init);
   segmentTree<am::T, am::Tid, am::Top> st(init);
-  ranges::reverse(init);
-  segmentTree<am::T, am::Tid, am::Top> str(init);
-
   while(q--) {
-    int t, a, b, c; cin >> t >> a >> b >> c;
-    if (t == 0) {
-      st.set(hld.id[a], am::T{b, c});
-      str.set((n - 1) - hld.id[a], am::T{b, c});
+    int op; cin >> op;
+    if (op == 0) {
+      int p, c, d; cin >> p >> c >> d;
+      st.set(hld.query_point(p), am::M{c, d});
+      st_rev.set(hld.query_point(p), am::M{c, d});
     } else {
-      auto res = am::T{0, c};
-      for(auto [l, r, rev] : hld.query(a, b)) {
-        if (rev)
-          res = am::Top(res, str.query(n - r, n - l));
-        else
-          res = am::Top(res, st.query(l, r));
+      int u, v, x; cin >> u >> v >> x;
+      am::T prod = am::T{1, 0};
+      for(auto [l, r] : hld.query_path_non_commutative(u, v)) {
+        if (l < r) prod = am::Top(prod, st.query(l, r));
+        else prod = am::Top(prod, st_rev.query(r, l));
       }
-      cout << res[1] << '\n';
+      cout << prod[0] * x + prod[1] << '\n';
     }
   }
 

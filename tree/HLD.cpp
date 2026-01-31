@@ -64,6 +64,34 @@ struct HLD {
     return lr;
   }
 
+  //l < r: op(l, op(l + 1, ...))
+  //l > r: op(r - 1, op(r - 2, ...))
+  auto query_path_non_commutative(int u, int v, bool edge = false) {
+    vc<pii> lr1, lr2;
+    int head_u = ((p_head[u] & MSK) ? u : p_head[u]);
+    int head_v = ((p_head[v] & MSK) ? v : p_head[v]);
+    while(head_u != head_v) {
+      if (dep[head_u] > dep[head_v]) {
+        lr1.emplace_back(tin[u] + 1, tin[head_u]);
+        u = (p_head[head_u] & (MSK - 1));
+        head_u = ((p_head[u] & MSK) ? u : p_head[u]);
+      } else {
+        lr2.emplace_back(tin[head_v], tin[v] + 1);
+        v = (p_head[head_v] & (MSK - 1));
+        head_v = ((p_head[v] & MSK) ? v : p_head[v]);
+      }
+    }
+
+    if (tin[u] + edge <= tin[v])
+      lr2.emplace_back(tin[u] + edge, tin[v] + 1);
+    else if (tin[v] + edge <= tin[u])
+      lr1.emplace_back(tin[u] + 1, tin[v] + edge);
+
+    lr1.insert(end(lr1), lr2.rbegin(), lr2.rend());
+
+    return lr1;
+  }
+
   auto query_subtree(int v) { return pii(tin[v], tout[v]); }
 
   int query_point(int v) { return tin[v]; }
