@@ -51,7 +51,7 @@ data:
   verifiedWith: []
 documentation_of: tree/auxiliaryTree.cpp
 layout: document
-title: auxiliaryTree
+title: tree/auxiliaryTree.cpp
 ---
 
 ## usage

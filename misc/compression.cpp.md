@@ -73,7 +73,7 @@ data:
   - test/point_add_rectangle_sum.test.cpp
 documentation_of: misc/compression.cpp
 layout: document
-title: compression
+title: misc/compression.cpp
 ---
 
 An std-like coordinate compression template

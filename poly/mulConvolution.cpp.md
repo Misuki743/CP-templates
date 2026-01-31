@@ -78,7 +78,7 @@ data:
   - test/yuki_2613.test.cpp
 documentation_of: poly/mulConvolution.cpp
 layout: document
-title: mulConvolution
+title: poly/mulConvolution.cpp
 ---
 
 ## theory

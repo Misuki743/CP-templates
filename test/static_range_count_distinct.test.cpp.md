@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
   - icon: ':heavy_check_mark:'
@@ -12,7 +12,7 @@ data:
     title: ds_problem/rangeCountDistinct.cpp
   - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
-    title: compression
+    title: misc/compression.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

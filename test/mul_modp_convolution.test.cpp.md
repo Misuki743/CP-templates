@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -12,7 +12,7 @@ data:
     title: poly/NTTmint.cpp
   - icon: ':heavy_check_mark:'
     path: poly/mulConvolution.cpp
-    title: mulConvolution
+    title: poly/mulConvolution.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

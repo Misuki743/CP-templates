@@ -76,7 +76,7 @@ data:
   - test/range_kth_smallest.test.cpp
 documentation_of: ds/waveletMatrix.cpp
 layout: document
-title: waveletMatrix
+title: ds/waveletMatrix.cpp
 ---
 
 ## usage

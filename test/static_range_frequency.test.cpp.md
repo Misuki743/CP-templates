@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: ds/waveletMatrix.cpp
-    title: waveletMatrix
+    title: ds/waveletMatrix.cpp
   - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
-    title: compression
+    title: misc/compression.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

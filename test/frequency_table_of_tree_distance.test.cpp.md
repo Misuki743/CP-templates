@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/centroidTree.cpp
     title: tree/centroidTree.cpp
   _extendedRequiredBy: []

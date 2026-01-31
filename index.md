@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -130,13 +130,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fast_set.cpp
       title: ds/fast_set.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwickTree.cpp
       title: ds/fenwickTree.cpp
     - icon: ':heavy_check_mark:'
       path: ds/fenwickTree2D.cpp
       title: ds/fenwickTree2D.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashTable.cpp
       title: ds/hashTable.cpp
     - icon: ':warning:'
@@ -165,10 +165,10 @@ data:
       title: ds/sparseTable2D.cpp
     - icon: ':heavy_check_mark:'
       path: ds/treap.cpp
-      title: treap
+      title: ds/treap.cpp
     - icon: ':heavy_check_mark:'
       path: ds/waveletMatrix.cpp
-      title: waveletMatrix
+      title: ds/waveletMatrix.cpp
   - name: ds_problem
     pages:
     - icon: ':heavy_check_mark:'
@@ -389,7 +389,7 @@ data:
       title: misc/bigint.cpp
     - icon: ':heavy_check_mark:'
       path: misc/compression.cpp
-      title: compression
+      title: misc/compression.cpp
     - icon: ':warning:'
       path: misc/random.cpp
       title: misc/random.cpp
@@ -506,7 +506,7 @@ data:
       title: poly/min_plus_convolution.cpp
     - icon: ':heavy_check_mark:'
       path: poly/mulConvolution.cpp
-      title: mulConvolution
+      title: poly/mulConvolution.cpp
     - icon: ':warning:'
       path: poly/pref_suf_prod_eval.cpp
       title: poly/pref_suf_prod_eval.cpp
@@ -604,8 +604,8 @@ data:
       title: tree/STT_pathAggregate.cpp
     - icon: ':warning:'
       path: tree/auxiliaryTree.cpp
-      title: auxiliaryTree
-    - icon: ':question:'
+      title: tree/auxiliaryTree.cpp
+    - icon: ':heavy_check_mark:'
       path: tree/centroidTree.cpp
       title: tree/centroidTree.cpp
     - icon: ':heavy_check_mark:'
@@ -614,7 +614,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/staticTopTree.cpp
       title: tree/staticTopTree.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/tree.cpp
       title: tree/tree.cpp
     - icon: ':warning:'
@@ -1004,13 +1004,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/vertex_add_range_contour_sum_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_subtree_sum.test.cpp
       title: test/vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_get_range_contour_add_on_tree.test.cpp
       title: test/vertex_get_range_contour_add_on_tree.test.cpp
     - icon: ':heavy_check_mark:'

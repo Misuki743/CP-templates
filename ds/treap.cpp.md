@@ -104,7 +104,7 @@ data:
   - test/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: ds/treap.cpp
 layout: document
-title: treap
+title: ds/treap.cpp
 ---
 
 ## usage
