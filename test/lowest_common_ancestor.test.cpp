@@ -1,24 +1,19 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
 
 #include "../default/t.cpp"
-#include "../ds/fastJump.cpp"
+#include "../tree/tree.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
-  vector<vector<int>> g(n);
-  for(int u = 1; u < n; u++) {
-    int v; cin >> v;
-    g[u].emplace_back(v);
-    g[v].emplace_back(u);
-  }
-
-  fastJump jp(g);
-
+  vector<int> p(n - 1);
+  for(int &x : p) cin >> x;
+  p.insert(p.begin(), -1);
+  tree T(std::move(p));
   while(q--) {
     int u, v; cin >> u >> v;
-    cout << jp.lca(u, v) << '\n';
+    cout << T.lca(u, v) << '\n';
   }
 
   return 0;

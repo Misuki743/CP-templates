@@ -1,35 +1,43 @@
-template<class M, M(*id)(), M(*op)(const M&, const M&)>
+template<class T, typename F>
+requires R_invocable<T, F, T&, T&>
 struct doubling {
-  int n, k;
-  vector<vector<int>> jp;
-  vector<vector<M>> data;
+  const int LOG;
+  const T id;
+  F op;
+  vvi jp;
+  vvc<T> data;
 
-  doubling(vector<int> to, vector<M> init, int _k) :
-  n(size(to)), k(_k), jp(k, vector<int>(n, -1)), data(k, vector<M>(n, id())) {
-    jp[0] = to, data[0] = init;
-    for(int i = 1; i < k; i++) {
-      for(int j = 0; j < n; j++) {
-        if (jp[i - 1][j] != -1 and jp[i - 1][jp[i - 1][j]] != -1) {
-          jp[i][j] = jp[i - 1][jp[i - 1][j]];
-          data[i][j] = op(data[i - 1][j], data[i - 1][jp[i - 1][j]]);
-        }
+  doubling(int _LOG, vi to, vc<T> init, T _id, F f) : LOG(_LOG), id(_id), op(f),
+    jp(LOG, vi(size(to), -1)), data(LOG, vc<T>(size(to), id)) {
+    assert(size(init) == size(to));
+    jp[0] = std::move(to), data[0] = std::move(init);
+    for(int i = 1; i < LOG; i++)
+      for(int j = 0; j < ssize(jp[i]); j++)
+        if (int k = jp[i - 1][j]; k != -1 and jp[i - 1][k] != -1)
+          jp[i][j] = jp[i - 1][k], data[i][j] = op(data[i - 1][j], data[i - 1][k]);
+  }
+
+  auto jump(int s, ll step) {
+    assert(0ll <= step and step < (1ll << LOG));
+    T prod = id;
+    for(; step > 0; step -= step & (-step)) {
+      if (int to = jp[countr_zero((uint64_t)step)][s]; to != -1) {
+        prod = op(prod, data[countr_zero((uint64_t)step)][s]);
+        s = to;
       }
     }
+    return pair(s, prod);
   }
 
-  pair<int, M> query(int v, ll len) {
-    M res = id();
-    for(int i = 0; i < k; i++)
-      if ((len >> i & 1) and jp[i][v] != -1)
-        res = op(res, data[i][v]), v = jp[i][v];
-    return make_pair(v, res);
-  }
-
-  int lastTrue(int v, function<bool(const M&)> f) {
-    M res = id();
-    for(int i = k - 1; i >= 0; i--)
-      if (jp[i][v] != -1 and f(op(res, data[i][v])))
-        res = op(res, data[i][v]), v = jp[i][v];
-    return v;
+  template<typename P>
+  requires R_invocable<bool, P, T&, T&>
+  auto jump_while_true(int s, P pred) {
+    ll step = 0;
+    T prod = id;
+    for(int i = LOG - 1; i >= 0; i--)
+      if (jp[i][s] != -1)
+        if (T tmp = op(prod, data[i][s]); pred(tmp))
+          step += 1ll << i, prod = tmp, s = jp[i][s];
+    return tuple(s, step, prod);
   }
 };

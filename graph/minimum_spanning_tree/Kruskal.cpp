@@ -1,6 +1,6 @@
 //#include "ds/DSU/DSU.cpp"
 
-template<bool sorted, integral T>
+template<bool sorted = false, integral T>
 auto Kruskal(int n, vector<tuple<int, int, T>> &e) {
   vi ord;
   if constexpr (sorted) {
