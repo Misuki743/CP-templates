@@ -1,38 +1,48 @@
-template<class T>
-tuple<T, T, T, vector<int>> weighted_tree_diameter(vector<vector<pair<int, T>>> &g) {
-  const T inf = numeric_limits<T>::max();
-  const int n = ssize(g);
-  auto bfs = [&](int s) {
-    vector<T> dis(n, inf);
-    vector<int> pre(n, -1);
-    queue<int> q;
-    dis[s] = 0;
-    q.push(s);
-    while(!q.empty()) {
-      int v = q.front(); q.pop();
-      for(auto [x, w] : g[v]) {
-        if (dis[x] != inf) continue;
-        pre[x] = v, dis[x] = dis[v] + w;
-        q.push(x);
+template<integral T>
+auto weighted_tree_diameter(vc<tuple<int, int, T>> &e) {
+  const int n = ssize(e) + 1;
+  constexpr T NINF = numeric_limits<T>::min();
+
+  vi adj0(n), d0(n);
+  vc<T> w0(n);
+  for(auto [u, v, w] : e) {
+    adj0[u] ^= v, adj0[v] ^= u;
+    d0[u]++, d0[v]++;
+    w0[u] ^= w, w0[v] ^= w;
+  }
+
+  auto xor_link_traversal = [&](int s) {
+    vi adj = adj0, d = d0, p(n, -1), ord;
+    vc<T> w = w0;
+
+    d[s] = 0;
+    ord.reserve(n);
+    for(int i = 0; i < n; i++) {
+      int v = i;
+      while(d[v] == 1) {
+        ord.emplace_back(v);
+        p[v] = adj[v], d[v] = 0, d[p[v]]--;
+        adj[p[v]] ^= v, w[p[v]] ^= w[v];
+        v = p[v];
       }
     }
-    return make_pair(dis, pre);
+
+    auto far = pair(NINF, -1);
+    for(int v : ord | views::reverse) {
+      w[v] += w[p[v]];
+      if (w[v] > far.first)
+        far = pair(w[v], v);
+    }
+
+    return pair(far, p);
   };
 
-  auto dis0 = bfs(0).first;
-  int u = ranges::max_element(dis0) - dis0.begin();
-  auto [dis1, pre1] = bfs(u);
-  int v = ranges::max_element(dis1) - dis1.begin();
-  T d = dis1[v];
+  int u = xor_link_traversal(0).first.second;
+  auto [far, p] = xor_link_traversal(u);
+  auto [diameter, v] = far;
+  vi path = {v};
+  while(path.back() != u)
+    path.emplace_back(p[path.back()]);
 
-  vector<int> diameter(1, v);
-  while(pre1[v] != -1)
-    diameter.emplace_back(v = pre1[v]);
-
-  int radius = inf, center = -1;
-  for(int y : diameter)
-    if (int x = max(dis1[y], d - dis1[y]); x < radius)
-      radius = x, center = y;
-
-  return make_tuple(d, radius, center, diameter);
+  return pair(diameter, path);
 }

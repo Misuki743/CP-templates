@@ -3,20 +3,17 @@
 #include "../default/t.cpp"
 #include "../tree/weighted_tree_diameter.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n; cin >> n;
-  vector<vector<pair<int, ll>>> g(n);
-  for(int i = 1; i < n; i++) {
-    int u, v, w; cin >> u >> v >> w;
-    g[u].emplace_back(v, w);
-    g[v].emplace_back(u, w);
-  }
+  vc<tuple<int, int, ll>> e(n - 1);
+  for(auto &[u, v, w] : e)
+    cin >> u >> v >> w;
 
-  auto [d, _, __, vs] = weighted_tree_diameter<ll>(g);
-  cout << d << ' ' << ssize(vs) << '\n';
-  cout << vs << '\n';
+  auto [d, path] = weighted_tree_diameter(e);
+  cout << d << ' ' << ssize(path) << '\n';
+  cout << path << '\n';
 
   return 0;
 }
