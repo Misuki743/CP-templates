@@ -38,7 +38,7 @@ signed main() {
   vector<int> base(2 * n);
   vector<ll> init;
   init.reserve(1 << 19);
-  ::tree tr(g);
+  tree::tree tr(g);
   for(int s = 0; s < n; s++) {
     auto dfs = [&](int v, auto self) -> void {
       cand[s].push_back({tr.dis(s, v), v});
