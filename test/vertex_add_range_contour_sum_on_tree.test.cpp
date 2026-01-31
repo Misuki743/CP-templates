@@ -14,9 +14,11 @@ signed main() {
   vector<int> a(n);
   for(int &x : a)
     cin >> x;
+  vector<pii> e(n - 1);
+  for(auto &[u, v] : e)
+    cin >> u >> v;
   vector<vector<int>> g(n);
-  for(int i = 1; i < n; i++) {
-    int u, v; cin >> u >> v;
+  for(auto [u, v] : e) {
     g[u].emplace_back(v);
     g[v].emplace_back(u);
   }
@@ -37,7 +39,7 @@ signed main() {
   vector<vector<array<int, 2>>> cand(2 * n);
   vector<int> base(2 * n);
   vector<ll> init;
-  tree::tree tr(g);
+  ::tree tr(e);
   for(int s = 0; s < n; s++) {
     auto dfs = [&](int v, auto self) -> void {
       cand[s].push_back({tr.dis(s, v), v});

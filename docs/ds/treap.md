@@ -1,5 +1,5 @@
 ---
-title: treap
+title: ds/treap.cpp
 documentation_of: ../../ds/treap.cpp
 ---
 

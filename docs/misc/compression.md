@@ -1,5 +1,5 @@
 ---
-title: compression
+title: misc/compression.cpp
 documentation_of: ../../misc/compression.cpp
 ---
 

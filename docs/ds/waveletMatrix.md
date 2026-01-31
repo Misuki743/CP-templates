@@ -1,5 +1,5 @@
 ---
-title: waveletMatrix
+title: ds/waveletMatrix.cpp
 documentation_of: ../../ds/waveletMatrix.cpp
 ---
 

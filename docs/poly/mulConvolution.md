@@ -1,5 +1,5 @@
 ---
-title: mulConvolution
+title: poly/mulConvolution.cpp
 documentation_of: ../../poly/mulConvolution.cpp
 ---
 
