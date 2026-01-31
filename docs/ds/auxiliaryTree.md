@@ -1,6 +1,6 @@
 ---
 title: auxiliaryTree
-documentation_of: ../../ds/auxiliaryTree.cpp
+documentation_of: ../../tree/auxiliaryTree.cpp
 ---
 
 ## usage
