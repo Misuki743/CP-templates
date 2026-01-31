@@ -94,7 +94,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: ds/DSU/DSU.cpp
-      title: DSU
+      title: ds/DSU/DSU.cpp
     - icon: ':warning:'
       path: ds/DSU/bipartite_DSU.cpp
       title: ds/DSU/bipartite_DSU.cpp

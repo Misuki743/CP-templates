@@ -6,7 +6,7 @@ data:
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: ds/DSU/DSU.cpp
-    title: DSU
+    title: ds/DSU/DSU.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

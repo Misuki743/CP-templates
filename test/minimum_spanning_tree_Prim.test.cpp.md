@@ -6,7 +6,7 @@ data:
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: ds/DSU/DSU.cpp
-    title: DSU
+    title: ds/DSU/DSU.cpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree/Kruskal.cpp
     title: graph/minimum_spanning_tree/Kruskal.cpp

@@ -171,7 +171,7 @@ data:
     \ {\n      if (x == p[v]) continue;\n      p[x] = v;\n      self(x, self);\n \
     \   }\n  };\n  dfs(r, dfs);\n\n  gp_hash_table<ll, int, custom_hash> toId;\n \
     \ vector<vector<array<int, 2>>> cand(2 * n);\n  vector<int> base(2 * n);\n  vector<ll>\
-    \ init;\n  ::tree tr(g);\n  for(int s = 0; s < n; s++) {\n    auto dfs = [&](int\
+    \ init;\n  tree::tree tr(g);\n  for(int s = 0; s < n; s++) {\n    auto dfs = [&](int\
     \ v, auto self) -> void {\n      cand[s].push_back({tr.dis(s, v), v});\n     \
     \ if (p[s] != -1)\n        cand[s + n].push_back({tr.dis(p[s], v), v});\n    \
     \  for(int x : g2[v]) {\n        if (x == p[v]) continue;\n        self(x, self);\n\
@@ -202,7 +202,7 @@ data:
     \ = [&](int v, auto self) -> void {\n    for(int x : g2[v]) {\n      if (x ==\
     \ p[v]) continue;\n      p[x] = v;\n      self(x, self);\n    }\n  };\n  dfs(r,\
     \ dfs);\n\n  gp_hash_table<ll, int, custom_hash> toId;\n  vector<vector<array<int,\
-    \ 2>>> cand(2 * n);\n  vector<int> base(2 * n);\n  vector<ll> init;\n  ::tree\
+    \ 2>>> cand(2 * n);\n  vector<int> base(2 * n);\n  vector<ll> init;\n  tree::tree\
     \ tr(g);\n  for(int s = 0; s < n; s++) {\n    auto dfs = [&](int v, auto self)\
     \ -> void {\n      cand[s].push_back({tr.dis(s, v), v});\n      if (p[s] != -1)\n\
     \        cand[s + n].push_back({tr.dis(p[s], v), v});\n      for(int x : g2[v])\
@@ -232,7 +232,7 @@ data:
   isVerificationFile: true
   path: test/vertex_add_range_contour_sum_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 23:35:39+08:00'
+  timestamp: '2026-01-31 23:47:44+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/vertex_add_range_contour_sum_on_tree.test.cpp
