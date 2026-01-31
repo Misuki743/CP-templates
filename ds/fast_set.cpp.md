@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/predecessor_problem.test.cpp
     title: test/predecessor_problem.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fast_set.cpp\"\nstruct fast_set {\n  using u64 = uint64_t;\n\
@@ -68,7 +68,7 @@ data:
   path: ds/fast_set.cpp
   requiredBy: []
   timestamp: '2026-01-05 02:29:00+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/predecessor_problem.test.cpp
 documentation_of: ds/fast_set.cpp

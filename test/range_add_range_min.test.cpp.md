@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: actedmonoid/actedMonoid_addMin.cpp
     title: actedmonoid/actedMonoid_addMin.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/lazySegmentTree.cpp
     title: segtree/lazySegmentTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/ultraLazySegmentTree.cpp
     title: segtree/ultraLazySegmentTree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_add_range_min
@@ -184,7 +184,7 @@ data:
   path: test/range_add_range_min.test.cpp
   requiredBy: []
   timestamp: '2026-01-31 03:10:37+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/range_add_range_min.test.cpp
 layout: document

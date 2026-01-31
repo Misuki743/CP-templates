@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/closest_pair.test.cpp
     title: test/closest_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/static_convex_hull.test.cpp
     title: test/static_convex_hull.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: '#line 1 "default/ttt.cpp"
@@ -47,7 +47,7 @@ data:
   path: default/ttt.cpp
   requiredBy: []
   timestamp: '2024-01-20 02:52:24+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/closest_pair.test.cpp
   - test/static_convex_hull.test.cpp

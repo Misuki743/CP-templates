@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/ttt.cpp
     title: default/ttt.cpp
   - icon: ':heavy_check_mark:'
     path: geometry/closest_pair.cpp
     title: geometry/closest_pair.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/point.cpp
     title: geometry/point.cpp
   _extendedRequiredBy: []

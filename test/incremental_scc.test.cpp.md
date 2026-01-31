@@ -6,7 +6,7 @@ data:
     title: default/t.cpp
   - icon: ':question:'
     path: ds/DSU/DSU.cpp
-    title: ds/DSU/DSU.cpp
+    title: DSU
   - icon: ':question:'
     path: graph/connectivity/SCC.cpp
     title: graph/connectivity/SCC.cpp

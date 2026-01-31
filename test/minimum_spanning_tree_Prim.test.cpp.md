@@ -6,7 +6,7 @@ data:
     title: default/t.cpp
   - icon: ':question:'
     path: ds/DSU/DSU.cpp
-    title: ds/DSU/DSU.cpp
+    title: DSU
   - icon: ':x:'
     path: graph/minimum_spanning_tree/Kruskal.cpp
     title: graph/minimum_spanning_tree/Kruskal.cpp
