@@ -60,24 +60,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_first_kind.test.cpp
     title: test/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_second_kind.test.cpp
     title: test/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/wildcard_pattern_matching.test.cpp
     title: test/wildcard_pattern_matching.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/FPS.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
@@ -275,7 +275,7 @@ data:
   path: poly/FPS.cpp
   requiredBy: []
   timestamp: '2025-01-04 16:10:13+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/exp_of_formal_power_series.test.cpp
   - test/log_of_formal_power_series.test.cpp

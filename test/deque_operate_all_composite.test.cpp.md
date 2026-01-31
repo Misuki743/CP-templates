@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/deque_aggregation.cpp
     title: ds/deque_aggregation.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []

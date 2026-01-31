@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/frequency_table_of_tree_distance.test.cpp
+    title: test/frequency_table_of_tree_distance.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/centroidTree.cpp\"\npair<vector<vector<int>>, int>\
@@ -39,8 +42,9 @@ data:
   path: tree/centroidTree.cpp
   requiredBy: []
   timestamp: '2026-01-30 20:10:19+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/frequency_table_of_tree_distance.test.cpp
 documentation_of: tree/centroidTree.cpp
 layout: document
 redirect_from:

@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/DSU/queueDSU.cpp\"\n//#include \"ds/DSU/rollback_DSU.cpp\"\
+  bundledCode: "#line 1 \"ds/DSU/queue_DSU.cpp\"\n//#include \"ds/DSU/rollback_DSU.cpp\"\
     \n\nstruct queue_DSU {\n  int fa = 0, fb = 0;\n  rollback_DSU dsu;\n  string s;\n\
     \  vector<int> ts;\n  vector<pii> op;\n\n  queue_DSU(int size) : dsu(size) {}\n\
     \n  bool merge(int u, int v) {\n    op.emplace_back(u, v);\n    s += 'B', fb++;\n\
@@ -54,15 +54,15 @@ data:
     \ }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/DSU/queueDSU.cpp
+  path: ds/DSU/queue_DSU.cpp
   requiredBy: []
-  timestamp: '2026-01-31 18:57:43+08:00'
+  timestamp: '2026-01-31 20:47:40+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: ds/DSU/queueDSU.cpp
+documentation_of: ds/DSU/queue_DSU.cpp
 layout: document
 redirect_from:
-- /library/ds/DSU/queueDSU.cpp
-- /library/ds/DSU/queueDSU.cpp.html
-title: ds/DSU/queueDSU.cpp
+- /library/ds/DSU/queue_DSU.cpp
+- /library/ds/DSU/queue_DSU.cpp.html
+title: ds/DSU/queue_DSU.cpp
 ---

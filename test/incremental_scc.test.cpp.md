@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/DSU/DSU.cpp
     title: DSU
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/connectivity/SCC.cpp
     title: graph/connectivity/SCC.cpp
   - icon: ':heavy_check_mark:'
     path: graph/connectivity/incrementalSCC.cpp
     title: graph/connectivity/incrementalSCC.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []

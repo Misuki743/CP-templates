@@ -2,47 +2,58 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yuki_1097.test.cpp
+    title: test/yuki_1097.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/doubling.cpp\"\ntemplate<class M, M(*id)(), M(*op)(const\
-    \ M&, const M&)>\nstruct doubling {\n  int n, k;\n  vector<vector<int>> jp;\n\
-    \  vector<vector<M>> data;\n\n  doubling(vector<int> to, vector<M> init, int _k)\
-    \ :\n  n(size(to)), k(_k), jp(k, vector<int>(n, -1)), data(k, vector<M>(n, id()))\
-    \ {\n    jp[0] = to, data[0] = init;\n    for(int i = 1; i < k; i++) {\n     \
-    \ for(int j = 0; j < n; j++) {\n        if (jp[i - 1][j] != -1 and jp[i - 1][jp[i\
-    \ - 1][j]] != -1) {\n          jp[i][j] = jp[i - 1][jp[i - 1][j]];\n         \
-    \ data[i][j] = op(data[i - 1][j], data[i - 1][jp[i - 1][j]]);\n        }\n   \
-    \   }\n    }\n  }\n\n  pair<int, M> query(int v, ll len) {\n    M res = id();\n\
-    \    for(int i = 0; i < k; i++)\n      if ((len >> i & 1) and jp[i][v] != -1)\n\
-    \        res = op(res, data[i][v]), v = jp[i][v];\n    return make_pair(v, res);\n\
-    \  }\n\n  int lastTrue(int v, function<bool(const M&)> f) {\n    M res = id();\n\
-    \    for(int i = k - 1; i >= 0; i--)\n      if (jp[i][v] != -1 and f(op(res, data[i][v])))\n\
-    \        res = op(res, data[i][v]), v = jp[i][v];\n    return v;\n  }\n};\n"
-  code: "template<class M, M(*id)(), M(*op)(const M&, const M&)>\nstruct doubling\
-    \ {\n  int n, k;\n  vector<vector<int>> jp;\n  vector<vector<M>> data;\n\n  doubling(vector<int>\
-    \ to, vector<M> init, int _k) :\n  n(size(to)), k(_k), jp(k, vector<int>(n, -1)),\
-    \ data(k, vector<M>(n, id())) {\n    jp[0] = to, data[0] = init;\n    for(int\
-    \ i = 1; i < k; i++) {\n      for(int j = 0; j < n; j++) {\n        if (jp[i -\
-    \ 1][j] != -1 and jp[i - 1][jp[i - 1][j]] != -1) {\n          jp[i][j] = jp[i\
-    \ - 1][jp[i - 1][j]];\n          data[i][j] = op(data[i - 1][j], data[i - 1][jp[i\
-    \ - 1][j]]);\n        }\n      }\n    }\n  }\n\n  pair<int, M> query(int v, ll\
-    \ len) {\n    M res = id();\n    for(int i = 0; i < k; i++)\n      if ((len >>\
-    \ i & 1) and jp[i][v] != -1)\n        res = op(res, data[i][v]), v = jp[i][v];\n\
-    \    return make_pair(v, res);\n  }\n\n  int lastTrue(int v, function<bool(const\
-    \ M&)> f) {\n    M res = id();\n    for(int i = k - 1; i >= 0; i--)\n      if\
-    \ (jp[i][v] != -1 and f(op(res, data[i][v])))\n        res = op(res, data[i][v]),\
-    \ v = jp[i][v];\n    return v;\n  }\n};\n"
+  bundledCode: "#line 1 \"ds/doubling.cpp\"\ntemplate<class T, typename F>\nrequires\
+    \ R_invocable<T, F, T&, T&>\nstruct doubling {\n  const int LOG;\n  const T id;\n\
+    \  F op;\n  vvi jp;\n  vvc<T> data;\n\n  doubling(int _LOG, vi to, vc<T> init,\
+    \ T _id, F f) : LOG(_LOG), id(_id), op(f),\n    jp(LOG, vi(size(to), -1)), data(LOG,\
+    \ vc<T>(size(to), id)) {\n    assert(size(init) == size(to));\n    jp[0] = std::move(to),\
+    \ data[0] = std::move(init);\n    for(int i = 1; i < LOG; i++)\n      for(int\
+    \ j = 0; j < ssize(jp[i]); j++)\n        if (int k = jp[i - 1][j]; k != -1 and\
+    \ jp[i - 1][k] != -1)\n          jp[i][j] = jp[i - 1][k], data[i][j] = op(data[i\
+    \ - 1][j], data[i - 1][k]);\n  }\n\n  auto jump(int s, ll step) {\n    assert(0ll\
+    \ <= step and step < (1ll << LOG));\n    T prod = id;\n    for(; step > 0; step\
+    \ -= step & (-step)) {\n      if (int to = jp[countr_zero((uint64_t)step)][s];\
+    \ to != -1) {\n        prod = op(prod, data[countr_zero((uint64_t)step)][s]);\n\
+    \        s = to;\n      }\n    }\n    return pair(s, prod);\n  }\n\n  template<typename\
+    \ P>\n  requires R_invocable<bool, P, T&, T&>\n  auto jump_while_true(int s, P\
+    \ pred) {\n    ll step = 0;\n    T prod = id;\n    for(int i = LOG - 1; i >= 0;\
+    \ i--)\n      if (jp[i][s] != -1)\n        if (T tmp = op(prod, data[i][s]); pred(tmp))\n\
+    \          step += 1ll << i, prod = tmp, s = jp[i][s];\n    return tuple(s, step,\
+    \ prod);\n  }\n};\n"
+  code: "template<class T, typename F>\nrequires R_invocable<T, F, T&, T&>\nstruct\
+    \ doubling {\n  const int LOG;\n  const T id;\n  F op;\n  vvi jp;\n  vvc<T> data;\n\
+    \n  doubling(int _LOG, vi to, vc<T> init, T _id, F f) : LOG(_LOG), id(_id), op(f),\n\
+    \    jp(LOG, vi(size(to), -1)), data(LOG, vc<T>(size(to), id)) {\n    assert(size(init)\
+    \ == size(to));\n    jp[0] = std::move(to), data[0] = std::move(init);\n    for(int\
+    \ i = 1; i < LOG; i++)\n      for(int j = 0; j < ssize(jp[i]); j++)\n        if\
+    \ (int k = jp[i - 1][j]; k != -1 and jp[i - 1][k] != -1)\n          jp[i][j] =\
+    \ jp[i - 1][k], data[i][j] = op(data[i - 1][j], data[i - 1][k]);\n  }\n\n  auto\
+    \ jump(int s, ll step) {\n    assert(0ll <= step and step < (1ll << LOG));\n \
+    \   T prod = id;\n    for(; step > 0; step -= step & (-step)) {\n      if (int\
+    \ to = jp[countr_zero((uint64_t)step)][s]; to != -1) {\n        prod = op(prod,\
+    \ data[countr_zero((uint64_t)step)][s]);\n        s = to;\n      }\n    }\n  \
+    \  return pair(s, prod);\n  }\n\n  template<typename P>\n  requires R_invocable<bool,\
+    \ P, T&, T&>\n  auto jump_while_true(int s, P pred) {\n    ll step = 0;\n    T\
+    \ prod = id;\n    for(int i = LOG - 1; i >= 0; i--)\n      if (jp[i][s] != -1)\n\
+    \        if (T tmp = op(prod, data[i][s]); pred(tmp))\n          step += 1ll <<\
+    \ i, prod = tmp, s = jp[i][s];\n    return tuple(s, step, prod);\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/doubling.cpp
   requiredBy: []
-  timestamp: '2024-08-30 17:59:56+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2026-01-31 20:47:40+08:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yuki_1097.test.cpp
 documentation_of: ds/doubling.cpp
 layout: document
 redirect_from:

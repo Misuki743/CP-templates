@@ -4,11 +4,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/jump_on_tree_2.test.cpp
-    title: test/jump_on_tree_2.test.cpp
+    path: test/jump_on_tree.test.cpp
+    title: test/jump_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/lca.test.cpp
     title: test/lca.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/lowest_common_ancestor.test.cpp
+    title: test/lowest_common_ancestor.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest_tree.test.cpp
     title: test/mytest_tree.test.cpp
@@ -90,8 +93,9 @@ data:
   timestamp: '2026-01-30 20:10:19+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/lowest_common_ancestor.test.cpp
   - test/lca.test.cpp
-  - test/jump_on_tree_2.test.cpp
+  - test/jump_on_tree.test.cpp
   - test/mytest_tree.test.cpp
 documentation_of: tree/tree.cpp
 layout: document

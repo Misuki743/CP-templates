@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds_problem/pointAddRectangleSum.cpp
     title: ds_problem/pointAddRectangleSum.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression
   _extendedRequiredBy: []

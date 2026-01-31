@@ -118,6 +118,9 @@ data:
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/frequency_table_of_tree_distance.test.cpp
+    title: test/frequency_table_of_tree_distance.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -133,8 +136,8 @@ data:
     path: test/inverse_matrix.test.cpp
     title: test/inverse_matrix.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/jump_on_tree_2.test.cpp
-    title: test/jump_on_tree_2.test.cpp
+    path: test/jump_on_tree.test.cpp
+    title: test/jump_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -160,6 +163,9 @@ data:
     path: test/longest_increasing_subsequence.test.cpp
     title: test/longest_increasing_subsequence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/lowest_common_ancestor.test.cpp
+    title: test/lowest_common_ancestor.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/matching_on_bipartite_graph.test.cpp
     title: test/matching_on_bipartite_graph.test.cpp
   - icon: ':heavy_check_mark:'
@@ -172,12 +178,15 @@ data:
     path: test/matrix_rank_mod_2.test.cpp
     title: test/matrix_rank_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/maximum_independent_set.test.cpp
+    title: test/maximum_independent_set.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/min_plus_convolution_convex_arbitrary.test.cpp
     title: test/min_plus_convolution_convex_arbitrary.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/minimum_spanning_tree_Kruskal.test.cpp
     title: test/minimum_spanning_tree_Kruskal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/minimum_spanning_tree_Prim.test.cpp
     title: test/minimum_spanning_tree_Prim.test.cpp
   - icon: ':heavy_check_mark:'
@@ -219,6 +228,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/point_set_range_frequency.test.cpp
     title: test/point_set_range_frequency.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+    title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
@@ -309,76 +321,79 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/static_convex_hull.test.cpp
     title: test/static_convex_hull.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/static_range_count_distinct.test.cpp
     title: test/static_range_count_distinct.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/static_range_frequency.test.cpp
     title: test/static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
     title: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_second_kind_small_p_large_n.test.cpp
     title: test/stirling_number_of_second_kind_small_p_large_n.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_first_kind.test.cpp
     title: test/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_second_kind.test.cpp
     title: test/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/system_of_linear_equations.test.cpp
     title: test/system_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree_diameter.test.cpp
     title: test/tree_diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree_path_composite_sum.test.cpp
     title: test/tree_path_composite_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/two_edge_connected_components.test.cpp
     title: test/two_edge_connected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/two_sat.test.cpp
     title: test/two_sat.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unionfind.test.cpp
     title: test/unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unionfind_with_potential.test.cpp
     title: test/unionfind_with_potential.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/unionfind_with_potential_non_commutative_group.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/wildcard_pattern_matching.test.cpp
     title: test/wildcard_pattern_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/yuki_1097.test.cpp
+    title: test/yuki_1097.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yuki_1344.test.cpp
     title: test/yuki_1344.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_1868.test.cpp
     title: test/yuki_1868.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2544.test.cpp
     title: test/yuki_2544.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2606.test.cpp
     title: test/yuki_2606.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
   - icon: ':x:'
@@ -562,7 +577,9 @@ data:
   - test/chromatic_number.test.cpp
   - test/static_range_count_distinct.test.cpp
   - test/area_of_union_of_rectangles.test.cpp
+  - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - test/mul_modp_convolution.test.cpp
+  - test/maximum_independent_set.test.cpp
   - test/yuki_2613.test.cpp
   - test/primality_test.test.cpp
   - test/exp_of_formal_power_series.test.cpp
@@ -571,6 +588,7 @@ data:
   - test/unionfind.test.cpp
   - test/point_set_range_composite.test.cpp
   - test/assignment.test.cpp
+  - test/lowest_common_ancestor.test.cpp
   - test/log_of_formal_power_series.test.cpp
   - test/rooted_tree_isomorphism_classification.test.cpp
   - test/wildcard_pattern_matching.test.cpp
@@ -590,6 +608,7 @@ data:
   - test/addition_of_big_integers.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
   - test/mytest_enumerate_twelvefold.test.cpp
+  - test/frequency_table_of_tree_distance.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/range_set_range_composite.test.cpp
   - test/two_edge_connected_components.test.cpp
@@ -652,10 +671,10 @@ data:
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/bipartitematching.test.cpp
   - test/two_sat.test.cpp
-  - test/jump_on_tree_2.test.cpp
   - test/predecessor_problem.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
   - test/longest_common_substring.test.cpp
+  - test/jump_on_tree.test.cpp
   - test/counting_spanning_tree_directed.test.cpp
   - test/range_affine_point_get.test.cpp
   - test/determinant_of_matrix.test.cpp
@@ -667,6 +686,7 @@ data:
   - test/polynomial_interpolation.test.cpp
   - test/factorize.test.cpp
   - test/aho_corasick.test.cpp
+  - test/yuki_1097.test.cpp
   - test/subset_convolution.test.cpp
   - test/stirling_number_of_the_first_kind.test.cpp
   - test/matching_on_bipartite_graph.test.cpp

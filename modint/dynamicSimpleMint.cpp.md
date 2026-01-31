@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/binomial_coefficient_prime_mod.test.cpp
     title: test/binomial_coefficient_prime_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
     title: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_second_kind_small_p_large_n.test.cpp
     title: test/stirling_number_of_second_kind_small_p_large_n.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"modint/dynamicSimpleMint.cpp\"\ntemplate<uint32_t ver>\n\
@@ -68,7 +68,7 @@ data:
   path: modint/dynamicSimpleMint.cpp
   requiredBy: []
   timestamp: '2025-02-27 21:36:01+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/stirling_number_of_first_kind_small_p_large_n.test.cpp
   - test/stirling_number_of_second_kind_small_p_large_n.test.cpp

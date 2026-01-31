@@ -55,6 +55,9 @@ data:
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/frequency_table_of_tree_distance.test.cpp
+    title: test/frequency_table_of_tree_distance.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -106,6 +109,9 @@ data:
     path: test/point_set_range_composite.test.cpp
     title: test/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+    title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,45 +150,45 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_first_kind.test.cpp
     title: test/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_second_kind.test.cpp
     title: test/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/system_of_linear_equations.test.cpp
     title: test/system_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree_path_composite_sum.test.cpp
     title: test/tree_path_composite_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unionfind_with_potential.test.cpp
     title: test/unionfind_with_potential.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/unionfind_with_potential_non_commutative_group.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/wildcard_pattern_matching.test.cpp
     title: test/wildcard_pattern_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2544.test.cpp
     title: test/yuki_2544.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
@@ -253,8 +259,9 @@ data:
   path: modint/MontgomeryModInt.cpp
   requiredBy: []
   timestamp: '2025-01-16 19:25:04+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - test/mul_modp_convolution.test.cpp
   - test/yuki_2613.test.cpp
   - test/exp_of_formal_power_series.test.cpp
@@ -270,6 +277,7 @@ data:
   - test/pow_of_formal_power_series.test.cpp
   - test/addition_of_big_integers.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
+  - test/frequency_table_of_tree_distance.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/range_set_range_composite.test.cpp
   - test/yuki_2544.test.cpp

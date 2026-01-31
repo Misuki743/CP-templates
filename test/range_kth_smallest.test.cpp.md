@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/waveletMatrix.cpp
     title: waveletMatrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: compression
   _extendedRequiredBy: []

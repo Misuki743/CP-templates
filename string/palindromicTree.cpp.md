@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2606.test.cpp
     title: test/yuki_2606.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/palindromicTree.cpp\"\ntemplate<unsigned sigma =\
@@ -43,7 +43,7 @@ data:
   path: string/palindromicTree.cpp
   requiredBy: []
   timestamp: '2024-03-07 01:57:47+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki_2606.test.cpp
 documentation_of: string/palindromicTree.cpp

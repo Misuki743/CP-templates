@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_1868.test.cpp
     title: test/yuki_1868.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/shortest_path/BFS_01.cpp\"\ntemplate<integral T>\n\
@@ -31,7 +31,7 @@ data:
   path: graph/shortest_path/BFS_01.cpp
   requiredBy: []
   timestamp: '2026-01-31 03:10:37+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki_1868.test.cpp
 documentation_of: graph/shortest_path/BFS_01.cpp
