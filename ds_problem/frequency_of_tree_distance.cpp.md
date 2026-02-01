@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/frequency_table_of_tree_distance.test.cpp
     title: test/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds_problem/frequency_of_tree_distance.cpp\"\ntemplate<int32_t\
     \ k = 23, int32_t c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>\n\
     vector<Mint> frequency_of_tree_distance(vector<vector<int>> g) {\n  const int\
-    \ n = ssize(g);\n  NTT<k, c, r, Mint> Ntt;\n\n  auto [T, R] = centroidTree(g);\n\
+    \ n = ssize(g);\n  NTT<k, c, r, Mint> Ntt;\n\n  auto [T, R] = centroid_tree(g);\n\
     \  vector<bool> vis(n, false);\n  auto calc = [&](int s, int d0) {\n    vector<Mint>\
     \ freq(1);\n    auto dfs = [&](int v, int p, int d, auto &self) -> void {\n  \
     \    if (ssize(freq) <= d) freq.emplace_back(0);\n      if (d > 0) freq[d] +=\
@@ -33,7 +33,7 @@ data:
     \  for(Mint &x : ans) x *= (Mint::get_mod() + 1) / 2;\n  return ans;\n}\n"
   code: "template<int32_t k = 23, int32_t c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>\n\
     vector<Mint> frequency_of_tree_distance(vector<vector<int>> g) {\n  const int\
-    \ n = ssize(g);\n  NTT<k, c, r, Mint> Ntt;\n\n  auto [T, R] = centroidTree(g);\n\
+    \ n = ssize(g);\n  NTT<k, c, r, Mint> Ntt;\n\n  auto [T, R] = centroid_tree(g);\n\
     \  vector<bool> vis(n, false);\n  auto calc = [&](int s, int d0) {\n    vector<Mint>\
     \ freq(1);\n    auto dfs = [&](int v, int p, int d, auto &self) -> void {\n  \
     \    if (ssize(freq) <= d) freq.emplace_back(0);\n      if (d > 0) freq[d] +=\
@@ -54,8 +54,8 @@ data:
   isVerificationFile: false
   path: ds_problem/frequency_of_tree_distance.cpp
   requiredBy: []
-  timestamp: '2025-10-14 02:26:13+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-02-02 01:31:01+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/frequency_table_of_tree_distance.test.cpp
 documentation_of: ds_problem/frequency_of_tree_distance.cpp

@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds_problem/frequency_of_tree_distance.cpp
     title: ds_problem/frequency_of_tree_distance.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/crt.cpp
     title: numtheory/crt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/centroid_tree.cpp
     title: tree/centroid_tree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -220,7 +220,7 @@ data:
     \ {r0, m0};\n}\n#line 1 \"ds_problem/frequency_of_tree_distance.cpp\"\ntemplate<int32_t\
     \ k = 23, int32_t c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>\n\
     vector<Mint> frequency_of_tree_distance(vector<vector<int>> g) {\n  const int\
-    \ n = ssize(g);\n  NTT<k, c, r, Mint> Ntt;\n\n  auto [T, R] = centroidTree(g);\n\
+    \ n = ssize(g);\n  NTT<k, c, r, Mint> Ntt;\n\n  auto [T, R] = centroid_tree(g);\n\
     \  vector<bool> vis(n, false);\n  auto calc = [&](int s, int d0) {\n    vector<Mint>\
     \ freq(1);\n    auto dfs = [&](int v, int p, int d, auto &self) -> void {\n  \
     \    if (ssize(freq) <= d) freq.emplace_back(0);\n      if (d > 0) freq[d] +=\
@@ -267,8 +267,8 @@ data:
   isVerificationFile: true
   path: test/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2026-02-02 01:18:03+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-02-02 01:31:01+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/frequency_table_of_tree_distance.test.cpp
 layout: document
