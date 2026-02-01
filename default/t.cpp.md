@@ -226,6 +226,9 @@ data:
     path: test/mytest_tree.test.cpp
     title: test/mytest_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest_tree_diameter.test.cpp
+    title: test/mytest_tree_diameter.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/persistent_unionfind.test.cpp
     title: test/persistent_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -624,6 +627,7 @@ data:
   - test/static_range_frequency.test.cpp
   - test/primitive_root.test.cpp
   - test/counting_eulerian_circuits.test.cpp
+  - test/mytest_tree_diameter.test.cpp
   - test/point_set_range_frequency.test.cpp
   - test/convolution.test.cpp
   - test/bell_number.test.cpp

@@ -620,7 +620,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/tree.cpp
       title: tree/tree.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: tree/tree_diameter.cpp
       title: tree/tree_diameter.cpp
     - icon: ':heavy_check_mark:'
@@ -854,6 +854,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest_tree.test.cpp
       title: test/mytest_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest_tree_diameter.test.cpp
+      title: test/mytest_tree_diameter.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/persistent_unionfind.test.cpp
       title: test/persistent_unionfind.test.cpp

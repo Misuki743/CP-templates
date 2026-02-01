@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest_tree.test.cpp
     title: test/mytest_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest_tree_diameter.test.cpp
+    title: test/mytest_tree_diameter.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -27,6 +30,7 @@ data:
   timestamp: '2026-01-29 06:19:40+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest_tree_diameter.test.cpp
   - test/mytest_enumerate_twelvefold.test.cpp
   - test/mytest_tree.test.cpp
 documentation_of: enumerate/enumerate_bit.cpp

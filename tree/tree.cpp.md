@@ -13,6 +13,9 @@ data:
     path: test/mytest_tree.test.cpp
     title: test/mytest_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest_tree_diameter.test.cpp
+    title: test/mytest_tree_diameter.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -96,6 +99,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lca.test.cpp
+  - test/mytest_tree_diameter.test.cpp
   - test/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/jump_on_tree.test.cpp

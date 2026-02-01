@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest_tree_diameter.test.cpp
+    title: test/mytest_tree_diameter.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/tree_diameter.cpp\"\n//#include \"graph/tree.cpp\"\n\
@@ -24,8 +27,9 @@ data:
   path: tree/tree_diameter.cpp
   requiredBy: []
   timestamp: '2026-02-02 01:08:31+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest_tree_diameter.test.cpp
 documentation_of: tree/tree_diameter.cpp
 layout: document
 redirect_from:
