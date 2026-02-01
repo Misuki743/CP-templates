@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: tree/prufer_recover.cpp
     title: tree/prufer_recover.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/tree.cpp
     title: tree/tree.cpp
   _extendedRequiredBy: []

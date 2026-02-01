@@ -123,6 +123,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
+  - icon: ':x:'
+    path: test/frequency_table_of_tree_distance.test.cpp
+    title: test/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
@@ -384,13 +387,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/vertex_add_path_sum.test.cpp
     title: test/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/vertex_add_subtree_sum.test.cpp
     title: test/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/vertex_get_range_contour_add_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -629,6 +632,7 @@ data:
   - test/addition_of_big_integers.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
   - test/mytest_enumerate_twelvefold.test.cpp
+  - test/frequency_table_of_tree_distance.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/mytest_prime_table.test.cpp
   - test/range_set_range_composite.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/rerooting_DP.cpp
     title: dp/rerooting_DP.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []

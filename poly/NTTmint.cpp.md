@@ -33,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/exp_of_formal_power_series_sparse.test.cpp
     title: test/exp_of_formal_power_series_sparse.test.cpp
+  - icon: ':x:'
+    path: test/frequency_table_of_tree_distance.test.cpp
+    title: test/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series.test.cpp
     title: test/inv_of_formal_power_series.test.cpp
@@ -108,9 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/69896
@@ -172,7 +175,7 @@ data:
   path: poly/NTTmint.cpp
   requiredBy: []
   timestamp: '2024-01-24 20:41:29+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mul_modp_convolution.test.cpp
   - test/yuki_2613.test.cpp
@@ -184,6 +187,7 @@ data:
   - test/pow_of_formal_power_series.test.cpp
   - test/addition_of_big_integers.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
+  - test/frequency_table_of_tree_distance.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/yuki_2544.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp

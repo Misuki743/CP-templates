@@ -54,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
+  - icon: ':x:'
+    path: test/frequency_table_of_tree_distance.test.cpp
+    title: test/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
@@ -183,9 +186,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
@@ -256,7 +259,7 @@ data:
   path: modint/MontgomeryModInt.cpp
   requiredBy: []
   timestamp: '2025-01-16 19:25:04+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - test/mul_modp_convolution.test.cpp
@@ -274,6 +277,7 @@ data:
   - test/pow_of_formal_power_series.test.cpp
   - test/addition_of_big_integers.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
+  - test/frequency_table_of_tree_distance.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/range_set_range_composite.test.cpp
   - test/yuki_2544.test.cpp

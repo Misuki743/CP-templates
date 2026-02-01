@@ -4,14 +4,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/frequency_table_of_tree_distance.test.cpp
+    title: test/frequency_table_of_tree_distance.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/vertex_get_range_contour_add_on_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/centroid_tree.cpp\"\nauto centroid_tree(vvi &g) {\n\
@@ -43,8 +46,9 @@ data:
   path: tree/centroid_tree.cpp
   requiredBy: []
   timestamp: '2026-02-02 01:08:31+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/frequency_table_of_tree_distance.test.cpp
   - test/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/vertex_get_range_contour_add_on_tree.test.cpp
 documentation_of: tree/centroid_tree.cpp

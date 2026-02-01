@@ -130,13 +130,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fast_set.cpp
       title: ds/fast_set.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwickTree.cpp
       title: ds/fenwickTree.cpp
     - icon: ':heavy_check_mark:'
       path: ds/fenwickTree2D.cpp
       title: ds/fenwickTree2D.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashTable.cpp
       title: ds/hashTable.cpp
     - icon: ':warning:'
@@ -174,7 +174,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds_problem/area_of_union_of_rectangles.cpp
       title: ds_problem/area_of_union_of_rectangles.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds_problem/frequency_of_tree_distance.cpp
       title: ds_problem/frequency_of_tree_distance.cpp
     - icon: ':heavy_check_mark:'
@@ -398,7 +398,7 @@ data:
       title: misc/sharpPSubsetSum.cpp
   - name: modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':heavy_check_mark:'
@@ -409,7 +409,7 @@ data:
       title: modint/dynamicSimpleMint.cpp
   - name: numtheory
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: numtheory/crt.cpp
       title: numtheory/crt.cpp
     - icon: ':warning:'
@@ -492,7 +492,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/NTTanymod.cpp
       title: poly/NTTanymod.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/NTTmint.cpp
       title: poly/NTTmint.cpp
     - icon: ':heavy_check_mark:'
@@ -608,7 +608,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/cartesian_tree.cpp
       title: tree/cartesian_tree.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: tree/centroid_tree.cpp
       title: tree/centroid_tree.cpp
     - icon: ':heavy_check_mark:'
@@ -617,7 +617,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/static_top_tree.cpp
       title: tree/static_top_tree.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/tree.cpp
       title: tree/tree.cpp
     - icon: ':warning:'
@@ -1016,13 +1016,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/vertex_add_range_contour_sum_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_subtree_sum.test.cpp
       title: test/vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_get_range_contour_add_on_tree.test.cpp
       title: test/vertex_get_range_contour_add_on_tree.test.cpp
     - icon: ':heavy_check_mark:'

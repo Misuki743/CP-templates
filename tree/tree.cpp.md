@@ -12,15 +12,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest_tree.test.cpp
     title: test/mytest_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/vertex_get_range_contour_add_on_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/tree.cpp\"\nclass tree {\n  using i32 = int32_t;\n\n\
@@ -93,7 +93,7 @@ data:
   path: tree/tree.cpp
   requiredBy: []
   timestamp: '2026-02-02 01:08:31+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lca.test.cpp
   - test/vertex_add_range_contour_sum_on_tree.test.cpp

@@ -4,23 +4,23 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashTable.cpp
     title: ds/hashTable.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/centroid_tree.cpp
     title: tree/centroid_tree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/tree.cpp
     title: tree/tree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
@@ -165,9 +165,9 @@ data:
     \ q; cin >> n >> q;\n  vector<int> a(n);\n  for(int &x : a)\n    cin >> x;\n \
     \ vector<pii> e(n - 1);\n  for(auto &[u, v] : e)\n    cin >> u >> v;\n  vector<vector<int>>\
     \ g(n);\n  for(auto [u, v] : e) {\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n\
-    \  }\n\n  auto [g2, r] = centroidTree(g);\n\n  vector<int> p(n, -1);\n  auto dfs\
-    \ = [&](int v, auto self) -> void {\n    for(int x : g2[v]) {\n      if (x ==\
-    \ p[v]) continue;\n      p[x] = v;\n      self(x, self);\n    }\n  };\n  dfs(r,\
+    \  }\n\n  auto [g2, r] = centroid_tree(g);\n\n  vector<int> p(n, -1);\n  auto\
+    \ dfs = [&](int v, auto self) -> void {\n    for(int x : g2[v]) {\n      if (x\
+    \ == p[v]) continue;\n      p[x] = v;\n      self(x, self);\n    }\n  };\n  dfs(r,\
     \ dfs);\n\n  gp_hash_table<ll, int, custom_hash> toId;\n  vector<vector<array<int,\
     \ 2>>> cand(2 * n);\n  vector<int> base(2 * n);\n  vector<ll> init;\n  ::tree\
     \ tr(e);\n  for(int s = 0; s < n; s++) {\n    auto dfs = [&](int v, auto self)\
@@ -197,7 +197,7 @@ data:
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> a(n);\n  for(int\
     \ &x : a)\n    cin >> x;\n  vector<pii> e(n - 1);\n  for(auto &[u, v] : e)\n \
     \   cin >> u >> v;\n  vector<vector<int>> g(n);\n  for(auto [u, v] : e) {\n  \
-    \  g[u].emplace_back(v);\n    g[v].emplace_back(u);\n  }\n\n  auto [g2, r] = centroidTree(g);\n\
+    \  g[u].emplace_back(v);\n    g[v].emplace_back(u);\n  }\n\n  auto [g2, r] = centroid_tree(g);\n\
     \n  vector<int> p(n, -1);\n  auto dfs = [&](int v, auto self) -> void {\n    for(int\
     \ x : g2[v]) {\n      if (x == p[v]) continue;\n      p[x] = v;\n      self(x,\
     \ self);\n    }\n  };\n  dfs(r, dfs);\n\n  gp_hash_table<ll, int, custom_hash>\
@@ -231,8 +231,8 @@ data:
   isVerificationFile: true
   path: test/vertex_add_range_contour_sum_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-02-02 01:13:51+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-02-02 01:18:03+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_add_range_contour_sum_on_tree.test.cpp
 layout: document
