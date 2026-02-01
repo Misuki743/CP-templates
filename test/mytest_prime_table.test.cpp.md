@@ -123,40 +123,40 @@ data:
     \ to not copy the array by using &x = prime_array()\n  const vi& prime_array()\
     \ { return prime; }\n};\n#line 5 \"test/mytest_prime_table.test.cpp\"\n\nvoid\
     \ a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\ntemplate<int32_t\
-    \ N = 150>\nvoid check_small() {\n  if (N == 0) return;\n  {\n    prime_table<N>\
+    \ N = 70>\nvoid check_small() {\n  if (N == 0) return;\n  {\n    prime_table<N>\
     \ pt;\n\n    auto is_prime = [&](int x) {\n      if (x == 0 or x == 1) return\
     \ false;\n      for(int i = 2; i < x; i++)\n        if (x % i == 0)\n        \
     \  return false;\n      return true;\n    };\n\n    vi primes;\n    for(int i\
     \ = 0; i < N; i++) {\n      assert(pt.is_prime(i) == is_prime(i));\n      if (pt.is_prime(i))\n\
     \        primes.emplace_back(i);\n    }\n    assert(pt.prime_array() == primes);\n\
-    \  }\n  check_small<max(N - 1, 0)>();\n}\n\nbitset<(1 << 28)> is_prime = {};\n\
-    template<int32_t N = (1 << 28)>\nvoid check_power() {\n  if (N == 1) return;\n\
+    \  }\n  check_small<max(N - 1, 0)>();\n}\n\nbitset<(1 << 22)> is_prime = {};\n\
+    template<int32_t N = (1 << 22)>\nvoid check_power() {\n  if (N == 1) return;\n\
     \  {\n    prime_table<N> pt;\n\n    vi primes;\n    for(int i = 0; i < N; i++)\
     \ {\n      assert(pt.is_prime(i) == is_prime[i]);\n      if (pt.is_prime(i))\n\
     \        primes.emplace_back(i);\n    }\n    assert(pt.prime_array() == primes);\n\
     \  }\n  check_power<max(N >> 1, 1)>();\n}\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  check_small();\n\n  is_prime.set();\n  is_prime[0] = is_prime[1]\
-    \ = false;\n  for(int i = 2; i < (1 << 28); i++)\n    if (is_prime[i])\n     \
-    \ for(int j = 2 * i; j < (1 << 28); j += i)\n        is_prime[j] = false;\n  check_power();\n\
+    \ = false;\n  for(int i = 2; i < (1 << 22); i++)\n    if (is_prime[i])\n     \
+    \ for(int j = 2 * i; j < (1 << 22); j += i)\n        is_prime[j] = false;\n  check_power();\n\
     \n  a_plus_b();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../default/t.cpp\"\n#include \"../numtheory/prime_table.cpp\"\n\nvoid a_plus_b()\
     \ {\n  int a, b; cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\ntemplate<int32_t\
-    \ N = 150>\nvoid check_small() {\n  if (N == 0) return;\n  {\n    prime_table<N>\
+    \ N = 70>\nvoid check_small() {\n  if (N == 0) return;\n  {\n    prime_table<N>\
     \ pt;\n\n    auto is_prime = [&](int x) {\n      if (x == 0 or x == 1) return\
     \ false;\n      for(int i = 2; i < x; i++)\n        if (x % i == 0)\n        \
     \  return false;\n      return true;\n    };\n\n    vi primes;\n    for(int i\
     \ = 0; i < N; i++) {\n      assert(pt.is_prime(i) == is_prime(i));\n      if (pt.is_prime(i))\n\
     \        primes.emplace_back(i);\n    }\n    assert(pt.prime_array() == primes);\n\
-    \  }\n  check_small<max(N - 1, 0)>();\n}\n\nbitset<(1 << 28)> is_prime = {};\n\
-    template<int32_t N = (1 << 28)>\nvoid check_power() {\n  if (N == 1) return;\n\
+    \  }\n  check_small<max(N - 1, 0)>();\n}\n\nbitset<(1 << 22)> is_prime = {};\n\
+    template<int32_t N = (1 << 22)>\nvoid check_power() {\n  if (N == 1) return;\n\
     \  {\n    prime_table<N> pt;\n\n    vi primes;\n    for(int i = 0; i < N; i++)\
     \ {\n      assert(pt.is_prime(i) == is_prime[i]);\n      if (pt.is_prime(i))\n\
     \        primes.emplace_back(i);\n    }\n    assert(pt.prime_array() == primes);\n\
     \  }\n  check_power<max(N >> 1, 1)>();\n}\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  check_small();\n\n  is_prime.set();\n  is_prime[0] = is_prime[1]\
-    \ = false;\n  for(int i = 2; i < (1 << 28); i++)\n    if (is_prime[i])\n     \
-    \ for(int j = 2 * i; j < (1 << 28); j += i)\n        is_prime[j] = false;\n  check_power();\n\
+    \ = false;\n  for(int i = 2; i < (1 << 22); i++)\n    if (is_prime[i])\n     \
+    \ for(int j = 2 * i; j < (1 << 22); j += i)\n        is_prime[j] = false;\n  check_power();\n\
     \n  a_plus_b();\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
@@ -164,7 +164,7 @@ data:
   isVerificationFile: true
   path: test/mytest_prime_table.test.cpp
   requiredBy: []
-  timestamp: '2026-02-01 20:53:23+08:00'
+  timestamp: '2026-02-01 21:03:05+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_prime_table.test.cpp
