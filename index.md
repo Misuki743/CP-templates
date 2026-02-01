@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -109,7 +109,7 @@ data:
       title: ds/DSU/rollback_DSU.cpp
   - name: ds
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/RMQ.cpp
       title: ds/RMQ.cpp
     - icon: ':heavy_check_mark:'
@@ -174,7 +174,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds_problem/area_of_union_of_rectangles.cpp
       title: ds_problem/area_of_union_of_rectangles.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: ds_problem/frequency_of_tree_distance.cpp
       title: ds_problem/frequency_of_tree_distance.cpp
     - icon: ':heavy_check_mark:'
@@ -409,7 +409,7 @@ data:
       title: modint/dynamicSimpleMint.cpp
   - name: numtheory
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: numtheory/crt.cpp
       title: numtheory/crt.cpp
     - icon: ':warning:'
@@ -599,27 +599,24 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/HLD.cpp
       title: tree/HLD.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/LCA.cpp
       title: tree/LCA.cpp
-    - icon: ':warning:'
-      path: tree/STT_pathAggregate.cpp
-      title: tree/STT_pathAggregate.cpp
     - icon: ':warning:'
       path: tree/auxiliaryTree.cpp
       title: tree/auxiliaryTree.cpp
     - icon: ':heavy_check_mark:'
       path: tree/cartesian_tree.cpp
       title: tree/cartesian_tree.cpp
-    - icon: ':heavy_check_mark:'
-      path: tree/centroidTree.cpp
-      title: tree/centroidTree.cpp
+    - icon: ':warning:'
+      path: tree/centroid_tree.cpp
+      title: tree/centroid_tree.cpp
     - icon: ':heavy_check_mark:'
       path: tree/prufer_recover.cpp
       title: tree/prufer_recover.cpp
     - icon: ':heavy_check_mark:'
-      path: tree/staticTopTree.cpp
-      title: tree/staticTopTree.cpp
+      path: tree/static_top_tree.cpp
+      title: tree/static_top_tree.cpp
     - icon: ':heavy_check_mark:'
       path: tree/tree.cpp
       title: tree/tree.cpp
@@ -755,7 +752,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/find_linear_recurrence.test.cpp
       title: test/find_linear_recurrence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/frequency_table_of_tree_distance.test.cpp
       title: test/frequency_table_of_tree_distance.test.cpp
     - icon: ':heavy_check_mark:'
@@ -806,12 +803,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/longest_increasing_subsequence.test.cpp
       title: test/longest_increasing_subsequence.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/lowest_common_ancestor.test.cpp
-      title: test/lowest_common_ancestor.test.cpp
-    - icon: ':x:'
-      path: test/lowest_common_ancestor_2.test.cpp
-      title: test/lowest_common_ancestor_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/matching_on_bipartite_graph.test.cpp
       title: test/matching_on_bipartite_graph.test.cpp
@@ -1025,13 +1016,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/vertex_add_range_contour_sum_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/vertex_add_subtree_sum.test.cpp
       title: test/vertex_add_subtree_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/vertex_get_range_contour_add_on_tree.test.cpp
       title: test/vertex_get_range_contour_add_on_tree.test.cpp
     - icon: ':heavy_check_mark:'

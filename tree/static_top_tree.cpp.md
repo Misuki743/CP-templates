@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"tree/staticTopTree.cpp\"\n//rake keep left child as exposed\
+  bundledCode: "#line 1 \"tree/static_top_tree.cpp\"\n//rake keep left child as exposed\
     \ path\n//compress keep left child as higher path\nstruct static_top_tree {\n\
     \  vector<vector<int>> g;\n  int n;\n  vector<int> l, r, lc, rc, pa;\n  vector<bool>\
     \ rake;\n\n  using a2 = array<int, 2>;\n\n  static_top_tree(vector<vector<int>>\
@@ -68,16 +68,16 @@ data:
     \ + 1, v};\n    };\n    return dc(0, ssize(exposed), dc);\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: tree/staticTopTree.cpp
+  path: tree/static_top_tree.cpp
   requiredBy: []
-  timestamp: '2026-01-30 20:10:19+08:00'
+  timestamp: '2026-02-02 01:08:31+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/point_set_tree_path_composite_sum_fixed_root.test.cpp
-documentation_of: tree/staticTopTree.cpp
+documentation_of: tree/static_top_tree.cpp
 layout: document
 redirect_from:
-- /library/tree/staticTopTree.cpp
-- /library/tree/staticTopTree.cpp.html
-title: tree/staticTopTree.cpp
+- /library/tree/static_top_tree.cpp
+- /library/tree/static_top_tree.cpp.html
+title: tree/static_top_tree.cpp
 ---

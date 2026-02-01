@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -11,8 +11,8 @@ data:
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   - icon: ':heavy_check_mark:'
-    path: tree/staticTopTree.cpp
-    title: tree/staticTopTree.cpp
+    path: tree/static_top_tree.cpp
+    title: tree/static_top_tree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -137,7 +137,7 @@ data:
     \ mint operator/(mint c, mint d) { return c /= d; }\n\n  friend ostream& operator<<(ostream&\
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
-    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"tree/staticTopTree.cpp\"\
+    \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"tree/static_top_tree.cpp\"\
     \n//rake keep left child as exposed path\n//compress keep left child as higher\
     \ path\nstruct static_top_tree {\n  vector<vector<int>> g;\n  int n;\n  vector<int>\
     \ l, r, lc, rc, pa;\n  vector<bool> rake;\n\n  using a2 = array<int, 2>;\n\n \
@@ -195,7 +195,7 @@ data:
     \ << ddp.query().ans << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../tree/staticTopTree.cpp\"\n#include \"../dp/dynamicTreeDP.cpp\"\
+    \n#include \"../tree/static_top_tree.cpp\"\n#include \"../dp/dynamicTreeDP.cpp\"\
     \n\nstruct M {\n  mint a, b, ans, sz;\n};\n\nM rake(const M &a, const M &b) {\n\
     \  return M{a.a, a.b, a.ans + b.ans, a.sz + b.sz};\n}\nM compress(const M &a,\
     \ const M &b) {\n  return M{a.a * b.a, a.a * b.b + a.b, a.ans + b.ans * a.a +\
@@ -217,12 +217,12 @@ data:
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
-  - tree/staticTopTree.cpp
+  - tree/static_top_tree.cpp
   - dp/dynamicTreeDP.cpp
   isVerificationFile: true
   path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 20:47:40+08:00'
+  timestamp: '2026-02-02 01:08:31+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/point_set_tree_path_composite_sum_fixed_root.test.cpp

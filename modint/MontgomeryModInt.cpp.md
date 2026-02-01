@@ -55,9 +55,6 @@ data:
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/frequency_table_of_tree_distance.test.cpp
-    title: test/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -277,7 +274,6 @@ data:
   - test/pow_of_formal_power_series.test.cpp
   - test/addition_of_big_integers.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
-  - test/frequency_table_of_tree_distance.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/range_set_range_composite.test.cpp
   - test/yuki_2544.test.cpp

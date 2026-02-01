@@ -12,28 +12,27 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/prufer_recover.cpp\"\n//empty vector would be assumed\
-    \ to be n = 2\nvector<pii> prufer_recover(vector<int> prufer_code) {\n  const\
-    \ int n = ssize(prufer_code) + 2;\n  assert(prufer_code.empty() or (ranges::min(prufer_code)\
-    \ >= 0 and ranges::max(prufer_code) < n));\n  vector<int> d(n, 1);\n  for(int\
-    \ x : prufer_code) d[x]++;\n  min_heap<int> leaf;\n  for(int v = 0; v < n; v++)\n\
-    \    if (d[v] == 1)\n      leaf.emplace(v);\n  vector<pii> edges;\n  for(int x\
-    \ : prufer_code) {\n    int v = leaf.top(); leaf.pop();\n    edges.emplace_back(v,\
-    \ x);\n    if (--d[x] == 1)\n      leaf.emplace(x);\n  }\n  int v = leaf.top();\
-    \ leaf.pop();\n  edges.emplace_back(v, leaf.top());\n  return edges;\n}\n"
-  code: "//empty vector would be assumed to be n = 2\nvector<pii> prufer_recover(vector<int>\
-    \ prufer_code) {\n  const int n = ssize(prufer_code) + 2;\n  assert(prufer_code.empty()\
-    \ or (ranges::min(prufer_code) >= 0 and ranges::max(prufer_code) < n));\n  vector<int>\
-    \ d(n, 1);\n  for(int x : prufer_code) d[x]++;\n  min_heap<int> leaf;\n  for(int\
-    \ v = 0; v < n; v++)\n    if (d[v] == 1)\n      leaf.emplace(v);\n  vector<pii>\
+    \ to be n = 2\nvc<pii> prufer_recover(vi prufer_code) {\n  const int n = ssize(prufer_code)\
+    \ + 2;\n  assert(prufer_code.empty() or (ranges::min(prufer_code) >= 0 and ranges::max(prufer_code)\
+    \ < n));\n  vi d(n, 1);\n  for(int x : prufer_code) d[x]++;\n  min_heap<int> leaf;\n\
+    \  for(int v = 0; v < n; v++)\n    if (d[v] == 1)\n      leaf.emplace(v);\n  vc<pii>\
     \ edges;\n  for(int x : prufer_code) {\n    int v = leaf.top(); leaf.pop();\n\
     \    edges.emplace_back(v, x);\n    if (--d[x] == 1)\n      leaf.emplace(x);\n\
     \  }\n  int v = leaf.top(); leaf.pop();\n  edges.emplace_back(v, leaf.top());\n\
     \  return edges;\n}\n"
+  code: "//empty vector would be assumed to be n = 2\nvc<pii> prufer_recover(vi prufer_code)\
+    \ {\n  const int n = ssize(prufer_code) + 2;\n  assert(prufer_code.empty() or\
+    \ (ranges::min(prufer_code) >= 0 and ranges::max(prufer_code) < n));\n  vi d(n,\
+    \ 1);\n  for(int x : prufer_code) d[x]++;\n  min_heap<int> leaf;\n  for(int v\
+    \ = 0; v < n; v++)\n    if (d[v] == 1)\n      leaf.emplace(v);\n  vc<pii> edges;\n\
+    \  for(int x : prufer_code) {\n    int v = leaf.top(); leaf.pop();\n    edges.emplace_back(v,\
+    \ x);\n    if (--d[x] == 1)\n      leaf.emplace(x);\n  }\n  int v = leaf.top();\
+    \ leaf.pop();\n  edges.emplace_back(v, leaf.top());\n  return edges;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: tree/prufer_recover.cpp
   requiredBy: []
-  timestamp: '2026-01-30 20:10:19+08:00'
+  timestamp: '2026-02-02 01:08:31+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest_tree.test.cpp

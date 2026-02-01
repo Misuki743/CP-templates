@@ -19,14 +19,8 @@ data:
     path: test/vertex_add_path_sum.test.cpp
     title: test/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/vertex_add_range_contour_sum_on_tree.test.cpp
-    title: test/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/vertex_add_subtree_sum.test.cpp
     title: test/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/vertex_get_range_contour_add_on_tree.test.cpp
-    title: test/vertex_get_range_contour_add_on_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -62,9 +56,7 @@ data:
   - test/point_set_range_frequency.test.cpp
   - test/point_add_range_sum.test.cpp
   - test/rectangle_sum.test.cpp
-  - test/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/vertex_add_path_sum.test.cpp
-  - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/vertex_add_subtree_sum.test.cpp
 documentation_of: ds/fenwickTree.cpp
 layout: document

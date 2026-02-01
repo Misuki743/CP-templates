@@ -6,12 +6,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/associative_array.test.cpp
     title: test/associative_array.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/vertex_add_range_contour_sum_on_tree.test.cpp
-    title: test/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/vertex_get_range_contour_add_on_tree.test.cpp
-    title: test/vertex_get_range_contour_add_on_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -43,8 +37,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/associative_array.test.cpp
-  - test/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/vertex_get_range_contour_add_on_tree.test.cpp
 documentation_of: ds/hashTable.cpp
 layout: document
 redirect_from:

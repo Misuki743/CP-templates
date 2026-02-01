@@ -124,9 +124,6 @@ data:
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/frequency_table_of_tree_distance.test.cpp
-    title: test/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -174,12 +171,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/longest_increasing_subsequence.test.cpp
     title: test/longest_increasing_subsequence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/lowest_common_ancestor.test.cpp
-    title: test/lowest_common_ancestor.test.cpp
-  - icon: ':x:'
-    path: test/lowest_common_ancestor_2.test.cpp
-    title: test/lowest_common_ancestor_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/matching_on_bipartite_graph.test.cpp
     title: test/matching_on_bipartite_graph.test.cpp
@@ -394,14 +385,8 @@ data:
     path: test/vertex_add_path_sum.test.cpp
     title: test/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/vertex_add_range_contour_sum_on_tree.test.cpp
-    title: test/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/vertex_add_subtree_sum.test.cpp
     title: test/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/vertex_get_range_contour_add_on_tree.test.cpp
-    title: test/vertex_get_range_contour_add_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
@@ -429,9 +414,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -602,7 +587,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2026-01-31 03:10:37+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/chromatic_number.test.cpp
   - test/static_range_count_distinct.test.cpp
@@ -618,7 +603,6 @@ data:
   - test/unionfind.test.cpp
   - test/point_set_range_composite.test.cpp
   - test/assignment.test.cpp
-  - test/lowest_common_ancestor.test.cpp
   - test/log_of_formal_power_series.test.cpp
   - test/rooted_tree_isomorphism_classification.test.cpp
   - test/lca_2.test.cpp
@@ -638,9 +622,7 @@ data:
   - test/pow_of_formal_power_series.test.cpp
   - test/addition_of_big_integers.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
-  - test/lowest_common_ancestor_2.test.cpp
   - test/mytest_enumerate_twelvefold.test.cpp
-  - test/frequency_table_of_tree_distance.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/mytest_prime_table.test.cpp
   - test/range_set_range_composite.test.cpp
@@ -681,7 +663,6 @@ data:
   - test/cycle_detection_directed.test.cpp
   - test/find_linear_recurrence.test.cpp
   - test/counting_spanning_tree_undirected.test.cpp
-  - test/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/minimum_spanning_tree_Prim.test.cpp
   - test/point_add_rectangle_sum.test.cpp
   - test/yuki_1344.test.cpp
@@ -700,7 +681,6 @@ data:
   - test/biconnected_components.test.cpp
   - test/addition_of_big_integers_2.test.cpp
   - test/unionfind_with_potential.test.cpp
-  - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/vertex_add_subtree_sum.test.cpp
   - test/yuki_2654.test.cpp
   - test/shortest_path_sparse.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -115,18 +115,17 @@ data:
     \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
     \ < b ? a = b, 1 : 0; }\n\n#line 1 \"tree/prufer_recover.cpp\"\n//empty vector\
-    \ would be assumed to be n = 2\nvector<pii> prufer_recover(vector<int> prufer_code)\
-    \ {\n  const int n = ssize(prufer_code) + 2;\n  assert(prufer_code.empty() or\
-    \ (ranges::min(prufer_code) >= 0 and ranges::max(prufer_code) < n));\n  vector<int>\
-    \ d(n, 1);\n  for(int x : prufer_code) d[x]++;\n  min_heap<int> leaf;\n  for(int\
-    \ v = 0; v < n; v++)\n    if (d[v] == 1)\n      leaf.emplace(v);\n  vector<pii>\
-    \ edges;\n  for(int x : prufer_code) {\n    int v = leaf.top(); leaf.pop();\n\
-    \    edges.emplace_back(v, x);\n    if (--d[x] == 1)\n      leaf.emplace(x);\n\
-    \  }\n  int v = leaf.top(); leaf.pop();\n  edges.emplace_back(v, leaf.top());\n\
-    \  return edges;\n}\n#line 1 \"enumerate/enumerate_bit.cpp\"\n\ntemplate<typename\
-    \ F, typename INT>\nrequires invocable<F, INT>\nvoid enumerate_subset(INT msk,\
-    \ F f) {\n  for(INT x = msk; x > 0; x = (x - 1) & msk)\n    f(x);\n  f(0);\n}\n\
-    #line 1 \"enumerate/enumerate_twelvefold.cpp\"\n//#include \"enumerate/bit.cpp\"\
+    \ would be assumed to be n = 2\nvc<pii> prufer_recover(vi prufer_code) {\n  const\
+    \ int n = ssize(prufer_code) + 2;\n  assert(prufer_code.empty() or (ranges::min(prufer_code)\
+    \ >= 0 and ranges::max(prufer_code) < n));\n  vi d(n, 1);\n  for(int x : prufer_code)\
+    \ d[x]++;\n  min_heap<int> leaf;\n  for(int v = 0; v < n; v++)\n    if (d[v] ==\
+    \ 1)\n      leaf.emplace(v);\n  vc<pii> edges;\n  for(int x : prufer_code) {\n\
+    \    int v = leaf.top(); leaf.pop();\n    edges.emplace_back(v, x);\n    if (--d[x]\
+    \ == 1)\n      leaf.emplace(x);\n  }\n  int v = leaf.top(); leaf.pop();\n  edges.emplace_back(v,\
+    \ leaf.top());\n  return edges;\n}\n#line 1 \"enumerate/enumerate_bit.cpp\"\n\n\
+    template<typename F, typename INT>\nrequires invocable<F, INT>\nvoid enumerate_subset(INT\
+    \ msk, F f) {\n  for(INT x = msk; x > 0; x = (x - 1) & msk)\n    f(x);\n  f(0);\n\
+    }\n#line 1 \"enumerate/enumerate_twelvefold.cpp\"\n//#include \"enumerate/bit.cpp\"\
     \n\ntemplate<typename F>\nrequires invocable<F, vector<int>>\nvoid enumerate_cartesian_power(int\
     \ n, int k, F f) {\n  assert(min(n, k) >= 0);\n  vector<int> p(k);\n  auto dfs\
     \ = [&](int i, auto &self) -> void {\n    if (i == k) {\n      f(p);\n    } else\
@@ -184,68 +183,67 @@ data:
     \ for(int i = 0; hash[id][i] != -1; i++) {\n        g[v].emplace_back(nxt), g[nxt].emplace_back(v);\n\
     \        self(nxt++, hash[id][i], self);\n      }\n    };\n    dfs(nxt++, id,\
     \ dfs);\n    f(g);\n  }\n}\n#line 1 \"tree/tree.cpp\"\nclass tree {\n  using i32\
-    \ = int32_t;\n\n  vector<i32> ord;\n\n  public:\n\n  int n, root;\n  vector<int>\
-    \ p, sz, dep, jp;\n\n  void calc(vector<i32> d, vector<i32> adj) {\n    sz = vector<int>(n,\
-    \ 1);\n    p = dep = jp = vector<int>(n);\n\n    ord.reserve(n - 1);\n    for(int\
-    \ i = 0; i < n; i++) {\n      int v = i;\n      while(d[v] == 1) {\n        ord.emplace_back(v);\n\
+    \ = int32_t;\n\n  vc<i32> ord;\n\n  public:\n\n  int n, root;\n  vc<int> p, sz,\
+    \ dep, jp;\n\n  void calc(vc<i32> d, vc<i32> adj) {\n    sz = vi(n, 1);\n    p\
+    \ = dep = jp = vi(n);\n\n    ord.reserve(n - 1);\n    for(int i = 0; i < n; i++)\
+    \ {\n      int v = i;\n      while(d[v] == 1) {\n        ord.emplace_back(v);\n\
     \        p[v] = adj[v], sz[p[v]] += sz[v];\n        d[v] = 0, d[p[v]]--, adj[p[v]]\
     \ ^= v;\n        v = p[v];\n      }\n    }\n\n    assert(ssize(ord) == n - 1);\n\
     \n    p[root] = jp[root] = root;\n    for(i32 v : ord | views::reverse) {\n  \
     \    dep[v] = dep[p[v]] + 1;\n      if (dep[p[v]] + dep[jp[jp[p[v]]]] == 2 * dep[jp[p[v]]])\n\
     \        jp[v] = jp[jp[p[v]]];\n      else\n        jp[v] = p[v];\n    }\n  }\n\
-    \n  tree(vector<pii> e, int _root = 0) : n(size(e) + 1), root(_root) {\n    vector<i32>\
+    \n  tree(vc<pii> e, int _root = 0) : n(size(e) + 1), root(_root) {\n    vc<i32>\
     \ d(n), adj(n);\n    for(auto [u, v] : e)\n      d[u]++, d[v]++, adj[u] ^= v,\
-    \ adj[v] ^= u;\n    d[root] = 0;\n    calc(d, adj);\n  }\n\n  tree(vector<int>\
-    \ pa) : n(size(pa)) {\n    root = ranges::find(pa, -1) - pa.begin();\n    vector<i32>\
-    \ d(n), adj(n);\n    for(int v = 0; v < n; v++)\n      if (pa[v] != -1)\n    \
-    \    d[v]++, d[pa[v]]++, adj[v] ^= pa[v], adj[pa[v]] ^= v;\n    d[root] = 0;\n\
-    \    calc(d, adj);\n  }\n\n  int jump(int v, int k) {\n    k = min(k, dep[v]);\n\
-    \    while(k) {\n      if (int d = dep[v] - dep[jp[v]]; d <= k)\n        v = jp[v],\
-    \ k -= d;\n      else\n        v = p[v], k -= 1;\n    }\n    return v;\n  }\n\n\
-    \  int lca(int u, int v) {\n    if (dep[u] < dep[v])\n      swap(u, v);\n    u\
-    \ = jump(u, dep[u] - dep[v]);\n    if (u == v) return u;\n    while(p[u] != p[v])\
-    \ {\n      if (jp[u] != jp[v]) u = jp[u], v = jp[v];\n      else u = p[u], v =\
-    \ p[v];\n    }\n    return p[u];\n  }\n\n  int kth(int s, int t, int k) {\n  \
-    \  int m = lca(s, t);\n    if (dep[s] + dep[t] - 2 * dep[m] < k)\n      return\
-    \ -1;\n    else if (dep[s] - dep[m] >= k)\n      return jump(s, k);\n    else\n\
-    \      return jump(t, dep[s] + dep[t] - 2 * dep[m] - k);\n  }\n\n  int dis(int\
-    \ u, int v) {\n    return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n  }\n\n  int\
-    \ median(int u, int v, int w) {\n    return lca(u, v) ^ lca(u, w) ^ lca(v, w);\n\
-    \  }\n\n  auto centroid() {\n    array<int, 2> r = {-1, -1};\n    vector<bool>\
-    \ ok(n, true);\n    for(int v = 0; v < n; v++) {\n      if (2 * (n - sz[v]) >\
-    \ n)\n        ok[v] = false;\n      if (v != root and 2 * sz[v] > n)\n       \
-    \ ok[p[v]] = false;\n    }\n    for(int v = 0; v < n; v++)\n      if (ok[v])\n\
-    \        r[1] = v, swap(r[0], r[1]);\n    return r;\n  }\n};\n#line 10 \"test/mytest_tree.test.cpp\"\
-    \n\nvoid check(vector<vector<int>> g, int root) {\n  const int n = ssize(g);\n\
-    \  vector<int> p(n, root), sz(n, 1), dep(n);\n  auto dfs = [&](int v, auto &self)\
-    \ -> void {\n    for(int x : g[v]) {\n      if (x == p[v]) continue;\n      p[x]\
-    \ = v, dep[x] = dep[v] + 1;\n      self(x, self);\n      sz[v] += sz[x];\n   \
-    \ }\n  };\n  dfs(root, dfs);\n\n  vector<pii> e;\n  for(int u = 0; u < n; u++)\n\
-    \    for(int v : g[u])\n      if (u < v)\n        e.emplace_back(u, v);\n\n  tree\
-    \ T(e, root);\n  assert(tie(T.p, T.sz, T.dep) == tie(p, sz, dep));\n}\n\nauto\
-    \ random_relabel(vector<vector<int>> g) {\n  mt19937 rng(clock);\n  const int\
-    \ n = ssize(g);\n  vector<int> p(n);\n  iota(p.begin(), p.end(), 0);\n  shuffle(p.begin(),\
-    \ p.end(), rng);\n  vector<vector<int>> g2(n);\n  for(int u = 0; u < n; u++)\n\
-    \    for(int v : g[u])\n      g2[p[u]].eb(p[v]);\n  return pair(g2, p[0]);\n}\n\
-    \nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\
-    \nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  mt19937 rng(clock);\n\
-    \n  for(int n = 1; n <= 7; n++) {\n    enumerate_label_tree(n, [&](vector<vector<int>>\
-    \ g) {\n      for(int root = 0; root < n; root++)\n        check(g, root);\n \
-    \   });\n  }\n\n  for(int n = 1; n <= 15; n++) {\n    enumerate_unlabel_rooted_tree(n,\
-    \ [&](vector<vector<int>> g) {\n      check(g, 0);\n      auto [gp, root] = random_relabel(g);\n\
-    \      check(gp, root);\n    });\n  }\n\n  //path\n  for(int n = 1; n <= 100;\
-    \ n++) {\n    vector<vector<int>> g(n);\n    for(int i = 1; i < n; i++)\n    \
-    \  g[i].emplace_back(i - 1), g[i - 1].emplace_back(i);\n    check(g, 0);\n   \
-    \ check(g, n / 2);\n    check(g, n - 1);\n    auto [gp, root] = random_relabel(g);\n\
-    \    check(gp, root);\n  }\n\n  //star\n  for(int n = 2; n <= 100; n++) {\n  \
-    \  for(int root : {0, n / 2, n - 1}) {\n      vector<vector<int>> g(n);\n    \
-    \  for(int i = 0; i < n; i++)\n        if (i != root)\n          g[root].emplace_back(i),\
-    \ g[i].emplace_back(root);\n      check(g, root);\n    }\n  }\n\n  //almost path\n\
-    \  for(int tc = 0; tc < 30; tc++) {\n    int n = 500;\n    vector<vector<int>>\
-    \ g(n);\n    for(int v = 1; v < n; v++) {\n      int x = rng() % min(v, 5);\n\
-    \      g[v].emplace_back(x), g[x].emplace_back(v);\n    }\n    check(g, 0);\n\
-    \    auto [gp, root] = random_relabel(g);\n    check(gp, root);\n  }\n\n  a_plus_b();\n\
-    \n  return 0;\n}\n"
+    \ adj[v] ^= u;\n    d[root] = 0;\n    calc(d, adj);\n  }\n\n  tree(vi pa) : n(size(pa))\
+    \ {\n    root = ranges::find(pa, -1) - pa.begin();\n    vc<i32> d(n), adj(n);\n\
+    \    for(int v = 0; v < n; v++)\n      if (pa[v] != -1)\n        d[v]++, d[pa[v]]++,\
+    \ adj[v] ^= pa[v], adj[pa[v]] ^= v;\n    d[root] = 0;\n    calc(d, adj);\n  }\n\
+    \n  int jump(int v, int k) {\n    k = min(k, dep[v]);\n    while(k) {\n      if\
+    \ (int d = dep[v] - dep[jp[v]]; d <= k)\n        v = jp[v], k -= d;\n      else\n\
+    \        v = p[v], k -= 1;\n    }\n    return v;\n  }\n\n  int lca(int u, int\
+    \ v) {\n    if (dep[u] < dep[v])\n      swap(u, v);\n    u = jump(u, dep[u] -\
+    \ dep[v]);\n    if (u == v) return u;\n    while(p[u] != p[v]) {\n      if (jp[u]\
+    \ != jp[v]) u = jp[u], v = jp[v];\n      else u = p[u], v = p[v];\n    }\n   \
+    \ return p[u];\n  }\n\n  int kth(int s, int t, int k) {\n    int m = lca(s, t);\n\
+    \    if (dep[s] + dep[t] - 2 * dep[m] < k)\n      return -1;\n    else if (dep[s]\
+    \ - dep[m] >= k)\n      return jump(s, k);\n    else\n      return jump(t, dep[s]\
+    \ + dep[t] - 2 * dep[m] - k);\n  }\n\n  int dis(int u, int v) {\n    return dep[u]\
+    \ + dep[v] - 2 * dep[lca(u, v)];\n  }\n\n  int median(int u, int v, int w) {\n\
+    \    return lca(u, v) ^ lca(u, w) ^ lca(v, w);\n  }\n\n  auto centroid() {\n \
+    \   array<int, 2> r = {-1, -1};\n    vector<bool> ok(n, true);\n    for(int v\
+    \ = 0; v < n; v++) {\n      if (2 * (n - sz[v]) > n)\n        ok[v] = false;\n\
+    \      if (v != root and 2 * sz[v] > n)\n        ok[p[v]] = false;\n    }\n  \
+    \  for(int v = 0; v < n; v++)\n      if (ok[v])\n        r[1] = v, swap(r[0],\
+    \ r[1]);\n    return r;\n  }\n};\n#line 10 \"test/mytest_tree.test.cpp\"\n\nvoid\
+    \ check(vector<vector<int>> g, int root) {\n  const int n = ssize(g);\n  vector<int>\
+    \ p(n, root), sz(n, 1), dep(n);\n  auto dfs = [&](int v, auto &self) -> void {\n\
+    \    for(int x : g[v]) {\n      if (x == p[v]) continue;\n      p[x] = v, dep[x]\
+    \ = dep[v] + 1;\n      self(x, self);\n      sz[v] += sz[x];\n    }\n  };\n  dfs(root,\
+    \ dfs);\n\n  vector<pii> e;\n  for(int u = 0; u < n; u++)\n    for(int v : g[u])\n\
+    \      if (u < v)\n        e.emplace_back(u, v);\n\n  tree T(e, root);\n  assert(tie(T.p,\
+    \ T.sz, T.dep) == tie(p, sz, dep));\n}\n\nauto random_relabel(vector<vector<int>>\
+    \ g) {\n  mt19937 rng(clock);\n  const int n = ssize(g);\n  vector<int> p(n);\n\
+    \  iota(p.begin(), p.end(), 0);\n  shuffle(p.begin(), p.end(), rng);\n  vector<vector<int>>\
+    \ g2(n);\n  for(int u = 0; u < n; u++)\n    for(int v : g[u])\n      g2[p[u]].eb(p[v]);\n\
+    \  return pair(g2, p[0]);\n}\n\nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n\
+    \  cout << a + b << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  mt19937 rng(clock);\n\n  for(int n = 1; n <= 7; n++) {\n\
+    \    enumerate_label_tree(n, [&](vector<vector<int>> g) {\n      for(int root\
+    \ = 0; root < n; root++)\n        check(g, root);\n    });\n  }\n\n  for(int n\
+    \ = 1; n <= 15; n++) {\n    enumerate_unlabel_rooted_tree(n, [&](vector<vector<int>>\
+    \ g) {\n      check(g, 0);\n      auto [gp, root] = random_relabel(g);\n     \
+    \ check(gp, root);\n    });\n  }\n\n  //path\n  for(int n = 1; n <= 100; n++)\
+    \ {\n    vector<vector<int>> g(n);\n    for(int i = 1; i < n; i++)\n      g[i].emplace_back(i\
+    \ - 1), g[i - 1].emplace_back(i);\n    check(g, 0);\n    check(g, n / 2);\n  \
+    \  check(g, n - 1);\n    auto [gp, root] = random_relabel(g);\n    check(gp, root);\n\
+    \  }\n\n  //star\n  for(int n = 2; n <= 100; n++) {\n    for(int root : {0, n\
+    \ / 2, n - 1}) {\n      vector<vector<int>> g(n);\n      for(int i = 0; i < n;\
+    \ i++)\n        if (i != root)\n          g[root].emplace_back(i), g[i].emplace_back(root);\n\
+    \      check(g, root);\n    }\n  }\n\n  //almost path\n  for(int tc = 0; tc <\
+    \ 30; tc++) {\n    int n = 500;\n    vector<vector<int>> g(n);\n    for(int v\
+    \ = 1; v < n; v++) {\n      int x = rng() % min(v, 5);\n      g[v].emplace_back(x),\
+    \ g[x].emplace_back(v);\n    }\n    check(g, 0);\n    auto [gp, root] = random_relabel(g);\n\
+    \    check(gp, root);\n  }\n\n  a_plus_b();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../default/t.cpp\"\n#include \"../tree/prufer_recover.cpp\"\n#include \"../enumerate/enumerate_bit.cpp\"\
     \n#include \"../enumerate/enumerate_twelvefold.cpp\"\n#include \"../enumerate/enumerate_label_tree.cpp\"\
@@ -291,7 +289,7 @@ data:
   isVerificationFile: true
   path: test/mytest_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 03:47:42+08:00'
+  timestamp: '2026-02-02 01:08:31+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest_tree.test.cpp

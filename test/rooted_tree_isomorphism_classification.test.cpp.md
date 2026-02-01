@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -101,18 +101,18 @@ data:
     \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
     \ < b ? a = b, 1 : 0; }\n\n#line 1 \"tree/tree_hash.cpp\"\ntemplate<bool ordered\
-    \ = false>\npair<int, vector<int>> tree_hash(vector<vector<int>> &g, int root\
-    \ = 0) {\n  int nxt = 0;\n  static map<vector<int>, int> toId;\n  vector<int>\
-    \ id(ssize(g));\n  auto dfs = [&](int v, int p, auto self) -> int {\n    vector<int>\
-    \ seq;\n    seq.reserve(ssize(g[v]));\n    for(int x : g[v]) if (x != p)\n   \
-    \   seq.emplace_back(self(x, v, self));\n    if constexpr (!ordered)\n      ranges::sort(seq);\n\
-    \    if (!toId.contains(seq))\n      toId[seq] = nxt++;\n    return id[v] = toId[seq];\n\
-    \  };\n\n  dfs(root, -1, dfs);\n\n  return make_pair(nxt, id);\n}\n#line 5 \"\
-    test/rooted_tree_isomorphism_classification.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<vector<int>> g(n);\n  for(int\
-    \ u = 1; u < n; u++) {\n    int v; cin >> v;\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n\
-    \  }\n\n  auto [cnt, id] = tree_hash(g);\n  cout << cnt << '\\n';\n  cout << id\
-    \ << '\\n';\n\n  return 0;\n}\n"
+    \ = false>\nauto tree_hash(vvi &g, int root = 0) {\n  int nxt = 0;\n  static map<vi,\
+    \ int> seq_to_id;\n  vi subtree_id(size(g));\n  auto dfs = [&](int v, int p, auto\
+    \ self) -> int {\n    vi seq;\n    seq.reserve(ssize(g[v]));\n    for(int x :\
+    \ g[v]) if (x != p)\n      seq.emplace_back(self(x, v, self));\n    if constexpr\
+    \ (!ordered)\n      ranges::sort(seq);\n    if (!seq_to_id.contains(seq))\n  \
+    \    seq_to_id[seq] = nxt++;\n    return subtree_id[v] = seq_to_id[seq];\n  };\n\
+    \n  dfs(root, -1, dfs);\n\n  return pair(nxt, subtree_id);\n}\n#line 5 \"test/rooted_tree_isomorphism_classification.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
+    \ cin >> n;\n  vector<vector<int>> g(n);\n  for(int u = 1; u < n; u++) {\n   \
+    \ int v; cin >> v;\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n  }\n\
+    \n  auto [cnt, id] = tree_hash(g);\n  cout << cnt << '\\n';\n  cout << id << '\\\
+    n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../tree/tree_hash.cpp\"\n\nsigned\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n\
@@ -126,7 +126,7 @@ data:
   isVerificationFile: true
   path: test/rooted_tree_isomorphism_classification.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 03:47:42+08:00'
+  timestamp: '2026-02-02 01:08:31+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rooted_tree_isomorphism_classification.test.cpp

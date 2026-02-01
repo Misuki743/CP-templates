@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/frequency_table_of_tree_distance.test.cpp
-    title: test/frequency_table_of_tree_distance.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://github.com/atcoder/ac-library)
@@ -91,9 +88,8 @@ data:
   path: numtheory/crt.cpp
   requiredBy: []
   timestamp: '2024-09-22 15:08:26+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/frequency_table_of_tree_distance.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: numtheory/crt.cpp
 layout: document
 redirect_from:
