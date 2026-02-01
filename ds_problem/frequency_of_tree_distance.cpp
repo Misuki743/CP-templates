@@ -3,7 +3,7 @@ vector<Mint> frequency_of_tree_distance(vector<vector<int>> g) {
   const int n = ssize(g);
   NTT<k, c, r, Mint> Ntt;
 
-  auto [T, R] = centroidTree(g);
+  auto [T, R] = centroid_tree(g);
   vector<bool> vis(n, false);
   auto calc = [&](int s, int d0) {
     vector<Mint> freq(1);
