@@ -23,7 +23,7 @@ signed main() {
     g[v].emplace_back(u);
   }
 
-  auto [g2, r] = centroidTree(g);
+  auto [g2, r] = centroid_tree(g);
 
   vector<int> p(n, -1);
   auto dfs = [&](int v, auto self) -> void {

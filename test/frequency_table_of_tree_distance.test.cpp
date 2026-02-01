@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
 #include "../poly/NTTmint.cpp"
-#include "../tree/centroidTree.cpp"
+#include "../tree/centroid_tree.cpp"
 #include "../numtheory/crt.cpp"
 #include "../ds_problem/frequency_of_tree_distance.cpp"
 
