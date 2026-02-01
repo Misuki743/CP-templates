@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -121,21 +121,31 @@ data:
     \ - w, r));\n      l = (l + w) >> lgw, r >>= lgw;\n      if (l == r) return ret;\n\
     \      int range = bit_width((unsigned)(r - l)) - 1;\n      return min({ret, table[range][l],\
     \ table[range][r - (1 << range)]});\n    }\n  }\n};\n#line 1 \"tree/LCA.cpp\"\n\
-    //#include \"ds/RMQ.cpp\"\n\nstruct LCA {\n  vector<int> dep, tin, tout, mp;\n\
-    \  RMQ<int> rmq;\n\n  LCA(vector<vector<int>> g, int root = 0)\n  : dep(size(g)),\
-    \ tin(size(g)), tout(size(g)), mp(size(g)), rmq(vector<int>(1)) {\n\n    int t\
-    \ = 0;\n    vector<int> init(2 * ssize(g) - 1);\n    auto dfs = [&](int v, int\
-    \ p, auto &&self) -> void {\n      init[t] = v;\n      tin[v] = t++;\n      for(int\
-    \ x : g[v]) {\n        if (x == p) continue;\n        dep[x] = dep[v] + 1;\n \
-    \       self(x, v, self);\n        init[t++] = v;\n      }\n      tout[v] = t;\n\
-    \    };\n\n    dfs(root, -1, dfs);\n\n    vector<int> f(size(g));\n    for(int\
-    \ x : dep) f[x]++;\n    for(int i = 1; i < ssize(g); i++)\n      f[i] += f[i -\
-    \ 1];\n    vector<int> toOrd(size(g));\n    for(int i = 0; i < ssize(g); i++)\
-    \ {\n      toOrd[i] = --f[dep[i]];\n      mp[f[dep[i]]] = i;\n    }\n    for(int\
-    \ &x : init) x = toOrd[x];\n    rmq = RMQ(init);\n  }\n\n  int lca(int u, int\
-    \ v) {\n    if (tin[u] > tin[v]) swap(u, v);\n    return mp[rmq.query(tin[u],\
-    \ tout[v])];\n  }\n\n  int dis(int u, int v) {\n    return dep[u] + dep[v] - 2\
-    \ * dep[lca(u, v)];\n  }\n};\n#line 6 \"test/lowest_common_ancestor_2.test.cpp\"\
+    //#include \"ds/RMQ.cpp\"\n\nstruct LCA {\n  vi dep, tin, tout, mp;\n  RMQ<int>\
+    \ rmq;\n\n  vi precomp(vc<pii> &e, int root) {\n    const int n = ssize(e) + 1;\n\
+    \n    dep = tin = tout = mp = vi(n);\n\n    vi sz(n, 1), p(n), ord;\n    {\n \
+    \     vi adj(n), d(n);\n      for(auto &[u, v] : e)\n        adj[u] ^= v, adj[v]\
+    \ ^= u, d[u]++, d[v]++;\n\n      d[root] = 0, p[root] = root;\n      ord.reserve(n\
+    \ - 1);\n      for(int i = 0; i < n; i++) {\n        int v = i;\n        while(d[v]\
+    \ == 1) {\n          ord.emplace_back(v);\n          p[v] = adj[v], sz[p[v]] +=\
+    \ sz[v];\n          d[v] = 0, d[p[v]]--, adj[p[v]] ^= v;\n          v = p[v];\n\
+    \        }\n      }\n    }\n\n    vi dfn(n);\n    {\n      vi nxt(n, 1);\n   \
+    \   for(int v : ord | views::reverse) {\n        dfn[v] = nxt[p[v]], nxt[p[v]]\
+    \ += sz[v];\n        nxt[v] = dfn[v] + 1;\n        dep[v] = dep[p[v]] + 1;\n \
+    \     }\n      vi().swap(ord);\n      vi().swap(sz);\n    }\n\n    vi init(2 *\
+    \ n - 1);\n    {\n      vi dfn_ord = invPerm(std::move(dfn));\n\n      int nxt\
+    \ = 0, pre = root;\n      for(int v : dfn_ord) {\n        while(pre != p[v]) {\n\
+    \          pre = p[pre], tout[pre] = nxt;\n          init[nxt++] = pre;\n    \
+    \    }\n        tin[v] = tout[v] = nxt;\n        init[nxt++] = pre = v;\n    \
+    \  }\n\n      while(pre != root) {\n        pre = p[pre], tout[pre] = nxt;\n \
+    \       init[nxt++] = pre;\n      }\n    }\n\n    {\n      vi f(n);\n      for(int\
+    \ x : dep) f[x]++;\n      pSum(f);\n\n      vi rank(n);\n      for(int v = 0;\
+    \ v < n; v++) {\n        rank[v] = --f[dep[v]];\n        mp[rank[v]] = v;\n  \
+    \    }\n      for(int &v : init) v = rank[v];\n    }\n\n    return init;\n  }\n\
+    \n  LCA(vc<pii> e, int root = 0) : rmq(precomp(e, root)) {}\n\n  int lca(int u,\
+    \ int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n    return mp[rmq.query(tin[u],\
+    \ tout[v] + 1)];\n  }\n\n  int dis(int u, int v) {\n    return dep[u] + dep[v]\
+    \ - 2 * dep[lca(u, v)];\n  }\n};\n#line 6 \"test/lowest_common_ancestor_2.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
     \ q; cin >> n >> q;\n  vector<vector<int>> g(n);\n  for(int u = 1; u < n; u++)\
     \ {\n    int v; cin >> v;\n    g[v].emplace_back(u);\n  }\n\n  LCA lc(g);\n\n\
@@ -155,8 +165,8 @@ data:
   isVerificationFile: true
   path: test/lowest_common_ancestor_2.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 23:27:26+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-02-02 00:52:21+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/lowest_common_ancestor_2.test.cpp
 layout: document

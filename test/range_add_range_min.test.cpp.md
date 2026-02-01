@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: actedmonoid/actedMonoid_addMin.cpp
     title: actedmonoid/actedMonoid_addMin.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'

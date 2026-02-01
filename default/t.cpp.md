@@ -151,6 +151,12 @@ data:
     path: test/lca.test.cpp
     title: test/lca.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/lca_2.test.cpp
+    title: test/lca_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/lca_3.test.cpp
+    title: test/lca_3.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/lcm_convolution.test.cpp
     title: test/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -171,7 +177,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lowest_common_ancestor.test.cpp
     title: test/lowest_common_ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lowest_common_ancestor_2.test.cpp
     title: test/lowest_common_ancestor_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -423,9 +429,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -596,7 +602,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2026-01-31 03:10:37+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/chromatic_number.test.cpp
   - test/static_range_count_distinct.test.cpp
@@ -615,6 +621,7 @@ data:
   - test/lowest_common_ancestor.test.cpp
   - test/log_of_formal_power_series.test.cpp
   - test/rooted_tree_isomorphism_classification.test.cpp
+  - test/lca_2.test.cpp
   - test/wildcard_pattern_matching.test.cpp
   - test/yuki_1868.test.cpp
   - test/range_affine_range_sum.test.cpp
@@ -657,6 +664,7 @@ data:
   - test/yuki_2606.test.cpp
   - test/set_xor_min.test.cpp
   - test/matrix_rank_mod_2.test.cpp
+  - test/lca_3.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/system_of_linear_equations.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp

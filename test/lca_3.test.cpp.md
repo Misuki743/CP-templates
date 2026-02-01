@@ -4,9 +4,12 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
-    path: ds/binaryTrie.cpp
-    title: ds/binaryTrie.cpp
+  - icon: ':question:'
+    path: ds/RMQ.cpp
+    title: ds/RMQ.cpp
+  - icon: ':question:'
+    path: tree/LCA.cpp
+    title: tree/LCA.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,10 +17,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
+    PROBLEM: https://judge.yosupo.jp/problem/lca
     links:
-    - https://judge.yosupo.jp/problem/set_xor_min
-  bundledCode: "#line 1 \"test/set_xor_min.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\
+    - https://judge.yosupo.jp/problem/lca
+  bundledCode: "#line 1 \"test/lca_3.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
     \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
@@ -99,49 +102,74 @@ data:
     \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
     \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
-    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/binaryTrie.cpp\"\ntemplate<int mxBit,\
-    \ bool duplicate = false>\nstruct binaryTrie {\n  vector<array<int, 2>> nxt;\n\
-    \  vector<int> cnt;\n\n  binaryTrie(int size = 0) : nxt(1, {-1, -1}), cnt(1) {\n\
-    \    nxt.reserve(size);\n    cnt.reserve(size);\n  }\n\n  int count(ull x) {\n\
-    \    int v = 0;\n    for(int bit = mxBit; bit >= 0; bit--) {\n      ull to = x\
-    \ >> bit & 1;\n      if (nxt[v][to] == -1) return 0;\n      v = nxt[v][to];\n\
-    \    }\n    return cnt[v];\n  }\n\n  void insert(ull x) {\n    if constexpr (!duplicate)\
-    \ {\n      if (count(x)) return;\n    }\n    int v = 0;\n    cnt[0] += 1;\n  \
-    \  for(int bit = mxBit; bit >= 0; bit--) {\n      ull to = x >> bit & 1;\n   \
-    \   if (nxt[v][to] == -1) {\n        nxt[v][to] = ssize(nxt);\n        nxt.push_back({-1,\
-    \ -1});\n        cnt.emplace_back();\n      }\n      v = nxt[v][to], cnt[v] +=\
-    \ 1;\n    }\n  }\n\n  void erase(ull x) {\n    if (!count(x)) return;\n    int\
-    \ v = 0;\n    cnt[0] -= 1;\n    for(int bit = mxBit; bit >= 0; bit--)\n      v\
-    \ = nxt[v][x >> bit & 1], cnt[v] -= 1;\n  }\n\n  ull queryMin(ull Xor = 0LL) {\n\
-    \    assert(cnt[0] > 0);\n    ull res = 0;\n    int v = 0;\n    for(int bit =\
-    \ mxBit; bit >= 0; bit--) {\n      ull to = Xor >> bit & 1;\n      if (nxt[v][to]\
-    \ != -1 and cnt[nxt[v][to]] >= 1)\n        v = nxt[v][to];\n      else\n     \
-    \   res |= 1LL << bit, v = nxt[v][to ^ 1];\n    }\n    return res;\n  }\n};\n\
-    #line 5 \"test/set_xor_min.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  binaryTrie<29> tr(500000 * 30);\n\n  int q; cin >> q;\n\
-    \  while(q--) {\n    int t, x; cin >> t >> x;\n    if (t == 0)\n      tr.insert(x);\n\
-    \    else if (t == 1)\n      tr.erase(x);\n    else if (t == 2)\n      cout <<\
-    \ tr.queryMin(x) << '\\n';\n  }\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../ds/binaryTrie.cpp\"\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  binaryTrie<29> tr(500000 *\
-    \ 30);\n\n  int q; cin >> q;\n  while(q--) {\n    int t, x; cin >> t >> x;\n \
-    \   if (t == 0)\n      tr.insert(x);\n    else if (t == 1)\n      tr.erase(x);\n\
-    \    else if (t == 2)\n      cout << tr.queryMin(x) << '\\n';\n  }\n\n  return\
-    \ 0;\n}\n"
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/RMQ.cpp\"\ntemplate<class T>\nstruct RMQ\
+    \ {\n  uint64_t size;\n  vector<T> base;\n  vector<vector<T>> table;\n  vector<uint32_t>\
+    \ msk;\n\n  static const int lgw = 5;\n  static const int w = 1 << lgw;\n  RMQ(vector<T>\
+    \ _base) : size(ssize(_base)), base(_base), msk(size) {\n    msk.back() = 1;\n\
+    \    for(int i = size - 2; i >= 0; i--) {\n      msk[i] = msk[i + 1] << 1;\n \
+    \     while(msk[i] != 0 and base[i + countr_zero(msk[i])] >= base[i])\n      \
+    \  msk[i] ^= 1u << countr_zero(msk[i]);\n      msk[i] |= 1u;\n    }\n\n    table\
+    \ = vector(bit_width(size >> lgw), vector<T>(size >> lgw));\n    if (!table.empty())\n\
+    \      for(uint64_t i = 0; i + w <= size; i += w)\n        table[0][i >> lgw]\
+    \ = base[i + bit_width(msk[i]) - 1];\n    for(int i = 1; i < ssize(table); i++)\n\
+    \      for(uint64_t j = 0; j < (size >> lgw); j++)\n        if (j + (1 << (i -\
+    \ 1)) < (size >> lgw))\n          table[i][j] = min(table[i - 1][j], table[i -\
+    \ 1][j + (1 << (i - 1))]);\n        else\n          table[i][j] = table[i - 1][j];\n\
+    \  }\n\n  T query(int l, int r) {\n    if (l >= r) {\n      return numeric_limits<T>::max();\n\
+    \    } else if (r - l <= w) {\n      return base[l + bit_width(msk[l] & (~0u >>\
+    \ (w - (r - l)))) - 1];\n    } else {\n      T ret = min(query(l, l + w), query(r\
+    \ - w, r));\n      l = (l + w) >> lgw, r >>= lgw;\n      if (l == r) return ret;\n\
+    \      int range = bit_width((unsigned)(r - l)) - 1;\n      return min({ret, table[range][l],\
+    \ table[range][r - (1 << range)]});\n    }\n  }\n};\n#line 1 \"tree/LCA.cpp\"\n\
+    //#include \"ds/RMQ.cpp\"\n\nstruct LCA {\n  vi dep, tin, tout, mp;\n  RMQ<int>\
+    \ rmq;\n\n  vi precomp(vc<pii> &e, int root) {\n    const int n = ssize(e) + 1;\n\
+    \n    dep = tin = tout = mp = vi(n);\n\n    vi sz(n, 1), p(n), ord;\n    {\n \
+    \     vi adj(n), d(n);\n      for(auto &[u, v] : e)\n        adj[u] ^= v, adj[v]\
+    \ ^= u, d[u]++, d[v]++;\n\n      d[root] = 0, p[root] = root;\n      ord.reserve(n\
+    \ - 1);\n      for(int i = 0; i < n; i++) {\n        int v = i;\n        while(d[v]\
+    \ == 1) {\n          ord.emplace_back(v);\n          p[v] = adj[v], sz[p[v]] +=\
+    \ sz[v];\n          d[v] = 0, d[p[v]]--, adj[p[v]] ^= v;\n          v = p[v];\n\
+    \        }\n      }\n    }\n\n    vi dfn(n);\n    {\n      vi nxt(n, 1);\n   \
+    \   for(int v : ord | views::reverse) {\n        dfn[v] = nxt[p[v]], nxt[p[v]]\
+    \ += sz[v];\n        nxt[v] = dfn[v] + 1;\n        dep[v] = dep[p[v]] + 1;\n \
+    \     }\n      vi().swap(ord);\n      vi().swap(sz);\n    }\n\n    vi init(2 *\
+    \ n - 1);\n    {\n      vi dfn_ord = invPerm(std::move(dfn));\n\n      int nxt\
+    \ = 0, pre = root;\n      for(int v : dfn_ord) {\n        while(pre != p[v]) {\n\
+    \          pre = p[pre], tout[pre] = nxt;\n          init[nxt++] = pre;\n    \
+    \    }\n        tin[v] = tout[v] = nxt;\n        init[nxt++] = pre = v;\n    \
+    \  }\n\n      while(pre != root) {\n        pre = p[pre], tout[pre] = nxt;\n \
+    \       init[nxt++] = pre;\n      }\n    }\n\n    {\n      vi f(n);\n      for(int\
+    \ x : dep) f[x]++;\n      pSum(f);\n\n      vi rank(n);\n      for(int v = 0;\
+    \ v < n; v++) {\n        rank[v] = --f[dep[v]];\n        mp[rank[v]] = v;\n  \
+    \    }\n      for(int &v : init) v = rank[v];\n    }\n\n    return init;\n  }\n\
+    \n  LCA(vc<pii> e, int root = 0) : rmq(precomp(e, root)) {}\n\n  int lca(int u,\
+    \ int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n    return mp[rmq.query(tin[u],\
+    \ tout[v] + 1)];\n  }\n\n  int dis(int u, int v) {\n    return dep[u] + dep[v]\
+    \ - 2 * dep[lca(u, v)];\n  }\n};\n#line 6 \"test/lca_3.test.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
+    \ q;\n  vc<pii> e(n - 1);\n  for(int v = 1; auto &[x, y] : e) {\n    x = v++;\n\
+    \    cin >> y;\n  }\n\n  LCA lc(e, 0);\n\n  while(q--) {\n    int u, v; cin >>\
+    \ u >> v;\n    cout << lc.lca(u, v) << '\\n';\n  }\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include \"../default/t.cpp\"\
+    \n#include \"../ds/RMQ.cpp\"\n#include \"../tree/LCA.cpp\"\n\nsigned main() {\n\
+    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n\
+    \  vc<pii> e(n - 1);\n  for(int v = 1; auto &[x, y] : e) {\n    x = v++;\n   \
+    \ cin >> y;\n  }\n\n  LCA lc(e, 0);\n\n  while(q--) {\n    int u, v; cin >> u\
+    \ >> v;\n    cout << lc.lca(u, v) << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - ds/binaryTrie.cpp
+  - ds/RMQ.cpp
+  - tree/LCA.cpp
   isVerificationFile: true
-  path: test/set_xor_min.test.cpp
+  path: test/lca_3.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 03:10:37+08:00'
+  timestamp: '2026-02-02 00:52:21+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/set_xor_min.test.cpp
+documentation_of: test/lca_3.test.cpp
 layout: document
 redirect_from:
-- /verify/test/set_xor_min.test.cpp
-- /verify/test/set_xor_min.test.cpp.html
-title: test/set_xor_min.test.cpp
+- /verify/test/lca_3.test.cpp
+- /verify/test/lca_3.test.cpp.html
+title: test/lca_3.test.cpp
 ---
