@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/enumerate_primes.test.cpp
     title: test/enumerate_primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest_prime_table.test.cpp
     title: test/mytest_prime_table.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/prime_table.cpp\"\ntemplate<int32_t C>\nclass\
@@ -34,9 +34,9 @@ data:
     \ (table[(i + 23) / 2]) prime.emplace_back(i + 23);\n      if (table[(i + 29)\
     \ / 2]) prime.emplace_back(i + 29);\n    }\n\n    int n = ssize(prime) - 1;\n\
     \    while(n >= 0 and prime[n] >= C) n--;\n    prime.resize(n + 1);\n  }\n\n \
-    \ bool is_prime(int x) { return x == 2 or table[x / 2]; }\n  //make sure to not\
-    \ copy the array by using &x = prime_array()\n  const vi& prime_array() { return\
-    \ prime; }\n};\n"
+    \ bool is_prime(int x) { return x == 2 or ((x & 1) and table[x / 2]); }\n  //make\
+    \ sure to not copy the array by using &x = prime_array()\n  const vi& prime_array()\
+    \ { return prime; }\n};\n"
   code: "template<int32_t C>\nclass prime_table {\n  static constexpr int32_t D =\
     \ (C + 29) / 30 * 30;\n  bitset<D / 2> table = {};\n\n  public:\n\n  vi prime;\n\
     \n  prime_table() : prime({2, 3, 5}) {\n    table[3 / 2] = table[5 / 2] = true;\n\
@@ -56,15 +56,15 @@ data:
     \ + 19);\n      if (table[(i + 23) / 2]) prime.emplace_back(i + 23);\n      if\
     \ (table[(i + 29) / 2]) prime.emplace_back(i + 29);\n    }\n\n    int n = ssize(prime)\
     \ - 1;\n    while(n >= 0 and prime[n] >= C) n--;\n    prime.resize(n + 1);\n \
-    \ }\n\n  bool is_prime(int x) { return x == 2 or table[x / 2]; }\n  //make sure\
-    \ to not copy the array by using &x = prime_array()\n  const vi& prime_array()\
-    \ { return prime; }\n};\n"
+    \ }\n\n  bool is_prime(int x) { return x == 2 or ((x & 1) and table[x / 2]); }\n\
+    \  //make sure to not copy the array by using &x = prime_array()\n  const vi&\
+    \ prime_array() { return prime; }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: numtheory/prime_table.cpp
   requiredBy: []
-  timestamp: '2026-02-01 20:53:23+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-02-01 21:09:59+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest_prime_table.test.cpp
   - test/enumerate_primes.test.cpp

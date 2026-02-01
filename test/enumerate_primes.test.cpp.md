@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/prime_table.cpp
     title: numtheory/prime_table.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/https://judge.yosupo.jp/problem/enumerate_primes
+    PROBLEM: https://judge.yosupo.jp/problem/enumerate_primes
     links:
-    - https://judge.yosupo.jp/problem/https://judge.yosupo.jp/problem/enumerate_primes
-  bundledCode: "#line 1 \"test/enumerate_primes.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/https://judge.yosupo.jp/problem/enumerate_primes\"\
+    - https://judge.yosupo.jp/problem/enumerate_primes
+  bundledCode: "#line 1 \"test/enumerate_primes.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_primes\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
     \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
@@ -119,29 +119,29 @@ data:
     \ + 19);\n      if (table[(i + 23) / 2]) prime.emplace_back(i + 23);\n      if\
     \ (table[(i + 29) / 2]) prime.emplace_back(i + 29);\n    }\n\n    int n = ssize(prime)\
     \ - 1;\n    while(n >= 0 and prime[n] >= C) n--;\n    prime.resize(n + 1);\n \
-    \ }\n\n  bool is_prime(int x) { return x == 2 or table[x / 2]; }\n  //make sure\
-    \ to not copy the array by using &x = prime_array()\n  const vi& prime_array()\
-    \ { return prime; }\n};\n#line 5 \"test/enumerate_primes.test.cpp\"\n\nprime_table<500'000'001>\
+    \ }\n\n  bool is_prime(int x) { return x == 2 or ((x & 1) and table[x / 2]); }\n\
+    \  //make sure to not copy the array by using &x = prime_array()\n  const vi&\
+    \ prime_array() { return prime; }\n};\n#line 5 \"test/enumerate_primes.test.cpp\"\
+    \n\nprime_table<500'000'001> pt;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, a, b; cin >> n >> a >> b;\n  auto &prime = pt.prime_array();\n\
+    \  int pi = ranges::upper_bound(prime, n) - prime.begin();\n  cout << pi << '\
+    \ ' << (pi - 1 - b) / a + 1 << '\\n';\n  for(int i = b; i < pi; i += a)\n    cout\
+    \ << prime[i] << ' ';\n  cout << '\\n';\n\n  return 0;\n}\n\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_primes\"\n\n\
+    #include \"../default/t.cpp\"\n#include \"../numtheory/prime_table.cpp\"\n\nprime_table<500'000'001>\
     \ pt;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int\
     \ n, a, b; cin >> n >> a >> b;\n  auto &prime = pt.prime_array();\n  int pi =\
     \ ranges::upper_bound(prime, n) - prime.begin();\n  cout << pi << ' ' << (pi -\
     \ 1 - b) / a + 1 << '\\n';\n  for(int i = b; i < pi; i += a)\n    cout << prime[i]\
     \ << ' ';\n  cout << '\\n';\n\n  return 0;\n}\n\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/https://judge.yosupo.jp/problem/enumerate_primes\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../numtheory/prime_table.cpp\"\n\
-    \nprime_table<500'000'001> pt;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, a, b; cin >> n >> a >> b;\n  auto &prime = pt.prime_array();\n\
-    \  int pi = ranges::upper_bound(prime, n) - prime.begin();\n  cout << pi << '\
-    \ ' << (pi - 1 - b) / a + 1 << '\\n';\n  for(int i = b; i < pi; i += a)\n    cout\
-    \ << prime[i] << ' ';\n  cout << '\\n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - numtheory/prime_table.cpp
   isVerificationFile: true
   path: test/enumerate_primes.test.cpp
   requiredBy: []
-  timestamp: '2026-02-01 21:03:05+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-02-01 21:09:59+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/enumerate_primes.test.cpp
 layout: document
