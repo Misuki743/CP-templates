@@ -39,6 +39,7 @@
 "test/exp_of_formal_power_series_sparse.test.cpp": "2026-01-31 03:10:37 +0800",
 "test/factorize.test.cpp": "2026-01-31 03:10:37 +0800",
 "test/find_linear_recurrence.test.cpp": "2026-01-31 03:10:37 +0800",
+"test/frequency_table_of_tree_distance.test.cpp": "2026-02-02 01:31:01 +0800",
 "test/gcd_convolution.test.cpp": "2026-01-31 03:10:37 +0800",
 "test/incremental_scc.test.cpp": "2026-01-31 18:57:43 +0800",
 "test/inv_of_formal_power_series.test.cpp": "2026-01-31 03:10:37 +0800",
