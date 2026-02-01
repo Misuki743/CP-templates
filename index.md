@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -445,6 +445,9 @@ data:
     - icon: ':warning:'
       path: numtheory/primality_array.cpp
       title: numtheory/primality_array.cpp
+    - icon: ':x:'
+      path: numtheory/prime_table.cpp
+      title: numtheory/prime_table.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/primitive_root.cpp
       title: numtheory/primitive_root.cpp
@@ -722,6 +725,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/enumerate_palindromes.test.cpp
       title: test/enumerate_palindromes.test.cpp
+    - icon: ':x:'
+      path: test/enumerate_primes.test.cpp
+      title: test/enumerate_primes.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/enumerate_quotients.test.cpp
       title: test/enumerate_quotients.test.cpp
@@ -839,6 +845,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest_enumerate_twelvefold.test.cpp
       title: test/mytest_enumerate_twelvefold.test.cpp
+    - icon: ':x:'
+      path: test/mytest_prime_table.test.cpp
+      title: test/mytest_prime_table.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest_tree.test.cpp
       title: test/mytest_tree.test.cpp

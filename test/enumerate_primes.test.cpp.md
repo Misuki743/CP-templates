@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
-    path: ds/binaryTrie.cpp
-    title: ds/binaryTrie.cpp
+  - icon: ':x:'
+    path: numtheory/prime_table.cpp
+    title: numtheory/prime_table.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
+    PROBLEM: https://judge.yosupo.jp/problem/addition_of_big_integers
     links:
-    - https://judge.yosupo.jp/problem/set_xor_min
-  bundledCode: "#line 1 \"test/set_xor_min.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\
+    - https://judge.yosupo.jp/problem/addition_of_big_integers
+  bundledCode: "#line 1 \"test/enumerate_primes.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/addition_of_big_integers\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
     \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
@@ -99,49 +99,54 @@ data:
     \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
     \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
-    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/binaryTrie.cpp\"\ntemplate<int mxBit,\
-    \ bool duplicate = false>\nstruct binaryTrie {\n  vector<array<int, 2>> nxt;\n\
-    \  vector<int> cnt;\n\n  binaryTrie(int size = 0) : nxt(1, {-1, -1}), cnt(1) {\n\
-    \    nxt.reserve(size);\n    cnt.reserve(size);\n  }\n\n  int count(ull x) {\n\
-    \    int v = 0;\n    for(int bit = mxBit; bit >= 0; bit--) {\n      ull to = x\
-    \ >> bit & 1;\n      if (nxt[v][to] == -1) return 0;\n      v = nxt[v][to];\n\
-    \    }\n    return cnt[v];\n  }\n\n  void insert(ull x) {\n    if constexpr (!duplicate)\
-    \ {\n      if (count(x)) return;\n    }\n    int v = 0;\n    cnt[0] += 1;\n  \
-    \  for(int bit = mxBit; bit >= 0; bit--) {\n      ull to = x >> bit & 1;\n   \
-    \   if (nxt[v][to] == -1) {\n        nxt[v][to] = ssize(nxt);\n        nxt.push_back({-1,\
-    \ -1});\n        cnt.emplace_back();\n      }\n      v = nxt[v][to], cnt[v] +=\
-    \ 1;\n    }\n  }\n\n  void erase(ull x) {\n    if (!count(x)) return;\n    int\
-    \ v = 0;\n    cnt[0] -= 1;\n    for(int bit = mxBit; bit >= 0; bit--)\n      v\
-    \ = nxt[v][x >> bit & 1], cnt[v] -= 1;\n  }\n\n  ull queryMin(ull Xor = 0LL) {\n\
-    \    assert(cnt[0] > 0);\n    ull res = 0;\n    int v = 0;\n    for(int bit =\
-    \ mxBit; bit >= 0; bit--) {\n      ull to = Xor >> bit & 1;\n      if (nxt[v][to]\
-    \ != -1 and cnt[nxt[v][to]] >= 1)\n        v = nxt[v][to];\n      else\n     \
-    \   res |= 1LL << bit, v = nxt[v][to ^ 1];\n    }\n    return res;\n  }\n};\n\
-    #line 5 \"test/set_xor_min.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  binaryTrie<29> tr(500000 * 30);\n\n  int q; cin >> q;\n\
-    \  while(q--) {\n    int t, x; cin >> t >> x;\n    if (t == 0)\n      tr.insert(x);\n\
-    \    else if (t == 1)\n      tr.erase(x);\n    else if (t == 2)\n      cout <<\
-    \ tr.queryMin(x) << '\\n';\n  }\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../ds/binaryTrie.cpp\"\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  binaryTrie<29> tr(500000 *\
-    \ 30);\n\n  int q; cin >> q;\n  while(q--) {\n    int t, x; cin >> t >> x;\n \
-    \   if (t == 0)\n      tr.insert(x);\n    else if (t == 1)\n      tr.erase(x);\n\
-    \    else if (t == 2)\n      cout << tr.queryMin(x) << '\\n';\n  }\n\n  return\
-    \ 0;\n}\n"
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/prime_table.cpp\"\ntemplate<int32_t\
+    \ C>\nclass prime_table {\n  static constexpr int32_t D = (C + 29) / 30 * 30;\n\
+    \  bitset<D / 2> table = {};\n\n  public:\n\n  vi prime;\n\n  prime_table() :\
+    \ prime({2, 3, 5}) {\n    table[3 / 2] = table[5 / 2] = true;\n    for(int i =\
+    \ 0; i < D; i += 30) {\n      table[(i + 01) / 2] = table[(i + 07) / 2] =\n  \
+    \    table[(i + 11) / 2] = table[(i + 13) / 2] =\n      table[(i + 17) / 2] =\
+    \ table[(i + 19) / 2] =\n      table[(i + 23) / 2] = table[(i + 29) / 2] = true;\n\
+    \    }\n    table[1 / 2] = false;\n\n    const int32_t S = sqrtl(D) + 10;\n  \
+    \  for(int i = 7, j = 4; i < S; i += j, j ^= 6) {\n      if (table[i / 2]) {\n\
+    \        for(int k = ((i + 4) / 6 * 6 + 1) * i; k < D; k += 6 * i)\n         \
+    \ table[k / 2] = false;\n        for(int k = (i / 6 * 6 + 5) * i; k < D; k +=\
+    \ 6 * i)\n          table[k / 2] = false;\n      }\n    }\n\n    prime.reserve(1.1\
+    \ * D / log(D));\n    for(int i = 0; i < D; i += 30) {\n      if (table[(i + 01)\
+    \ / 2]) prime.emplace_back(i + 01);\n      if (table[(i + 07) / 2]) prime.emplace_back(i\
+    \ + 07);\n      if (table[(i + 11) / 2]) prime.emplace_back(i + 11);\n      if\
+    \ (table[(i + 13) / 2]) prime.emplace_back(i + 13);\n      if (table[(i + 17)\
+    \ / 2]) prime.emplace_back(i + 17);\n      if (table[(i + 19) / 2]) prime.emplace_back(i\
+    \ + 19);\n      if (table[(i + 23) / 2]) prime.emplace_back(i + 23);\n      if\
+    \ (table[(i + 29) / 2]) prime.emplace_back(i + 29);\n    }\n\n    int n = ssize(prime)\
+    \ - 1;\n    while(n >= 0 and prime[n] >= C) n--;\n    prime.resize(n + 1);\n \
+    \ }\n\n  bool is_prime(int x) { return x == 2 or table[x / 2]; }\n  //make sure\
+    \ to not copy the array by using &x = prime_array()\n  const vi& prime_array()\
+    \ { return prime; }\n};\n#line 5 \"test/enumerate_primes.test.cpp\"\n\nprime_table<500'000'001>\
+    \ pt;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int\
+    \ n, a, b; cin >> n >> a >> b;\n  auto &prime = pt.prime_array();\n  int pi =\
+    \ ranges::upper_bound(prime, n) - prime.begin();\n  cout << pi << ' ' << (pi -\
+    \ 1 - b) / a + 1 << '\\n';\n  for(int i = b; i < pi; i += a)\n    cout << prime[i]\
+    \ << ' ';\n  cout << '\\n';\n\n  return 0;\n}\n\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/addition_of_big_integers\"\
+    \n\n#include \"../default/t.cpp\"\n#include \"../numtheory/prime_table.cpp\"\n\
+    \nprime_table<500'000'001> pt;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, a, b; cin >> n >> a >> b;\n  auto &prime = pt.prime_array();\n\
+    \  int pi = ranges::upper_bound(prime, n) - prime.begin();\n  cout << pi << '\
+    \ ' << (pi - 1 - b) / a + 1 << '\\n';\n  for(int i = b; i < pi; i += a)\n    cout\
+    \ << prime[i] << ' ';\n  cout << '\\n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
-  - ds/binaryTrie.cpp
+  - numtheory/prime_table.cpp
   isVerificationFile: true
-  path: test/set_xor_min.test.cpp
+  path: test/enumerate_primes.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 03:10:37+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-02-01 20:53:23+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/set_xor_min.test.cpp
+documentation_of: test/enumerate_primes.test.cpp
 layout: document
 redirect_from:
-- /verify/test/set_xor_min.test.cpp
-- /verify/test/set_xor_min.test.cpp.html
-title: test/set_xor_min.test.cpp
+- /verify/test/enumerate_primes.test.cpp
+- /verify/test/enumerate_primes.test.cpp.html
+title: test/enumerate_primes.test.cpp
 ---

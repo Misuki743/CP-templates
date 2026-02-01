@@ -96,6 +96,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/enumerate_palindromes.test.cpp
     title: test/enumerate_palindromes.test.cpp
+  - icon: ':x:'
+    path: test/enumerate_primes.test.cpp
+    title: test/enumerate_primes.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/enumerate_quotients.test.cpp
     title: test/enumerate_quotients.test.cpp
@@ -213,6 +216,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest_enumerate_twelvefold.test.cpp
     title: test/mytest_enumerate_twelvefold.test.cpp
+  - icon: ':x:'
+    path: test/mytest_prime_table.test.cpp
+    title: test/mytest_prime_table.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest_tree.test.cpp
     title: test/mytest_tree.test.cpp
@@ -414,9 +420,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -587,7 +593,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2026-01-31 03:10:37+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/chromatic_number.test.cpp
   - test/static_range_count_distinct.test.cpp
@@ -626,6 +632,7 @@ data:
   - test/mytest_enumerate_twelvefold.test.cpp
   - test/frequency_table_of_tree_distance.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
+  - test/mytest_prime_table.test.cpp
   - test/range_set_range_composite.test.cpp
   - test/two_edge_connected_components.test.cpp
   - test/cycle_detection_undirected.test.cpp
@@ -725,6 +732,7 @@ data:
   - test/vertex_set_path_composite.test.cpp
   - test/gcd_convolution.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/enumerate_primes.test.cpp
   - test/convolution_1e9+7.test.cpp
 documentation_of: default/t.cpp
 layout: document
