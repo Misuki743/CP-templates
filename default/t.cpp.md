@@ -46,6 +46,9 @@ data:
     path: test/bipartitematching_2.test.cpp
     title: test/bipartitematching_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/cartesian_tree.test.cpp
+    title: test/cartesian_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/chromatic_number.test.cpp
     title: test/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -696,6 +699,7 @@ data:
   - test/bernoulli_number.test.cpp
   - test/double_ended_priority_queue.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
+  - test/cartesian_tree.test.cpp
   - test/bipartitematching.test.cpp
   - test/two_sat.test.cpp
   - test/predecessor_problem.test.cpp

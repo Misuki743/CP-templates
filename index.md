@@ -609,6 +609,9 @@ data:
       path: tree/auxiliaryTree.cpp
       title: tree/auxiliaryTree.cpp
     - icon: ':heavy_check_mark:'
+      path: tree/cartesian_tree.cpp
+      title: tree/cartesian_tree.cpp
+    - icon: ':heavy_check_mark:'
       path: tree/centroidTree.cpp
       title: tree/centroidTree.cpp
     - icon: ':heavy_check_mark:'
@@ -674,6 +677,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/bipartitematching_2.test.cpp
       title: test/bipartitematching_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/cartesian_tree.test.cpp
+      title: test/cartesian_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/chromatic_number.test.cpp
       title: test/chromatic_number.test.cpp
