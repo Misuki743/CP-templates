@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/https://judge.yosupo.jp/problem/enumerate_primes"
+#define PROBLEM "https://judge.yosupo.jp/problem/enumerate_primes"
 
 #include "../default/t.cpp"
 #include "../numtheory/prime_table.cpp"

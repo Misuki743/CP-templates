@@ -44,7 +44,7 @@ class prime_table {
     prime.resize(n + 1);
   }
 
-  bool is_prime(int x) { return x == 2 or table[x / 2]; }
+  bool is_prime(int x) { return x == 2 or ((x & 1) and table[x / 2]); }
   //make sure to not copy the array by using &x = prime_array()
   const vi& prime_array() { return prime; }
 };
