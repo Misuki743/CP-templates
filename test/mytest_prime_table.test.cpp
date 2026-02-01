@@ -8,7 +8,7 @@ void a_plus_b() {
   cout << a + b << '\n';
 }
 
-template<int32_t N = 150>
+template<int32_t N = 70>
 void check_small() {
   if (N == 0) return;
   {
@@ -33,8 +33,8 @@ void check_small() {
   check_small<max(N - 1, 0)>();
 }
 
-bitset<(1 << 28)> is_prime = {};
-template<int32_t N = (1 << 28)>
+bitset<(1 << 22)> is_prime = {};
+template<int32_t N = (1 << 22)>
 void check_power() {
   if (N == 1) return;
   {
@@ -58,9 +58,9 @@ signed main() {
 
   is_prime.set();
   is_prime[0] = is_prime[1] = false;
-  for(int i = 2; i < (1 << 28); i++)
+  for(int i = 2; i < (1 << 22); i++)
     if (is_prime[i])
-      for(int j = 2 * i; j < (1 << 28); j += i)
+      for(int j = 2 * i; j < (1 << 22); j += i)
         is_prime[j] = false;
   check_power();
 
