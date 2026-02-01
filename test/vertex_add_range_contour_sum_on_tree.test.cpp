@@ -5,7 +5,7 @@
 #include "../ds/hashTable.cpp"
 #include "../ds/fenwickTree.cpp"
 #include "../tree/tree.cpp"
-#include "../tree/centroidTree.cpp"
+#include "../tree/centroid_tree.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
