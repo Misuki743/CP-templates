@@ -1,10 +1,10 @@
-pair<vector<vector<int>>, int> centroidTree(vector<vector<int>> &g) {
+auto centroid_tree(vvi &g) {
   int n = ssize(g);
-  vector<vector<int>> g2(n);
-  vector<int> sz(n);
-  vector<bool> block(n, false);
+  vvi tr(n);
+  vi sz(n);
+  vc<bool> block(n, false);
 
-  auto calc = [&](int v, int p, auto self) -> void {
+  auto calc = [&](int v, int p, auto &self) -> void {
     sz[v] = 1;
     for(int x : g[v]) {
       if (x == p or block[x]) continue;
@@ -13,7 +13,7 @@ pair<vector<vector<int>>, int> centroidTree(vector<vector<int>> &g) {
     }
   };
 
-  auto dfs = [&](int v, auto self) -> int {
+  auto dfs = [&](int v, auto &self) -> int {
     calc(v, -1, calc);
 
     int c = v, p = -1;
@@ -31,8 +31,8 @@ pair<vector<vector<int>>, int> centroidTree(vector<vector<int>> &g) {
     for(int x : g[c]) {
       if (block[x]) continue;
       x = self(x, self);
-      g2[c].emplace_back(x);
-      g2[x].emplace_back(c);
+      tr[c].emplace_back(x);
+      tr[x].emplace_back(c);
     }
 
     return c;
@@ -40,5 +40,5 @@ pair<vector<vector<int>>, int> centroidTree(vector<vector<int>> &g) {
 
   int root = dfs(0, dfs);
 
-  return make_pair(g2, root);
+  return pair(tr, root);
 }

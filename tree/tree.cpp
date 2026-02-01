@@ -1,16 +1,16 @@
 class tree {
   using i32 = int32_t;
 
-  vector<i32> ord;
+  vc<i32> ord;
 
   public:
 
   int n, root;
-  vector<int> p, sz, dep, jp;
+  vc<int> p, sz, dep, jp;
 
-  void calc(vector<i32> d, vector<i32> adj) {
-    sz = vector<int>(n, 1);
-    p = dep = jp = vector<int>(n);
+  void calc(vc<i32> d, vc<i32> adj) {
+    sz = vi(n, 1);
+    p = dep = jp = vi(n);
 
     ord.reserve(n - 1);
     for(int i = 0; i < n; i++) {
@@ -35,17 +35,17 @@ class tree {
     }
   }
 
-  tree(vector<pii> e, int _root = 0) : n(size(e) + 1), root(_root) {
-    vector<i32> d(n), adj(n);
+  tree(vc<pii> e, int _root = 0) : n(size(e) + 1), root(_root) {
+    vc<i32> d(n), adj(n);
     for(auto [u, v] : e)
       d[u]++, d[v]++, adj[u] ^= v, adj[v] ^= u;
     d[root] = 0;
     calc(d, adj);
   }
 
-  tree(vector<int> pa) : n(size(pa)) {
+  tree(vi pa) : n(size(pa)) {
     root = ranges::find(pa, -1) - pa.begin();
-    vector<i32> d(n), adj(n);
+    vc<i32> d(n), adj(n);
     for(int v = 0; v < n; v++)
       if (pa[v] != -1)
         d[v]++, d[pa[v]]++, adj[v] ^= pa[v], adj[pa[v]] ^= v;

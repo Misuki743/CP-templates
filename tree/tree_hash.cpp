@@ -1,21 +1,21 @@
 template<bool ordered = false>
-pair<int, vector<int>> tree_hash(vector<vector<int>> &g, int root = 0) {
+auto tree_hash(vvi &g, int root = 0) {
   int nxt = 0;
-  static map<vector<int>, int> toId;
-  vector<int> id(ssize(g));
+  static map<vi, int> seq_to_id;
+  vi subtree_id(size(g));
   auto dfs = [&](int v, int p, auto self) -> int {
-    vector<int> seq;
+    vi seq;
     seq.reserve(ssize(g[v]));
     for(int x : g[v]) if (x != p)
       seq.emplace_back(self(x, v, self));
     if constexpr (!ordered)
       ranges::sort(seq);
-    if (!toId.contains(seq))
-      toId[seq] = nxt++;
-    return id[v] = toId[seq];
+    if (!seq_to_id.contains(seq))
+      seq_to_id[seq] = nxt++;
+    return subtree_id[v] = seq_to_id[seq];
   };
 
   dfs(root, -1, dfs);
 
-  return make_pair(nxt, id);
+  return pair(nxt, subtree_id);
 }
