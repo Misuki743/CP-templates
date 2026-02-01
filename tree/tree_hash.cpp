@@ -10,9 +10,9 @@ auto tree_hash(vvi &g, int root = 0) {
       seq.emplace_back(self(x, v, self));
     if constexpr (!ordered)
       ranges::sort(seq);
-    if (!seq_to_id.contains(seq))
-      seq_to_id[seq] = nxt++;
-    return subtree_id[v] = seq_to_id[seq];
+    auto [ite, insert] = seq_to_id.emplace(seq, nxt);
+    if (insert) nxt++;
+    return subtree_id[v] = ite -> second;
   };
 
   dfs(root, -1, dfs);
