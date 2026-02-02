@@ -310,9 +310,9 @@ data:
     \ root : {0, n / 2, n - 1}) {\n      vector<vector<int>> g(n);\n      for(int\
     \ i = 0; i < n; i++)\n        if (i != root)\n          g[root].emplace_back(i),\
     \ g[i].emplace_back(root);\n      check(g, root);\n      check(g, root == 0);\n\
-    \    }\n  }\n\n  //almost path\n  for(int tc = 0; tc < 30; tc++) {\n    int n\
-    \ = 500;\n    vector<vector<int>> g(n);\n    for(int v = 1; v < n; v++) {\n  \
-    \    int x = rng() % min(v, 5);\n      g[v].emplace_back(x), g[x].emplace_back(v);\n\
+    \    }\n  }\n\n  //almost path\n  for(int tc = 0; tc < 10; tc++) {\n    int n\
+    \ = 5'000;\n    vector<vector<int>> g(n);\n    for(int v = 1; v < n; v++) {\n\
+    \      int x = rng() % min(v, 5);\n      g[v].emplace_back(x), g[x].emplace_back(v);\n\
     \    }\n    for(int r : {0, n / 2, n - 1})\n      check(g, r);\n    g = random_relabel(g);\n\
     \    for(int r : {0, n / 2, n - 1})\n      check(g, r);\n  }\n\n  a_plus_b();\n\
     \n  return 0;\n}\n"
@@ -375,9 +375,9 @@ data:
     \ root : {0, n / 2, n - 1}) {\n      vector<vector<int>> g(n);\n      for(int\
     \ i = 0; i < n; i++)\n        if (i != root)\n          g[root].emplace_back(i),\
     \ g[i].emplace_back(root);\n      check(g, root);\n      check(g, root == 0);\n\
-    \    }\n  }\n\n  //almost path\n  for(int tc = 0; tc < 30; tc++) {\n    int n\
-    \ = 500;\n    vector<vector<int>> g(n);\n    for(int v = 1; v < n; v++) {\n  \
-    \    int x = rng() % min(v, 5);\n      g[v].emplace_back(x), g[x].emplace_back(v);\n\
+    \    }\n  }\n\n  //almost path\n  for(int tc = 0; tc < 10; tc++) {\n    int n\
+    \ = 5'000;\n    vector<vector<int>> g(n);\n    for(int v = 1; v < n; v++) {\n\
+    \      int x = rng() % min(v, 5);\n      g[v].emplace_back(x), g[x].emplace_back(v);\n\
     \    }\n    for(int r : {0, n / 2, n - 1})\n      check(g, r);\n    g = random_relabel(g);\n\
     \    for(int r : {0, n / 2, n - 1})\n      check(g, r);\n  }\n\n  a_plus_b();\n\
     \n  return 0;\n}\n"
@@ -394,7 +394,7 @@ data:
   isVerificationFile: true
   path: test/mytest_auxiliary_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-02-02 17:55:32+08:00'
+  timestamp: '2026-02-02 21:57:15+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest_auxiliary_tree.test.cpp
