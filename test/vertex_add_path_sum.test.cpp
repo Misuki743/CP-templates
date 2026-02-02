@@ -10,9 +10,11 @@ int main() {
   int n, q; cin >> n >> q;
   vll a(n);
   for(ll &x : a) cin >> x;
-  auto g = read_graph<false>(n, n - 1, 0);
+  vc<pii> e(n - 1);
+  for(auto &[u, v] : e)
+    cin >> u >> v;
 
-  HLD hld(g);
+  HLD hld(std::move(e));
   fenwickTree ft(hld.reorder_init(a));
   while(q--) {
     int op; cin >> op;
@@ -22,7 +24,6 @@ int main() {
     } else {
       int u, v; cin >> u >> v;
       ll sum = 0;
-      assert(hld.query_path(u, v).size() <= 100);
       for(auto [l, r] : hld.query_path(u, v))
         sum += ft.query(l, r);
       cout << sum << '\n';

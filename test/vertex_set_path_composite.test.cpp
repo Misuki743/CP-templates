@@ -17,9 +17,11 @@ signed main() {
   vc<array<mint, 2>> init(n);
   for(auto &[a, b] : init)
     cin >> a >> b;
-  auto g = read_graph<false>(n, n - 1, 0);
+  vc<pii> e(n - 1);
+  for(auto &[u, v] : e)
+    cin >> u >> v;
 
-  HLD hld(g);
+  HLD hld(std::move(e));
   init = hld.reorder_init(std::move(init));
   segmentTree<am::T, am::Tid, R_Top> st_rev(init);
   segmentTree<am::T, am::Tid, am::Top> st(init);

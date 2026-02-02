@@ -10,13 +10,13 @@ int main() {
   int n, q; cin >> n >> q;
   vll a(n);
   for(ll &x : a) cin >> x;
-  vvi g(n);
+  vc<pii> e;
   for(int v = 1; v < n; v++) {
     int p; cin >> p;
-    g[v].eb(p), g[p].eb(v);
+    e.emplace_back(p, v);
   }
 
-  HLD hld(g);
+  HLD hld(std::move(e));
   fenwickTree ft(hld.reorder_init(a));
   while(q--) {
     int op; cin >> op;

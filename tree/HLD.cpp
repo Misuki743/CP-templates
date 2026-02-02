@@ -5,47 +5,52 @@ struct HLD {
   inline int head(int v) const { return (p_head[v] & MSK) ? v : p_head[v]; }
   inline int head_parent(int v) const { return p_head[head(v)] & (MSK - 1); }
 
-  HLD(vvi g, int root = 0) {
-    dep = p_head = tin = tout = inv_tin = vi(size(g));
+  HLD(vc<pii> e, int root = 0) {
+    const int n = ssize(e) + 1;
 
-    vi sz(size(g), 1);
-    auto dfs = [&](int v, auto &self) -> void {
-      int mx_id = -1, p_id = -1;
-      for(int i = -1; int x : g[v]) {
-        i++;
-        if ((x | MSK) == p_head[v]) {
-          p_id = i;
-        } else {
-          p_head[x] = (v | MSK), dep[x] = dep[v] + 1;
-          self(x, self);
-          sz[v] += sz[x];
-          if (mx_id == -1 or sz[x] > sz[g[v][mx_id]])
-            mx_id = i;
+    dep = p_head = tin = tout = vi(n);
+
+    vi sz(n, 1), mx_child_sz(n, -1);
+    {
+      vi d(n);
+      for(auto [u, v] : e)
+        p_head[u] ^= v, p_head[v] ^= u, d[u]++, d[v]++;
+      d[root] = 0;
+      for(int i = 0; i < n; i++) {
+        int v = i;
+        while(d[v] == 1) {
+          d[v] = 0, d[p_head[v]]--, p_head[p_head[v]] ^= v;
+          sz[p_head[v]] += sz[v];
+          chmax(mx_child_sz[p_head[v]], sz[v]);
+          v = p_head[v];
         }
       }
-      if (mx_id != -1) swap(g[v][p_id == 0], g[v][mx_id]);
-      if (p_id != -1) g[v].erase(g[v].begin() + p_id);
-    };
+    }
 
-    p_head[root] = (root | MSK);
-    dfs(root, dfs);
+    vi ord(n);
+    {
+      vi f(n + 2);
+      for(int x : sz) f[x + 1]++;
+      pSum(f);
+      for(int v = 0; v < n; v++)
+        ord[n - 1 - (f[sz[v]]++)] = v;
+    }
 
-    int nxt = 0;
-    auto dfs2 = [&](int v, auto &self) -> void {
-      tin[v] = nxt++;
-      if (!g[v].empty())
-        p_head[g[v][0]] = head(v);
-      if (!g[v].empty()) {
-        vi sz_seq;
-        for(int x : g[v]) sz_seq.eb(sz[x]);
-        assert(ranges::max(sz_seq) == sz_seq[0]);
+    {
+      p_head[root] = (root | MSK), tout[root] = n;
+
+      vi add(n, 1);
+      for(int v : ord | views::drop(1)) {
+        dep[v] = dep[p_head[v]] + 1;
+        tin[v] = tin[p_head[v]] + add[p_head[v]];
+        add[p_head[v]] += sz[v];
+        tout[v] = tin[v] + sz[v];
+        if (mx_child_sz[p_head[v]] == sz[v])
+          mx_child_sz[p_head[v]] = 0, p_head[v] = head(p_head[v]);
+        else
+          p_head[v] |= MSK;
       }
-      for(int x : g[v])
-        self(x, self);
-      tout[v] = nxt;
-    };
-
-    dfs2(root, dfs2);
+    }
 
     inv_tin = invPerm(tin);
   }
