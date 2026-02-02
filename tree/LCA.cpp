@@ -86,4 +86,8 @@ struct LCA {
   int dis(int u, int v) {
     return dep[u] + dep[v] - 2 * dep[lca(u, v)];
   }
+
+  bool is_ancestor_of(int u, int v) {
+    return tin[u] <= tin[v] and tout[v] <= tout[u];
+  }
 };
