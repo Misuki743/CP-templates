@@ -1,9 +1,12 @@
 struct HLD {
   static const int MSK = (1 << 30);
-  vi dep, p_head, tin, tout;
+  vi dep, p_head, tin, tout, inv_tin;
+
+  inline int head(int v) const { return (p_head[v] & MSK) ? v : p_head[v]; }
+  inline int head_parent(int v) const { return p_head[head(v)] & (MSK - 1); }
 
   HLD(vvi g, int root = 0) {
-    dep = p_head = tin = tout = vi(size(g));
+    dep = p_head = tin = tout = inv_tin = vi(size(g));
 
     vi sz(size(g), 1);
     auto dfs = [&](int v, auto &self) -> void {
@@ -31,7 +34,7 @@ struct HLD {
     auto dfs2 = [&](int v, auto &self) -> void {
       tin[v] = nxt++;
       if (!g[v].empty())
-        p_head[g[v][0]] = ((p_head[v] & MSK) ? v : p_head[v]);
+        p_head[g[v][0]] = head(v);
       if (!g[v].empty()) {
         vi sz_seq;
         for(int x : g[v]) sz_seq.eb(sz[x]);
@@ -43,18 +46,17 @@ struct HLD {
     };
 
     dfs2(root, dfs2);
+
+    inv_tin = invPerm(tin);
   }
 
   auto query_path(int u, int v, bool edge = false) {
     vc<pii> lr;
-    int head_u = ((p_head[u] & MSK) ? u : p_head[u]);
-    int head_v = ((p_head[v] & MSK) ? v : p_head[v]);
-    while(head_u != head_v) {
-      if (dep[head_u] > dep[head_v])
-        swap(u, v), swap(head_u, head_v);
-      lr.emplace_back(tin[head_v], tin[v] + 1);
-      v = (p_head[head_v] & (MSK - 1));
-      head_v = ((p_head[v] & MSK) ? v : p_head[v]);
+    while(head(u) != head(v)) {
+      if (dep[head(u)] > dep[head(v)])
+        swap(u, v);
+      lr.emplace_back(tin[head(v)], tin[v] + 1);
+      v = head_parent(v);
     }
 
     if (tin[u] > tin[v]) swap(u, v);
@@ -68,17 +70,13 @@ struct HLD {
   //l > r: op(r - 1, op(r - 2, ...))
   auto query_path_non_commutative(int u, int v, bool edge = false) {
     vc<pii> lr1, lr2;
-    int head_u = ((p_head[u] & MSK) ? u : p_head[u]);
-    int head_v = ((p_head[v] & MSK) ? v : p_head[v]);
-    while(head_u != head_v) {
-      if (dep[head_u] > dep[head_v]) {
-        lr1.emplace_back(tin[u] + 1, tin[head_u]);
-        u = (p_head[head_u] & (MSK - 1));
-        head_u = ((p_head[u] & MSK) ? u : p_head[u]);
+    while(head(u) != head(v)) {
+      if (dep[head(u)] > dep[head(v)]) {
+        lr1.emplace_back(tin[u] + 1, tin[head(u)]);
+        u = head_parent(u);
       } else {
-        lr2.emplace_back(tin[head_v], tin[v] + 1);
-        v = (p_head[head_v] & (MSK - 1));
-        head_v = ((p_head[v] & MSK) ? v : p_head[v]);
+        lr2.emplace_back(tin[head(v)], tin[v] + 1);
+        v = head_parent(v);
       }
     }
 
@@ -95,6 +93,28 @@ struct HLD {
   auto query_subtree(int v) { return pii(tin[v], tout[v]); }
 
   int query_point(int v) { return tin[v]; }
+
+  int lca(int u, int v) {
+    while(head(u) != head(v)) {
+      if (dep[head(u)] > dep[head(v)])
+        swap(u, v);
+      v = head_parent(v);
+    }
+    return tin[u] < tin[v] ? u : v;
+  }
+
+  int kth(int s, int t, int k) {
+    int l = lca(s, t);
+    if (int d = dep[s] + dep[t] - 2 * dep[l]; k > d)
+      return -1;
+    else if (k > dep[s] - dep[l])
+      k = d - k, swap(s, t);
+    while(k > dep[s] - dep[head(s)]) {
+      k -= dep[s] - dep[head(s)] + 1;
+      s = head_parent(s);
+    }
+    return inv_tin[tin[s] - k];
+  }
 
   template<class M>
   vc<M> reorder_init(vc<M> init) {
