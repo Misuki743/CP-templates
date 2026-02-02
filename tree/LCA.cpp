@@ -11,9 +11,9 @@ struct LCA {
 
     vi sz(n, 1), p(n), ord;
     {
-      vi adj(n), d(n);
+      vi d(n);
       for(auto &[u, v] : e)
-        adj[u] ^= v, adj[v] ^= u, d[u]++, d[v]++;
+        p[u] ^= v, p[v] ^= u, d[u]++, d[v]++;
 
       d[root] = 0, p[root] = root;
       ord.reserve(n - 1);
@@ -21,8 +21,8 @@ struct LCA {
         int v = i;
         while(d[v] == 1) {
           ord.emplace_back(v);
-          p[v] = adj[v], sz[p[v]] += sz[v];
-          d[v] = 0, d[p[v]]--, adj[p[v]] ^= v;
+          sz[p[v]] += sz[v];
+          d[v] = 0, d[p[v]]--, p[p[v]] ^= v;
           v = p[v];
         }
       }
