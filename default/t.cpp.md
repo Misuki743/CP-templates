@@ -145,6 +145,12 @@ data:
     path: test/jump_on_tree.test.cpp
     title: test/jump_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/jump_on_tree_2.test.cpp
+    title: test/jump_on_tree_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/jump_on_tree_3.test.cpp
+    title: test/jump_on_tree_3.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -156,6 +162,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lca_3.test.cpp
     title: test/lca_3.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/lca_4.test.cpp
+    title: test/lca_4.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/lcm_convolution.test.cpp
     title: test/lcm_convolution.test.cpp
@@ -666,6 +675,7 @@ data:
   - test/lca_3.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/system_of_linear_equations.test.cpp
+  - test/jump_on_tree_3.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/line_add_get_min.test.cpp
   - test/associative_array.test.cpp
@@ -694,6 +704,7 @@ data:
   - test/vertex_add_path_sum.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
   - test/static_RMQ_2.test.cpp
+  - test/lca_4.test.cpp
   - test/matrix_product.test.cpp
   - test/minimum_spanning_tree_Kruskal.test.cpp
   - test/biconnected_components.test.cpp
@@ -709,6 +720,7 @@ data:
   - test/cartesian_tree.test.cpp
   - test/bipartitematching.test.cpp
   - test/two_sat.test.cpp
+  - test/jump_on_tree_2.test.cpp
   - test/predecessor_problem.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
   - test/longest_common_substring.test.cpp

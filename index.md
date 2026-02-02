@@ -774,6 +774,12 @@ data:
       path: test/jump_on_tree.test.cpp
       title: test/jump_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/jump_on_tree_2.test.cpp
+      title: test/jump_on_tree_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/jump_on_tree_3.test.cpp
+      title: test/jump_on_tree_3.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/kth_term_of_linearly_recurrent_sequence.test.cpp
     - icon: ':heavy_check_mark:'
@@ -785,6 +791,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lca_3.test.cpp
       title: test/lca_3.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/lca_4.test.cpp
+      title: test/lca_4.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/lcm_convolution.test.cpp
       title: test/lcm_convolution.test.cpp

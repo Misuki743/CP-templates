@@ -5,9 +5,6 @@ data:
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
-    path: ds/fenwickTree.cpp
-    title: ds/fenwickTree.cpp
-  - icon: ':heavy_check_mark:'
     path: tree/HLD.cpp
     title: tree/HLD.cpp
   _extendedRequiredBy: []
@@ -17,27 +14,27 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
+    PROBLEM: https://judge.yosupo.jp/problem/lca
     links:
-    - https://judge.yosupo.jp/problem/vertex_add_path_sum
-  bundledCode: "#line 1 \"test/vertex_add_path_sum.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\n#line 1 \"default/t.cpp\"\
-    \n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
-    #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
-    \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
-    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
-    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
-    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
-    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
-    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n\
-    #include <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include\
-    \ <sstream>\n#include <stack>\n#include <streambuf>\n#include <string>\n#include\
-    \ <tuple>\n#include <type_traits>\n#include <variant>\n#include <bit>\n#include\
-    \ <compare>\n#include <concepts>\n#include <numbers>\n#include <ranges>\n#include\
-    \ <span>\n\n#define INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128)\
-    \ * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX - 1)\n\n#define\
-    \ pb push_back\n#define eb emplace_back\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
-    \nusing namespace std;\n\ntemplate<size_t I = 0, typename... args>\nostream& print_tuple(ostream&\
+    - https://judge.yosupo.jp/problem/lca
+  bundledCode: "#line 1 \"test/lca_4.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\
+    \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
+    \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
+    \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
+    \ <cmath>\n#include <complex>\n#include <cstdarg>\n#include <cstddef>\n#include\
+    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
+    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
+    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
+    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
+    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
+    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
+    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
+    \ <variant>\n#include <bit>\n#include <compare>\n#include <concepts>\n#include\
+    \ <numbers>\n#include <ranges>\n#include <span>\n\n#define INT128_MAX (__int128)(((unsigned\
+    \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
+    \ (-INT128_MAX - 1)\n\n#define pb push_back\n#define eb emplace_back\n#define\
+    \ clock chrono::steady_clock::now().time_since_epoch().count()\n\nusing namespace\
+    \ std;\n\ntemplate<size_t I = 0, typename... args>\nostream& print_tuple(ostream&\
     \ os, const tuple<args...> tu) {\n  os << get<I>(tu);\n  if constexpr (I + 1 !=\
     \ sizeof...(args)) {\n    os << ' ';\n    print_tuple<I + 1>(os, tu);\n  }\n \
     \ return os;\n}\ntemplate<typename... args>\nostream& operator<<(ostream& os,\
@@ -144,48 +141,31 @@ data:
     \ + 1;\n      s = head_parent(s);\n    }\n    return inv_tin[tin[s] - k];\n  }\n\
     \n  template<class M>\n  vc<M> reorder_init(vc<M> init) {\n    assert(ssize(init)\
     \ == ssize(dep));\n    auto r = init;\n    for(int i = 0; i < ssize(init); i++)\n\
-    \      r[tin[i]] = init[i];\n    return r;\n  }\n};\n#line 1 \"ds/fenwickTree.cpp\"\
-    \ntemplate<class T>\nstruct fenwickTree {\n  const int size;\n  vector<T> data;\n\
-    \n  fenwickTree(int _size) : size(_size + 1), data(_size + 1) {}\n  fenwickTree(vector<T>\
-    \ init) : size(ssize(init) + 1), data(ssize(init) + 1) {\n    partial_sum(init.begin(),\
-    \ init.end(), data.begin() + 1);\n    for(int i = size - 1; i > 0; i--)\n    \
-    \  data[i] -= data[i - (i & (-i))];\n  }\n\n  void add(int i, T d) {\n    for(i\
-    \ += 1; i < size; i += i & (-i))\n      data[i] += d;\n  }\n\n  T query(int i)\
-    \ {\n    T res = T(0);\n    for(i += 1; i > 0; i -= i & (-i))\n      res += data[i];\n\
-    \    return res;\n  }\n\n  T query(int l, int r) { //query [l, r)\n    return\
-    \ query(r - 1) - query(l - 1);\n  }\n};\n#line 6 \"test/vertex_add_path_sum.test.cpp\"\
-    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
-    \ cin >> n >> q;\n  vll a(n);\n  for(ll &x : a) cin >> x;\n  auto g = read_graph<false>(n,\
-    \ n - 1, 0);\n\n  HLD hld(g);\n  fenwickTree ft(hld.reorder_init(a));\n  while(q--)\
-    \ {\n    int op; cin >> op;\n    if (op == 0) {\n      int p, x; cin >> p >> x;\n\
-    \      ft.add(hld.query_point(p), x);\n    } else {\n      int u, v; cin >> u\
-    \ >> v;\n      ll sum = 0;\n      assert(hld.query_path(u, v).size() <= 100);\n\
-    \      for(auto [l, r] : hld.query_path(u, v))\n        sum += ft.query(l, r);\n\
-    \      cout << sum << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\
-    \n#include \"../default/t.cpp\"\n#include \"../tree/HLD.cpp\"\n#include \"../ds/fenwickTree.cpp\"\
-    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
-    \ cin >> n >> q;\n  vll a(n);\n  for(ll &x : a) cin >> x;\n  auto g = read_graph<false>(n,\
-    \ n - 1, 0);\n\n  HLD hld(g);\n  fenwickTree ft(hld.reorder_init(a));\n  while(q--)\
-    \ {\n    int op; cin >> op;\n    if (op == 0) {\n      int p, x; cin >> p >> x;\n\
-    \      ft.add(hld.query_point(p), x);\n    } else {\n      int u, v; cin >> u\
-    \ >> v;\n      ll sum = 0;\n      assert(hld.query_path(u, v).size() <= 100);\n\
-    \      for(auto [l, r] : hld.query_path(u, v))\n        sum += ft.query(l, r);\n\
-    \      cout << sum << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+    \      r[tin[i]] = init[i];\n    return r;\n  }\n};\n#line 5 \"test/lca_4.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vvi g(n);\n  for(int v = 1; v < n; v++) {\n    int p; cin\
+    \ >> p;\n    g[v].eb(p), g[p].eb(v);\n  }\n\n  HLD hld(g);\n  while(q--) {\n \
+    \   int u, v; cin >> u >> v;\n    cout << hld.lca(u, v) << '\\n';\n  }\n\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include \"../default/t.cpp\"\
+    \n#include \"../tree/HLD.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vvi g(n);\n  for(int v = 1;\
+    \ v < n; v++) {\n    int p; cin >> p;\n    g[v].eb(p), g[p].eb(v);\n  }\n\n  HLD\
+    \ hld(g);\n  while(q--) {\n    int u, v; cin >> u >> v;\n    cout << hld.lca(u,\
+    \ v) << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - tree/HLD.cpp
-  - ds/fenwickTree.cpp
   isVerificationFile: true
-  path: test/vertex_add_path_sum.test.cpp
+  path: test/lca_4.test.cpp
   requiredBy: []
   timestamp: '2026-02-02 22:55:43+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/vertex_add_path_sum.test.cpp
+documentation_of: test/lca_4.test.cpp
 layout: document
 redirect_from:
-- /verify/test/vertex_add_path_sum.test.cpp
-- /verify/test/vertex_add_path_sum.test.cpp.html
-title: test/vertex_add_path_sum.test.cpp
+- /verify/test/lca_4.test.cpp
+- /verify/test/lca_4.test.cpp.html
+title: test/lca_4.test.cpp
 ---

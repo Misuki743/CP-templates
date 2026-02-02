@@ -103,59 +103,62 @@ data:
     \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
     \ < b ? a = b, 1 : 0; }\n\n#line 1 \"tree/HLD.cpp\"\nstruct HLD {\n  static const\
-    \ int MSK = (1 << 30);\n  vi dep, p_head, tin, tout;\n\n  HLD(vvi g, int root\
-    \ = 0) {\n    dep = p_head = tin = tout = vi(size(g));\n\n    vi sz(size(g), 1);\n\
-    \    auto dfs = [&](int v, auto &self) -> void {\n      int mx_id = -1, p_id =\
-    \ -1;\n      for(int i = -1; int x : g[v]) {\n        i++;\n        if ((x | MSK)\
-    \ == p_head[v]) {\n          p_id = i;\n        } else {\n          p_head[x]\
-    \ = (v | MSK), dep[x] = dep[v] + 1;\n          self(x, self);\n          sz[v]\
-    \ += sz[x];\n          if (mx_id == -1 or sz[x] > sz[g[v][mx_id]])\n         \
-    \   mx_id = i;\n        }\n      }\n      if (mx_id != -1) swap(g[v][p_id == 0],\
-    \ g[v][mx_id]);\n      if (p_id != -1) g[v].erase(g[v].begin() + p_id);\n    };\n\
-    \n    p_head[root] = (root | MSK);\n    dfs(root, dfs);\n\n    int nxt = 0;\n\
-    \    auto dfs2 = [&](int v, auto &self) -> void {\n      tin[v] = nxt++;\n   \
-    \   if (!g[v].empty())\n        p_head[g[v][0]] = ((p_head[v] & MSK) ? v : p_head[v]);\n\
-    \      if (!g[v].empty()) {\n        vi sz_seq;\n        for(int x : g[v]) sz_seq.eb(sz[x]);\n\
-    \        assert(ranges::max(sz_seq) == sz_seq[0]);\n      }\n      for(int x :\
-    \ g[v])\n        self(x, self);\n      tout[v] = nxt;\n    };\n\n    dfs2(root,\
-    \ dfs2);\n  }\n\n  auto query_path(int u, int v, bool edge = false) {\n    vc<pii>\
-    \ lr;\n    int head_u = ((p_head[u] & MSK) ? u : p_head[u]);\n    int head_v =\
-    \ ((p_head[v] & MSK) ? v : p_head[v]);\n    while(head_u != head_v) {\n      if\
-    \ (dep[head_u] > dep[head_v])\n        swap(u, v), swap(head_u, head_v);\n   \
-    \   lr.emplace_back(tin[head_v], tin[v] + 1);\n      v = (p_head[head_v] & (MSK\
-    \ - 1));\n      head_v = ((p_head[v] & MSK) ? v : p_head[v]);\n    }\n\n    if\
-    \ (tin[u] > tin[v]) swap(u, v);\n    if (tin[u] + edge <= tin[v])\n      lr.emplace_back(tin[u]\
-    \ + edge, tin[v] + 1);\n\n    return lr;\n  }\n\n  //l < r: op(l, op(l + 1, ...))\n\
-    \  //l > r: op(r - 1, op(r - 2, ...))\n  auto query_path_non_commutative(int u,\
-    \ int v, bool edge = false) {\n    vc<pii> lr1, lr2;\n    int head_u = ((p_head[u]\
-    \ & MSK) ? u : p_head[u]);\n    int head_v = ((p_head[v] & MSK) ? v : p_head[v]);\n\
-    \    while(head_u != head_v) {\n      if (dep[head_u] > dep[head_v]) {\n     \
-    \   lr1.emplace_back(tin[u] + 1, tin[head_u]);\n        u = (p_head[head_u] &\
-    \ (MSK - 1));\n        head_u = ((p_head[u] & MSK) ? u : p_head[u]);\n      }\
-    \ else {\n        lr2.emplace_back(tin[head_v], tin[v] + 1);\n        v = (p_head[head_v]\
-    \ & (MSK - 1));\n        head_v = ((p_head[v] & MSK) ? v : p_head[v]);\n     \
-    \ }\n    }\n\n    if (tin[u] + edge <= tin[v])\n      lr2.emplace_back(tin[u]\
-    \ + edge, tin[v] + 1);\n    else if (tin[v] + edge <= tin[u])\n      lr1.emplace_back(tin[u]\
-    \ + 1, tin[v] + edge);\n\n    lr1.insert(end(lr1), lr2.rbegin(), lr2.rend());\n\
-    \n    return lr1;\n  }\n\n  auto query_subtree(int v) { return pii(tin[v], tout[v]);\
-    \ }\n\n  int query_point(int v) { return tin[v]; }\n\n  template<class M>\n  vc<M>\
-    \ reorder_init(vc<M> init) {\n    assert(ssize(init) == ssize(dep));\n    auto\
-    \ r = init;\n    for(int i = 0; i < ssize(init); i++)\n      r[tin[i]] = init[i];\n\
-    \    return r;\n  }\n};\n#line 1 \"ds/fenwickTree.cpp\"\ntemplate<class T>\nstruct\
-    \ fenwickTree {\n  const int size;\n  vector<T> data;\n\n  fenwickTree(int _size)\
-    \ : size(_size + 1), data(_size + 1) {}\n  fenwickTree(vector<T> init) : size(ssize(init)\
-    \ + 1), data(ssize(init) + 1) {\n    partial_sum(init.begin(), init.end(), data.begin()\
-    \ + 1);\n    for(int i = size - 1; i > 0; i--)\n      data[i] -= data[i - (i &\
-    \ (-i))];\n  }\n\n  void add(int i, T d) {\n    for(i += 1; i < size; i += i &\
-    \ (-i))\n      data[i] += d;\n  }\n\n  T query(int i) {\n    T res = T(0);\n \
-    \   for(i += 1; i > 0; i -= i & (-i))\n      res += data[i];\n    return res;\n\
-    \  }\n\n  T query(int l, int r) { //query [l, r)\n    return query(r - 1) - query(l\
-    \ - 1);\n  }\n};\n#line 6 \"test/vertex_add_subtree_sum.test.cpp\"\n\nint main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
-    \ q;\n  vll a(n);\n  for(ll &x : a) cin >> x;\n  vvi g(n);\n  for(int v = 1; v\
-    \ < n; v++) {\n    int p; cin >> p;\n    g[v].eb(p), g[p].eb(v);\n  }\n\n  HLD\
-    \ hld(g);\n  fenwickTree ft(hld.reorder_init(a));\n  while(q--) {\n    int op;\
-    \ cin >> op;\n    if (op == 0) {\n      int p, x; cin >> p >> x;\n      ft.add(hld.query_point(p),\
+    \ int MSK = (1 << 30);\n  vi dep, p_head, tin, tout, inv_tin;\n\n  inline int\
+    \ head(int v) const { return (p_head[v] & MSK) ? v : p_head[v]; }\n  inline int\
+    \ head_parent(int v) const { return p_head[head(v)] & (MSK - 1); }\n\n  HLD(vvi\
+    \ g, int root = 0) {\n    dep = p_head = tin = tout = inv_tin = vi(size(g));\n\
+    \n    vi sz(size(g), 1);\n    auto dfs = [&](int v, auto &self) -> void {\n  \
+    \    int mx_id = -1, p_id = -1;\n      for(int i = -1; int x : g[v]) {\n     \
+    \   i++;\n        if ((x | MSK) == p_head[v]) {\n          p_id = i;\n       \
+    \ } else {\n          p_head[x] = (v | MSK), dep[x] = dep[v] + 1;\n          self(x,\
+    \ self);\n          sz[v] += sz[x];\n          if (mx_id == -1 or sz[x] > sz[g[v][mx_id]])\n\
+    \            mx_id = i;\n        }\n      }\n      if (mx_id != -1) swap(g[v][p_id\
+    \ == 0], g[v][mx_id]);\n      if (p_id != -1) g[v].erase(g[v].begin() + p_id);\n\
+    \    };\n\n    p_head[root] = (root | MSK);\n    dfs(root, dfs);\n\n    int nxt\
+    \ = 0;\n    auto dfs2 = [&](int v, auto &self) -> void {\n      tin[v] = nxt++;\n\
+    \      if (!g[v].empty())\n        p_head[g[v][0]] = head(v);\n      if (!g[v].empty())\
+    \ {\n        vi sz_seq;\n        for(int x : g[v]) sz_seq.eb(sz[x]);\n       \
+    \ assert(ranges::max(sz_seq) == sz_seq[0]);\n      }\n      for(int x : g[v])\n\
+    \        self(x, self);\n      tout[v] = nxt;\n    };\n\n    dfs2(root, dfs2);\n\
+    \n    inv_tin = invPerm(tin);\n  }\n\n  auto query_path(int u, int v, bool edge\
+    \ = false) {\n    vc<pii> lr;\n    while(head(u) != head(v)) {\n      if (dep[head(u)]\
+    \ > dep[head(v)])\n        swap(u, v);\n      lr.emplace_back(tin[head(v)], tin[v]\
+    \ + 1);\n      v = head_parent(v);\n    }\n\n    if (tin[u] > tin[v]) swap(u,\
+    \ v);\n    if (tin[u] + edge <= tin[v])\n      lr.emplace_back(tin[u] + edge,\
+    \ tin[v] + 1);\n\n    return lr;\n  }\n\n  //l < r: op(l, op(l + 1, ...))\n  //l\
+    \ > r: op(r - 1, op(r - 2, ...))\n  auto query_path_non_commutative(int u, int\
+    \ v, bool edge = false) {\n    vc<pii> lr1, lr2;\n    while(head(u) != head(v))\
+    \ {\n      if (dep[head(u)] > dep[head(v)]) {\n        lr1.emplace_back(tin[u]\
+    \ + 1, tin[head(u)]);\n        u = head_parent(u);\n      } else {\n        lr2.emplace_back(tin[head(v)],\
+    \ tin[v] + 1);\n        v = head_parent(v);\n      }\n    }\n\n    if (tin[u]\
+    \ + edge <= tin[v])\n      lr2.emplace_back(tin[u] + edge, tin[v] + 1);\n    else\
+    \ if (tin[v] + edge <= tin[u])\n      lr1.emplace_back(tin[u] + 1, tin[v] + edge);\n\
+    \n    lr1.insert(end(lr1), lr2.rbegin(), lr2.rend());\n\n    return lr1;\n  }\n\
+    \n  auto query_subtree(int v) { return pii(tin[v], tout[v]); }\n\n  int query_point(int\
+    \ v) { return tin[v]; }\n\n  int lca(int u, int v) {\n    while(head(u) != head(v))\
+    \ {\n      if (dep[head(u)] > dep[head(v)])\n        swap(u, v);\n      v = head_parent(v);\n\
+    \    }\n    return tin[u] < tin[v] ? u : v;\n  }\n\n  int kth(int s, int t, int\
+    \ k) {\n    int l = lca(s, t);\n    if (int d = dep[s] + dep[t] - 2 * dep[l];\
+    \ k > d)\n      return -1;\n    else if (k > dep[s] - dep[l])\n      k = d - k,\
+    \ swap(s, t);\n    while(k > dep[s] - dep[head(s)]) {\n      k -= dep[s] - dep[head(s)]\
+    \ + 1;\n      s = head_parent(s);\n    }\n    return inv_tin[tin[s] - k];\n  }\n\
+    \n  template<class M>\n  vc<M> reorder_init(vc<M> init) {\n    assert(ssize(init)\
+    \ == ssize(dep));\n    auto r = init;\n    for(int i = 0; i < ssize(init); i++)\n\
+    \      r[tin[i]] = init[i];\n    return r;\n  }\n};\n#line 1 \"ds/fenwickTree.cpp\"\
+    \ntemplate<class T>\nstruct fenwickTree {\n  const int size;\n  vector<T> data;\n\
+    \n  fenwickTree(int _size) : size(_size + 1), data(_size + 1) {}\n  fenwickTree(vector<T>\
+    \ init) : size(ssize(init) + 1), data(ssize(init) + 1) {\n    partial_sum(init.begin(),\
+    \ init.end(), data.begin() + 1);\n    for(int i = size - 1; i > 0; i--)\n    \
+    \  data[i] -= data[i - (i & (-i))];\n  }\n\n  void add(int i, T d) {\n    for(i\
+    \ += 1; i < size; i += i & (-i))\n      data[i] += d;\n  }\n\n  T query(int i)\
+    \ {\n    T res = T(0);\n    for(i += 1; i > 0; i -= i & (-i))\n      res += data[i];\n\
+    \    return res;\n  }\n\n  T query(int l, int r) { //query [l, r)\n    return\
+    \ query(r - 1) - query(l - 1);\n  }\n};\n#line 6 \"test/vertex_add_subtree_sum.test.cpp\"\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
+    \ cin >> n >> q;\n  vll a(n);\n  for(ll &x : a) cin >> x;\n  vvi g(n);\n  for(int\
+    \ v = 1; v < n; v++) {\n    int p; cin >> p;\n    g[v].eb(p), g[p].eb(v);\n  }\n\
+    \n  HLD hld(g);\n  fenwickTree ft(hld.reorder_init(a));\n  while(q--) {\n    int\
+    \ op; cin >> op;\n    if (op == 0) {\n      int p, x; cin >> p >> x;\n      ft.add(hld.query_point(p),\
     \ x);\n    } else {\n      int v; cin >> v;\n      auto [l, r] = hld.query_subtree(v);\n\
     \      cout << ft.query(l, r) << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
@@ -174,7 +177,7 @@ data:
   isVerificationFile: true
   path: test/vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 23:21:40+08:00'
+  timestamp: '2026-02-02 22:55:43+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_add_subtree_sum.test.cpp
