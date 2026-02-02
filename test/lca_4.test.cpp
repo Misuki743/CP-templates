@@ -7,13 +7,14 @@ signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
-  vvi g(n);
+  vc<pii> e;
+  e.reserve(n - 1);
   for(int v = 1; v < n; v++) {
     int p; cin >> p;
-    g[v].eb(p), g[p].eb(v);
+    e.emplace_back(p, v);
   }
 
-  HLD hld(g);
+  HLD hld(e);
   while(q--) {
     int u, v; cin >> u >> v;
     cout << hld.lca(u, v) << '\n';
