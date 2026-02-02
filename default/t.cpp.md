@@ -217,6 +217,9 @@ data:
     path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
     title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest_auxiliary_tree.test.cpp
+    title: test/mytest_auxiliary_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest_enumerate_twelvefold.test.cpp
     title: test/mytest_enumerate_twelvefold.test.cpp
   - icon: ':heavy_check_mark:'
@@ -725,6 +728,7 @@ data:
   - test/subset_convolution.test.cpp
   - test/stirling_number_of_the_first_kind.test.cpp
   - test/matching_on_bipartite_graph.test.cpp
+  - test/mytest_auxiliary_tree.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
   - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/static_RMQ.test.cpp

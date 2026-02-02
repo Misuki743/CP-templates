@@ -156,7 +156,7 @@ data:
     \ &self) -> void {\n    if (s == 0) {\n      f(p);\n    } else {\n      for(int\
     \ x = (p.empty() ? s : min(p.back(), s)); x > 0; x--) {\n        p.emplace_back(x);\n\
     \        self(s - x, self);\n        p.pop_back();\n      }\n    }\n  };\n  dfs(n,\
-    \ dfs);\n}\n#line 1 \"enumerate/enumerate_label_tree.cpp\"\n//#include \"graph/prufer_recover.cpp\"\
+    \ dfs);\n}\n#line 1 \"enumerate/enumerate_label_tree.cpp\"\n//#include \"tree/prufer_recover.cpp\"\
     \n//#include \"enumerate/enumerate_bit.cpp\"\n//#include \"enumerate/enumerate_twelvefold.cpp\"\
     \n\ntemplate<typename F>\nrequires invocable<F, vector<vector<int>>>\nvoid enumerate_label_tree(int\
     \ n, F f) {\n  assert(n > 0);\n  if (n == 1) {\n    f(vector<vector<int>>(1));\n\
@@ -289,7 +289,7 @@ data:
   isVerificationFile: true
   path: test/mytest_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-02-02 01:08:31+08:00'
+  timestamp: '2026-02-02 17:55:32+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest_tree.test.cpp

@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lca_3.test.cpp
     title: test/lca_3.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest_auxiliary_tree.test.cpp
+    title: test/mytest_auxiliary_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -38,7 +41,8 @@ data:
     \  }\n\n  LCA(vc<pii> e, int root = 0) : rmq(precomp(e, root)) {}\n\n  int lca(int\
     \ u, int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n    return mp[rmq.query(tin[u],\
     \ tout[v] + 1)];\n  }\n\n  int dis(int u, int v) {\n    return dep[u] + dep[v]\
-    \ - 2 * dep[lca(u, v)];\n  }\n};\n"
+    \ - 2 * dep[lca(u, v)];\n  }\n\n  bool is_ancestor_of(int u, int v) {\n    return\
+    \ tin[u] <= tin[v] and tout[v] <= tout[u];\n  }\n};\n"
   code: "//#include \"ds/RMQ.cpp\"\n\nstruct LCA {\n  vi dep, tin, tout, mp;\n  RMQ<int>\
     \ rmq;\n\n  vi precomp(vc<pii> &e, int root) {\n    const int n = ssize(e) + 1;\n\
     \n    dep = tin = tout = mp = vi(n);\n\n    vi sz(n, 1), p(n), ord;\n    {\n \
@@ -63,16 +67,18 @@ data:
     \n  LCA(vc<pii> e, int root = 0) : rmq(precomp(e, root)) {}\n\n  int lca(int u,\
     \ int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n    return mp[rmq.query(tin[u],\
     \ tout[v] + 1)];\n  }\n\n  int dis(int u, int v) {\n    return dep[u] + dep[v]\
-    \ - 2 * dep[lca(u, v)];\n  }\n};\n"
+    \ - 2 * dep[lca(u, v)];\n  }\n\n  bool is_ancestor_of(int u, int v) {\n    return\
+    \ tin[u] <= tin[v] and tout[v] <= tout[u];\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: tree/LCA.cpp
   requiredBy: []
-  timestamp: '2026-02-02 00:52:21+08:00'
+  timestamp: '2026-02-02 17:55:32+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lca_2.test.cpp
   - test/lca_3.test.cpp
+  - test/mytest_auxiliary_tree.test.cpp
 documentation_of: tree/LCA.cpp
 layout: document
 redirect_from:

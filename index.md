@@ -602,9 +602,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/LCA.cpp
       title: tree/LCA.cpp
-    - icon: ':warning:'
-      path: tree/auxiliaryTree.cpp
-      title: tree/auxiliaryTree.cpp
+    - icon: ':heavy_check_mark:'
+      path: tree/auxiliary_tree.cpp
+      title: tree/auxiliary_tree.cpp
     - icon: ':heavy_check_mark:'
       path: tree/cartesian_tree.cpp
       title: tree/cartesian_tree.cpp
@@ -845,6 +845,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
       title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest_auxiliary_tree.test.cpp
+      title: test/mytest_auxiliary_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest_enumerate_twelvefold.test.cpp
       title: test/mytest_enumerate_twelvefold.test.cpp

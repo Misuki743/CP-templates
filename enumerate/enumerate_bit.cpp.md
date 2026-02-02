@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/mytest_auxiliary_tree.test.cpp
+    title: test/mytest_auxiliary_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest_enumerate_twelvefold.test.cpp
     title: test/mytest_enumerate_twelvefold.test.cpp
   - icon: ':heavy_check_mark:'
@@ -33,6 +36,7 @@ data:
   - test/mytest_tree_diameter.test.cpp
   - test/mytest_enumerate_twelvefold.test.cpp
   - test/mytest_tree.test.cpp
+  - test/mytest_auxiliary_tree.test.cpp
 documentation_of: enumerate/enumerate_bit.cpp
 layout: document
 redirect_from:

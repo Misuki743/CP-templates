@@ -145,11 +145,13 @@ data:
     \n  LCA(vc<pii> e, int root = 0) : rmq(precomp(e, root)) {}\n\n  int lca(int u,\
     \ int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n    return mp[rmq.query(tin[u],\
     \ tout[v] + 1)];\n  }\n\n  int dis(int u, int v) {\n    return dep[u] + dep[v]\
-    \ - 2 * dep[lca(u, v)];\n  }\n};\n#line 6 \"test/lca_3.test.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
-    \ q;\n  vc<pii> e(n - 1);\n  for(int v = 1; auto &[x, y] : e) {\n    x = v++;\n\
-    \    cin >> y;\n  }\n\n  LCA lc(e, 0);\n\n  while(q--) {\n    int u, v; cin >>\
-    \ u >> v;\n    cout << lc.lca(u, v) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ - 2 * dep[lca(u, v)];\n  }\n\n  bool is_ancestor_of(int u, int v) {\n    return\
+    \ tin[u] <= tin[v] and tout[v] <= tout[u];\n  }\n};\n#line 6 \"test/lca_3.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vc<pii> e(n - 1);\n  for(int v = 1; auto &[x, y] : e) {\n\
+    \    x = v++;\n    cin >> y;\n  }\n\n  LCA lc(e, 0);\n\n  while(q--) {\n    int\
+    \ u, v; cin >> u >> v;\n    cout << lc.lca(u, v) << '\\n';\n  }\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include \"../default/t.cpp\"\
     \n#include \"../ds/RMQ.cpp\"\n#include \"../tree/LCA.cpp\"\n\nsigned main() {\n\
     \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n\
@@ -163,7 +165,7 @@ data:
   isVerificationFile: true
   path: test/lca_3.test.cpp
   requiredBy: []
-  timestamp: '2026-02-02 00:52:21+08:00'
+  timestamp: '2026-02-02 17:55:32+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca_3.test.cpp

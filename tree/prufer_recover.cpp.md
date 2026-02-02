@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/mytest_auxiliary_tree.test.cpp
+    title: test/mytest_auxiliary_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest_tree.test.cpp
     title: test/mytest_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -40,6 +43,7 @@ data:
   verifiedWith:
   - test/mytest_tree_diameter.test.cpp
   - test/mytest_tree.test.cpp
+  - test/mytest_auxiliary_tree.test.cpp
 documentation_of: tree/prufer_recover.cpp
 layout: document
 redirect_from:

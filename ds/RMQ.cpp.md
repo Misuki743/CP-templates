@@ -10,6 +10,9 @@ data:
     path: test/lca_3.test.cpp
     title: test/lca_3.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest_auxiliary_tree.test.cpp
+    title: test/mytest_auxiliary_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/static_RMQ_2.test.cpp
     title: test/static_RMQ_2.test.cpp
   _isVerificationFailed: false
@@ -65,6 +68,7 @@ data:
   - test/lca_2.test.cpp
   - test/lca_3.test.cpp
   - test/static_RMQ_2.test.cpp
+  - test/mytest_auxiliary_tree.test.cpp
 documentation_of: ds/RMQ.cpp
 layout: document
 redirect_from:
