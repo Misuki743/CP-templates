@@ -190,8 +190,8 @@ int main() {
   }
 
   //almost path
-  for(int tc = 0; tc < 30; tc++) {
-    int n = 500;
+  for(int tc = 0; tc < 10; tc++) {
+    int n = 5'000;
     vector<vector<int>> g(n);
     for(int v = 1; v < n; v++) {
       int x = rng() % min(v, 5);
