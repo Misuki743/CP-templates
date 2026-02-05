@@ -1,5 +1,5 @@
 template<class T, typename OP, typename INV>
-requires R_invocable<T, OP, T, T> && R_invocable<T, INV, T&>
+requires R_invocable<T, OP, T, T> && R_invocable<T, INV, T>
 struct potential_DSU {
   vi sz_par;
   vc<T> pot;
