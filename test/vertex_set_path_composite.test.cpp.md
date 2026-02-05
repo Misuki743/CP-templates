@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: actedmonoid/actedMonoid_affineSum.cpp
     title: actedmonoid/actedMonoid_affineSum.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   - icon: ':heavy_check_mark:'
@@ -179,30 +179,31 @@ data:
     \ {\n  static const int MSK = (1 << 30);\n  vi dep, p_head, tin, tout, inv_tin;\n\
     \n  inline int head(int v) const { return (p_head[v] & MSK) ? v : p_head[v]; }\n\
     \  inline int head_parent(int v) const { return p_head[head(v)] & (MSK - 1); }\n\
-    \n  HLD(vvi g, int root = 0) {\n    dep = p_head = tin = tout = inv_tin = vi(size(g));\n\
-    \n    vi sz(size(g), 1);\n    auto dfs = [&](int v, auto &self) -> void {\n  \
-    \    int mx_id = -1, p_id = -1;\n      for(int i = -1; int x : g[v]) {\n     \
-    \   i++;\n        if ((x | MSK) == p_head[v]) {\n          p_id = i;\n       \
-    \ } else {\n          p_head[x] = (v | MSK), dep[x] = dep[v] + 1;\n          self(x,\
-    \ self);\n          sz[v] += sz[x];\n          if (mx_id == -1 or sz[x] > sz[g[v][mx_id]])\n\
-    \            mx_id = i;\n        }\n      }\n      if (mx_id != -1) swap(g[v][p_id\
-    \ == 0], g[v][mx_id]);\n      if (p_id != -1) g[v].erase(g[v].begin() + p_id);\n\
-    \    };\n\n    p_head[root] = (root | MSK);\n    dfs(root, dfs);\n\n    int nxt\
-    \ = 0;\n    auto dfs2 = [&](int v, auto &self) -> void {\n      tin[v] = nxt++;\n\
-    \      if (!g[v].empty())\n        p_head[g[v][0]] = head(v);\n      if (!g[v].empty())\
-    \ {\n        vi sz_seq;\n        for(int x : g[v]) sz_seq.eb(sz[x]);\n       \
-    \ assert(ranges::max(sz_seq) == sz_seq[0]);\n      }\n      for(int x : g[v])\n\
-    \        self(x, self);\n      tout[v] = nxt;\n    };\n\n    dfs2(root, dfs2);\n\
-    \n    inv_tin = invPerm(tin);\n  }\n\n  auto query_path(int u, int v, bool edge\
-    \ = false) {\n    vc<pii> lr;\n    while(head(u) != head(v)) {\n      if (dep[head(u)]\
-    \ > dep[head(v)])\n        swap(u, v);\n      lr.emplace_back(tin[head(v)], tin[v]\
-    \ + 1);\n      v = head_parent(v);\n    }\n\n    if (tin[u] > tin[v]) swap(u,\
-    \ v);\n    if (tin[u] + edge <= tin[v])\n      lr.emplace_back(tin[u] + edge,\
-    \ tin[v] + 1);\n\n    return lr;\n  }\n\n  //l < r: op(l, op(l + 1, ...))\n  //l\
-    \ > r: op(r - 1, op(r - 2, ...))\n  auto query_path_non_commutative(int u, int\
-    \ v, bool edge = false) {\n    vc<pii> lr1, lr2;\n    while(head(u) != head(v))\
-    \ {\n      if (dep[head(u)] > dep[head(v)]) {\n        lr1.emplace_back(tin[u]\
-    \ + 1, tin[head(u)]);\n        u = head_parent(u);\n      } else {\n        lr2.emplace_back(tin[head(v)],\
+    \n  HLD(vc<pii> e, int root = 0) {\n    const int n = ssize(e) + 1;\n\n    dep\
+    \ = p_head = tin = tout = vi(n);\n\n    vi sz(n, 1), mx_child_sz(n, -1);\n   \
+    \ {\n      vi d(n);\n      for(auto [u, v] : e)\n        p_head[u] ^= v, p_head[v]\
+    \ ^= u, d[u]++, d[v]++;\n      d[root] = 0;\n      for(int i = 0; i < n; i++)\
+    \ {\n        int v = i;\n        while(d[v] == 1) {\n          d[v] = 0, d[p_head[v]]--,\
+    \ p_head[p_head[v]] ^= v;\n          sz[p_head[v]] += sz[v];\n          chmax(mx_child_sz[p_head[v]],\
+    \ sz[v]);\n          v = p_head[v];\n        }\n      }\n    }\n\n    vi ord(n);\n\
+    \    {\n      vi f(n + 2);\n      for(int x : sz) f[x + 1]++;\n      pSum(f);\n\
+    \      for(int v = 0; v < n; v++)\n        ord[n - 1 - (f[sz[v]]++)] = v;\n  \
+    \  }\n\n    {\n      p_head[root] = (root | MSK), tout[root] = n;\n\n      vi\
+    \ add(n, 1);\n      for(int v : ord | views::drop(1)) {\n        dep[v] = dep[p_head[v]]\
+    \ + 1;\n        tin[v] = tin[p_head[v]] + add[p_head[v]];\n        add[p_head[v]]\
+    \ += sz[v];\n        tout[v] = tin[v] + sz[v];\n        if (mx_child_sz[p_head[v]]\
+    \ == sz[v])\n          mx_child_sz[p_head[v]] = 0, p_head[v] = head(p_head[v]);\n\
+    \        else\n          p_head[v] |= MSK;\n      }\n    }\n\n    inv_tin = invPerm(tin);\n\
+    \  }\n\n  auto query_path(int u, int v, bool edge = false) {\n    vc<pii> lr;\n\
+    \    while(head(u) != head(v)) {\n      if (dep[head(u)] > dep[head(v)])\n   \
+    \     swap(u, v);\n      lr.emplace_back(tin[head(v)], tin[v] + 1);\n      v =\
+    \ head_parent(v);\n    }\n\n    if (tin[u] > tin[v]) swap(u, v);\n    if (tin[u]\
+    \ + edge <= tin[v])\n      lr.emplace_back(tin[u] + edge, tin[v] + 1);\n\n   \
+    \ return lr;\n  }\n\n  //l < r: op(l, op(l + 1, ...))\n  //l > r: op(r - 1, op(r\
+    \ - 2, ...))\n  auto query_path_non_commutative(int u, int v, bool edge = false)\
+    \ {\n    vc<pii> lr1, lr2;\n    while(head(u) != head(v)) {\n      if (dep[head(u)]\
+    \ > dep[head(v)]) {\n        lr1.emplace_back(tin[u] + 1, tin[head(u)]);\n   \
+    \     u = head_parent(u);\n      } else {\n        lr2.emplace_back(tin[head(v)],\
     \ tin[v] + 1);\n        v = head_parent(v);\n      }\n    }\n\n    if (tin[u]\
     \ + edge <= tin[v])\n      lr2.emplace_back(tin[u] + edge, tin[v] + 1);\n    else\
     \ if (tin[v] + edge <= tin[u])\n      lr1.emplace_back(tin[u] + 1, tin[v] + edge);\n\
@@ -222,11 +223,11 @@ data:
     \ am::T &b) { return am::T{a[0] * b[0], b[1] * a[0] + a[1]}; }\n\nsigned main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
     \ q;\n  vc<array<mint, 2>> init(n);\n  for(auto &[a, b] : init)\n    cin >> a\
-    \ >> b;\n  auto g = read_graph<false>(n, n - 1, 0);\n\n  HLD hld(g);\n  init =\
-    \ hld.reorder_init(std::move(init));\n  segmentTree<am::T, am::Tid, R_Top> st_rev(init);\n\
-    \  segmentTree<am::T, am::Tid, am::Top> st(init);\n  while(q--) {\n    int op;\
-    \ cin >> op;\n    if (op == 0) {\n      int p, c, d; cin >> p >> c >> d;\n   \
-    \   st.set(hld.query_point(p), am::M{c, d});\n      st_rev.set(hld.query_point(p),\
+    \ >> b;\n  vc<pii> e(n - 1);\n  for(auto &[u, v] : e)\n    cin >> u >> v;\n\n\
+    \  HLD hld(std::move(e));\n  init = hld.reorder_init(std::move(init));\n  segmentTree<am::T,\
+    \ am::Tid, R_Top> st_rev(init);\n  segmentTree<am::T, am::Tid, am::Top> st(init);\n\
+    \  while(q--) {\n    int op; cin >> op;\n    if (op == 0) {\n      int p, c, d;\
+    \ cin >> p >> c >> d;\n      st.set(hld.query_point(p), am::M{c, d});\n      st_rev.set(hld.query_point(p),\
     \ am::M{c, d});\n    } else {\n      int u, v, x; cin >> u >> v >> x;\n      am::T\
     \ prod = am::T{1, 0};\n      for(auto [l, r] : hld.query_path_non_commutative(u,\
     \ v)) {\n        if (l < r) prod = am::Top(prod, st.query(l, r));\n        else\
@@ -239,16 +240,17 @@ data:
     am::T R_Top(const am::T &a, const am::T &b) { return am::T{a[0] * b[0], b[1] *\
     \ a[0] + a[1]}; }\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
     \n  int n, q; cin >> n >> q;\n  vc<array<mint, 2>> init(n);\n  for(auto &[a, b]\
-    \ : init)\n    cin >> a >> b;\n  auto g = read_graph<false>(n, n - 1, 0);\n\n\
-    \  HLD hld(g);\n  init = hld.reorder_init(std::move(init));\n  segmentTree<am::T,\
-    \ am::Tid, R_Top> st_rev(init);\n  segmentTree<am::T, am::Tid, am::Top> st(init);\n\
-    \  while(q--) {\n    int op; cin >> op;\n    if (op == 0) {\n      int p, c, d;\
-    \ cin >> p >> c >> d;\n      st.set(hld.query_point(p), am::M{c, d});\n      st_rev.set(hld.query_point(p),\
-    \ am::M{c, d});\n    } else {\n      int u, v, x; cin >> u >> v >> x;\n      am::T\
-    \ prod = am::T{1, 0};\n      for(auto [l, r] : hld.query_path_non_commutative(u,\
-    \ v)) {\n        if (l < r) prod = am::Top(prod, st.query(l, r));\n        else\
-    \ prod = am::Top(prod, st_rev.query(r, l));\n      }\n      cout << prod[0] *\
-    \ x + prod[1] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+    \ : init)\n    cin >> a >> b;\n  vc<pii> e(n - 1);\n  for(auto &[u, v] : e)\n\
+    \    cin >> u >> v;\n\n  HLD hld(std::move(e));\n  init = hld.reorder_init(std::move(init));\n\
+    \  segmentTree<am::T, am::Tid, R_Top> st_rev(init);\n  segmentTree<am::T, am::Tid,\
+    \ am::Top> st(init);\n  while(q--) {\n    int op; cin >> op;\n    if (op == 0)\
+    \ {\n      int p, c, d; cin >> p >> c >> d;\n      st.set(hld.query_point(p),\
+    \ am::M{c, d});\n      st_rev.set(hld.query_point(p), am::M{c, d});\n    } else\
+    \ {\n      int u, v, x; cin >> u >> v >> x;\n      am::T prod = am::T{1, 0};\n\
+    \      for(auto [l, r] : hld.query_path_non_commutative(u, v)) {\n        if (l\
+    \ < r) prod = am::Top(prod, st.query(l, r));\n        else prod = am::Top(prod,\
+    \ st_rev.query(r, l));\n      }\n      cout << prod[0] * x + prod[1] << '\\n';\n\
+    \    }\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
@@ -258,7 +260,7 @@ data:
   isVerificationFile: true
   path: test/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2026-02-02 22:55:43+08:00'
+  timestamp: '2026-02-03 04:18:40+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_set_path_composite.test.cpp

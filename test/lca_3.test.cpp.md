@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
   _extendedRequiredBy: []
@@ -124,34 +124,33 @@ data:
     //#include \"ds/RMQ.cpp\"\n\nstruct LCA {\n  vi dep, tin, tout, mp;\n  RMQ<int>\
     \ rmq;\n\n  vi precomp(vc<pii> &e, int root) {\n    const int n = ssize(e) + 1;\n\
     \n    dep = tin = tout = mp = vi(n);\n\n    vi sz(n, 1), p(n), ord;\n    {\n \
-    \     vi adj(n), d(n);\n      for(auto &[u, v] : e)\n        adj[u] ^= v, adj[v]\
-    \ ^= u, d[u]++, d[v]++;\n\n      d[root] = 0, p[root] = root;\n      ord.reserve(n\
-    \ - 1);\n      for(int i = 0; i < n; i++) {\n        int v = i;\n        while(d[v]\
-    \ == 1) {\n          ord.emplace_back(v);\n          p[v] = adj[v], sz[p[v]] +=\
-    \ sz[v];\n          d[v] = 0, d[p[v]]--, adj[p[v]] ^= v;\n          v = p[v];\n\
-    \        }\n      }\n    }\n\n    vi dfn(n);\n    {\n      vi nxt(n, 1);\n   \
-    \   for(int v : ord | views::reverse) {\n        dfn[v] = nxt[p[v]], nxt[p[v]]\
-    \ += sz[v];\n        nxt[v] = dfn[v] + 1;\n        dep[v] = dep[p[v]] + 1;\n \
-    \     }\n      vi().swap(ord);\n      vi().swap(sz);\n    }\n\n    vi init(2 *\
-    \ n - 1);\n    {\n      vi dfn_ord = invPerm(std::move(dfn));\n\n      int nxt\
-    \ = 0, pre = root;\n      for(int v : dfn_ord) {\n        while(pre != p[v]) {\n\
-    \          pre = p[pre], tout[pre] = nxt;\n          init[nxt++] = pre;\n    \
-    \    }\n        tin[v] = tout[v] = nxt;\n        init[nxt++] = pre = v;\n    \
-    \  }\n\n      while(pre != root) {\n        pre = p[pre], tout[pre] = nxt;\n \
-    \       init[nxt++] = pre;\n      }\n    }\n\n    {\n      vi f(n);\n      for(int\
-    \ x : dep) f[x]++;\n      pSum(f);\n\n      vi rank(n);\n      for(int v = 0;\
-    \ v < n; v++) {\n        rank[v] = --f[dep[v]];\n        mp[rank[v]] = v;\n  \
-    \    }\n      for(int &v : init) v = rank[v];\n    }\n\n    return init;\n  }\n\
-    \n  LCA(vc<pii> e, int root = 0) : rmq(precomp(e, root)) {}\n\n  int lca(int u,\
-    \ int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n    return mp[rmq.query(tin[u],\
-    \ tout[v] + 1)];\n  }\n\n  int dis(int u, int v) {\n    return dep[u] + dep[v]\
-    \ - 2 * dep[lca(u, v)];\n  }\n\n  bool is_ancestor_of(int u, int v) {\n    return\
-    \ tin[u] <= tin[v] and tout[v] <= tout[u];\n  }\n};\n#line 6 \"test/lca_3.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vc<pii> e(n - 1);\n  for(int v = 1; auto &[x, y] : e) {\n\
-    \    x = v++;\n    cin >> y;\n  }\n\n  LCA lc(e, 0);\n\n  while(q--) {\n    int\
-    \ u, v; cin >> u >> v;\n    cout << lc.lca(u, v) << '\\n';\n  }\n\n  return 0;\n\
-    }\n"
+    \     vi d(n);\n      for(auto &[u, v] : e)\n        p[u] ^= v, p[v] ^= u, d[u]++,\
+    \ d[v]++;\n\n      d[root] = 0, p[root] = root;\n      ord.reserve(n - 1);\n \
+    \     for(int i = 0; i < n; i++) {\n        int v = i;\n        while(d[v] ==\
+    \ 1) {\n          ord.emplace_back(v);\n          sz[p[v]] += sz[v];\n       \
+    \   d[v] = 0, d[p[v]]--, p[p[v]] ^= v;\n          v = p[v];\n        }\n     \
+    \ }\n    }\n\n    vi dfn(n);\n    {\n      vi nxt(n, 1);\n      for(int v : ord\
+    \ | views::reverse) {\n        dfn[v] = nxt[p[v]], nxt[p[v]] += sz[v];\n     \
+    \   nxt[v] = dfn[v] + 1;\n        dep[v] = dep[p[v]] + 1;\n      }\n      vi().swap(ord);\n\
+    \      vi().swap(sz);\n    }\n\n    vi init(2 * n - 1);\n    {\n      vi dfn_ord\
+    \ = invPerm(std::move(dfn));\n\n      int nxt = 0, pre = root;\n      for(int\
+    \ v : dfn_ord) {\n        while(pre != p[v]) {\n          pre = p[pre], tout[pre]\
+    \ = nxt;\n          init[nxt++] = pre;\n        }\n        tin[v] = tout[v] =\
+    \ nxt;\n        init[nxt++] = pre = v;\n      }\n\n      while(pre != root) {\n\
+    \        pre = p[pre], tout[pre] = nxt;\n        init[nxt++] = pre;\n      }\n\
+    \    }\n\n    {\n      vi f(n);\n      for(int x : dep) f[x]++;\n      pSum(f);\n\
+    \n      vi rank(n);\n      for(int v = 0; v < n; v++) {\n        rank[v] = --f[dep[v]];\n\
+    \        mp[rank[v]] = v;\n      }\n      for(int &v : init) v = rank[v];\n  \
+    \  }\n\n    return init;\n  }\n\n  LCA(vc<pii> e, int root = 0) : rmq(precomp(e,\
+    \ root)) {}\n\n  int lca(int u, int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n\
+    \    return mp[rmq.query(tin[u], tout[v] + 1)];\n  }\n\n  int dis(int u, int v)\
+    \ {\n    return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n  }\n\n  bool is_ancestor_of(int\
+    \ u, int v) {\n    return tin[u] <= tin[v] and tout[v] <= tout[u];\n  }\n};\n\
+    #line 6 \"test/lca_3.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vc<pii> e(n - 1);\n  for(int\
+    \ v = 1; auto &[x, y] : e) {\n    x = v++;\n    cin >> y;\n  }\n\n  LCA lc(e,\
+    \ 0);\n\n  while(q--) {\n    int u, v; cin >> u >> v;\n    cout << lc.lca(u, v)\
+    \ << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include \"../default/t.cpp\"\
     \n#include \"../ds/RMQ.cpp\"\n#include \"../tree/LCA.cpp\"\n\nsigned main() {\n\
     \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n\
@@ -165,7 +164,7 @@ data:
   isVerificationFile: true
   path: test/lca_3.test.cpp
   requiredBy: []
-  timestamp: '2026-02-02 17:55:32+08:00'
+  timestamp: '2026-02-03 05:22:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca_3.test.cpp

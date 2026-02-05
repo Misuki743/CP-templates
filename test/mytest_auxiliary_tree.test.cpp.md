@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_bit.cpp
     title: enumerate/enumerate_bit.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_label_tree.cpp
     title: enumerate/enumerate_label_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_twelvefold.cpp
     title: enumerate/enumerate_twelvefold.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_unlabel_rooted_tree.cpp
     title: enumerate/enumerate_unlabel_rooted_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/auxiliary_tree.cpp
     title: tree/auxiliary_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/prufer_recover.cpp
     title: tree/prufer_recover.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -210,41 +210,41 @@ data:
     //#include \"ds/RMQ.cpp\"\n\nstruct LCA {\n  vi dep, tin, tout, mp;\n  RMQ<int>\
     \ rmq;\n\n  vi precomp(vc<pii> &e, int root) {\n    const int n = ssize(e) + 1;\n\
     \n    dep = tin = tout = mp = vi(n);\n\n    vi sz(n, 1), p(n), ord;\n    {\n \
-    \     vi adj(n), d(n);\n      for(auto &[u, v] : e)\n        adj[u] ^= v, adj[v]\
-    \ ^= u, d[u]++, d[v]++;\n\n      d[root] = 0, p[root] = root;\n      ord.reserve(n\
-    \ - 1);\n      for(int i = 0; i < n; i++) {\n        int v = i;\n        while(d[v]\
-    \ == 1) {\n          ord.emplace_back(v);\n          p[v] = adj[v], sz[p[v]] +=\
-    \ sz[v];\n          d[v] = 0, d[p[v]]--, adj[p[v]] ^= v;\n          v = p[v];\n\
-    \        }\n      }\n    }\n\n    vi dfn(n);\n    {\n      vi nxt(n, 1);\n   \
-    \   for(int v : ord | views::reverse) {\n        dfn[v] = nxt[p[v]], nxt[p[v]]\
-    \ += sz[v];\n        nxt[v] = dfn[v] + 1;\n        dep[v] = dep[p[v]] + 1;\n \
-    \     }\n      vi().swap(ord);\n      vi().swap(sz);\n    }\n\n    vi init(2 *\
-    \ n - 1);\n    {\n      vi dfn_ord = invPerm(std::move(dfn));\n\n      int nxt\
-    \ = 0, pre = root;\n      for(int v : dfn_ord) {\n        while(pre != p[v]) {\n\
-    \          pre = p[pre], tout[pre] = nxt;\n          init[nxt++] = pre;\n    \
-    \    }\n        tin[v] = tout[v] = nxt;\n        init[nxt++] = pre = v;\n    \
-    \  }\n\n      while(pre != root) {\n        pre = p[pre], tout[pre] = nxt;\n \
-    \       init[nxt++] = pre;\n      }\n    }\n\n    {\n      vi f(n);\n      for(int\
-    \ x : dep) f[x]++;\n      pSum(f);\n\n      vi rank(n);\n      for(int v = 0;\
-    \ v < n; v++) {\n        rank[v] = --f[dep[v]];\n        mp[rank[v]] = v;\n  \
-    \    }\n      for(int &v : init) v = rank[v];\n    }\n\n    return init;\n  }\n\
-    \n  LCA(vc<pii> e, int root = 0) : rmq(precomp(e, root)) {}\n\n  int lca(int u,\
-    \ int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n    return mp[rmq.query(tin[u],\
-    \ tout[v] + 1)];\n  }\n\n  int dis(int u, int v) {\n    return dep[u] + dep[v]\
-    \ - 2 * dep[lca(u, v)];\n  }\n\n  bool is_ancestor_of(int u, int v) {\n    return\
-    \ tin[u] <= tin[v] and tout[v] <= tout[u];\n  }\n};\n#line 1 \"tree/auxiliary_tree.cpp\"\
-    \n//#include \"ds/RMQ.cpp\"\n//#include \"tree/LCA.cpp\"\n\nstruct auxiliary_tree\
-    \ {\n  LCA lca;\n\n  auxiliary_tree(vc<pii> e, int root = 0) : lca(e, root) {}\n\
-    \n  auto induced_tree(vi vs) {\n    const int P = 10;\n\n    auto proj = [&](int\
-    \ v) { return lca.tin[v]; };\n    if (ssize(vs) < (1 << P) / P) {\n      ranges::sort(vs,\
-    \ {}, proj);\n    } else {\n      int mx = proj(ranges::max(vs, {}, proj));\n\
-    \      for(int i = 0; mx > 0; i++, mx >>= P){\n        array<int, (1 << P) + 1>\
-    \ f = {};\n        for(int v : vs)\n          f[(proj(v) >> (i * P) & ((1 << P)\
-    \ - 1)) + 1]++;\n        pSum(f);\n        vi nxt(size(vs));\n        for(int\
-    \ v : vs)\n          nxt[f[proj(v) >> (i * P) & ((1 << P) - 1)]++] = v;\n    \
-    \    vs.swap(nxt);\n      }\n    }\n\n    vi s, old_id;\n    vc<bool> is_critical_node;\n\
-    \    auto push_new_vertex = [&](int v, bool critical = true) {\n      s.emplace_back(ssize(old_id));\n\
-    \      old_id.emplace_back(v);\n      is_critical_node.emplace_back(critical);\n\
+    \     vi d(n);\n      for(auto &[u, v] : e)\n        p[u] ^= v, p[v] ^= u, d[u]++,\
+    \ d[v]++;\n\n      d[root] = 0, p[root] = root;\n      ord.reserve(n - 1);\n \
+    \     for(int i = 0; i < n; i++) {\n        int v = i;\n        while(d[v] ==\
+    \ 1) {\n          ord.emplace_back(v);\n          sz[p[v]] += sz[v];\n       \
+    \   d[v] = 0, d[p[v]]--, p[p[v]] ^= v;\n          v = p[v];\n        }\n     \
+    \ }\n    }\n\n    vi dfn(n);\n    {\n      vi nxt(n, 1);\n      for(int v : ord\
+    \ | views::reverse) {\n        dfn[v] = nxt[p[v]], nxt[p[v]] += sz[v];\n     \
+    \   nxt[v] = dfn[v] + 1;\n        dep[v] = dep[p[v]] + 1;\n      }\n      vi().swap(ord);\n\
+    \      vi().swap(sz);\n    }\n\n    vi init(2 * n - 1);\n    {\n      vi dfn_ord\
+    \ = invPerm(std::move(dfn));\n\n      int nxt = 0, pre = root;\n      for(int\
+    \ v : dfn_ord) {\n        while(pre != p[v]) {\n          pre = p[pre], tout[pre]\
+    \ = nxt;\n          init[nxt++] = pre;\n        }\n        tin[v] = tout[v] =\
+    \ nxt;\n        init[nxt++] = pre = v;\n      }\n\n      while(pre != root) {\n\
+    \        pre = p[pre], tout[pre] = nxt;\n        init[nxt++] = pre;\n      }\n\
+    \    }\n\n    {\n      vi f(n);\n      for(int x : dep) f[x]++;\n      pSum(f);\n\
+    \n      vi rank(n);\n      for(int v = 0; v < n; v++) {\n        rank[v] = --f[dep[v]];\n\
+    \        mp[rank[v]] = v;\n      }\n      for(int &v : init) v = rank[v];\n  \
+    \  }\n\n    return init;\n  }\n\n  LCA(vc<pii> e, int root = 0) : rmq(precomp(e,\
+    \ root)) {}\n\n  int lca(int u, int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n\
+    \    return mp[rmq.query(tin[u], tout[v] + 1)];\n  }\n\n  int dis(int u, int v)\
+    \ {\n    return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n  }\n\n  bool is_ancestor_of(int\
+    \ u, int v) {\n    return tin[u] <= tin[v] and tout[v] <= tout[u];\n  }\n};\n\
+    #line 1 \"tree/auxiliary_tree.cpp\"\n//#include \"ds/RMQ.cpp\"\n//#include \"\
+    tree/LCA.cpp\"\n\nstruct auxiliary_tree {\n  LCA lca;\n\n  auxiliary_tree(vc<pii>\
+    \ e, int root = 0) : lca(e, root) {}\n\n  auto induced_tree(vi vs) {\n    const\
+    \ int P = 10;\n\n    auto proj = [&](int v) { return lca.tin[v]; };\n    if (ssize(vs)\
+    \ < (1 << P) / P) {\n      ranges::sort(vs, {}, proj);\n    } else {\n      int\
+    \ mx = proj(ranges::max(vs, {}, proj));\n      for(int i = 0; mx > 0; i++, mx\
+    \ >>= P){\n        array<int, (1 << P) + 1> f = {};\n        for(int v : vs)\n\
+    \          f[(proj(v) >> (i * P) & ((1 << P) - 1)) + 1]++;\n        pSum(f);\n\
+    \        vi nxt(size(vs));\n        for(int v : vs)\n          nxt[f[proj(v) >>\
+    \ (i * P) & ((1 << P) - 1)]++] = v;\n        vs.swap(nxt);\n      }\n    }\n\n\
+    \    vi s, old_id;\n    vc<bool> is_critical_node;\n    auto push_new_vertex =\
+    \ [&](int v, bool critical = true) {\n      s.emplace_back(ssize(old_id));\n \
+    \     old_id.emplace_back(v);\n      is_critical_node.emplace_back(critical);\n\
     \    };\n    \n    if (int v = lca.lca(vs[0], vs.back()); v != vs[0])\n      push_new_vertex(v,\
     \ false);\n\n    vc<pii> e;\n    for(int v : vs) {\n      if (s.empty() or lca.is_ancestor_of(old_id[s.back()],\
     \ v)) {\n        push_new_vertex(v);\n      } else {\n        int last_pop = -1;\n\
@@ -394,8 +394,8 @@ data:
   isVerificationFile: true
   path: test/mytest_auxiliary_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-02-02 21:57:15+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-02-03 05:22:52+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_auxiliary_tree.test.cpp
 layout: document

@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -98,7 +98,7 @@ data:
     - icon: ':warning:'
       path: ds/DSU/bipartite_DSU.cpp
       title: ds/DSU/bipartite_DSU.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/DSU/potential_DSU.cpp
       title: ds/DSU/potential_DSU.cpp
     - icon: ':warning:'
@@ -109,7 +109,7 @@ data:
       title: ds/DSU/rollback_DSU.cpp
   - name: ds
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/RMQ.cpp
       title: ds/RMQ.cpp
     - icon: ':heavy_check_mark:'
@@ -197,19 +197,19 @@ data:
       title: ds_problem/zero_one_on_tree.cpp
   - name: enumerate
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: enumerate/enumerate_bit.cpp
       title: enumerate/enumerate_bit.cpp
     - icon: ':warning:'
       path: enumerate/enumerate_cartesian_product.cpp
       title: enumerate/enumerate_cartesian_product.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: enumerate/enumerate_label_tree.cpp
       title: enumerate/enumerate_label_tree.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: enumerate/enumerate_twelvefold.cpp
       title: enumerate/enumerate_twelvefold.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: enumerate/enumerate_unlabel_rooted_tree.cpp
       title: enumerate/enumerate_unlabel_rooted_tree.cpp
   - name: geometry
@@ -390,7 +390,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: misc/compression.cpp
       title: misc/compression.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: misc/random.cpp
       title: misc/random.cpp
     - icon: ':heavy_check_mark:'
@@ -398,7 +398,7 @@ data:
       title: misc/sharpPSubsetSum.cpp
   - name: modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/MontgomeryModInt.cpp
       title: modint/MontgomeryModInt.cpp
     - icon: ':heavy_check_mark:'
@@ -599,10 +599,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/HLD.cpp
       title: tree/HLD.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: tree/LCA.cpp
       title: tree/LCA.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: tree/auxiliary_tree.cpp
       title: tree/auxiliary_tree.cpp
     - icon: ':heavy_check_mark:'
@@ -611,7 +611,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/centroid_tree.cpp
       title: tree/centroid_tree.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: tree/prufer_recover.cpp
       title: tree/prufer_recover.cpp
     - icon: ':heavy_check_mark:'
@@ -785,7 +785,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lca.test.cpp
       title: test/lca.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/lca_2.test.cpp
       title: test/lca_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -854,7 +854,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
       title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest_auxiliary_tree.test.cpp
       title: test/mytest_auxiliary_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1022,10 +1022,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unionfind.test.cpp
       title: test/unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/unionfind_with_potential.test.cpp
       title: test/unionfind_with_potential.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/unionfind_with_potential_non_commutative_group.test.cpp
       title: test/unionfind_with_potential_non_commutative_group.test.cpp
     - icon: ':heavy_check_mark:'

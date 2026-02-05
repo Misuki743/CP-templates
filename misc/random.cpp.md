@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca_2.test.cpp
     title: test/lca_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/random.cpp\"\nnamespace RNG {\n  mt19937_64 rng(clock);\n\
@@ -53,7 +53,7 @@ data:
   path: misc/random.cpp
   requiredBy: []
   timestamp: '2026-01-30 01:25:42+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/lca_2.test.cpp
 documentation_of: misc/random.cpp

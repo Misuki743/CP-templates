@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/DSU/potential_DSU.cpp
     title: ds/DSU/potential_DSU.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential
@@ -135,7 +135,7 @@ data:
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\nusing mint = MontgomeryModInt<998244353>;\n#line 1 \"ds/DSU/potential_DSU.cpp\"\
     \ntemplate<class T, typename OP, typename INV>\nrequires R_invocable<T, OP, T,\
-    \ T> && R_invocable<T, INV, T&>\nstruct potential_DSU {\n  vi sz_par;\n  vc<T>\
+    \ T> && R_invocable<T, INV, T>\nstruct potential_DSU {\n  vi sz_par;\n  vc<T>\
     \ pot;\n  OP op;\n  INV inv;\n\n  potential_DSU(int n, T id, OP _op, INV _inv)\
     \ : sz_par(n, -1),\n    pot(n, id), op(_op), inv(_inv) {}\n\n  int query(int v)\
     \ {\n    if (sz_par[v] < 0) {\n      return v;\n    } else {\n      int r = query(sz_par[v]);\n\
@@ -172,8 +172,8 @@ data:
   isVerificationFile: true
   path: test/unionfind_with_potential.test.cpp
   requiredBy: []
-  timestamp: '2026-01-31 18:57:43+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-02-05 13:11:35+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/unionfind_with_potential.test.cpp
 layout: document

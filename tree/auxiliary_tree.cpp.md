@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_auxiliary_tree.test.cpp
     title: test/mytest_auxiliary_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/auxiliary_tree.cpp\"\n//#include \"ds/RMQ.cpp\"\n//#include\
@@ -61,7 +61,7 @@ data:
   path: tree/auxiliary_tree.cpp
   requiredBy: []
   timestamp: '2026-02-02 17:55:32+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest_auxiliary_tree.test.cpp
 documentation_of: tree/auxiliary_tree.cpp

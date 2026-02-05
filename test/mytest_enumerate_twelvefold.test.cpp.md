@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_bit.cpp
     title: enumerate/enumerate_bit.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_twelvefold.cpp
     title: enumerate/enumerate_twelvefold.cpp
   _extendedRequiredBy: []

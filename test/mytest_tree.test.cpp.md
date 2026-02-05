@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_bit.cpp
     title: enumerate/enumerate_bit.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_label_tree.cpp
     title: enumerate/enumerate_label_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_twelvefold.cpp
     title: enumerate/enumerate_twelvefold.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_unlabel_rooted_tree.cpp
     title: enumerate/enumerate_unlabel_rooted_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/prufer_recover.cpp
     title: tree/prufer_recover.cpp
   - icon: ':heavy_check_mark:'
