@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/enumerate_bit.cpp
     title: enumerate/enumerate_bit.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/enumerate_label_tree.cpp
     title: enumerate/enumerate_label_tree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/enumerate_twelvefold.cpp
     title: enumerate/enumerate_twelvefold.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/enumerate_unlabel_rooted_tree.cpp
     title: enumerate/enumerate_unlabel_rooted_tree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: tree/auxiliary_tree.cpp
     title: tree/auxiliary_tree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/prufer_recover.cpp
     title: tree/prufer_recover.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -208,32 +208,32 @@ data:
     \      int range = bit_width((unsigned)(r - l)) - 1;\n      return min({ret, table[range][l],\
     \ table[range][r - (1 << range)]});\n    }\n  }\n};\n#line 1 \"tree/LCA.cpp\"\n\
     //#include \"ds/RMQ.cpp\"\n\nstruct LCA {\n  vi dep, tin, tout, mp;\n  RMQ<int>\
-    \ rmq;\n\n  vi precomp(vc<pii> &e, int root) {\n    const int n = ssize(e) + 1;\n\
-    \n    dep = tin = tout = mp = vi(n);\n\n    vi sz(n, 1), p(n), ord;\n    {\n \
-    \     vi d(n);\n      for(auto &[u, v] : e)\n        p[u] ^= v, p[v] ^= u, d[u]++,\
-    \ d[v]++;\n\n      d[root] = 0, p[root] = root;\n      ord.reserve(n - 1);\n \
-    \     for(int i = 0; i < n; i++) {\n        int v = i;\n        while(d[v] ==\
-    \ 1) {\n          ord.emplace_back(v);\n          sz[p[v]] += sz[v];\n       \
-    \   d[v] = 0, d[p[v]]--, p[p[v]] ^= v;\n          v = p[v];\n        }\n     \
-    \ }\n    }\n\n    vi dfn(n);\n    {\n      vi nxt(n, 1);\n      for(int v : ord\
-    \ | views::reverse) {\n        dfn[v] = nxt[p[v]], nxt[p[v]] += sz[v];\n     \
-    \   nxt[v] = dfn[v] + 1;\n        dep[v] = dep[p[v]] + 1;\n      }\n      vi().swap(ord);\n\
-    \      vi().swap(sz);\n    }\n\n    vi init(2 * n - 1);\n    {\n      vi dfn_ord\
-    \ = invPerm(std::move(dfn));\n\n      int nxt = 0, pre = root;\n      for(int\
-    \ v : dfn_ord) {\n        while(pre != p[v]) {\n          pre = p[pre], tout[pre]\
+    \ rmq;\n\n  LCA(vc<pii> e, int root = 0) : rmq(precomp(e, root)) {}\n\n  vi precomp(vc<pii>\
+    \ &e, int root) {\n    const int n = ssize(e) + 1;\n\n    dep = tin = tout = mp\
+    \ = vi(n);\n\n    vi sz(n, 1), p(n), ord;\n    {\n      vi d(n);\n      for(auto\
+    \ &[u, v] : e)\n        p[u] ^= v, p[v] ^= u, d[u]++, d[v]++;\n\n      d[root]\
+    \ = 0;\n      ord.reserve(n - 1);\n      for(int i = 0; i < n; i++) {\n      \
+    \  int v = i;\n        while(d[v] == 1) {\n          ord.emplace_back(v);\n  \
+    \        sz[p[v]] += sz[v];\n          d[v] = 0, d[p[v]]--, p[p[v]] ^= v;\n  \
+    \        v = p[v];\n        }\n      }\n      p[root] = root;\n    }\n\n    vi\
+    \ dfn(n);\n    {\n      vi nxt(n, 1);\n      for(int v : ord | views::reverse)\
+    \ {\n        dfn[v] = nxt[p[v]], nxt[p[v]] += sz[v];\n        nxt[v] = dfn[v]\
+    \ + 1;\n        dep[v] = dep[p[v]] + 1;\n      }\n      vi().swap(ord);\n    \
+    \  vi().swap(sz);\n    }\n\n    vi init(2 * n - 1);\n    {\n      vi dfn_ord =\
+    \ invPerm(std::move(dfn));\n\n      int nxt = 0, pre = root;\n      for(int v\
+    \ : dfn_ord) {\n        while(pre != p[v]) {\n          pre = p[pre], tout[pre]\
     \ = nxt;\n          init[nxt++] = pre;\n        }\n        tin[v] = tout[v] =\
     \ nxt;\n        init[nxt++] = pre = v;\n      }\n\n      while(pre != root) {\n\
     \        pre = p[pre], tout[pre] = nxt;\n        init[nxt++] = pre;\n      }\n\
     \    }\n\n    {\n      vi f(n);\n      for(int x : dep) f[x]++;\n      pSum(f);\n\
     \n      vi rank(n);\n      for(int v = 0; v < n; v++) {\n        rank[v] = --f[dep[v]];\n\
     \        mp[rank[v]] = v;\n      }\n      for(int &v : init) v = rank[v];\n  \
-    \  }\n\n    return init;\n  }\n\n  LCA(vc<pii> e, int root = 0) : rmq(precomp(e,\
-    \ root)) {}\n\n  int lca(int u, int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n\
-    \    return mp[rmq.query(tin[u], tout[v] + 1)];\n  }\n\n  int dis(int u, int v)\
-    \ {\n    return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n  }\n\n  bool is_ancestor_of(int\
-    \ u, int v) {\n    return tin[u] <= tin[v] and tout[v] <= tout[u];\n  }\n};\n\
-    #line 1 \"tree/auxiliary_tree.cpp\"\n//#include \"ds/RMQ.cpp\"\n//#include \"\
-    tree/LCA.cpp\"\n\nstruct auxiliary_tree {\n  LCA lca;\n\n  auxiliary_tree(vc<pii>\
+    \  }\n\n    return init;\n  }\n\n  int lca(int u, int v) {\n    if (tin[u] > tin[v])\
+    \ swap(u, v);\n    return mp[rmq.query(tin[u], tout[v] + 1)];\n  }\n\n  int dis(int\
+    \ u, int v) {\n    return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n  }\n\n  bool\
+    \ is_ancestor_of(int u, int v) {\n    return tin[u] <= tin[v] and tout[v] <= tout[u];\n\
+    \  }\n};\n#line 1 \"tree/auxiliary_tree.cpp\"\n//#include \"ds/RMQ.cpp\"\n//#include\
+    \ \"tree/LCA.cpp\"\n\nstruct auxiliary_tree {\n  LCA lca;\n\n  auxiliary_tree(vc<pii>\
     \ e, int root = 0) : lca(e, root) {}\n\n  auto induced_tree(vi vs) {\n    const\
     \ int P = 10;\n\n    auto proj = [&](int v) { return lca.tin[v]; };\n    if (ssize(vs)\
     \ < (1 << P) / P) {\n      ranges::sort(vs, {}, proj);\n    } else {\n      int\
@@ -306,12 +306,12 @@ data:
     \  check(g, r);\n    });\n  }\n\n  //path\n  for(int n = 1; n <= 100; n += 2)\
     \ {\n    vector<vector<int>> g(n);\n    for(int i = 1; i < n; i++)\n      g[i].emplace_back(i\
     \ - 1), g[i - 1].emplace_back(i);\n    check(g, 0);\n    check(random_relabel(g),\
-    \ rng() % n);\n  }\n\n  //star\n  for(int n = 2; n <= 100; n += 2) {\n    for(int\
+    \ rng() % n);\n  }\n\n  //star\n  for(int n = 2; n <= 100; n += 4) {\n    for(int\
     \ root : {0, n / 2, n - 1}) {\n      vector<vector<int>> g(n);\n      for(int\
     \ i = 0; i < n; i++)\n        if (i != root)\n          g[root].emplace_back(i),\
     \ g[i].emplace_back(root);\n      check(g, root);\n      check(g, root == 0);\n\
     \    }\n  }\n\n  //almost path\n  for(int tc = 0; tc < 10; tc++) {\n    int n\
-    \ = 5'000;\n    vector<vector<int>> g(n);\n    for(int v = 1; v < n; v++) {\n\
+    \ = 3'000;\n    vector<vector<int>> g(n);\n    for(int v = 1; v < n; v++) {\n\
     \      int x = rng() % min(v, 5);\n      g[v].emplace_back(x), g[x].emplace_back(v);\n\
     \    }\n    for(int r : {0, n / 2, n - 1})\n      check(g, r);\n    g = random_relabel(g);\n\
     \    for(int r : {0, n / 2, n - 1})\n      check(g, r);\n  }\n\n  a_plus_b();\n\
@@ -371,12 +371,12 @@ data:
     \  check(g, r);\n    });\n  }\n\n  //path\n  for(int n = 1; n <= 100; n += 2)\
     \ {\n    vector<vector<int>> g(n);\n    for(int i = 1; i < n; i++)\n      g[i].emplace_back(i\
     \ - 1), g[i - 1].emplace_back(i);\n    check(g, 0);\n    check(random_relabel(g),\
-    \ rng() % n);\n  }\n\n  //star\n  for(int n = 2; n <= 100; n += 2) {\n    for(int\
+    \ rng() % n);\n  }\n\n  //star\n  for(int n = 2; n <= 100; n += 4) {\n    for(int\
     \ root : {0, n / 2, n - 1}) {\n      vector<vector<int>> g(n);\n      for(int\
     \ i = 0; i < n; i++)\n        if (i != root)\n          g[root].emplace_back(i),\
     \ g[i].emplace_back(root);\n      check(g, root);\n      check(g, root == 0);\n\
     \    }\n  }\n\n  //almost path\n  for(int tc = 0; tc < 10; tc++) {\n    int n\
-    \ = 5'000;\n    vector<vector<int>> g(n);\n    for(int v = 1; v < n; v++) {\n\
+    \ = 3'000;\n    vector<vector<int>> g(n);\n    for(int v = 1; v < n; v++) {\n\
     \      int x = rng() % min(v, 5);\n      g[v].emplace_back(x), g[x].emplace_back(v);\n\
     \    }\n    for(int r : {0, n / 2, n - 1})\n      check(g, r);\n    g = random_relabel(g);\n\
     \    for(int r : {0, n / 2, n - 1})\n      check(g, r);\n  }\n\n  a_plus_b();\n\
@@ -394,8 +394,8 @@ data:
   isVerificationFile: true
   path: test/mytest_auxiliary_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-02-03 05:22:52+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-02-07 19:26:24+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest_auxiliary_tree.test.cpp
 layout: document

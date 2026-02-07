@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -101,20 +101,20 @@ data:
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
     \ < b ? a = b, 1 : 0; }\n\n#line 1 \"tree/tree.cpp\"\nclass tree {\n  using i32\
     \ = int32_t;\n\n  vc<i32> ord;\n\n  public:\n\n  int n, root;\n  vc<int> p, sz,\
-    \ dep, jp;\n\n  void calc(vc<i32> d, vc<i32> adj) {\n    sz = vi(n, 1);\n    p\
-    \ = dep = jp = vi(n);\n\n    ord.reserve(n - 1);\n    for(int i = 0; i < n; i++)\
-    \ {\n      int v = i;\n      while(d[v] == 1) {\n        ord.emplace_back(v);\n\
+    \ dep, jp;\n\n  tree(vc<pii> e, int _root = 0) : n(size(e) + 1), root(_root) {\n\
+    \    vc<i32> d(n), adj(n);\n    for(auto [u, v] : e)\n      d[u]++, d[v]++, adj[u]\
+    \ ^= v, adj[v] ^= u;\n    d[root] = 0;\n    calc(d, adj);\n  }\n\n  tree(vi pa)\
+    \ : n(size(pa)) {\n    root = ranges::find(pa, -1) - pa.begin();\n    vc<i32>\
+    \ d(n), adj(n);\n    for(int v = 0; v < n; v++)\n      if (pa[v] != -1)\n    \
+    \    d[v]++, d[pa[v]]++, adj[v] ^= pa[v], adj[pa[v]] ^= v;\n    d[root] = 0;\n\
+    \    calc(d, adj);\n  }\n\n  void calc(vc<i32> d, vc<i32> adj) {\n    sz = vi(n,\
+    \ 1);\n    p = dep = jp = vi(n);\n\n    ord.reserve(n - 1);\n    for(int i = 0;\
+    \ i < n; i++) {\n      int v = i;\n      while(d[v] == 1) {\n        ord.emplace_back(v);\n\
     \        p[v] = adj[v], sz[p[v]] += sz[v];\n        d[v] = 0, d[p[v]]--, adj[p[v]]\
     \ ^= v;\n        v = p[v];\n      }\n    }\n\n    assert(ssize(ord) == n - 1);\n\
     \n    p[root] = jp[root] = root;\n    for(i32 v : ord | views::reverse) {\n  \
     \    dep[v] = dep[p[v]] + 1;\n      if (dep[p[v]] + dep[jp[jp[p[v]]]] == 2 * dep[jp[p[v]]])\n\
     \        jp[v] = jp[jp[p[v]]];\n      else\n        jp[v] = p[v];\n    }\n  }\n\
-    \n  tree(vc<pii> e, int _root = 0) : n(size(e) + 1), root(_root) {\n    vc<i32>\
-    \ d(n), adj(n);\n    for(auto [u, v] : e)\n      d[u]++, d[v]++, adj[u] ^= v,\
-    \ adj[v] ^= u;\n    d[root] = 0;\n    calc(d, adj);\n  }\n\n  tree(vi pa) : n(size(pa))\
-    \ {\n    root = ranges::find(pa, -1) - pa.begin();\n    vc<i32> d(n), adj(n);\n\
-    \    for(int v = 0; v < n; v++)\n      if (pa[v] != -1)\n        d[v]++, d[pa[v]]++,\
-    \ adj[v] ^= pa[v], adj[pa[v]] ^= v;\n    d[root] = 0;\n    calc(d, adj);\n  }\n\
     \n  int jump(int v, int k) {\n    k = min(k, dep[v]);\n    while(k) {\n      if\
     \ (int d = dep[v] - dep[jp[v]]; d <= k)\n        v = jp[v], k -= d;\n      else\n\
     \        v = p[v], k -= 1;\n    }\n    return v;\n  }\n\n  int lca(int u, int\
@@ -148,7 +148,7 @@ data:
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2026-02-02 01:08:31+08:00'
+  timestamp: '2026-02-07 19:26:24+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca.test.cpp

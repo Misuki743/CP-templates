@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: combi/bernoulliNumber.cpp
     title: combi/bernoulliNumber.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   - icon: ':heavy_check_mark:'

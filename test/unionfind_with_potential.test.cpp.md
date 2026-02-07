@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/DSU/potential_DSU.cpp
     title: ds/DSU/potential_DSU.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential
@@ -149,17 +149,17 @@ data:
     \ v2) {\n    assert(query(v1) == query(v2));\n    return op(pot[v1], inv(pot[v2]));\n\
     \  }\n};\n#line 6 \"test/unionfind_with_potential.test.cpp\"\n\nint main() {\n\
     \  int n, q; cin >> n >> q;\n  potential_DSU dsu(n, mint(0),\n    [](mint a, mint\
-    \ b) { return a + b; },\n    [](mint &a) { return -a; }\n  );\n\n  while(q--)\
-    \ {\n    int op; cin >> op;\n    if (op == 0) {\n      int u, v, x; cin >> u >>\
-    \ v >> x;\n      cout << dsu.merge(v, u, x) << '\\n';\n    } else {\n      int\
-    \ u, v; cin >> u >> v;\n      if (dsu.query(u) != dsu.query(v))\n        cout\
-    \ << -1 << '\\n';\n      else\n        cout << dsu.query(v, u) << '\\n';\n   \
-    \ }\n  }\n\n  return 0;\n}\n"
+    \ b) { return a + b; },\n    [](mint a) { return -a; }\n  );\n\n  while(q--) {\n\
+    \    int op; cin >> op;\n    if (op == 0) {\n      int u, v, x; cin >> u >> v\
+    \ >> x;\n      cout << dsu.merge(v, u, x) << '\\n';\n    } else {\n      int u,\
+    \ v; cin >> u >> v;\n      if (dsu.query(u) != dsu.query(v))\n        cout <<\
+    \ -1 << '\\n';\n      else\n        cout << dsu.query(v, u) << '\\n';\n    }\n\
+    \  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
     \n#include \"../ds/DSU/potential_DSU.cpp\"\n\nint main() {\n  int n, q; cin >>\
     \ n >> q;\n  potential_DSU dsu(n, mint(0),\n    [](mint a, mint b) { return a\
-    \ + b; },\n    [](mint &a) { return -a; }\n  );\n\n  while(q--) {\n    int op;\
+    \ + b; },\n    [](mint a) { return -a; }\n  );\n\n  while(q--) {\n    int op;\
     \ cin >> op;\n    if (op == 0) {\n      int u, v, x; cin >> u >> v >> x;\n   \
     \   cout << dsu.merge(v, u, x) << '\\n';\n    } else {\n      int u, v; cin >>\
     \ u >> v;\n      if (dsu.query(u) != dsu.query(v))\n        cout << -1 << '\\\
@@ -172,8 +172,8 @@ data:
   isVerificationFile: true
   path: test/unionfind_with_potential.test.cpp
   requiredBy: []
-  timestamp: '2026-02-05 13:11:35+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-02-07 19:26:24+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unionfind_with_potential.test.cpp
 layout: document

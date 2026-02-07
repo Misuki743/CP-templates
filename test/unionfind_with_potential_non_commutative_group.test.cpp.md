@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/DSU/potential_DSU.cpp
     title: ds/DSU/potential_DSU.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group
@@ -153,25 +153,25 @@ data:
     \ cin >> n >> q;\n  using M = array<mint, 4>;\n  potential_DSU dsu(n, M{1, 0,\
     \ 0, 1},\n    [](M a, M b) { return M{a[0] * b[0] + a[1] * b[2], a[0] * b[1] +\
     \ a[1] * b[3],\n                            a[2] * b[0] + a[3] * b[2], a[2] *\
-    \ b[1] + a[3] * b[3]}; },\n    [](M &a) { return M{a[3], -a[1], -a[2], a[0]};\
-    \ }\n  );\n\n  while(q--) {\n    int op; cin >> op;\n    if (op == 0) {\n    \
-    \  int u, v; cin >> u >> v;\n      M m;\n      for(mint &x : m) cin >> x;\n  \
-    \    cout << dsu.merge(v, u, m) << '\\n';\n    } else {\n      int u, v; cin >>\
-    \ u >> v;\n      if (dsu.query(u) != dsu.query(v))\n        cout << -1 << '\\\
-    n';\n      else\n        cout << dsu.query(v, u) << '\\n';\n    }\n  }\n\n  return\
-    \ 0;\n}\n"
+    \ b[1] + a[3] * b[3]}; },\n    [](M a) { return M{a[3], -a[1], -a[2], a[0]}; }\n\
+    \  );\n\n  while(q--) {\n    int op; cin >> op;\n    if (op == 0) {\n      int\
+    \ u, v; cin >> u >> v;\n      M m;\n      for(mint &x : m) cin >> x;\n      cout\
+    \ << dsu.merge(v, u, m) << '\\n';\n    } else {\n      int u, v; cin >> u >> v;\n\
+    \      if (dsu.query(u) != dsu.query(v))\n        cout << -1 << '\\n';\n     \
+    \ else\n        cout << dsu.query(v, u) << '\\n';\n    }\n  }\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
     \n#include \"../ds/DSU/potential_DSU.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  using M = array<mint, 4>;\n\
     \  potential_DSU dsu(n, M{1, 0, 0, 1},\n    [](M a, M b) { return M{a[0] * b[0]\
     \ + a[1] * b[2], a[0] * b[1] + a[1] * b[3],\n                            a[2]\
-    \ * b[0] + a[3] * b[2], a[2] * b[1] + a[3] * b[3]}; },\n    [](M &a) { return\
-    \ M{a[3], -a[1], -a[2], a[0]}; }\n  );\n\n  while(q--) {\n    int op; cin >> op;\n\
-    \    if (op == 0) {\n      int u, v; cin >> u >> v;\n      M m;\n      for(mint\
-    \ &x : m) cin >> x;\n      cout << dsu.merge(v, u, m) << '\\n';\n    } else {\n\
-    \      int u, v; cin >> u >> v;\n      if (dsu.query(u) != dsu.query(v))\n   \
-    \     cout << -1 << '\\n';\n      else\n        cout << dsu.query(v, u) << '\\\
+    \ * b[0] + a[3] * b[2], a[2] * b[1] + a[3] * b[3]}; },\n    [](M a) { return M{a[3],\
+    \ -a[1], -a[2], a[0]}; }\n  );\n\n  while(q--) {\n    int op; cin >> op;\n   \
+    \ if (op == 0) {\n      int u, v; cin >> u >> v;\n      M m;\n      for(mint &x\
+    \ : m) cin >> x;\n      cout << dsu.merge(v, u, m) << '\\n';\n    } else {\n \
+    \     int u, v; cin >> u >> v;\n      if (dsu.query(u) != dsu.query(v))\n    \
+    \    cout << -1 << '\\n';\n      else\n        cout << dsu.query(v, u) << '\\\
     n';\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
@@ -180,8 +180,8 @@ data:
   isVerificationFile: true
   path: test/unionfind_with_potential_non_commutative_group.test.cpp
   requiredBy: []
-  timestamp: '2026-02-05 13:11:35+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-02-07 19:26:24+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unionfind_with_potential_non_commutative_group.test.cpp
 layout: document

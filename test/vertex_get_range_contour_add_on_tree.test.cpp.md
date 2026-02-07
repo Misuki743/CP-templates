@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -118,79 +118,80 @@ data:
     \ i -= i & (-i))\n      res += data[i];\n    return res;\n  }\n\n  T query(int\
     \ l, int r) { //query [l, r)\n    return query(r - 1) - query(l - 1);\n  }\n};\n\
     #line 1 \"tree/tree.cpp\"\nclass tree {\n  using i32 = int32_t;\n\n  vc<i32> ord;\n\
-    \n  public:\n\n  int n, root;\n  vc<int> p, sz, dep, jp;\n\n  void calc(vc<i32>\
-    \ d, vc<i32> adj) {\n    sz = vi(n, 1);\n    p = dep = jp = vi(n);\n\n    ord.reserve(n\
-    \ - 1);\n    for(int i = 0; i < n; i++) {\n      int v = i;\n      while(d[v]\
-    \ == 1) {\n        ord.emplace_back(v);\n        p[v] = adj[v], sz[p[v]] += sz[v];\n\
-    \        d[v] = 0, d[p[v]]--, adj[p[v]] ^= v;\n        v = p[v];\n      }\n  \
-    \  }\n\n    assert(ssize(ord) == n - 1);\n\n    p[root] = jp[root] = root;\n \
-    \   for(i32 v : ord | views::reverse) {\n      dep[v] = dep[p[v]] + 1;\n     \
-    \ if (dep[p[v]] + dep[jp[jp[p[v]]]] == 2 * dep[jp[p[v]]])\n        jp[v] = jp[jp[p[v]]];\n\
-    \      else\n        jp[v] = p[v];\n    }\n  }\n\n  tree(vc<pii> e, int _root\
-    \ = 0) : n(size(e) + 1), root(_root) {\n    vc<i32> d(n), adj(n);\n    for(auto\
-    \ [u, v] : e)\n      d[u]++, d[v]++, adj[u] ^= v, adj[v] ^= u;\n    d[root] =\
-    \ 0;\n    calc(d, adj);\n  }\n\n  tree(vi pa) : n(size(pa)) {\n    root = ranges::find(pa,\
-    \ -1) - pa.begin();\n    vc<i32> d(n), adj(n);\n    for(int v = 0; v < n; v++)\n\
-    \      if (pa[v] != -1)\n        d[v]++, d[pa[v]]++, adj[v] ^= pa[v], adj[pa[v]]\
-    \ ^= v;\n    d[root] = 0;\n    calc(d, adj);\n  }\n\n  int jump(int v, int k)\
-    \ {\n    k = min(k, dep[v]);\n    while(k) {\n      if (int d = dep[v] - dep[jp[v]];\
-    \ d <= k)\n        v = jp[v], k -= d;\n      else\n        v = p[v], k -= 1;\n\
-    \    }\n    return v;\n  }\n\n  int lca(int u, int v) {\n    if (dep[u] < dep[v])\n\
-    \      swap(u, v);\n    u = jump(u, dep[u] - dep[v]);\n    if (u == v) return\
-    \ u;\n    while(p[u] != p[v]) {\n      if (jp[u] != jp[v]) u = jp[u], v = jp[v];\n\
-    \      else u = p[u], v = p[v];\n    }\n    return p[u];\n  }\n\n  int kth(int\
-    \ s, int t, int k) {\n    int m = lca(s, t);\n    if (dep[s] + dep[t] - 2 * dep[m]\
-    \ < k)\n      return -1;\n    else if (dep[s] - dep[m] >= k)\n      return jump(s,\
-    \ k);\n    else\n      return jump(t, dep[s] + dep[t] - 2 * dep[m] - k);\n  }\n\
-    \n  int dis(int u, int v) {\n    return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n\
-    \  }\n\n  int median(int u, int v, int w) {\n    return lca(u, v) ^ lca(u, w)\
-    \ ^ lca(v, w);\n  }\n\n  auto centroid() {\n    array<int, 2> r = {-1, -1};\n\
-    \    vector<bool> ok(n, true);\n    for(int v = 0; v < n; v++) {\n      if (2\
-    \ * (n - sz[v]) > n)\n        ok[v] = false;\n      if (v != root and 2 * sz[v]\
-    \ > n)\n        ok[p[v]] = false;\n    }\n    for(int v = 0; v < n; v++)\n   \
-    \   if (ok[v])\n        r[1] = v, swap(r[0], r[1]);\n    return r;\n  }\n};\n\
-    #line 1 \"tree/centroid_tree.cpp\"\nauto centroid_tree(vvi &g) {\n  int n = ssize(g);\n\
-    \  vvi tr(n);\n  vi sz(n);\n  vc<bool> block(n, false);\n\n  auto calc = [&](int\
-    \ v, int p, auto &self) -> void {\n    sz[v] = 1;\n    for(int x : g[v]) {\n \
-    \     if (x == p or block[x]) continue;\n      self(x, v, self);\n      sz[v]\
-    \ += sz[x];\n    }\n  };\n\n  auto dfs = [&](int v, auto &self) -> int {\n   \
-    \ calc(v, -1, calc);\n\n    int c = v, p = -1;\n    bool move;\n    do {\n   \
-    \   move = false;\n      for(int x : g[c]) {\n        if (x == p or block[x] or\
-    \ 2 * sz[x] <= sz[v]) continue;\n        move = true, p = c, c = x;\n        break;\n\
-    \      }\n    } while(move);\n\n    block[c] = true;\n    for(int x : g[c]) {\n\
-    \      if (block[x]) continue;\n      x = self(x, self);\n      tr[c].emplace_back(x);\n\
-    \      tr[x].emplace_back(c);\n    }\n\n    return c;\n  };\n\n  int root = dfs(0,\
-    \ dfs);\n\n  return pair(tr, root);\n}\n#line 9 \"test/vertex_get_range_contour_add_on_tree.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vector<int> a(n);\n  for(int &x : a)\n    cin >> x;\n \
-    \ vector<pii> e(n - 1);\n  for(auto &[u, v] : e)\n    cin >> u >> v;\n  vector<vector<int>>\
-    \ g(n);\n  for(auto [u, v] : e) {\n    g[u].emplace_back(v);\n    g[v].emplace_back(u);\n\
-    \  }\n\n  auto [g2, r] = centroid_tree(g);\n\n  vector<int> p(n, -1);\n  auto\
-    \ dfs = [&](int v, auto self) -> void {\n    for(int x : g2[v]) {\n      if (x\
-    \ == p[v]) continue;\n      p[x] = v;\n      self(x, self);\n    }\n  };\n  dfs(r,\
-    \ dfs);\n\n  gp_hash_table<ll, int, custom_hash> toId({}, {}, {}, {}, {1 << 19});\n\
-    \  vector<vector<array<int, 2>>> cand(2 * n);\n  vector<int> base(2 * n);\n  vector<ll>\
-    \ init;\n  init.reserve(1 << 19);\n  ::tree tr(e);\n  for(int s = 0; s < n; s++)\
-    \ {\n    auto dfs = [&](int v, auto self) -> void {\n      cand[s].push_back({tr.dis(s,\
-    \ v), v});\n      if (p[s] != -1)\n        cand[s + n].push_back({tr.dis(p[s],\
-    \ v), v});\n      for(int x : g2[v]) {\n        if (x == p[v]) continue;\n   \
-    \     self(x, self);\n      }\n    };\n    dfs(s, dfs);\n    for(int d : {0, n})\
-    \ {\n      base[s + d] = ssize(init);\n      ranges::sort(cand[s + d]);\n    \
-    \  for(auto [_, v] : cand[s + d]) {\n        toId[(ll)v << 32 | (s + d)] = ssize(init);\n\
-    \        init.emplace_back(a[v]);\n      }\n    }\n  }\n\n  adjacent_difference(init.begin(),\
-    \ init.end(), init.begin());\n  fenwickTree<ll> ft(init);\n  auto modify = [&](int\
-    \ v, int l, int r, int d) {\n    int ql = base[v] + (ranges::lower_bound(cand[v],\
-    \ array<int, 2>{l, -1}) - cand[v].begin());\n    int qr = base[v] + (ranges::lower_bound(cand[v],\
-    \ array<int, 2>{r, -1}) - cand[v].begin());\n    ft.add(ql, d), ft.add(qr, -d);\n\
-    \  };\n\n  while(q--) {\n    int op; cin >> op;\n    if (op == 0) {\n      int\
-    \ x, l, r, d; cin >> x >> l >> r >> d;\n      int v = x, pv = -1;\n      while(v\
-    \ != -1) {\n        int di = tr.dis(v, x);\n        modify(v, l - di, r - di,\
-    \ d);\n        if (pv != -1) {\n          modify(pv + n, l - di, r - di, d);\n\
-    \        }\n        pv = v, v = p[v];\n      }\n    } else {\n      int x; cin\
-    \ >> x;\n      int v = x, pv = -1;\n      ll ans = 0;\n      while(v != -1) {\n\
-    \        ans += ft.query(toId[(ll)x << 32 | v]);\n        if (pv != -1)\n    \
-    \      ans -= ft.query(toId[(ll)x << 32 | (pv + n)]);\n        pv = v, v = p[v];\n\
-    \      }\n      cout << ans << '\\n';\n    }\n  }\n\n  return 0;\n}\n\n"
+    \n  public:\n\n  int n, root;\n  vc<int> p, sz, dep, jp;\n\n  tree(vc<pii> e,\
+    \ int _root = 0) : n(size(e) + 1), root(_root) {\n    vc<i32> d(n), adj(n);\n\
+    \    for(auto [u, v] : e)\n      d[u]++, d[v]++, adj[u] ^= v, adj[v] ^= u;\n \
+    \   d[root] = 0;\n    calc(d, adj);\n  }\n\n  tree(vi pa) : n(size(pa)) {\n  \
+    \  root = ranges::find(pa, -1) - pa.begin();\n    vc<i32> d(n), adj(n);\n    for(int\
+    \ v = 0; v < n; v++)\n      if (pa[v] != -1)\n        d[v]++, d[pa[v]]++, adj[v]\
+    \ ^= pa[v], adj[pa[v]] ^= v;\n    d[root] = 0;\n    calc(d, adj);\n  }\n\n  void\
+    \ calc(vc<i32> d, vc<i32> adj) {\n    sz = vi(n, 1);\n    p = dep = jp = vi(n);\n\
+    \n    ord.reserve(n - 1);\n    for(int i = 0; i < n; i++) {\n      int v = i;\n\
+    \      while(d[v] == 1) {\n        ord.emplace_back(v);\n        p[v] = adj[v],\
+    \ sz[p[v]] += sz[v];\n        d[v] = 0, d[p[v]]--, adj[p[v]] ^= v;\n        v\
+    \ = p[v];\n      }\n    }\n\n    assert(ssize(ord) == n - 1);\n\n    p[root] =\
+    \ jp[root] = root;\n    for(i32 v : ord | views::reverse) {\n      dep[v] = dep[p[v]]\
+    \ + 1;\n      if (dep[p[v]] + dep[jp[jp[p[v]]]] == 2 * dep[jp[p[v]]])\n      \
+    \  jp[v] = jp[jp[p[v]]];\n      else\n        jp[v] = p[v];\n    }\n  }\n\n  int\
+    \ jump(int v, int k) {\n    k = min(k, dep[v]);\n    while(k) {\n      if (int\
+    \ d = dep[v] - dep[jp[v]]; d <= k)\n        v = jp[v], k -= d;\n      else\n \
+    \       v = p[v], k -= 1;\n    }\n    return v;\n  }\n\n  int lca(int u, int v)\
+    \ {\n    if (dep[u] < dep[v])\n      swap(u, v);\n    u = jump(u, dep[u] - dep[v]);\n\
+    \    if (u == v) return u;\n    while(p[u] != p[v]) {\n      if (jp[u] != jp[v])\
+    \ u = jp[u], v = jp[v];\n      else u = p[u], v = p[v];\n    }\n    return p[u];\n\
+    \  }\n\n  int kth(int s, int t, int k) {\n    int m = lca(s, t);\n    if (dep[s]\
+    \ + dep[t] - 2 * dep[m] < k)\n      return -1;\n    else if (dep[s] - dep[m] >=\
+    \ k)\n      return jump(s, k);\n    else\n      return jump(t, dep[s] + dep[t]\
+    \ - 2 * dep[m] - k);\n  }\n\n  int dis(int u, int v) {\n    return dep[u] + dep[v]\
+    \ - 2 * dep[lca(u, v)];\n  }\n\n  int median(int u, int v, int w) {\n    return\
+    \ lca(u, v) ^ lca(u, w) ^ lca(v, w);\n  }\n\n  auto centroid() {\n    array<int,\
+    \ 2> r = {-1, -1};\n    vector<bool> ok(n, true);\n    for(int v = 0; v < n; v++)\
+    \ {\n      if (2 * (n - sz[v]) > n)\n        ok[v] = false;\n      if (v != root\
+    \ and 2 * sz[v] > n)\n        ok[p[v]] = false;\n    }\n    for(int v = 0; v <\
+    \ n; v++)\n      if (ok[v])\n        r[1] = v, swap(r[0], r[1]);\n    return r;\n\
+    \  }\n};\n#line 1 \"tree/centroid_tree.cpp\"\nauto centroid_tree(vvi &g) {\n \
+    \ int n = ssize(g);\n  vvi tr(n);\n  vi sz(n);\n  vc<bool> block(n, false);\n\n\
+    \  auto calc = [&](int v, int p, auto &self) -> void {\n    sz[v] = 1;\n    for(int\
+    \ x : g[v]) {\n      if (x == p or block[x]) continue;\n      self(x, v, self);\n\
+    \      sz[v] += sz[x];\n    }\n  };\n\n  auto dfs = [&](int v, auto &self) ->\
+    \ int {\n    calc(v, -1, calc);\n\n    int c = v, p = -1;\n    bool move;\n  \
+    \  do {\n      move = false;\n      for(int x : g[c]) {\n        if (x == p or\
+    \ block[x] or 2 * sz[x] <= sz[v]) continue;\n        move = true, p = c, c = x;\n\
+    \        break;\n      }\n    } while(move);\n\n    block[c] = true;\n    for(int\
+    \ x : g[c]) {\n      if (block[x]) continue;\n      x = self(x, self);\n     \
+    \ tr[c].emplace_back(x);\n      tr[x].emplace_back(c);\n    }\n\n    return c;\n\
+    \  };\n\n  int root = dfs(0, dfs);\n\n  return pair(tr, root);\n}\n#line 9 \"\
+    test/vertex_get_range_contour_add_on_tree.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> a(n);\n  for(int\
+    \ &x : a)\n    cin >> x;\n  vector<pii> e(n - 1);\n  for(auto &[u, v] : e)\n \
+    \   cin >> u >> v;\n  vector<vector<int>> g(n);\n  for(auto [u, v] : e) {\n  \
+    \  g[u].emplace_back(v);\n    g[v].emplace_back(u);\n  }\n\n  auto [g2, r] = centroid_tree(g);\n\
+    \n  vector<int> p(n, -1);\n  auto dfs = [&](int v, auto self) -> void {\n    for(int\
+    \ x : g2[v]) {\n      if (x == p[v]) continue;\n      p[x] = v;\n      self(x,\
+    \ self);\n    }\n  };\n  dfs(r, dfs);\n\n  gp_hash_table<ll, int, custom_hash>\
+    \ toId({}, {}, {}, {}, {1 << 19});\n  vector<vector<array<int, 2>>> cand(2 * n);\n\
+    \  vector<int> base(2 * n);\n  vector<ll> init;\n  init.reserve(1 << 19);\n  ::tree\
+    \ tr(e);\n  for(int s = 0; s < n; s++) {\n    auto dfs = [&](int v, auto self)\
+    \ -> void {\n      cand[s].push_back({tr.dis(s, v), v});\n      if (p[s] != -1)\n\
+    \        cand[s + n].push_back({tr.dis(p[s], v), v});\n      for(int x : g2[v])\
+    \ {\n        if (x == p[v]) continue;\n        self(x, self);\n      }\n    };\n\
+    \    dfs(s, dfs);\n    for(int d : {0, n}) {\n      base[s + d] = ssize(init);\n\
+    \      ranges::sort(cand[s + d]);\n      for(auto [_, v] : cand[s + d]) {\n  \
+    \      toId[(ll)v << 32 | (s + d)] = ssize(init);\n        init.emplace_back(a[v]);\n\
+    \      }\n    }\n  }\n\n  adjacent_difference(init.begin(), init.end(), init.begin());\n\
+    \  fenwickTree<ll> ft(init);\n  auto modify = [&](int v, int l, int r, int d)\
+    \ {\n    int ql = base[v] + (ranges::lower_bound(cand[v], array<int, 2>{l, -1})\
+    \ - cand[v].begin());\n    int qr = base[v] + (ranges::lower_bound(cand[v], array<int,\
+    \ 2>{r, -1}) - cand[v].begin());\n    ft.add(ql, d), ft.add(qr, -d);\n  };\n\n\
+    \  while(q--) {\n    int op; cin >> op;\n    if (op == 0) {\n      int x, l, r,\
+    \ d; cin >> x >> l >> r >> d;\n      int v = x, pv = -1;\n      while(v != -1)\
+    \ {\n        int di = tr.dis(v, x);\n        modify(v, l - di, r - di, d);\n \
+    \       if (pv != -1) {\n          modify(pv + n, l - di, r - di, d);\n      \
+    \  }\n        pv = v, v = p[v];\n      }\n    } else {\n      int x; cin >> x;\n\
+    \      int v = x, pv = -1;\n      ll ans = 0;\n      while(v != -1) {\n      \
+    \  ans += ft.query(toId[(ll)x << 32 | v]);\n        if (pv != -1)\n          ans\
+    \ -= ft.query(toId[(ll)x << 32 | (pv + n)]);\n        pv = v, v = p[v];\n    \
+    \  }\n      cout << ans << '\\n';\n    }\n  }\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_get_range_contour_add_on_tree\"\
     \n\n#include <bits/extc++.h>\n#include \"../default/t.cpp\"\n#include \"../ds/hashTable.cpp\"\
     \n#include \"../ds/fenwickTree.cpp\"\n#include \"../tree/tree.cpp\"\n#include\
@@ -234,7 +235,7 @@ data:
   isVerificationFile: true
   path: test/vertex_get_range_contour_add_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-02-02 01:18:03+08:00'
+  timestamp: '2026-02-07 19:26:24+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/vertex_get_range_contour_add_on_tree.test.cpp
