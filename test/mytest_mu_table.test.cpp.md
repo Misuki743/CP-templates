@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/linear_sieve.cpp
     title: numtheory/linear_sieve.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/mu_table.cpp
     title: numtheory/mu_table.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -102,12 +102,8 @@ data:
     \ T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ?\
     \ (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T &a, T b) { return\
     \ a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a, T b) { return a\
-    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/mu_table.cpp\"\ntemplate<class\
-    \ T, int32_t C>\narray<T, C> mu_table(linear_sieve<C> &ls) {\n  array<T, C> mu\
-    \ = {};\n  if (C > 1) mu[1] = T(1);\n  auto &mpf = ls.mpf;\n  for(int i = 2; i\
-    \ < C; i++)\n    mu[i] = (mpf[i] == mpf[i / mpf[i]] ? T(0) : -mu[i / mpf[i]]);\n\
-    \  return mu;\n}\n#line 1 \"numtheory/linear_sieve.cpp\"\ntemplate<int32_t C>\n\
-    struct linear_sieve {\n  array<int, C> mpf = {};\n  vi prime;\n  linear_sieve()\
+    \ < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/linear_sieve.cpp\"\ntemplate<int32_t\
+    \ C>\nstruct linear_sieve {\n  array<int, C> mpf = {};\n  vi prime;\n  linear_sieve()\
     \ {\n    if (C > 2)\n      iota(mpf.begin() + 2, mpf.end(), 2);\n    for(int i\
     \ = 2; i < C; i++) {\n      if (mpf[i] == i)\n        prime.emplace_back(i);\n\
     \      for(int64_t p : prime) {\n        if (p > mpf[i] or p * i >= C)\n     \
@@ -121,7 +117,11 @@ data:
     \      vi nxt;\n      nxt.reserve(ssize(divisor) * (f + 1));\n      for(int64_t\
     \ i = 0, q = 1; i <= f; i++, q *= p)\n        for(int d : divisor)\n         \
     \ nxt.emplace_back(d * q);\n      divisor.swap(nxt);\n    }\n    if (sorted)\n\
-    \      ranges::sort(divisor);\n    return divisor;\n  }\n};\n#line 6 \"test/mytest_mu_table.test.cpp\"\
+    \      ranges::sort(divisor);\n    return divisor;\n  }\n};\n#line 1 \"numtheory/mu_table.cpp\"\
+    \ntemplate<class T, int32_t C>\narray<T, C> mu_table(linear_sieve<C> &ls) {\n\
+    \  array<T, C> mu = {};\n  if (C > 1) mu[1] = T(1);\n  auto &mpf = ls.mpf;\n \
+    \ for(int i = 2; i < C; i++)\n    mu[i] = (mpf[i] == mpf[i / mpf[i]] ? T(0) :\
+    \ -mu[i / mpf[i]]);\n  return mu;\n}\n#line 6 \"test/mytest_mu_table.test.cpp\"\
     \n\nvc<pii> factorize(int x) {\n  vc<pii> v;\n  int x0 = x;\n  for(int d = 2;\
     \ d <= x0; d++) {\n    if (x % d == 0) {\n      int f = 0;\n      while(x % d\
     \ == 0)\n        x /= d, f++;\n      v.emplace_back(d, f);\n    }\n  }\n  return\
@@ -138,7 +138,7 @@ data:
     \    }\n  }\n\n  check_small();\n  check_power();\n  a_plus_b();\n\n  return 0;\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    ../default/t.cpp\"\n#include \"../numtheory/mu_table.cpp\"\n#include \"../numtheory/linear_sieve.cpp\"\
+    ../default/t.cpp\"\n#include \"../numtheory/linear_sieve.cpp\"\n#include \"../numtheory/mu_table.cpp\"\
     \n\nvc<pii> factorize(int x) {\n  vc<pii> v;\n  int x0 = x;\n  for(int d = 2;\
     \ d <= x0; d++) {\n    if (x % d == 0) {\n      int f = 0;\n      while(x % d\
     \ == 0)\n        x /= d, f++;\n      v.emplace_back(d, f);\n    }\n  }\n  return\
@@ -156,13 +156,13 @@ data:
     }\n"
   dependsOn:
   - default/t.cpp
-  - numtheory/mu_table.cpp
   - numtheory/linear_sieve.cpp
+  - numtheory/mu_table.cpp
   isVerificationFile: true
   path: test/mytest_mu_table.test.cpp
   requiredBy: []
-  timestamp: '2026-02-08 01:29:43+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-02-08 01:33:18+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest_mu_table.test.cpp
 layout: document

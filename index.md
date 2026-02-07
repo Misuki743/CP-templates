@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -433,10 +433,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/lcm_convolution.cpp
       title: numtheory/lcm_convolution.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/linear_sieve.cpp
       title: numtheory/linear_sieve.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/mu_table.cpp
       title: numtheory/mu_table.cpp
     - icon: ':heavy_check_mark:'
@@ -866,7 +866,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest_linear_sieve.test.cpp
       title: test/mytest_linear_sieve.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest_mu_table.test.cpp
       title: test/mytest_mu_table.test.cpp
     - icon: ':heavy_check_mark:'
