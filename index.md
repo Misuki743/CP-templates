@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -415,9 +415,9 @@ data:
     - icon: ':warning:'
       path: numtheory/dirichlet_convolution.cpp
       title: numtheory/dirichlet_convolution.cpp
-    - icon: ':warning:'
-      path: numtheory/divisor_enumeration.cpp
-      title: numtheory/divisor_enumeration.cpp
+    - icon: ':heavy_check_mark:'
+      path: numtheory/divisor_table.cpp
+      title: numtheory/divisor_table.cpp
     - icon: ':warning:'
       path: numtheory/exgcd.cpp
       title: numtheory/exgcd.cpp
@@ -433,18 +433,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/lcm_convolution.cpp
       title: numtheory/lcm_convolution.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: numtheory/linear_sieve.cpp
       title: numtheory/linear_sieve.cpp
     - icon: ':warning:'
-      path: numtheory/mu_array.cpp
-      title: numtheory/mu_array.cpp
-    - icon: ':warning:'
-      path: numtheory/phi_array.cpp
-      title: numtheory/phi_array.cpp
-    - icon: ':warning:'
-      path: numtheory/primality_array.cpp
-      title: numtheory/primality_array.cpp
+      path: numtheory/mu_table.cpp
+      title: numtheory/mu_table.cpp
+    - icon: ':x:'
+      path: numtheory/phi_table.cpp
+      title: numtheory/phi_table.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/prime_table.cpp
       title: numtheory/prime_table.cpp
@@ -858,8 +855,23 @@ data:
       path: test/mytest_auxiliary_tree.test.cpp
       title: test/mytest_auxiliary_tree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest_divisor_table.test.cpp
+      title: test/mytest_divisor_table.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest_enumerate_twelvefold.test.cpp
       title: test/mytest_enumerate_twelvefold.test.cpp
+    - icon: ':x:'
+      path: test/mytest_factorize_sqrt.test.cpp
+      title: test/mytest_factorize_sqrt.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest_linear_sieve.test.cpp
+      title: test/mytest_linear_sieve.test.cpp
+    - icon: ':x:'
+      path: test/mytest_mu_table.test.cpp
+      title: test/mytest_mu_table.test.cpp
+    - icon: ':x:'
+      path: test/mytest_phi_table.test.cpp
+      title: test/mytest_phi_table.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest_prime_table.test.cpp
       title: test/mytest_prime_table.test.cpp

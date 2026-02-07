@@ -229,8 +229,17 @@ data:
     path: test/mytest_auxiliary_tree.test.cpp
     title: test/mytest_auxiliary_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest_divisor_table.test.cpp
+    title: test/mytest_divisor_table.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest_enumerate_twelvefold.test.cpp
     title: test/mytest_enumerate_twelvefold.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest_linear_sieve.test.cpp
+    title: test/mytest_linear_sieve.test.cpp
+  - icon: ':x:'
+    path: test/mytest_phi_table.test.cpp
+    title: test/mytest_phi_table.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest_prime_table.test.cpp
     title: test/mytest_prime_table.test.cpp
@@ -438,9 +447,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -611,7 +620,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2026-01-31 03:10:37+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/chromatic_number.test.cpp
   - test/static_range_count_distinct.test.cpp
@@ -627,6 +636,7 @@ data:
   - test/unionfind.test.cpp
   - test/point_set_range_composite.test.cpp
   - test/assignment.test.cpp
+  - test/mytest_linear_sieve.test.cpp
   - test/log_of_formal_power_series.test.cpp
   - test/rooted_tree_isomorphism_classification.test.cpp
   - test/lca_2.test.cpp
@@ -676,6 +686,7 @@ data:
   - test/multipoint_evaluation.test.cpp
   - test/system_of_linear_equations.test.cpp
   - test/jump_on_tree_3.test.cpp
+  - test/mytest_phi_table.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/line_add_get_min.test.cpp
   - test/associative_array.test.cpp
@@ -693,6 +704,7 @@ data:
   - test/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/minimum_spanning_tree_Prim.test.cpp
   - test/point_add_rectangle_sum.test.cpp
+  - test/mytest_divisor_table.test.cpp
   - test/yuki_1344.test.cpp
   - test/assignment_problem.test.cpp
   - test/lcm_convolution.test.cpp
