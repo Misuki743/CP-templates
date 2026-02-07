@@ -1,9 +1,9 @@
 template<int32_t C>
-struct divisor_enumeration {
+struct divisor_table {
   using i32 = int32_t;
   array<i32, C + 1> s = {};
   vector<i32> d;
-  divisor_enumeration() {
+  divisor_table() {
     for(int i = 1; i < C; i++)
       for(int j = i; j < C; j += i)
         s[j]++;
@@ -14,7 +14,7 @@ struct divisor_enumeration {
       for(int j = i; j < C; j += i)
         d[--s[j]] = i;
   }
-  vector<int> divisor(int x) {
-    return vector<int>(d.begin() + s[x], d.begin() + s[x + 1]);
+  vi divisor(int x) {
+    return vi(d.begin() + s[x], d.begin() + s[x + 1]);
   }
 };

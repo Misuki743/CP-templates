@@ -1,5 +1,5 @@
 template<class T, int32_t C>
-array<T, C> mu_array(linear_sieve<C> &ls) {
+array<T, C> mu_table(linear_sieve<C> &ls) {
   array<T, C> mu = {};
   if (C > 1) mu[1] = T(1);
   auto &mpf = ls.mpf;

@@ -1,7 +1,7 @@
 template<int32_t C>
 struct linear_sieve {
   array<int, C> mpf = {};
-  vector<int> prime;
+  vi prime;
   linear_sieve() {
     if (C > 2)
       iota(mpf.begin() + 2, mpf.end(), 2);
@@ -16,8 +16,8 @@ struct linear_sieve {
     }
   }
 
-  vector<pair<int, int>> prime_factorize(int x) {
-    vector<pair<int, int>> r;
+  vc<pii> prime_factorize(int x) {
+    vc<pii> r;
     while(mpf[x]) {
       r.emplace_back(mpf[x], 0);
       while(x % r.back().first == 0)
@@ -26,8 +26,8 @@ struct linear_sieve {
     return r;
   }
 
-  vector<int> prime_factor_enumerate(int x) {
-    vector<int> r;
+  vi prime_factor(int x) {
+    vi r;
     while(mpf[x]) {
       r.emplace_back(mpf[x]);
       while(x % r.back() == 0)
@@ -36,10 +36,10 @@ struct linear_sieve {
     return r;
   }
 
-  vector<int> divisor_enumerate(int x, bool sorted = true) {
-    vector<int> divisor = {1};
+  vi divisor(int x, bool sorted = true) {
+    vi divisor = {1};
     for(auto [p, f] : prime_factorize(x)) {
-      vector<int> nxt;
+      vi nxt;
       nxt.reserve(ssize(divisor) * (f + 1));
       for(int64_t i = 0, q = 1; i <= f; i++, q *= p)
         for(int d : divisor)

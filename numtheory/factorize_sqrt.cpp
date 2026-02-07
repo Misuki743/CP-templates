@@ -1,6 +1,6 @@
-vector<pair<int64_t, int64_t>> prime_factorize_sqrt(int64_t x) {
+vc<pair<int64_t, int64_t>> prime_factorize_sqrt(int64_t x) {
   using i64 = int64_t;
-  vector<pair<i64, i64>> res;
+  vc<pair<i64, i64>> res;
   for(i64 d = 2; d * d <= x; d++) {
     if (x % d != 0) continue;
     res.emplace_back(d, 0ll);
@@ -11,9 +11,9 @@ vector<pair<int64_t, int64_t>> prime_factorize_sqrt(int64_t x) {
   return res;
 }
 
-vector<int64_t> prime_factor_enumerate_sqrt(int64_t x) {
+vc<int64_t> prime_factor_sqrt(int64_t x) {
   using i64 = int64_t;
-  vector<i64> res;
+  vc<i64> res;
   for(i64 d = 2; d * d <= x; d++) {
     if (x % d != 0) continue;
     res.emplace_back(d);
@@ -24,11 +24,11 @@ vector<int64_t> prime_factor_enumerate_sqrt(int64_t x) {
   return res;
 }
 
-vector<int64_t> divisor_enumerate_sqrt(int64_t x, bool sorted = true) {
+vc<int64_t> divisor_sqrt(int64_t x, bool sorted = true) {
   using i64 = int64_t;
-  vector<i64> divisor = {1};
+  vc<i64> divisor = {1};
   for(auto [p, f] : prime_factorize_sqrt(x)) {
-    vector<i64> nxt;
+    vc<i64> nxt;
     nxt.reserve(ssize(divisor) * (f + 1));
     uint64_t q = 1;
     for(int i = 0; i <= f; i++, q *= p)
