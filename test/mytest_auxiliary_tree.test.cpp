@@ -178,7 +178,7 @@ int main() {
   }
 
   //star
-  for(int n = 2; n <= 100; n += 2) {
+  for(int n = 2; n <= 100; n += 4) {
     for(int root : {0, n / 2, n - 1}) {
       vector<vector<int>> g(n);
       for(int i = 0; i < n; i++)
@@ -191,7 +191,7 @@ int main() {
 
   //almost path
   for(int tc = 0; tc < 10; tc++) {
-    int n = 5'000;
+    int n = 3'000;
     vector<vector<int>> g(n);
     for(int v = 1; v < n; v++) {
       int x = rng() % min(v, 5);

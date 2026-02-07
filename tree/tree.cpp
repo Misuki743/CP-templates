@@ -8,6 +8,24 @@ class tree {
   int n, root;
   vc<int> p, sz, dep, jp;
 
+  tree(vc<pii> e, int _root = 0) : n(size(e) + 1), root(_root) {
+    vc<i32> d(n), adj(n);
+    for(auto [u, v] : e)
+      d[u]++, d[v]++, adj[u] ^= v, adj[v] ^= u;
+    d[root] = 0;
+    calc(d, adj);
+  }
+
+  tree(vi pa) : n(size(pa)) {
+    root = ranges::find(pa, -1) - pa.begin();
+    vc<i32> d(n), adj(n);
+    for(int v = 0; v < n; v++)
+      if (pa[v] != -1)
+        d[v]++, d[pa[v]]++, adj[v] ^= pa[v], adj[pa[v]] ^= v;
+    d[root] = 0;
+    calc(d, adj);
+  }
+
   void calc(vc<i32> d, vc<i32> adj) {
     sz = vi(n, 1);
     p = dep = jp = vi(n);
@@ -33,24 +51,6 @@ class tree {
       else
         jp[v] = p[v];
     }
-  }
-
-  tree(vc<pii> e, int _root = 0) : n(size(e) + 1), root(_root) {
-    vc<i32> d(n), adj(n);
-    for(auto [u, v] : e)
-      d[u]++, d[v]++, adj[u] ^= v, adj[v] ^= u;
-    d[root] = 0;
-    calc(d, adj);
-  }
-
-  tree(vi pa) : n(size(pa)) {
-    root = ranges::find(pa, -1) - pa.begin();
-    vc<i32> d(n), adj(n);
-    for(int v = 0; v < n; v++)
-      if (pa[v] != -1)
-        d[v]++, d[pa[v]]++, adj[v] ^= pa[v], adj[pa[v]] ^= v;
-    d[root] = 0;
-    calc(d, adj);
   }
 
   int jump(int v, int k) {

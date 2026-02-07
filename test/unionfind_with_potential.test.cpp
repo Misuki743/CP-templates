@@ -8,7 +8,7 @@ int main() {
   int n, q; cin >> n >> q;
   potential_DSU dsu(n, mint(0),
     [](mint a, mint b) { return a + b; },
-    [](mint &a) { return -a; }
+    [](mint a) { return -a; }
   );
 
   while(q--) {

@@ -12,7 +12,7 @@ int main() {
   potential_DSU dsu(n, M{1, 0, 0, 1},
     [](M a, M b) { return M{a[0] * b[0] + a[1] * b[2], a[0] * b[1] + a[1] * b[3],
                             a[2] * b[0] + a[3] * b[2], a[2] * b[1] + a[3] * b[3]}; },
-    [](M &a) { return M{a[3], -a[1], -a[2], a[0]}; }
+    [](M a) { return M{a[3], -a[1], -a[2], a[0]}; }
   );
 
   while(q--) {

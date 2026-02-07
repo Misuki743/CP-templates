@@ -4,6 +4,8 @@ struct LCA {
   vi dep, tin, tout, mp;
   RMQ<int> rmq;
 
+  LCA(vc<pii> e, int root = 0) : rmq(precomp(e, root)) {}
+
   vi precomp(vc<pii> &e, int root) {
     const int n = ssize(e) + 1;
 
@@ -15,7 +17,7 @@ struct LCA {
       for(auto &[u, v] : e)
         p[u] ^= v, p[v] ^= u, d[u]++, d[v]++;
 
-      d[root] = 0, p[root] = root;
+      d[root] = 0;
       ord.reserve(n - 1);
       for(int i = 0; i < n; i++) {
         int v = i;
@@ -26,6 +28,7 @@ struct LCA {
           v = p[v];
         }
       }
+      p[root] = root;
     }
 
     vi dfn(n);
@@ -75,8 +78,6 @@ struct LCA {
 
     return init;
   }
-
-  LCA(vc<pii> e, int root = 0) : rmq(precomp(e, root)) {}
 
   int lca(int u, int v) {
     if (tin[u] > tin[v]) swap(u, v);

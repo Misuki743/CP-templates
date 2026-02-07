@@ -25,6 +25,7 @@ struct HLD {
           v = p_head[v];
         }
       }
+      p_head[root] = root;
     }
 
     vi ord(n);
