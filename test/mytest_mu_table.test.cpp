@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../default/t.cpp"
-#include "../numtheory/mu.cpp"
+#include "../numtheory/mu_table.cpp"
 #include "../numtheory/linear_sieve.cpp"
 
 vc<pii> factorize(int x) {

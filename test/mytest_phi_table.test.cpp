@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../default/t.cpp"
-#include "../numtheory/phi_table.cpp"
 #include "../numtheory/linear_sieve.cpp"
+#include "../numtheory/phi_table.cpp"
 
 vc<pii> factorize(int x) {
   vc<pii> v;

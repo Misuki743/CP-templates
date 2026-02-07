@@ -2,7 +2,7 @@
 
 #include "../default/t.cpp"
 #include "../numtheory/factorize_sqrt.cpp"
-#include "../factorize_pollard_rho.cpp"
+#include "../numtheory/factorize_pollard_rho.cpp"
 
 void check(int64_t x) {
   vc<int64_t> pf;
