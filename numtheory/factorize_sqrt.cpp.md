@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest_factorize_sqrt.test.cpp
+    title: test/mytest_factorize_sqrt.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/factorize_sqrt.cpp\"\nvc<pair<int64_t, int64_t>>\
@@ -41,8 +44,9 @@ data:
   path: numtheory/factorize_sqrt.cpp
   requiredBy: []
   timestamp: '2026-02-08 01:19:23+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest_factorize_sqrt.test.cpp
 documentation_of: numtheory/factorize_sqrt.cpp
 layout: document
 redirect_from:

@@ -10,6 +10,9 @@ data:
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest_factorize_sqrt.test.cpp
+    title: test/mytest_factorize_sqrt.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/primality_test.test.cpp
     title: test/primality_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -69,6 +72,7 @@ data:
   - test/chromatic_number.test.cpp
   - test/primality_test.test.cpp
   - test/primitive_root.test.cpp
+  - test/mytest_factorize_sqrt.test.cpp
   - test/factorize.test.cpp
 documentation_of: numtheory/factorize_pollard_rho.cpp
 layout: document

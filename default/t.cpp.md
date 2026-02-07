@@ -235,9 +235,15 @@ data:
     path: test/mytest_enumerate_twelvefold.test.cpp
     title: test/mytest_enumerate_twelvefold.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest_factorize_sqrt.test.cpp
+    title: test/mytest_factorize_sqrt.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest_linear_sieve.test.cpp
     title: test/mytest_linear_sieve.test.cpp
   - icon: ':x:'
+    path: test/mytest_mu_table.test.cpp
+    title: test/mytest_mu_table.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest_phi_table.test.cpp
     title: test/mytest_phi_table.test.cpp
   - icon: ':heavy_check_mark:'
@@ -717,6 +723,7 @@ data:
   - test/sqrt_of_formal_power_series.test.cpp
   - test/static_RMQ_2.test.cpp
   - test/lca_4.test.cpp
+  - test/mytest_mu_table.test.cpp
   - test/matrix_product.test.cpp
   - test/minimum_spanning_tree_Kruskal.test.cpp
   - test/biconnected_components.test.cpp
@@ -730,6 +737,7 @@ data:
   - test/double_ended_priority_queue.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/cartesian_tree.test.cpp
+  - test/mytest_factorize_sqrt.test.cpp
   - test/bipartitematching.test.cpp
   - test/two_sat.test.cpp
   - test/jump_on_tree_2.test.cpp

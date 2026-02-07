@@ -424,7 +424,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/factorize_pollard_rho.cpp
       title: numtheory/factorize_pollard_rho.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/factorize_sqrt.cpp
       title: numtheory/factorize_sqrt.cpp
     - icon: ':heavy_check_mark:'
@@ -436,10 +436,10 @@ data:
     - icon: ':question:'
       path: numtheory/linear_sieve.cpp
       title: numtheory/linear_sieve.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: numtheory/mu_table.cpp
       title: numtheory/mu_table.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/phi_table.cpp
       title: numtheory/phi_table.cpp
     - icon: ':heavy_check_mark:'
@@ -860,7 +860,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest_enumerate_twelvefold.test.cpp
       title: test/mytest_enumerate_twelvefold.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest_factorize_sqrt.test.cpp
       title: test/mytest_factorize_sqrt.test.cpp
     - icon: ':heavy_check_mark:'
@@ -869,7 +869,7 @@ data:
     - icon: ':x:'
       path: test/mytest_mu_table.test.cpp
       title: test/mytest_mu_table.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest_phi_table.test.cpp
       title: test/mytest_phi_table.test.cpp
     - icon: ':heavy_check_mark:'

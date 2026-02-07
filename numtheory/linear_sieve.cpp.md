@@ -13,6 +13,9 @@ data:
     path: test/mytest_linear_sieve.test.cpp
     title: test/mytest_linear_sieve.test.cpp
   - icon: ':x:'
+    path: test/mytest_mu_table.test.cpp
+    title: test/mytest_mu_table.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest_phi_table.test.cpp
     title: test/mytest_phi_table.test.cpp
   _isVerificationFailed: true
@@ -61,6 +64,7 @@ data:
   - test/mytest_linear_sieve.test.cpp
   - test/mytest_phi_table.test.cpp
   - test/lcm_convolution.test.cpp
+  - test/mytest_mu_table.test.cpp
   - test/gcd_convolution.test.cpp
 documentation_of: numtheory/linear_sieve.cpp
 layout: document

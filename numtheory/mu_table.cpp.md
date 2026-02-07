@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest_mu_table.test.cpp
+    title: test/mytest_mu_table.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/mu_table.cpp\"\ntemplate<class T, int32_t C>\n\
@@ -21,8 +24,9 @@ data:
   path: numtheory/mu_table.cpp
   requiredBy: []
   timestamp: '2026-02-08 01:19:23+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/mytest_mu_table.test.cpp
 documentation_of: numtheory/mu_table.cpp
 layout: document
 redirect_from:
