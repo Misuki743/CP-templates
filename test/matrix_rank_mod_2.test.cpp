@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_rank_mod_2"
 
 #include "../default/t.cpp"
-#include "../linalg/xorBasis.cpp"
+#include "../linalg/xor_basis_bitset.cpp"
 
 template<int size = 1>
 void solve(int n, int m) {
@@ -9,14 +9,14 @@ void solve(int n, int m) {
     solve<min(2 * size, 1 << 24)>(n, m);
     return;
   }
-  xorBasis<size> b;
+  xor_basis<size> b;
   while(n--) {
     string s; cin >> s;
-    b.insert(bitset<size>(s), 0);
+    b.insert(bitset<size>(s));
   }
   int rank = 0;
   for(int i = 0; i < size; i++)
-    rank += b.basis[i] != nullptr;
+    rank += b.B[i] != nullptr;
   cout << rank << '\n';
 }
 
