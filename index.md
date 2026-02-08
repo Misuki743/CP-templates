@@ -370,12 +370,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/matrixMint.cpp
       title: linalg/matrixMint.cpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/xorBasis.cpp
-      title: linalg/xorBasis.cpp
     - icon: ':warning:'
-      path: linalg/xorBasis2.cpp
-      title: linalg/xorBasis2.cpp
+      path: linalg/suffix_xor_basis_bitset.cpp
+      title: linalg/suffix_xor_basis_bitset.cpp
+    - icon: ':warning:'
+      path: linalg/suffix_xor_basis_i64.cpp
+      title: linalg/suffix_xor_basis_i64.cpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/xor_basis_bitset.cpp
+      title: linalg/xor_basis_bitset.cpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/xor_basis_i64.cpp
+      title: linalg/xor_basis_i64.cpp
   - name: misc
     pages:
     - icon: ':heavy_check_mark:'
@@ -1079,6 +1085,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yuki_2654.test.cpp
       title: test/yuki_2654.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yuki_2895.test.cpp
+      title: test/yuki_2895.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yuki_2895_2.test.cpp
+      title: test/yuki_2895_2.test.cpp
 layout: toppage
 ---
 template used for online programming contest. some of the code are not written by myself, and these codes would contain reference to the original sources.

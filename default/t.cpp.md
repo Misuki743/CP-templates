@@ -453,6 +453,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki_2895.test.cpp
+    title: test/yuki_2895.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki_2895_2.test.cpp
+    title: test/yuki_2895_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -648,6 +654,7 @@ data:
   - test/lca_2.test.cpp
   - test/wildcard_pattern_matching.test.cpp
   - test/yuki_1868.test.cpp
+  - test/yuki_2895.test.cpp
   - test/range_affine_range_sum.test.cpp
   - test/tree_path_composite_sum.test.cpp
   - test/lca.test.cpp
@@ -731,6 +738,7 @@ data:
   - test/unionfind_with_potential.test.cpp
   - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/vertex_add_subtree_sum.test.cpp
+  - test/yuki_2895_2.test.cpp
   - test/yuki_2654.test.cpp
   - test/shortest_path_sparse.test.cpp
   - test/bernoulli_number.test.cpp
