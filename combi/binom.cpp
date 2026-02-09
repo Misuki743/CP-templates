@@ -4,6 +4,7 @@ template<class Mint>
 struct binomial {
   vector<Mint> _fac, _facInv;
   binomial(int size) : _fac(size), _facInv(size) {
+    assert(size <= (int)Mint::get_mod());
     _fac[0] = 1;
     for(int i = 1; i < size; i++)
       _fac[i] = _fac[i - 1] * i;
