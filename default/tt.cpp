@@ -221,6 +221,27 @@ vvi adjacency_list(int n, vc<pii> e, int base) {
 }
 
 template<class T>
+vc<pii> equal_subarrays(vc<T> &v) {
+  vc<pii> lr;
+  for(int i = 0, j = 0; i < ssize(v); i = j) {
+    while(j < ssize(v) and v[i] == v[j]) j++;
+    lr.eb(i, j);
+  }
+  return lr;
+}
+
+template<class T, typename F>
+requires invocable<F, T&>
+vc<pii> equal_subarrays(vc<T> &v, F proj) {
+  vc<pii> lr;
+  for(int i = 0, j = 0; i < ssize(v); i = j) {
+    while(j < ssize(v) and proj(v[i]) == proj(v[j])) j++;
+    lr.eb(i, j);
+  }
+  return lr;
+}
+
+template<class T>
 void setBit(T &msk, int bit, bool x) { (msk &= ~(T(1) << bit)) |= T(x) << bit; }
 template<class T> void onBit(T &msk, int bit) { setBit(msk, bit, true); }
 template<class T> void offBit(T &msk, int bit) { setBit(msk, bit, false); }

@@ -50,3 +50,5 @@ namespace RNG {
     return p;
   }
 };
+
+using namespace RNG;
