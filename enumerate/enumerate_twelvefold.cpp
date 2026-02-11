@@ -1,5 +1,6 @@
 //#include "enumerate/bit.cpp"
 
+//n^k
 template<typename F>
 requires invocable<F, vector<int>>
 void enumerate_cartesian_power(int n, int k, F f) {
@@ -18,6 +19,10 @@ void enumerate_cartesian_power(int n, int k, F f) {
   dfs(0, dfs);
 }
 
+//factorial:
+//[1, 2, 6, 24, 120,
+// 720, 5040, 40320, 362880, 3628800,
+// 39916800, 479001600, 6227020800, 87178291200, 1307674368000]
 template<typename F>
 requires invocable<F, vector<int>>
 void enumerate_permutation(int n, F f) {
@@ -27,6 +32,7 @@ void enumerate_permutation(int n, F f) {
   do { f(p); } while(next_permutation(p.begin(), p.end()));
 }
 
+//binom(n, k)
 template<typename F>
 requires invocable<F, vector<int>>
 void enumerate_combination(int n, int k, F f) {
@@ -46,6 +52,10 @@ void enumerate_combination(int n, int k, F f) {
   dfs(dfs);
 }
 
+//Bell's number:
+//[1, 2, 5, 15, 52,
+// 203, 877, 4140, 21147, 115975,
+// 678570, 4213597, 27644437, 190899322, 1382958545]
 template<typename F>
 requires invocable<F, vector<int>>
 void enumerate_set_partition(int n, F f) {
@@ -71,6 +81,8 @@ void enumerate_set_partition(int n, F f) {
   dfs(dfs);
 }
 
+//f[0] + f[1] + ... + f[n - 1] = sum, f[i] >= 0
+//binom(sum + (n - 1), sum)
 template<typename F>
 requires invocable<F, vector<int>>
 void enumerate_multisubset(int n, int sum, F f) {
@@ -90,6 +102,17 @@ void enumerate_multisubset(int n, int sum, F f) {
   dfs(0, dfs);
 }
 
+//partition number:
+//n = 10: 42
+//n = 20: 627
+//n = 30: 5604
+//n = 40: 37338
+//n = 50: 204226
+//n = 60: 966467
+//n = 70: 4087968
+//n = 80: 15796476
+//n = 90: 56634173
+//n = 100: 190569292
 template<typename F>
 requires invocable<F, vector<int>>
 void enumerate_integer_partition(int n, F f) {
