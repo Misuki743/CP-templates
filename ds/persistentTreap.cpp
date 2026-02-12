@@ -1,4 +1,5 @@
-const int TN = 5000000;
+mt19937_64 rng(clock);
+const int TN = 5'000'000;
 struct Treap {
   static Treap mem[TN], *pmem;
   Treap *l, *r;

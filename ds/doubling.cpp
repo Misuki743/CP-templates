@@ -30,7 +30,7 @@ struct doubling {
   }
 
   template<typename P>
-  requires R_invocable<bool, P, T&, T&>
+  requires R_invocable<bool, P, T&>
   auto jump_while_true(int s, P pred) {
     ll step = 0;
     T prod = id;
