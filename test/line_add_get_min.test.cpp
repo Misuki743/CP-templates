@@ -28,7 +28,7 @@ signed main() {
     if (t == 1)
       a = ranges::lower_bound(pt, a) - pt.begin();
 
-  lichaoSegmentTree<ll, LLONG_MAX> st(bit_ceil((unsigned)q), pt);
+  lichaoSegmentTree<ll> st(bit_ceil((unsigned)q), pt);
   for(auto [a, b] : ab)
     st.insert(1, a, b);
   for(auto [t, a, b] : query) {

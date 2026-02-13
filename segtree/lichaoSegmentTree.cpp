@@ -1,12 +1,14 @@
 //note: size should be power of 2, finding min line in default
 
-template<class M, M unit>
+template<class M>
 struct lichaoSegmentTree {
+  static constexpr M INF = numeric_limits<M>::max();
+
   vector<array<M, 2>> data;
   vector<M> xMid;
   unsigned size;
 
-  lichaoSegmentTree(unsigned _size, vector<M> x = vector<M>()) : data(2 * _size, {0, unit}), xMid(2 * _size), size(_size) {
+  lichaoSegmentTree(unsigned _size, vector<M> x = vector<M>()) : data(2 * _size, {0, INF}), xMid(2 * _size), size(_size) {
     assert(popcount(size) == 1);
     if (x.empty()) {
       iota(xMid.begin() + size, xMid.end(), 0);
@@ -49,7 +51,7 @@ struct lichaoSegmentTree {
 
   M query(int v) {
     v += size;
-    M ans = unit;
+    M ans = INF;
     int x = xMid[v];
     while(v >= 1)
       ans = min(ans, eval(data[v][0], data[v][1], x)), v >>= 1;

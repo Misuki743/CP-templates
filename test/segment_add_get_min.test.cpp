@@ -47,7 +47,7 @@ signed main() {
     }
   }
 
-  lichaoSegmentTree<ll, LLONG_MAX> st(bit_ceil(xs.size()), xs);
+  lichaoSegmentTree<ll> st(bit_ceil(xs.size()), xs);
   for(auto &[l, r, a, b] : c)
     st.insertRange(l, r, a, b);
   for(auto &[t, x, y, z, w] : query) {
