@@ -109,6 +109,10 @@ struct HLD {
     return tin[u] < tin[v] ? u : v;
   }
 
+  int dis(int u, int v) {
+    return dep[u] + dep[v] - 2 * dep[lca(u, v)];
+  }
+
   int kth(int s, int t, int k) {
     int l = lca(s, t);
     if (int d = dep[s] + dep[t] - 2 * dep[l]; k > d)
