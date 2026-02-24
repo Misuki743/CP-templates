@@ -97,4 +97,5 @@ struct MontgomeryModInt {
   }
 };
 
-using mint = MontgomeryModInt<998244353>;
+//using mint = MontgomeryModInt<1'000'000'007>;
+using mint = MontgomeryModInt<998'244'353>;

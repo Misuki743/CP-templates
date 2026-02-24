@@ -8,3 +8,5 @@ https://misuki743.github.io/CP-templates/
 
 - compressed suffix tree
 - wavelet matrix attached with static group elements
+- FFT
+- use FFT to rewrite tree path frequency table
