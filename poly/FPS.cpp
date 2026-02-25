@@ -74,6 +74,12 @@ struct FPS : vector<Mint> {
     return F;
   }
 
+  FPS rev() {
+    FPS F = *this;
+    reverse(F.begin(), F.end());
+    return F;
+  }
+
   FPS integral() {
     if (this -> empty()) return {0};
     vector<Mint> Inv(ssize(*this) + 1);

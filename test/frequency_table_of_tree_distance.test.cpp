@@ -3,8 +3,8 @@
 #include "../default/t.cpp"
 #include "../modint/MontgomeryModInt.cpp"
 #include "../poly/NTTmint.cpp"
+#include "../poly/convolution_ll.cpp"
 #include "../tree/centroid_tree.cpp"
-#include "../numtheory/crt.cpp"
 #include "../ds_problem/frequency_of_tree_distance.cpp"
 
 signed main() {
@@ -17,13 +17,7 @@ signed main() {
     g[u].emplace_back(v), g[v].emplace_back(u);
   }
 
-  auto ans1 = frequency_of_tree_distance(g);
-  auto ans2 = frequency_of_tree_distance<26, 7, 3, MontgomeryModInt<(7 << 26) | 1>>(g);
-  for(int i = 0; i < n - 1; i++) {
-    vector<ll> r = {ans1[i].get(), ans2[i].get()};
-    vector<ll> m = {998244353, (7 << 26) | 1};
-    cout << crt(r, m).first << " \n"[i + 1 == n - 1];
-  }
+  cout << frequency_of_tree_distance(g) << '\n';
 
   return 0;
 }
