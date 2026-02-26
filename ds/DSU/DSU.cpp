@@ -6,8 +6,8 @@ struct DSU {
 
   DSU(int n) requires same_as<F, void*> : sz_par(n, -1), op(nullptr) {}
 
-  DSU(vc<T> init, F f) requires invocable<F, T&, T&> &&
-    (!invocable<F, T, T&>) && (!invocable<F, T&, T>)
+  DSU(vc<T> init, F f) requires R_invocable<void, F, T&, T&> &&
+    (!R_invocable<void, F, T, T&>) && (!R_invocable<void, F, T&, T>)
     : sz_par(std::size(init), -1), data(std::move(init)), op(f) {}
 
   int query(int v) {
@@ -38,7 +38,7 @@ struct DSU {
   }
 
   int size(int v) { return v = query(v), -sz_par[v]; }
-  const T& get(int v) requires (!same_as<F, void*>) {
+  T& get(int v) requires (!same_as<F, void*>) {
     return data[query(v)];
   }
 };
