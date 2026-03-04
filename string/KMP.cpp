@@ -1,12 +1,14 @@
-int fail[1000000];
-void build(string &s) {
-  fail[0] = -1;
-  for(int i = 1; i < s.size(); i++) {
-    int now = fail[i - 1];
+template<class T>
+vi prefix_function(T &s) {
+  vi pi(size(s));
+  pi[0] = -1;
+  for(int i = 1; i < ssize(s); i++) {
+    int now = pi[i - 1];
     while(now != -1 and s[i] != s[now + 1])
-      now = fail[now];
-    fail[i] = now + ((s[now + 1] == s[i]) ? 1 : 0);
+      now = pi[now];
+    pi[i] = now + (s[now + 1] == s[i]);
   }
+  return pi;
 }
 
 int match(string &a, string &b) {
