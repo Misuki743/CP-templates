@@ -7,16 +7,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11' # 強烈建議固定在 3.11 確保穩定性
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install setuptools
-        pip3 install -U online-judge-verify-helper
+        python -m pip install setuptools wheel # 使用 python -m 確保安裝在當前環境
+        python -m pip install -U online-judge-verify-helper
 
     - name: Run tests
       env:
@@ -24,4 +26,5 @@ jobs:
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
         DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
         GH_PAT: ${{ secrets.GH_PAT }}
-      run: oj-verify all
+      # 使用 python -m 呼叫模組，避免環境路徑導致找不到指令
+      run: python -m onlinejudge_verify.main all 
