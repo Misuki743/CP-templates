@@ -7,4 +7,3 @@ https://misuki743.github.io/CP-templates/
 # TODO
 
 - wavelet matrix attached with static group elements
-- refine KMP
