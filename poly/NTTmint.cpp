@@ -49,6 +49,7 @@ struct NTT {
   }
 
   static vector<Mint> conv(vector<Mint> a, vector<Mint> b) {
+    if (a.empty() or b.empty()) return {};
     int sz = ssize(a) + ssize(b) - 1;
     int n = bit_ceil((u32)sz);
 

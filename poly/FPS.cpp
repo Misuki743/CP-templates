@@ -31,7 +31,7 @@ struct FPS : vector<Mint> {
 
   FPS& operator*=(FPS b) {
     auto c = conv(*this, b);
-    this -> resize(ssize(*this) + ssize(b) - 1);
+    this -> resize(size(c));
     copy(c.begin(), c.end(), this -> begin());
     return *this;
   }

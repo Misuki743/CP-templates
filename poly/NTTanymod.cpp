@@ -4,6 +4,7 @@
 
 template<class Mint>
 vector<Mint> convAnyMod(vector<Mint> a, vector<Mint> b) {
+  if (a.empty() or b.empty()) return {};
   using Mint0 = MontgomeryModInt<998244353>;
   using Mint1 = MontgomeryModInt<469762049>;
   using Mint2 = MontgomeryModInt<167772161>;
