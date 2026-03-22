@@ -115,6 +115,14 @@ ostream& operator<<(ostream& os, const map<T1, T2> &m) {
   }
   return os;
 }
+template<class T>
+ostream& operator<<(ostream&os, span<T> &s) {
+  for(size_t i = 0; T &x : s) {
+    os << x;
+    if (++i != size(s)) os << ' ';
+  }
+  return os;
+}
 
 #ifdef DEBUG
 #define dbg(...) cerr << '(', _do(#__VA_ARGS__), cerr << ") = ", _do2(__VA_ARGS__)
@@ -131,6 +139,7 @@ using ull = unsigned long long;
 using ldb = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
+//#define double ldb
 
 template<typename T> using vc = vector<T>;
 template<typename T> using vvc = vc<vc<T>>;
@@ -216,6 +225,27 @@ vvi adjacency_list(int n, vc<pii> e, int base) {
       g[v].emplace_back(u);
   }
   return g;
+}
+
+template<class T>
+vc<pii> equal_subarrays(vc<T> &v) {
+  vc<pii> lr;
+  for(int i = 0, j = 0; i < ssize(v); i = j) {
+    while(j < ssize(v) and v[i] == v[j]) j++;
+    lr.eb(i, j);
+  }
+  return lr;
+}
+
+template<class T, typename F>
+requires invocable<F, T&>
+vc<pii> equal_subarrays(vc<T> &v, F proj) {
+  vc<pii> lr;
+  for(int i = 0, j = 0; i < ssize(v); i = j) {
+    while(j < ssize(v) and proj(v[i]) == proj(v[j])) j++;
+    lr.eb(i, j);
+  }
+  return lr;
 }
 
 template<class T>
